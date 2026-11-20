@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -124,292 +140,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Heaven and Earth: Nuclear Astrophysics after GW170817</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2403.16154" target="_blank" rel="noopener" class="mono">arXiv:2403.16154</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The historical detection of gravitational waves from the binary neutron star merger GW170817 is providing fundamental new insights into the astrophysical site for the creation of the heaviest elements in the cosmos and on the equation of state of neutron-rich matter. Shortly after this historical detection, electromagnetic observations of neutron stars together with measurements of the properties of neutron-rich nuclei at terrestrial facilities have placed additional constraints on the dynamics of neutron-rich matter. It is this unique synergy between heaven and earth that is the focus of this article.</p></details>
+<div class="small mut mono">arXiv:2403.16154</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The historical detection of gravitational waves from the binary neutron star merger GW170817 is providing fundamental new insights into the astrophysical site for the creation of the heaviest elements in the cosmos and on the equation of state of neutron-rich matter. Shortly after this historical detection, electromagnetic observations of neutron stars together with measurements of the properties of neutron-rich nuclei at terrestrial facilities have placed additional constraints on the dynamics of neutron-rich matter. It is this unique synergy between heaven and earth that is the focus of this article.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2403.16154v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>12 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>Heaven and Earth: Nuclear Astrophysics after <mark>GW170817</mark>
-
- 
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- 
- 
-
- 
- arXiv is now an independent nonprofit!
- Learn more
- &amp;times;
- 
-
- 
- 
- Back to arXi…</div>
+    <p class="where">Named 12 times:
+      introduction ×8, title/headings ×3, abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/2403.16154v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…ependent nonprofit!
- Learn more
- &amp;times;
- 
-
- 
- 
- Back to arXiv
- 
- 
-
- 
- 
- Why HTML?
- 
- 
- 
- 
- Report Issue
- 
- 
- 
- 
- 
- 
- Back to Abstract
- 
- 
- 
- 
- 
- 
- Download PDF
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-Abstract
-
-1 Introduction
-
-2 <mark>GW170817</mark>: Tidal imprints on the EOS
-
-3 PSR J0740: Constraints on the EOS at the highest densities
-
-4 NICER: Building the Mass-Radius Relation
-
-5 Heaven and Earth: Neutron skins and neutron stars
-
-6 Conclusions and Outlook
-
-References
-
- 
- License: arXiv.org perpetual n…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>… Mass-Radius Relation
-
-5 Heaven and Earth: Neutron skins and neutron stars
-
-6 Conclusions and Outlook
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2403.16154v1 [nucl-th] 24 Mar 2024
-
-Heaven and Earth: Nuclear Astrophysics after <mark>GW170817</mark>
-
-\firstnameJorge \lastnamePiekarewicz\fnsep
-††thanks: 
-Email: jpiekarewicz@fsu.edu
-
-Affiliation: Department of Physics,
-Florida State University,
-Tallahassee, FL 32306-4350,
-USA
-
-Abstract
-
- 
-The historical detection of gravitational waves from the binary neut…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…e \lastnamePiekarewicz\fnsep
-††thanks: 
-Email: jpiekarewicz@fsu.edu
-
-Affiliation: Department of Physics,
-Florida State University,
-Tallahassee, FL 32306-4350,
-USA
-
-Abstract
-
- 
-The historical detection of gravitational waves from the binary neutron star merger
-<mark>GW170817</mark> is providing fundamental new insights into the astrophysical site for the
-creation of the heaviest elements in the cosmos and on the equation of state of
-neutron-rich matter. Shortly after this historical detection, electromagnetic observations
-of neutron sta…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…
-proton. As such, Einstein’s skepticism towards the direct detection of gravitational waves hardly comes
-as a surprise.
-
-This remarkable accomplishment was soon followed by the first direct detection of gravitational
-waves from a binary neutron star inspiral (<mark>GW170817</mark>) [4]. Unlike black holes, the
-electromagnetic—and in the future neutrino—emission from these cataclysmic events may also be
-detected. Indeed, nearly two seconds after the gravitational waves were detected by the LIGO-Virgo
-interferometers, the Fermi Gamma-ray…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…gnetic transient believed to be powered by the radioactive decay of the heavy elements
-synthesized in the r-process, thereby answering one of the most fundamental questions in all of science:
-What is the origin of the heavy elements? Thus, in one clean sweep, <mark>GW170817</mark> and its associated
-electromagnetic counterparts, launched the new era of multimessenger astronomy.
-
-Figure 1: The equation of state density ladder. Each rung in the ladder informs the equation of the state of
-neutron-rich matter in an appropriate density regi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…nger astronomy.
-
-Figure 1: The equation of state density ladder. Each rung in the ladder informs the equation of the state of
-neutron-rich matter in an appropriate density regime. Figure adopted from the 2023 Long Range
-Plan for Nuclear Science [16].
-
-Whereas <mark>GW170817</mark> has generated a paradigm shift in our understanding of neutron stars, many
-other developments continue to shape our understanding of the structure, dynamics, and composition
-of neutron stars. Notable among them is the determination of the most massive neutron…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…on of state (EOS) over the entire density range, yet each rung on the
-ladder informs the EOS in a suitable domain that overlaps with its neighboring rungs. Underscoring the
-synergy among such seemingly distinct fields is the main goal of this contribution.
-
-2 <mark>GW170817</mark>: Tidal imprints on the EOS
-
-We start this section by displaying in Fig.2 the effective gravitational wave strain h=Δ​L/Lh\!=\!\Delta L/L
-as a function of frequency during the last stages of the binary neutron-star inspiral [17].
-Below a few 100​Hz100\,{\rm Hz…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…nowledge of the EOS at finite temperature and the use
-of numerical relativity in the strong coupling regime.
-
-Figure 2: Illustration of the gravitational-wave signal emitted during the last stages of the binary neutron star
-coalescence, such as in the case of <mark>GW170817</mark>. At present, the most stringent constraints on the
-EOS come from the few-hundred Hz region where tidal effects become important. During the second
-observing run, advanced LIGO/Virgo reached the required sensitivity to detect GW170817. Next
-generation gravitat…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…e, such as in the case of GW170817. At present, the most stringent constraints on the
-EOS come from the few-hundred Hz region where tidal effects become important. During the second
-observing run, advanced LIGO/Virgo reached the required sensitivity to detect <mark>GW170817</mark>. Next
-generation gravitational wave detectors, such as Cosmic Explorer and the Einstein Telescope, will
-reach such a high sensitivity that the detection of binary neutron star mergers will become routine.
-Figure adapted from Ref. [17].
-
-The measured gravitati…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ce and QQ is the induced, time-varying mass quadrupole. The arrow in the
-above expression indicates the relevant scale in the f≃400​Hzf\!\simeq\!400\,{\rm Hz} region where the orbital separation
-of the binary system is a few hundred kilometers. In the case of <mark>GW170817</mark>, with the source at a distance of
-40​Mpc40\,{\rm Mpc}, the gravitational wave strain is of the order of h∼10−23h\!\sim\!10^{-23}.
-
-Encoded in the gravitational wave signal are matter effects imprinted in the tidal deformability. In the linear
-regime, the indu…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…nd Love
-number k2k_{2} is also sensitive to the EOS, as its value emerges from the solution of a nonlinear,
-first-order differential equation that uses as input the EOS [20, 21].
-
-Shortly after the publication of the discovery paper [4], a refined analysis of <mark>GW170817</mark> by
-the LIGO/Virgo collaboration reported a tidal deformability of Λ1.4=190−120+390\Lambda_{1.4}\!=\!190^{+390}_{-120}.
-Such a relatively small value of Λ1.4\Lambda_{1.4} suggests that neutron stars are fairly compact, thereby
-favoring a soft equation of state…</div>
+    <details class="lines"><summary>Show the sentences (10, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Heaven and Earth: Nuclear Astrophysics after GW170817</li><li><span class="sec">title/headings</span> 2 GW170817: Tidal imprints on the EOS</li><li><span class="sec">abstract</span> The historical detection of gravitational waves from the binary neutron star merger GW170817 is providing fundamental new insights into the astrophysical site for the creation of the heaviest elements i…</li><li><span class="sec">introduction</span> …t was soon followed by the first direct detection of gravitational waves from a binary neutron star inspiral (GW170817) [4].</li><li><span class="sec">introduction</span> Thus, in one clean sweep, GW170817 and its associated electromagnetic counterparts, launched the new era of multimessenger astronomy.</li><li><span class="sec">introduction</span> Whereas GW170817 has generated a paradigm shift in our understanding of neutron stars, many other developments continue to sha…</li><li><span class="sec">introduction</span> …nal-wave signal emitted during the last stages of the binary neutron star coalescence, such as in the case of GW170817.</li><li><span class="sec">introduction</span> During the second observing run, advanced LIGO/Virgo reached the required sensitivity to detect GW170817.</li></ul>
     </details>
     
   </div>
@@ -465,7 +222,7 @@ favoring a soft equation of state…</div>
 </section>
 </div>
 </div>
-<script>window.SG_PAGE = {"answers": {"GW170817": ["qualitative"]}, "arxiv_id": "2403.16154", "events": ["GW170817"], "kind": "calibration", "uniform": false};</script>
+<script>window.SG_PAGE = {"answers": {"GW170817": ["qualitative"]}, "arxiv_id": "2403.16154", "events": ["GW170817"], "kind": "calibration", "notes": {"GW170817": "A review: it discusses what GW170817 showed and quotes its tidal deformability as background, but uses no numbers in a calculation or comparison of its own. Qualitative (Q4)."}, "uniform": false};</script>
 <script src="../config.js"></script>
 <script src="../sg.js"></script>
 <script>SG.paperPage();</script>

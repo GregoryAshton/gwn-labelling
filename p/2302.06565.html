@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>The burst observer and optical transient exploring system in the multi-messenger astronomy era</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2302.06565" target="_blank" rel="noopener" class="mono">arXiv:2302.06565</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The Burst Observer and Optical Transient Exploring System (BOOTES) was first designed as an asset of autonomous telescopes that started to be deployed in 1998, taking 24 years to be fully developed around the earth. Nowadays BOOTES has became a global network of robotic telescopes, being the first one present in all continents, as of 2022. Here we present the details of the network and review its achievements over the last 2 decades regarding follow-up observations of high-energy transient events. Moreover, considering the recent operations of neutrino and gravitational wave detectors, some hot-topic expectations related to robotic astronomy are discussed within the framework of multi-wavelength astrophysics.</p></details>
+<div class="small mut mono">arXiv:2302.06565</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The Burst Observer and Optical Transient Exploring System (BOOTES) was first designed as an asset of autonomous telescopes that started to be deployed in 1998, taking 24 years to be fully developed around the earth. Nowadays BOOTES has became a global network of robotic telescopes, being the first one present in all continents, as of 2022. Here we present the details of the network and review its achievements over the last 2 decades regarding follow-up observations of high-energy transient events. Moreover, considering the recent operations of neutrino and gravitational wave detectors, some hot-topic expectations related to robotic astronomy are discussed within the framework of multi-wavelength astrophysics.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2302.06565v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,56 +159,23 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">2 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">2 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…NS), then the galaxy candidates in the error region are given higher priority follow-up observation using the narrower FOV telescopes.
-
-Figure 8: The strategy used in the BOOTES network for the GW observation.
-
-During O1, the BOOTES network observed the event <mark>GW150914</mark> with the CASANDRA camera at the BOOTES-3 station (Abbott et al., 2016).
-The image was taken simultaneously and no prompt optical counterpart was found. Due to the poor weather conditions, it only provided an upper limit of 5 mag. While this value sets a wide …</div>
+    <p class="where">Named 2 times:
+      introduction, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2302.06565v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">references</span>…Review Letters 111, 021103.
-
-10.1103/PhysRevLett.111.021103
-
- 
-Abbott et al. (2016)
-
-Abbott, B. P., Abbott, R., Abbott, T. D., Abernathy, M. R., Acernese,
-F., Ackley, K., et al. (2016).
-
-Localization and Broadband Follow-up of the Gravitational-wave
-Transient <mark>GW150914</mark>.
-
-Astrophysical Journal Letters 826, L13.
-
-10.3847/2041-8205/826/1/L13https://doi.org/10.3847
-
-Abbott et al. (2017)
-
-Abbott, B. P., Abbott, R., Abbott, T. D., Acernese, F., Ackley, K.,
-Adams, C., et al. (2017).
-
-Multi-messenger Observations of a Binary Neutro…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">Abbott 2016</span> · 2 places</span><div class="cite">…operation, the first GW event was detected on September 14, 2015, which was confirmed to be generated from two ∼\sim30 solar mass black holes merging at a distance of 410−180+160410^{+160}_{-180}Mpc (<mark class="ref">Abbott et al., 2016</mark>). Together with the GW signal, the gravitational potential released in the form of electromagnetic (EM) radiation, reached Earth simultaneously which could be used to constrain their related physical…</div><div class="cite">…FOV telescopes.
-
-Figure 8: The strategy used in the BOOTES network for the GW observation.
-
-During O1, the BOOTES network observed the event GW150914 with the CASANDRA camera at the BOOTES-3 station (<mark class="ref">Abbott et al., 2016</mark>).
-The image was taken simultaneously and no prompt optical counterpart was found. Due to the poor weather conditions, it only provided an upper limit of 5 mag. While this value sets a wide constraint…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> During O1, the BOOTES network observed the event GW150914 with the CASANDRA camera at the BOOTES-3 station (Abbott et al., 2016).</li><li><span class="sec">cites it as Abbott 2016</span> …e generated from two ∼\sim30 solar mass black holes merging at a distance of 410−180+160410^{+160}_{-180}Mpc (Abbott et al., 2016). Together with the GW signal, the gravitational potential released in the form of electromagnetic (EM) radia…</li><li><span class="sec">cites it as Abbott 2016</span> …During O1, the BOOTES network observed the event GW150914 with the CASANDRA camera at the BOOTES-3 station (Abbott et al., 2016). The image was taken simultaneously and no prompt optical counterpart was found. Due to the poor weather con…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -223,22 +211,15 @@ The image was taken simultaneously and no prompt optical counterpart was found. 
 <section class="card" data-i="1" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>4 mentions · <span class="cptag">1 by counterpart name</span></h3>
+    <p class="where">Named 4 times:
+      introduction ×3, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2302.06565v1#:~:text=GRB%20170817A" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GRB 170817A</span> or <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">1 mention use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>…h indicate that the progenitors are collapsed massive stars (Woosley and Bloom, 2006). SGRBs have been linked with the merger of compact objects, such as neutron star binaries (BNS) or neutron star-black hole binaries (NS-BS) (Narayan et al., 1992). The short <mark class="cp">GRB 170817A</mark> was the first electromagnetic counterpart coincident with the gravitational wave event GW 170817A which unambiguously confirmed that BNS mergers are at least part of the mechanism that produces SGRBs (Abbott et al., 2017). Furthermore, in some events, it was …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…2) and April 1, 2019 - March 27, 2020 (O3) (The LIGO Scientific Collaboration et al., 2021). The localization uncertainty was of several thousands d​e​g2deg^{2} until Virgo’s joint later which decreased the error region down to 28 d​e​g2deg^{2} in the case of <mark>GW170817</mark> (Abbott et al., 2017). Facing bigger error regions, the strategy used in the BOOTES network is shown in Figure 8. The BOOTES Network has both wide and narrow FOV telescopes, which can observe the new events in different ways. When a new GW alert is received, …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…g. While this value sets a wide constraint, the BOOTES observation provided the earliest image corresponding to the first GW alert and demonstrated that its wide field coverage is sufficient for searching for GW counterparts. During O2, the milestone event of <mark>GW170817</mark> was detected in images taken from the BOOTES-5 telescope. The magnitude recorded was r=18.2±0.45r=18.2\pm 0.45 which is brighter than the predicted flux of optical afterglows but is consistent with other contemporaneous measurements (Zhang et al., 2018). Duri…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">conclusion</span>…imits obtained so far can set meaningful constrains on the existing models. Electromagnetic counterpart searches for GWs in the past GW detectors scientific runs on BOOTES network were executed perfectly. The optical counterpart to the milestone event, dubbed <mark>GW170817</mark>, was detected by BOOTES-5 (the only Spanish installation doing so). Even though there has not been any electromagnetic counterpart related to a GW detected in the O3, 76% of triggers have been followed up, providing a typical upper limit of 20 mag which can b…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction · counterpart name</span> The short GRB 170817A was the first electromagnetic counterpart coincident with the gravitational wave event GW 170817A which unamb…</li><li><span class="sec">introduction</span> …​g2deg^{2} until Virgo’s joint later which decreased the error region down to 28 d​e​g2deg^{2} in the case of GW170817 (Abbott et al., 2017).</li><li><span class="sec">introduction</span> During O2, the milestone event of GW170817 was detected in images taken from the BOOTES-5 telescope.</li><li><span class="sec">conclusion</span> The optical counterpart to the milestone event, dubbed GW170817, was detected by BOOTES-5 (the only Spanish installation doing so).</li></ul>
     </details>
     
   </div>

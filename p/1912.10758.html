@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,43 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Tests of weak equivalence principle with the gravitational wave signals in the LIGO-Virgo catalogue GWTC-1</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1912.10758" target="_blank" rel="noopener" class="mono">arXiv:1912.10758</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The weak equivalence principle (WEP) is the cornerstone of gravitational theories. At the local scale, WEP has been tested to high accuracy by various experiments. On the intergalactic distance scale, WEP could be tested by comparing the arrival time of different messengers emitted from the same source. The gravitational time delay caused by massive galaxies is proportional to γ + 1, where the parameter γ is unity in general relativity. The values of γ for different massless particles should be different if WEP is violated, i.e. ∆γ is used to indicate the deviation from WEP. So far, |∆γ| has been constrained with gamma-ray bursts, fast radio bursts, etc. Here, we report a new constraint of |∆γ| by using the gravitational wave data of binary black hole coalescences in the LIGO-Virgo catalogue GWTC-1. The best constraints imply that |∆γ| ≲ 10&lt;SUP&gt;-15&lt;/SUP&gt; at 90 per cent confidence level.</p></details>
+<div class="small mut mono">arXiv:1912.10758</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The weak equivalence principle (WEP) is the cornerstone of gravitational theories. At the local scale, WEP has been tested to high accuracy by various experiments. On the intergalactic distance scale, WEP could be tested by comparing the arrival time of different messengers emitted from the same source. The gravitational time delay caused by massive galaxies is proportional to γ + 1, where the parameter γ is unity in general relativity. The values of γ for different massless particles should be different if WEP is violated, i.e. ∆γ is used to indicate the deviation from WEP. So far, |∆γ| has been constrained with gamma-ray bursts, fast radio bursts, etc. Here, we report a new constraint of |∆γ| by using the gravitational wave data of binary black hole coalescences in the LIGO-Virgo catalogue GWTC-1. The best constraints imply that |∆γ| ≲ 10&lt;SUP&gt;-15&lt;/SUP&gt; at 90 per cent confidence level.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1912.10758v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">11 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">11 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…he posterior distribution of Δ​γ\Delta\gamma (modified logarithmic prior, see Section 2), correspondent SNR and up-limit of |Δ​γ||\Delta\gamma| for BBH GW events in GWTC-1.
-
-Events
-Posterior Distribution of Δ​γ\Delta\gamma
-SNR
-Up-limit of |Δ​γ||\Delta\gamma|
-
-<mark>GW150914</mark>
-−1.9×10−10−0.0+0.0-1.9\times 10^{{-10}_{-0.0}^{+0.0}}
-23.52−0.21+0.1623.52_{-0.21}^{+0.16}
-|Δ​γ|≤1.9×10−10−0.0+0.0|\Delta\gamma|\leq 1.9\times 10^{{-10}_{-0.0}^{+0.0}}
-
-GW151012
-−2.7×10−10−0.2+0.1-2.7\times 10^{{-10}_{-0.2}^{+0.1}}
-7.26−0.81+0.537.26_{-0.81}^…</div>
+    <p class="where">Named 2 times:
+      results ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.10758v3#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…go are also plotted. The detailed information of Figs  1 and 3 and the final up-limits of |Δ​γ||\Delta\gamma| are shown in Table. 1.
-
-In Fig. 1, the results can be divided into three different groups about Δ​γ\Delta\gamma’s posterior distribution. For group 1(<mark>GW150914</mark>, GW151012, GW170729, GW170814), the constraint is Δ​γ≳−10−10\Delta\gamma\gtrsim-10^{-10}. For group 2 (GW170809), the result shows Δ​γ≲10−10\Delta\gamma\lesssim 10^{-10}. For group 3 (GW151226, GW170104, GW170608, GW170818, GW170823), Δ​γ\Delta\gamma is const…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW150914 −1.9×10−10−0.0+0.0-1.9\times 10^{{-10}_{-0.0}^{+0.0}} 23.52−0.21+0.1623.52_{-0.21}^{+0.16} |Δ​γ|≤1.9×10−10−0.…</li><li><span class="sec">results</span> For group 1(GW150914, GW151012, GW170729, GW170814), the constraint is Δ​γ≳−10−10\Delta\gamma\gtrsim-10^{-10}.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -194,38 +201,16 @@ In Fig. 1, the results can be divided into three different groups about Δ​γ
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…ts
-Posterior Distribution of Δ​γ\Delta\gamma
-SNR
-Up-limit of |Δ​γ||\Delta\gamma|
-
-GW150914
-−1.9×10−10−0.0+0.0-1.9\times 10^{{-10}_{-0.0}^{+0.0}}
-23.52−0.21+0.1623.52_{-0.21}^{+0.16}
-|Δ​γ|≤1.9×10−10−0.0+0.0|\Delta\gamma|\leq 1.9\times 10^{{-10}_{-0.0}^{+0.0}}
-
-<mark>GW151012</mark>
-−2.7×10−10−0.2+0.1-2.7\times 10^{{-10}_{-0.2}^{+0.1}}
-7.26−0.81+0.537.26_{-0.81}^{+0.53}
-|Δ​γ|≤2.7×10−10−0.2+0.1|\Delta\gamma|\leq 2.7\times 10^{{-10}_{-0.2}^{+0.1}}
-
-GW151226
-−8.3×10−47≤Δγ≤4.7×10−11-8.3\times 10^{-47}\leq\Delta\gamma\leq 4.7\times 10^{-11}
-8…</div>
+    <p class="where">Named 3 times:
+      results ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.10758v3#:~:text=GW151012" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151012</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…o plotted. The detailed information of Figs  1 and 3 and the final up-limits of |Δ​γ||\Delta\gamma| are shown in Table. 1.
-
-In Fig. 1, the results can be divided into three different groups about Δ​γ\Delta\gamma’s posterior distribution. For group 1(GW150914, <mark>GW151012</mark>, GW170729, GW170814), the constraint is Δ​γ≳−10−10\Delta\gamma\gtrsim-10^{-10}. For group 2 (GW170809), the result shows Δ​γ≲10−10\Delta\gamma\lesssim 10^{-10}. For group 3 (GW151226, GW170104, GW170608, GW170818, GW170823), Δ​γ\Delta\gamma is constrained mor…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… in Fig. 2. We can see the most values of |Δ​γ||\Delta\gamma| are around the 0-axis, which may suggest WEP is valid on the intergalactic scale for GWs. In Fig. 3, we can see that our results of SNR are similar to the LIGO-Virgo’s for most GW events. While for <mark>GW151012</mark>, GW151226, GW170809, our SNRs are a little lower than LIGO ones. The influence of additional parameter |Δ​γ||\Delta\gamma| might be the reason. Most of the estimations of the BBH parameters coincide with LIGO-Virgo’s results in the confidence interval. For ex…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW151012 −2.7×10−10−0.2+0.1-2.7\times 10^{{-10}_{-0.2}^{+0.1}} 7.26−0.81+0.537.26_{-0.81}^{+0.53} |Δ​γ|≤2.7×10−10−0.2+…</li><li><span class="sec">results</span> For group 1(GW150914, GW151012, GW170729, GW170814), the constraint is Δ​γ≳−10−10\Delta\gamma\gtrsim-10^{-10}.</li><li><span class="sec">results</span> While for GW151012, GW151226, GW170809, our SNRs are a little lower than LIGO ones.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -261,33 +246,16 @@ In Fig. 1, the results can be divided into three different groups about Δ​γ
 <section class="card" data-i="2" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…0.16}
-|Δ​γ|≤1.9×10−10−0.0+0.0|\Delta\gamma|\leq 1.9\times 10^{{-10}_{-0.0}^{+0.0}}
-
-GW151012
-−2.7×10−10−0.2+0.1-2.7\times 10^{{-10}_{-0.2}^{+0.1}}
-7.26−0.81+0.537.26_{-0.81}^{+0.53}
-|Δ​γ|≤2.7×10−10−0.2+0.1|\Delta\gamma|\leq 2.7\times 10^{{-10}_{-0.2}^{+0.1}}
-
-<mark>GW151226</mark>
-−8.3×10−47≤Δγ≤4.7×10−11-8.3\times 10^{-47}\leq\Delta\gamma\leq 4.7\times 10^{-11}
-8.47−0.58+0.398.47_{-0.58}^{+0.39}
-|Δ​γ|≤4.7×10−11|\Delta\gamma|\leq 4.7\times 10^{-11}
-
-GW170104
-−7.1×10−45≤Δγ≤6.2×10−16-7.1\times 10^{-45}\leq\Delta\gamma\leq 6.2\times 10^{-1…</div>
+    <p class="where">Named 3 times:
+      results ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.10758v3#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…groups about Δ​γ\Delta\gamma’s posterior distribution. For group 1(GW150914, GW151012, GW170729, GW170814), the constraint is Δ​γ≳−10−10\Delta\gamma\gtrsim-10^{-10}. For group 2 (GW170809), the result shows Δ​γ≲10−10\Delta\gamma\lesssim 10^{-10}. For group 3 (<mark>GW151226</mark>, GW170104, GW170608, GW170818, GW170823), Δ​γ\Delta\gamma is constrained more stringently. Attending that the error bar of the group 3 seems to be wider than the group 1 and the group 2. This is because the coordinates of Δ​γ\Delta\gamma is scaled in Fig. 1. …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…. We can see the most values of |Δ​γ||\Delta\gamma| are around the 0-axis, which may suggest WEP is valid on the intergalactic scale for GWs. In Fig. 3, we can see that our results of SNR are similar to the LIGO-Virgo’s for most GW events. While for GW151012, <mark>GW151226</mark>, GW170809, our SNRs are a little lower than LIGO ones. The influence of additional parameter |Δ​γ||\Delta\gamma| might be the reason. Most of the estimations of the BBH parameters coincide with LIGO-Virgo’s results in the confidence interval. For example, Fig…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW151226 −8.3×10−47≤Δγ≤4.7×10−11-8.3\times 10^{-47}\leq\Delta\gamma\leq 4.7\times 10^{-11} 8.47−0.58+0.398.47_{-0.58}^…</li><li><span class="sec">results</span> For group 3 (GW151226, GW170104, GW170608, GW170818, GW170823), Δ​γ\Delta\gamma is constrained more stringently.</li><li><span class="sec">results</span> While for GW151012, GW151226, GW170809, our SNRs are a little lower than LIGO ones.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -323,58 +291,15 @@ GW170104
 <section class="card" data-i="3" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>7 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…th the negative and non-negative value, is assumed on the prior distribution of Δ​γ\Delta\gamma. Δ​γ\Delta\gamma belongs to [−1.15×10−5,1.15×10−5][-1.15\times 10^{-5},1.15\times 10^{-5}]. 
-
-Figure 2: The prior and posterior distribution of Δ​γ\Delta\gamma for <mark>GW170104</mark> (top) and GW170823 (bottom). A modified logarithmic prior (See Section 2), which could cover both the negative and non-negative value, is assumed on the prior distribution of Δ​γ\Delta\gamma, which belongs to [−1.15×10−5,1.15×10−5][-1.15\times 10^{-5},1.15\ti…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…}
-|Δ​γ|≤2.7×10−10−0.2+0.1|\Delta\gamma|\leq 2.7\times 10^{{-10}_{-0.2}^{+0.1}}
-
-GW151226
-−8.3×10−47≤Δγ≤4.7×10−11-8.3\times 10^{-47}\leq\Delta\gamma\leq 4.7\times 10^{-11}
-8.47−0.58+0.398.47_{-0.58}^{+0.39}
-|Δ​γ|≤4.7×10−11|\Delta\gamma|\leq 4.7\times 10^{-11}
-
-<mark>GW170104</mark>
-−7.1×10−45≤Δγ≤6.2×10−16-7.1\times 10^{-45}\leq\Delta\gamma\leq 6.2\times 10^{-16}
-13.94−0.20+0.1313.94_{-0.20}^{+0.13}
-|Δ​γ|≤6.2×10−16|\Delta\gamma|\leq 6.2\times 10^{-16}
-
-GW170608
-−1.2×10−27≤Δγ≤1.1×10−13-1.2\times 10^{-27}\leq\Delta\gamma\leq 1.1\times 10^{…</div>
+    <p class="where">Named 7 times:
+      results ×7.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.10758v3#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…tion 2, which could cover both the negative and non-negative Δ​γ\Delta\gamma values continuously, i.e., Δγ∈[−1.15×10−5,1.15×10−5]\Delta\gamma\in[-1.15\times 10^{-5},1.15\times 10^{-5}]. Fig. 2 shows the prior and posterior distributions of Δ​γ\Delta\gamma for <mark>GW170104</mark> and GW170823, which have the most stringent constraints in GWTC-1. Figure. 3 displays the distribution of network SNR (matched-filter SNR) of our results, and the SNR(Signal-to-Noise Ratio) results(Abbott
-et al., 2019b) of LIGO-Virgo are also plotted. The det…</div>
-    
-    
-    <details><summary>4 more</summary>
-    <div class="mention"><span class="sec">results</span>…ut Δ​γ\Delta\gamma’s posterior distribution. For group 1(GW150914, GW151012, GW170729, GW170814), the constraint is Δ​γ≳−10−10\Delta\gamma\gtrsim-10^{-10}. For group 2 (GW170809), the result shows Δ​γ≲10−10\Delta\gamma\lesssim 10^{-10}. For group 3 (GW151226, <mark>GW170104</mark>, GW170608, GW170818, GW170823), Δ​γ\Delta\gamma is constrained more stringently. Attending that the error bar of the group 3 seems to be wider than the group 1 and the group 2. This is because the coordinates of Δ​γ\Delta\gamma is scaled in Fig. 1. Actually, …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…cause the coordinates of Δ​γ\Delta\gamma is scaled in Fig. 1. Actually, group 3 has even smaller error-bar than the group 1 and group 2. From these results, we get the up-limits of Δ​γ\Delta\gamma. As shown in Table 1, the most stringent constraints come from <mark>GW170104</mark> and GW170823, i.e. |Δ​γ|≲10−15|\Delta\gamma|\lesssim 10^{-15}. Because the estimate for each event
-just requires Δ​γ\Delta\gamma can not be larger than a certain value, we then choose the constraints of GW170104 and GW170823 as the final up-limits we estimate…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ble 1, the most stringent constraints come from GW170104 and GW170823, i.e. |Δ​γ|≲10−15|\Delta\gamma|\lesssim 10^{-15}. Because the estimate for each event
-just requires Δ​γ\Delta\gamma can not be larger than a certain value, we then choose the constraints of <mark>GW170104</mark> and GW170823 as the final up-limits we estimated for Δ​γ\Delta\gamma.
-
-The prior and posterior distribution of Δ​γ\Delta\gamma for GW170104 and GW170823 is shown in Fig. 2. We can see the most values of |Δ​γ||\Delta\gamma| are around the 0-axis, which may sug…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… for each event
-just requires Δ​γ\Delta\gamma can not be larger than a certain value, we then choose the constraints of GW170104 and GW170823 as the final up-limits we estimated for Δ​γ\Delta\gamma.
-
-The prior and posterior distribution of Δ​γ\Delta\gamma for <mark>GW170104</mark> and GW170823 is shown in Fig. 2. We can see the most values of |Δ​γ||\Delta\gamma| are around the 0-axis, which may suggest WEP is valid on the intergalactic scale for GWs. In Fig. 3, we can see that our results of SNR are similar to the LIGO-Virgo’s for most…</div>
+    <details class="lines"><summary>Show the sentences (7): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> Figure 2: The prior and posterior distribution of Δ​γ\Delta\gamma for GW170104 (top) and GW170823 (bottom).</li><li><span class="sec">results</span> GW170104 −7.1×10−45≤Δγ≤6.2×10−16-7.1\times 10^{-45}\leq\Delta\gamma\leq 6.2\times 10^{-16} 13.94−0.20+0.1313.94_{-0.20…</li><li><span class="sec">results</span> Fig. 2 shows the prior and posterior distributions of Δ​γ\Delta\gamma for GW170104 and GW170823, which have the most stringent constraints in GWTC-1.</li><li><span class="sec">results</span> For group 3 (GW151226, GW170104, GW170608, GW170818, GW170823), Δ​γ\Delta\gamma is constrained more stringently.</li><li><span class="sec">results</span> As shown in Table 1, the most stringent constraints come from GW170104 and GW170823, i.e. |Δ​γ|≲10−15|\Delta\gamma|\lesssim 10^{-15}.</li><li><span class="sec">results</span> …event just requires Δ​γ\Delta\gamma can not be larger than a certain value, we then choose the constraints of GW170104 and GW170823 as the final up-limits we estimated for Δ​γ\Delta\gamma.</li><li><span class="sec">results</span> The prior and posterior distribution of Δ​γ\Delta\gamma for GW170104 and GW170823 is shown in Fig. 2.</li></ul>
     </details>
     
   </div>
@@ -411,30 +336,16 @@ The prior and posterior distribution of Δ​γ\Delta\gamma for <mark>GW170104</
 <section class="card" data-i="4" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>….398.47_{-0.58}^{+0.39}
-|Δ​γ|≤4.7×10−11|\Delta\gamma|\leq 4.7\times 10^{-11}
-
-GW170104
-−7.1×10−45≤Δγ≤6.2×10−16-7.1\times 10^{-45}\leq\Delta\gamma\leq 6.2\times 10^{-16}
-13.94−0.20+0.1313.94_{-0.20}^{+0.13}
-|Δ​γ|≤6.2×10−16|\Delta\gamma|\leq 6.2\times 10^{-16}
-
-<mark>GW170608</mark>
-−1.2×10−27≤Δγ≤1.1×10−13-1.2\times 10^{-27}\leq\Delta\gamma\leq 1.1\times 10^{-13}
-15.77−0.21+0.1315.77_{-0.21}^{+0.13}
-|Δ​γ|≤1.1×10−13|\Delta\gamma|\leq 1.1\times 10^{-13}
-
-GW170729
-−5.9×10−11−0.3+0.1-5.9\times 10^{{-11}_{-0.3}^{+0.1}}
-11.35−0.25+0.1511.35_{-…</div>
+    <p class="where">Named 2 times:
+      results ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.10758v3#:~:text=GW170608" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…ta\gamma’s posterior distribution. For group 1(GW150914, GW151012, GW170729, GW170814), the constraint is Δ​γ≳−10−10\Delta\gamma\gtrsim-10^{-10}. For group 2 (GW170809), the result shows Δ​γ≲10−10\Delta\gamma\lesssim 10^{-10}. For group 3 (GW151226, GW170104, <mark>GW170608</mark>, GW170818, GW170823), Δ​γ\Delta\gamma is constrained more stringently. Attending that the error bar of the group 3 seems to be wider than the group 1 and the group 2. This is because the coordinates of Δ​γ\Delta\gamma is scaled in Fig. 1. Actually, group 3 ha…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW170608 −1.2×10−27≤Δγ≤1.1×10−13-1.2\times 10^{-27}\leq\Delta\gamma\leq 1.1\times 10^{-13} 15.77−0.21+0.1315.77_{-0.21…</li><li><span class="sec">results</span> For group 3 (GW151226, GW170104, GW170608, GW170818, GW170823), Δ​γ\Delta\gamma is constrained more stringently.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -470,32 +381,16 @@ GW170729
 <section class="card" data-i="5" data-event="GW170729">
   <div class="ctx">
     <div class="evname mono">GW170729</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…1313.94_{-0.20}^{+0.13}
-|Δ​γ|≤6.2×10−16|\Delta\gamma|\leq 6.2\times 10^{-16}
-
-GW170608
-−1.2×10−27≤Δγ≤1.1×10−13-1.2\times 10^{-27}\leq\Delta\gamma\leq 1.1\times 10^{-13}
-15.77−0.21+0.1315.77_{-0.21}^{+0.13}
-|Δ​γ|≤1.1×10−13|\Delta\gamma|\leq 1.1\times 10^{-13}
-
-<mark>GW170729</mark>
-−5.9×10−11−0.3+0.1-5.9\times 10^{{-11}_{-0.3}^{+0.1}}
-11.35−0.25+0.1511.35_{-0.25}^{+0.15}
-|Δ​γ|≤5.9×10−11−0.3+0.1|\Delta\gamma|\leq 5.9\times 10^{{-11}_{-0.3}^{+0.1}}
-
-GW170809
-7.8×10−10−0.1+0.17.8\times 10^{{-10}_{-0.1}^{+0.1}}
-8.71−0.40+0.288.71_{-0.40}^{+…</div>
+    <p class="where">Named 2 times:
+      results ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.10758v3#:~:text=GW170729" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170729</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>… The detailed information of Figs  1 and 3 and the final up-limits of |Δ​γ||\Delta\gamma| are shown in Table. 1.
-
-In Fig. 1, the results can be divided into three different groups about Δ​γ\Delta\gamma’s posterior distribution. For group 1(GW150914, GW151012, <mark>GW170729</mark>, GW170814), the constraint is Δ​γ≳−10−10\Delta\gamma\gtrsim-10^{-10}. For group 2 (GW170809), the result shows Δ​γ≲10−10\Delta\gamma\lesssim 10^{-10}. For group 3 (GW151226, GW170104, GW170608, GW170818, GW170823), Δ​γ\Delta\gamma is constrained more stringen…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW170729 −5.9×10−11−0.3+0.1-5.9\times 10^{{-11}_{-0.3}^{+0.1}} 11.35−0.25+0.1511.35_{-0.25}^{+0.15} |Δ​γ|≤5.9×10−11−0.…</li><li><span class="sec">results</span> For group 1(GW150914, GW151012, GW170729, GW170814), the constraint is Δ​γ≳−10−10\Delta\gamma\gtrsim-10^{-10}.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -531,36 +426,16 @@ In Fig. 1, the results can be divided into three different groups about Δ​γ
 <section class="card" data-i="6" data-event="GW170809">
   <div class="ctx">
     <div class="evname mono">GW170809</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…1+0.1315.77_{-0.21}^{+0.13}
-|Δ​γ|≤1.1×10−13|\Delta\gamma|\leq 1.1\times 10^{-13}
-
-GW170729
-−5.9×10−11−0.3+0.1-5.9\times 10^{{-11}_{-0.3}^{+0.1}}
-11.35−0.25+0.1511.35_{-0.25}^{+0.15}
-|Δ​γ|≤5.9×10−11−0.3+0.1|\Delta\gamma|\leq 5.9\times 10^{{-11}_{-0.3}^{+0.1}}
-
-<mark>GW170809</mark>
-7.8×10−10−0.1+0.17.8\times 10^{{-10}_{-0.1}^{+0.1}}
-8.71−0.40+0.288.71_{-0.40}^{+0.28}
-|Δ​γ|≤7.8×10−10−0.1+0.1|\Delta\gamma|\leq 7.8\times 10^{{-10}_{-0.1}^{+0.1}}
-
-GW170814
-−4.7×10−10−0.0+0.0-4.7\times 10^{{-10}_{-0.0}^{+0.0}}
-15.46−0.27+0.3015.46_{-0.27}^{+…</div>
+    <p class="where">Named 3 times:
+      results ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.10758v3#:~:text=GW170809" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170809</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…e shown in Table. 1.
-
-In Fig. 1, the results can be divided into three different groups about Δ​γ\Delta\gamma’s posterior distribution. For group 1(GW150914, GW151012, GW170729, GW170814), the constraint is Δ​γ≳−10−10\Delta\gamma\gtrsim-10^{-10}. For group 2 (<mark>GW170809</mark>), the result shows Δ​γ≲10−10\Delta\gamma\lesssim 10^{-10}. For group 3 (GW151226, GW170104, GW170608, GW170818, GW170823), Δ​γ\Delta\gamma is constrained more stringently. Attending that the error bar of the group 3 seems to be wider than the group 1 and the …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ee the most values of |Δ​γ||\Delta\gamma| are around the 0-axis, which may suggest WEP is valid on the intergalactic scale for GWs. In Fig. 3, we can see that our results of SNR are similar to the LIGO-Virgo’s for most GW events. While for GW151012, GW151226, <mark>GW170809</mark>, our SNRs are a little lower than LIGO ones. The influence of additional parameter |Δ​γ||\Delta\gamma| might be the reason. Most of the estimations of the BBH parameters coincide with LIGO-Virgo’s results in the confidence interval. For example, Fig. 4 shows …</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW170809 7.8×10−10−0.1+0.17.8\times 10^{{-10}_{-0.1}^{+0.1}} 8.71−0.40+0.288.71_{-0.40}^{+0.28} |Δ​γ|≤7.8×10−10−0.1+0.…</li><li><span class="sec">results</span> For group 2 (GW170809), the result shows Δ​γ≲10−10\Delta\gamma\lesssim 10^{-10}.</li><li><span class="sec">results</span> While for GW151012, GW151226, GW170809, our SNRs are a little lower than LIGO ones.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -596,31 +471,16 @@ In Fig. 1, the results can be divided into three different groups about Δ​γ
 <section class="card" data-i="7" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…{+0.15}
-|Δ​γ|≤5.9×10−11−0.3+0.1|\Delta\gamma|\leq 5.9\times 10^{{-11}_{-0.3}^{+0.1}}
-
-GW170809
-7.8×10−10−0.1+0.17.8\times 10^{{-10}_{-0.1}^{+0.1}}
-8.71−0.40+0.288.71_{-0.40}^{+0.28}
-|Δ​γ|≤7.8×10−10−0.1+0.1|\Delta\gamma|\leq 7.8\times 10^{{-10}_{-0.1}^{+0.1}}
-
-<mark>GW170814</mark>
-−4.7×10−10−0.0+0.0-4.7\times 10^{{-10}_{-0.0}^{+0.0}}
-15.46−0.27+0.3015.46_{-0.27}^{+0.30}
-|Δ​γ|≤4.7×10−10−0.0+0.0|\Delta\gamma|\leq 4.7\times 10^{{-10}_{-0.0}^{+0.0}}
-
-GW170818
-−7.1×10−13≤Δγ≤1.3×10−18-7.1\times 10^{-13}\leq\Delta\gamma\leq 1.3\times 10^{-18}…</div>
+    <p class="where">Named 2 times:
+      results ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.10758v3#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…led information of Figs  1 and 3 and the final up-limits of |Δ​γ||\Delta\gamma| are shown in Table. 1.
-
-In Fig. 1, the results can be divided into three different groups about Δ​γ\Delta\gamma’s posterior distribution. For group 1(GW150914, GW151012, GW170729, <mark>GW170814</mark>), the constraint is Δ​γ≳−10−10\Delta\gamma\gtrsim-10^{-10}. For group 2 (GW170809), the result shows Δ​γ≲10−10\Delta\gamma\lesssim 10^{-10}. For group 3 (GW151226, GW170104, GW170608, GW170818, GW170823), Δ​γ\Delta\gamma is constrained more stringently. Atten…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW170814 −4.7×10−10−0.0+0.0-4.7\times 10^{{-10}_{-0.0}^{+0.0}} 15.46−0.27+0.3015.46_{-0.27}^{+0.30} |Δ​γ|≤4.7×10−10−0.…</li><li><span class="sec">results</span> For group 1(GW150914, GW151012, GW170729, GW170814), the constraint is Δ​γ≳−10−10\Delta\gamma\gtrsim-10^{-10}.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -656,15 +516,16 @@ In Fig. 1, the results can be divided into three different groups about Δ​γ
 <section class="card" data-i="8" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.10758v3#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
-    <div class="mention"><span class="sec">discussion</span>…th the predictions of GR (Abbott
-et al., 2019b). However, the WEP was still not tested with GW data analysis.
-
-On the cosmology scale, by comparing the arrival time of GWs at different frequencies (Wu et al., 2016; Wei
-et al., 2017) or with Gamma-ray burst in <mark>GW170817</mark>, the deviation of WEP Δ​γ\Delta\gamma has been constrained not larger than ∼10−9\sim 10^{-9}. In these tests, the observed time delay Δ​tobs\Delta t_{\mathrm{obs}} for two signals from the same source are directly treated as the one caused by WEP violation. T…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> …e arrival time of GWs at different frequencies (Wu et al., 2016; Wei et al., 2017) or with Gamma-ray burst in GW170817, the deviation of WEP Δ​γ\Delta\gamma has been constrained not larger than ∼10−9\sim 10^{-9}.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -700,29 +561,16 @@ et al., 2017) or with Gamma-ray burst in <mark>GW170817</mark>, the deviation o
 <section class="card" data-i="9" data-event="GW170818">
   <div class="ctx">
     <div class="evname mono">GW170818</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…28}
-|Δ​γ|≤7.8×10−10−0.1+0.1|\Delta\gamma|\leq 7.8\times 10^{{-10}_{-0.1}^{+0.1}}
-
-GW170814
-−4.7×10−10−0.0+0.0-4.7\times 10^{{-10}_{-0.0}^{+0.0}}
-15.46−0.27+0.3015.46_{-0.27}^{+0.30}
-|Δ​γ|≤4.7×10−10−0.0+0.0|\Delta\gamma|\leq 4.7\times 10^{{-10}_{-0.0}^{+0.0}}
-
-<mark>GW170818</mark>
-−7.1×10−13≤Δγ≤1.3×10−18-7.1\times 10^{-13}\leq\Delta\gamma\leq 1.3\times 10^{-18}
-11.41−0.30+0.2411.41_{-0.30}^{+0.24}
-|Δ​γ|≤7.1×10−13|\Delta\gamma|\leq 7.1\times 10^{-13}
-
-GW170823
-−1.0×10−15≤Δγ≤1.4×10−17-1.0\times 10^{-15}\leq\Delta\gamma\leq 1.4\times 10^{…</div>
+    <p class="where">Named 2 times:
+      results ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.10758v3#:~:text=GW170818" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170818</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>… posterior distribution. For group 1(GW150914, GW151012, GW170729, GW170814), the constraint is Δ​γ≳−10−10\Delta\gamma\gtrsim-10^{-10}. For group 2 (GW170809), the result shows Δ​γ≲10−10\Delta\gamma\lesssim 10^{-10}. For group 3 (GW151226, GW170104, GW170608, <mark>GW170818</mark>, GW170823), Δ​γ\Delta\gamma is constrained more stringently. Attending that the error bar of the group 3 seems to be wider than the group 1 and the group 2. This is because the coordinates of Δ​γ\Delta\gamma is scaled in Fig. 1. Actually, group 3 has even sma…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW170818 −7.1×10−13≤Δγ≤1.3×10−18-7.1\times 10^{-13}\leq\Delta\gamma\leq 1.3\times 10^{-18} 11.41−0.30+0.2411.41_{-0.30…</li><li><span class="sec">results</span> For group 3 (GW151226, GW170104, GW170608, GW170818, GW170823), Δ​γ\Delta\gamma is constrained more stringently.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -758,75 +606,15 @@ GW170823
 <section class="card" data-i="10" data-event="GW170823">
   <div class="ctx">
     <div class="evname mono">GW170823</div>
-    <h3>9 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>… non-negative value, is assumed on the prior distribution of Δ​γ\Delta\gamma. Δ​γ\Delta\gamma belongs to [−1.15×10−5,1.15×10−5][-1.15\times 10^{-5},1.15\times 10^{-5}]. 
-
-Figure 2: The prior and posterior distribution of Δ​γ\Delta\gamma for GW170104 (top) and <mark>GW170823</mark> (bottom). A modified logarithmic prior (See Section 2), which could cover both the negative and non-negative value, is assumed on the prior distribution of Δ​γ\Delta\gamma, which belongs to [−1.15×10−5,1.15×10−5][-1.15\times 10^{-5},1.15\times 10^{-5}].
-
-Figu…</div>
+    <p class="where">Named 9 times:
+      results ×9.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.10758v3#:~:text=GW170823" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170823</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…|Δ​γ|≤4.7×10−10−0.0+0.0|\Delta\gamma|\leq 4.7\times 10^{{-10}_{-0.0}^{+0.0}}
-
-GW170818
-−7.1×10−13≤Δγ≤1.3×10−18-7.1\times 10^{-13}\leq\Delta\gamma\leq 1.3\times 10^{-18}
-11.41−0.30+0.2411.41_{-0.30}^{+0.24}
-|Δ​γ|≤7.1×10−13|\Delta\gamma|\leq 7.1\times 10^{-13}
-
-<mark>GW170823</mark>
-−1.0×10−15≤Δγ≤1.4×10−17-1.0\times 10^{-15}\leq\Delta\gamma\leq 1.4\times 10^{-17}
-11.97−0.20+0.1211.97_{-0.20}^{+0.12}
-|Δ​γ|≤1.0×10−15|\Delta\gamma|\leq 1.0\times 10^{-15}
-
-Now we demonstrate our results using the above methods, and our data is based on the 1…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… could cover both the negative and non-negative Δ​γ\Delta\gamma values continuously, i.e., Δγ∈[−1.15×10−5,1.15×10−5]\Delta\gamma\in[-1.15\times 10^{-5},1.15\times 10^{-5}]. Fig. 2 shows the prior and posterior distributions of Δ​γ\Delta\gamma for GW170104 and <mark>GW170823</mark>, which have the most stringent constraints in GWTC-1. Figure. 3 displays the distribution of network SNR (matched-filter SNR) of our results, and the SNR(Signal-to-Noise Ratio) results(Abbott
-et al., 2019b) of LIGO-Virgo are also plotted. The detailed informa…</div>
-    
-    
-    <details><summary>6 more</summary>
-    <div class="mention"><span class="sec">results</span>… distribution. For group 1(GW150914, GW151012, GW170729, GW170814), the constraint is Δ​γ≳−10−10\Delta\gamma\gtrsim-10^{-10}. For group 2 (GW170809), the result shows Δ​γ≲10−10\Delta\gamma\lesssim 10^{-10}. For group 3 (GW151226, GW170104, GW170608, GW170818, <mark>GW170823</mark>), Δ​γ\Delta\gamma is constrained more stringently. Attending that the error bar of the group 3 seems to be wider than the group 1 and the group 2. This is because the coordinates of Δ​γ\Delta\gamma is scaled in Fig. 1. Actually, group 3 has even smaller error…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…rdinates of Δ​γ\Delta\gamma is scaled in Fig. 1. Actually, group 3 has even smaller error-bar than the group 1 and group 2. From these results, we get the up-limits of Δ​γ\Delta\gamma. As shown in Table 1, the most stringent constraints come from GW170104 and <mark>GW170823</mark>, i.e. |Δ​γ|≲10−15|\Delta\gamma|\lesssim 10^{-15}. Because the estimate for each event
-just requires Δ​γ\Delta\gamma can not be larger than a certain value, we then choose the constraints of GW170104 and GW170823 as the final up-limits we estimated for Δ​γ\Del…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…st stringent constraints come from GW170104 and GW170823, i.e. |Δ​γ|≲10−15|\Delta\gamma|\lesssim 10^{-15}. Because the estimate for each event
-just requires Δ​γ\Delta\gamma can not be larger than a certain value, we then choose the constraints of GW170104 and <mark>GW170823</mark> as the final up-limits we estimated for Δ​γ\Delta\gamma.
-
-The prior and posterior distribution of Δ​γ\Delta\gamma for GW170104 and GW170823 is shown in Fig. 2. We can see the most values of |Δ​γ||\Delta\gamma| are around the 0-axis, which may suggest WEP is v…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…nt
-just requires Δ​γ\Delta\gamma can not be larger than a certain value, we then choose the constraints of GW170104 and GW170823 as the final up-limits we estimated for Δ​γ\Delta\gamma.
-
-The prior and posterior distribution of Δ​γ\Delta\gamma for GW170104 and <mark>GW170823</mark> is shown in Fig. 2. We can see the most values of |Δ​γ||\Delta\gamma| are around the 0-axis, which may suggest WEP is valid on the intergalactic scale for GWs. In Fig. 3, we can see that our results of SNR are similar to the LIGO-Virgo’s for most GW events. W…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…er |Δ​γ||\Delta\gamma| might be the reason. Most of the estimations of the BBH parameters coincide with LIGO-Virgo’s results in the confidence interval. For example, Fig. 4 shows the posterior distribution of binary component masses and luminosity distance of <mark>GW170823</mark>, which coincides to LIGO-Virgo’s results.
-
-Figure 4: The posterior probability density for binary component masses (in solar mass) in the source frame, luminosity distance (in Mpc) of GW170823. In the 1D distributions, the dashed lines mark the 90 per cent cr…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…distribution of binary component masses and luminosity distance of GW170823, which coincides to LIGO-Virgo’s results.
-
-Figure 4: The posterior probability density for binary component masses (in solar mass) in the source frame, luminosity distance (in Mpc) of <mark>GW170823</mark>. In the 1D distributions, the dashed lines mark the 90 per cent credible interval. The 2D plot shows contours of the 50 per cent and 90 per cent credible regions.
-
-4 Discussion
-
-Since the first direct detection of GWs(Abbott
-et al., 2016), LIGO and Virgo coll…</div>
+    <details class="lines"><summary>Show the sentences (9, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> Figure 2: The prior and posterior distribution of Δ​γ\Delta\gamma for GW170104 (top) and GW170823 (bottom).</li><li><span class="sec">results</span> GW170823 −1.0×10−15≤Δγ≤1.4×10−17-1.0\times 10^{-15}\leq\Delta\gamma\leq 1.4\times 10^{-17} 11.97−0.20+0.1211.97_{-0.20…</li><li><span class="sec">results</span> Fig. 2 shows the prior and posterior distributions of Δ​γ\Delta\gamma for GW170104 and GW170823, which have the most stringent constraints in GWTC-1.</li><li><span class="sec">results</span> For group 3 (GW151226, GW170104, GW170608, GW170818, GW170823), Δ​γ\Delta\gamma is constrained more stringently.</li><li><span class="sec">results</span> As shown in Table 1, the most stringent constraints come from GW170104 and GW170823, i.e. |Δ​γ|≲10−15|\Delta\gamma|\lesssim 10^{-15}.</li><li><span class="sec">results</span> …quires Δ​γ\Delta\gamma can not be larger than a certain value, we then choose the constraints of GW170104 and GW170823 as the final up-limits we estimated for Δ​γ\Delta\gamma.</li><li><span class="sec">results</span> The prior and posterior distribution of Δ​γ\Delta\gamma for GW170104 and GW170823 is shown in Fig. 2.</li><li><span class="sec">results</span> For example, Fig. 4 shows the posterior distribution of binary component masses and luminosity distance of GW170823, which coincides to LIGO-Virgo’s results.</li></ul>
     </details>
     
   </div>

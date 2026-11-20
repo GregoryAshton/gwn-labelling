@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,261 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Spline based search method for unmodeled transient gravitational wave chirps</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1709.08870" target="_blank" rel="noopener" class="mono">arXiv:1709.08870</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">A method is described for the detection and estimation of transient chirp signals that are characterized by smoothly evolving, but otherwise unmodeled, amplitude envelopes and instantaneous frequencies. Such signals are particularly relevant for gravitational wave searches, where they may arise in a wide range of astrophysical scenarios. The method uses splines with continuously adjustable breakpoints to represent the amplitude envelope and instantaneous frequency of a signal, and estimates them from noisy data using penalized least squares and model selection. Simulations based on waveforms spanning a wide morphological range show that the method performs well in a signal-to-noise ratio regime where the time-frequency signature of a signal is highly degraded, thereby extending the coverage of current unmodeled gravitational wave searches to a wider class of signals.</p></details>
+<div class="small mut mono">arXiv:1709.08870</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">A method is described for the detection and estimation of transient chirp signals that are characterized by smoothly evolving, but otherwise unmodeled, amplitude envelopes and instantaneous frequencies. Such signals are particularly relevant for gravitational wave searches, where they may arise in a wide range of astrophysical scenarios. The method uses splines with continuously adjustable breakpoints to represent the amplitude envelope and instantaneous frequency of a signal, and estimates them from noisy data using penalized least squares and model selection. Simulations based on waveforms spanning a wide morphological range show that the method performs well in a signal-to-noise ratio regime where the time-frequency signature of a signal is highly degraded, thereby extending the coverage of current unmodeled gravitational wave searches to a wider class of signals.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1709.08870v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">6 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">6 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>29 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…on
-
-III.3 Minimization over ϕ0\phi_{0} and GCV
-
-III.4 Outer Minimization
-
-III.5 Model Selection
-
-III.6 Amplitude Envelope and Instantaneous Frequency Estimates
-
-III.7 Evolution of SEECR
-
-IV Description of the simulations
-
-IV.1 Simulated Signal Waveforms
-
-IV.2 <mark>GW150914</mark> Analysis
-
-IV.3 SEECR Parameter Settings
-
-V Results
-
-V.1 Detection performance
-
-V.2 Estimation performance
-
-V.2.1 Estimation metrics
-
-V.2.2 Metric distributions
-
-V.3 GW150914 analysis
-
-VI Comparison with time-frequency clustering
-
-VII Comparison with Track-Sea…</div>
+    <p class="where">Named 29 times:
+      results ×16, introduction ×9, title/headings ×2, conclusion, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1709.08870v3#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…on of SEECR
-
-IV Description of the simulations
-
-IV.1 Simulated Signal Waveforms
-
-IV.2 GW150914 Analysis
-
-IV.3 SEECR Parameter Settings
-
-V Results
-
-V.1 Detection performance
-
-V.2 Estimation performance
-
-V.2.1 Estimation metrics
-
-V.2.2 Metric distributions
-
-V.3 <mark>GW150914</mark> analysis
-
-VI Comparison with time-frequency clustering
-
-VII Comparison with Track-Search and CPP
-
-VIII Conclusions
-
-Acknowledgements
-
-A B-spline functions
-
-B Spectrogram
-
-C Time-frequency Clustering
-
-D Clustering based search method
-
-References
-
- 
- License: a…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… a wider class of signals.
-
- 
-
-I Introduction
-
-The tally of confirmed direct gravitational wave (GW) detections now
-stands at 5 events.
-Across two observing runs,
-the twin Advanced Laser Interferometer Gravitational-Wave Observatory (LIGO) [1] detectors found
-<mark>GW150914</mark> [2], GW151226 [3], and GW170104 [4] in two-way coincidence. All three signals
-are consistent with binary black hole (BBH) mergers.
-(A fourth BBH merger,
-LVT151012, was discovered in the first observing run but
-with marginal significance.)
-These were followed …</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…Search methods for such unmodeled signals – known as GW bursts when they are
-transient – must use minimal prior assumptions about their waveforms.
-
-Due to their
-broad scope, burst search
-methods can also detect sufficiently strong parametric signals.
-In fact, <mark>GW150914</mark> was first detected [11] by a burst search method [12]
-that implements a regularized maximum likelihood analysis [13, 14, 15] of data
-from a network of
-detectors.
-Refined estimates of the source parameters, such as the component masses, were
-obtained subsequen…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…\right]^{1/2}\;,
-
-where E⁡[LLR|Hi]E[{\rm LLR}|H_{i}], i=0i=0 or 11, denotes expectation
-under hypothesis HiH_{i}.
-For generating data realizations under H1H_{1}, we use three SNR values,
-SNR=10,12,15{\rm SNR}=10,12,15, for each of the simulated signals.
-
-IV.2 <mark>GW150914</mark> Analysis
-
-The simulated waveforms listed so far have durations of ≥1\geq 1 sec, with the exception of SG that has a
-duration of 0.50.5 sec. Although the main target for SEECR are signals in this duration range, it is
-interesting to quantify its performance fo…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ith the exception of SG that has a
-duration of 0.50.5 sec. Although the main target for SEECR are signals in this duration range, it is
-interesting to quantify its performance for a significantly shorter chirp.
-
-For this purpose, we simply
-use the real event, <mark>GW150914</mark>, which furnishes a chirp of duration &lt;0.2&lt;0.2 sec.
-However, GW150914
-had an exceptionally high
-observed network SNR of 2424, and a single detector SNR of ≈20\approx 20 [49] in the
-Hanford detector, making it an easy case for burst search algorithms.
-To test i…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…he main target for SEECR are signals in this duration range, it is
-interesting to quantify its performance for a significantly shorter chirp.
-
-For this purpose, we simply
-use the real event, GW150914, which furnishes a chirp of duration &lt;0.2&lt;0.2 sec.
-However, <mark>GW150914</mark>
-had an exceptionally high
-observed network SNR of 2424, and a single detector SNR of ≈20\approx 20 [49] in the
-Hanford detector, making it an easy case for burst search algorithms.
-To test if SEECR could have detected this
-signal at weaker strengths,
-we use t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…exceptionally high
-observed network SNR of 2424, and a single detector SNR of ≈20\approx 20 [49] in the
-Hanford detector, making it an easy case for burst search algorithms.
-To test if SEECR could have detected this
-signal at weaker strengths,
-we use the real <mark>GW150914</mark> data as a seed to generate new realizations in which the
-observed SNR is reduced to ≈10\approx 10.
-
-First, we take
-the time series from the Hanford detector, shown in Fig. 1 of [2]
-and estimate the standard deviation
-of the noise in the data. This is done by
-…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… done by
-estimating the signal using SEECR
-and subtracting it from the data to obtain the residual. Fig. 3 shows the data, the
-estimated signal, and the residual.
-The residual has a sample standard deviation of
-0.160.16.
-
-Figure 3: The thick gray curve is the
-<mark>GW150914</mark> data from the Hanford detector. The solid black curve is
-the signal estimated by SEECR. The dashed curve shows the residual after
-subtracting the estimated signal from the data.
-
-Next,
-a realization of pseudo-random
-noise is generated and added to the
-origina…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… is reduced by a factor of 2.
-To generate H0H_{0} data, we follow the same procedure but use a
-scaling factor of 2×0.16/σfilt2\times 0.16/\sigma_{\rm filt}.
-
-As with the simulated
-signals, independent
-realizations of H1H_{1} and H0H_{0} data are generated for <mark>GW150914</mark>.
-Each data realization has a duration of 0.210.21 sec with a sampling frequency of 40964096Hz. Fig. 4
-compares the original data with one such
-realization.
-
-Figure 4: GW150914 data from the Hanford detector compared with a realization obtained by adding exces…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ted
-signals, independent
-realizations of H1H_{1} and H0H_{0} data are generated for GW150914.
-Each data realization has a duration of 0.210.21 sec with a sampling frequency of 40964096Hz. Fig. 4
-compares the original data with one such
-realization.
-
-Figure 4: <mark>GW150914</mark> data from the Hanford detector compared with a realization obtained by adding excess pseudo-random white noise. The first and second panels from the top
-show the spectrogram, obtained with a window length of 128 and overlap between consecutive windows of 127 …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…s frequency of a signal.
-The results in Sec. V.1
-and Sec. V.2 use the
-set of signals described in Sec. IV.1 with
-500500 realizations of H0H_{0} and a minimum of 5050 realizations of H1H_{1} data for each signal and each SNR.
-Sec. V.3
-presents results from
-the <mark>GW150914</mark> analysis described in
-Sec. IV.2.
-For these results
-we use 100 H0H_{0} and 50 H1H_{1} data realizations.
-
-V.1 Detection performance
-
-For SEECR to function as a detector, we must choose a detection
-statistic, and a natural choice for it is
-the LLR evaluated at …</div>
+    <details class="lines"><summary>Show the sentences (26, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> IV.2 GW150914 Analysis</li><li><span class="sec">title/headings</span> V.3 GW150914 analysis</li><li><span class="sec">introduction</span> …erving runs, the twin Advanced Laser Interferometer Gravitational-Wave Observatory (LIGO) [1] detectors found GW150914 [2], GW151226 [3], and GW170104 [4] in two-way coincidence.</li><li><span class="sec">introduction</span> In fact, GW150914 was first detected [11] by a burst search method [12] that implements a regularized maximum likelihood analys…</li><li><span class="sec">introduction</span> For this purpose, we simply use the real event, GW150914, which furnishes a chirp of duration &lt;0.2&lt;0.2 sec.</li><li><span class="sec">introduction</span> However, GW150914 had an exceptionally high observed network SNR of 2424, and a single detector SNR of ≈20\approx 20 [49] in th…</li><li><span class="sec">introduction</span> To test if SEECR could have detected this signal at weaker strengths, we use the real GW150914 data as a seed to generate new realizations in which the observed SNR is reduced to ≈10\approx 10.</li><li><span class="sec">introduction</span> Figure 3: The thick gray curve is the GW150914 data from the Hanford detector.</li></ul>
     </details>
     
   </div>
@@ -413,21 +201,16 @@ the LLR evaluated at …</div>
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/1709.08870v3#:~:text=LVT151012" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">LVT151012</span> or <span class="mono hit">GW151012</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…
-the twin Advanced Laser Interferometer Gravitational-Wave Observatory (LIGO) [1] detectors found
-GW150914 [2], GW151226 [3], and GW170104 [4] in two-way coincidence. All three signals
-are consistent with binary black hole (BBH) mergers.
-(A fourth BBH merger,
-<mark>LVT151012</mark>, was discovered in the first observing run but
-with marginal significance.)
-These were followed by an additional BBH merger signal,
-GW170814 [5], that was also the first event to be
-discovered in a three-way coincidence between
-the LIGO and Advanced Virgo [6]…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> (A fourth BBH merger, LVT151012, was discovered in the first observing run but with marginal significance.) These were followed by an additio…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -463,26 +246,16 @@ the LIGO and Advanced Virgo [6]…</div>
 <section class="card" data-i="2" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/1709.08870v3#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>… of signals.
-
- 
-
-I Introduction
-
-The tally of confirmed direct gravitational wave (GW) detections now
-stands at 5 events.
-Across two observing runs,
-the twin Advanced Laser Interferometer Gravitational-Wave Observatory (LIGO) [1] detectors found
-GW150914 [2], <mark>GW151226</mark> [3], and GW170104 [4] in two-way coincidence. All three signals
-are consistent with binary black hole (BBH) mergers.
-(A fourth BBH merger,
-LVT151012, was discovered in the first observing run but
-with marginal significance.)
-These were followed by an addition…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …he twin Advanced Laser Interferometer Gravitational-Wave Observatory (LIGO) [1] detectors found GW150914 [2], GW151226 [3], and GW170104 [4] in two-way coincidence.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -518,22 +291,16 @@ These were followed by an addition…</div>
 <section class="card" data-i="3" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/1709.08870v3#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>… Introduction
-
-The tally of confirmed direct gravitational wave (GW) detections now
-stands at 5 events.
-Across two observing runs,
-the twin Advanced Laser Interferometer Gravitational-Wave Observatory (LIGO) [1] detectors found
-GW150914 [2], GW151226 [3], and <mark>GW170104</mark> [4] in two-way coincidence. All three signals
-are consistent with binary black hole (BBH) mergers.
-(A fourth BBH merger,
-LVT151012, was discovered in the first observing run but
-with marginal significance.)
-These were followed by an additional BBH merger sign…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …aser Interferometer Gravitational-Wave Observatory (LIGO) [1] detectors found GW150914 [2], GW151226 [3], and GW170104 [4] in two-way coincidence.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -569,21 +336,16 @@ These were followed by an additional BBH merger sign…</div>
 <section class="card" data-i="4" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/1709.08870v3#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>… in two-way coincidence. All three signals
-are consistent with binary black hole (BBH) mergers.
-(A fourth BBH merger,
-LVT151012, was discovered in the first observing run but
-with marginal significance.)
-These were followed by an additional BBH merger signal,
-<mark>GW170814</mark> [5], that was also the first event to be
-discovered in a three-way coincidence between
-the LIGO and Advanced Virgo [6] detectors.
-The second observing run concluded with the remarkable
-discovery by LIGO and Virgo of GW170817 [7], a binary neutron star inspira…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …first observing run but with marginal significance.) These were followed by an additional BBH merger signal, GW170814 [5], that was also the first event to be discovered in a three-way coincidence between the LIGO and Advanced…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -619,21 +381,16 @@ discovery by LIGO and Virgo of GW170817 [7], a binary neutron star inspira…</
 <section class="card" data-i="5" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/1709.08870v3#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…y an additional BBH merger signal,
-GW170814 [5], that was also the first event to be
-discovered in a three-way coincidence between
-the LIGO and Advanced Virgo [6] detectors.
-The second observing run concluded with the remarkable
-discovery by LIGO and Virgo of <mark>GW170817</mark> [7], a binary neutron star inspiral.
-
-Along with further improvements in the sensitivity of
-the LIGO and Virgo detectors, additional second
-generation detectors – KAGRA [8] and
-LIGO-India [9] – are scheduled to come online over the next several years. Besides…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> The second observing run concluded with the remarkable discovery by LIGO and Virgo of GW170817 [7], a binary neutron star inspiral.</li></ul>
+    </details>
     
   </div>
   <div class="form">

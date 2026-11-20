@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,36 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Machine Learning Confirms GW231123 is a &#34;Lite&#34; Intermediate Mass Black Hole Merger</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2509.09161" target="_blank" rel="noopener" class="mono">arXiv:2509.09161</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The LIGO─Virgo─KAGRA Collaboration recently reported GW231123, a black hole merger with total mass of around 190─265 M&lt;SUB&gt;⊙&lt;/SUB&gt;. This event adds to the growing evidence of &#34;lite&#34; intermediate mass black hole (IMBH) discoveries of postmerger black holes ≳100 M&lt;SUB&gt;⊙&lt;/SUB&gt;. GW231123 posed several data analysis challenges owing to waveform-model systematics and the presence of noise artifacts called glitches. We present the first comprehensive machine learning analysis to further validate this event, strengthen its astrophysical inference, and characterize instrumental noise in its vicinity. Our approach uses a combination of tools tailored for specific analyses: GW-WHISPER, an adaptation of OpenAI&#39;s audio transformer; ARCHGEM, a Gaussian mixture model─based soft clustering and density approximation software; and AWARE, a convolutional autoencoder. We identify the data segment containing the merger with &amp;gt;70% confidence in both detectors and verify its astrophysical origin. We then characterize the scattered light glitch around the event, providing the first physically interpretable parameters for the glitch. We also reconstruct the real waveforms from the data with slightly better agreement to model-agnostic reconstructions than to quasi-circular models, hinting at possible astrophysics beyond current waveform families (such as noncircular orbits or environmental imprints). Finally, by demonstrating high-fidelity waveform reconstructions for simulated mergers with total masses between 100 and 1000 M&lt;SUB&gt;⊙&lt;/SUB&gt;, we show that our method can confidently probe the IMBH regime. Our integrated framework offers a powerful complementary tool to traditional pipelines for rapid, robust analysis of massive, glitch-contaminated events.</p></details>
+<div class="small mut mono">arXiv:2509.09161</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The LIGO─Virgo─KAGRA Collaboration recently reported GW231123, a black hole merger with total mass of around 190─265 M&lt;SUB&gt;⊙&lt;/SUB&gt;. This event adds to the growing evidence of &#34;lite&#34; intermediate mass black hole (IMBH) discoveries of postmerger black holes ≳100 M&lt;SUB&gt;⊙&lt;/SUB&gt;. GW231123 posed several data analysis challenges owing to waveform-model systematics and the presence of noise artifacts called glitches. We present the first comprehensive machine learning analysis to further validate this event, strengthen its astrophysical inference, and characterize instrumental noise in its vicinity. Our approach uses a combination of tools tailored for specific analyses: GW-WHISPER, an adaptation of OpenAI&#39;s audio transformer; ARCHGEM, a Gaussian mixture model─based soft clustering and density approximation software; and AWARE, a convolutional autoencoder. We identify the data segment containing the merger with &amp;gt;70% confidence in both detectors and verify its astrophysical origin. We then characterize the scattered light glitch around the event, providing the first physically interpretable parameters for the glitch. We also reconstruct the real waveforms from the data with slightly better agreement to model-agnostic reconstructions than to quasi-circular models, hinting at possible astrophysics beyond current waveform families (such as noncircular orbits or environmental imprints). Finally, by demonstrating high-fidelity waveform reconstructions for simulated mergers with total masses between 100 and 1000 M&lt;SUB&gt;⊙&lt;/SUB&gt;, we show that our method can confidently probe the IMBH regime. Our integrated framework offers a powerful complementary tool to traditional pipelines for rapid, robust analysis of massive, glitch-contaminated events.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2509.09161v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">3 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">3 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2509.09161v2#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…et al. 2015, Advanced LIGO, Classical and Quantum Gravity, 32, 074001, doi: 10.1088/0264-9381/32/7/074001
-
- 
-[2]
-
-Abbott, B. P., Abbott, R., Abbott, T. D., et al. 2016, Characterization of transient noise in Advanced LIGO relevant to gravitational wave signal <mark>GW150914</mark>, Classical and Quantum Gravity, 33, 134001, doi: 10.1088/0264-9381/33/13/134001
-
- 
-[3]
-
-Abbott, R., Abbott, T. D., Abraham, S., et al. 2020, GW190521: A Binary Black Hole Merger with a Total Mass of 150  M⨀150\text{ }\text{ }{M}_{\bigodot}, Phys. Rev. Lett., …
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[2]</span> · 2 places</span><div class="cite">…1.7 s before the merger. This glitch was removed by using a phenomenological, wavelet-based model using the BayesWave algorithm [16, 17, 35]. In LIGO Livingston [1], a possible scattered light glitch <mark class="ref">[2, 47, 18]</mark> was identified 2.0 - 3.0 s before the event in a frequency range between 10 - 20 Hz. Since it was determined that this glitch would have no effect on parameter inference, no subtraction was applied. …</div><div class="cite">…e merger [37, 28, 36, 32, 25, 23]. Ensuring reliable data quality is paramount for an event of such astrophysical significance, particularly because certain glitches – like Blips, Tomte, and Koi fish <mark class="ref">[2, 47, 18]</mark> – can closely mimic the morphology of high-mass BBH signals. Traditional mitigation methods, relying on manual inspection and heuristic vetoes, are both labor-intensive and insufficiently scalable as…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [2]</span> …d model using the BayesWave algorithm [16, 17, 35]. In LIGO Livingston [1], a possible scattered light glitch [2, 47, 18] was identified 2.0 - 3.0 s before the event in a frequency range between 10 - 20 Hz. Since it was determined…</li><li><span class="sec">cites it as [2]</span> …t of such astrophysical significance, particularly because certain glitches – like Blips, Tomte, and Koi fish [2, 47, 18] – can closely mimic the morphology of high-mass BBH signals. Traditional mitigation methods, relying on manua…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -187,24 +201,16 @@ Abbott, R., Abbott, T. D., Abraham, S., et al. 2020, GW190521: A Binary Black 
 <section class="card" data-i="1" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2509.09161v2#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…. D., et al. 2016, Characterization of transient noise in Advanced LIGO relevant to gravitational wave signal GW150914, Classical and Quantum Gravity, 33, 134001, doi: 10.1088/0264-9381/33/13/134001
-
- 
-[3]
-
-Abbott, R., Abbott, T. D., Abraham, S., et al. 2020, <mark>GW190521</mark>: A Binary Black Hole Merger with a Total Mass of 150  M⨀150\text{ }\text{ }{M}_{\bigodot}, Phys. Rev. Lett., 125, 101102, doi: 10.1103/PhysRevLett.125.101102
-
- 
-[4]
-
-Ashton, G., Hübner, M., Lasky, P. D., et al. 2019, Bilby: A User-friendly Bayesian Inference …
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[3]</span> · 1 place</span><div class="cite">…⊙190-265M_{\odot} and unusually high spins (∼0.9​and∼0.8\sim 0.9\ \text{and}\sim 0.8). The event represents the latest addition to the growing catalog of low-mass or “lite” IMBH discoveries using GWs <mark class="ref">[44, 52, 3]</mark>. The inferred masses of this event straddle the theorized 60−130​M⊙60-130M_{\odot} pair instability mass gap, implying either a non-standard stellar origin or hierarchical mergers in dense environmen…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [3]</span> …event represents the latest addition to the growing catalog of low-mass or “lite” IMBH discoveries using GWs [44, 52, 3]. The inferred masses of this event straddle the theorized 60−130​M⊙60-130M_{\odot} pair instability mass gap,…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -240,169 +246,15 @@ Ashton, G., Hübner, M., Lasky, P. D., et al. 2019, Bilby: A User-friendly Bay
 <section class="card" data-i="2" data-event="GW231123_135430">
   <div class="ctx">
     <div class="evname mono">GW231123_135430</div>
-    <h3>26 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>Machine Learning Confirms <mark>GW231123</mark> is a “Lite”-Intermediate Mass Black Hole Merger
-
- 
- 
-
- 
-
-Skip to main content
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- 
- 
-
- 
- 
-
- 
- 
- 
- 
- 
-…</div>
+    <p class="where">Named 26 times:
+      introduction ×13, methods ×6, title/headings ×2, abstract ×2, conclusion ×2, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2509.09161v2#:~:text=GW231123" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231123</span> or <span class="mono hit">GW231123_135430</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…Characterization
-
-IV Waveform reconstruction
-
-V Validation and Robustness Analysis
-
-VI Conclusions
-
-VII Code and Data Availability
-
-Acknowledgements
-
-References
-
- 
- License: CC BY 4.0
- 
- 
-arXiv:2509.09161v2 [astro-ph.HE] 04 Nov 2025
-
-Machine Learning Confirms <mark>GW231123</mark> is a “Lite”-Intermediate Mass Black Hole Merger
-
-Chayan Chatterjee
-
-Affiliation: Department of Physics and Astronomy, Vanderbilt University
-2201 West End Avenue, Nashville, Tennessee - 37235,
-
-Affiliation: Data Science Institute, Vanderbilt University
-1400 18…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…ue, Nashville, Tennessee - 37235,
-
-Email: [
-
-  
-Karan Jani
-
-Affiliation: Department of Physics and Astronomy, Vanderbilt University
-2201 West End Avenue, Nashville, Tennessee - 37235,
-
-Email: [
-
-Abstract
-
- 
-The LIGO–Virgo–KAGRA Collaboration recently reported <mark>GW231123</mark>, a black hole merger with total mass of around 190−265​M⊙190-265~M_{\odot}. This event adds to the growing evidence of ‘lite’-intermediate mass black hole (IMBH) discoveries of post-merger black holes ≳100​M⊙\gtrsim 100~M_{\odot}. GW231123 posed several data …</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…n recently reported GW231123, a black hole merger with total mass of around 190−265​M⊙190-265~M_{\odot}. This event adds to the growing evidence of ‘lite’-intermediate mass black hole (IMBH) discoveries of post-merger black holes ≳100​M⊙\gtrsim 100~M_{\odot}. <mark>GW231123</mark> posed several data analysis challenges owing to waveform‑model systematics and presence of noise artifacts called glitches. We present the first comprehensive machine learning analysis to further validate this event, strengthen its astrophysical inference, an…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…aminated events.
-
- 
-
-show]chayan.chatterjee@vanderbilt.edu
-
-show]kaylah.b.mcgowan@vanderbilt.edu
-
-show]suyash.deshmukh@vanderbilt.edu
-
-show]nicholas-tyler.howard@vanderbilt.edu
-
-show]karan.jani@vanderbilt.edu
-
-I Introduction
-
-The gravitational wave (GW) event <mark>GW231123</mark> [14] stands out as the most massive binary black hole (BBH) merger observed to date, with total mass in the range 190−265​M⊙190-265M_{\odot} and unusually high spins (∼0.9​and∼0.8\sim 0.9\ \text{and}\sim 0.8). The event represents the latest addition to the g…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…or “lite” IMBH discoveries using GWs [44, 52, 3]. The inferred masses of this event straddle the theorized 60−130​M⊙60-130M_{\odot} pair instability mass gap, implying either a non-standard stellar origin or hierarchical mergers in dense environments, marking <mark>GW231123</mark> as a critical probe of BH formation channels [33].
-
-Accurate characterization of GW231123 has been challenging, mainly because significant waveform-model systematics have been observed between state-of-the-art inspiral–merger–ringdown (IMR) templates [53, 39,…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…le the theorized 60−130​M⊙60-130M_{\odot} pair instability mass gap, implying either a non-standard stellar origin or hierarchical mergers in dense environments, marking GW231123 as a critical probe of BH formation channels [33].
-
-Accurate characterization of <mark>GW231123</mark> has been challenging, mainly because significant waveform-model systematics have been observed between state-of-the-art inspiral–merger–ringdown (IMR) templates [53, 39, 20, 50, 41], showing divergence in the high mass, high spin regime. In addition to that, …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…tomated, scalable, and broadly applicable frameworks for both noise suppression and waveform reconstruction [19, 48, 22, 6, 38, 31, 42, 12, 5]. 
-
-In this work, we introduce a fully integrated ML framework tailored to high‑mass, glitch‑contaminated events like <mark>GW231123</mark>. Our pipeline is built around three complementary tools: GW‑Whisper [13], an adaptation of OpenAI’s Whisper audio transformer [40], that processes whitened strain and performs low‑latency, segment‑level classification, simultaneously flagging GW signals and v…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ted Waveform Reconstruction network [9, 10, 11], a probabilistic convolutional autoencoder that generates uncertainty‑aware waveform reconstructions of GW signals in the time-domain. We assess its robustness through extensive Monte‑Carlo injections that embed <mark>GW231123</mark>‑like signals in a range of glitch environments and extend to binary mergers with total masses from 100100 to 1000​M⊙1000\,M_{\odot}. Finally, ArchGEM [34] employs Gaussian‑mixture clustering on Q‑transform spectrograms to isolate scattered‑light arches and de…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… for current and future observations of IMBH mergers. 
-
-This paper is organized as follows: Section 2 describes results obtained using GW-Whisper on 8 seconds of whitened data around the event. Section 3 explores scattered light glitch characterization around <mark>GW231123</mark> using ArchGEM with comparisons against trends observed across the O4 observation run. Section 4 presents analyses performed using AWaRe on GW231123 data and simulated injection sets that span a wide range of IMBH masses. In Section 5, we present validation an…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… 8 seconds of whitened data around the event. Section 3 explores scattered light glitch characterization around GW231123 using ArchGEM with comparisons against trends observed across the O4 observation run. Section 4 presents analyses performed using AWaRe on <mark>GW231123</mark> data and simulated injection sets that span a wide range of IMBH masses. In Section 5, we present validation and robustness results across all three models using a simulated injection set. We present our conclusions in Section 6. 
-
-II Signal Classification
-
-F…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…asses. In Section 5, we present validation and robustness results across all three models using a simulated injection set. We present our conclusions in Section 6. 
-
-II Signal Classification
-
-Figure 1: Predicted class label probabilities from 8 seconds around <mark>GW231123</mark> using GW-Whisper in Livingston (left) and Hanford (right). The top row shows the whitened strains from the respective detectors with the segment containing the event highlighted green. The bottom row contains the probabilities for each label in each segment. …</div>
+    <details class="lines"><summary>Show the sentences (25, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Machine Learning Confirms GW231123 is a “Lite”-Intermediate Mass Black Hole Merger</li><li><span class="sec">abstract</span> The LIGO–Virgo–KAGRA Collaboration recently reported GW231123, a black hole merger with total mass of around 190−265​M⊙190-265~M_{\odot}.</li><li><span class="sec">abstract</span> GW231123 posed several data analysis challenges owing to waveform‑model systematics and presence of noise artifacts ca…</li><li><span class="sec">introduction</span> The gravitational wave (GW) event GW231123 [14] stands out as the most massive binary black hole (BBH) merger observed to date, with total mass in the r…</li><li><span class="sec">introduction</span> …ass gap, implying either a non-standard stellar origin or hierarchical mergers in dense environments, marking GW231123 as a critical probe of BH formation channels [33].</li><li><span class="sec">introduction</span> Accurate characterization of GW231123 has been challenging, mainly because significant waveform-model systematics have been observed between state-…</li><li><span class="sec">introduction</span> …his work, we introduce a fully integrated ML framework tailored to high‑mass, glitch‑contaminated events like GW231123.</li><li><span class="sec">introduction</span> We assess its robustness through extensive Monte‑Carlo injections that embed GW231123‑like signals in a range of glitch environments and extend to binary mergers with total masses from 100100 to…</li></ul>
     </details>
     
   </div>

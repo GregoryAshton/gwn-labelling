@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,211 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>The Formation of Stellar Black Holes</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1609.08411" target="_blank" rel="noopener" class="mono">arXiv:1609.08411</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">It is believed that stellar black holes (BHs) can be formed in two different ways: Either a massive star collapses directly into a BH without a supernova (SN) explosion, or an explosion occurs in a proto-neutron star, but the energy is too low to completely unbind the stellar envelope, and a large fraction of it falls back onto the short-lived neutron star (NS), leading to the delayed formation of a BH. Theoretical models set progenitor masses for BH formation by implosion, namely, by complete or almost complete collapse, but observational evidences have been elusive. Here are reviewed the observational insights on BHs formed by implosion without large natal kicks from: (1) the kinematics in three dimensions of space of five Galactic BH X-ray binaries (BH-XRBs), (2) the diversity of optical and infrared observations of massive stars that collapse in the dark, with no luminous SN explosions, possibly leading to the formation of BHs, and (3) the sources of gravitational waves produced by mergers of stellar BHs so far detected with LIGO. Multiple indications of BH formation without ejection of a significant amount of matter and with no natal kicks obtained from these different areas of observational astrophysics, and the recent observational confirmation of the expected dependence of BH formation on metallicity and redshift, are qualitatively consistent with the high merger rates of binary black holes (BBHs) inferred from the first detections with LIGO.</p></details>
+<div class="small mut mono">arXiv:1609.08411</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">It is believed that stellar black holes (BHs) can be formed in two different ways: Either a massive star collapses directly into a BH without a supernova (SN) explosion, or an explosion occurs in a proto-neutron star, but the energy is too low to completely unbind the stellar envelope, and a large fraction of it falls back onto the short-lived neutron star (NS), leading to the delayed formation of a BH. Theoretical models set progenitor masses for BH formation by implosion, namely, by complete or almost complete collapse, but observational evidences have been elusive. Here are reviewed the observational insights on BHs formed by implosion without large natal kicks from: (1) the kinematics in three dimensions of space of five Galactic BH X-ray binaries (BH-XRBs), (2) the diversity of optical and infrared observations of massive stars that collapse in the dark, with no luminous SN explosions, possibly leading to the formation of BHs, and (3) the sources of gravitational waves produced by mergers of stellar BHs so far detected with LIGO. Multiple indications of BH formation without ejection of a significant amount of matter and with no natal kicks obtained from these different areas of observational astrophysics, and the recent observational confirmation of the expected dependence of BH formation on metallicity and redshift, are qualitatively consistent with the high merger rates of binary black holes (BBHs) inferred from the first detections with LIGO.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/pdf/1609.08411v2" target="_blank" rel="noopener">Open the paper (PDF, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched; it's a PDF, so use your viewer's search.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">3 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">3 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>12 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…ay and optical counterparts, and so it is the most compelling candidate BH X-
-ray binary in a Milky Way GC. 
-It was believed that BHs formed by implosion in GCs fall to the center, where 
-accreting BH X-ray binaries as XTE J1118+48043 and BH–BH binaries like 
-<mark>GW150914</mark> may then be formed through three-body interactions10 that lead to 
-recoil velocities much larger than the escape velocities from typical GCs of few 
-tens of km s-1. However, it has been shown recently63 that core collapse driven 
-by BHs (through the Spitzer “…</div>
+    <p class="where">Named 12 times:
+      discussion ×11, conclusion.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">discussion</span>…ows mixing of the burning products in the center 
-throughout the stellar envelope, a process originally proposed for rotating single 
-stars106. At low metallicities MOBs will produce BBHs that merge within Hubble 
-time with mass ratios larger than 0.55, as in <mark>GW150914</mark>. The schematic 
-representation in Figure 10b shows that this model avoids the physics 
-uncertainties in common envelope ejection events, and the still unconstrained 
-BH Kicks. This channel has a preference for high total and chirp masses as in 
-GW150914, but …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…as in GW150914. The schematic 
-representation in Figure 10b shows that this model avoids the physics 
-uncertainties in common envelope ejection events, and the still unconstrained 
-BH Kicks. This channel has a preference for high total and chirp masses as in 
-<mark>GW150914</mark>, but BBHs with the relative low masses of ~10 M of the BHs as in 
-GW151226107 are difficult to reproduce. 
- 
-Figure 10a. Example of the evolution of a 
-massive stellar binary leading to a BH–BH 
-merger similar to GW15091467. A massive 
-binary star (96 M (bl…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">discussion</span>… 
-hole; a, orbital semi-major axis; e, eccentricity. 
-Reproduced from reference 67. 
- 
-
-23 
- 
- 
- 
- 
- 
- 
- 
- 
-5.3. BBHs formed by dynamical interaction in dense star clusters 
-In Figure 10c are shown alternative paths for the formation of the BBH 
-progenitor of <mark>GW150914</mark> by dynamical interactions in GCs10. These paths for 
-BBH formation assume that members of the BBH are formed with no energetic 
-SNe or NKs that would disrupt the binary system or eject the BH components 
-out from the cluster before BBH formation. The escape v…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…ZAMS causes mass 
-exchange. Acronyms used in the figure: 
-ZAMS: zero-age main sequence; TAMS: 
-termination of hydrogen burning; He-star: 
-helium star; SN: supernova; GRB: gamma-
-ray burst; BH: black hole. Reproduced from 
-reference 105. 
-
-24 
- 
- 
- 
- 
- 
- 
-5.4. <mark>GW150914</mark> &amp; GW151226 versus theoretical BBH formation paths 
-Figure 11 shows the posterior probability densities for the masses of the 
-sources components of the three GW events identified so far101. The probable 
-high masses (~30 M) of the components in GW150914 and …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…5.4. GW150914 &amp; GW151226 versus theoretical BBH formation paths 
-Figure 11 shows the posterior probability densities for the masses of the 
-sources components of the three GW events identified so far101. The probable 
-high masses (~30 M) of the components in <mark>GW150914</mark> and their mass ratios 
-larger than 0.55 are consistent with BBHs formed from tight binaries with fully 
-mixed chemistry (model 5.2). However, the relative low masses (~10 M) of the 
-BH components in GW151226 suggest that the BBH of this event was either 
-for…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…odel 5.3). The likely low kicks at birth and ~10 
-M of the BHs in GW151226 are qualitatively consistent with the observational 
-evidence for in situ formation of BHs of similar masses in Galactic XRBs 
-(section 2.1). 
- 
-Figure 10c. Dynamical Formation of the <mark>GW150914</mark> 
-Binary Black Hole in a Globular Cluster. This 
-interaction diagram shows the formation history for 
-two GW150914 progenitors in a single GC model. 
-From top to bottom, the history of each individual BH 
-that will eventually comprise a GW150914-like binary 
-i…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…observational 
-evidence for in situ formation of BHs of similar masses in Galactic XRBs 
-(section 2.1). 
- 
-Figure 10c. Dynamical Formation of the GW150914 
-Binary Black Hole in a Globular Cluster. This 
-interaction diagram shows the formation history for 
-two <mark>GW150914</mark> progenitors in a single GC model. 
-From top to bottom, the history of each individual BH 
-that will eventually comprise a GW150914-like binary 
-is illustrated, including all binary interactions. The 
-legend shows the various types of gravitational 
-encounters…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…rmation of the GW150914 
-Binary Black Hole in a Globular Cluster. This 
-interaction diagram shows the formation history for 
-two GW150914 progenitors in a single GC model. 
-From top to bottom, the history of each individual BH 
-that will eventually comprise a <mark>GW150914</mark>-like binary 
-is illustrated, including all binary interactions. The 
-legend shows the various types of gravitational 
-encounters included in these GC models (with the 
-exception of two-body relaxation). In each interaction, 
-the black sphere represents the GW…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…14-like binary 
-is illustrated, including all binary interactions. The 
-legend shows the various types of gravitational 
-encounters included in these GC models (with the 
-exception of two-body relaxation). In each interaction, 
-the black sphere represents the <mark>GW150914</mark> 
-progenitor BH, while the blue and red spheres 
-represent other BHs (and stars) in the cluster core. 
-Reproduced from Ref. 10. 
- 
- 
-
-25 
- 
- 
- 
-Figure 11. Posterior probability densities for the masses of the sources components of the 
-three events GW150914, L…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…he GW150914 
-progenitor BH, while the blue and red spheres 
-represent other BHs (and stars) in the cluster core. 
-Reproduced from Ref. 10. 
- 
- 
-
-25 
- 
- 
- 
-Figure 11. Posterior probability densities for the masses of the sources components of the 
-three events <mark>GW150914</mark>, LVT151012 and GW151226. For the two dimensional distributions, 
-the contours show 50% and 90% credible regions. Reproduced from reference 101. 
- 
-6. Summary and conclusions 
- 
- From the kinematics of Galactic BH X-ray binaries in three dimensions of 
-space …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…odel (2) avoids the physics uncertainties 
-in mass transfer, common envelope mass ejection events, and the still 
-unconstrained BH kicks. However, model (2) assumes massive tight 
-binary progenitors of BBHs and has preference for BBHs with large 
-masses as in <mark>GW150914</mark>, but the relative low BH masses in GW151226 
-are difficult to reproduce. In principle the formation of the BBH in 
-GW151226 can be accounted by models (1) and (3). (Section 5). 
- 
- BBHs formed from relatively isolated massive stellar binaries (channel 1) 
-or…</div>
+    <details class="lines"><summary>Show the sentences (12, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> …osion in GCs fall to the center, where accreting BH X-ray binaries as XTE J1118+48043 and BH–BH binaries like GW150914 may then be formed through three-body interactions10 that lead to recoil velocities much larger than the esca…</li><li><span class="sec">discussion</span> …w metallicities MOBs will produce BBHs that merge within Hubble time with mass ratios larger than 0.55, as in GW150914.</li><li><span class="sec">discussion</span> This channel has a preference for high total and chirp masses as in GW150914, but BBHs with the relative low masses of ~10 M of the BHs as in GW151226107 are difficult to reproduce.</li><li><span class="sec">discussion</span> …n in dense star clusters In Figure 10c are shown alternative paths for the formation of the BBH progenitor of GW150914 by dynamical interactions in GCs10.</li><li><span class="sec">discussion</span> GW150914 &amp; GW151226 versus theoretical BBH formation paths Figure 11 shows the posterior probability densities for the…</li><li><span class="sec">discussion</span> The probable high masses (~30 M) of the components in GW150914 and their mass ratios larger than 0.55 are consistent with BBHs formed from tight binaries with fully mixed c…</li><li><span class="sec">discussion</span> Dynamical Formation of the GW150914 Binary Black Hole in a Globular Cluster.</li><li><span class="sec">discussion</span> This interaction diagram shows the formation history for two GW150914 progenitors in a single GC model.</li></ul>
     </details>
     
   </div>
@@ -363,29 +201,16 @@ or…</div>
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      discussion.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">LVT151012</span> or <span class="mono hit">GW151012</span>.</p>
     
     
-    <div class="mention"><span class="sec">discussion</span>…4 
-progenitor BH, while the blue and red spheres 
-represent other BHs (and stars) in the cluster core. 
-Reproduced from Ref. 10. 
- 
- 
-
-25 
- 
- 
- 
-Figure 11. Posterior probability densities for the masses of the sources components of the 
-three events GW150914, <mark>LVT151012</mark> and GW151226. For the two dimensional distributions, 
-the contours show 50% and 90% credible regions. Reproduced from reference 101. 
- 
-6. Summary and conclusions 
- 
- From the kinematics of Galactic BH X-ray binaries in three dimensions of 
-space it is found…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> Posterior probability densities for the masses of the sources components of the three events GW150914, LVT151012 and GW151226.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -421,97 +246,15 @@ space it is found…</div>
 <section class="card" data-i="2" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>6 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">discussion</span>… mass 
-exchange. Acronyms used in the figure: 
-ZAMS: zero-age main sequence; TAMS: 
-termination of hydrogen burning; He-star: 
-helium star; SN: supernova; GRB: gamma-
-ray burst; BH: black hole. Reproduced from 
-reference 105. 
-
-24 
- 
- 
- 
- 
- 
- 
-5.4. GW150914 &amp; <mark>GW151226</mark> versus theoretical BBH formation paths 
-Figure 11 shows the posterior probability densities for the masses of the 
-sources components of the three GW events identified so far101. The probable 
-high masses (~30 M) of the components in GW150914 and their mass …</div>
+    <p class="where">Named 6 times:
+      discussion ×4, conclusion ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">discussion</span>…robable 
-high masses (~30 M) of the components in GW150914 and their mass ratios 
-larger than 0.55 are consistent with BBHs formed from tight binaries with fully 
-mixed chemistry (model 5.2). However, the relative low masses (~10 M) of the 
-BH components in <mark>GW151226</mark> suggest that the BBH of this event was either 
-formed from an isolated binary (model 5.1), or by dynamical interaction in a high 
-stellar density cluster (model 5.3), with the BHs formed without kicks that would 
-unbind the isolated binary (model 5.1), or eje…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…llar density cluster (model 5.3), with the BHs formed without kicks that would 
-unbind the isolated binary (model 5.1), or eject the BHs from the parent stellar 
-cluster before BBH formation (model 5.3). The likely low kicks at birth and ~10 
-M of the BHs in <mark>GW151226</mark> are qualitatively consistent with the observational 
-evidence for in situ formation of BHs of similar masses in Galactic XRBs 
-(section 2.1). 
- 
-Figure 10c. Dynamical Formation of the GW150914 
-Binary Black Hole in a Globular Cluster. This 
-interaction diagra…</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">discussion</span>…BH, while the blue and red spheres 
-represent other BHs (and stars) in the cluster core. 
-Reproduced from Ref. 10. 
- 
- 
-
-25 
- 
- 
- 
-Figure 11. Posterior probability densities for the masses of the sources components of the 
-three events GW150914, LVT151012 and <mark>GW151226</mark>. For the two dimensional distributions, 
-the contours show 50% and 90% credible regions. Reproduced from reference 101. 
- 
-6. Summary and conclusions 
- 
- From the kinematics of Galactic BH X-ray binaries in three dimensions of 
-space it is found that stars o…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…n mass transfer, common envelope mass ejection events, and the still 
-unconstrained BH kicks. However, model (2) assumes massive tight 
-binary progenitors of BBHs and has preference for BBHs with large 
-masses as in GW150914, but the relative low BH masses in <mark>GW151226</mark> 
-are difficult to reproduce. In principle the formation of the BBH in 
-GW151226 can be accounted by models (1) and (3). (Section 5). 
- 
- BBHs formed from relatively isolated massive stellar binaries (channel 1) 
-or contact massive binaries (channel 2) by eit…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…ned BH kicks. However, model (2) assumes massive tight 
-binary progenitors of BBHs and has preference for BBHs with large 
-masses as in GW150914, but the relative low BH masses in GW151226 
-are difficult to reproduce. In principle the formation of the BBH in 
-<mark>GW151226</mark> can be accounted by models (1) and (3). (Section 5). 
- 
- BBHs formed from relatively isolated massive stellar binaries (channel 1) 
-or contact massive binaries (channel 2) by either direct collapse and 
-sufficiently low natal kicks, will remain in situ and u…</div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> GW150914 &amp; GW151226 versus theoretical BBH formation paths Figure 11 shows the posterior probability densities for the masses of…</li><li><span class="sec">discussion</span> However, the relative low masses (~10 M) of the BH components in GW151226 suggest that the BBH of this event was either formed from an isolated binary (model 5.1), or by dynamical int…</li><li><span class="sec">discussion</span> The likely low kicks at birth and ~10 M of the BHs in GW151226 are qualitatively consistent with the observational evidence for in situ formation of BHs of similar masses i…</li><li><span class="sec">discussion</span> …or probability densities for the masses of the sources components of the three events GW150914, LVT151012 and GW151226.</li><li><span class="sec">conclusion</span> …itors of BBHs and has preference for BBHs with large masses as in GW150914, but the relative low BH masses in GW151226 are difficult to reproduce.</li><li><span class="sec">conclusion</span> In principle the formation of the BBH in GW151226 can be accounted by models (1) and (3).</li></ul>
     </details>
     
   </div>

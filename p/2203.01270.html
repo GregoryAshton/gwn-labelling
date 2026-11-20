@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>First joint observation by the underground gravitational-wave detector KAGRA with GEO 600</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2203.01270" target="_blank" rel="noopener" class="mono">arXiv:2203.01270</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We report the results of the first joint observation of the KAGRA detector with GEO 600. KAGRA is a cryogenic and underground gravitational-wave detector consisting of a laser interferometer with 3 km arms, located in Kamioka, Gifu, Japan. GEO 600 is a British-German laser interferometer with 600 m arms, located near Hannover, Germany. GEO 600 and KAGRA performed a joint observing run from April 7 to 20, 2020. We present the results of the joint analysis of the GEO-KAGRA data for transient gravitational-wave signals, including the coalescence of neutron-star binaries and generic unmodeled transients. We also perform dedicated searches for binary coalescence signals and generic transients associated with gamma-ray burst events observed during the joint run. No gravitational-wave events were identified. We evaluate the minimum detectable amplitude for various types of transient signals and the spacetime volume for which the network is sensitive to binary neutron-star coalescences. We also place lower limits on the distances to the gamma-ray bursts analyzed based on the non-detection of an associated gravitational-wave signal for several signal models, including binary coalescences. These analyses demonstrate the feasibility and utility of KAGRA as a member of the global gravitational-wave detector network.</p></details>
+<div class="small mut mono">arXiv:2203.01270</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We report the results of the first joint observation of the KAGRA detector with GEO 600. KAGRA is a cryogenic and underground gravitational-wave detector consisting of a laser interferometer with 3 km arms, located in Kamioka, Gifu, Japan. GEO 600 is a British-German laser interferometer with 600 m arms, located near Hannover, Germany. GEO 600 and KAGRA performed a joint observing run from April 7 to 20, 2020. We present the results of the joint analysis of the GEO-KAGRA data for transient gravitational-wave signals, including the coalescence of neutron-star binaries and generic unmodeled transients. We also perform dedicated searches for binary coalescence signals and generic transients associated with gamma-ray burst events observed during the joint run. No gravitational-wave events were identified. We evaluate the minimum detectable amplitude for various types of transient signals and the spacetime volume for which the network is sensitive to binary neutron-star coalescences. We also place lower limits on the distances to the gamma-ray bursts analyzed based on the non-detection of an associated gravitational-wave signal for several signal models, including binary coalescences. These analyses demonstrate the feasibility and utility of KAGRA as a member of the global gravitational-wave detector network.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2203.01270v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,25 +159,23 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2203.01270v2#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…odeled search algorithm X-Pipeline [85, 94] to target these GRBs.
-
-Short-hard GRBs (duration &lt;&lt; 2 s) can be produced by NS binary coalescences, a connection that
-was long proposed [95, 96, 97, 98] and
-observationally confirmed by the multimessenger studies of <mark>GW170817</mark>/GRB 170817A [33, 31, 99, 100, 101, 102, 103, 104].
-We therefore target them with a modeled CBC search algorithm PyGRB [105, 89]
-in addition to the more generic minimally modeled X-Pipeline.
-
-During the joint GEO–KAGRA run, 4 GRBs were detected coinciding with…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …ection that was long proposed [95, 96, 97, 98] and observationally confirmed by the multimessenger studies of GW170817/GRB 170817A [33, 31, 99, 100, 101, 102, 103, 104].</li></ul>
+    </details>
     
   </div>
   <div class="form">

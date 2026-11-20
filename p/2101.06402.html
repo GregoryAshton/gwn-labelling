@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,194 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Scope Out Multiband Gravitational-Wave Observations of GW190521-Like Binary Black Holes with Space Gravitational Wave Antenna B-DECIGO</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2101.06402" target="_blank" rel="noopener" class="mono">arXiv:2101.06402</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The gravitational wave event, GW190521, is the most massive binary black hole merger observed by ground-based gravitational wave observatories LIGO/Virgo to date. While the observed gravitational wave signal is mainly in the merger and ringdown phases, the inspiral gravitational wave signal of the GW190521-like binary will be more visible to space-based detectors in the low-frequency band. In addition, the ringdown gravitational wave signal will be louder in the next generation (3G) of ground-based detectors in the high-frequency band, displaying the great potential of multiband gravitational wave observations. In this paper, we explore the scientific potential of multiband observations of GW190521-like binaries with a milli-Hz gravitational wave observatory: LISA; a deci-Hz observatory: B-DECIGO; and (next generation of) hecto-Hz observatories: aLIGO and ET. In the case of quasicircular evolution, the triple-band observations of LISA, B-DECIGO, and ET will provide parameter estimation errors of the masses and spin amplitudes of component black holes at the level of order of 1─10%. This would allow consistency tests of general relativity in the strong field at an unparalleled precision, particularly with the &#34;B-DECIGO + ET&#34; observation. In the case of eccentric evolution, the multiband signal-to-noise ratio found in &#34;B-DECIGO + ET&#34; observation would be larger than 100 for a five-year observation prior to coalescence, even with high final eccentricities.</p></details>
+<div class="small mut mono">arXiv:2101.06402</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The gravitational wave event, GW190521, is the most massive binary black hole merger observed by ground-based gravitational wave observatories LIGO/Virgo to date. While the observed gravitational wave signal is mainly in the merger and ringdown phases, the inspiral gravitational wave signal of the GW190521-like binary will be more visible to space-based detectors in the low-frequency band. In addition, the ringdown gravitational wave signal will be louder in the next generation (3G) of ground-based detectors in the high-frequency band, displaying the great potential of multiband gravitational wave observations. In this paper, we explore the scientific potential of multiband observations of GW190521-like binaries with a milli-Hz gravitational wave observatory: LISA; a deci-Hz observatory: B-DECIGO; and (next generation of) hecto-Hz observatories: aLIGO and ET. In the case of quasicircular evolution, the triple-band observations of LISA, B-DECIGO, and ET will provide parameter estimation errors of the masses and spin amplitudes of component black holes at the level of order of 1─10%. This would allow consistency tests of general relativity in the strong field at an unparalleled precision, particularly with the &#34;B-DECIGO + ET&#34; observation. In the case of eccentric evolution, the multiband signal-to-noise ratio found in &#34;B-DECIGO + ET&#34; observation would be larger than 100 for a five-year observation prior to coalescence, even with high final eccentricities.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2101.06402v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">3 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">3 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>12 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…sim 1.5\times 10^{2}, respectively.
-The joint “space ++ ground” observation across the full GW bands
-would be therefore the best way to observe the GW190521-like BBH systems;
-this is the basic idea of multiband GW astronomy.
-
-Soon after the first detection of <mark>GW150914</mark> [22],
-the potential of multiband GW astronomy of BBH systems
-with LISA and aLIGO was emphasized [23]
-(see also Ref. [24]).
-This study was immediately followed up with more detailed analyses.
-The works include (but not limited to)
-the improved estimation of so…</div>
+    <p class="where">Named 12 times:
+      results ×9, conclusion ×2, introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2101.06402v3#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…q. (33),
-from which these derivatives are extracted..
-
-In Table 4, we present the parameter estimation
-errors of the remnant mass MfM_{f} and spin χf\chi_{f} from both the inspiral and ringdown phases.
-For the reference, we also present the same errors of the <mark>GW150914</mark>-like BBH
-with the redshifted component masses (m1,m2)=(30​M⊙, 40​M⊙)(m_{1},\,m_{2})=(30\,M_{\odot},\,40\,M_{\odot}),
- spin magnitudes (χ1,χ2)=(0.9, 0.7)(\chi_{1},\,\chi_{2})=(0.9,\,0.7),
-and the luminosity distance DL=0.4​GpcD_{L}=0.4\,{\rm Gpc} (i.e., the re…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…\,{\rm Gpc} (i.e., the redshift z∼0.085z\sim 0.085)
-1414
- 14
- 
- 
- 
- 
- 
- 
- 
- This system was analyzed as “System B”
-in Ref. [38]..
-We see that the “LISA ++ B-DECIGO ++ ET” observation allows us the IMR consistency test
-at the sub-percent precision both for the <mark>GW150914</mark>-like, and GW190521-like BBH systems.
-The result of the GW190521-like BBH system is slightly worse than the case of
-the GW150914-like BBH system because the luminosity distance of GW190521 (DL=5.3​GpcD_{L}=5.3\,{\rm Gpc})
-is much larger than that of GW150914
-(…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">results</span>….
-We see that the “LISA ++ B-DECIGO ++ ET” observation allows us the IMR consistency test
-at the sub-percent precision both for the GW150914-like, and GW190521-like BBH systems.
-The result of the GW190521-like BBH system is slightly worse than the case of
-the <mark>GW150914</mark>-like BBH system because the luminosity distance of GW190521 (DL=5.3​GpcD_{L}=5.3\,{\rm Gpc})
-is much larger than that of GW150914
-(DL=0.4​GpcD_{L}=0.4\,{\rm Gpc}) [22, 107, 108].
-Also, the GW190521-like BBH system has
-the central frequency fc∼85​Hzf_{c}\sim 8…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…e GW150914-like, and GW190521-like BBH systems.
-The result of the GW190521-like BBH system is slightly worse than the case of
-the GW150914-like BBH system because the luminosity distance of GW190521 (DL=5.3​GpcD_{L}=5.3\,{\rm Gpc})
-is much larger than that of <mark>GW150914</mark>
-(DL=0.4​GpcD_{L}=0.4\,{\rm Gpc}) [22, 107, 108].
-Also, the GW190521-like BBH system has
-the central frequency fc∼85​Hzf_{c}\sim 85\,{\rm Hz} lower
-than that of the GW150914-like BBH system (fc∼350​Hzf_{c}\sim 350\,{\rm Hz}),
-missing the most sensitive frequen…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…sity distance of GW190521 (DL=5.3​GpcD_{L}=5.3\,{\rm Gpc})
-is much larger than that of GW150914
-(DL=0.4​GpcD_{L}=0.4\,{\rm Gpc}) [22, 107, 108].
-Also, the GW190521-like BBH system has
-the central frequency fc∼85​Hzf_{c}\sim 85\,{\rm Hz} lower
-than that of the <mark>GW150914</mark>-like BBH system (fc∼350​Hzf_{c}\sim 350\,{\rm Hz}),
-missing the most sensitive frequency of aLIGO and ET ∼250​Hz\sim 250\,{\rm Hz}.
-If a GW190521-like BBH was observed at the same distance as GW150914,
-the accuracy of its inspiral–ringdown consistency test wo…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ency fc∼85​Hzf_{c}\sim 85\,{\rm Hz} lower
-than that of the GW150914-like BBH system (fc∼350​Hzf_{c}\sim 350\,{\rm Hz}),
-missing the most sensitive frequency of aLIGO and ET ∼250​Hz\sim 250\,{\rm Hz}.
-If a GW190521-like BBH was observed at the same distance as <mark>GW150914</mark>,
-the accuracy of its inspiral–ringdown consistency test would be at the level of ∼O⁡(0.01%)\sim O(0.01\%).
-
-Table 4: Parameter estimation errors of the remnant mass and spin of GW190521-like
-and GW150914-like BBH systems, using only the ringdown GW signal as …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… GW190521-like BBH was observed at the same distance as GW150914,
-the accuracy of its inspiral–ringdown consistency test would be at the level of ∼O⁡(0.01%)\sim O(0.01\%).
-
-Table 4: Parameter estimation errors of the remnant mass and spin of GW190521-like
-and <mark>GW150914</mark>-like BBH systems, using only the ringdown GW signal as well as the inspiral GW signal
-inferred via the NR remnant fitting formulas;
-the best fit values (Mf/m,χf)∼(0.904, 0.883)(M_{f}/m,\,\chi_{f})\sim(0.904,\,0.883)
-for the GW190521-like BBH (recall Eq. (33))…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…GW signal
-inferred via the NR remnant fitting formulas;
-the best fit values (Mf/m,χf)∼(0.904, 0.883)(M_{f}/m,\,\chi_{f})\sim(0.904,\,0.883)
-for the GW190521-like BBH (recall Eq. (33)) and
-(Mf/m,χf)∼(0.891, 0.898)(M_{f}/m,\,\chi_{f})\sim(0.891,\,0.898) for the <mark>GW150914</mark>-like BBH.
-Here, BD is an abbreviation for B-DECIGO.
-The results in the single band are normalized to the SNR
-for a given GW observatory. In the multiband case they are normalized
-to the total SNR of ρLISA+BD+ET\rho_{\rm{LISA+BD+ET}}.
-
-GW190521-like BBH
-GW1509…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…150914-like BBH.
-Here, BD is an abbreviation for B-DECIGO.
-The results in the single band are normalized to the SNR
-for a given GW observatory. In the multiband case they are normalized
-to the total SNR of ρLISA+BD+ET\rho_{\rm{LISA+BD+ET}}.
-
-GW190521-like BBH
-<mark>GW150914</mark>-like BBH
-
-GW detector
- SNR
- δ​Mf/Mf{\delta M_{f}}/M_{f}
- δ​χf/χf{\delta\chi_{f}}/\chi_{f}
- SNR
- δ​Mf/Mf{\delta M_{f}}/M_{f}
- δ​χf/χf{\delta\chi_{f}}/\chi_{f}
-
-Single band: Ringdown GW signal
-
-aLIGO
- 1.08×1011.08\times 10^{1}
- 3.09×10−13.09\times 10^{-1}
- 7.47…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…ike BBH systems using the full GW spectrum
-from milli-Hz to deci-Hz bands, and to hecto-Hz band.
-We expect our findings will motivate further investigation on prospects
-for multiband observation of the GW190521-like BBH systems,
-as much alike the prototypical <mark>GW150914</mark>-like BBH systems [22].
-
-Nevertheless, we emphasize that our study was performed with (very) simple methods.
-Therefore, our results should be only indicative and tentative.
-In the remainder of this section,
-we discuss what works remain to be done to refine our…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…wo (or possibly more)
-QNMs [126, 127],
-and so on.
-
-The test i) is similar to our inspiral–ringdownconsistency test
-directly using information of the merger phase,
-and makes the most of the GW waveform.
-It has been pointed out that the values of this test
-with <mark>GW150914</mark>-like BBH systems will be maximized in the multiband observation [28, 29, 128].
-Our result suggests that the same will be true
-for GW190521-like “intermediate-mass” BBH systems, too.
-Similarly, Gupta et al. [31, 32] have showed
-that the multiband observations …</div>
+    <details class="lines"><summary>Show the sentences (11, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Soon after the first detection of GW150914 [22], the potential of multiband GW astronomy of BBH systems with LISA and aLIGO was emphasized [23] (see als…</li><li><span class="sec">results</span> For the reference, we also present the same errors of the GW150914-like BBH with the redshifted component masses (m1,m2)=(30​M⊙, 40​M⊙)(m_{1},\,m_{2})=(30\,M_{\odot},\,40\,M_{\…</li><li><span class="sec">results</span> …A ++ B-DECIGO ++ ET” observation allows us the IMR consistency test at the sub-percent precision both for the GW150914-like, and GW190521-like BBH systems.</li><li><span class="sec">results</span> The result of the GW190521-like BBH system is slightly worse than the case of the GW150914-like BBH system because the luminosity distance of GW190521 (DL=5.3​GpcD_{L}=5.3\,{\rm Gpc}) is much larger t…</li><li><span class="sec">results</span> …the GW190521-like BBH system has the central frequency fc∼85​Hzf_{c}\sim 85\,{\rm Hz} lower than that of the GW150914-like BBH system (fc∼350​Hzf_{c}\sim 350\,{\rm Hz}), missing the most sensitive frequency of aLIGO and ET ∼250…</li><li><span class="sec">results</span> If a GW190521-like BBH was observed at the same distance as GW150914, the accuracy of its inspiral–ringdown consistency test would be at the level of ∼O⁡(0.01%)\sim O(0.01\%).</li><li><span class="sec">results</span> Table 4: Parameter estimation errors of the remnant mass and spin of GW190521-like and GW150914-like BBH systems, using only the ringdown GW signal as well as the inspiral GW signal inferred via the NR rem…</li><li><span class="sec">results</span> (33)) and (Mf/m,χf)∼(0.891, 0.898)(M_{f}/m,\,\chi_{f})\sim(0.891,\,0.898) for the GW150914-like BBH.</li></ul>
     </details>
     
   </div>
@@ -346,255 +201,15 @@ that the multiband observations …</div>
 <section class="card" data-i="1" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>71 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>Scope Out Multiband Gravitational-Wave Observations of <mark>GW190521</mark>-Like Binary Black Holes with Space Gravitational Wave Antenna B-DECIGO
-
- 
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- 
- 
-
- 
- arXiv is …</div>
+    <p class="where">Named 71 times:
+      introduction ×19, results ×18, acknowledgements ×13, methods ×8, conclusion ×7, title/headings ×3, abstract ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/2101.06402v3#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…nd observation
-
-4.1 A consistency test of GR
-with the inspiral and ringdown GW signals
-
-4.2 A simple test of the remnant compact object with quasinormal modes
-
-5 Summary and Discussion
-
-5.1 Assessment of prospects
-
-Acknowledgements
-
-A Signal-to-noise ratio of <mark>GW190521</mark>-like eccentric BBH systems
-
-B Some more noise power spectral densities
-of (next-generation) GW detectors
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2101.06402v3 [gr-qc] 27 Dec 2021
-
-Scope Out Multiband Gravitational-Wave Obse…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…ric BBH systems
-
-B Some more noise power spectral densities
-of (next-generation) GW detectors
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2101.06402v3 [gr-qc] 27 Dec 2021
-
-Scope Out Multiband Gravitational-Wave Observations of <mark>GW190521</mark>-Like Binary Black Holes with Space Gravitational Wave Antenna B-DECIGO
-
-Hiroyuki Nakano 
-
-Ryuichi Fujita 
-
-Soichiro Isoyama 
-
-Norichika Sago
-
-Abstract
-
- 
-The gravitational wave event, GW190521 is the most massive binary black hole merger
-observed by ground-ba…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…7 Dec 2021
-
-Scope Out Multiband Gravitational-Wave Observations of GW190521-Like Binary Black Holes with Space Gravitational Wave Antenna B-DECIGO
-
-Hiroyuki Nakano 
-
-Ryuichi Fujita 
-
-Soichiro Isoyama 
-
-Norichika Sago
-
-Abstract
-
- 
-The gravitational wave event, <mark>GW190521</mark> is the most massive binary black hole merger
-observed by ground-based gravitational wave observatories LIGO/Virgo to date.
-While the observed gravitational-wave signal is mainly in the merger and ringdown phases,
-the inspiral gravitational-wave signal of GW19…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…0521 is the most massive binary black hole merger
-observed by ground-based gravitational wave observatories LIGO/Virgo to date.
-While the observed gravitational-wave signal is mainly in the merger and ringdown phases,
-the inspiral gravitational-wave signal of <mark>GW190521</mark>-like binary will be more visible
-by space-based detectors in the low-frequency band.
-In addition, the ringdown gravitational-wave signal will be more loud with the next generation (3G)
-of ground-based detectors in the high-frequency band,
-displaying a great p…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…ill be more loud with the next generation (3G)
-of ground-based detectors in the high-frequency band,
-displaying a great potential of the multiband gravitational wave observations.
-In this paper, we explore the scientific potential of multiband observations
-of <mark>GW190521</mark>-like binaries with milli-Hz gravitational wave observatory: LISA,
-deci-Hz observatory: B-DECIGO, and (next generation of) hecto-Hz observatories: aLIGO and ET.
-In the case of quasicircular evolution,
-the triple-band observation by LISA, B-DECIGO and ET will
-p…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…†reftitle: References
-\history
-Received: 16 January 2021; Accepted: 23 February 2021; Published: 3 March 2021
-
-1 Introduction
-
-Among gravitational-wave (GW) events detected
-by LIGO and Virgo during O1, O2 and O3a runs [1, 2],
-a binary black hole (BBH) merger: <mark>GW190521</mark> [3, 4]
-is one of the most striking discoveries.
-GW190521 is the heaviest BBH merger ever observed,
-producing the remnant black hole (BH) with the mass of 142−16+28​M⊙142^{+28}_{-16}\,M_{\odot}
-11
- 1
- 
- 
- 
- 
- 
- 
- 
- We set G=1=cG=1=c with the useful conversion …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… Accepted: 23 February 2021; Published: 3 March 2021
-
-1 Introduction
-
-Among gravitational-wave (GW) events detected
-by LIGO and Virgo during O1, O2 and O3a runs [1, 2],
-a binary black hole (BBH) merger: GW190521 [3, 4]
-is one of the most striking discoveries.
-<mark>GW190521</mark> is the heaviest BBH merger ever observed,
-producing the remnant black hole (BH) with the mass of 142−16+28​M⊙142^{+28}_{-16}\,M_{\odot}
-11
- 1
- 
- 
- 
- 
- 
- 
- 
- We set G=1=cG=1=c with the useful conversion factor 1​M⊙=1.477​km=4.926×10−6​s1M_{\odot}=1.477\;{\math…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ded)
-with the Hubble constant H0=67.7​km​s−1​Mpc−1H_{0}=67.7\,{\mathrm{km\,s^{-1}\,Mpc^{-1}}},
-and density parameters ΩM=0.307\Omega_{M}=0.307 and ΩΛ=0.694\Omega_{\Lambda}=0.694 [5].
-that can be interpreted as an intermediate mass BH;
-the source parameters of <mark>GW190521</mark> (and our notations) are summarized in Table 1.
-This measurement triggers the intense investigation of GW190521’s unique source property.
-
-Table 1: Summary of the source parameters of GW190521 as a quasicircular BBH merger,
-reported by the LIGO-Virgo collabora…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…meters ΩM=0.307\Omega_{M}=0.307 and ΩΛ=0.694\Omega_{\Lambda}=0.694 [5].
-that can be interpreted as an intermediate mass BH;
-the source parameters of GW190521 (and our notations) are summarized in Table 1.
-This measurement triggers the intense investigation of <mark>GW190521</mark>’s unique source property.
-
-Table 1: Summary of the source parameters of GW190521 as a quasicircular BBH merger,
-reported by the LIGO-Virgo collaboration [3]
-based on the BBH waveform model [6].
-The symmetric 90% credible interval for each parameter is also qu…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…be interpreted as an intermediate mass BH;
-the source parameters of GW190521 (and our notations) are summarized in Table 1.
-This measurement triggers the intense investigation of GW190521’s unique source property.
-
-Table 1: Summary of the source parameters of <mark>GW190521</mark> as a quasicircular BBH merger,
-reported by the LIGO-Virgo collaboration [3]
-based on the BBH waveform model [6].
-The symmetric 90% credible interval for each parameter is also quoted.
-Note that the parameters are written in our notation,
-and masses are given …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…^{+29}_{-17}
-
-Mass ratio
-q(=m1r/m2r≤1)q~(=m_{1}^{\rm r}/m_{2}^{\rm r}\leq 1)
-0.79−0.29+0.190.79^{+0.19}_{-0.29}
-
-Luminosity Distance [Gpc]
-DLD_{L}
-5.3−2.6+2.45.3^{+2.4}_{-2.6}
-
-Redshift
-zz
-0.82−0.34+0.280.82^{+0.28}_{-0.34}
-
-A key element to better understand <mark>GW190521</mark> is the precise measurement of the binary parameters
-(see, for example, Ref. [7] for a possibility of
-an intermediate mass ratio inspiral).
-GW190521 is, however, a much heavier BBH system than previously observed GW events,
-and one of the difficulties here is …</div>
+    <details class="lines"><summary>Show the sentences (63, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Scope Out Multiband Gravitational-Wave Observations of GW190521-Like Binary Black Holes with Space Gravitational Wave Antenna B-DECIGO</li><li><span class="sec">title/headings</span> A Signal-to-noise ratio of GW190521-like eccentric BBH systems</li><li><span class="sec">abstract</span> The gravitational wave event, GW190521 is the most massive binary black hole merger observed by ground-based gravitational wave observatories LIGO/V…</li><li><span class="sec">abstract</span> …vitational-wave signal is mainly in the merger and ringdown phases, the inspiral gravitational-wave signal of GW190521-like binary will be more visible by space-based detectors in the low-frequency band.</li><li><span class="sec">abstract</span> In this paper, we explore the scientific potential of multiband observations of GW190521-like binaries with milli-Hz gravitational wave observatory: LISA, deci-Hz observatory: B-DECIGO, and (next ge…</li><li><span class="sec">introduction</span> …e (GW) events detected by LIGO and Virgo during O1, O2 and O3a runs [1, 2], a binary black hole (BBH) merger: GW190521 [3, 4] is one of the most striking discoveries.</li><li><span class="sec">introduction</span> GW190521 is the heaviest BBH merger ever observed, producing the remnant black hole (BH) with the mass of 142−16+28​M⊙…</li><li><span class="sec">introduction</span> …0.694\Omega_{\Lambda}=0.694 [5]. that can be interpreted as an intermediate mass BH; the source parameters of GW190521 (and our notations) are summarized in Table 1.</li></ul>
     </details>
     
   </div>
@@ -631,20 +246,16 @@ and one of the difficulties here is …</div>
 <section class="card" data-i="2" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2101.06402v3#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
-    <div class="mention"><span class="sec">conclusion</span>…e point mentioned above, it should be noted that we have ignored
-subdominant (ℓ≠2,|m|≠2)(\ell\neq 2,\,|m|\neq 2) harmonics in our GW waveform model.
-They are more notable in the observed signal when system’s mass ratio becomes smaller
-(such as the analysis of <mark>GW190814</mark> [114]
-with the mass ratio q=0.112−0.009+0.008q=0.112^{+0.008}_{-0.009}).
-With the subdominant harmonics, one can access the source orientation
-to reduce uncertainty in the distance estimation [115].
-
-Third, we should note that there are two main hurdles
-to an…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">conclusion</span> …hey are more notable in the observed signal when system’s mass ratio becomes smaller (such as the analysis of GW190814 [114] with the mass ratio q=0.112−0.009+0.008q=0.112^{+0.008}_{-0.009}).</li></ul>
+    </details>
     
   </div>
   <div class="form">

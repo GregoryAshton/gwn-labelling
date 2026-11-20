@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Future Perspectives for Gamma-ray Burst Detection from Space</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2404.11808" target="_blank" rel="noopener" class="mono">arXiv:2404.11808</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Since their first discovery in the late 1960s, gamma-ray bursts have attracted an exponentially growing interest from the international community due to their central role in the most highly debated open questions of the modern research of astronomy, astrophysics, cosmology, and fundamental physics. These range from the intimate nuclear composition of high-density material within the core of ultra-dense neuron stars, to stellar evolution via the collapse of massive stars, the production and propagation of gravitational waves, as well as the exploration of the early universe by unveiling the first stars and galaxies (assessing also their evolution and cosmic re-ionization). GRBs in the past ∼50 years have stimulated the development of cutting-edge technological instruments for observations of high-energy celestial sources from space, leading to the launch and successful operations of many different scientific missions (several of them still in data-taking mode currently). In this review, we provide a brief description of the GRB-dedicated missions from space being designed and developed for the future. The list of these projects, not meant to be exhaustive, shall serve as a reference to interested readers to understand what is likely to come next to lead the further development of GRB research and the associated phenomenology.</p></details>
+<div class="small mut mono">arXiv:2404.11808</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Since their first discovery in the late 1960s, gamma-ray bursts have attracted an exponentially growing interest from the international community due to their central role in the most highly debated open questions of the modern research of astronomy, astrophysics, cosmology, and fundamental physics. These range from the intimate nuclear composition of high-density material within the core of ultra-dense neuron stars, to stellar evolution via the collapse of massive stars, the production and propagation of gravitational waves, as well as the exploration of the early universe by unveiling the first stars and galaxies (assessing also their evolution and cosmic re-ionization). GRBs in the past ∼50 years have stimulated the development of cutting-edge technological instruments for observations of high-energy celestial sources from space, leading to the launch and successful operations of many different scientific missions (several of them still in data-taking mode currently). In this review, we provide a brief description of the GRB-dedicated missions from space being designed and developed for the future. The list of these projects, not meant to be exhaustive, shall serve as a reference to interested readers to understand what is likely to come next to lead the further development of GRB research and the associated phenomenology.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2404.11808v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,97 +159,22 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>6 mentions · <span class="cptag">3 by counterpart name</span></h3>
+    <p class="where">Named 6 times:
+      introduction ×3, data ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/2404.11808v1#:~:text=GRB%20170817A" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GRB 170817A</span> or <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">3 mentions use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>…022, and references therein). In the most recent years, GRBs have also gained renewed interest as key sources in the field of multi-messenger Astrophysics due to their association with Kilonovae and Gravitational Wave (GW) sources (see the well known cases of <mark class="cp">GRB 170817A</mark>, GRB 211211A and GRB 230307A; e.g., Abbott et al., 2017; Troja et al., 2022; Dichiara et al., 2023, and references therein).
-
-Following the decommissioning of Beppo-SAX in 2002, a number of successful missions have provided dramatic advancements in the fields…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>…wer energies.
-
-Figure 14: The MDP (99 %) for 1 s GRBs as a function of GRB fluence for the POLAR and POLAR-2 instruments. In addition, the sensitivity of GAP, the first dedicated gamma-ray polarimeter, is indicated. For reference, the fluence of the very weak <mark class="cp">GRB 170817A</mark> is indicated with a dotted line.
-
-8.3 Expected Performance
-
-Thanks to all the design improvements POLAR-2 is approximately an order of magnitude more sensitive compared to POLAR as indicated in Figure 14. As a result POLAR-2 will be able to perform constraini…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…gh redshift galaxies, and the metal enrichment in the early
-stages of the Universe (at the epoch of the reionization). The second objective has transformational potential, building upon the first ever gravitational wave multimessenger detection thus far, i.e. <mark>GW170817</mark>. THESEUS observations and discoveries in this field are expected to unveil the nature of ultra-dense matter, pin down the physics of relativistic jets, and help us understanding the nucleosynthesis of heavy elements (in turns probing fundamental aspects of ge…</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">data</span>…0.1016/j.jheap.2022.04.002.
-
- 
-Abbott et al. (2017)
-
-Abbott, B.P.; Abbott, R.; Abbott, T.D.; Acernese, F.; Ackley, K.; Adams, C.; Adams, T.; Addesso, P.; Adhikari, R.X.; Adya, V.B.; et al.
-
-Gravitational Waves and Gamma-Rays from a Binary Neutron Star Merger: <mark>GW170817</mark> and GRB 170817A.
-
-ApJL 2017, 848, L13, [arXiv:astro-ph.HE/1710.05834].
-
-https://doi.org/10.3847/2041-8213/aa920c.
-
- 
-Troja et al. (2022)
-
-Troja, E.; Fryer, C.L.; O’Connor, B.; Ryan, G.; Dichiara, S.; Kumar, A.; Ito, N.; Gupta, R.; Wollaeger, R.T.; Norris, J.P…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">data · <span class="cptag">counterpart name, not the GW signal</span></span>…p.2022.04.002.
-
- 
-Abbott et al. (2017)
-
-Abbott, B.P.; Abbott, R.; Abbott, T.D.; Acernese, F.; Ackley, K.; Adams, C.; Adams, T.; Addesso, P.; Adhikari, R.X.; Adya, V.B.; et al.
-
-Gravitational Waves and Gamma-Rays from a Binary Neutron Star Merger: GW170817 and <mark class="cp">GRB 170817A</mark>.
-
-ApJL 2017, 848, L13, [arXiv:astro-ph.HE/1710.05834].
-
-https://doi.org/10.3847/2041-8213/aa920c.
-
- 
-Troja et al. (2022)
-
-Troja, E.; Fryer, C.L.; O’Connor, B.; Ryan, G.; Dichiara, S.; Kumar, A.; Ito, N.; Gupta, R.; Wollaeger, R.T.; Norris, J.P.; et al.
-
-A nea…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…sociated Equipment 2003, 506, 250–303.
-
-https://doi.org/https://doi.org/10.1016/S0168-9002(03)01368-8.
-
- 
-Howell et al. (2019)
-
-Howell, E.J.; Ackley, K.; Rowlinson, A.; Coward, D.
-
-Joint gravitational wave - gamma-ray burst detection rates in the aftermath of <mark>GW170817</mark>.
-
-MNRAS 2019, 485, 1435–1447, [arXiv:astro-ph.HE/1811.09168].
-
-https://doi.org/10.1093/mnras/stz455.
-
- 
-Punturo et al. (2010)
-
-Punturo, M.; Abernathy, M.; Acernese, F.; Allen, B.; Andersson, N.; Arun, K.; Barone, F.; Barr, B.; Barsuglia, M.; Beker, M.; et al.…</div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction · counterpart name</span> …sics due to their association with Kilonovae and Gravitational Wave (GW) sources (see the well known cases of GRB 170817A, GRB 211211A and GRB 230307A; e.g., Abbott et al., 2017; Troja et al., 2022; Dichiara et al., 2023, and refer…</li><li><span class="sec">introduction · counterpart name</span> For reference, the fluence of the very weak GRB 170817A is indicated with a dotted line.</li><li><span class="sec">introduction</span> GW170817.</li><li><span class="sec">data</span> Gravitational Waves and Gamma-Rays from a Binary Neutron Star Merger: GW170817 and GRB 170817A.</li><li><span class="sec">data</span> Joint gravitational wave - gamma-ray burst detection rates in the aftermath of GW170817.</li></ul>
     </details>
     
   </div>

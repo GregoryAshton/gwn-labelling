@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,29 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Tidal heating constraints for black holes and exotic compact objects from the LIGO-Virgo-KAGRA data</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2404.14641" target="_blank" rel="noopener" class="mono">arXiv:2404.14641</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We present the first constraints on tidal heating for the binary black holes detected in the LIGO-Virgo-KAGRA (LVK) gravitational wave data. Tidal heating, also known as tidal dissipation, characterizes the viscous nature of an astrophysical body and provides a channel for exchanging energy and angular momentum with the tidal environment. Using the worldline effective field theory formalism, we introduce a physically motivated and easily interpretable parametrization of tidal heating valid for an arbitrary compact astrophysical object. We then derive the imprints of the spin-independent and linear-in-spin tidal heating effects of generic binary components on the waveform phases and amplitudes of quasicircular orbits. Notably, the mass-weighted spin-independent tidal heating coefficient derived in this work, &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:msub&gt;&lt;mml:mi mathvariant=&#34;script&#34;&gt;H&lt;/mml:mi&gt;&lt;mml:mn&gt;0&lt;/mml:mn&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;, is the dissipative analog of the tidal Love number. We constrain the tidal heating coefficients using the public LVK O1-O3 data. Our parameter estimation study includes two separate analyses: the first treats the catalog of binary events as binary black holes (BBH), while the second makes no assumption about the nature of the binary constituents and can therefore be interpreted as constraints for exotic compact objects. In the former case, we combine the posterior distributions of the individual BBH events and obtain a joint constraint of &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mo&gt;-&lt;/mml:mo&gt;&lt;mml:mn&gt;13&lt;/mml:mn&gt;&lt;mml:mo&gt;&amp;lt;&lt;/mml:mo&gt;&lt;mml:msub&gt;&lt;mml:mi mathvariant=&#34;script&#34;&gt;H&lt;/mml:mi&gt;&lt;mml:mn&gt;0&lt;/mml:mn&gt;&lt;/mml:msub&gt;&lt;mml:mo&gt;&amp;lt;&lt;/mml:mo&gt;&lt;mml:mn&gt;20&lt;/mml:mn&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; at the 90% credible interval for the BBH population. This translates into a bound on the fraction of the emitted gravitational wave energy lost due to tidal heating (or gained due to radiation enhancement effects) at &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mo stretchy=&#34;false&#34;&gt;|&lt;/mml:mo&gt;&lt;mml:mi mathvariant=&#34;normal&#34;&gt;∆&lt;/mml:mi&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;E&lt;/mml:mi&gt;&lt;mml:mi&gt;H&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;mml:mo&gt;/&lt;/mml:mo&gt;&lt;mml:mi mathvariant=&#34;normal&#34;&gt;∆&lt;/mml:mi&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;E&lt;/mml:mi&gt;&lt;mml:mi&gt;∞&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;mml:mo stretchy=&#34;false&#34;&gt;|&lt;/mml:mo&gt;&lt;mml:mo&gt;≲&lt;/mml:mo&gt;&lt;mml:mn&gt;3&lt;/mml:mn&gt;&lt;mml:mo&gt;×&lt;/mml:mo&gt;&lt;mml:msup&gt;&lt;mml:mn&gt;10&lt;/mml:mn&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;-&lt;/mml:mo&gt;&lt;mml:mn&gt;3&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:msup&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;. Our work provides the first robust framework for deriving and measuring tidal heating effects in merging binary systems, demonstrating its potential as a powerful probe of the nature of binary constituents and tests of new physics.</p></details>
+<div class="small mut mono">arXiv:2404.14641</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We present the first constraints on tidal heating for the binary black holes detected in the LIGO-Virgo-KAGRA (LVK) gravitational wave data. Tidal heating, also known as tidal dissipation, characterizes the viscous nature of an astrophysical body and provides a channel for exchanging energy and angular momentum with the tidal environment. Using the worldline effective field theory formalism, we introduce a physically motivated and easily interpretable parametrization of tidal heating valid for an arbitrary compact astrophysical object. We then derive the imprints of the spin-independent and linear-in-spin tidal heating effects of generic binary components on the waveform phases and amplitudes of quasicircular orbits. Notably, the mass-weighted spin-independent tidal heating coefficient derived in this work, &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:msub&gt;&lt;mml:mi mathvariant=&#34;script&#34;&gt;H&lt;/mml:mi&gt;&lt;mml:mn&gt;0&lt;/mml:mn&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;, is the dissipative analog of the tidal Love number. We constrain the tidal heating coefficients using the public LVK O1-O3 data. Our parameter estimation study includes two separate analyses: the first treats the catalog of binary events as binary black holes (BBH), while the second makes no assumption about the nature of the binary constituents and can therefore be interpreted as constraints for exotic compact objects. In the former case, we combine the posterior distributions of the individual BBH events and obtain a joint constraint of &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mo&gt;-&lt;/mml:mo&gt;&lt;mml:mn&gt;13&lt;/mml:mn&gt;&lt;mml:mo&gt;&amp;lt;&lt;/mml:mo&gt;&lt;mml:msub&gt;&lt;mml:mi mathvariant=&#34;script&#34;&gt;H&lt;/mml:mi&gt;&lt;mml:mn&gt;0&lt;/mml:mn&gt;&lt;/mml:msub&gt;&lt;mml:mo&gt;&amp;lt;&lt;/mml:mo&gt;&lt;mml:mn&gt;20&lt;/mml:mn&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; at the 90% credible interval for the BBH population. This translates into a bound on the fraction of the emitted gravitational wave energy lost due to tidal heating (or gained due to radiation enhancement effects) at &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mo stretchy=&#34;false&#34;&gt;|&lt;/mml:mo&gt;&lt;mml:mi mathvariant=&#34;normal&#34;&gt;∆&lt;/mml:mi&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;E&lt;/mml:mi&gt;&lt;mml:mi&gt;H&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;mml:mo&gt;/&lt;/mml:mo&gt;&lt;mml:mi mathvariant=&#34;normal&#34;&gt;∆&lt;/mml:mi&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;E&lt;/mml:mi&gt;&lt;mml:mi&gt;∞&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;mml:mo stretchy=&#34;false&#34;&gt;|&lt;/mml:mo&gt;&lt;mml:mo&gt;≲&lt;/mml:mo&gt;&lt;mml:mn&gt;3&lt;/mml:mn&gt;&lt;mml:mo&gt;×&lt;/mml:mo&gt;&lt;mml:msup&gt;&lt;mml:mn&gt;10&lt;/mml:mn&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;-&lt;/mml:mo&gt;&lt;mml:mn&gt;3&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:msup&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;. Our work provides the first robust framework for deriving and measuring tidal heating effects in merging binary systems, demonstrating its potential as a powerful probe of the nature of binary constituents and tests of new physics.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/pdf/2404.14641v1" target="_blank" rel="noopener">Open the paper (PDF, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched; it's a PDF, so use your viewer's search.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">9 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">9 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…ese mass-weighted quantities are better constrained than the component
-dissipation numbers.
-In Fig. 3, we present the marginalized posterior distributions for H1,H1 andH0 for the
-seven events for which these coefficients are best constrained: GW200311 115853, <mark>GW150914</mark>,
-GW170814, GW190708 232457, GW191216 213338, GW170608, GW200202 154313 (listed in de-
-scending order in chirp mass). We observe that these events constrain the dissipation numbers
-to|H1|∼| H1|∼|H 0| ≲ 300 at the 90% credible interval. The constraints tend to …</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> …ions for H1,H1 andH0 for the seven events for which these coefficients are best constrained: GW200311 115853, GW150914, GW170814, GW190708 232457, GW191216 213338, GW170608, GW200202 154313 (listed in de- scending order in chirp…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -180,24 +201,16 @@ to|H1|∼| H1|∼|H 0| ≲ 300 at the 90% credible interval. The constraints ten
 <section class="card" data-i="1" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…Gravitational-Wave Transient Catalog,” Astrophys. J. Lett.
-913 no. 1, (2021) L7, arXiv:2010.14533 [astro-ph.HE] .
-[57] H. S. Chia, S. Olsen, J. Roulet, L. Dai, T. Venumadhav, B. Zackay, and M. Zaldarriaga, “Signs of
-higher multipoles and orbital precession in <mark>GW151226</mark>,” Phys. Rev. D 106 no. 2, (2022) 024009,
-arXiv:2105.06486 [astro-ph.HE] .
-[58] J. Roulet, H. S. Chia, S. Olsen, L. Dai, T. Venumadhav, B. Zackay, and M. Zaldarriaga,
-“Distribution of effective spins and masses of binary black holes from the LIGO and Virgo O1–…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[57]</span> · 1 place</span><div class="cite">…been invoked as a potential mechanism for spinning up the black holes [50–54], ultimately
-forming merging BBHs with at least one highly-spinning component which may be observable
-by the LVK detectors <mark class="ref">[55–59]</mark>. Tidal dissipation is also directly responsible for a remarkable
-phenomenon known as black hole superradiance [60–67], in which energy and angular momentum
-may be extracted from a rotating black hole…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [57]</span> …forming merging BBHs with at least one highly-spinning component which may be observable by the LVK detectors [55–59]. Tidal dissipation is also directly responsible for a remarkable phenomenon known as black hole superradiance…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -233,18 +246,16 @@ may be extracted from a rotating black hole…</div>
 <section class="card" data-i="2" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…an the component
-dissipation numbers.
-In Fig. 3, we present the marginalized posterior distributions for H1,H1 andH0 for the
-seven events for which these coefficients are best constrained: GW200311 115853, GW150914,
-GW170814, GW190708 232457, GW191216 213338, <mark>GW170608</mark>, GW200202 154313 (listed in de-
-scending order in chirp mass). We observe that these events constrain the dissipation numbers
-to|H1|∼| H1|∼|H 0| ≲ 300 at the 90% credible interval. The constraints tend to be narrower
-for lower mass binary systems, which is ex…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> …ese coefficients are best constrained: GW200311 115853, GW150914, GW170814, GW190708 232457, GW191216 213338, GW170608, GW200202 154313 (listed in de- scending order in chirp mass).</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -280,17 +291,16 @@ for lower mass binary systems, which is ex…</div>
 <section class="card" data-i="3" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…eighted quantities are better constrained than the component
-dissipation numbers.
-In Fig. 3, we present the marginalized posterior distributions for H1,H1 andH0 for the
-seven events for which these coefficients are best constrained: GW200311 115853, GW150914,
-<mark>GW170814</mark>, GW190708 232457, GW191216 213338, GW170608, GW200202 154313 (listed in de-
-scending order in chirp mass). We observe that these events constrain the dissipation numbers
-to|H1|∼| H1|∼|H 0| ≲ 300 at the 90% credible interval. The constraints tend to be narrowe…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> …1,H1 andH0 for the seven events for which these coefficients are best constrained: GW200311 115853, GW150914, GW170814, GW190708 232457, GW191216 213338, GW170608, GW200202 154313 (listed in de- scending order in chirp mass).</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -326,17 +336,16 @@ to|H1|∼| H1|∼|H 0| ≲ 300 at the 90% credible interval. The constraints ten
 <section class="card" data-i="4" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…ysis have only been performed at the level of
-Fisher analyses of waveform mismatch [86, 87, 90–92] but have not been applied to real data for
-parameter estimations studies (though see [93] for recent result on tidal heating constraints the
-binary neutron star <mark>GW170817</mark>).
-In this paper, we expand upon previous investigations on tidal heating on both the theoretical
-frontier and from a data analytical perspective. On the theoretical front, we present a rigorous
-modeling of tidal dissipation of a single body by adopting the wo…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …r estimations studies (though see [93] for recent result on tidal heating constraints the binary neutron star GW170817).</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -372,18 +381,16 @@ modeling of tidal dissipation of a single body by adopting the wo…</div>
 <section class="card" data-i="5" data-event="GW190708_232457">
   <div class="ctx">
     <div class="evname mono">GW190708_232457</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190708 232457</span> or <span class="mono hit">GW190708_232457</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…antities are better constrained than the component
-dissipation numbers.
-In Fig. 3, we present the marginalized posterior distributions for H1,H1 andH0 for the
-seven events for which these coefficients are best constrained: GW200311 115853, GW150914,
-GW170814, <mark>GW190708 232457</mark>, GW191216 213338, GW170608, GW200202 154313 (listed in de-
-scending order in chirp mass). We observe that these events constrain the dissipation numbers
-to|H1|∼| H1|∼|H 0| ≲ 300 at the 90% credible interval. The constraints tend to be narrower
-for lower mass …</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> …for the seven events for which these coefficients are best constrained: GW200311 115853, GW150914, GW170814, GW190708 232457, GW191216 213338, GW170608, GW200202 154313 (listed in de- scending order in chirp mass).</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -419,41 +426,16 @@ for lower mass …</div>
 <section class="card" data-i="6" data-event="GW191216_213338">
   <div class="ctx">
     <div class="evname mono">GW191216_213338</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…hese effects are captured by two free parameters,
-which can be thought of as generalizations of the tidal Love numbers. These parameters are
-defined as follows.
-4
-
-Figure 1: Left panel: GW strains of the IMRPhenomD and IMRPhenomD+Dissipation wave-
-forms for a <mark>GW191216 213338</mark> event in the Hanford and Virgo data. We choose the individual
-dissipation parameters H1ω = H2ω = 10 to clearly illustrate dephasing of the waveform due to
-tidal heating. Upper right panel: Constraints on the ratio of the energy loss ∆ EH/∆E∞ due to
-tidal diss…</div>
+    <p class="where">Named 3 times:
+      results ×2, conclusion.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191216 213338</span> or <span class="mono hit">GW191216_213338</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…er constrained than the component
-dissipation numbers.
-In Fig. 3, we present the marginalized posterior distributions for H1,H1 andH0 for the
-seven events for which these coefficients are best constrained: GW200311 115853, GW150914,
-GW170814, GW190708 232457, <mark>GW191216 213338</mark>, GW170608, GW200202 154313 (listed in de-
-scending order in chirp mass). We observe that these events constrain the dissipation numbers
-to|H1|∼| H1|∼|H 0| ≲ 300 at the 90% credible interval. The constraints tend to be narrower
-for lower mass binary systems, w…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…credible interval. The constraints tend to be narrower
-for lower mass binary systems, which is expected as the signal waveforms are dominated by the
-inspiral portion of the waveform for low mass binaries in the LIGO-Virgo observation bands. For
-the best event <mark>GW191216 213338</mark>, which has a relatively high signal-to-noise ratio of 19.2 and a
-relatively small median chirp mass Mchirp = 8.91+0.07
-−0.05M⊙ and the error bars indicating the 90%
-credible interval, the constraints are |H1|∼| H1|∼|H 0| ≲ 100. In Figs. 4 and 5, we present th…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">conclusion</span> Figure 1: Left panel: GW strains of the IMRPhenomD and IMRPhenomD+Dissipation wave- forms for a GW191216 213338 event in the Hanford and Virgo data.</li><li><span class="sec">results</span> …ents for which these coefficients are best constrained: GW200311 115853, GW150914, GW170814, GW190708 232457, GW191216 213338, GW170608, GW200202 154313 (listed in de- scending order in chirp mass).</li><li><span class="sec">results</span> For the best event GW191216 213338, which has a relatively high signal-to-noise ratio of 19.2 and a relatively small median chirp mass Mchirp =…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -489,18 +471,16 @@ credible interval, the constraints are |H1|∼| H1|∼|H 0| ≲ 100. In Figs. 4 
 <section class="card" data-i="7" data-event="GW200202_154313">
   <div class="ctx">
     <div class="evname mono">GW200202_154313</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200202 154313</span> or <span class="mono hit">GW200202_154313</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…ponent
-dissipation numbers.
-In Fig. 3, we present the marginalized posterior distributions for H1,H1 andH0 for the
-seven events for which these coefficients are best constrained: GW200311 115853, GW150914,
-GW170814, GW190708 232457, GW191216 213338, GW170608, <mark>GW200202 154313</mark> (listed in de-
-scending order in chirp mass). We observe that these events constrain the dissipation numbers
-to|H1|∼| H1|∼|H 0| ≲ 300 at the 90% credible interval. The constraints tend to be narrower
-for lower mass binary systems, which is expected as the sig…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> …cients are best constrained: GW200311 115853, GW150914, GW170814, GW190708 232457, GW191216 213338, GW170608, GW200202 154313 (listed in de- scending order in chirp mass).</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -536,17 +516,16 @@ for lower mass binary systems, which is expected as the sig…</div>
 <section class="card" data-i="8" data-event="GW200311_115853">
   <div class="ctx">
     <div class="evname mono">GW200311_115853</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200311 115853</span> or <span class="mono hit">GW200311_115853</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…) suggest that these mass-weighted quantities are better constrained than the component
-dissipation numbers.
-In Fig. 3, we present the marginalized posterior distributions for H1,H1 andH0 for the
-seven events for which these coefficients are best constrained: <mark>GW200311 115853</mark>, GW150914,
-GW170814, GW190708 232457, GW191216 213338, GW170608, GW200202 154313 (listed in de-
-scending order in chirp mass). We observe that these events constrain the dissipation numbers
-to|H1|∼| H1|∼|H 0| ≲ 300 at the 90% credible interval. The constraint…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> …sterior distributions for H1,H1 andH0 for the seven events for which these coefficients are best constrained: GW200311 115853, GW150914, GW170814, GW190708 232457, GW191216 213338, GW170608, GW200202 154313 (listed in de- scending orde…</li></ul>
+    </details>
     
   </div>
   <div class="form">

@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,73 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>How to confirm the existence of population III stars by observations of gravitational waves</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1709.08437" target="_blank" rel="noopener" class="mono">arXiv:1709.08437</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We propose a method for confirmation of the existence of Population III (Pop III) stars with massive black hole binaries as GW150914 in gravitational wave (GW) observation. When we get enough number of events, we want to determine which model is closer to reality, with and without Pop III stars. We need to prepare various &#34;Pop I/II models&#34; and various &#34;Pop I/II/III models&#34; and investigate which model is consistent with the events. To demonstrate our analysis, we simulate detections of GW events for some examples of population synthesis models with and without Pop III stars. We calculate the likelihood ratio with the realistic number of events and evaluate the probability of identifying the existence of Pop III stars. In typical cases, our analysis can distinguish between Pop I/II model and Pop I/II/III model with 90% probability by 22 GW signals from black hole-black hole binary mergers.</p></details>
+<div class="small mut mono">arXiv:1709.08437</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We propose a method for confirmation of the existence of Population III (Pop III) stars with massive black hole binaries as GW150914 in gravitational wave (GW) observation. When we get enough number of events, we want to determine which model is closer to reality, with and without Pop III stars. We need to prepare various &#34;Pop I/II models&#34; and various &#34;Pop I/II/III models&#34; and investigate which model is consistent with the events. To demonstrate our analysis, we simulate detections of GW events for some examples of population synthesis models with and without Pop III stars. We calculate the likelihood ratio with the realistic number of events and evaluate the probability of identifying the existence of Pop III stars. In typical cases, our analysis can distinguish between Pop I/II model and Pop I/II/III model with 90% probability by 22 GW signals from black hole-black hole binary mergers.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1709.08437v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…iliation: Department of Physics, Graduate School of Science, Osaka city University, Osaka 558-8585, Japan
-
-August 24, 2026
-
-Abstract
-
- 
-We propose a method for confirmation of the existence of Population III (Pop III) stars with massive black hole binaries as <mark>GW150914</mark> in gravitational wave (GW) observation.
-When we get enough number of events, we want to determine which model is closer to reality, with and without Pop III stars.
-We need to prepare various “Pop I/II models” and various “Pop I/II/III models” and investigate …</div>
+    <p class="where">Named 5 times:
+      introduction ×2, discussion ×2, abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/1709.08437v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…bility by 22 GW signals from black hole-black hole binary mergers.
-
- 
-PACS number: 04.30.-w, 04.80.Nn, 95.55.Ym
-
- 
-
-I Introduction
-
-In 2015, Advanced LIGO [1] detected gravitational waves (GWs) in its first observational run (O1 run).
-The first detected event <mark>GW150914</mark> is a black hole-black hole (BH-BH) binary whose masses are 36​M⊙36~\mathrm{M_{\odot}} and 29​M⊙29~\mathrm{M_{\odot}} [2].
-To explain the existence of such high mass black holes, there are some scenarios. One of the possible origins of GW150914 is the Populati…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… detected event GW150914 is a black hole-black hole (BH-BH) binary whose masses are 36​M⊙36~\mathrm{M_{\odot}} and 29​M⊙29~\mathrm{M_{\odot}} [2].
-To explain the existence of such high mass black holes, there are some scenarios. One of the possible origins of <mark>GW150914</mark> is the Population III (Pop III) stars, i.e., the zero metal stars formed first after the big bang [3, 4].
-While Population I (Pop I) stars and Population II (Pop II) stars with nonzero metal are observed electromagnetically, the existence of Pop III stars has…</div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">discussion</span>…\mathrm{L}} is given by (1+z)​r​(z)(1+z)r(z).
-F+F_{+} and F×F_{\times} are detector antenna patterns.
-The detection criterion is settled as S/N ≥\geq 8.
-
-To validate Eq. (3)-(5) which calculate S/N of a inspiral GW,
-we calculate S/N of the inspiral phase of a <mark>GW150914</mark>-like BH-BH binary
-which is parametrized as : m1=36​M⊙,m2=29​M⊙m_{1}=36~\mathrm{M_{\odot}},m_{2}=29~\mathrm{M_{\odot}}, z=0.09z=0.09 [2], inclination angle of orbit ι=150∘\iota=150^{\circ} from Fig. 2 of Ref. [19] and sky location of the binary at the time of …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…ly.
-Then the quadrature sum of the signal-to-noise ratios of inspiral and ringdown in Hanford and Livingston are 19.0 and 12.7, respectively.
-Combined signal-to-noise ratio of two detectors is 19.02+12.72=22.8\sqrt{19.0^{2}+12.7^{2}}=22.8.
-While LIGO observed <mark>GW150914</mark> with a combined signal-to-noise ratio of 24.
-The S/N calculated by Eq. (3)-(5) and Eq. (B14) of Ref. [21] is similar to the LIGO result.
-
-Figure 1: 
-Average distributions of redshifted chirp mass ℳ\mathcal{M} of simulated BH-BH binary detections for a 1-month…</div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …ethod for confirmation of the existence of Population III (Pop III) stars with massive black hole binaries as GW150914 in gravitational wave (GW) observation.</li><li><span class="sec">introduction</span> The first detected event GW150914 is a black hole-black hole (BH-BH) binary whose masses are 36​M⊙36~\mathrm{M_{\odot}} and 29​M⊙29~\mathrm{M_{…</li><li><span class="sec">introduction</span> One of the possible origins of GW150914 is the Population III (Pop III) stars, i.e., the zero metal stars formed first after the big bang [3, 4].</li><li><span class="sec">discussion</span> (3)-(5) which calculate S/N of a inspiral GW, we calculate S/N of the inspiral phase of a GW150914-like BH-BH binary which is parametrized as : m1=36​M⊙,m2=29​M⊙m_{1}=36~\mathrm{M_{\odot}},m_{2}=29~\mathrm{M_…</li><li><span class="sec">discussion</span> While LIGO observed GW150914 with a combined signal-to-noise ratio of 24.</li></ul>
     </details>
     
   </div>

@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,37 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>The role of peculiar velocity uncertainties in standard siren cosmology</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2509.03101" target="_blank" rel="noopener" class="mono">arXiv:2509.03101</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Local distance indicators such as standard sirens, in combination with spectroscopic redshift measurements of their host galaxies, allow us to estimate the present-day expansion rate of the Universe parameterised by Hubble&#39;s constant, H_0. However, these observed redshifts are systematically modified by the effect of galaxy peculiar velocities. Although these velocities may be estimated from the local density field by the process of velocity-field reconstruction, the intrinsic errors and covariance in these estimates contribute to the error in the H_0 determination. In this paper we demonstrate how the impact of peculiar velocities can be propagated into H_0 measurements from local distance indicators with observed redshifts, incorporating the full covariance of the velocity field induced by bulk flows. We apply our methods to cosmological simulations, testing the importance of this effect in the context of future analyses of gravitational wave sources with electromagnetic counterparts used as bright sirens. We conclude that H_0 errors may be increased by a factor of 2 in comparison with neglecting peculiar velocity covariance, for GW170817-like sirens located within 50 Mpc with 5% distance errors, with the highest impacts expected for sources at nearby distances or with small distance errors. Our analytical methods may also be applied to other local distance indicators, such as Type Ia supernovae.</p></details>
+<div class="small mut mono">arXiv:2509.03101</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Local distance indicators such as standard sirens, in combination with spectroscopic redshift measurements of their host galaxies, allow us to estimate the present-day expansion rate of the Universe parameterised by Hubble&#39;s constant, H_0. However, these observed redshifts are systematically modified by the effect of galaxy peculiar velocities. Although these velocities may be estimated from the local density field by the process of velocity-field reconstruction, the intrinsic errors and covariance in these estimates contribute to the error in the H_0 determination. In this paper we demonstrate how the impact of peculiar velocities can be propagated into H_0 measurements from local distance indicators with observed redshifts, incorporating the full covariance of the velocity field induced by bulk flows. We apply our methods to cosmological simulations, testing the importance of this effect in the context of future analyses of gravitational wave sources with electromagnetic counterparts used as bright sirens. We conclude that H_0 errors may be increased by a factor of 2 in comparison with neglecting peculiar velocity covariance, for GW170817-like sirens located within 50 Mpc with 5% distance errors, with the highest impacts expected for sources at nearby distances or with small distance errors. Our analytical methods may also be applied to other local distance indicators, such as Type Ia supernovae.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2509.03101v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">3 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">3 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2509.03101v2#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…Blair, S. Bloemen, N. Bode, M. Boer, Y. Boetzel, G. Bogaert, F. Bondu, E. Bonilla, R. Bonnand, and P. Booker
-
-First Measurement of the Hubble Constant from a Dark Standard Siren using the Dark Energy Survey Galaxies and the LIGO/Virgo Binary-Black-hole Merger <mark>GW170814</mark>.
-
-ApJ 876 (1), pp. L7.
-
-External Links: Document,
-1901.01540
-
-Cited by: §1.
-
-Stiskalek et al. (2025)
-R. Stiskalek, H. Desmond, J. Devriendt, A. Slyz, G. Lavaux, M. J. Hudson, D. J. Bartlett, and H. M. Courtois
-
-The Velocity Field Olympics: Assessing velocity …</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …from a Dark Standard Siren using the Dark Energy Survey Galaxies and the LIGO/Virgo Binary-Black-hole Merger GW170814.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -188,101 +201,15 @@ The Velocity Field Olympics: Assessing velocity …</div>
 <section class="card" data-i="1" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>6 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…s effect in the context of future analyses of gravitational wave sources with electromagnetic counterparts used as bright sirens. We conclude that H0H_{0} errors may be increased by a factor of 2 in comparison with neglecting peculiar velocity covariance, for <mark>GW170817</mark>-like sirens located within 50 Mpc with ∼5%\sim 5\% distance errors, with the highest impacts expected for sources at nearby distances or with small distance errors. Our analytical methods may also be applied to other local distance indicators, such as Type Ia…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…used to infer the distance to the event. If the gravitational-wave source has a known electromagnetic counterpart (“bright siren”), whose redshift may also be measured, the Hubble constant may be directly determined. For example, the first bright siren event, <mark>GW170817</mark>, produced a constraint H0=70−8+12H_{0}=70^{+12}_{-8} km s-1 Mpc-1 (Abbott et al., 2017), which has been refined by several later studies (Hotokezaka et al., 2019; Howlett and Davis, 2020; Nicolaou et al., 2020; Palmese et al., 2024; Gourdji et al. in prep., 2…</div>
+    <p class="where">Named 6 times:
+      methods ×3, abstract, introduction, results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2509.03101v2#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…tantially lower for the Virgo (≈50\approx 50 Mpc) and KAGRA (≈10\approx 10 Mpc) GW observatories, which may be relevant because the identification of bright sirens with electromagnetic counterparts depends partly on localisation. The first bright siren event, <mark>GW170817</mark>, is located at a distance ≈44\approx 44 Mpc, with an initial distance error of ≈15%\approx 15\% (Abbott et al., 2017), which has been refined to 5−10%5-10\% by follow-up studies (Hotokezaka et al., 2019; Howlett and Davis, 2020; Mooley et al., 2022; Gourdji e…</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">results</span>…527.
-
-External Links: Document,
-1903.11254
-
-Cited by: §1.
-
-Hotokezaka et al. (2019)
-K. Hotokezaka, E. Nakar, O. Gottlieb, S. Nissanke, K. Masuda, G. Hallinan, K. P. Mooley, and A. T. Deller
-
-A Hubble constant measurement from superluminal motion of the jet in <mark>GW170817</mark>.
-
-Nature Astronomy 3, pp. 940–944.
-
-External Links: Document,
-1806.10596
-
-Cited by: §1,
-§4.
-
-Howlett and Davis (2020)
-C. Howlett and T. M. Davis
-
-Standard siren speeds: improving velocities in gravitational-wave measurements of H0{}_{0}.
-
-MNRAS 492 (3), pp. 3…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…6 Gravitational Lensing Map and Cosmological Parameters.
-
-ApJ 962 (2), pp. 113.
-
-External Links: Document,
-2304.05203
-
-Cited by: §1.
-
-Mooley et al. (2022)
-K. P. Mooley, J. Anderson, and W. Lu
-
-Optical superluminal motion measurement in the neutron-star merger <mark>GW170817</mark>.
-
-Nature 610 (7931), pp. 273–276.
-
-External Links: Document,
-2210.06568
-
-Cited by: §4.
-
-Mortlock et al. (2019)
-D. J. Mortlock, S. M. Feeney, H. V. Peiris, A. R. Williamson, and S. M. Nissanke
-
-Unbiased Hubble constant estimation from binary neutron star merge…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…Dark Energy Survey Galaxies.
-
-ApJ 900 (2), pp. L33.
-
-External Links: Document,
-2006.14961
-
-Cited by: §1.
-
-Palmese et al. (2024)
-A. Palmese, R. Kaur, A. Hajela, R. Margutti, A. McDowell, and A. MacFadyen
-
-Standard siren measurement of the Hubble constant using <mark>GW170817</mark> and the latest observations of the electromagnetic counterpart afterglow.
-
-Phys. Rev. D 109 (6), pp. 063508.
-
-External Links: Document,
-2305.19914
-
-Cited by: §1.
-
-Pesce et al. (2020)
-D. W. Pesce, J. A. Braatz, M. J. Reid, A. G. Riess, D. Scolnic, J. J. Condon…</div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …_{0} errors may be increased by a factor of 2 in comparison with neglecting peculiar velocity covariance, for GW170817-like sirens located within 50 Mpc with ∼5%\sim 5\% distance errors, with the highest impacts expected for sou…</li><li><span class="sec">introduction</span> For example, the first bright siren event, GW170817, produced a constraint H0=70−8+12H_{0}=70^{+12}_{-8} km s-1 Mpc-1 (Abbott et al., 2017), which has been refin…</li><li><span class="sec">methods</span> The first bright siren event, GW170817, is located at a distance ≈44\approx 44 Mpc, with an initial distance error of ≈15%\approx 15\% (Abbott et al…</li><li><span class="sec">results</span> A Hubble constant measurement from superluminal motion of the jet in GW170817.</li><li><span class="sec">methods</span> Optical superluminal motion measurement in the neutron-star merger GW170817.</li><li><span class="sec">methods</span> Standard siren measurement of the Hubble constant using GW170817 and the latest observations of the electromagnetic counterpart afterglow.</li></ul>
     </details>
     
   </div>
@@ -319,25 +246,16 @@ D. W. Pesce, J. A. Braatz, M. J. Reid, A. G. Riess, D. Scolnic, J. J. Condon…<
 <section class="card" data-i="2" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2509.03101v2#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…M. Smith, E. Suchyta, G. Tarle, M. A. Troxel, D. L. Tucker, A. R. Walker, W. Wester, R. D. Wilkinson, J. Zuntz, and DES Collaboration
-
-A Statistical Standard Siren Measurement of the Hubble Constant from the LIGO/Virgo Gravitational Wave Compact Object Merger <mark>GW190814</mark> and Dark Energy Survey Galaxies.
-
-ApJ 900 (2), pp. L33.
-
-External Links: Document,
-2006.14961
-
-Cited by: §1.
-
-Palmese et al. (2024)
-A. Palmese, R. Kaur, A. Hajela, R. Margutti, A. McDowell, and A. MacFadyen
-
-Standard siren measurement of the Hubble constant u…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …tandard Siren Measurement of the Hubble Constant from the LIGO/Virgo Gravitational Wave Compact Object Merger GW190814 and Dark Energy Survey Galaxies.</li></ul>
+    </details>
     
   </div>
   <div class="form">

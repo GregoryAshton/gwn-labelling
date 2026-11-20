@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,36 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Forecasting Gamma-Ray Bursts Using Gravitational Waves</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1808.10057" target="_blank" rel="noopener" class="mono">arXiv:1808.10057</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The intriguing possibility of employing future ground-based gravitational-wave interferometers to forecast short gamma-ray bursts (GRBs) is explored. The forecasting prospect is quantified in terms of an advance-warning time: the binary-neutron star (BNS) inspiral time (to merger) from when the interferometer network accumulates a signal-to-noise ratio of 15. As sources for the Advanced LIGO-Virgo (ALV) network of 2020, BNS systems at luminosity distances of D ⩽ 200 Mpc are considered, and similarly, BNS systems at D ⩽ 1000 Mpc for Einstein Telescope. It is shown that the ALV network will provide a few minutes of warning time, thus will not forecast GRBs in the 2020s. On the other hand, Einstein Telescope will provide advance-warning times of more than 5 hours for D ⩽ 100 Mpc. Taking 1 hour as a benchmark advance-warning time, a corresponding BNS range of roughly 600 Mpc is obtained for Einstein Telescope. Using current BNS event rates, it is shown that Einstein Telescope will forecast GRBs in the 2030s. This warning-time computation is reapplied to black hole-neutron star inspirals and it is found that one to three tidal disruption events are expected to be forecast by the same detector.</p></details>
+<div class="small mut mono">arXiv:1808.10057</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The intriguing possibility of employing future ground-based gravitational-wave interferometers to forecast short gamma-ray bursts (GRBs) is explored. The forecasting prospect is quantified in terms of an advance-warning time: the binary-neutron star (BNS) inspiral time (to merger) from when the interferometer network accumulates a signal-to-noise ratio of 15. As sources for the Advanced LIGO-Virgo (ALV) network of 2020, BNS systems at luminosity distances of D ⩽ 200 Mpc are considered, and similarly, BNS systems at D ⩽ 1000 Mpc for Einstein Telescope. It is shown that the ALV network will provide a few minutes of warning time, thus will not forecast GRBs in the 2020s. On the other hand, Einstein Telescope will provide advance-warning times of more than 5 hours for D ⩽ 100 Mpc. Taking 1 hour as a benchmark advance-warning time, a corresponding BNS range of roughly 600 Mpc is obtained for Einstein Telescope. Using current BNS event rates, it is shown that Einstein Telescope will forecast GRBs in the 2030s. This warning-time computation is reapplied to black hole-neutron star inspirals and it is found that one to three tidal disruption events are expected to be forecast by the same detector.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1808.10057v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">3 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">3 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…updated to ten including LVT151012 [2].
-gravitational-wave merger events detected by the Advanced LIGO-Virgo network have firmly established gravitational-wave astronomy
-as an observational science [1, 3, 4, 5, 6].
-Though the first event of 14 September 2015 (<mark>GW150914</mark> [7]) will always be the “poster-child” of this field,
-the icing on the cake was the 17 August 2017 (GW170817 [6]) event involving the inspiral and merger of a binary neutron star system
-promptly followed, 1.7 seconds later, by a gamma-ray burst (GRB170817A) d…</div>
+    <p class="where">Named 2 times:
+      introduction ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1808.10057v2#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>… frequency space and apply several high and low-frequency filters to isolate a window of f∈[10,fISCO]f\in[10,f_{\text{ISCO}}].
-The LIGO Open Science Center has a detailed Python-based tutorial on how to do this using the data from the very first GW detection (<mark>GW150914</mark>) [68].
-We use a 𝙼𝚊𝚝𝚑𝚎𝚖𝚊𝚝𝚒𝚌𝚊\verb|Mathematica| based code developed at University College Dublin (UCD) to do the same for GW170817.
-
-Figure 1: GW170817 as it sweeps from 10 Hz to fISCO≃1605f_{\text{ISCO}}\simeq 1605\,Hz across our network with ASD (sensitivity…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Though the first event of 14 September 2015 (GW150914 [7]) will always be the “poster-child” of this field, the icing on the cake was the 17 August 2017 (GW170817…</li><li><span class="sec">introduction</span> …enter has a detailed Python-based tutorial on how to do this using the data from the very first GW detection (GW150914) [68].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -187,40 +201,16 @@ Figure 1: GW170817 as it sweeps from 10 Hz to fISCO≃1605f_{\text{ISCO}}\sime
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…y of our results may be known to the experts, they might nonetheless find this article motivating and exciting.
-
- 
-
-I Introduction
-
-The 6.9511
- 1
- 
- 
- 
- There have thus far been six detections with 5​σ5\sigma statistical significance and one additional event, <mark>LVT151012</mark> [1], with 2​σ≃95%2\sigma\simeq 95\% significance hence 6.95 overall.22
- 2
- 
- 
- 
- As of December 2018, the count has been updated to ten including LVT151012 [2].
-gravitational-wave merger events detected by the Advanced LIGO-Virgo network have firmly establish…</div>
+    <p class="where">Named 2 times:
+      introduction ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1808.10057v2#:~:text=LVT151012" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">LVT151012</span> or <span class="mono hit">GW151012</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…re have thus far been six detections with 5​σ5\sigma statistical significance and one additional event, LVT151012 [1], with 2​σ≃95%2\sigma\simeq 95\% significance hence 6.95 overall.22
- 2
- 
- 
- 
- As of December 2018, the count has been updated to ten including <mark>LVT151012</mark> [2].
-gravitational-wave merger events detected by the Advanced LIGO-Virgo network have firmly established gravitational-wave astronomy
-as an observational science [1, 3, 4, 5, 6].
-Though the first event of 14 September 2015 (GW150914 [7]) will always be the “…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> There have thus far been six detections with 5​σ5\sigma statistical significance and one additional event, LVT151012 [1], with 2​σ≃95%2\sigma\simeq 95\% significance hence 6.95 overall.22 2</li><li><span class="sec">introduction</span> As of December 2018, the count has been updated to ten including LVT151012 [2]. gravitational-wave merger events detected by the Advanced LIGO-Virgo network have firmly established gra…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -256,127 +246,15 @@ Though the first event of 14 September 2015 (GW150914 [7]) will always be the �
 <section class="card" data-i="2" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>33 mentions · first 12 shown · <span class="cptag">3 by counterpart name</span></h3>
+    <p class="where">Named 33 times:
+      introduction ×27, reference list ×5, title/headings.</p>
+    <p class="where"><a href="https://arxiv.org/html/1808.10057v2#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">3 mentions use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention"><span class="sec">front_matter</span>…inary neutron star inspirals
-
-II.1 Newtonian evolution
-
-III Interferometer response to gravitational waves
-
-III.1 LIGO-Virgo configuration: L-shaped topology
-
-III.2 Einstein Telescope configuration: triangular topology
-
-IV Simplifications and idealizations
-
-V <mark>GW170817</mark> as a test of our model for the Advanced LIGO-Virgo network
-
-VI Results: Advance warning times for future binary neutron star inspirals
-
-VI.0.1 Forecasting GRBs in the 2020s with the Advanced LIGO-Virgo Network
-
-VI.0.2 Forecasting GRBs in the 2030s using the E…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…network have firmly established gravitational-wave astronomy
-as an observational science [1, 3, 4, 5, 6].
-Though the first event of 14 September 2015 (GW150914 [7]) will always be the “poster-child” of this field,
-the icing on the cake was the 17 August 2017 (<mark>GW170817</mark> [6]) event involving the inspiral and merger of a binary neutron star system
-promptly followed, 1.7 seconds later, by a gamma-ray burst (GRB170817A) detected by the Fermi Gamma-ray Burst Monitor [8] and by the International Gamma-Ray Astrophysics Laboratory […</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>…015 (GW150914 [7]) will always be the “poster-child” of this field,
-the icing on the cake was the 17 August 2017 (GW170817 [6]) event involving the inspiral and merger of a binary neutron star system
-promptly followed, 1.7 seconds later, by a gamma-ray burst (<mark class="cp">GRB170817A</mark>) detected by the Fermi Gamma-ray Burst Monitor [8] and by the International Gamma-Ray Astrophysics Laboratory [9, 10].
-The Advanced-LIGO-Virgo network’s initial source localization to within 31​degree231\,\text{degree}^{2} in the Southern skies
-enabled astron…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>… One-Meter, Two Hemisphere team less than 11 hours after the merger [11, 12].
-This subsequently launched a massive campaign of multi-messenger astronomy across the entire electromagnetic (EM) spectrum which is still ongoing
-a year after the initial GRB [13].
-
-<mark>GW170817</mark> was initially identified by the LIGO-Hanford interferometer (H1)
-using a template bank of gravitational waveforms computed within the framework of post-Newtonian theory [14, 15].
-The inspiral swept across the Advanced LIGO-Virgo (ALV) network’s bandwidth from…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…utron stars (assuming low spin priors, see Sec. IV).
-Moreover, both the gravitational wave (GW) and EM observations were consistent with a source location in the galaxy in NGC4993
-at a luminosity distance of ∼40\sim\!40\,Mpc, and supported the hypothesis that <mark>GW170817</mark> resulted from the
-inspiral and merger of two neutron stars, causing the prompt short-hard gamma-ray burst GRB170817A. This BNS-GRB connection was first proposed in Ref. [16] and the events of 17 August 2017 are
-the first astrophysical evidence for it.
-
-A week…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>… were consistent with a source location in the galaxy in NGC4993
-at a luminosity distance of ∼40\sim\!40\,Mpc, and supported the hypothesis that GW170817 resulted from the
-inspiral and merger of two neutron stars, causing the prompt short-hard gamma-ray burst <mark class="cp">GRB170817A</mark>. This BNS-GRB connection was first proposed in Ref. [16] and the events of 17 August 2017 are
-the first astrophysical evidence for it.
-
-A week after GW170817, the ALV network was taken offline for upgrades for the third observation run (O3)
-scheduled to start…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ed from the
-inspiral and merger of two neutron stars, causing the prompt short-hard gamma-ray burst GRB170817A. This BNS-GRB connection was first proposed in Ref. [16] and the events of 17 August 2017 are
-the first astrophysical evidence for it.
-
-A week after <mark>GW170817</mark>, the ALV network was taken offline for upgrades for the third observation run (O3)
-scheduled to start in early 2019 with roughly twice the sensitivity of O2.
-In addition, the Japanese cryogenic interferometer KAGRA ([17, 18]) will start its test runs in 2018-…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>… orientation. One also needs to account for the fact that GRBs are thought to be collimated emissions with narrow outburst angles [24].
-As such, most GRBs that occur in the universe are electromagnetically undetectable. Fortunately, this was not the case with <mark class="cp">GRB170817A</mark>,
-but even for a reasonable GRB jet opening angle of ∼10∘\sim 10^{\circ}, we expect to observe at best ∼10%\sim 10\% of neutron star mergers as GRBs [25].
-However, it is possible that some of the near-Earth pointing short hard GRBs may be observed as long-dura…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…tly focused on reducing the latency of EM follow-ups,
-i.e., the lag time between the merger and the alerting of the EM observatories.
-LIGO-Virgo science runs in 2009-2010 yielded a latency of ∼30\sim\!\!30 to 6060\,minutes [28] (no detections).
-In the case of <mark>GW170817</mark>, the latency was 40 minutes and 36+1.736^{+1.7}\,seconds [13].
-It then took an additional 1010 hours to locate the optical transient.
-
-Here, we are interested in exploring the predictive power of near-future ground-based GW detectors.
-More specifically, we wi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… details the interferometer response to GWs based on interferometer topology.
-Sec. IV lists the various idealizations we employ to simplify our treatment and supplies justification for each.
-Sec. V tests our model network and evolution using the parameters of <mark>GW170817</mark> and the corresponding observations.
-Sec. VI contains our main results presented as advance warning times in Tables 4 and 5;
-and as ranges and event rates in Table 6.
-In Sec. VII, we recompute the advance warning times in the case of binary black hole - neutro…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…e can not apriori know θ,ϕ,ψ\theta,\phi,\psi, however, we can extract their values with some limited precision over the course of an inspiral.
-The longer the inspiral stays in the detector bandwidth, the better we can estimate these angles.
-In the the case of <mark>GW170817</mark> which swept the ALV network over roughly 3000 GW cycles,
-the initial rapid source sky localization was 31 deg2 (later reduced to 28 deg2) using data from three IFOs [6].
-For our estimations, we employ suitable averages of these angles as explained below.
-For …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ese measured masses, a subset comprised of double neutron stars, such as the famed Hulse-Taylor binary, have the smallest error bars with masses
-ranging from ≈1.2​M⊙\approx 1.2M_{\odot} to ≈1.5​M⊙\approx 1.5M_{\odot}.
-On the other hand, the masses involved in <mark>GW170817</mark> are inferred to be between 1.17​M⊙1.17M_{\odot} and 1.60​M⊙1.60M_{\odot} [6].
-Therefore, let us restrict the masses to lie between 1.2​M⊙1.2M_{\odot} and 1.6​M⊙1.6M_{\odot}, then focus on the quantities of interest for us, which are the inspiral time (τinsp\t…</div>
+    <details class="lines"><summary>Show the sentences (29, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> V GW170817 as a test of our model for the Advanced LIGO-Virgo network</li><li><span class="sec">introduction</span> …(GW150914 [7]) will always be the “poster-child” of this field, the icing on the cake was the 17 August 2017 (GW170817 [6]) event involving the inspiral and merger of a binary neutron star system promptly followed, 1.7 seconds l…</li><li><span class="sec">introduction · counterpart name</span> …spiral and merger of a binary neutron star system promptly followed, 1.7 seconds later, by a gamma-ray burst (GRB170817A) detected by the Fermi Gamma-ray Burst Monitor [8] and by the International Gamma-Ray Astrophysics Laboratory…</li><li><span class="sec">introduction</span> GW170817 was initially identified by the LIGO-Hanford interferometer (H1) using a template bank of gravitational wavef…</li><li><span class="sec">introduction</span> …tion in the galaxy in NGC4993 at a luminosity distance of ∼40\sim\!40\,Mpc, and supported the hypothesis that GW170817 resulted from the inspiral and merger of two neutron stars, causing the prompt short-hard gamma-ray burst GRB…</li><li><span class="sec">introduction · counterpart name</span> …817 resulted from the inspiral and merger of two neutron stars, causing the prompt short-hard gamma-ray burst GRB170817A.</li><li><span class="sec">introduction</span> A week after GW170817, the ALV network was taken offline for upgrades for the third observation run (O3) scheduled to start in earl…</li><li><span class="sec">introduction · counterpart name</span> Fortunately, this was not the case with GRB170817A, but even for a reasonable GRB jet opening angle of ∼10∘\sim 10^{\circ}, we expect to observe at best ∼10%\si…</li></ul>
     </details>
     
   </div>

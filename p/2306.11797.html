@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,31 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Towards a robust and reliable deep learning approach for detection of compact binary mergers in gravitational wave data</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2306.11797" target="_blank" rel="noopener" class="mono">arXiv:2306.11797</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The ability of deep learning (DL) approaches to learn generalised signal and noise models, coupled with their fast inference on GPUs, holds great promise for enhancing gravitational-wave (GW) searches in terms of speed, parameter space coverage, and search sensitivity. However, the opaque nature of DL models severely harms their reliability. In this work, we meticulously develop a DL model stage-wise and work towards improving its robustness and reliability. First, we address the problems in maintaining the purity of training data by deriving a new metric that better reflects the visual strength of the &#39;chirp&#39; signal features in the data. Using a reduced, smooth representation obtained through a variational auto-encoder (VAE), we build a classifier to search for compact binary coalescence (CBC) signals. Our tests on real LIGO data show an impressive performance of the model. However, upon probing the robustness of the model through adversarial attacks, its simple failure modes were identified, underlining how such models can still be highly fragile. As a first step towards bringing robustness, we retrain the model in a novel framework involving a generative adversarial network (GAN). Over the course of training, the model learns to eliminate the primary modes of failure identified by the adversaries. Although absolute robustness is practically impossible to achieve, we demonstrate some fundamental improvements earned through such training, like sparseness and reduced degeneracy in the extracted features at different layers inside the model. We show that these gains are achieved at practically zero loss in terms of model performance on real LIGO data before and after GAN training. Through a direct search on ${\sim}8.8$ days of LIGO data, we recover two significant CBC events from GWTC-2.1 (Abbott et al 2022 2108.01045 [gr-qc]), GW190519_153544 and GW190521_074359. We also report the search sensitivity obtained from an injection study.</p></details>
+<div class="small mut mono">arXiv:2306.11797</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The ability of deep learning (DL) approaches to learn generalised signal and noise models, coupled with their fast inference on GPUs, holds great promise for enhancing gravitational-wave (GW) searches in terms of speed, parameter space coverage, and search sensitivity. However, the opaque nature of DL models severely harms their reliability. In this work, we meticulously develop a DL model stage-wise and work towards improving its robustness and reliability. First, we address the problems in maintaining the purity of training data by deriving a new metric that better reflects the visual strength of the &#39;chirp&#39; signal features in the data. Using a reduced, smooth representation obtained through a variational auto-encoder (VAE), we build a classifier to search for compact binary coalescence (CBC) signals. Our tests on real LIGO data show an impressive performance of the model. However, upon probing the robustness of the model through adversarial attacks, its simple failure modes were identified, underlining how such models can still be highly fragile. As a first step towards bringing robustness, we retrain the model in a novel framework involving a generative adversarial network (GAN). Over the course of training, the model learns to eliminate the primary modes of failure identified by the adversaries. Although absolute robustness is practically impossible to achieve, we demonstrate some fundamental improvements earned through such training, like sparseness and reduced degeneracy in the extracted features at different layers inside the model. We show that these gains are achieved at practically zero loss in terms of model performance on real LIGO data before and after GAN training. Through a direct search on ${\sim}8.8$ days of LIGO data, we recover two significant CBC events from GWTC-2.1 (Abbott et al 2022 2108.01045 [gr-qc]), GW190519_153544 and GW190521_074359. We also report the search sensitivity obtained from an injection study.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2306.11797v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">6 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">6 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW190513_205428">
   <div class="ctx">
     <div class="evname mono">GW190513_205428</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…own in Figure 17. Our search recovered two significant CBC events, GW190519_153544 and GW190521_074359, with FAR &lt;1&lt;1 per 20350.420350.4 years. There are four additional events in the analysed chunk that were found by other search pipelines in GWTC-2.1, viz., <mark>GW190513_205428</mark>, GW190514_065416, GW190517_055101 and GW190521. Initial investigations suggest that there could be several reasons our search did not find them, viz., one of the detectors having a weaker signal or the presence of a glitch artefact in addition to signal (GW19…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…6, GW190517_055101 and GW190521. Initial investigations suggest that there could be several reasons our search did not find them, viz., one of the detectors having a weaker signal or the presence of a glitch artefact in addition to signal (GW190514_065416 and <mark>GW190513_205428</mark>), signal lying outside the parameter space considered for training the model (GW190521) and lack of almost any tail feature in the chirp morphology (could be due to high spin modulations in the signal) leading to resemblance with blip glitches (GW190517_05510…</div>
+    <p class="where">Named 3 times:
+      introduction ×2, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.11797v2#:~:text=GW190513_205428" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190513_205428</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">conclusion</span>…10,40][10,40] and [40,80][40,80] was 140140 Mpc, 996996 Mpc and 21732173 Mpc, respectively. Importantly, our search recovered two CBC events, GW190519_153544 and GW190521_074359, with high significance. The analysed data also contained four additional events, <mark>GW190513_205428</mark>, GW190514_065416, GW190517_055101 and GW190521, found by various pipelines in GWTC-2.1 [1]. We discuss the potential causes of our classifier missing these signals in Section VI.2. As search sensitivity was not the focus of this work, we did not pursue possib…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …are four additional events in the analysed chunk that were found by other search pipelines in GWTC-2.1, viz., GW190513_205428, GW190514_065416, GW190517_055101 and GW190521.</li><li><span class="sec">introduction</span> …ectors having a weaker signal or the presence of a glitch artefact in addition to signal (GW190514_065416 and GW190513_205428), signal lying outside the parameter space considered for training the model (GW190521) and lack of almost an…</li><li><span class="sec">conclusion</span> The analysed data also contained four additional events, GW190513_205428, GW190514_065416, GW190517_055101 and GW190521, found by various pipelines in GWTC-2.1 [1].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -182,19 +201,16 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 <section class="card" data-i="1" data-event="GW190514_065416">
   <div class="ctx">
     <div class="evname mono">GW190514_065416</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… Our search recovered two significant CBC events, GW190519_153544 and GW190521_074359, with FAR &lt;1&lt;1 per 20350.420350.4 years. There are four additional events in the analysed chunk that were found by other search pipelines in GWTC-2.1, viz., GW190513_205428, <mark>GW190514_065416</mark>, GW190517_055101 and GW190521. Initial investigations suggest that there could be several reasons our search did not find them, viz., one of the detectors having a weaker signal or the presence of a glitch artefact in addition to signal (GW190514_065416 and G…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…5428, GW190514_065416, GW190517_055101 and GW190521. Initial investigations suggest that there could be several reasons our search did not find them, viz., one of the detectors having a weaker signal or the presence of a glitch artefact in addition to signal (<mark>GW190514_065416</mark> and GW190513_205428), signal lying outside the parameter space considered for training the model (GW190521) and lack of almost any tail feature in the chirp morphology (could be due to high spin modulations in the signal) leading to resemblance with blip glit…</div>
+    <p class="where">Named 3 times:
+      introduction ×2, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.11797v2#:~:text=GW190514_065416" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190514_065416</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">conclusion</span>… [40,80][40,80] was 140140 Mpc, 996996 Mpc and 21732173 Mpc, respectively. Importantly, our search recovered two CBC events, GW190519_153544 and GW190521_074359, with high significance. The analysed data also contained four additional events, GW190513_205428, <mark>GW190514_065416</mark>, GW190517_055101 and GW190521, found by various pipelines in GWTC-2.1 [1]. We discuss the potential causes of our classifier missing these signals in Section VI.2. As search sensitivity was not the focus of this work, we did not pursue possible improvements i…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …al events in the analysed chunk that were found by other search pipelines in GWTC-2.1, viz., GW190513_205428, GW190514_065416, GW190517_055101 and GW190521.</li><li><span class="sec">introduction</span> …viz., one of the detectors having a weaker signal or the presence of a glitch artefact in addition to signal (GW190514_065416 and GW190513_205428), signal lying outside the parameter space considered for training the model (GW190521) a…</li><li><span class="sec">conclusion</span> The analysed data also contained four additional events, GW190513_205428, GW190514_065416, GW190517_055101 and GW190521, found by various pipelines in GWTC-2.1 [1].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -230,20 +246,16 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 <section class="card" data-i="2" data-event="GW190517_055101">
   <div class="ctx">
     <div class="evname mono">GW190517_055101</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ered two significant CBC events, GW190519_153544 and GW190521_074359, with FAR &lt;1&lt;1 per 20350.420350.4 years. There are four additional events in the analysed chunk that were found by other search pipelines in GWTC-2.1, viz., GW190513_205428, GW190514_065416, <mark>GW190517_055101</mark> and GW190521. Initial investigations suggest that there could be several reasons our search did not find them, viz., one of the detectors having a weaker signal or the presence of a glitch artefact in addition to signal (GW190514_065416 and GW190513_205428), …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…W190513_205428), signal lying outside the parameter space considered for training the model (GW190521) and lack of almost any tail feature in the chirp morphology (could be due to high spin modulations in the signal) leading to resemblance with blip glitches (<mark>GW190517_055101</mark>). However, it should be noted that due to the inherent opaqueness of the DL models, it is very difficult to provide a definitive and complete explanation of the case-to-case performance.
-It is also worth mentioning that the search results could be further imp…</div>
+    <p class="where">Named 3 times:
+      introduction ×2, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.11797v2#:~:text=GW190517_055101" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190517_055101</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">conclusion</span>…as 140140 Mpc, 996996 Mpc and 21732173 Mpc, respectively. Importantly, our search recovered two CBC events, GW190519_153544 and GW190521_074359, with high significance. The analysed data also contained four additional events, GW190513_205428, GW190514_065416, <mark>GW190517_055101</mark> and GW190521, found by various pipelines in GWTC-2.1 [1]. We discuss the potential causes of our classifier missing these signals in Section VI.2. As search sensitivity was not the focus of this work, we did not pursue possible improvements in the results by …</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …analysed chunk that were found by other search pipelines in GWTC-2.1, viz., GW190513_205428, GW190514_065416, GW190517_055101 and GW190521.</li><li><span class="sec">introduction</span> …p morphology (could be due to high spin modulations in the signal) leading to resemblance with blip glitches (GW190517_055101).</li><li><span class="sec">conclusion</span> The analysed data also contained four additional events, GW190513_205428, GW190514_065416, GW190517_055101 and GW190521, found by various pipelines in GWTC-2.1 [1].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -279,32 +291,15 @@ It is also worth mentioning that the search results could be further imp…</div
 <section class="card" data-i="3" data-event="GW190519_153544">
   <div class="ctx">
     <div class="evname mono">GW190519_153544</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…. We show that these gains are achieved at practically zero loss in terms of model performance on real LIGO data before and after GAN training. Through a direct search on ∼8.8\sim 8.8 days of LIGO data, we recover two significant CBC events from GWTC-2.1 [1], <mark>GW190519_153544</mark> and GW190521_074359. We also report the search sensitivity obtained from an injection study.
-
- 
-
-I Introduction
-
-The first detection of a gravitational-wave (GW) signal originating from a binary black-hole (BBH) merger [2] by the advanced LIGO detectors [3] m…</div>
+    <p class="where">Named 4 times:
+      introduction ×2, abstract, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.11797v2#:~:text=GW190519_153544" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190519_153544</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…lative rate of foreground and background events (inclusive and exclusive of foreground triggers) plotted against the coincident ranking statistic. The direct DL search was performed on 8.88.8 days of real data from LIGO Hanford and Livingston. Two CBC events, <mark>GW190519_153544</mark> and GW190521_074359, were recovered with FAR &lt;1&lt;1 per 20350.420350.4 years.
-
-To test the independent performance of our classifier, we perform a CBC search on 8.88.8 days long chunk of real data from LIGO Hanford and Livingston detectors between May 12−2112-2…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… 140140 Mpc, 996996 Mpc and 21732173 Mpc for chirp mass bins [1,10][1,10], [10,40][10,40] and [40,80][40,80], respectively.
-
-The foreground and background events obtained from the search are shown in Figure 17. Our search recovered two significant CBC events, <mark>GW190519_153544</mark> and GW190521_074359, with FAR &lt;1&lt;1 per 20350.420350.4 years. There are four additional events in the analysed chunk that were found by other search pipelines in GWTC-2.1, viz., GW190513_205428, GW190514_065416, GW190517_055101 and GW190521. Initial investigat…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">conclusion</span>…itive distance of the CBC search. At a FAR of 11 per month, the sensitive distance for chirp mass bins [1,10][1,10], [10,40][10,40] and [40,80][40,80] was 140140 Mpc, 996996 Mpc and 21732173 Mpc, respectively. Importantly, our search recovered two CBC events, <mark>GW190519_153544</mark> and GW190521_074359, with high significance. The analysed data also contained four additional events, GW190513_205428, GW190514_065416, GW190517_055101 and GW190521, found by various pipelines in GWTC-2.1 [1]. We discuss the potential causes of our classifier…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …h a direct search on ∼8.8\sim 8.8 days of LIGO data, we recover two significant CBC events from GWTC-2.1 [1], GW190519_153544 and GW190521_074359.</li><li><span class="sec">introduction</span> Two CBC events, GW190519_153544 and GW190521_074359, were recovered with FAR &lt;1&lt;1 per 20350.420350.4 years.</li><li><span class="sec">introduction</span> Our search recovered two significant CBC events, GW190519_153544 and GW190521_074359, with FAR &lt;1&lt;1 per 20350.420350.4 years.</li><li><span class="sec">conclusion</span> Importantly, our search recovered two CBC events, GW190519_153544 and GW190521_074359, with high significance.</li></ul>
     </details>
     
   </div>
@@ -341,19 +336,16 @@ The foreground and background events obtained from the search are shown in Figur
 <section class="card" data-i="4" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… CBC events, GW190519_153544 and GW190521_074359, with FAR &lt;1&lt;1 per 20350.420350.4 years. There are four additional events in the analysed chunk that were found by other search pipelines in GWTC-2.1, viz., GW190513_205428, GW190514_065416, GW190517_055101 and <mark>GW190521</mark>. Initial investigations suggest that there could be several reasons our search did not find them, viz., one of the detectors having a weaker signal or the presence of a glitch artefact in addition to signal (GW190514_065416 and GW190513_205428), signal lying …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…asons our search did not find them, viz., one of the detectors having a weaker signal or the presence of a glitch artefact in addition to signal (GW190514_065416 and GW190513_205428), signal lying outside the parameter space considered for training the model (<mark>GW190521</mark>) and lack of almost any tail feature in the chirp morphology (could be due to high spin modulations in the signal) leading to resemblance with blip glitches (GW190517_055101). However, it should be noted that due to the inherent opaqueness of the DL models, i…</div>
+    <p class="where">Named 3 times:
+      introduction ×2, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.11797v2#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">conclusion</span>…6 Mpc and 21732173 Mpc, respectively. Importantly, our search recovered two CBC events, GW190519_153544 and GW190521_074359, with high significance. The analysed data also contained four additional events, GW190513_205428, GW190514_065416, GW190517_055101 and <mark>GW190521</mark>, found by various pipelines in GWTC-2.1 [1]. We discuss the potential causes of our classifier missing these signals in Section VI.2. As search sensitivity was not the focus of this work, we did not pursue possible improvements in the results by optimising th…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …were found by other search pipelines in GWTC-2.1, viz., GW190513_205428, GW190514_065416, GW190517_055101 and GW190521.</li><li><span class="sec">introduction</span> …0514_065416 and GW190513_205428), signal lying outside the parameter space considered for training the model (GW190521) and lack of almost any tail feature in the chirp morphology (could be due to high spin modulations in the si…</li><li><span class="sec">conclusion</span> …he analysed data also contained four additional events, GW190513_205428, GW190514_065416, GW190517_055101 and GW190521, found by various pipelines in GWTC-2.1 [1].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -389,32 +381,15 @@ The foreground and background events obtained from the search are shown in Figur
 <section class="card" data-i="5" data-event="GW190521_074359">
   <div class="ctx">
     <div class="evname mono">GW190521_074359</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>… gains are achieved at practically zero loss in terms of model performance on real LIGO data before and after GAN training. Through a direct search on ∼8.8\sim 8.8 days of LIGO data, we recover two significant CBC events from GWTC-2.1 [1], GW190519_153544 and <mark>GW190521_074359</mark>. We also report the search sensitivity obtained from an injection study.
-
- 
-
-I Introduction
-
-The first detection of a gravitational-wave (GW) signal originating from a binary black-hole (BBH) merger [2] by the advanced LIGO detectors [3] marked the beginning …</div>
+    <p class="where">Named 4 times:
+      introduction ×2, abstract, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.11797v2#:~:text=GW190521_074359" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521_074359</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…round and background events (inclusive and exclusive of foreground triggers) plotted against the coincident ranking statistic. The direct DL search was performed on 8.88.8 days of real data from LIGO Hanford and Livingston. Two CBC events, GW190519_153544 and <mark>GW190521_074359</mark>, were recovered with FAR &lt;1&lt;1 per 20350.420350.4 years.
-
-To test the independent performance of our classifier, we perform a CBC search on 8.88.8 days long chunk of real data from LIGO Hanford and Livingston detectors between May 12−2112-21, 20192019 UTC. Thi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…Mpc and 21732173 Mpc for chirp mass bins [1,10][1,10], [10,40][10,40] and [40,80][40,80], respectively.
-
-The foreground and background events obtained from the search are shown in Figure 17. Our search recovered two significant CBC events, GW190519_153544 and <mark>GW190521_074359</mark>, with FAR &lt;1&lt;1 per 20350.420350.4 years. There are four additional events in the analysed chunk that were found by other search pipelines in GWTC-2.1, viz., GW190513_205428, GW190514_065416, GW190517_055101 and GW190521. Initial investigations suggest that th…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">conclusion</span>…e CBC search. At a FAR of 11 per month, the sensitive distance for chirp mass bins [1,10][1,10], [10,40][10,40] and [40,80][40,80] was 140140 Mpc, 996996 Mpc and 21732173 Mpc, respectively. Importantly, our search recovered two CBC events, GW190519_153544 and <mark>GW190521_074359</mark>, with high significance. The analysed data also contained four additional events, GW190513_205428, GW190514_065416, GW190517_055101 and GW190521, found by various pipelines in GWTC-2.1 [1]. We discuss the potential causes of our classifier missing these signa…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …∼8.8\sim 8.8 days of LIGO data, we recover two significant CBC events from GWTC-2.1 [1], GW190519_153544 and GW190521_074359.</li><li><span class="sec">introduction</span> Two CBC events, GW190519_153544 and GW190521_074359, were recovered with FAR &lt;1&lt;1 per 20350.420350.4 years.</li><li><span class="sec">introduction</span> Our search recovered two significant CBC events, GW190519_153544 and GW190521_074359, with FAR &lt;1&lt;1 per 20350.420350.4 years.</li><li><span class="sec">conclusion</span> Importantly, our search recovered two CBC events, GW190519_153544 and GW190521_074359, with high significance.</li></ul>
     </details>
     
   </div>

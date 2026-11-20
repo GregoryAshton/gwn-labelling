@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,102 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Strong-field gravitational-wave lensing in the Kerr background</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2511.23110" target="_blank" rel="noopener" class="mono">arXiv:2511.23110</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Gravitational lensing of gravitational waves (GWs) can encode valuable information about the properties of the intervening lens, but most existing studies remain restricted to the small-deflection, weak-field regime. To bridge this crucial gap, this work presents the first systematic analysis of strong-field, wave-optical GW lensing by a Kerr black hole (BH), extending recent results obtained in [Phys. Rev. D 112, 064009 (2025)PRVDAQ2470-001010.1103/6h6r-46cd] for nonrotating lens to the astrophysically more relevant case of spinning-lens. Using the Mano-Suzuki-Takasugi formalism, we define and compute the strong-field scattering factor (SFSF) and show that the spin produces characteristic modifications to the lensed waveform, and high-frequency incident radiation is not strongly absorbed by the BH lens, contrary to earlier claims in the abovementioned paper. We further derive an explicit expression for the observed waveform for the general source-lens-observer configuration, showcasing the distortions produced by the scattering and quantifying their departure from the Schwarzschild case. Specializing to on-axis scattering, a mismatch analysis for a GW150914-like source lensed by a Kerr BH of mass &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;mml:mo&gt;=&lt;/mml:mo&gt;&lt;mml:msup&gt;&lt;mml:mn&gt;10&lt;/mml:mn&gt;&lt;mml:mn&gt;2&lt;/mml:mn&gt;&lt;/mml:msup&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;mml:mo&gt;⊙&lt;/mml:mo&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; situated &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mn&gt;100&lt;/mml:mn&gt;&lt;mml:mi&gt;G&lt;/mml:mi&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;mml:mo&gt;/&lt;/mml:mo&gt;&lt;mml:msup&gt;&lt;mml:mi&gt;c&lt;/mml:mi&gt;&lt;mml:mn&gt;2&lt;/mml:mn&gt;&lt;/mml:msup&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; away from the source reveals percentage-level deviations from the direct (unscattered) wave at scattering angles near &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;π&lt;/mml:mi&gt;&lt;mml:mo&gt;/&lt;/mml:mo&gt;&lt;mml:mn&gt;6&lt;/mml:mn&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; radians, across a range of lens spin values. The mismatch generally decreases as the scattering angle increases, but this behavior can change substantially when polarization mixing induced by scattering becomes significant. In such cases, components that are absent or suppressed in the direct signal may become appreciable once scattering effects are taken into account. For a fixed scattering angle, however, the mismatch shows only a weak dependence on the BH spin in the case of on-axis scattering, which may improve for more general off-axis considerations. The framework developed here offers a unified treatment of strong-field GW scattering in Kerr spacetime and provides tools for interpreting future high-precision observations of compact-object lenses in the wave-optics regime.</p></details>
+<div class="small mut mono">arXiv:2511.23110</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Gravitational lensing of gravitational waves (GWs) can encode valuable information about the properties of the intervening lens, but most existing studies remain restricted to the small-deflection, weak-field regime. To bridge this crucial gap, this work presents the first systematic analysis of strong-field, wave-optical GW lensing by a Kerr black hole (BH), extending recent results obtained in [Phys. Rev. D 112, 064009 (2025)PRVDAQ2470-001010.1103/6h6r-46cd] for nonrotating lens to the astrophysically more relevant case of spinning-lens. Using the Mano-Suzuki-Takasugi formalism, we define and compute the strong-field scattering factor (SFSF) and show that the spin produces characteristic modifications to the lensed waveform, and high-frequency incident radiation is not strongly absorbed by the BH lens, contrary to earlier claims in the abovementioned paper. We further derive an explicit expression for the observed waveform for the general source-lens-observer configuration, showcasing the distortions produced by the scattering and quantifying their departure from the Schwarzschild case. Specializing to on-axis scattering, a mismatch analysis for a GW150914-like source lensed by a Kerr BH of mass &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;mml:mo&gt;=&lt;/mml:mo&gt;&lt;mml:msup&gt;&lt;mml:mn&gt;10&lt;/mml:mn&gt;&lt;mml:mn&gt;2&lt;/mml:mn&gt;&lt;/mml:msup&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;mml:mo&gt;⊙&lt;/mml:mo&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; situated &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mn&gt;100&lt;/mml:mn&gt;&lt;mml:mi&gt;G&lt;/mml:mi&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;mml:mo&gt;/&lt;/mml:mo&gt;&lt;mml:msup&gt;&lt;mml:mi&gt;c&lt;/mml:mi&gt;&lt;mml:mn&gt;2&lt;/mml:mn&gt;&lt;/mml:msup&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; away from the source reveals percentage-level deviations from the direct (unscattered) wave at scattering angles near &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;π&lt;/mml:mi&gt;&lt;mml:mo&gt;/&lt;/mml:mo&gt;&lt;mml:mn&gt;6&lt;/mml:mn&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; radians, across a range of lens spin values. The mismatch generally decreases as the scattering angle increases, but this behavior can change substantially when polarization mixing induced by scattering becomes significant. In such cases, components that are absent or suppressed in the direct signal may become appreciable once scattering effects are taken into account. For a fixed scattering angle, however, the mismatch shows only a weak dependence on the BH spin in the case of on-axis scattering, which may improve for more general off-axis considerations. The framework developed here offers a unified treatment of strong-field GW scattering in Kerr spacetime and provides tools for interpreting future high-precision observations of compact-object lenses in the wave-optics regime.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2511.23110v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">9 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">9 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>7 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…sion for the observed waveform for the general source-lens-observer configuration, showcasing the distortions produced by the scattering and quantifying their departure from the Schwarzschild case. Specializing to on-axis scattering, a mismatch analysis for a <mark>GW150914</mark>-like source lensed by a Kerr BH of mass M=102​M⊙M=10^{2}~\mathrm{M}_{\odot} situated 100​G​M/c2100GM/c^{2} away from the source reveals percentage-level deviations from the direct (unscattered) wave at scattering angles near 30∘30^{\circ}, across a range of l…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…t of strong-field GW scattering in Kerr spacetime and provides tools for interpreting future high-precision observations of compact-object lenses in the wave-optics regime.
-
- 
-
-I Introduction
-
-Since the first direct detection of gravitational waves (GWs) with <mark>GW150914</mark> [4], identifying GW signals from compact binary coalescences (CBCs) with the LIGO [1] and Virgo [16] has become a routine.
-With more than 200200 confident detections to date [7, 10, 15, 13, 3], we are now able to probe the most extreme and dynamic regions of …</div>
+    <p class="where">Named 7 times:
+      introduction ×3, results ×2, abstract, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2511.23110v2#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…espective of the choice of lens spin. We also find that the resulting waveform modulations can leave observable signatures even in the era of current-generation detectors.
-
-In particular, for the special case of on-axis scattering, our mismatch analysis for a <mark>GW150914</mark>-like event (i.e., a binary with intrinsic parameters similar to those of GW150914)
-shows a percentage-level deviations from the direct wave at scattering angle near 30∘30^{\circ}, which falls sharply at larger scattering angles. Here, we must emphasize that a…</div>
-    
-    
-    <details><summary>4 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…ulations can leave observable signatures even in the era of current-generation detectors.
-
-In particular, for the special case of on-axis scattering, our mismatch analysis for a GW150914-like event (i.e., a binary with intrinsic parameters similar to those of <mark>GW150914</mark>)
-shows a percentage-level deviations from the direct wave at scattering angle near 30∘30^{\circ}, which falls sharply at larger scattering angles. Here, we must emphasize that a percentage-level mismatch lies close to the detectability threshold ∼(SNR)−2\sim(…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ches, the maximization is done over the 44D space of binary’s intrinsic parameters (Θopt\Theta_{\rm opt}): chirp mass, mass ratio, and the aligned spin components.
-The fully optimized mismatch is, therefore, 1−FF1-\textrm{FF}.
-
-For illustration, we consider a <mark>GW150914</mark>-like event, consisting of two coalescing Schwarzchild BHs of masses m1=36.9​M⊙m_{1}=36.9~\mathrm{M}_{\odot}, and m2=32.8​M⊙m_{2}=32.8~\mathrm{M}_{\odot}44
- 4
- 
- 
- 
- We use the maximum-likelihood values of the 1D-marginalized posteriors from the ‘C01:Mixed’ ch…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… delay of approximately c−1​(rLO+rSL−rSO)≈c−1×2​rSL​sin2⁡(θo/2)∼0.005​secc^{-1}(r_{\rm LO}+r_{\rm SL}-r_{\rm SO})\approx c^{-1}\times 2r_{\rm SL}\sin^{2}(\theta_{o}/2)\sim 0.005~\mathrm{sec}, much smaller than the ∼0.2​sec\sim 0.2~\mathrm{sec} duration of the <mark>GW150914</mark> signal observed by LIGO. Thus, the direct and scattered waves arrive nearly simultaneously and interfere, with the modulation depending on parameters such as the lens mass and spin. The observed waveform is, therefore,
-
-hobsμ​ν=hdirμ​ν+hSWμ​ν.h^{\mu\nu}_{\rm …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…. Abbott et al. (2016)
-
-Observation of Gravitational Waves from a Binary Black Hole Merger.
-
-Phys. Rev. Lett. 116 (6), pp. 061102.
-
-External Links: 1602.03837,
-Document
-
-Cited by: §I,
-§III.2.1.
-
-[5]
-B. P. Abbott et al. (2016)
-
-Tests of general relativity with <mark>GW150914</mark>.
-
-Phys. Rev. Lett. 116 (22), pp. 221101.
-
-Note: [Erratum: Phys.Rev.Lett. 121, 129902 (2018)]
-
-External Links: 1602.03841,
-Document
-
-Cited by: §I.
-
-[6]
-B. P. Abbott et al. (2017)
-
-Gravitational Waves and Gamma-rays from a Binary Neutron Star Merger: GW170817 a…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[5]</span> · 1 place</span><div class="cite">…nd Virgo [16] has become a routine.
-With more than 200200 confident detections to date [7, 10, 15, 13, 3], we are now able to probe the most extreme and dynamic regions of spacetime like never before <mark class="ref">[5, 6, 8, 12, 36, 142]</mark>. The ever-growing catalog of CBCs has also enabled population studies of stellar-mass black holes (BHs) [11, 14, 2], revealing several surprising features, such as lower/upper mass-gap events [113, 1…</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> Specializing to on-axis scattering, a mismatch analysis for a GW150914-like source lensed by a Kerr BH of mass M=102​M⊙M=10^{2}~\mathrm{M}_{\odot} situated 100​G​M/c2100GM/c^{2} aw…</li><li><span class="sec">introduction</span> Since the first direct detection of gravitational waves (GWs) with GW150914 [4], identifying GW signals from compact binary coalescences (CBCs) with the LIGO [1] and Virgo [16] has beco…</li><li><span class="sec">introduction</span> In particular, for the special case of on-axis scattering, our mismatch analysis for a GW150914-like event (i.e., a binary with intrinsic parameters similar to those of GW150914) shows a percentage-level d…</li><li><span class="sec">results</span> For illustration, we consider a GW150914-like event, consisting of two coalescing Schwarzchild BHs of masses m1=36.9​M⊙m_{1}=36.9~\mathrm{M}_{\odot},…</li><li><span class="sec">results</span> …{2}(\theta_{o}/2)\sim 0.005~\mathrm{sec}, much smaller than the ∼0.2​sec\sim 0.2~\mathrm{sec} duration of the GW150914 signal observed by LIGO.</li><li><span class="sec">cites it as [5]</span> …10, 15, 13, 3], we are now able to probe the most extreme and dynamic regions of spacetime like never before [5, 6, 8, 12, 36, 142]. The ever-growing catalog of CBCs has also enabled population studies of stellar-mass black holes (BHs) [11,…</li></ul>
     </details>
     
   </div>
@@ -254,73 +201,16 @@ With more than 200200 confident detections to date [7, 10, 15, 13, 3], we are n
 <section class="card" data-i="1" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>2 mentions · <span class="cptag">1 by counterpart name</span></h3>
+    <p class="where">Named 2 times:
+      reference list ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2511.23110v2#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
+    <p class="flag">1 mention use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    
-    <div class="mention"><span class="sec">references</span>…h GW150914.
-
-Phys. Rev. Lett. 116 (22), pp. 221101.
-
-Note: [Erratum: Phys.Rev.Lett. 121, 129902 (2018)]
-
-External Links: 1602.03841,
-Document
-
-Cited by: §I.
-
-[6]
-B. P. Abbott et al. (2017)
-
-Gravitational Waves and Gamma-rays from a Binary Neutron Star Merger: <mark>GW170817</mark> and GRB 170817A.
-
-Astrophys. J. Lett. 848 (2), pp. L13.
-
-External Links: 1710.05834,
-Document
-
-Cited by: §I.
-
-[7]
-B. P. Abbott et al. (2019)
-
-GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed by LIGO and Virgo during the First …
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[6]</span> · 1 place</span><div class="cite">…nd Virgo [16] has become a routine.
-With more than 200200 confident detections to date [7, 10, 15, 13, 3], we are now able to probe the most extreme and dynamic regions of spacetime like never before <mark class="ref">[5, 6, 8, 12, 36, 142]</mark>. The ever-growing catalog of CBCs has also enabled population studies of stellar-mass black holes (BHs) [11, 14, 2], revealing several surprising features, such as lower/upper mass-gap events [113, 1…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">references · <span class="cptag">counterpart name, not the GW signal</span></span>…Phys. Rev. Lett. 116 (22), pp. 221101.
-
-Note: [Erratum: Phys.Rev.Lett. 121, 129902 (2018)]
-
-External Links: 1602.03841,
-Document
-
-Cited by: §I.
-
-[6]
-B. P. Abbott et al. (2017)
-
-Gravitational Waves and Gamma-rays from a Binary Neutron Star Merger: GW170817 and <mark class="cp">GRB 170817A</mark>.
-
-Astrophys. J. Lett. 848 (2), pp. L13.
-
-External Links: 1710.05834,
-Document
-
-Cited by: §I.
-
-[7]
-B. P. Abbott et al. (2019)
-
-GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed by LIGO and Virgo during the First and Second Obser…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[6]</span> · 1 place</span><div class="cite">…nd Virgo [16] has become a routine.
-With more than 200200 confident detections to date [7, 10, 15, 13, 3], we are now able to probe the most extreme and dynamic regions of spacetime like never before <mark class="ref">[5, 6, 8, 12, 36, 142]</mark>. The ever-growing catalog of CBCs has also enabled population studies of stellar-mass black holes (BHs) [11, 14, 2], revealing several surprising features, such as lower/upper mass-gap events [113, 1…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [6]</span> …10, 15, 13, 3], we are now able to probe the most extreme and dynamic regions of spacetime like never before [5, 6, 8, 12, 36, 142]. The ever-growing catalog of CBCs has also enabled population studies of stellar-mass black holes (BHs) [11,…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -356,35 +246,16 @@ With more than 200200 confident detections to date [7, 10, 15, 13, 3], we are n
 <section class="card" data-i="2" data-event="GW190412">
   <div class="ctx">
     <div class="evname mono">GW190412</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2511.23110v2#:~:text=GW190412" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190412</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…tional-wave millilensing configurations.
-
-Mon. Not. Roy. Astron. Soc. 525 (3), pp. 4149–4160.
-
-External Links: 2302.09870,
-Document
-
-Cited by: §I.
-
-[107]
-B. Liu and D. Lai (2021)
-
-Hierarchical Black-Hole Mergers in Multiple Systems: Constrain the Formation of <mark>GW190412</mark>, GW190814 and GW190521-like events.
-
-Mon. Not. Roy. Astron. Soc. 502 (2), pp. 2049–2064.
-
-External Links: 2009.10068,
-Document
-
-Cited by: §I.
-
-[108]
-R. K. L. Lo, L. Vujeva, J. M. Ezquiaga, and J. C. L. Chan (2025)
-
-Observational Signatures of Highly Magnified…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> Hierarchical Black-Hole Mergers in Multiple Systems: Constrain the Formation of GW190412, GW190814 and GW190521-like events.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -420,70 +291,16 @@ Observational Signatures of Highly Magnified…</div>
 <section class="card" data-i="3" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…f these scenarios remain uncertain, even a small fraction of detectable mergers (on the order of a few percent) occurring in such environments could provide valuable probes of gravity in the strong and dynamical regimes predicted by GR. Indeed, events such as <mark>GW190521</mark> (the most massive binary reported in GWTC-3), which has been suggested to originate within an AGN disk [77, 118, 97], demonstrate that such environments may already be within observational reach of current ground-based detectors. With the advent of next-gener…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…g configurations.
-
-Mon. Not. Roy. Astron. Soc. 525 (3), pp. 4149–4160.
-
-External Links: 2302.09870,
-Document
-
-Cited by: §I.
-
-[107]
-B. Liu and D. Lai (2021)
-
-Hierarchical Black-Hole Mergers in Multiple Systems: Constrain the Formation of GW190412, GW190814 and <mark>GW190521</mark>-like events.
-
-Mon. Not. Roy. Astron. Soc. 502 (2), pp. 2049–2064.
-
-External Links: 2009.10068,
-Document
-
-Cited by: §I.
-
-[108]
-R. K. L. Lo, L. Vujeva, J. M. Ezquiaga, and J. C. L. Chan (2025)
-
-Observational Signatures of Highly Magnified Gravitational Waves fr…</div>
+    <p class="where">Named 3 times:
+      appendix ×2, introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2511.23110v2#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">appendix</span>…Thorne, and J. A. Wheeler (1973)
-
-Gravitation.
-
- W. H. Freeman, San Francisco.
-
-External Links: ISBN 978-0-7167-0344-0, 978-0-691-17779-3
-
-Cited by: §I.
-
-[118]
-S. L. Morton, S. Rinaldi, A. Torres-Orjuela, A. Derdzinski, M. P. Vaccaro, and W. Del Pozzo (2023)
-
-<mark>GW190521</mark>: A binary black hole merger inside an active galactic nucleus?.
-
-Phys. Rev. D 108 (12), pp. 123039.
-
-External Links: 2310.16025,
-Document
-
-Cited by: §I.
-
-[119]
-T. T. Nakamura and S. Deguchi (1999)
-
-Wave Optics in Gravitational Lensing.
-
-Prog. Theor. Phys. Sup…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Indeed, events such as GW190521 (the most massive binary reported in GWTC-3), which has been suggested to originate within an AGN disk [77, 1…</li><li><span class="sec">appendix</span> Hierarchical Black-Hole Mergers in Multiple Systems: Constrain the Formation of GW190412, GW190814 and GW190521-like events.</li><li><span class="sec">appendix</span> GW190521: A binary black hole merger inside an active galactic nucleus?.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -519,35 +336,16 @@ Prog. Theor. Phys. Sup…</div>
 <section class="card" data-i="4" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2511.23110v2#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…e millilensing configurations.
-
-Mon. Not. Roy. Astron. Soc. 525 (3), pp. 4149–4160.
-
-External Links: 2302.09870,
-Document
-
-Cited by: §I.
-
-[107]
-B. Liu and D. Lai (2021)
-
-Hierarchical Black-Hole Mergers in Multiple Systems: Constrain the Formation of GW190412, <mark>GW190814</mark> and GW190521-like events.
-
-Mon. Not. Roy. Astron. Soc. 502 (2), pp. 2049–2064.
-
-External Links: 2009.10068,
-Document
-
-Cited by: §I.
-
-[108]
-R. K. L. Lo, L. Vujeva, J. M. Ezquiaga, and J. C. L. Chan (2025)
-
-Observational Signatures of Highly Magnified Gravitati…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> Hierarchical Black-Hole Mergers in Multiple Systems: Constrain the Formation of GW190412, GW190814 and GW190521-like events.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -583,40 +381,16 @@ Observational Signatures of Highly Magnified Gravitati…</div>
 <section class="card" data-i="5" data-event="GW200105_162426">
   <div class="ctx">
     <div class="evname mono">GW200105_162426</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/2511.23110v2#:~:text=GW200105" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200105</span> or <span class="mono hit">GW200105_162426</span>.</p>
     
     
-    <div class="mention"><span class="sec">abstract</span>…
-Document
-
-Cited by: §I,
-§I,
-§II.2,
-§II.3,
-§III.1,
-§III.2.1,
-§III.2.2,
-§III,
-§IV,
-Abstract.
-
-[48]
-D. Chattopadhyay, S. Stevenson, F. Broekgaarden, F. Antonini, and K. Belczynski (2022)
-
-Modelling the formation of the first two neutron star–black hole mergers, <mark>GW200105</mark> and GW200115: metallicity, chirp masses, and merger remnant spins.
-
-Mon. Not. Roy. Astron. Soc. 513 (4), pp. 5780–5789.
-
-External Links: 2203.05850,
-Document
-
-Cited by: §I.
-
-[49]
-N. Cornish, L. Sampson, N. Yunes, and F. Pretorius (2011)
-
-Gravitational Wave Te…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> Modelling the formation of the first two neutron star–black hole mergers, GW200105 and GW200115: metallicity, chirp masses, and merger remnant spins.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -652,37 +426,16 @@ Gravitational Wave Te…</div>
 <section class="card" data-i="6" data-event="GW200115_042309">
   <div class="ctx">
     <div class="evname mono">GW200115_042309</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/2511.23110v2#:~:text=GW200115" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200115</span> or <span class="mono hit">GW200115_042309</span>.</p>
     
     
-    <div class="mention"><span class="sec">abstract</span>…ted by: §I,
-§I,
-§II.2,
-§II.3,
-§III.1,
-§III.2.1,
-§III.2.2,
-§III,
-§IV,
-Abstract.
-
-[48]
-D. Chattopadhyay, S. Stevenson, F. Broekgaarden, F. Antonini, and K. Belczynski (2022)
-
-Modelling the formation of the first two neutron star–black hole mergers, GW200105 and <mark>GW200115</mark>: metallicity, chirp masses, and merger remnant spins.
-
-Mon. Not. Roy. Astron. Soc. 513 (4), pp. 5780–5789.
-
-External Links: 2203.05850,
-Document
-
-Cited by: §I.
-
-[49]
-N. Cornish, L. Sampson, N. Yunes, and F. Pretorius (2011)
-
-Gravitational Wave Tests of Genera…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> Modelling the formation of the first two neutron star–black hole mergers, GW200105 and GW200115: metallicity, chirp masses, and merger remnant spins.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -718,39 +471,16 @@ Gravitational Wave Tests of Genera…</div>
 <section class="card" data-i="7" data-event="GW231123_135430">
   <div class="ctx">
     <div class="evname mono">GW231123_135430</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2511.23110v2#:~:text=GW231123" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231123</span> or <span class="mono hit">GW231123_135430</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…i (1997)
-
-Analytic solutions of the teukolsky equation and their properties.
-
-Progress of Theoretical Physics 97 (2), pp. 213–232.
-
-External Links: ISSN 0033-068X,
-Document,
-Link
-
-Cited by: §II.2.
-
-[142]
-H. Siegel, N. M. Khusid, M. Isi, and W. M. Farr (2025)
-
-<mark>GW231123</mark> ringdown: interpretation as multimodal Kerr signal.
-
-arXiv:2511.02691.
-
-External Links: 2511.02691
-
-Cited by: §I.
-
-[143]
-K. Silsbee and S. Tremaine (2017)
-
-Lidov-Kozai Cycles with Gravitational Radiation: Merging Black Holes in Isolated Triple Systems.
-
-Astro…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> GW231123 ringdown: interpretation as multimodal Kerr signal.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -786,43 +516,16 @@ Astro…</div>
 <section class="card" data-i="8" data-event="GW250114_082203">
   <div class="ctx">
     <div class="evname mono">GW250114_082203</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2511.23110v2#:~:text=GW250114" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW250114</span> or <span class="mono hit">GW250114_082203</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…aves.
-
-Universe 7 (12), pp. 502.
-
-External Links: 2111.05963,
-Document
-
-Cited by: §I.
-
-[35]
-Black Hole Perturbation Toolkit.
-
-Note: (bhptoolkit.org)
-
-Cited by: Appendix C,
-§II.2,
-§IV.
-
-[36]
- (2025)
-
-Black Hole Spectroscopy and Tests of General Relativity with <mark>GW250114</mark>.
-
-arXiv:2509.08099.
-
-External Links: 2509.08099
-
-Cited by: §I.
-
-[37]
-R. Bondarescu, H. Ubach, O. Bulashenko, and A. P. Lundgren (2023)
-
-Compact binaries through a lens: Silent versus detectable microlensing for the LIGO-Virgo-KAGRA gravitational wave observat…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> Black Hole Spectroscopy and Tests of General Relativity with GW250114.</li></ul>
+    </details>
     
   </div>
   <div class="form">

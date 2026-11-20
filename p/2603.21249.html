@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,172 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Parallel adaptive reweighting importance sampling for Bayesian astrophysics</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2603.21249" target="_blank" rel="noopener" class="mono">arXiv:2603.21249</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Efficiently sampling from high-dimensional, multi-modal posteriors is a central challenge in Bayesian inference for astrophysics, especially gravitational-wave astronomy. Popular families of methods like Markov-chain Monte Carlo, nested sampling, and importance sampling all rely on proposal distributions to guide exploration. Because prior knowledge of the target is often limited, practitioners can adopt adaptive proposals that iteratively refine themselves using information gained from previously drawn samples. Traditional adaptive strategies, however, struggle in high-dimensional multi-modal settings: complex, non-linear correlations are hard to capture, and hyperparameters typically require tedious, problem-specific tuning. To address these issues, we introduce Parallel Adaptive Reweighting Importance Sampling (PARIS). PARIS models its proposal as a Gaussian mixture whose component centers are the existing samples and whose component weights match the current importance weights. New draws from the proposal therefore concentrate around high-weight regions, while candidate points in unexplored areas receive intentionally inflated weights. As the algorithm continuously reweights all samples up to the latest proposal, any initial over-weighting self-corrects once additional neighbor samples are collected. To enable rapid reweighting, we present an efficient update scheme and evaluate PARIS on illustrative toy problems and more realistic gravitational-wave parameter estimation tasks. PARIS achieves accurate posterior reconstruction and evidence estimation with substantially fewer function evaluations than competing approaches, highlighting its promise for widespread use in astrophysical data analysis.</p></details>
+<div class="small mut mono">arXiv:2603.21249</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Efficiently sampling from high-dimensional, multi-modal posteriors is a central challenge in Bayesian inference for astrophysics, especially gravitational-wave astronomy. Popular families of methods like Markov-chain Monte Carlo, nested sampling, and importance sampling all rely on proposal distributions to guide exploration. Because prior knowledge of the target is often limited, practitioners can adopt adaptive proposals that iteratively refine themselves using information gained from previously drawn samples. Traditional adaptive strategies, however, struggle in high-dimensional multi-modal settings: complex, non-linear correlations are hard to capture, and hyperparameters typically require tedious, problem-specific tuning. To address these issues, we introduce Parallel Adaptive Reweighting Importance Sampling (PARIS). PARIS models its proposal as a Gaussian mixture whose component centers are the existing samples and whose component weights match the current importance weights. New draws from the proposal therefore concentrate around high-weight regions, while candidate points in unexplored areas receive intentionally inflated weights. As the algorithm continuously reweights all samples up to the latest proposal, any initial over-weighting self-corrects once additional neighbor samples are collected. To enable rapid reweighting, we present an efficient update scheme and evaluate PARIS on illustrative toy problems and more realistic gravitational-wave parameter estimation tasks. PARIS achieves accurate posterior reconstruction and evidence estimation with substantially fewer function evaluations than competing approaches, highlighting its promise for widespread use in astrophysical data analysis.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2603.21249v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">2 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">2 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>18 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…Models and GW Analysis
-
-V.1 Generic Test Problems
-
-V.1.1 NUS Model
-
-V.1.2 10D GMM
-
-V.1.3 10D Crossed Ridges: Edge Cases of the Merge Rule
-
-V.2 Gravitational-Wave Applications
-
-V.2.1 Toy Overlapping GW Signal
-
-V.2.2 Searching for GB Signals in LISA Data
-
-V.2.3 <mark>GW150914</mark>: The First Observed Binary Black Hole Merger
-
-VI Analysis and Discussion
-
-Acknowledgements
-
-A Notation
-
-B Consistency of the PARIS Estimator
-
-C Covariance Estimation
-
-C.1 Truncated Gaussian Formulation
-
-C.2 Estimation Procedure
-
-D Configuration details for th…</div>
+    <p class="where">Named 18 times:
+      results ×8, title/headings ×2, introduction ×2, methods ×2, reference list ×2, data, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2603.21249v3#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…s
-
-A Notation
-
-B Consistency of the PARIS Estimator
-
-C Covariance Estimation
-
-C.1 Truncated Gaussian Formulation
-
-C.2 Estimation Procedure
-
-D Configuration details for the astrophysical applications
-
-D.1 Galactic-binary search: parametrization and priors
-
-D.2 <mark>GW150914</mark>: sampled parameters
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2603.21249v3 [astro-ph.IM] 24 Sep 2026
-
-Parallel adaptive reweighting importance sampling for Bayesian astrophysics
-
-Miaoxin Liu
-
-Affiliation: Department of Physi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…and heavy-tailed distributions. Subsequently, we investigate PARIS’s effectiveness and robustness in GW analysis by testing it on two representative cases: searching for Galactic binaries (GBs) in LISA data [75, 76] and performing parameter estimation for the <mark>GW150914</mark> event [1].
-
-PARIS has several hyperparameters (see Table 7 in Supplementary Information A), of which three should be loosely tuned to the problem at hand. First, the global exploration parameter NLHSN_{\text{LHS}} depends on the ratio between the size of the …</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…rs because PARIS generates a sample per iteration, and terminating with a small posterior sample number could lead to the insufficient sampling of complex, high-dimensional patterns. For the GB search, we run PARIS until the cluster number becomes stable. For <mark>GW150914</mark> parameter estimation, we run PARIS until the evidence estimation becomes stable.
-
-When estimating the evidence, PARIS uses the latest half of the samples in Eq. (4) to ensure a stable estimate based on well-converged samples. Evidence estimation is already a …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ven in the text. A sampler’s success in capturing a mode is quantitatively demonstrated by its ability to recover detection SNRs near this value. While PARIS successfully identified all five modes, PTMCMC captured only three, and DNS captured only two.
-
-V.2.3 <mark>GW150914</mark>: The First Observed Binary Black Hole Merger
-
-Figure 8: Corner plot for GW150914 across the nine parameters common to all five analyses: the official GWTC-1 release, our three evaluated samplers (PARIS, DNS, and MCMC), and the neural posterior estimate from D…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…trated by its ability to recover detection SNRs near this value. While PARIS successfully identified all five modes, PTMCMC captured only three, and DNS captured only two.
-
-V.2.3 GW150914: The First Observed Binary Black Hole Merger
-
-Figure 8: Corner plot for <mark>GW150914</mark> across the nine parameters common to all five analyses: the official GWTC-1 release, our three evaluated samplers (PARIS, DNS, and MCMC), and the neural posterior estimate from Dingo-T1. Results from our three samplers are derived from the runs summarized in …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…stimate from Dingo-T1. Results from our three samplers are derived from the runs summarized in Table 6, conditioned on the official GWTC-1 noise power spectral density, with the mass ordering convention m1≥m2m_{1}\geq m_{2} enforced across all distributions.
-
-<mark>GW150914</mark> was the historic first direct detection of GWs by the LIGO detectors [3], originating from the inspiral and coalescence of two stellar-mass black holes [1]. Owing to its high SNR and relatively simple structure as a quasi-circular binary black hole merger, GW…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…14 was the historic first direct detection of GWs by the LIGO detectors [3], originating from the inspiral and coalescence of two stellar-mass black holes [1]. Owing to its high SNR and relatively simple structure as a quasi-circular binary black hole merger, <mark>GW150914</mark> provides a classical example for assessing the performance of sampling algorithms in GW parameter estimation [113, 52, 37]. Despite being a single-mode distribution in the full parameter space, the posterior exhibits nontrivial internal structure and non-Gaus…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… single-mode distribution in the full parameter space, the posterior exhibits nontrivial internal structure and non-Gaussianity in certain parameters such as declination (dec), right ascension (ra), and inclination angle (θjn\theta_{\text{jn}}).
-
-In analyzing <mark>GW150914</mark>-like events, waveforms typically incorporate the inspiral, merger, and ringdown phases of compact binary coalescences. In our study, waveform generation is performed using the bilby package [16], which provides interfaces to various phenomenological and numer…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ativity-based waveforms. For computational efficiency, we employ an aligned-spin waveform model IMRPhenomPv2 [64] which captures the essential physics of black hole mergers and is designed for robust use in data analysis.
-
-In our parameter-estimation study of <mark>GW150914</mark>, we adopt the Hanford (H1) and Livingston (L1) strain data within a frequency band of [20,1024][20,1024] Hz. The noise power spectral density (PSD) Sn​(f)S_{n}(f) is estimated using the Welch method with a median average and a 0.4s roll-off Tukey window. Foll…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… sampler, configured with:
-
-NLHS=104,Nseed=1,Σinit=10−4​Ip.N_{\text{LHS}}=10^{4},\quad N_{\text{seed}}=1,\quad\Sigma_{\text{init}}=10^{-4}\,I_{p}.
-
-In this analysis, we initialize PARIS with a single seed at the outset, as the target posterior distribution of <mark>GW150914</mark> exhibits a single-mode structure. PARIS completed the parameter estimation in 110 thousand function evaluations. In contrast, MCMC—configured with 10 walkers and a single temperature (since the distribution is effectively single-mode)—required 3 million funct…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ions that would still count towards the cost reported in Table 6.
-
-Method
-Posterior Samples
-Function Evaluations
-Log Evidence
-
-DNS
-40,567
-3,109,912
--32108.26
-
-MCMC
-30,000
-3,202,895
--
-
-PARIS
-100,000
-110,000
--32108.43
-
-Table 6: Efficiency benchmarks for the 13D <mark>GW150914</mark> parameter estimation problem. PARIS produces a larger posterior sample set (10510^{5}) while reducing the computational cost by a factor of ∼30\sim 30 compared to DNS and MCMC. The excellent agreement in log-evidence estimates between PARIS and DNS (−32108.43…</div>
+    <details class="lines"><summary>Show the sentences (17, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> V.2.3 GW150914: The First Observed Binary Black Hole Merger</li><li><span class="sec">title/headings</span> D.2 GW150914: sampled parameters</li><li><span class="sec">introduction</span> …ases: searching for Galactic binaries (GBs) in LISA data [75, 76] and performing parameter estimation for the GW150914 event [1].</li><li><span class="sec">introduction</span> For GW150914 parameter estimation, we run PARIS until the evidence estimation becomes stable.</li><li><span class="sec">results</span> Figure 8: Corner plot for GW150914 across the nine parameters common to all five analyses: the official GWTC-1 release, our three evaluated samp…</li><li><span class="sec">results</span> GW150914 was the historic first direct detection of GWs by the LIGO detectors [3], originating from the inspiral and c…</li><li><span class="sec">results</span> Owing to its high SNR and relatively simple structure as a quasi-circular binary black hole merger, GW150914 provides a classical example for assessing the performance of sampling algorithms in GW parameter estimation…</li><li><span class="sec">results</span> In analyzing GW150914-like events, waveforms typically incorporate the inspiral, merger, and ringdown phases of compact binary coal…</li></ul>
     </details>
     
   </div>
@@ -324,46 +201,16 @@ Table 6: Efficiency benchmarks for the 13D <mark>GW150914</mark> parameter estim
 <section class="card" data-i="1" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      introduction, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2603.21249v3#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…ark setting for our method. Since LIGO’s first detection in 2015 [3], characterizing astrophysical sources from noisy data has consistently relied on Bayesian methods [26, 107], with evidence-based model selection used to resolve debates such as the nature of <mark>GW190521</mark> [5] and to test general relativity. These computational challenges are especially acute for current and next-generation GW observatories, whose overlapping signals, complex waveforms and global-fit analyses produce posteriors that are at once multi-modal and …</div>
     
-    
-    
-    <div class="mention"><span class="sec">references</span>…t Generation Gravitational Wave Detectors.
-
-Class. Quant. Grav. 34 (4), pp. 044001.
-
-External Links: 1607.08697,
-Document
-
-Cited by: §V.2.
-
-[5]
-R. Abbott et al. (2020)
-
-Properties and Astrophysical Implications of the 150 M⊙{}_{\odot} Binary Black Hole Merger <mark>GW190521</mark>.
-
-Astrophys. J. Lett. 900 (1), pp. L13.
-
-External Links: 2009.01190,
-Document
-
-Cited by: §I.
-
-[6]
-Ö. D. Akyildiz and J. Míguez (2021)
-
-Convergence rates for optimised adaptive importance samplers.
-
-Statistics and Computing 31 (2), pp. 12.
-
-Cited by: Supplemen…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[5]</span> · 1 place</span><div class="cite">… characterizing astrophysical sources from noisy data has consistently relied on Bayesian methods [26, 107], with evidence-based model selection used to resolve debates such as the nature of GW190521 <mark class="ref">[5]</mark> and to test general relativity. These computational challenges are especially acute for current and next-generation GW observatories, whose overlapping signals, complex waveforms and global-fit analy…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …Bayesian methods [26, 107], with evidence-based model selection used to resolve debates such as the nature of GW190521 [5] and to test general relativity.</li><li><span class="sec">cites it as [5]</span> …methods [26, 107], with evidence-based model selection used to resolve debates such as the nature of GW190521 [5] and to test general relativity. These computational challenges are especially acute for current and next-gene…</li></ul>
+    </details>
     
   </div>
   <div class="form">

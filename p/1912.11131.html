@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,92 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Empirical constraints on the high-density equation of state from multimessenger observables</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1912.11131" target="_blank" rel="noopener" class="mono">arXiv:1912.11131</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We search for possible correlations between neutron star observables and thermodynamic quantities that characterize high density nuclear matter. We generate a set of model-independent equations of state describing stellar matter from a Taylor expansion around saturation density. Each equation of state which is a functional of the nuclear matter parameters is thermodynamically consistent, causal and compatible with astrophysical observations. We find that the neutron star tidal deformability and radius are strongly correlated with the pressure, the energy density and the sound velocity at different densities. Similar correlations are also exhibited by a large set of mean-field models based on nonrelativistic and relativistic nuclear energy density functionals. These model independent correlations can be employed to constrain the equation of state at different densities above saturation from measurements of NS properties with multimessenger observations. In particular, precise constraints on the radius of PSR J 0030 +0451 thanks to NICER observations would allow to better infer the properties of matter around two times the nuclear saturation density.</p></details>
+<div class="small mut mono">arXiv:1912.11131</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We search for possible correlations between neutron star observables and thermodynamic quantities that characterize high density nuclear matter. We generate a set of model-independent equations of state describing stellar matter from a Taylor expansion around saturation density. Each equation of state which is a functional of the nuclear matter parameters is thermodynamically consistent, causal and compatible with astrophysical observations. We find that the neutron star tidal deformability and radius are strongly correlated with the pressure, the energy density and the sound velocity at different densities. Similar correlations are also exhibited by a large set of mean-field models based on nonrelativistic and relativistic nuclear energy density functionals. These model independent correlations can be employed to constrain the equation of state at different densities above saturation from measurements of NS properties with multimessenger observations. In particular, precise constraints on the radius of PSR J 0030 +0451 thanks to NICER observations would allow to better infer the properties of matter around two times the nuclear saturation density.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1912.11131v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>6 mentions · <span class="cptag">2 by counterpart name</span></h3>
+    <p class="where">Named 6 times:
+      introduction ×4, results, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.11131v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">2 mentions use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention"><span class="sec">introduction</span>…M_{\odot}
-[5].
-
-Detecting gravitational waves (GWs) emitted during the coalescence of binary
-NS systems is also one of the most promising way to probe high density
-behavior of the EoS for dense stellar matter.
-The analysis of the compact binary inspiral event <mark>GW170817</mark> has placed
-upper bounds on the NS combined dimensionless tidal deformability
-[6]. Using a low-spin prior (consistent
-with the observed NS population), the combined dimensionless
-tidal deformability of the two NSs that merged during the event
-was determined to…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…onsistent with the one observed in Galactic binary NSs obtained
-Λ~≤900\tilde{\Lambda}\leq 900 and the tidal deformability of a 1.41.4 solar mass NS
-was estimated to be 70&lt;Λ1.4​M⊙&lt;58070&lt;\Lambda_{1.4M_{\odot}}&lt;580 at the 90% level.
-The detection of GWs from the <mark>GW170817</mark> event was followed by the electromagnetic
-counterpart, the gamma-ray burst (GRB) GRB170817A [8], and the
-electromagnetic transient AT2017gfo [9], that set extra
-constraints on the lower limit of the tidal deformability
-[10, 11, 12, 13, 14]. This last
-constrai…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>…900 and the tidal deformability of a 1.41.4 solar mass NS
-was estimated to be 70&lt;Λ1.4​M⊙&lt;58070&lt;\Lambda_{1.4M_{\odot}}&lt;580 at the 90% level.
-The detection of GWs from the GW170817 event was followed by the electromagnetic
-counterpart, the gamma-ray burst (GRB) <mark class="cp">GRB170817A</mark> [8], and the
-electromagnetic transient AT2017gfo [9], that set extra
-constraints on the lower limit of the tidal deformability
-[10, 11, 12, 13, 14]. This last
-constraint seems to rule out very soft
-EoS: the lower limit of the tidal deformability of a 1.37M⊙M_…</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>…mass NS
-was estimated to be 70&lt;Λ1.4​M⊙&lt;58070&lt;\Lambda_{1.4M_{\odot}}&lt;580 at the 90% level.
-The detection of GWs from the GW170817 event was followed by the electromagnetic
-counterpart, the gamma-ray burst (GRB) GRB170817A [8], and the
-electromagnetic transient <mark class="cp">AT2017gfo</mark> [9], that set extra
-constraints on the lower limit of the tidal deformability
-[10, 11, 12, 13, 14]. This last
-constraint seems to rule out very soft
-EoS: the lower limit of the tidal deformability of a 1.37M⊙M_{\odot}
-star set by the above studies limits the …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…deviation for the tidal deformability ΛMi\Lambda_{M_{i}} and
-radius RMiR_{M_{i}} of stars with masses Mi=1.0, 1.2, 1.4, 1.6, 1.8​M⊙M_{i}=1.0,\,1.2,\,1.4,\,1.6,\,1.8\penalty\ M_{\odot}. The results obtained for M1.4M_{1.4} are well inside the
-limits imposed by <mark>GW170817</mark> [7] for the tidal deformability
-70&lt;Λ1.4​M⊙&lt;58070&lt;\Lambda_{1.4M_{\odot}}&lt;580 (but notice that this is also true
-without imposing maximum star mass of 1.97M⊙M_{\odot}) and R=11.9±1.4R=11.9\pm 1.4
-km. On the other hand, if the constraints set by the electromagne…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…0.242​ fm−3)=[0.278,0.395]​ units of c.\displaystyle 0.242\text{ fm}^{-3})=[0.278,0.395]\text{ units of c}.
-
-(13)
-
-These results are summarized in Table 5.
-We also include, in the same Table, the constraints on PP, EE, and vsv_{s} obtained from the LIGO/Virgo <mark>GW170817</mark> analysis [7].
-Confidence intervals (on the marginalized posterior) for the pressure were determined in [7].
-The 90% credible level is
-P⁡(n=0.311​ fm−3)=[8.79,31.09]​ MeV/fm3P(n=0.311\text{ fm}^{-3})=[8.79,31.09]\text{ MeV}/\text{fm}^{3} and
-P⁡(n=0.340​ fm−3)=…</div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> The analysis of the compact binary inspiral event GW170817 has placed upper bounds on the NS combined dimensionless tidal deformability [6].</li><li><span class="sec">introduction</span> The detection of GWs from the GW170817 event was followed by the electromagnetic counterpart, the gamma-ray burst (GRB) GRB170817A [8], and the elec…</li><li><span class="sec">introduction · counterpart name</span> …ion of GWs from the GW170817 event was followed by the electromagnetic counterpart, the gamma-ray burst (GRB) GRB170817A [8], and the electromagnetic transient AT2017gfo [9], that set extra constraints on the lower limit of the ti…</li><li><span class="sec">introduction · counterpart name</span> …the electromagnetic counterpart, the gamma-ray burst (GRB) GRB170817A [8], and the electromagnetic transient AT2017gfo [9], that set extra constraints on the lower limit of the tidal deformability [10, 11, 12, 13, 14].</li><li><span class="sec">results</span> The results obtained for M1.4M_{1.4} are well inside the limits imposed by GW170817 [7] for the tidal deformability 70&lt;Λ1.4​M⊙&lt;58070&lt;\Lambda_{1.4M_{\odot}}&lt;580 (but notice that this is also tru…</li><li><span class="sec">methods</span> We also include, in the same Table, the constraints on PP, EE, and vsv_{s} obtained from the LIGO/Virgo GW170817 analysis [7].</li></ul>
     </details>
     
   </div>

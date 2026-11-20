@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,44 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Cosmological dependence of non-resonantly produced sterile neutrinos</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1909.13328" target="_blank" rel="noopener" class="mono">arXiv:1909.13328</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We discuss how a laboratory detection of a sterile neutrino not only would constitute a fundamental discovery of a new particle, but could also provide an indication of the evolution of the Universe before Big-Bang Nucleosynthesis (BBN), a fundamental discovery in cosmology. These &#34;visible&#34; sterile neutrinos could be detected in experiments such as KATRIN/TRISTAN and HUNTER in the keV mass range and PTOLEMY, KATRIN and reactor neutrino experiments in the eV mass range. Standard assumptions are usually made to compute the relic abundance and momentum distribution of particles produced before the temperature of the Universe was 5 MeV, an epoch from which there are no observed remnants thus far. However, non-standard pre-BBN cosmologies based on other assumptions that are equally in agreement with all existing data can arise in some theoretical models. We revisit the production of 0.01 eV to 1 MeV sterile neutrinos via non-resonant active-sterile flavor oscillations in several pre-BBN cosmologies. We give general equations for models in which the expansion of the Universe is parametrized by its amplitude and temperature power and where entropy is conserved, which include kination and scalar tensor models as special cases.</p></details>
+<div class="small mut mono">arXiv:1909.13328</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We discuss how a laboratory detection of a sterile neutrino not only would constitute a fundamental discovery of a new particle, but could also provide an indication of the evolution of the Universe before Big-Bang Nucleosynthesis (BBN), a fundamental discovery in cosmology. These &#34;visible&#34; sterile neutrinos could be detected in experiments such as KATRIN/TRISTAN and HUNTER in the keV mass range and PTOLEMY, KATRIN and reactor neutrino experiments in the eV mass range. Standard assumptions are usually made to compute the relic abundance and momentum distribution of particles produced before the temperature of the Universe was 5 MeV, an epoch from which there are no observed remnants thus far. However, non-standard pre-BBN cosmologies based on other assumptions that are equally in agreement with all existing data can arise in some theoretical models. We revisit the production of 0.01 eV to 1 MeV sterile neutrinos via non-resonant active-sterile flavor oscillations in several pre-BBN cosmologies. We give general equations for models in which the expansion of the Universe is parametrized by its amplitude and temperature power and where entropy is conserved, which include kination and scalar tensor models as special cases.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1909.13328v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/1909.13328v2#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…na, N. Fornengo, A. Masiero, M. Pietroni and M. Schelke,
-Enlarging mSUGRA parameter space by decreasing pre-BBN Hubble rate in
-Scalar-Tensor Cosmologies,
-JHEP 10 (2008) 003 [0712.3173].
-
- 
-(84)
-
-J. Sakstein and B. Jain, Implications of the Neutron Star Merger
-<mark>GW170817</mark> for Cosmological Scalar-Tensor Theories,
-Phys. Rev. Lett.
-119 (2017) 251303
-[1710.05893].
-
- 
-(85)
-
-G. B. Gelmini and P. Gondolo, Neutralino with the right cold dark matter
-abundance in (almost) any supersymmetric model,
-Phys. Rev.
-D74 (2006) 023510
-[hep-ph/06…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> Jain, Implications of the Neutron Star Merger GW170817 for Cosmological Scalar-Tensor Theories, Phys.</li></ul>
+    </details>
     
   </div>
   <div class="form">

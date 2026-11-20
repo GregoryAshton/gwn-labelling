@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,25 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Properties and Astrophysical Implications of the 150 M&lt;SUB&gt;☉&lt;/SUB&gt; Binary Black Hole Merger GW190521</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2009.01190" target="_blank" rel="noopener" class="mono">arXiv:2009.01190</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The gravitational-wave signal GW190521 is consistent with a binary black hole (BBH) merger source at redshift 0.8 with unusually high component masses, ${85}_{-14}^{+21}$ M&lt;SUB&gt;☉&lt;/SUB&gt; and ${66}_{-18}^{+17}$ M&lt;SUB&gt;☉&lt;/SUB&gt;, compared to previously reported events, and shows mild evidence for spin-induced orbital precession. The primary falls in the mass gap predicted by (pulsational) pair-instability supernova theory, in the approximate range 65-120 M&lt;SUB&gt;☉&lt;/SUB&gt;. The probability that at least one of the black holes in GW190521 is in that range is 99.0%. The final mass of the merger ( ${142}_{-16}^{+28}$ M&lt;SUB&gt;☉&lt;/SUB&gt;) classifies it as an intermediate-mass black hole. Under the assumption of a quasi-circular BBH coalescence, we detail the physical properties of GW190521&#39;s source binary and its post-merger remnant, including component masses and spin vectors. Three different waveform models, as well as direct comparison to numerical solutions of general relativity, yield consistent estimates of these properties. Tests of strong-field general relativity targeting the merger-ringdown stages of the coalescence indicate consistency of the observed signal with theoretical predictions. We estimate the merger rate of similar systems to be ${0.13}_{-0.11}^{+0.30}\,{{\rm{Gpc}}}^{-3}\,{{\rm{yr}}}^{-1}$ . We discuss the astrophysical implications of GW190521 for stellar collapse and for the possible formation of black holes in the pair-instability mass gap through various channels: via (multiple) stellar coalescences, or via hierarchical mergers of lower-mass black holes in star clusters or in active galactic nuclei. We find it to be unlikely that GW190521 is a strongly lensed signal of a lower-mass black hole binary merger. We also discuss more exotic possible sources for GW190521, including a highly eccentric black hole binary, or a primordial black hole binary.</p></details>
+<div class="small mut mono">arXiv:2009.01190</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The gravitational-wave signal GW190521 is consistent with a binary black hole (BBH) merger source at redshift 0.8 with unusually high component masses, ${85}_{-14}^{+21}$ M&lt;SUB&gt;☉&lt;/SUB&gt; and ${66}_{-18}^{+17}$ M&lt;SUB&gt;☉&lt;/SUB&gt;, compared to previously reported events, and shows mild evidence for spin-induced orbital precession. The primary falls in the mass gap predicted by (pulsational) pair-instability supernova theory, in the approximate range 65-120 M&lt;SUB&gt;☉&lt;/SUB&gt;. The probability that at least one of the black holes in GW190521 is in that range is 99.0%. The final mass of the merger ( ${142}_{-16}^{+28}$ M&lt;SUB&gt;☉&lt;/SUB&gt;) classifies it as an intermediate-mass black hole. Under the assumption of a quasi-circular BBH coalescence, we detail the physical properties of GW190521&#39;s source binary and its post-merger remnant, including component masses and spin vectors. Three different waveform models, as well as direct comparison to numerical solutions of general relativity, yield consistent estimates of these properties. Tests of strong-field general relativity targeting the merger-ringdown stages of the coalescence indicate consistency of the observed signal with theoretical predictions. We estimate the merger rate of similar systems to be ${0.13}_{-0.11}^{+0.30}\,{{\rm{Gpc}}}^{-3}\,{{\rm{yr}}}^{-1}$ . We discuss the astrophysical implications of GW190521 for stellar collapse and for the possible formation of black holes in the pair-instability mass gap through various channels: via (multiple) stellar coalescences, or via hierarchical mergers of lower-mass black holes in star clusters or in active galactic nuclei. We find it to be unlikely that GW190521 is a strongly lensed signal of a lower-mass black hole binary merger. We also discuss more exotic possible sources for GW190521, including a highly eccentric black hole binary, or a primordial black hole binary.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2009.01190v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">9 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">9 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2009.01190v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…150−17+29​M⊙M={150^{+29}_{-17}}\,\mathrm{M}_{\odot} making it the highest-mass binary observed via GWs to date. The binary chirp mass is ℳ=64−8+13​M⊙\mathcal{M}={64^{+13}_{-8}}\,\mathrm{M}_{\odot}, a factor ∼2{\sim}2 times higher than the first BBH detection, <mark>GW150914</mark> [5, 20]. GW190521 is consistent with a nearly equal mass binary with mass ratio q=m2/m1=0.79−0.29+0.19q=m_{2}/m_{1}={0.79^{+0.19}_{-0.29}} (90% credible interval).
-
-In the detector frame, the measured masses are m1d​e​t=152−19+32​M⊙m_{1}^{det}={152^{+32}_{-19…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …mathcal{M}={64^{+13}_{-8}}\,\mathrm{M}_{\odot}, a factor ∼2{\sim}2 times higher than the first BBH detection, GW150914 [5, 20].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -176,15 +201,16 @@ In the detector frame, the measured masses are m1d​e​t=152−19+32​M⊙m_{
 <section class="card" data-i="1" data-event="GW151205">
   <div class="ctx">
     <div class="evname mono">GW151205</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2009.01190v1#:~:text=GW151205" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151205</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…al Formation Channels and Implications for Stellar Collapse
-
-Both the primary component mass and remnant mass of this system are higher than the previously most massive BBH detected by LSC and Virgo, GW170729 [20]. Other candidate events, dubbed GW170817A and <mark>GW151205</mark>, have been identified in O1 and O2 data by other groups [349, 257], with component masses higher than GW170729 if of astrophysical origin. Here we do not attempt to assess possible astrophysical implications of such additional events.
-
-Our analysis of the BBH…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> Other candidate events, dubbed GW170817A and GW151205, have been identified in O1 and O2 data by other groups [349, 257], with component masses higher than GW17072…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -220,34 +246,15 @@ Our analysis of the BBH…</div>
 <section class="card" data-i="2" data-event="GW170729">
   <div class="ctx">
     <div class="evname mono">GW170729</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ss component BH known to date in GW astronomy.
-The mass of the secondary BH is inferred to be m2=66−18+17​M⊙m_{2}={66^{+17}_{-18}}\,\mathrm{M}_{\odot}.
-The primary BH of GW190521 is more massive (median value) than any remnant BH reported in GWTC-1 except for <mark>GW170729</mark> [20]; the secondary BH of GW190521 is also more massive than any primary BH in GWTC-1.
-
-These source frame masses have been redshift-corrected, as discussed above, using a value of the Hubble parameter H0=67.9H_{0}=67.9 from Planck 2015. However, recent measu…</div>
+    <p class="where">Named 4 times:
+      methods ×4.</p>
+    <p class="where"><a href="https://arxiv.org/html/2009.01190v1#:~:text=GW170729" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170729</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…mation channels, as in the following section.
-
-V Astrophysical Formation Channels and Implications for Stellar Collapse
-
-Both the primary component mass and remnant mass of this system are higher than the previously most massive BBH detected by LSC and Virgo, <mark>GW170729</mark> [20]. Other candidate events, dubbed GW170817A and GW151205, have been identified in O1 and O2 data by other groups [349, 257], with component masses higher than GW170729 if of astrophysical origin. Here we do not attempt to assess possible astrophysical impl…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…f this system are higher than the previously most massive BBH detected by LSC and Virgo, GW170729 [20]. Other candidate events, dubbed GW170817A and GW151205, have been identified in O1 and O2 data by other groups [349, 257], with component masses higher than <mark>GW170729</mark> if of astrophysical origin. Here we do not attempt to assess possible astrophysical implications of such additional events.
-
-Our analysis of the BBH population detected in the O1 and O2 runs using parameterized models of the mass distribution indicates that 9…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">methods</span>…e then present a Bayesian estimate of the relative probabilities (odds) that GW190521 is the product of a hierarchical BH merger, as opposed to a merger of first-generation (hereafter 1g) BHs.
-The masses of 2g BHs can fall in the PI gap: the merger remnant of <mark>GW170729</mark> [20] is a previously reported example.
-A 2g BH is alone at birth, unless it was a member of a triple system that remains bound after the formation of the BH. However, a single 2g BH might acquire a companion through dynamical exchanges, if it forms in a dense…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> The primary BH of GW190521 is more massive (median value) than any remnant BH reported in GWTC-1 except for GW170729 [20]; the secondary BH of GW190521 is also more massive than any primary BH in GWTC-1.</li><li><span class="sec">methods</span> …ss and remnant mass of this system are higher than the previously most massive BBH detected by LSC and Virgo, GW170729 [20].</li><li><span class="sec">methods</span> …W151205, have been identified in O1 and O2 data by other groups [349, 257], with component masses higher than GW170729 if of astrophysical origin.</li><li><span class="sec">methods</span> The masses of 2g BHs can fall in the PI gap: the merger remnant of GW170729 [20] is a previously reported example.</li></ul>
     </details>
     
   </div>
@@ -284,37 +291,16 @@ A 2g BH is alone at birth, unless it was a member of a triple system that remain
 <section class="card" data-i="3" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2009.01190v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…, R., &amp; Rizzo, M. 2018.
-
-https://arxiv.org/abs/1805.10457
-
- 
-[205]
-
-Lanzoni, B., Mucciarelli, A., Origlia, L., et al. 2013, ApJ, 769, 107,
-doi: 10.1088/0004-637X/769/2/107
-
- 
-[206]
-
-Lenon, A. K., Nitz, A. H., &amp; Brown, D. A. 2020, Measuring the eccentricity of
-<mark>GW170817</mark> and GW190425, doi: 10.1093/mnras/staa2120
-
- 
-[207]
-
-Leung, S.-C., Nomoto, K., &amp; Blinnikov, S. 2019, ApJ, 887, 72,
-doi: 10.3847/1538-4357/ab4fe5
-
- 
-[208]
-
-Li, A. K. Y., Lo, R. K. L., Sachdev, S., Li, T. G. F., &amp; Weinstein,
-A. J. 2019, arXiv e-prints, arXiv:190…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> A. 2020, Measuring the eccentricity of GW170817 and GW190425, doi: 10.1093/mnras/staa2120</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -350,16 +336,16 @@ A. J. 2019, arXiv e-prints, arXiv:190…</div>
 <section class="card" data-i="4" data-event="GW170817A">
   <div class="ctx">
     <div class="evname mono">GW170817A</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2009.01190v1#:~:text=GW170817A" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817A</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…
-V Astrophysical Formation Channels and Implications for Stellar Collapse
-
-Both the primary component mass and remnant mass of this system are higher than the previously most massive BBH detected by LSC and Virgo, GW170729 [20]. Other candidate events, dubbed <mark>GW170817A</mark> and GW151205, have been identified in O1 and O2 data by other groups [349, 257], with component masses higher than GW170729 if of astrophysical origin. Here we do not attempt to assess possible astrophysical implications of such additional events.
-
-Our analys…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> Other candidate events, dubbed GW170817A and GW151205, have been identified in O1 and O2 data by other groups [349, 257], with component masses higher…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -395,12 +381,16 @@ Our analys…</div>
 <section class="card" data-i="5" data-event="GW190412">
   <div class="ctx">
     <div class="evname mono">GW190412</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2009.01190v1#:~:text=GW190412" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190412</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…rtant for high mass BBH mergers in advanced detector observations [331, 330, 156, 92, 93, 103, 270, 239, 203]; their presence was also crucial in reducing uncertainties in the mass ratio and component spins of the recently reported unequal-mass binary mergers <mark>GW190412</mark> [29] and GW190814 [30].
-To quantify the impact and evidence of higher-order multipoles on GW190521, we computed the posterior distribution of our preferred model, NRSur PHM [332], using the RIFT pipeline [204] for three different combinations of modes: ℓ=2\el…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …cing uncertainties in the mass ratio and component spins of the recently reported unequal-mass binary mergers GW190412 [29] and GW190814 [30].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -436,39 +426,16 @@ To quantify the impact and evidence of higher-order multipoles on GW190521, we c
 <section class="card" data-i="6" data-event="GW190425">
   <div class="ctx">
     <div class="evname mono">GW190425</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2009.01190v1#:~:text=GW190425" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190425</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…, M. 2018.
-
-https://arxiv.org/abs/1805.10457
-
- 
-[205]
-
-Lanzoni, B., Mucciarelli, A., Origlia, L., et al. 2013, ApJ, 769, 107,
-doi: 10.1088/0004-637X/769/2/107
-
- 
-[206]
-
-Lenon, A. K., Nitz, A. H., &amp; Brown, D. A. 2020, Measuring the eccentricity of
-GW170817 and <mark>GW190425</mark>, doi: 10.1093/mnras/staa2120
-
- 
-[207]
-
-Leung, S.-C., Nomoto, K., &amp; Blinnikov, S. 2019, ApJ, 887, 72,
-doi: 10.3847/1538-4357/ab4fe5
-
- 
-[208]
-
-Li, A. K. Y., Lo, R. K. L., Sachdev, S., Li, T. G. F., &amp; Weinstein,
-A. J. 2019, arXiv e-prints, arXiv:1904.06020.
-
-htt…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> A. 2020, Measuring the eccentricity of GW170817 and GW190425, doi: 10.1093/mnras/staa2120</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -504,212 +471,15 @@ htt…</div>
 <section class="card" data-i="7" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>119 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>Properties and astrophysical implications of the 150 M_⊙ binary black hole merger <mark>GW190521</mark>
-
- 
-
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- 
- 
-
- 
- arXiv is now an independent nonprofit!
- Learn more
- &amp;times;
- 
-
- 
- 
- Back to arX…</div>
+    <p class="where">Named 119 times:
+      methods ×90, introduction ×13, conclusion ×7, abstract ×6, title/headings ×2, acknowledgements.</p>
+    <p class="where"><a href="https://arxiv.org/html/2009.01190v1#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…ry and Conclusions
-
-VIII Acknowledgments
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2009.01190v1 [astro-ph.HE] 02 Sep 2020
-
-Properties and astrophysical implications of the 150150 M⊙\mathrm{M}_{\odot} binary black hole merger <mark>GW190521</mark> 
-
-R. Abbott
-
-Affiliation: LIGO, California Institute of Technology, Pasadena, CA 91125, USA
-
-LIGO Scientific Collaboration and Virgo Collaboration
-
-  
-T. D. Abbott
-
-Affiliation: Louisiana State University, Baton Rouge, LA 70803, USA
-
-LIGO Scientific Collabora…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>… 91125, USA
-
-LIGO Scientific Collaboration and Virgo Collaboration
-
-  
-J. Zweizig
-
-Affiliation: LIGO, California Institute of Technology, Pasadena, CA 91125, USA
-
-LIGO Scientific Collaboration and Virgo Collaboration
-
-Abstract
-
- 
-The gravitational-wave signal <mark>GW190521</mark> is consistent with a binary black hole merger source at redshift 0.80.8 with unusually high component masses,
-85−14+21{85^{+21}_{-14}} M⊙\mathrm{M}_{\odot} and 66−18+17{66^{+17}_{-18}} M⊙\mathrm{M}_{\odot},
-compared to previously reported events,
-and shows mi…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…evidence for spin-induced orbital precession.
-The primary falls in
-the mass gap predicted by (pulsational) pair-instability supernova theory, in the approximate range 65−120​M⊙65-120\,\mathrm{M}_{\odot}.
-The probability that at least one of the black holes in <mark>GW190521</mark> is in that range is 99.099.0%.
-The final mass of the merger (142−16+28​M⊙{142^{+28}_{-16}}\,\mathrm{M}_{\odot}) classifies it as an
-intermediate-mass black hole.
-Under the assumption of a quasi-circular binary black hole coalescence, we detail the
-physical pr…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…range is 99.099.0%.
-The final mass of the merger (142−16+28​M⊙{142^{+28}_{-16}}\,\mathrm{M}_{\odot}) classifies it as an
-intermediate-mass black hole.
-Under the assumption of a quasi-circular binary black hole coalescence, we detail the
-physical properties of <mark>GW190521</mark>’s source binary and its post-merger remnant,
-including component masses and spin vectors. Three different waveform models, as well as
-direct comparison to numerical solutions of general relativity, yield consistent
-estimates of these properties.
-Tests of stro…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…cate consistency of the observed signal with theoretical predictions.
-We estimate the merger rate of similar systems to be
-0.13−0.11+0.30​Gpc−3​yr−1{0.13}^{+{0.30}}_{-{0.11}}\,\mathrm{Gpc}^{-3}\,{}\mathrm{yr}^{-1}.
-We discuss the astrophysical implications of <mark>GW190521</mark> for stellar collapse, and for the
-possible formation of black holes in the pair-instability mass gap through various channels:
-via (multiple) stellar coalescences, or via hierarchical mergers of lower-mass black holes in
-star clusters or in active galactic nu…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…ssible formation of black holes in the pair-instability mass gap through various channels:
-via (multiple) stellar coalescences, or via hierarchical mergers of lower-mass black holes in
-star clusters or in active galactic nuclei.
-We find it to be unlikely that <mark>GW190521</mark> is a strongly lensed signal of a lower-mass
-black hole binary merger.
-We also discuss more exotic possible sources for GW190521, including a highly
-eccentric black hole binary, or a primordial black hole binary.
-
- 
-
-Keywords: 
-
-Gravitational waves – Black hol…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…or via hierarchical mergers of lower-mass black holes in
-star clusters or in active galactic nuclei.
-We find it to be unlikely that GW190521 is a strongly lensed signal of a lower-mass
-black hole binary merger.
-We also discuss more exotic possible sources for <mark>GW190521</mark>, including a highly
-eccentric black hole binary, or a primordial black hole binary.
-
- 
-
-Keywords: 
-
-Gravitational waves – Black holes – Intermediate-mass black holes – Massive stars – Supernovae
-
-\turnoffeditone
-
-\AuthorCollaborationLimit
-=3000
-
-I Introductio…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ole binary, or a primordial black hole binary.
-
- 
-
-Keywords: 
-
-Gravitational waves – Black holes – Intermediate-mass black holes – Massive stars – Supernovae
-
-\turnoffeditone
-
-\AuthorCollaborationLimit
-=3000
-
-I Introduction
-
-The gravitational-wave (GW) signal <mark>GW190521</mark> [28, 16] was observed by the Advanced LIGO [3] and Advanced Virgo [32] detectors during their third observing run (O3).
-The event was found with four different search pipelines, both at low-latency and offline with improved background estimation; an offline s…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…[3] and Advanced Virgo [32] detectors during their third observing run (O3).
-The event was found with four different search pipelines, both at low-latency and offline with improved background estimation; an offline search sensitive to generic transients found <mark>GW190521</mark> with a three-detector network signal-to-noise ratio of 14.714.7, and an estimated false-alarm rate of 1 in 49004900 yr [28].
-Another candidate GW signal was reported later on the same day [17]. The source of GW190521 is consistent with being
-a high mass binar…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…arch sensitive to generic transients found GW190521 with a three-detector network signal-to-noise ratio of 14.714.7, and an estimated false-alarm rate of 1 in 49004900 yr [28].
-Another candidate GW signal was reported later on the same day [17]. The source of <mark>GW190521</mark> is consistent with being
-a high mass binary black hole (BBH) system.
-The final merger product of GW190521, with an estimated mass of 142−16+28​M⊙{142^{+28}_{-16}}\,\mathrm{M}_{\odot} (all values quoted as medians with symmetric 90% credible interval), is the …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… 14.714.7, and an estimated false-alarm rate of 1 in 49004900 yr [28].
-Another candidate GW signal was reported later on the same day [17]. The source of GW190521 is consistent with being
-a high mass binary black hole (BBH) system.
-The final merger product of <mark>GW190521</mark>, with an estimated mass of 142−16+28​M⊙{142^{+28}_{-16}}\,\mathrm{M}_{\odot} (all values quoted as medians with symmetric 90% credible interval), is the first strong observational evidence for an intermediate-mass black hole (IMBH) in the mass range 102−103​M…</div>
+    <details class="lines"><summary>Show the sentences (118, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Properties and astrophysical implications of the 150 M_⊙ binary black hole merger GW190521</li><li><span class="sec">title/headings</span> Properties and astrophysical implications of the 150150 M⊙\mathrm{M}_{\odot} binary black hole merger GW190521</li><li><span class="sec">abstract</span> The gravitational-wave signal GW190521 is consistent with a binary black hole merger source at redshift 0.80.8 with unusually high component masses,…</li><li><span class="sec">abstract</span> The probability that at least one of the black holes in GW190521 is in that range is 99.099.0%.</li><li><span class="sec">abstract</span> Under the assumption of a quasi-circular binary black hole coalescence, we detail the physical properties of GW190521’s source binary and its post-merger remnant, including component masses and spin vectors.</li><li><span class="sec">abstract</span> We discuss the astrophysical implications of GW190521 for stellar collapse, and for the possible formation of black holes in the pair-instability mass gap through…</li><li><span class="sec">abstract</span> We find it to be unlikely that GW190521 is a strongly lensed signal of a lower-mass black hole binary merger.</li><li><span class="sec">abstract</span> We also discuss more exotic possible sources for GW190521, including a highly eccentric black hole binary, or a primordial black hole binary.</li></ul>
     </details>
     
   </div>
@@ -746,12 +516,16 @@ The final merger product of <mark>GW190521</mark>, with an estimated mass of 142
 <section class="card" data-i="8" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2009.01190v1#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…s BBH mergers in advanced detector observations [331, 330, 156, 92, 93, 103, 270, 239, 203]; their presence was also crucial in reducing uncertainties in the mass ratio and component spins of the recently reported unequal-mass binary mergers GW190412 [29] and <mark>GW190814</mark> [30].
-To quantify the impact and evidence of higher-order multipoles on GW190521, we computed the posterior distribution of our preferred model, NRSur PHM [332], using the RIFT pipeline [204] for three different combinations of modes: ℓ=2\ell=2, ℓ≤3\ell\leq 3…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …in the mass ratio and component spins of the recently reported unequal-mass binary mergers GW190412 [29] and GW190814 [30].</li></ul>
+    </details>
     
   </div>
   <div class="form">

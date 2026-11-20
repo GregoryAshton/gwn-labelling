@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,134 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Gravitational-wave inference in the catalog era: Evolving priors and marginal events</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1912.09708" target="_blank" rel="noopener" class="mono">arXiv:1912.09708</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">As the number of gravitational-wave transient detections grows, the inclusion of marginally significant events in gravitational-wave catalogs will lead to increasing contamination from false positives. In this paper, we address the question of how to carry out population studies in light of the fact that some fraction of marginally significant gravitational-wave events are of terrestrial origin. We show that previously published estimates of p&lt;SUB&gt;astro&lt;/SUB&gt;, the probability that an event is of astrophysical origin, imply an effective noise likelihood, which can be used to take into account the uncertain origin of marginal events in population studies. We derive a formalism to carry out population studies with ambiguous gravitational-wave events. We demonstrate this formalism using events from the LIGO/Virgo Gravitational-Wave Transient Catalog 1 as well as events from the Venumadhav et al. [Phys. Rev. D 101, 083030 (2020)., 10.1103/PhysRevD.101.083030] &#34;IAS Catalog.&#34; We derive posterior distributions for population parameters and discuss how they change when we take into account p&lt;SUB&gt;astro&lt;/SUB&gt;. We provide updated individual-event posterior distributions by including population information.</p></details>
+<div class="small mut mono">arXiv:1912.09708</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">As the number of gravitational-wave transient detections grows, the inclusion of marginally significant events in gravitational-wave catalogs will lead to increasing contamination from false positives. In this paper, we address the question of how to carry out population studies in light of the fact that some fraction of marginally significant gravitational-wave events are of terrestrial origin. We show that previously published estimates of p&lt;SUB&gt;astro&lt;/SUB&gt;, the probability that an event is of astrophysical origin, imply an effective noise likelihood, which can be used to take into account the uncertain origin of marginal events in population studies. We derive a formalism to carry out population studies with ambiguous gravitational-wave events. We demonstrate this formalism using events from the LIGO/Virgo Gravitational-Wave Transient Catalog 1 as well as events from the Venumadhav et al. [Phys. Rev. D 101, 083030 (2020)., 10.1103/PhysRevD.101.083030] &#34;IAS Catalog.&#34; We derive posterior distributions for population parameters and discuss how they change when we take into account p&lt;SUB&gt;astro&lt;/SUB&gt;. We provide updated individual-event posterior distributions by including population information.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1912.09708v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">12 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">12 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…nd isotropic in spin orientation. We then re-weight our samples to priors in uniform component masses.
-We assume standard priors for extrinsic parameters.
-
-Event
-m1sourcem_{1}^{\text{source}} (M⊙M_{\odot})
-χeff\chi_{\text{eff}}
-pastrop_{\text{astro}}
-Catalog
-
-<mark>GW150914</mark>
-[32.50, 39.81]
-[-0.15, 0.07]
-1.00
-GWTC-1 [24]
-
-GW151012
-[17.88, 35.50]
-[-0.15, 0.27]
-0.96
-GWTC-1 [24]
-
-GW151216
-[19.94, 50.01]
-[-0.21, 0.56]
-0.71
-IAS [29]
-
-GW151226
-[10.61, 20.09]
-[0.12, 0.35]
-1.00
-GWTC-1 [24]
-
-GW170104
-[25.59, 38.74]
-[-0.23, 0.12]
-1.00
-GWTC-…</div>
+    <p class="where">Named 3 times:
+      methods ×2, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.09708v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…n GWTC-1.
-The new pastrop_{\text{astro}} values show how our confidence in the astrophysical origin of each event has changed based on how well it conforms to our population model.
-
-Event
-Original pastrop_{\text{astro}}
-Updated pastrop_{\text{astro}}
-Catalog
-
-<mark>GW150914</mark>
-1.00
-1.00
-GWTC-1
-
-GW151012
-0.96
-1.00
-GWTC-1
-
-GW151216
-0.71
-1.00
-IAS
-
-GW151226
-1.00
-1.00
-GWTC-1
-
-GW170104
-1.00
-1.00
-GWTC-1
-
-GW170121
-1.00
-1.00
-IAS
-
-GW170202
-0.68
-1.00
-IAS
-
-GW170304
-0.985
-1.00
-IAS
-
-GW170403
-0.56
-1.00
-IAS
-
-GW170425
-0.77
-1.00
-IAS
-
-GW170608
-1.00
-1…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…ive distribution. We note that the population-informed posteriors systematically shift towards equal mass, q=1q=1.
-The deviations in the spin parameters are mostly driven by the prior used for the population parameters.
-
-Figure 16: Posterior distributions for <mark>GW150914</mark>.
-Blue contours are calculated with uninformative priors while the orange contours are calculated using a posterior predictive distribution.
-
-Figure 17: Posterior distributions for GW151012. Blue contours are calculated with uninformative priors while the oran…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW150914 [32.50, 39.81] [-0.15, 0.07] 1.00 GWTC-1 [24]</li><li><span class="sec">methods</span> GW150914 1.00 1.00 GWTC-1</li><li><span class="sec">appendix</span> Figure 16: Posterior distributions for GW150914.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -285,142 +201,15 @@ Figure 17: Posterior distributions for GW151012. Blue contours are calculated wi
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…samples to priors in uniform component masses.
-We assume standard priors for extrinsic parameters.
-
-Event
-m1sourcem_{1}^{\text{source}} (M⊙M_{\odot})
-χeff\chi_{\text{eff}}
-pastrop_{\text{astro}}
-Catalog
-
-GW150914
-[32.50, 39.81]
-[-0.15, 0.07]
-1.00
-GWTC-1 [24]
-
-<mark>GW151012</mark>
-[17.88, 35.50]
-[-0.15, 0.27]
-0.96
-GWTC-1 [24]
-
-GW151216
-[19.94, 50.01]
-[-0.21, 0.56]
-0.71
-IAS [29]
-
-GW151226
-[10.61, 20.09]
-[0.12, 0.35]
-1.00
-GWTC-1 [24]
-
-GW170104
-[25.59, 38.74]
-[-0.23, 0.12]
-1.00
-GWTC-1 [24]
-
-GW170121
-[27.64, 41.06]
-[-0.44, -0.00]
-1.00
-IAS …</div>
+    <p class="where">Named 4 times:
+      methods ×3, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.09708v1#:~:text=GW151012" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151012</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>… the IAS catalog, but which are not included in GWTC-1, we take the IAS value of pastrop_{\text{astro}} at face value.
-Two of the GWTC-1 events have pastrop_{\text{astro}} values measurably different from unity: GW170729 (pastro=0.52p_{\text{astro}}=0.52) and <mark>GW151012</mark> (pastro=0.96p_{\text{astro}}=0.96).
-All of the IAS events have pastrop_{\text{astro}} values measured to be less than unity except for GW170121.
-
-III.2 GW151216: an ambiguous event
-
-In order to illustrate the results from subsection III.2, we derive posterior…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…\text{astro}} values show how our confidence in the astrophysical origin of each event has changed based on how well it conforms to our population model.
-
-Event
-Original pastrop_{\text{astro}}
-Updated pastrop_{\text{astro}}
-Catalog
-
-GW150914
-1.00
-1.00
-GWTC-1
-
-<mark>GW151012</mark>
-0.96
-1.00
-GWTC-1
-
-GW151216
-0.71
-1.00
-IAS
-
-GW151226
-1.00
-1.00
-GWTC-1
-
-GW170104
-1.00
-1.00
-GWTC-1
-
-GW170121
-1.00
-1.00
-IAS
-
-GW170202
-0.68
-1.00
-IAS
-
-GW170304
-0.985
-1.00
-IAS
-
-GW170403
-0.56
-1.00
-IAS
-
-GW170425
-0.77
-1.00
-IAS
-
-GW170608
-1.00
-1.00
-GWTC-1
-
-GW170727
-0.98
-1…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">appendix</span>…for the population parameters.
-
-Figure 16: Posterior distributions for GW150914.
-Blue contours are calculated with uninformative priors while the orange contours are calculated using a posterior predictive distribution.
-
-Figure 17: Posterior distributions for <mark>GW151012</mark>. Blue contours are calculated with uninformative priors while the orange contours are calculated using a posterior predictive distribution.
-
-Figure 18: Posterior distributions for GW151226. Blue contours are calculated with uninformative priors while the oran…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW151012 [17.88, 35.50] [-0.15, 0.27] 0.96 GWTC-1 [24]</li><li><span class="sec">methods</span> …astrop_{\text{astro}} values measurably different from unity: GW170729 (pastro=0.52p_{\text{astro}}=0.52) and GW151012 (pastro=0.96p_{\text{astro}}=0.96).</li><li><span class="sec">methods</span> GW151012 0.96 1.00 GWTC-1</li><li><span class="sec">appendix</span> Figure 17: Posterior distributions for GW151012.</li></ul>
     </details>
     
   </div>
@@ -457,205 +246,15 @@ Figure 18: Posterior distributions for GW151226. Blue contours are calculated wi
 <section class="card" data-i="2" data-event="GW151216">
   <div class="ctx">
     <div class="evname mono">GW151216</div>
-    <h3>7 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…2 Posteriors for ambiguous events
-
-II.3 Population studies with marginal events
-
-II.4 Selection effects
-
-II.5 Poisson statistics and merger rates
-
-II.6 Putting everything together
-
-II.7 Updating pastrop_{\text{astro}}
-
-III Demonstration
-
-III.1 Overview
-
-III.2 <mark>GW151216</mark>: an ambiguous event
-
-III.3 Population studies with GWTC-1
-
-III.4 Population studies with GWTC-1 and the IAS catalog
-
-IV Catalog update
-
-IV.1 Reanalysis of GWTC-1 with an astrophysically-motivated prior
-
-IV.2 Updating pastrop_{\text{astro}} for GWTC-1
-
-V Discu…</div>
+    <p class="where">Named 7 times:
+      methods ×6, title/headings.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.09708v1#:~:text=GW151216" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151216</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…described as only a candidate event.
-A complete list of the events and their respective pastrop_{\text{astro}} values are provided in Tab. 1.
-In subsection III.2, we present posterior distributions for the marginal (pastro=0.71p_{\text{astro}}=0.71) IAS event <mark>GW151216</mark>.
-We highlight how inferences about this event change when we take into account its uncertain origin.
-In subsection III.3, we carry out a GWTC-1 population study based on work in [15] in order to investigate how our results vary depending on how we handle the …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… standard priors for extrinsic parameters.
-
-Event
-m1sourcem_{1}^{\text{source}} (M⊙M_{\odot})
-χeff\chi_{\text{eff}}
-pastrop_{\text{astro}}
-Catalog
-
-GW150914
-[32.50, 39.81]
-[-0.15, 0.07]
-1.00
-GWTC-1 [24]
-
-GW151012
-[17.88, 35.50]
-[-0.15, 0.27]
-0.96
-GWTC-1 [24]
-
-<mark>GW151216</mark>
-[19.94, 50.01]
-[-0.21, 0.56]
-0.71
-IAS [29]
-
-GW151226
-[10.61, 20.09]
-[0.12, 0.35]
-1.00
-GWTC-1 [24]
-
-GW170104
-[25.59, 38.74]
-[-0.23, 0.12]
-1.00
-GWTC-1 [24]
-
-GW170121
-[27.64, 41.06]
-[-0.44, -0.00]
-1.00
-IAS [41]
-
-GW170202
-[22.75, 44.18]
-[-0.36, 0.12]
-0.68
-IAS [41…</div>
-    
-    
-    <details><summary>4 more</summary>
-    <div class="mention"><span class="sec">methods</span>…xt{astro}} values measurably different from unity: GW170729 (pastro=0.52p_{\text{astro}}=0.52) and GW151012 (pastro=0.96p_{\text{astro}}=0.96).
-All of the IAS events have pastrop_{\text{astro}} values measured to be less than unity except for GW170121.
-
-III.2 <mark>GW151216</mark>: an ambiguous event
-
-In order to illustrate the results from subsection III.2, we derive posterior distributions for GW151216, an IAS event with pastro=0.71p_{\text{astro}}=0.71.
-The results are shown in Fig. 1.
-In this figure and subsequent figures throughou…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…xt{astro}}=0.96).
-All of the IAS events have pastrop_{\text{astro}} values measured to be less than unity except for GW170121.
-
-III.2 GW151216: an ambiguous event
-
-In order to illustrate the results from subsection III.2, we derive posterior distributions for <mark>GW151216</mark>, an IAS event with pastro=0.71p_{\text{astro}}=0.71.
-The results are shown in Fig. 1.
-In this figure and subsequent figures throughout this work, we indicate credible intervals at 1​σ1\sigma, 2​σ2\sigma and 3​σ3\sigma, using increasingly light shading.
-In blu…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…erably when we take into account the possibility of terrestrial origin.
-Similar posterior plots for the other seven IAS events are included in Appendix B.
-
-Figure 1: Posterior distribution of extrinsic (left) and intrinsic (right) parameters for the IAS event <mark>GW151216</mark> with pastro=0.71p_{\text{astro}}=0.71. The blue contours represent the posterior distributions given the astrophysical hypothesis while the orange contours allow for the possibility of terrestrial origin.
-
-III.3 Population studies with GWTC-1
-
-We employ the m…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ow our confidence in the astrophysical origin of each event has changed based on how well it conforms to our population model.
-
-Event
-Original pastrop_{\text{astro}}
-Updated pastrop_{\text{astro}}
-Catalog
-
-GW150914
-1.00
-1.00
-GWTC-1
-
-GW151012
-0.96
-1.00
-GWTC-1
-
-<mark>GW151216</mark>
-0.71
-1.00
-IAS
-
-GW151226
-1.00
-1.00
-GWTC-1
-
-GW170104
-1.00
-1.00
-GWTC-1
-
-GW170121
-1.00
-1.00
-IAS
-
-GW170202
-0.68
-1.00
-IAS
-
-GW170304
-0.985
-1.00
-IAS
-
-GW170403
-0.56
-1.00
-IAS
-
-GW170425
-0.77
-1.00
-IAS
-
-GW170608
-1.00
-1.00
-GWTC-1
-
-GW170727
-0.98
-1.00
-IAS
-
-GW170729
-0.52
-1.00…</div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> III.2 GW151216: an ambiguous event</li><li><span class="sec">methods</span> …ction III.2, we present posterior distributions for the marginal (pastro=0.71p_{\text{astro}}=0.71) IAS event GW151216.</li><li><span class="sec">methods</span> GW151216 [19.94, 50.01] [-0.21, 0.56] 0.71 IAS [29]</li><li><span class="sec">methods</span> In order to illustrate the results from subsection III.2, we derive posterior distributions for GW151216, an IAS event with pastro=0.71p_{\text{astro}}=0.71.</li><li><span class="sec">methods</span> Figure 1: Posterior distribution of extrinsic (left) and intrinsic (right) parameters for the IAS event GW151216 with pastro=0.71p_{\text{astro}}=0.71.</li><li><span class="sec">methods</span> GW151216 0.71 1.00 IAS</li></ul>
     </details>
     
   </div>
@@ -692,173 +291,16 @@ GW170729
 <section class="card" data-i="3" data-event="GW170202">
   <div class="ctx">
     <div class="evname mono">GW170202</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…8, 35.50]
-[-0.15, 0.27]
-0.96
-GWTC-1 [24]
-
-GW151216
-[19.94, 50.01]
-[-0.21, 0.56]
-0.71
-IAS [29]
-
-GW151226
-[10.61, 20.09]
-[0.12, 0.35]
-1.00
-GWTC-1 [24]
-
-GW170104
-[25.59, 38.74]
-[-0.23, 0.12]
-1.00
-GWTC-1 [24]
-
-GW170121
-[27.64, 41.06]
-[-0.44, -0.00]
-1.00
-IAS [41]
-
-<mark>GW170202</mark>
-[22.75, 44.18]
-[-0.36, 0.12]
-0.68
-IAS [41]
-
-GW170304
-[35.69, 56.00]
-[-0.12, 0.34]
-0.985
-IAS [41]
-
-GW170403
-[39.59, 70.60]
-[-0.48, 0.10]
-0.56
-IAS [41]
-
-GW170425
-[34.46, 63.26]
-[-0.29, 0.22]
-0.77
-IAS [41]
-
-GW170608
-[9.28, 15.46]
-[-0.01, 0.19]
-1.00
-GWTC-1 [24]
-
-…</div>
+    <p class="where">Named 3 times:
+      methods ×2, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.09708v1#:~:text=GW170202" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170202</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…to our population model.
-
-Event
-Original pastrop_{\text{astro}}
-Updated pastrop_{\text{astro}}
-Catalog
-
-GW150914
-1.00
-1.00
-GWTC-1
-
-GW151012
-0.96
-1.00
-GWTC-1
-
-GW151216
-0.71
-1.00
-IAS
-
-GW151226
-1.00
-1.00
-GWTC-1
-
-GW170104
-1.00
-1.00
-GWTC-1
-
-GW170121
-1.00
-1.00
-IAS
-
-<mark>GW170202</mark>
-0.68
-1.00
-IAS
-
-GW170304
-0.985
-1.00
-IAS
-
-GW170403
-0.56
-1.00
-IAS
-
-GW170425
-0.77
-1.00
-IAS
-
-GW170608
-1.00
-1.00
-GWTC-1
-
-GW170727
-0.98
-1.00
-IAS
-
-GW170729
-0.52
-1.00
-GWTC-1
-
-GW170809
-1.00
-1.00
-GWTC-1
-
-GW170814
-1.00
-1.00
-GWTC-1
-
-GW170817A
-0.86
-1.00
-IAS
-
-GW170818
-1.00
-…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…0.
-Blue contours do not take into account pastrop_{\text{astro}} while orange contours represent the pastrop_{\text{astro}} weighted posterior distributions.
-
-Figure 10: Posterior distribution of extrinsic (left) and intrinsic (right) parameters for IAS event <mark>GW170202</mark> with pastro=0.68p_{\text{astro}}=0.68.
-Blue contours do not take into account pastrop_{\text{astro}} while orange contours represent the pastrop_{\text{astro}} weighted posterior distributions.
-
-Figure 11: Posterior distribution of extrinsic (left) and intrin…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170202 [22.75, 44.18] [-0.36, 0.12] 0.68 IAS [41]</li><li><span class="sec">methods</span> GW170202 0.68 1.00 IAS</li><li><span class="sec">appendix</span> Figure 10: Posterior distribution of extrinsic (left) and intrinsic (right) parameters for IAS event GW170202 with pastro=0.68p_{\text{astro}}=0.68.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -894,177 +336,16 @@ Figure 11: Posterior distribution of extrinsic (left) and intrin…</div>
 <section class="card" data-i="4" data-event="GW170304">
   <div class="ctx">
     <div class="evname mono">GW170304</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…9.94, 50.01]
-[-0.21, 0.56]
-0.71
-IAS [29]
-
-GW151226
-[10.61, 20.09]
-[0.12, 0.35]
-1.00
-GWTC-1 [24]
-
-GW170104
-[25.59, 38.74]
-[-0.23, 0.12]
-1.00
-GWTC-1 [24]
-
-GW170121
-[27.64, 41.06]
-[-0.44, -0.00]
-1.00
-IAS [41]
-
-GW170202
-[22.75, 44.18]
-[-0.36, 0.12]
-0.68
-IAS [41]
-
-<mark>GW170304</mark>
-[35.69, 56.00]
-[-0.12, 0.34]
-0.985
-IAS [41]
-
-GW170403
-[39.59, 70.60]
-[-0.48, 0.10]
-0.56
-IAS [41]
-
-GW170425
-[34.46, 63.26]
-[-0.29, 0.22]
-0.77
-IAS [41]
-
-GW170608
-[9.28, 15.46]
-[-0.01, 0.19]
-1.00
-GWTC-1 [24]
-
-GW170727
-[33.62, 51.55]
-[-0.28, 0.16]
-0.98
-IAS [41]
-
-…</div>
+    <p class="where">Named 3 times:
+      methods ×2, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.09708v1#:~:text=GW170304" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170304</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…
-
-Event
-Original pastrop_{\text{astro}}
-Updated pastrop_{\text{astro}}
-Catalog
-
-GW150914
-1.00
-1.00
-GWTC-1
-
-GW151012
-0.96
-1.00
-GWTC-1
-
-GW151216
-0.71
-1.00
-IAS
-
-GW151226
-1.00
-1.00
-GWTC-1
-
-GW170104
-1.00
-1.00
-GWTC-1
-
-GW170121
-1.00
-1.00
-IAS
-
-GW170202
-0.68
-1.00
-IAS
-
-<mark>GW170304</mark>
-0.985
-1.00
-IAS
-
-GW170403
-0.56
-1.00
-IAS
-
-GW170425
-0.77
-1.00
-IAS
-
-GW170608
-1.00
-1.00
-GWTC-1
-
-GW170727
-0.98
-1.00
-IAS
-
-GW170729
-0.52
-1.00
-GWTC-1
-
-GW170809
-1.00
-1.00
-GWTC-1
-
-GW170814
-1.00
-1.00
-GWTC-1
-
-GW170817A
-0.86
-1.00
-IAS
-
-GW170818
-1.00
-1.00
-GWTC-1
-
-GW170823
-1.…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…8.
-Blue contours do not take into account pastrop_{\text{astro}} while orange contours represent the pastrop_{\text{astro}} weighted posterior distributions.
-
-Figure 11: Posterior distribution of extrinsic (left) and intrinsic (right) parameters for IAS event <mark>GW170304</mark> with pastro=0.985p_{\text{astro}}=0.985.
-Blue contours do not take into account pastrop_{\text{astro}} while orange contours represent the pastrop_{\text{astro}} weighted posterior distributions.
-
-Figure 12: Posterior distribution of extrinsic (left) and intr…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170304 [35.69, 56.00] [-0.12, 0.34] 0.985 IAS [41]</li><li><span class="sec">methods</span> GW170304 0.985 1.00 IAS</li><li><span class="sec">appendix</span> Figure 11: Posterior distribution of extrinsic (left) and intrinsic (right) parameters for IAS event GW170304 with pastro=0.985p_{\text{astro}}=0.985.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1100,175 +381,16 @@ Figure 12: Posterior distribution of extrinsic (left) and intr…</div>
 <section class="card" data-i="5" data-event="GW170425">
   <div class="ctx">
     <div class="evname mono">GW170425</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…25.59, 38.74]
-[-0.23, 0.12]
-1.00
-GWTC-1 [24]
-
-GW170121
-[27.64, 41.06]
-[-0.44, -0.00]
-1.00
-IAS [41]
-
-GW170202
-[22.75, 44.18]
-[-0.36, 0.12]
-0.68
-IAS [41]
-
-GW170304
-[35.69, 56.00]
-[-0.12, 0.34]
-0.985
-IAS [41]
-
-GW170403
-[39.59, 70.60]
-[-0.48, 0.10]
-0.56
-IAS [41]
-
-<mark>GW170425</mark>
-[34.46, 63.26]
-[-0.29, 0.22]
-0.77
-IAS [41]
-
-GW170608
-[9.28, 15.46]
-[-0.01, 0.19]
-1.00
-GWTC-1 [24]
-
-GW170727
-[33.62, 51.55]
-[-0.28, 0.16]
-0.98
-IAS [41]
-
-GW170729
-[41.99, 72.86]
-[0.02, 0.47]
-0.52
-GWTC-1 [24]
-
-GW170809
-[29.04, 43.59]
-[-0.10, 0.22]
-1.00
-GWTC-1 [2…</div>
+    <p class="where">Named 3 times:
+      methods ×2, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.09708v1#:~:text=GW170425" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170425</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…astrop_{\text{astro}}
-Catalog
-
-GW150914
-1.00
-1.00
-GWTC-1
-
-GW151012
-0.96
-1.00
-GWTC-1
-
-GW151216
-0.71
-1.00
-IAS
-
-GW151226
-1.00
-1.00
-GWTC-1
-
-GW170104
-1.00
-1.00
-GWTC-1
-
-GW170121
-1.00
-1.00
-IAS
-
-GW170202
-0.68
-1.00
-IAS
-
-GW170304
-0.985
-1.00
-IAS
-
-GW170403
-0.56
-1.00
-IAS
-
-<mark>GW170425</mark>
-0.77
-1.00
-IAS
-
-GW170608
-1.00
-1.00
-GWTC-1
-
-GW170727
-0.98
-1.00
-IAS
-
-GW170729
-0.52
-1.00
-GWTC-1
-
-GW170809
-1.00
-1.00
-GWTC-1
-
-GW170814
-1.00
-1.00
-GWTC-1
-
-GW170817A
-0.86
-1.00
-IAS
-
-GW170818
-1.00
-1.00
-GWTC-1
-
-GW170823
-1.00
-1.00
-GWTC-1
-
-Table 2: Updated pastrop_{\text{a…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…6.
-Blue contours do not take into account pastrop_{\text{astro}} while orange contours represent the pastrop_{\text{astro}} weighted posterior distributions.
-
-Figure 13: Posterior distribution of extrinsic (left) and intrinsic (right) parameters for IAS event <mark>GW170425</mark> with pastro=0.77p_{\text{astro}}=0.77.
-Blue contours do not take into account pastrop_{\text{astro}} while orange contours represent the pastrop_{\text{astro}} weighted posterior distributions.
-
-Figure 14: Posterior distribution of extrinsic (left) and intrin…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170425 [34.46, 63.26] [-0.29, 0.22] 0.77 IAS [41]</li><li><span class="sec">methods</span> GW170425 0.77 1.00 IAS</li><li><span class="sec">appendix</span> Figure 13: Posterior distribution of extrinsic (left) and intrinsic (right) parameters for IAS event GW170425 with pastro=0.77p_{\text{astro}}=0.77.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1304,170 +426,16 @@ Figure 14: Posterior distribution of extrinsic (left) and intrin…</div>
 <section class="card" data-i="6" data-event="GW170727">
   <div class="ctx">
     <div class="evname mono">GW170727</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…
-[22.75, 44.18]
-[-0.36, 0.12]
-0.68
-IAS [41]
-
-GW170304
-[35.69, 56.00]
-[-0.12, 0.34]
-0.985
-IAS [41]
-
-GW170403
-[39.59, 70.60]
-[-0.48, 0.10]
-0.56
-IAS [41]
-
-GW170425
-[34.46, 63.26]
-[-0.29, 0.22]
-0.77
-IAS [41]
-
-GW170608
-[9.28, 15.46]
-[-0.01, 0.19]
-1.00
-GWTC-1 [24]
-
-<mark>GW170727</mark>
-[33.62, 51.55]
-[-0.28, 0.16]
-0.98
-IAS [41]
-
-GW170729
-[41.99, 72.86]
-[0.02, 0.47]
-0.52
-GWTC-1 [24]
-
-GW170809
-[29.04, 43.59]
-[-0.10, 0.22]
-1.00
-GWTC-1 [24]
-
-GW170814
-[27.54, 35.42]
-[-0.05, 0.19]
-1.00
-GWTC-1 [24]
-
-GW170817A
-[52.04, 84.02]
-[0.01, 0.46]
-0.86
-IAS […</div>
+    <p class="where">Named 3 times:
+      methods ×2, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.09708v1#:~:text=GW170727" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170727</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…WTC-1
-
-GW151012
-0.96
-1.00
-GWTC-1
-
-GW151216
-0.71
-1.00
-IAS
-
-GW151226
-1.00
-1.00
-GWTC-1
-
-GW170104
-1.00
-1.00
-GWTC-1
-
-GW170121
-1.00
-1.00
-IAS
-
-GW170202
-0.68
-1.00
-IAS
-
-GW170304
-0.985
-1.00
-IAS
-
-GW170403
-0.56
-1.00
-IAS
-
-GW170425
-0.77
-1.00
-IAS
-
-GW170608
-1.00
-1.00
-GWTC-1
-
-<mark>GW170727</mark>
-0.98
-1.00
-IAS
-
-GW170729
-0.52
-1.00
-GWTC-1
-
-GW170809
-1.00
-1.00
-GWTC-1
-
-GW170814
-1.00
-1.00
-GWTC-1
-
-GW170817A
-0.86
-1.00
-IAS
-
-GW170818
-1.00
-1.00
-GWTC-1
-
-GW170823
-1.00
-1.00
-GWTC-1
-
-Table 2: Updated pastrop_{\text{astro}} values for the binary black hole events in t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…7.
-Blue contours do not take into account pastrop_{\text{astro}} while orange contours represent the pastrop_{\text{astro}} weighted posterior distributions.
-
-Figure 14: Posterior distribution of extrinsic (left) and intrinsic (right) parameters for IAS event <mark>GW170727</mark> with pastro=0.98p_{\text{astro}}=0.98.
-Blue contours do not take into account pastrop_{\text{astro}} while orange contours represent the pastrop_{\text{astro}} weighted posterior distributions.
-
-Figure 15: Posterior distribution of extrinsic (left) and intrin…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170727 [33.62, 51.55] [-0.28, 0.16] 0.98 IAS [41]</li><li><span class="sec">methods</span> GW170727 0.98 1.00 IAS</li><li><span class="sec">appendix</span> Figure 14: Posterior distribution of extrinsic (left) and intrinsic (right) parameters for IAS event GW170727 with pastro=0.98p_{\text{astro}}=0.98.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1503,237 +471,15 @@ Figure 15: Posterior distribution of extrinsic (left) and intrin…</div>
 <section class="card" data-i="7" data-event="GW170729">
   <div class="ctx">
     <div class="evname mono">GW170729</div>
-    <h3>13 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…
-[35.69, 56.00]
-[-0.12, 0.34]
-0.985
-IAS [41]
-
-GW170403
-[39.59, 70.60]
-[-0.48, 0.10]
-0.56
-IAS [41]
-
-GW170425
-[34.46, 63.26]
-[-0.29, 0.22]
-0.77
-IAS [41]
-
-GW170608
-[9.28, 15.46]
-[-0.01, 0.19]
-1.00
-GWTC-1 [24]
-
-GW170727
-[33.62, 51.55]
-[-0.28, 0.16]
-0.98
-IAS [41]
-
-<mark>GW170729</mark>
-[41.99, 72.86]
-[0.02, 0.47]
-0.52
-GWTC-1 [24]
-
-GW170809
-[29.04, 43.59]
-[-0.10, 0.22]
-1.00
-GWTC-1 [24]
-
-GW170814
-[27.54, 35.42]
-[-0.05, 0.19]
-1.00
-GWTC-1 [24]
-
-GW170817A
-[52.04, 84.02]
-[0.01, 0.46]
-0.86
-IAS [42]
-
-GW170818
-[30.80, 42.72]
-[-0.29, 0.10]
-1.00
-GWTC-…</div>
+    <p class="where">Named 13 times:
+      methods ×10, discussion ×2, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.09708v1#:~:text=GW170729" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170729</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…piral pipeline [46].
-For events that are part of the IAS catalog, but which are not included in GWTC-1, we take the IAS value of pastrop_{\text{astro}} at face value.
-Two of the GWTC-1 events have pastrop_{\text{astro}} values measurably different from unity: <mark>GW170729</mark> (pastro=0.52p_{\text{astro}}=0.52) and GW151012 (pastro=0.96p_{\text{astro}}=0.96).
-All of the IAS events have pastrop_{\text{astro}} values measured to be less than unity except for GW170121.
-
-III.2 GW151216: an ambiguous event
-
-In order to illustrate the re…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ution (pushing λ\lambda toward zero) while improving our estimate of the mean and variance of the putative pulsational pair-instability graveyard (producing more peaked distributions of μm\mu_{m} and σm\sigma_{m} respectively).
-This change can be explained by <mark>GW170729</mark>, which has the lowest pastrop_{\text{astro}} value in GWTC-1, but which includes support for higher primary mass than any other event.
-If GW170729 is of astrophysical origin, it should fall within the Gaussian component, but this requires the peak to be broad…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">methods</span>…producing more peaked distributions of μm\mu_{m} and σm\sigma_{m} respectively).
-This change can be explained by GW170729, which has the lowest pastrop_{\text{astro}} value in GWTC-1, but which includes support for higher primary mass than any other event.
-If <mark>GW170729</mark> is of astrophysical origin, it should fall within the Gaussian component, but this requires the peak to be broader.
-
-Figure 2: Population posterior distributions of GWTC-1 catalog events for the mass hyper-parameters associated with the lower (left) and upper…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…luded.
-
-Figure 3 shows the posterior distributions for the spin hyper-parameters using only events from GWTC-1.
-As before, orange includes pastrop_{\text{astro}} weighting while blue does not.
-The quite modest differences between blue and orange indicate that <mark>GW170729</mark> does not provide a great deal of information about the spin distribution of binary black holes.
-The most noticeable change is a slight preference for in-plane spin, indicated by a slight shift in the σt\sigma_{t} posterior.
-
-Figure 3: Population posterior dis…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ior predictive distribution by the inverse of ℒastro​(dj|Λk){\cal L}_{\text{astro}}(d_{j}|\Lambda_{k}), which is the single-event marginalized likelihood weighted by the inverse of pastro​(Λ)p_{\text{astro}}(\Lambda).
-
-To illustrate this method, we single out <mark>GW170729</mark>, the most massive event in the GWTC-1 catalog, and a source of speculation about sub-populations of black holes [58, 59].
-In Fig. 8, we plot the population-weighted posterior distribution for GW170729.
-After applying the population-weighting, the posterior fo…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…stro}}(\Lambda).
-
-To illustrate this method, we single out GW170729, the most massive event in the GWTC-1 catalog, and a source of speculation about sub-populations of black holes [58, 59].
-In Fig. 8, we plot the population-weighted posterior distribution for <mark>GW170729</mark>.
-After applying the population-weighting, the posterior for the masses of GW170729 shift toward smaller values.
-This result is broadly consistent with the findings from Fishbach et al., which showed that the highest-mass events in a gravitational-wave transie…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ve event in the GWTC-1 catalog, and a source of speculation about sub-populations of black holes [58, 59].
-In Fig. 8, we plot the population-weighted posterior distribution for GW170729.
-After applying the population-weighting, the posterior for the masses of <mark>GW170729</mark> shift toward smaller values.
-This result is broadly consistent with the findings from Fishbach et al., which showed that the highest-mass events in a gravitational-wave transient catalog generically shifts to smaller values.
-We present population-weighted pos…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…hbach et al., which showed that the highest-mass events in a gravitational-wave transient catalog generically shifts to smaller values.
-We present population-weighted posteriors for the other GWTC-1 events in Appendix C.
-
-Figure 8: Posterior distributions for <mark>GW170729</mark>. The blue contours are calculated using the default priors from Bilby (described in III.1), and the orange contours are calculated using a posterior predictive distribution, which uses the other events in GWTC-1 to produce a more astrophysically motivated pri…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…0
-GWTC-1
-
-GW151216
-0.71
-1.00
-IAS
-
-GW151226
-1.00
-1.00
-GWTC-1
-
-GW170104
-1.00
-1.00
-GWTC-1
-
-GW170121
-1.00
-1.00
-IAS
-
-GW170202
-0.68
-1.00
-IAS
-
-GW170304
-0.985
-1.00
-IAS
-
-GW170403
-0.56
-1.00
-IAS
-
-GW170425
-0.77
-1.00
-IAS
-
-GW170608
-1.00
-1.00
-GWTC-1
-
-GW170727
-0.98
-1.00
-IAS
-
-<mark>GW170729</mark>
-0.52
-1.00
-GWTC-1
-
-GW170809
-1.00
-1.00
-GWTC-1
-
-GW170814
-1.00
-1.00
-GWTC-1
-
-GW170817A
-0.86
-1.00
-IAS
-
-GW170818
-1.00
-1.00
-GWTC-1
-
-GW170823
-1.00
-1.00
-GWTC-1
-
-Table 2: Updated pastrop_{\text{astro}} values for the binary black hole events in the GWTC-1 and IAS catalo…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…it seems such a framework will eventually become necessary as the detection rate climbs, and low-level non-Gaussianity begins to affect population inference.
-
-Third, in IV, we analyse the GWTC-1 catalog using population informed priors. Our findings show that <mark>GW170729</mark> is potentially not an outlier when weighted by astrophysically informed priors. However, it is important to highlight that weighting with a posterior predictive distribution is only as reliable as the underlying population model. A fair question to ask is whe…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…important to highlight that weighting with a posterior predictive distribution is only as reliable as the underlying population model. A fair question to ask is whether the model applied here is reasonable and complete. For example, it has been suggested that <mark>GW170729</mark> may be the result of hierarchical mergers [60].
-This is not accounted for in our population model.
-This is an avenue that would be interesting to explore.
-
-Finally, we noted in IV.2 that the formalism here can be used to provide an improved classification of …</div>
+    <details class="lines"><summary>Show the sentences (13, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170729 [41.99, 72.86] [0.02, 0.47] 0.52 GWTC-1 [24]</li><li><span class="sec">methods</span> Two of the GWTC-1 events have pastrop_{\text{astro}} values measurably different from unity: GW170729 (pastro=0.52p_{\text{astro}}=0.52) and GW151012 (pastro=0.96p_{\text{astro}}=0.96).</li><li><span class="sec">methods</span> This change can be explained by GW170729, which has the lowest pastrop_{\text{astro}} value in GWTC-1, but which includes support for higher primary m…</li><li><span class="sec">methods</span> If GW170729 is of astrophysical origin, it should fall within the Gaussian component, but this requires the peak to be br…</li><li><span class="sec">methods</span> The quite modest differences between blue and orange indicate that GW170729 does not provide a great deal of information about the spin distribution of binary black holes.</li><li><span class="sec">methods</span> To illustrate this method, we single out GW170729, the most massive event in the GWTC-1 catalog, and a source of speculation about sub-populations of black hol…</li><li><span class="sec">methods</span> In Fig. 8, we plot the population-weighted posterior distribution for GW170729.</li><li><span class="sec">methods</span> After applying the population-weighting, the posterior for the masses of GW170729 shift toward smaller values.</li></ul>
     </details>
     
   </div>
@@ -1770,160 +516,16 @@ Finally, we noted in IV.2 that the formalism here can be used to provide an imp
 <section class="card" data-i="8" data-event="GW170809">
   <div class="ctx">
     <div class="evname mono">GW170809</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…[39.59, 70.60]
-[-0.48, 0.10]
-0.56
-IAS [41]
-
-GW170425
-[34.46, 63.26]
-[-0.29, 0.22]
-0.77
-IAS [41]
-
-GW170608
-[9.28, 15.46]
-[-0.01, 0.19]
-1.00
-GWTC-1 [24]
-
-GW170727
-[33.62, 51.55]
-[-0.28, 0.16]
-0.98
-IAS [41]
-
-GW170729
-[41.99, 72.86]
-[0.02, 0.47]
-0.52
-GWTC-1 [24]
-
-<mark>GW170809</mark>
-[29.04, 43.59]
-[-0.10, 0.22]
-1.00
-GWTC-1 [24]
-
-GW170814
-[27.54, 35.42]
-[-0.05, 0.19]
-1.00
-GWTC-1 [24]
-
-GW170817A
-[52.04, 84.02]
-[0.01, 0.46]
-0.86
-IAS [42]
-
-GW170818
-[30.80, 42.72]
-[-0.29, 0.10]
-1.00
-GWTC-1 [24]
-
-GW170823
-[32.88, 50.52]
-[-0.16, 0.23]
-1.00
-GWTC…</div>
+    <p class="where">Named 3 times:
+      methods ×2, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.09708v1#:~:text=GW170809" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170809</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…0
-IAS
-
-GW151226
-1.00
-1.00
-GWTC-1
-
-GW170104
-1.00
-1.00
-GWTC-1
-
-GW170121
-1.00
-1.00
-IAS
-
-GW170202
-0.68
-1.00
-IAS
-
-GW170304
-0.985
-1.00
-IAS
-
-GW170403
-0.56
-1.00
-IAS
-
-GW170425
-0.77
-1.00
-IAS
-
-GW170608
-1.00
-1.00
-GWTC-1
-
-GW170727
-0.98
-1.00
-IAS
-
-GW170729
-0.52
-1.00
-GWTC-1
-
-<mark>GW170809</mark>
-1.00
-1.00
-GWTC-1
-
-GW170814
-1.00
-1.00
-GWTC-1
-
-GW170817A
-0.86
-1.00
-IAS
-
-GW170818
-1.00
-1.00
-GWTC-1
-
-GW170823
-1.00
-1.00
-GWTC-1
-
-Table 2: Updated pastrop_{\text{astro}} values for the binary black hole events in the GWTC-1 and IAS catalogs. The updated values are …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…erior predictive distribution.
-
-Figure 20: Posterior distributions for GW170608. Blue contours are calculated with uninformative priors while the orange contours are calculated using a posterior predictive distribution.
-
-Figure 21: Posterior distributions for <mark>GW170809</mark>. Blue contours are calculated with uninformative priors while the orange contours are calculated using a posterior predictive distribution.
-
-Figure 22: Posterior distributions for GW170814. Blue contours are calculated with uninformative priors while the oran…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170809 [29.04, 43.59] [-0.10, 0.22] 1.00 GWTC-1 [24]</li><li><span class="sec">methods</span> GW170809 1.00 1.00 GWTC-1</li><li><span class="sec">appendix</span> Figure 21: Posterior distributions for GW170809.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1959,150 +561,16 @@ Figure 22: Posterior distributions for GW170814. Blue contours are calculated wi
 <section class="card" data-i="9" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>….46, 63.26]
-[-0.29, 0.22]
-0.77
-IAS [41]
-
-GW170608
-[9.28, 15.46]
-[-0.01, 0.19]
-1.00
-GWTC-1 [24]
-
-GW170727
-[33.62, 51.55]
-[-0.28, 0.16]
-0.98
-IAS [41]
-
-GW170729
-[41.99, 72.86]
-[0.02, 0.47]
-0.52
-GWTC-1 [24]
-
-GW170809
-[29.04, 43.59]
-[-0.10, 0.22]
-1.00
-GWTC-1 [24]
-
-<mark>GW170814</mark>
-[27.54, 35.42]
-[-0.05, 0.19]
-1.00
-GWTC-1 [24]
-
-GW170817A
-[52.04, 84.02]
-[0.01, 0.46]
-0.86
-IAS [42]
-
-GW170818
-[30.80, 42.72]
-[-0.29, 0.10]
-1.00
-GWTC-1 [24]
-
-GW170823
-[32.88, 50.52]
-[-0.16, 0.23]
-1.00
-GWTC-1 [24]
-
-Table 1: The gravitational-wave events used in …</div>
+    <p class="where">Named 3 times:
+      methods ×2, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.09708v1#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…WTC-1
-
-GW170104
-1.00
-1.00
-GWTC-1
-
-GW170121
-1.00
-1.00
-IAS
-
-GW170202
-0.68
-1.00
-IAS
-
-GW170304
-0.985
-1.00
-IAS
-
-GW170403
-0.56
-1.00
-IAS
-
-GW170425
-0.77
-1.00
-IAS
-
-GW170608
-1.00
-1.00
-GWTC-1
-
-GW170727
-0.98
-1.00
-IAS
-
-GW170729
-0.52
-1.00
-GWTC-1
-
-GW170809
-1.00
-1.00
-GWTC-1
-
-<mark>GW170814</mark>
-1.00
-1.00
-GWTC-1
-
-GW170817A
-0.86
-1.00
-IAS
-
-GW170818
-1.00
-1.00
-GWTC-1
-
-GW170823
-1.00
-1.00
-GWTC-1
-
-Table 2: Updated pastrop_{\text{astro}} values for the binary black hole events in the GWTC-1 and IAS catalogs. The updated values are the median values for all h…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…erior predictive distribution.
-
-Figure 21: Posterior distributions for GW170809. Blue contours are calculated with uninformative priors while the orange contours are calculated using a posterior predictive distribution.
-
-Figure 22: Posterior distributions for <mark>GW170814</mark>. Blue contours are calculated with uninformative priors while the orange contours are calculated using a posterior predictive distribution.
-
-Figure 23: Posterior distributions for GW170818. Blue contours are calculated with uninformative priors while the oran…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170814 [27.54, 35.42] [-0.05, 0.19] 1.00 GWTC-1 [24]</li><li><span class="sec">methods</span> GW170814 1.00 1.00 GWTC-1</li><li><span class="sec">appendix</span> Figure 22: Posterior distributions for GW170814.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -2138,160 +606,15 @@ Figure 23: Posterior distributions for GW170818. Blue contours are calculated wi
 <section class="card" data-i="10" data-event="GW170817A">
   <div class="ctx">
     <div class="evname mono">GW170817A</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>… 15.46]
-[-0.01, 0.19]
-1.00
-GWTC-1 [24]
-
-GW170727
-[33.62, 51.55]
-[-0.28, 0.16]
-0.98
-IAS [41]
-
-GW170729
-[41.99, 72.86]
-[0.02, 0.47]
-0.52
-GWTC-1 [24]
-
-GW170809
-[29.04, 43.59]
-[-0.10, 0.22]
-1.00
-GWTC-1 [24]
-
-GW170814
-[27.54, 35.42]
-[-0.05, 0.19]
-1.00
-GWTC-1 [24]
-
-<mark>GW170817A</mark>
-[52.04, 84.02]
-[0.01, 0.46]
-0.86
-IAS [42]
-
-GW170818
-[30.80, 42.72]
-[-0.29, 0.10]
-1.00
-GWTC-1 [24]
-
-GW170823
-[32.88, 50.52]
-[-0.16, 0.23]
-1.00
-GWTC-1 [24]
-
-Table 1: The gravitational-wave events used in this analysis. We list the 90% credible interval for m1so…</div>
+    <p class="where">Named 5 times:
+      methods ×4, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.09708v1#:~:text=GW170817A" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817A</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…WTC-1
-
-GW170121
-1.00
-1.00
-IAS
-
-GW170202
-0.68
-1.00
-IAS
-
-GW170304
-0.985
-1.00
-IAS
-
-GW170403
-0.56
-1.00
-IAS
-
-GW170425
-0.77
-1.00
-IAS
-
-GW170608
-1.00
-1.00
-GWTC-1
-
-GW170727
-0.98
-1.00
-IAS
-
-GW170729
-0.52
-1.00
-GWTC-1
-
-GW170809
-1.00
-1.00
-GWTC-1
-
-GW170814
-1.00
-1.00
-GWTC-1
-
-<mark>GW170817A</mark>
-0.86
-1.00
-IAS
-
-GW170818
-1.00
-1.00
-GWTC-1
-
-GW170823
-1.00
-1.00
-GWTC-1
-
-Table 2: Updated pastrop_{\text{astro}} values for the binary black hole events in the GWTC-1 and IAS catalogs. The updated values are the median values for all hyper-posterior samples. Note…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>….00
-1.00
-GWTC-1
-
-Table 2: Updated pastrop_{\text{astro}} values for the binary black hole events in the GWTC-1 and IAS catalogs. The updated values are the median values for all hyper-posterior samples. Note that the distribution of pastrop_{\text{astro}} for <mark>GW170817A</mark> includes a long tail, extending to values near zero.
-
-We present the updated the values of pastrop_{\text{astro}} in Tab. 2.
-The updated values of pastrop_{\text{astro}} are calculated by averaging over different values of Λ\Lambda.
-Following the update, the …</div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">methods</span>…description of reality than the naive model used for the initial detection statements in [24].
-We also calculate the standard deviation in pastrop_{\text{astro}} for different values of Λ\Lambda and determine that it is small: less than 0.0010.001; except for <mark>GW170817A</mark>.
-For this event, the 90% credible interval on pastrop_{\text{astro}} extends to 0.02.
-
-V Discussion
-
-As the gravitational-wave transient catalog grows, it will include an increasing number of marginal events, some of which are bound to be terrestrial in origi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…8.
-Blue contours do not take into account pastrop_{\text{astro}} while orange contours represent the pastrop_{\text{astro}} weighted posterior distributions.
-
-Figure 15: Posterior distribution of extrinsic (left) and intrinsic (right) parameters for IAS event <mark>GW170817A</mark> with pastro=0.86p_{\text{astro}}=0.86.
-Blue contours do not take into account pastrop_{\text{astro}} while orange contours represent the pastrop_{\text{astro}} weighted posterior distributions.
-
-Appendix C Reanalysis of GWTC-1 events with an astrophysically-m…</div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170817A [52.04, 84.02] [0.01, 0.46] 0.86 IAS [42]</li><li><span class="sec">methods</span> GW170817A 0.86 1.00 IAS</li><li><span class="sec">methods</span> Note that the distribution of pastrop_{\text{astro}} for GW170817A includes a long tail, extending to values near zero.</li><li><span class="sec">methods</span> …ext{astro}} for different values of Λ\Lambda and determine that it is small: less than 0.0010.001; except for GW170817A.</li><li><span class="sec">appendix</span> Figure 15: Posterior distribution of extrinsic (left) and intrinsic (right) parameters for IAS event GW170817A with pastro=0.86p_{\text{astro}}=0.86.</li></ul>
     </details>
     
   </div>
@@ -2328,136 +651,16 @@ Appendix C Reanalysis of GWTC-1 events with an astrophysically-m…</div>
 <section class="card" data-i="11" data-event="GW170823">
   <div class="ctx">
     <div class="evname mono">GW170823</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>… 72.86]
-[0.02, 0.47]
-0.52
-GWTC-1 [24]
-
-GW170809
-[29.04, 43.59]
-[-0.10, 0.22]
-1.00
-GWTC-1 [24]
-
-GW170814
-[27.54, 35.42]
-[-0.05, 0.19]
-1.00
-GWTC-1 [24]
-
-GW170817A
-[52.04, 84.02]
-[0.01, 0.46]
-0.86
-IAS [42]
-
-GW170818
-[30.80, 42.72]
-[-0.29, 0.10]
-1.00
-GWTC-1 [24]
-
-<mark>GW170823</mark>
-[32.88, 50.52]
-[-0.16, 0.23]
-1.00
-GWTC-1 [24]
-
-Table 1: The gravitational-wave events used in this analysis. We list the 90% credible interval for m1sourcem_{1}^{\text{source}}, the primary source-frame mass of the compact binary and χeff\chi_{\text{eff}}, th…</div>
+    <p class="where">Named 3 times:
+      methods ×2, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.09708v1#:~:text=GW170823" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170823</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…S
-
-GW170304
-0.985
-1.00
-IAS
-
-GW170403
-0.56
-1.00
-IAS
-
-GW170425
-0.77
-1.00
-IAS
-
-GW170608
-1.00
-1.00
-GWTC-1
-
-GW170727
-0.98
-1.00
-IAS
-
-GW170729
-0.52
-1.00
-GWTC-1
-
-GW170809
-1.00
-1.00
-GWTC-1
-
-GW170814
-1.00
-1.00
-GWTC-1
-
-GW170817A
-0.86
-1.00
-IAS
-
-GW170818
-1.00
-1.00
-GWTC-1
-
-<mark>GW170823</mark>
-1.00
-1.00
-GWTC-1
-
-Table 2: Updated pastrop_{\text{astro}} values for the binary black hole events in the GWTC-1 and IAS catalogs. The updated values are the median values for all hyper-posterior samples. Note that the distribution of pastrop_{\text{astro}} fo…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…erior predictive distribution.
-
-Figure 23: Posterior distributions for GW170818. Blue contours are calculated with uninformative priors while the orange contours are calculated using a posterior predictive distribution.
-
-Figure 24: Posterior distributions for <mark>GW170823</mark>. Blue contours are calculated with uninformative priors while the orange contours are calculated using a posterior predictive distribution.
-
-.
-
- 
- Experimental support, please
- view the build logs
- for errors. Generated by
- 
- 
- L
- A
- T
- E
- 
- xml
- 
- .
- 
-
- 
- In…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170823 [32.88, 50.52] [-0.16, 0.23] 1.00 GWTC-1 [24]</li><li><span class="sec">methods</span> GW170823 1.00 1.00 GWTC-1</li><li><span class="sec">appendix</span> Figure 24: Posterior distributions for GW170823.</li></ul>
+    </details>
     
   </div>
   <div class="form">

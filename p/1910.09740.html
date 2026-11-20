@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,289 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Nonparametric inference of neutron star composition, equation of state, and maximum mass with GW170817</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1910.09740" target="_blank" rel="noopener" class="mono">arXiv:1910.09740</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The detection of GW170817 in gravitational waves provides unprecedented constraints on the equation of state (EOS) of the ultradense matter within the cores of neutron stars (NSs). We extend the nonparametric analysis first introduced by Landry and Essick (2019), and confirm that GW170817 favors soft EOSs. We infer macroscopic observables for a canonical 1.4 M&lt;SUB&gt;☉&lt;/SUB&gt; NS, including the tidal deformability Λ&lt;SUB&gt;1.4&lt;/SUB&gt;=211&lt;SUB&gt;-137&lt;/SUB&gt;&lt;SUP&gt;+312&lt;/SUP&gt; (491&lt;SUB&gt;-181&lt;/SUB&gt;&lt;SUP&gt;+216&lt;/SUP&gt;) and radius R&lt;SUB&gt;1.4&lt;/SUB&gt;=10.8 6&lt;SUB&gt;-1.42&lt;/SUB&gt;&lt;SUP&gt;+2.04&lt;/SUP&gt; (12.51&lt;SUB&gt;-0.88&lt;/SUB&gt;&lt;SUP&gt;+1.00&lt;/SUP&gt;) km , as well as the maximum mass for nonrotating NSs M&lt;SUB&gt;max&lt;/SUB&gt;=2.06 4&lt;SUB&gt;-0.134&lt;/SUB&gt;&lt;SUP&gt;+0.260&lt;/SUP&gt; (2.017&lt;SUB&gt;-0.087&lt;/SUB&gt;&lt;SUP&gt;+0.238&lt;/SUP&gt;) M&lt;SUB&gt;☉&lt;/SUB&gt; , with nonparametric priors loosely (tightly) constrained to resemble candidate EOSs from the literature. Furthermore, we find weak evidence that GW170817 involved at least one NS based on gravitational-wave data alone (B&lt;SUB&gt;BBH&lt;/SUB&gt;&lt;SUP&gt;NS&lt;/SUP&gt;=3.3 ±1.4 ), consistent with the observation of electromagnetic counterparts. We also investigate GW170817&#39;s implications for the maximum spin frequency of millisecond pulsars, and find that the fastest known pulsar is spinning at more than 50% of its breakup frequency at 90% confidence. We additionally find modest evidence in favor of quark matter within NSs, and GW170817 favors the presence of at least one disconnected hybrid star branch in the mass-radius relation over a single stable branch by a factor of 2. Assuming there are multiple stable branches, we find a suggestive posterior preference for a sharp softening around nuclear density followed by stiffening around twice nuclear density, consistent with a strong first-order phase transition. While the statistical evidence in favor of new physics within NS cores remains tenuous with GW170817 alone, these tantalizing hints reemphasize the promise of gravitational waves for constraining the supranuclear EOS.</p></details>
+<div class="small mut mono">arXiv:1910.09740</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The detection of GW170817 in gravitational waves provides unprecedented constraints on the equation of state (EOS) of the ultradense matter within the cores of neutron stars (NSs). We extend the nonparametric analysis first introduced by Landry and Essick (2019), and confirm that GW170817 favors soft EOSs. We infer macroscopic observables for a canonical 1.4 M&lt;SUB&gt;☉&lt;/SUB&gt; NS, including the tidal deformability Λ&lt;SUB&gt;1.4&lt;/SUB&gt;=211&lt;SUB&gt;-137&lt;/SUB&gt;&lt;SUP&gt;+312&lt;/SUP&gt; (491&lt;SUB&gt;-181&lt;/SUB&gt;&lt;SUP&gt;+216&lt;/SUP&gt;) and radius R&lt;SUB&gt;1.4&lt;/SUB&gt;=10.8 6&lt;SUB&gt;-1.42&lt;/SUB&gt;&lt;SUP&gt;+2.04&lt;/SUP&gt; (12.51&lt;SUB&gt;-0.88&lt;/SUB&gt;&lt;SUP&gt;+1.00&lt;/SUP&gt;) km , as well as the maximum mass for nonrotating NSs M&lt;SUB&gt;max&lt;/SUB&gt;=2.06 4&lt;SUB&gt;-0.134&lt;/SUB&gt;&lt;SUP&gt;+0.260&lt;/SUP&gt; (2.017&lt;SUB&gt;-0.087&lt;/SUB&gt;&lt;SUP&gt;+0.238&lt;/SUP&gt;) M&lt;SUB&gt;☉&lt;/SUB&gt; , with nonparametric priors loosely (tightly) constrained to resemble candidate EOSs from the literature. Furthermore, we find weak evidence that GW170817 involved at least one NS based on gravitational-wave data alone (B&lt;SUB&gt;BBH&lt;/SUB&gt;&lt;SUP&gt;NS&lt;/SUP&gt;=3.3 ±1.4 ), consistent with the observation of electromagnetic counterparts. We also investigate GW170817&#39;s implications for the maximum spin frequency of millisecond pulsars, and find that the fastest known pulsar is spinning at more than 50% of its breakup frequency at 90% confidence. We additionally find modest evidence in favor of quark matter within NSs, and GW170817 favors the presence of at least one disconnected hybrid star branch in the mass-radius relation over a single stable branch by a factor of 2. Assuming there are multiple stable branches, we find a suggestive posterior preference for a sharp softening around nuclear density followed by stiffening around twice nuclear density, consistent with a strong first-order phase transition. While the statistical evidence in favor of new physics within NS cores remains tenuous with GW170817 alone, these tantalizing hints reemphasize the promise of gravitational waves for constraining the supranuclear EOS.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1910.09740v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>65 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>Nonparametric inference of neutron star composition, equation of state, and maximum mass with <mark>GW170817</mark>
-
- 
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- 
- 
-
- 
- arXiv is now an independent nonprofit!
- Learn more
- &amp;times;
- 
-
- 
- 
- Back to arXi…</div>
+    <p class="where">Named 65 times:
+      discussion ×35, introduction ×15, abstract ×6, title/headings ×5, appendix ×3, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1910.09740v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…oad PDF
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-Abstract
-
-I Introduction
-
-II Nonparametric Inference of the Equation of State
-
-II.1 Constructing nonparametric priors
-
-II.2 Sampling from nonparametric priors
-
-III Implications for <mark>GW170817</mark>
-
-III.1 Constraints on GW170817’s macroscopic observables
-
-III.2 Implications for GW170817’s progenitor and remnant
-
-IV Implications for Neutron Star Properties
-
-IV.1 Posterior processes for the EOS
-
-IV.2 Posterior distributions and processes for macroscopic o…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-Abstract
-
-I Introduction
-
-II Nonparametric Inference of the Equation of State
-
-II.1 Constructing nonparametric priors
-
-II.2 Sampling from nonparametric priors
-
-III Implications for GW170817
-
-III.1 Constraints on <mark>GW170817</mark>’s macroscopic observables
-
-III.2 Implications for GW170817’s progenitor and remnant
-
-IV Implications for Neutron Star Properties
-
-IV.1 Posterior processes for the EOS
-
-IV.2 Posterior distributions and processes for macroscopic observables
-
-IV.2.1 Maximum mass…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">front_matter</span>… Introduction
-
-II Nonparametric Inference of the Equation of State
-
-II.1 Constructing nonparametric priors
-
-II.2 Sampling from nonparametric priors
-
-III Implications for GW170817
-
-III.1 Constraints on GW170817’s macroscopic observables
-
-III.2 Implications for <mark>GW170817</mark>’s progenitor and remnant
-
-IV Implications for Neutron Star Properties
-
-IV.1 Posterior processes for the EOS
-
-IV.2 Posterior distributions and processes for macroscopic observables
-
-IV.2.1 Maximum mass and binding energy
-
-IV.2.2 Mass-tidal deformability, mass-…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…on nonparametric priors
-
-D Supplementary figures and tables
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1910.09740v1 [astro-ph.HE] 22 Oct 2019
-
-Nonparametric inference of neutron star composition, equation of state, 
-and maximum mass with <mark>GW170817</mark>
-
-Reed Essick
-
-Email: reedessick@kicp.uchicago.edu
-
-Affiliation: Kavli Institute for Cosmological Physics, The University of Chicago, 5640 South Ellis Avenue, Chicago, Illinois, 60637, USA
-
-  
-Philippe Landry
-
-Email: landryp@uchicago.edu
-
-Affiliation: Enrico F…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…@uchicago.edu
-
-Affiliation: Enrico Fermi Institute, Department of Physics, Department of Astronomy and Astrophysics,
-and Kavli Institute for Cosmological Physics, The University of Chicago, Chicago, IL 60637, USA
-
-August 24, 2026
-
-Abstract
-
- 
-The detection of <mark>GW170817</mark> in gravitational waves provides unprecedented constraints on the equation of state (EOS) of the ultra-dense matter within the cores of neutron stars (NSs).
-We extend the nonparametric analysis first introduced in Landry &amp; Essick (2019), and confirm that GW170…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…70817 in gravitational waves provides unprecedented constraints on the equation of state (EOS) of the ultra-dense matter within the cores of neutron stars (NSs).
-We extend the nonparametric analysis first introduced in Landry &amp; Essick (2019), and confirm that <mark>GW170817</mark> favors soft EOSs.
-We infer macroscopic observables for a canonical 1.4​M⊙1.4\,M_{\odot} NS, including the tidal deformability Λ1.4=211−137+312\Lambda_{1.4}=211^{+312}_{-137} (491−181+216491^{+216}_{-181}) and radius R1.4=10.86−1.42+2.04R_{1.4}=10.86^{+2.04}_{…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…=2.064−0.134+0.260M_{\mathrm{max}}=2.064^{+0.260}_{-0.134} (2.017−0.087+0.2382.017^{+0.238}_{-0.087})M⊙\,M_{\odot}, with nonparametric priors loosely (tightly) constrained to resemble candidate EOSs from the literature.
-Furthermore, we find weak evidence that <mark>GW170817</mark> involved at least one NS based on gravitational-wave data alone (BBBHNS=3.3±1.4B^{\mathrm{NS}}_{\mathrm{BBH}}=3.3\pm 1.4), consistent with the observation of electromagnetic counterparts.
-We also investigate GW170817’s implications for the maximum spin freque…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…e.
-Furthermore, we find weak evidence that GW170817 involved at least one NS based on gravitational-wave data alone (BBBHNS=3.3±1.4B^{\mathrm{NS}}_{\mathrm{BBH}}=3.3\pm 1.4), consistent with the observation of electromagnetic counterparts.
-We also investigate <mark>GW170817</mark>’s implications for the maximum spin frequency of millisecond pulsars, and find that the fastest known pulsar is spinning at more than 50% of its breakup frequency at 90% confidence.
-We additionally find modest evidence in favor of quark matter within NSs, and…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…s implications for the maximum spin frequency of millisecond pulsars, and find that the fastest known pulsar is spinning at more than 50% of its breakup frequency at 90% confidence.
-We additionally find modest evidence in favor of quark matter within NSs, and <mark>GW170817</mark> favors the presence of at least one disconnected hybrid star branch in the mass–radius relation over a single stable branch by a factor of 22.
-Assuming there are multiple stable branches, we find a suggestive posterior preference for a sharp softening around …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…ior preference for a sharp softening around nuclear density followed by stiffening around twice nuclear density, consistent with a strong first-order phase transition.
-While the statistical evidence in favor of new physics within NS cores remains tenuous with <mark>GW170817</mark> alone, these tantalizing hints reemphasize the promise of gravitational waves for constraining the supranuclear EOS.
-
- 
-
-I Introduction
-
-The observation of gravitational waves (GWs) from GW170817 [1], a coalescing compact binary with an electromagnetic counte…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ce in favor of new physics within NS cores remains tenuous with GW170817 alone, these tantalizing hints reemphasize the promise of gravitational waves for constraining the supranuclear EOS.
-
- 
-
-I Introduction
-
-The observation of gravitational waves (GWs) from <mark>GW170817</mark> [1], a coalescing compact binary with an electromagnetic counterpart, has greatly advanced the study of nuclear matter at extreme densities.
-Changes in the orbital phasing due to the components’ mutual tidal interaction leave a detectable imprint in the GW si…</div>
+    <details class="lines"><summary>Show the sentences (58, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Nonparametric inference of neutron star composition, equation of state, and maximum mass with GW170817</li><li><span class="sec">title/headings</span> III Implications for GW170817</li><li><span class="sec">title/headings</span> III.1 Constraints on GW170817’s macroscopic observables</li><li><span class="sec">title/headings</span> III.2 Implications for GW170817’s progenitor and remnant</li><li><span class="sec">abstract</span> The detection of GW170817 in gravitational waves provides unprecedented constraints on the equation of state (EOS) of the ultra-dense m…</li><li><span class="sec">abstract</span> We extend the nonparametric analysis first introduced in Landry &amp; Essick (2019), and confirm that GW170817 favors soft EOSs.</li><li><span class="sec">abstract</span> Furthermore, we find weak evidence that GW170817 involved at least one NS based on gravitational-wave data alone (BBBHNS=3.3±1.4B^{\mathrm{NS}}_{\mathrm{BBH}}…</li><li><span class="sec">abstract</span> We also investigate GW170817’s implications for the maximum spin frequency of millisecond pulsars, and find that the fastest known pulsar…</li></ul>
     </details>
     
   </div>

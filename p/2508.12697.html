@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,122 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Constraining initial orbital eccentricity of inspiral-dominated gravitational-wave events with an analytic approximant</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2508.12697" target="_blank" rel="noopener" class="mono">arXiv:2508.12697</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The LIGO-Virgo-KAGRA consortium has sporadically detected inspiral-dominated gravitational-wave events such as GW170817 and GW190425. These events offer an opportunity to constrain possible initial (residual) orbital eccentricities using purely inspiral template families. We detail the implementation of an LALSuite approximant, TaylorF2Ecck, which analytically models inspiral gravitational waves from nonspinning compact binaries in post-Newtonian (PN)-accurate eccentric orbits and restricts the initial-eccentricity contributions to leading order. Specifically, our frequency-domain approximant consistently incorporates orbital, advance of periastron, and gravitational-wave emission effects fully up to 3PN order. We conduct detailed parameter-estimation studies of GW170817 and GW190425 using TaylorF2Ecck, following comprehensive sanity checks to validate model performance and investigate the influence of eccentricity and periastron advance in the relevant parameter space. The results indicate that the initial eccentricity at 20 Hz is negligible within the 90% credible intervals (less than 0.016 for GW170817 and less than 0.023 for GW190425, with both posterior distributions railing toward zero), and Bayes factors show no strong evidence favoring the eccentric waveform over the quasicircular waveform. At such negligible initial eccentricities, comparisons between eccentric models with and without periastron advance show no clear signature of this effect, with no significant model-dependent shifts in the posterior distributions and no strong Bayes-factor evidence favoring one model over the other. Additionally, these detailed studies reveal the importance of incorporating initial-eccentricity contributions at least up to 3.5PN order and discuss its implications. We substantiate this inference by employing versions of the quasicircular TaylorF2 approximant that incorporate Fourier phase contributions beyond the conventional 3.5PN order.</p></details>
+<div class="small mut mono">arXiv:2508.12697</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The LIGO-Virgo-KAGRA consortium has sporadically detected inspiral-dominated gravitational-wave events such as GW170817 and GW190425. These events offer an opportunity to constrain possible initial (residual) orbital eccentricities using purely inspiral template families. We detail the implementation of an LALSuite approximant, TaylorF2Ecck, which analytically models inspiral gravitational waves from nonspinning compact binaries in post-Newtonian (PN)-accurate eccentric orbits and restricts the initial-eccentricity contributions to leading order. Specifically, our frequency-domain approximant consistently incorporates orbital, advance of periastron, and gravitational-wave emission effects fully up to 3PN order. We conduct detailed parameter-estimation studies of GW170817 and GW190425 using TaylorF2Ecck, following comprehensive sanity checks to validate model performance and investigate the influence of eccentricity and periastron advance in the relevant parameter space. The results indicate that the initial eccentricity at 20 Hz is negligible within the 90% credible intervals (less than 0.016 for GW170817 and less than 0.023 for GW190425, with both posterior distributions railing toward zero), and Bayes factors show no strong evidence favoring the eccentric waveform over the quasicircular waveform. At such negligible initial eccentricities, comparisons between eccentric models with and without periastron advance show no clear signature of this effect, with no significant model-dependent shifts in the posterior distributions and no strong Bayes-factor evidence favoring one model over the other. Additionally, these detailed studies reveal the importance of incorporating initial-eccentricity contributions at least up to 3.5PN order and discuss its implications. We substantiate this inference by employing versions of the quasicircular TaylorF2 approximant that incorporate Fourier phase contributions beyond the conventional 3.5PN order.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/pdf/2508.12697v4" target="_blank" rel="noopener">Open the paper (PDF, v4) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched; it's a PDF, so use your viewer's search.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">4 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">4 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>7 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…nspiral-dominated GW events, such as GW170817,
-spend substantially more time in the LVK frequency
-window (around 20 Hz to kHz) than typical BBH events.
-For instance, the inspiral phase of GW170817 spans
-approximately 168 1 s, while that of the first GW event,
-<mark>GW150914</mark>, lasted a mere 0.7 s (see Footnote 1). Con-
-sequently, inspiral-dominated LVK events are particularly
-well suited for exploring the effects of any residual orbital
-eccentricity, because they undergo a large number of GW
-cycles within the operational frequency…</div>
+    <p class="where">Named 7 times:
+      methods ×5, title/headings ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…LALSimulation.
-is argued that the presence of measurable initial orbital
-eccentricity should aid in distinguishing between these
-scenarios [34,45–54]. This understanding was the primary
-motivation behind early attempts to constrain the initial
-eccentricity of <mark>GW150914</mark>, as discussed in Ref. [55].
-Significant work has gone into creating gravitational
-waveform models that incorporate the effects of orbital
-eccentricity [31,56–70]. Such models have been applied
-to analyze GW signals observed by LIGO and Virgo, and
-have also be…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…emain essentially unchanged if we
-instead use either the cross-polarization modulus | ˜ℎ×(𝑓)|
-or the full Fourier amplitude | ˜ℎ(𝑓)| . In Fig. 1, we dis-
-play| ˜ℎ+(𝑓)| for the TaylorF2Ecck, TaylorF2Ecch,
-TaylorF2Ecc, and TaylorF2 approximants, using
-simulated <mark>GW150914</mark>-like and GW170817-like parame-
-ters to illustrate their behavior in short- and long-inspiral
-scenarios. We take𝑒0= 0.1 at 20 Hz.
-For 𝑒0 &gt; 0.02, both the TaylorF2Ecck and
-TaylorF2Ecch approximants exhibit visible amplitude
-modulations due to overlapping harmon…</div>
-    
-    
-    <details><summary>4 more</summary>
-    <div class="mention"><span class="sec">methods</span>…
-FIG. 1. Plot illustrating the amplitude evolution ( | ˜ℎ+(𝑓)| ) as a function of frequency for eccentric waveform approximants
-(TaylorF2Ecck, TaylorF2Ecch) compared to TaylorF2Ecc and the quasicircular TaylorF2 model. The top panel uses
-parameters similar to <mark>GW150914</mark> (BBH, short inspiral), while the bottom panel uses parameters similar to GW170817 (BNS, long
-inspiral), both with an initial eccentricity 𝑒0= 0.1 at 𝑓0= 20 Hz. The amplitude spectral density (ASD) for the LIGO L1 detector
-at O4 design sensitivity is overplott…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…we compare the frequency evolution of the real part
-of the plus polarization, ℜ[ ˜ℎ+(𝑓)], for the eccen-
-tric approximants TaylorF2Ecck, TaylorF2Ecch,
-and TaylorF2Ecc, together with the quasicircular
-TaylorF2 model. The comparison is performed using
-simulated <mark>GW150914</mark>-like BBH parameters with the same
-setup as in Sec. II B, with an initial eccentricity 𝑒0= 0.1
-at 20 Hz. This test complements the | ˜ℎ+(𝑓)| comparison
-shown in Fig. 1 by highlighting the oscillatory structure of
-the frequency-domain waveform. This is useful b…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…entation also shows visible phase shifts
-between the eccentric waveforms and the quasicircular
-063003-21
-
-HEMANTAKUMAR PHURAILATPAMet al. PHYS. REV. D114, 063003 (2026)
-20 30 40 50 60 70 80 90
-f (Hz)
-−1.0
-−0.5
-0.0
-0.5
-1.0
-ℜ[˜h+(f )] (1/
-√
-Hz)
-×10□22
-Simulated <mark>GW150914</mark> (BBH, short inspiral)
-TF2Ecck
-TF2Ecch
-TF2Ecc
-TaylorF2
-FIG. 7. Frequency evolution of the real part of the plus
-polarization, ℜ[ ˜ℎ+(𝑓)], for the eccentric TaylorF2Ecck,
-TaylorF2Ecch, and TaylorF2Ecc approximants, compared
-with the quasicircular TaylorF2 model…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…TaylorF2
-FIG. 7. Frequency evolution of the real part of the plus
-polarization, ℜ[ ˜ℎ+(𝑓)], for the eccentric TaylorF2Ecck,
-TaylorF2Ecch, and TaylorF2Ecc approximants, compared
-with the quasicircular TaylorF2 model. The waveforms are
-generated using simulated <mark>GW150914</mark>-like BBH parameters with
-𝑒0= 0.1 at 20 Hz. For this moderate eccentricity, the eccentric
-models show broadly similar phase evolution among themselves,
-while exhibiting clear frequency-dependent phase shifts relative
-to the quasicircular waveform. The amplitud…</div>
+    <details class="lines"><summary>Show the sentences (7): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> For instance, the inspiral phase of GW170817 spans approximately 168 1 s, while that of the first GW event, GW150914, lasted a mere 0.7 s (see Footnote 1).</li><li><span class="sec">title/headings</span> This understanding was the primary motivation behind early attempts to constrain the initial eccentricity of GW150914, as discussed in Ref. [55].</li><li><span class="sec">methods</span> …is- play| ˜ℎ+(𝑓)| for the TaylorF2Ecck, TaylorF2Ecch, TaylorF2Ecc, and TaylorF2 approximants, using simulated GW150914-like and GW170817-like parame- ters to illustrate their behavior in short- and long-inspiral scenarios.</li><li><span class="sec">methods</span> The top panel uses parameters similar to GW150914 (BBH, short inspiral), while the bottom panel uses parameters similar to GW170817 (BNS, long inspiral), both…</li><li><span class="sec">methods</span> The comparison is performed using simulated GW150914-like BBH parameters with the same setup as in Sec.</li><li><span class="sec">methods</span> …114, 063003 (2026) 20 30 40 50 60 70 80 90 f (Hz) −1.0 −0.5 0.0 0.5 1.0 ℜ[˜h+(f )] (1/ √ Hz) ×10□22 Simulated GW150914 (BBH, short inspiral) TF2Ecck TF2Ecch TF2Ecc TaylorF2 FIG. 7.</li><li><span class="sec">methods</span> The waveforms are generated using simulated GW150914-like BBH parameters with 𝑒0= 0.1 at 20 Hz.</li></ul>
     </details>
     
   </div>
@@ -274,162 +201,15 @@ to the quasicircular waveform. The amplitud…</div>
 <section class="card" data-i="1" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>81 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>… Astronomy and Astrophysics, Post Bag 4, Ganeshkhind, Pune 411007, India
-(Received 19 August 2025; accepted 8 July 2026; published 3 September 2026)
-The LIGO-Virgo-KAGRA consortium has sporadically detected inspiral-dominated gravitational-wave
-events such as <mark>GW170817</mark> and GW190425. These events offer an opportunity to constrain possible initial
-(residual) orbital eccentricities using purely inspiral template families. We detail the implementation of
-an LALSuite approximant, TaylorF2Ecck, which analytically models inspiral …</div>
+    <p class="where">Named 81 times:
+      methods ×43, appendix ×14, results ×12, title/headings ×10, data ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…tricity contributions to leading order. Specifically, our frequency-domain approximant consistently
-incorporates orbital, advance of periastron, and gravitational-wave emission effects fully up to 3PN order.
-We conduct detailed parameter-estimation studies of <mark>GW170817</mark> and GW190425 usingTaylorF2Ecck,
-following comprehensive sanity checks to validate model performance and investigate the influence of
-eccentricity and periastron advance in the relevant parameter space. The results indicate that the initial
-eccentricity at 20 …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…o validate model performance and investigate the influence of
-eccentricity and periastron advance in the relevant parameter space. The results indicate that the initial
-eccentricity at 20 Hz is negligible within the 90% credible intervals (less than 0.016 for <mark>GW170817</mark> and less
-than 0.023 for GW190425, with both posterior distributions railing toward zero), and Bayes factors show
-no strong evidence favoring the eccentric waveform over the quasicircular waveform. At such negligible
-initial eccentricities, comparisons between…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">front_matter</span>…tions currently constrain local merger-rate
-∗Contact author: hemantaph@link.cuhk.edu.hk
-densities to ∼ 7.6–250 Gpc−3 yr−1 for BNS systems and
-∼ 9.1–84 Gpc−3 yr−1 for NSBH systems [8,16]. Further-
-more, the discovery of inspiral GWs from the merging
-BNS binary <mark>GW170817</mark>, along with its electromagnetic
-counterparts, marked the advent of multimessenger as-
-tronomy [17]. It is important to note that the currently
-operational GW observatories are primarily sensitive to
-the inspiral phase of GWs from BNS systems [13].
-Such inspir…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…mation (SPA) to obtain analyt-
-ical frequency-domain inspiral templates from their time-
-domain counterparts [21]. It is possible to extend the
-approach to incorporate the effects of spin and orbital
-eccentricity [22–29].
-Inspiral-dominated GW events, such as <mark>GW170817</mark>,
-spend substantially more time in the LVK frequency
-window (around 20 Hz to kHz) than typical BBH events.
-For instance, the inspiral phase of GW170817 spans
-approximately 168 1 s, while that of the first GW event,
-GW150914, lasted a mere 0.7 s (see Footnote 1…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…h to incorporate the effects of spin and orbital
-eccentricity [22–29].
-Inspiral-dominated GW events, such as GW170817,
-spend substantially more time in the LVK frequency
-window (around 20 Hz to kHz) than typical BBH events.
-For instance, the inspiral phase of <mark>GW170817</mark> spans
-approximately 168 1 s, while that of the first GW event,
-GW150914, lasted a mere 0.7 s (see Footnote 1). Con-
-sequently, inspiral-dominated LVK events are particularly
-well suited for exploring the effects of any residual orbital
-eccentricity, because t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…analyze GW signals observed by LIGO and Virgo, and
-have also been used in recent studies to set bounds on
-initial eccentricities of a few LVK coalescence events [71–
-73].
-Firm bounds on the initial eccentricity 𝑒0 for two
-inspiral-dominated LVK events, namely <mark>GW170817</mark> and
-GW190425, were established in Ref. [74]. This analysis
-utilized the TaylorF2Ecc approximant, which incorpo-
-rates leading-order initial eccentricity contributions that
-are 3PN-accurate in the Fourier phase of the widely used
-quasicircular TaylorF2 inspira…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>… version
-of the approximant presented in Ref. [77], which provides
-eccentric corrections accurate to O(𝑒6
-0) with amplitude
-corrections at 1PN order.
-In this paper, we employ our TaylorF2Ecck ap-
-proximant to constrain 𝑒0 for two inspiral-dominated GW
-events, <mark>GW170817</mark> and GW190425. Using Bayesian
-inference with nested sampling [78], we estimate 𝑒0 for
-these events and find results consistent with negligible
-eccentricity at a gravitational-wave frequency of 20 Hz,
-with the posterior distributions railing toward zero. Bayes-…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…s an overview of the frequency-domain waveforms
-employed in this work. In this section, we introduce
-the TaylorF2Ecck approximant and present waveform
-sanity checks. Section III describes the data-analysis
-methods and presents parameter-estimation results for
-<mark>GW170817</mark> and GW190425. Our constraints on 𝑒0
-for these events, together with their implications and
-limitations, are discussed in this section. Section IV
-summarizes our main findings and discusses future ex-
-tensions of this work. Appendixes A and B provide
-the expli…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…vide
-the explicit PN-accurate expressions for the inspiral
-approximants. Appendix C presents supplementary sanity
-checks. Appendix D provides supplementary injection-
-recovery results. Appendixes E 1 and E 2 show the
-full parameter-estimation corner plots for <mark>GW170817</mark> and
-GW190425. Appendix F compares TaylorF2Ecck and
-TaylorF2Ecc with the pyEFPE waveform model.
-II. INSPIRAL W A VEFORM APPROXIMANTS
-In this section, we briefly introduce various fully
-analytic inspiral approximants employed in our investiga-
-tions. These incl…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…-
-form deviations of TaylorF2Ecck from TaylorF2,
-TaylorF2Ecc, and TaylorF2Ecch were examined
-in the 𝑚–𝑒0 and 𝜂–𝑒0 parameter spaces. All analyses
-in this section use a minimum frequency of 20 Hz, a
-choice discussed in detail in Sec. III A. Additionally, we
-use <mark>GW170817</mark>-like parameters (specifically masses and
-distance) obtained from a parameter-estimation run with
-TaylorF2Ecck on the GW170817 data (more details
-about parameter estimation in Sec. III B). It should be
-noted that TaylorF2Ecch is included in these tests for
-con…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…aces. All analyses
-in this section use a minimum frequency of 20 Hz, a
-choice discussed in detail in Sec. III A. Additionally, we
-use GW170817-like parameters (specifically masses and
-distance) obtained from a parameter-estimation run with
-TaylorF2Ecck on the <mark>GW170817</mark> data (more details
-about parameter estimation in Sec. III B). It should be
-noted that TaylorF2Ecch is included in these tests for
-context only. Its waveform behavior will not be elaborated
-upon in the results of Sec. II B, and it will not be included
-in the e…</div>
+    <details class="lines"><summary>Show the sentences (79, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> …he LIGO-Virgo-KAGRA consortium has sporadically detected inspiral-dominated gravitational-wave events such as GW170817 and GW190425.</li><li><span class="sec">title/headings</span> We conduct detailed parameter-estimation studies of GW170817 and GW190425 usingTaylorF2Ecck, following comprehensive sanity checks to validate model performance and inves…</li><li><span class="sec">title/headings</span> …e that the initial eccentricity at 20 Hz is negligible within the 90% credible intervals (less than 0.016 for GW170817 and less than 0.023 for GW190425, with both posterior distributions railing toward zero), and Bayes factors s…</li><li><span class="sec">title/headings</span> Further- more, the discovery of inspiral GWs from the merging BNS binary GW170817, along with its electromagnetic counterparts, marked the advent of multimessenger as- tronomy [17].</li><li><span class="sec">title/headings</span> Inspiral-dominated GW events, such as GW170817, spend substantially more time in the LVK frequency window (around 20 Hz to kHz) than typical BBH events.</li><li><span class="sec">title/headings</span> For instance, the inspiral phase of GW170817 spans approximately 168 1 s, while that of the first GW event, GW150914, lasted a mere 0.7 s (see Footnote 1)…</li><li><span class="sec">title/headings</span> Firm bounds on the initial eccentricity 𝑒0 for two inspiral-dominated LVK events, namely GW170817 and GW190425, were established in Ref. [74].</li><li><span class="sec">title/headings</span> In this paper, we employ our TaylorF2Ecck ap- proximant to constrain 𝑒0 for two inspiral-dominated GW events, GW170817 and GW190425.</li></ul>
     </details>
     
   </div>
@@ -466,163 +246,15 @@ in the e…</div>
 <section class="card" data-i="2" data-event="GW190425">
   <div class="ctx">
     <div class="evname mono">GW190425</div>
-    <h3>43 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…d Astrophysics, Post Bag 4, Ganeshkhind, Pune 411007, India
-(Received 19 August 2025; accepted 8 July 2026; published 3 September 2026)
-The LIGO-Virgo-KAGRA consortium has sporadically detected inspiral-dominated gravitational-wave
-events such as GW170817 and <mark>GW190425</mark>. These events offer an opportunity to constrain possible initial
-(residual) orbital eccentricities using purely inspiral template families. We detail the implementation of
-an LALSuite approximant, TaylorF2Ecck, which analytically models inspiral gravitational…</div>
+    <p class="where">Named 43 times:
+      methods ×17, appendix ×8, results ×8, title/headings ×7, data ×3.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190425</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…ibutions to leading order. Specifically, our frequency-domain approximant consistently
-incorporates orbital, advance of periastron, and gravitational-wave emission effects fully up to 3PN order.
-We conduct detailed parameter-estimation studies of GW170817 and <mark>GW190425</mark> usingTaylorF2Ecck,
-following comprehensive sanity checks to validate model performance and investigate the influence of
-eccentricity and periastron advance in the relevant parameter space. The results indicate that the initial
-eccentricity at 20 Hz is negligi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…investigate the influence of
-eccentricity and periastron advance in the relevant parameter space. The results indicate that the initial
-eccentricity at 20 Hz is negligible within the 90% credible intervals (less than 0.016 for GW170817 and less
-than 0.023 for <mark>GW190425</mark>, with both posterior distributions railing toward zero), and Bayes factors show
-no strong evidence favoring the eccentric waveform over the quasicircular waveform. At such negligible
-initial eccentricities, comparisons between eccentric models with and withou…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">front_matter</span>…gnals observed by LIGO and Virgo, and
-have also been used in recent studies to set bounds on
-initial eccentricities of a few LVK coalescence events [71–
-73].
-Firm bounds on the initial eccentricity 𝑒0 for two
-inspiral-dominated LVK events, namely GW170817 and
-<mark>GW190425</mark>, were established in Ref. [74]. This analysis
-utilized the TaylorF2Ecc approximant, which incorpo-
-rates leading-order initial eccentricity contributions that
-are 3PN-accurate in the Fourier phase of the widely used
-quasicircular TaylorF2 inspiral approximant…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…he approximant presented in Ref. [77], which provides
-eccentric corrections accurate to O(𝑒6
-0) with amplitude
-corrections at 1PN order.
-In this paper, we employ our TaylorF2Ecck ap-
-proximant to constrain 𝑒0 for two inspiral-dominated GW
-events, GW170817 and <mark>GW190425</mark>. Using Bayesian
-inference with nested sampling [78], we estimate 𝑒0 for
-these events and find results consistent with negligible
-eccentricity at a gravitational-wave frequency of 20 Hz,
-with the posterior distributions railing toward zero. Bayes-
-063003-2
-
-CO…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>… of the frequency-domain waveforms
-employed in this work. In this section, we introduce
-the TaylorF2Ecck approximant and present waveform
-sanity checks. Section III describes the data-analysis
-methods and presents parameter-estimation results for
-GW170817 and <mark>GW190425</mark>. Our constraints on 𝑒0
-for these events, together with their implications and
-limitations, are discussed in this section. Section IV
-summarizes our main findings and discusses future ex-
-tensions of this work. Appendixes A and B provide
-the explicit PN-accura…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…icit PN-accurate expressions for the inspiral
-approximants. Appendix C presents supplementary sanity
-checks. Appendix D provides supplementary injection-
-recovery results. Appendixes E 1 and E 2 show the
-full parameter-estimation corner plots for GW170817 and
-<mark>GW190425</mark>. Appendix F compares TaylorF2Ecck and
-TaylorF2Ecc with the pyEFPE waveform model.
-II. INSPIRAL W A VEFORM APPROXIMANTS
-In this section, we briefly introduce various fully
-analytic inspiral approximants employed in our investiga-
-tions. These include existing …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…st. These injection-recovery tests use the LIGO L1
-and H1 detectors with O4 design sensitivity PSDs and
-a minimum frequency of 20 Hz. For the GW170817-
-like injection used in Fig. 2, the injected signal has
-network SNR≈ 64 in this setup. For the supplementary
-<mark>GW190425</mark>-like injection discussed in Appendix D, the
-injected signal has network SNR≈ 13.
-Waveform distinguishability is assessed through differ-
-ences in the resulting Bayes factors ( Δ log10 B), with
-values between 1 and 2 indicating strong evidence and
-values &gt; 2 i…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…t 𝑒0 ≳ 0.01 in this setup,
-identifying a region in 𝑒0 where eccentricity affects our
-reduced-dimensional injection-recovery analysis. Addi-
-tional posterior plots of these analyses are included in
-Appendix D 1. We also perform supplementary sanity
-checks with <mark>GW190425</mark>-like parameters in Appendix D 2
-to examine how the results change for a system with a
-different mass and SNR. This injection features a higher
-mass and, due to a larger luminosity distance, a lower
-network SNR (SNR≈ 13) in the same O4-design L1–H1
-setup. In t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…cities in
-our setup (𝑒0 ≳ 0.06). The quoted eccentricity threshold
-values are not universal thresholds. They depend on the
-assumed detector network, PSD, SNR, source parameters,
-and parameter space used in the recovery. The real-event
-analyses of GW170817 and <mark>GW190425</mark> in Sec. III B are
-therefore interpreted directly through their own Bayes
-factors and posterior distributions, rather than by adopting
-the eccentricity thresholds inferred from this sanity-check
-section. Lastly, the sanity tests in this section indicate
-that T…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ntricity,
-if present, are expected to be most pronounced. This
-approach is further supported by similar strategies in
-recent literature, such as the use of 𝑓max= 280 Hz to
-investigate eccentricity in the inspiral phase of an NSBH
-system [72].
-For GW170817 and <mark>GW190425</mark> parameter-estimation
-runs, we use the official BayesWave [100] PSDs pro-
-vided in the data releases [101–103], ensuring consistency
-with the original LVK analyses [95,104]. Supplemen-
-tary parameter-estimation runs using PSDs computed
-via Welch’s method (the …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…parameter-estimation runs using PSDs computed
-via Welch’s method (the Bilby default) confirm that our
-conclusions remain unaffected by this choice.
-B. Parameter estimation implications of the
-TaylorF2Ecck approximant for inspiral-dominated
-events GW170817 and <mark>GW190425</mark>
-We now pursue parameter-estimation studies of our ec-
-centric approximants using data from inspiral-dominated
-events. This effort primarily investigates the data-
-analysis implications of TaylorF2Ecck and compares
-them with parameter-estimation results obtain…</div>
+    <details class="lines"><summary>Show the sentences (40, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> …-KAGRA consortium has sporadically detected inspiral-dominated gravitational-wave events such as GW170817 and GW190425.</li><li><span class="sec">title/headings</span> We conduct detailed parameter-estimation studies of GW170817 and GW190425 usingTaylorF2Ecck, following comprehensive sanity checks to validate model performance and investigate the in…</li><li><span class="sec">title/headings</span> …t 20 Hz is negligible within the 90% credible intervals (less than 0.016 for GW170817 and less than 0.023 for GW190425, with both posterior distributions railing toward zero), and Bayes factors show no strong evidence favoring t…</li><li><span class="sec">title/headings</span> Firm bounds on the initial eccentricity 𝑒0 for two inspiral-dominated LVK events, namely GW170817 and GW190425, were established in Ref. [74].</li><li><span class="sec">title/headings</span> …, we employ our TaylorF2Ecck ap- proximant to constrain 𝑒0 for two inspiral-dominated GW events, GW170817 and GW190425.</li><li><span class="sec">title/headings</span> Section III describes the data-analysis methods and presents parameter-estimation results for GW170817 and GW190425.</li><li><span class="sec">title/headings</span> Appendixes E 1 and E 2 show the full parameter-estimation corner plots for GW170817 and GW190425.</li><li><span class="sec">methods</span> For the supplementary GW190425-like injection discussed in Appendix D, the injected signal has network SNR≈ 13.</li></ul>
     </details>
     
   </div>
@@ -659,40 +291,16 @@ them with parameter-estimation results obtain…</div>
 <section class="card" data-i="3" data-event="GW200105_162426">
   <div class="ctx">
     <div class="evname mono">GW200105_162426</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…w Python implementation of the long-developing EFPE
-framework [68–70] for modeling inspiraling compact
-binaries with eccentricity and spin precession, which now
-also incorporates periastron advance. This model was
-recently used for parameter estimation of the <mark>GW200105</mark>
-event (an NSBH binary analyzed as a purely inspiral event
-by limiting 𝑓max to 280 Hz), claiming evidence of perias-
-tron advance and reporting eccentricity 𝑒0= 0.145+0.007
-−0.097
-at 20 Hz [72]. Although our current study with
-TaylorF2Ecck focuses on inspiral-…</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200105</span> or <span class="mono hit">GW200105_162426</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…to O(𝑒4
-0),
-which are important for long inspirals and moderate 𝑒0
-(see also Ref. [77] for a comparison of O(𝑒2
-0) and O(𝑒6
-0)
-corrections in eccentric inspirals). Future updates to
-TaylorF2Ecck will enable direct tests of these higher-
-order corrections.
-For <mark>GW200105</mark>, using the same parameter-estimation
-settings as in Ref. [72], our TaylorF2Ecck analysis
-yielded 𝑒0= 0.122+0.027
-−0.098 at 20 Hz, while TaylorF2Ecc
-gave𝑒0= 0.122+0.028
-−0.096. These results are consistent with
-those reported in Ref. [72] within the 90% credib…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> This model was recently used for parameter estimation of the GW200105 event (an NSBH binary analyzed as a purely inspiral event by limiting 𝑓max to 280 Hz), claiming evidence of p…</li><li><span class="sec">methods</span> For GW200105, using the same parameter-estimation settings as in Ref. [72], our TaylorF2Ecck analysis yielded 𝑒0= 0.122+0.…</li></ul>
+    </details>
     
   </div>
   <div class="form">

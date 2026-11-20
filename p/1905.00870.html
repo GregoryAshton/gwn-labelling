@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,62 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Fundamental Physics Implications for Higher-Curvature Theories from Binary Black Hole Signals in the LIGO-Virgo Catalog GWTC-1</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1905.00870" target="_blank" rel="noopener" class="mono">arXiv:1905.00870</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Gravitational-wave astronomy offers not only new vistas into the realm of astrophysics, but it also opens an avenue for probing, for the first time, general relativity in its strong-field, nonlinear, and dynamical regime, where the theory&#39;s predictions manifest themselves in their full glory. We present a study of whether the gravitational-wave events detected so far by the LIGO-Virgo scientific collaborations can be used to probe higher-curvature corrections to general relativity. In particular, we focus on two examples: Einstein-dilaton-Gauss-Bonnet and dynamical Chern-Simons gravity. We find that the two events with a low-mass m ≈7 M&lt;SUB&gt;☉&lt;/SUB&gt; BH (GW151226 and GW170608) place stringent constraints on Einstein-dilaton-Gauss-Bonnet gravity, α&lt;SUB&gt;EDGB&lt;/SUB&gt;&lt;SUP&gt;1 /2&lt;/SUP&gt;≲5.6 km , whereas dynamical Chern-Simons gravity remains unconstrained by the gravitational-wave observations analyzed.</p></details>
+<div class="small mut mono">arXiv:1905.00870</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Gravitational-wave astronomy offers not only new vistas into the realm of astrophysics, but it also opens an avenue for probing, for the first time, general relativity in its strong-field, nonlinear, and dynamical regime, where the theory&#39;s predictions manifest themselves in their full glory. We present a study of whether the gravitational-wave events detected so far by the LIGO-Virgo scientific collaborations can be used to probe higher-curvature corrections to general relativity. In particular, we focus on two examples: Einstein-dilaton-Gauss-Bonnet and dynamical Chern-Simons gravity. We find that the two events with a low-mass m ≈7 M&lt;SUB&gt;☉&lt;/SUB&gt; BH (GW151226 and GW170608) place stringent constraints on Einstein-dilaton-Gauss-Bonnet gravity, α&lt;SUB&gt;EDGB&lt;/SUB&gt;&lt;SUP&gt;1 /2&lt;/SUP&gt;≲5.6 km , whereas dynamical Chern-Simons gravity remains unconstrained by the gravitational-wave observations analyzed.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1905.00870v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">6 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">6 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…go collaboration (LVC) [30]
-to analyze whether these two theories can be constrained with the binary BH
-events detected during the first two observation runs of the LVC.
-More specifically, we will consider the binary BH events in the LIGO-Virgo Catalog GWTC-1
-<mark>GW150914</mark> [31, 32],
-GW151226 [33],
-GW170104 [34],
-GW170608 [35] and
-GW170814 [36]
-for which the posteriors on theory-independent GR modifications,
-obtained through a Markov-chain Monte-Carlo (MCMC) exploration of
-the parameter space, have been made public [3, 37].
-
-Qua…</div>
+    <p class="where">Named 3 times:
+      abstract ×2, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1905.00870v3#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>…calculation of the Fisher matrix, by modeling the binaries
-with the phenomenolgical waveform template
-IMRPhenomD [49, 50]
-We make similar assumptions for the fiducial parameters as we made to obtain
-the order of magnitude constraints and consider 5 GW events, <mark>GW150914</mark>,
-GW151226, GW170104, GW170608, and GW170814 (cf. Table III
-in [30]).
-The bounds obtained for the two most constraining events, GW151226 and GW170608
-are shown in Table 1 and they are in good agreement with our
-order-of-magnitude calculation for both theories.…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…the GW151226 and GW170608 events.
-This implies that a 90% bound of αEdGB1/2≲5.6{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}\lesssim 5.6 km is
-statistically meaningful and can be placed on EdGB gravity using these two
-events.
-This is not the case for the other events (<mark>GW150914</mark>, GW170104 and GW170814),
-for which constraints would violate the small coupling approximation.
-
-We emphasize that the location of the peaks in the posteriors of Fig. 1
-do not indicate a deviation from GR.
-Rather, the lack of support at zero is an artifact of …</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> More specifically, we will consider the binary BH events in the LIGO-Virgo Catalog GWTC-1 GW150914 [31, 32], GW151226 [33], GW170104 [34], GW170608 [35] and GW170814 [36] for which the posteriors on theory-in…</li><li><span class="sec">abstract</span> …for the fiducial parameters as we made to obtain the order of magnitude constraints and consider 5 GW events, GW150914, GW151226, GW170104, GW170608, and GW170814 (cf.</li><li><span class="sec">methods</span> This is not the case for the other events (GW150914, GW170104 and GW170814), for which constraints would violate the small coupling approximation.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -213,210 +201,15 @@ Rather, the lack of support at zero is an artifact of …</div>
 <section class="card" data-i="1" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>13 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…tions can be used to probe higher-curvature
-corrections to general relativity.
-In particular, we focus on two examples: Einstein-dilaton-Gauss-Bonnet
-and dynamical Chern-Simons gravity.
-We find that the two events with a low-mass m≈7​M⊙m\approx 7M_{\odot} BH
-(<mark>GW151226</mark> and GW170608) place stringent constraints
-on Einstein-dilaton-Gauss-Bonnet gravity, αEdGB1/2≲5.6{\alpha}^{1/2}_{{\mbox{\tiny EdGB}}}\lesssim 5.6 km,
-whereas dynamical Chern-Simons gravity remains unconstrained by
-the gravitational-wave observations analyzed.
-…</div>
+    <p class="where">Named 13 times:
+      methods ×9, abstract ×4.</p>
+    <p class="where"><a href="https://arxiv.org/html/1905.00870v3#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>…VC) [30]
-to analyze whether these two theories can be constrained with the binary BH
-events detected during the first two observation runs of the LVC.
-More specifically, we will consider the binary BH events in the LIGO-Virgo Catalog GWTC-1
-GW150914 [31, 32],
-<mark>GW151226</mark> [33],
-GW170104 [34],
-GW170608 [35] and
-GW170814 [36]
-for which the posteriors on theory-independent GR modifications,
-obtained through a Markov-chain Monte-Carlo (MCMC) exploration of
-the parameter space, have been made public [3, 37].
-
-Quadratic gravity. dCS…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…n of the Fisher matrix, by modeling the binaries
-with the phenomenolgical waveform template
-IMRPhenomD [49, 50]
-We make similar assumptions for the fiducial parameters as we made to obtain
-the order of magnitude constraints and consider 5 GW events, GW150914,
-<mark>GW151226</mark>, GW170104, GW170608, and GW170814 (cf. Table III
-in [30]).
-The bounds obtained for the two most constraining events, GW151226 and GW170608
-are shown in Table 1 and they are in good agreement with our
-order-of-magnitude calculation for both theories.
-The Fishe…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…r assumptions for the fiducial parameters as we made to obtain
-the order of magnitude constraints and consider 5 GW events, GW150914,
-GW151226, GW170104, GW170608, and GW170814 (cf. Table III
-in [30]).
-The bounds obtained for the two most constraining events, <mark>GW151226</mark> and GW170608
-are shown in Table 1 and they are in good agreement with our
-order-of-magnitude calculation for both theories.
-The Fisher-estimated constraints for dCS gravity are not shown because they violate the small coupling approximation, as we will discus…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…avity are not shown because they violate the small coupling approximation, as we will discuss in more detail below.
-
-System
-Method
-αEdGB1/2\alpha_{{\mbox{\tiny EdGB}}}^{1/2} [km]
-αdCS1/2\alpha_{{\mbox{\tiny dCS}}}^{1/2} [km]
-
-Current
-Frequentist
-22
-10810^{8}
-
-<mark>GW151226</mark>
-estimate
-0.9
-12.6
-
-Fisher
-6.0
-−-
-
-Bayesian
-5.7
-−-
-
-GW170608
-estimate
-1.0
-28.1
-
-Fisher
-3.9
-−-
-
-Bayesian
-5.6
-−-
-
-Table 1: Current constraints on EdGB and dCS gravity
-from low-mass x-ray binary and Solar System observations respectively,
-with the Fisher-estimate…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…
-
-Fisher
-3.9
-−-
-
-Bayesian
-5.6
-−-
-
-Table 1: Current constraints on EdGB and dCS gravity
-from low-mass x-ray binary and Solar System observations respectively,
-with the Fisher-estimated constraints, and
-Bayesian constraints using LVC (testing GR) posteriors for <mark>GW151226</mark> and GW170608  [3, 37]
-
-.
-
-Figure 1: 
-Posterior distributions of αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} (left panel)
-and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2} (right panel) obtained using
-GW151226 and GW170608.
-For the GW events shown in both panels…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…an constraints using LVC (testing GR) posteriors for GW151226 and GW170608  [3, 37]
-
-.
-
-Figure 1: 
-Posterior distributions of αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} (left panel)
-and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2} (right panel) obtained using
-<mark>GW151226</mark> and GW170608.
-For the GW events shown in both panels, m2/M⊙=7.7−2.6+2.2m_{2}/M_{\odot}=7.7^{+2.2}_{-2.6}
-(GW151226) and m2/M⊙=7.6−2.1+1.3m_{2}/M_{\odot}=7.6^{+1.3}_{-2.1} (GW170104)
-at 90%90\% credibility.
-This implies that the small-coupling approximation
-is…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…butions of αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} (left panel)
-and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2} (right panel) obtained using
-GW151226 and GW170608.
-For the GW events shown in both panels, m2/M⊙=7.7−2.6+2.2m_{2}/M_{\odot}=7.7^{+2.2}_{-2.6}
-(<mark>GW151226</mark>) and m2/M⊙=7.6−2.1+1.3m_{2}/M_{\odot}=7.6^{+1.3}_{-2.1} (GW170104)
-at 90%90\% credibility.
-This implies that the small-coupling approximation
-is valid only when αdCS,EdGB1/2≲5.6{\alpha}_{{\mbox{\tiny dCS}},{\mbox{\tiny EdGB}}}^{1/2}\lesssim 5.6, shown as vert…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ny dCS}}}^{1/2} and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}
-using Eqs. (3)-(4).
-
-The 90% constraints on αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}
-are shown in Table 1 for the two most constraining events
-(<mark>GW151226</mark> and GW170608) and the corresponding posterior distributions are shown
-in Fig. 1. The Fisher estimates, although quite close to the
-constraints using posteriors derived from GW data, are overoptimistic since
-they assume a Gaussian posterior around the peak, wh…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…box{\tiny EdGB}}}^{1/2}\lesssim 5.6 km,
-which is shown with vertical lines in Fig. 1.
-For dCS gravity (left panel of Fig. 1), more than
-99%99\% of the posterior distribution of αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} lies
-beyond this region of validity for <mark>GW151226</mark> and GW170608 and for all the other events we considered.
-
-Consequently, we cannot place constraints on dCS gravity with
-the events for which the posteriors samples obtained by LIGO-Virgo have
-been released.
-
-For EdGB, the situation is strikingly different. As…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ined by LIGO-Virgo have
-been released.
-
-For EdGB, the situation is strikingly different. As one can observe in the
-right panel of Fig. 1, more than 90%90\% of the posterior
-distribution falls within the requirements of the small-coupling approximation
-for the <mark>GW151226</mark> and GW170608 events.
-This implies that a 90% bound of αEdGB1/2≲5.6{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}\lesssim 5.6 km is
-statistically meaningful and can be placed on EdGB gravity using these two
-events.
-This is not the case for the other events (GW150914, GW…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… EdGB}}} instead of in the generic parameter δ​ϕi\delta\phi_{i}.
-We expect that this would shift our 90% bound to the left, thereby
-improving our bounds, and hence our constraints
-are conservative and robust to changes in the sampling variable.
-
-The fact that <mark>GW151226</mark> and GW170608 have more constraining power
-than their cousins is not surprising. These two events were produced by
-binaries in which the secondary BH had the lowest mass (m2≈7​M⊙m_{2}\approx 7M_{\odot})
-of all events in the catalog.
-Quadratic gravity theories …</div>
+    <details class="lines"><summary>Show the sentences (13, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> We find that the two events with a low-mass m≈7​M⊙m\approx 7M_{\odot} BH (GW151226 and GW170608) place stringent constraints on Einstein-dilaton-Gauss-Bonnet gravity, αEdGB1/2≲5.6{\alpha}^{1/2…</li><li><span class="sec">abstract</span> More specifically, we will consider the binary BH events in the LIGO-Virgo Catalog GWTC-1 GW150914 [31, 32], GW151226 [33], GW170104 [34], GW170608 [35] and GW170814 [36] for which the posteriors on theory-independent GR modifi…</li><li><span class="sec">abstract</span> …ducial parameters as we made to obtain the order of magnitude constraints and consider 5 GW events, GW150914, GW151226, GW170104, GW170608, and GW170814 (cf.</li><li><span class="sec">abstract</span> The bounds obtained for the two most constraining events, GW151226 and GW170608 are shown in Table 1 and they are in good agreement with our order-of-magnitude calculation for…</li><li><span class="sec">methods</span> GW151226 estimate 0.9 12.6</li><li><span class="sec">methods</span> …tively, with the Fisher-estimated constraints, and Bayesian constraints using LVC (testing GR) posteriors for GW151226 and GW170608 [3, 37]</li><li><span class="sec">methods</span> …\tiny dCS}}}^{1/2} (left panel) and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2} (right panel) obtained using GW151226 and GW170608.</li><li><span class="sec">methods</span> For the GW events shown in both panels, m2/M⊙=7.7−2.6+2.2m_{2}/M_{\odot}=7.7^{+2.2}_{-2.6} (GW151226) and m2/M⊙=7.6−2.1+1.3m_{2}/M_{\odot}=7.6^{+1.3}_{-2.1} (GW170104) at 90%90\% credibility.</li></ul>
     </details>
     
   </div>
@@ -453,61 +246,15 @@ Quadratic gravity theories …</div>
 <section class="card" data-i="2" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…lyze whether these two theories can be constrained with the binary BH
-events detected during the first two observation runs of the LVC.
-More specifically, we will consider the binary BH events in the LIGO-Virgo Catalog GWTC-1
-GW150914 [31, 32],
-GW151226 [33],
-<mark>GW170104</mark> [34],
-GW170608 [35] and
-GW170814 [36]
-for which the posteriors on theory-independent GR modifications,
-obtained through a Markov-chain Monte-Carlo (MCMC) exploration of
-the parameter space, have been made public [3, 37].
-
-Quadratic gravity. dCS and (decoupled…</div>
+    <p class="where">Named 4 times:
+      abstract ×2, methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1905.00870v3#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>…isher matrix, by modeling the binaries
-with the phenomenolgical waveform template
-IMRPhenomD [49, 50]
-We make similar assumptions for the fiducial parameters as we made to obtain
-the order of magnitude constraints and consider 5 GW events, GW150914,
-GW151226, <mark>GW170104</mark>, GW170608, and GW170814 (cf. Table III
-in [30]).
-The bounds obtained for the two most constraining events, GW151226 and GW170608
-are shown in Table 1 and they are in good agreement with our
-order-of-magnitude calculation for both theories.
-The Fisher-estimate…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…
-and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2} (right panel) obtained using
-GW151226 and GW170608.
-For the GW events shown in both panels, m2/M⊙=7.7−2.6+2.2m_{2}/M_{\odot}=7.7^{+2.2}_{-2.6}
-(GW151226) and m2/M⊙=7.6−2.1+1.3m_{2}/M_{\odot}=7.6^{+1.3}_{-2.1} (<mark>GW170104</mark>)
-at 90%90\% credibility.
-This implies that the small-coupling approximation
-is valid only when αdCS,EdGB1/2≲5.6{\alpha}_{{\mbox{\tiny dCS}},{\mbox{\tiny EdGB}}}^{1/2}\lesssim 5.6, shown as vertical lines in the plots.
-For dCS gravity (left-panel) we see that …</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">methods</span>…26 and GW170608 events.
-This implies that a 90% bound of αEdGB1/2≲5.6{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}\lesssim 5.6 km is
-statistically meaningful and can be placed on EdGB gravity using these two
-events.
-This is not the case for the other events (GW150914, <mark>GW170104</mark> and GW170814),
-for which constraints would violate the small coupling approximation.
-
-We emphasize that the location of the peaks in the posteriors of Fig. 1
-do not indicate a deviation from GR.
-Rather, the lack of support at zero is an artifact of the choice…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …lly, we will consider the binary BH events in the LIGO-Virgo Catalog GWTC-1 GW150914 [31, 32], GW151226 [33], GW170104 [34], GW170608 [35] and GW170814 [36] for which the posteriors on theory-independent GR modifications, obtain…</li><li><span class="sec">abstract</span> …ameters as we made to obtain the order of magnitude constraints and consider 5 GW events, GW150914, GW151226, GW170104, GW170608, and GW170814 (cf.</li><li><span class="sec">methods</span> …7−2.6+2.2m_{2}/M_{\odot}=7.7^{+2.2}_{-2.6} (GW151226) and m2/M⊙=7.6−2.1+1.3m_{2}/M_{\odot}=7.6^{+1.3}_{-2.1} (GW170104) at 90%90\% credibility.</li><li><span class="sec">methods</span> This is not the case for the other events (GW150914, GW170104 and GW170814), for which constraints would violate the small coupling approximation.</li></ul>
     </details>
     
   </div>
@@ -544,210 +291,15 @@ Rather, the lack of support at zero is an artifact of the choice…</div>
 <section class="card" data-i="3" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>13 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…used to probe higher-curvature
-corrections to general relativity.
-In particular, we focus on two examples: Einstein-dilaton-Gauss-Bonnet
-and dynamical Chern-Simons gravity.
-We find that the two events with a low-mass m≈7​M⊙m\approx 7M_{\odot} BH
-(GW151226 and <mark>GW170608</mark>) place stringent constraints
-on Einstein-dilaton-Gauss-Bonnet gravity, αEdGB1/2≲5.6{\alpha}^{1/2}_{{\mbox{\tiny EdGB}}}\lesssim 5.6 km,
-whereas dynamical Chern-Simons gravity remains unconstrained by
-the gravitational-wave observations analyzed.
-
- 
-
-Introduct…</div>
+    <p class="where">Named 13 times:
+      methods ×8, abstract ×5.</p>
+    <p class="where"><a href="https://arxiv.org/html/1905.00870v3#:~:text=GW170608" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>…ese two theories can be constrained with the binary BH
-events detected during the first two observation runs of the LVC.
-More specifically, we will consider the binary BH events in the LIGO-Virgo Catalog GWTC-1
-GW150914 [31, 32],
-GW151226 [33],
-GW170104 [34],
-<mark>GW170608</mark> [35] and
-GW170814 [36]
-for which the posteriors on theory-independent GR modifications,
-obtained through a Markov-chain Monte-Carlo (MCMC) exploration of
-the parameter space, have been made public [3, 37].
-
-Quadratic gravity. dCS and (decoupled) EdGB
-theories…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>… uncontrolled remainders of 𝒪⁡(χ4){\cal{O}}(\chi^{4}), βEdGB\beta_{{\mbox{\tiny EdGB}}}
-is valid to all orders in the spin.
-We can obtain an order-of-magnitude bound on ζdCS,EdGB\zeta_{{\mbox{\tiny dCS}},{\mbox{\tiny EdGB}}} using the best-fit
-parameters from <mark>GW170608</mark> and doing a crude Fisher matrix analysis (we use this
-particular event as an example because it will allows us to compare our
-analytical estimate with more robust calculations later).
-Given that the event is consistent with GR, we can ask
-how large ζdCS,EdGB\…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…ix, by modeling the binaries
-with the phenomenolgical waveform template
-IMRPhenomD [49, 50]
-We make similar assumptions for the fiducial parameters as we made to obtain
-the order of magnitude constraints and consider 5 GW events, GW150914,
-GW151226, GW170104, <mark>GW170608</mark>, and GW170814 (cf. Table III
-in [30]).
-The bounds obtained for the two most constraining events, GW151226 and GW170608
-are shown in Table 1 and they are in good agreement with our
-order-of-magnitude calculation for both theories.
-The Fisher-estimated constrai…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>… for the fiducial parameters as we made to obtain
-the order of magnitude constraints and consider 5 GW events, GW150914,
-GW151226, GW170104, GW170608, and GW170814 (cf. Table III
-in [30]).
-The bounds obtained for the two most constraining events, GW151226 and <mark>GW170608</mark>
-are shown in Table 1 and they are in good agreement with our
-order-of-magnitude calculation for both theories.
-The Fisher-estimated constraints for dCS gravity are not shown because they violate the small coupling approximation, as we will discuss in more det…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…approximation, as we will discuss in more detail below.
-
-System
-Method
-αEdGB1/2\alpha_{{\mbox{\tiny EdGB}}}^{1/2} [km]
-αdCS1/2\alpha_{{\mbox{\tiny dCS}}}^{1/2} [km]
-
-Current
-Frequentist
-22
-10810^{8}
-
-GW151226
-estimate
-0.9
-12.6
-
-Fisher
-6.0
-−-
-
-Bayesian
-5.7
-−-
-
-<mark>GW170608</mark>
-estimate
-1.0
-28.1
-
-Fisher
-3.9
-−-
-
-Bayesian
-5.6
-−-
-
-Table 1: Current constraints on EdGB and dCS gravity
-from low-mass x-ray binary and Solar System observations respectively,
-with the Fisher-estimated constraints, and
-Bayesian constraints using LVC (testing G…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…−-
-
-Bayesian
-5.6
-−-
-
-Table 1: Current constraints on EdGB and dCS gravity
-from low-mass x-ray binary and Solar System observations respectively,
-with the Fisher-estimated constraints, and
-Bayesian constraints using LVC (testing GR) posteriors for GW151226 and <mark>GW170608</mark>  [3, 37]
-
-.
-
-Figure 1: 
-Posterior distributions of αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} (left panel)
-and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2} (right panel) obtained using
-GW151226 and GW170608.
-For the GW events shown in both panels, m2/M⊙=7.7−2…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…s using LVC (testing GR) posteriors for GW151226 and GW170608  [3, 37]
-
-.
-
-Figure 1: 
-Posterior distributions of αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} (left panel)
-and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2} (right panel) obtained using
-GW151226 and <mark>GW170608</mark>.
-For the GW events shown in both panels, m2/M⊙=7.7−2.6+2.2m_{2}/M_{\odot}=7.7^{+2.2}_{-2.6}
-(GW151226) and m2/M⊙=7.6−2.1+1.3m_{2}/M_{\odot}=7.6^{+1.3}_{-2.1} (GW170104)
-at 90%90\% credibility.
-This implies that the small-coupling approximation
-is valid only w…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…2} and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}
-using Eqs. (3)-(4).
-
-The 90% constraints on αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}
-are shown in Table 1 for the two most constraining events
-(GW151226 and <mark>GW170608</mark>) and the corresponding posterior distributions are shown
-in Fig. 1. The Fisher estimates, although quite close to the
-constraints using posteriors derived from GW data, are overoptimistic since
-they assume a Gaussian posterior around the peak, which we see in…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…B}}}^{1/2}\lesssim 5.6 km,
-which is shown with vertical lines in Fig. 1.
-For dCS gravity (left panel of Fig. 1), more than
-99%99\% of the posterior distribution of αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} lies
-beyond this region of validity for GW151226 and <mark>GW170608</mark> and for all the other events we considered.
-
-Consequently, we cannot place constraints on dCS gravity with
-the events for which the posteriors samples obtained by LIGO-Virgo have
-been released.
-
-For EdGB, the situation is strikingly different. As one can obse…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…Virgo have
-been released.
-
-For EdGB, the situation is strikingly different. As one can observe in the
-right panel of Fig. 1, more than 90%90\% of the posterior
-distribution falls within the requirements of the small-coupling approximation
-for the GW151226 and <mark>GW170608</mark> events.
-This implies that a 90% bound of αEdGB1/2≲5.6{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}\lesssim 5.6 km is
-statistically meaningful and can be placed on EdGB gravity using these two
-events.
-This is not the case for the other events (GW150914, GW170104 and GW…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ead of in the generic parameter δ​ϕi\delta\phi_{i}.
-We expect that this would shift our 90% bound to the left, thereby
-improving our bounds, and hence our constraints
-are conservative and robust to changes in the sampling variable.
-
-The fact that GW151226 and <mark>GW170608</mark> have more constraining power
-than their cousins is not surprising. These two events were produced by
-binaries in which the secondary BH had the lowest mass (m2≈7​M⊙m_{2}\approx 7M_{\odot})
-of all events in the catalog.
-Quadratic gravity theories introduce new…</div>
+    <details class="lines"><summary>Show the sentences (13, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> We find that the two events with a low-mass m≈7​M⊙m\approx 7M_{\odot} BH (GW151226 and GW170608) place stringent constraints on Einstein-dilaton-Gauss-Bonnet gravity, αEdGB1/2≲5.6{\alpha}^{1/2}_{{\mbox{\ti…</li><li><span class="sec">abstract</span> …nsider the binary BH events in the LIGO-Virgo Catalog GWTC-1 GW150914 [31, 32], GW151226 [33], GW170104 [34], GW170608 [35] and GW170814 [36] for which the posteriors on theory-independent GR modifications, obtained through a Ma…</li><li><span class="sec">abstract</span> …magnitude bound on ζdCS,EdGB\zeta_{{\mbox{\tiny dCS}},{\mbox{\tiny EdGB}}} using the best-fit parameters from GW170608 and doing a crude Fisher matrix analysis (we use this particular event as an example because it will allows u…</li><li><span class="sec">abstract</span> …we made to obtain the order of magnitude constraints and consider 5 GW events, GW150914, GW151226, GW170104, GW170608, and GW170814 (cf.</li><li><span class="sec">abstract</span> The bounds obtained for the two most constraining events, GW151226 and GW170608 are shown in Table 1 and they are in good agreement with our order-of-magnitude calculation for both theories…</li><li><span class="sec">methods</span> GW170608 estimate 1.0 28.1</li><li><span class="sec">methods</span> …the Fisher-estimated constraints, and Bayesian constraints using LVC (testing GR) posteriors for GW151226 and GW170608 [3, 37]</li><li><span class="sec">methods</span> …{1/2} (left panel) and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2} (right panel) obtained using GW151226 and GW170608.</li></ul>
     </details>
     
   </div>
@@ -784,51 +336,16 @@ Quadratic gravity theories introduce new…</div>
 <section class="card" data-i="4" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…an be constrained with the binary BH
-events detected during the first two observation runs of the LVC.
-More specifically, we will consider the binary BH events in the LIGO-Virgo Catalog GWTC-1
-GW150914 [31, 32],
-GW151226 [33],
-GW170104 [34],
-GW170608 [35] and
-<mark>GW170814</mark> [36]
-for which the posteriors on theory-independent GR modifications,
-obtained through a Markov-chain Monte-Carlo (MCMC) exploration of
-the parameter space, have been made public [3, 37].
-
-Quadratic gravity. dCS and (decoupled) EdGB
-theories are defined in va…</div>
+    <p class="where">Named 3 times:
+      abstract ×2, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1905.00870v3#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>…g the binaries
-with the phenomenolgical waveform template
-IMRPhenomD [49, 50]
-We make similar assumptions for the fiducial parameters as we made to obtain
-the order of magnitude constraints and consider 5 GW events, GW150914,
-GW151226, GW170104, GW170608, and <mark>GW170814</mark> (cf. Table III
-in [30]).
-The bounds obtained for the two most constraining events, GW151226 and GW170608
-are shown in Table 1 and they are in good agreement with our
-order-of-magnitude calculation for both theories.
-The Fisher-estimated constraints for dCS gr…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…08 events.
-This implies that a 90% bound of αEdGB1/2≲5.6{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}\lesssim 5.6 km is
-statistically meaningful and can be placed on EdGB gravity using these two
-events.
-This is not the case for the other events (GW150914, GW170104 and <mark>GW170814</mark>),
-for which constraints would violate the small coupling approximation.
-
-We emphasize that the location of the peaks in the posteriors of Fig. 1
-do not indicate a deviation from GR.
-Rather, the lack of support at zero is an artifact of the choice of the sampl…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …BH events in the LIGO-Virgo Catalog GWTC-1 GW150914 [31, 32], GW151226 [33], GW170104 [34], GW170608 [35] and GW170814 [36] for which the posteriors on theory-independent GR modifications, obtained through a Markov-chain Monte-C…</li><li><span class="sec">abstract</span> …tain the order of magnitude constraints and consider 5 GW events, GW150914, GW151226, GW170104, GW170608, and GW170814 (cf.</li><li><span class="sec">methods</span> This is not the case for the other events (GW150914, GW170104 and GW170814), for which constraints would violate the small coupling approximation.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -864,25 +381,16 @@ Rather, the lack of support at zero is an artifact of the choice of the sampl…
 <section class="card" data-i="5" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>2 mentions · <span class="cptag">1 by counterpart name</span></h3>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1905.00870v3#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">1 mention use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention"><span class="sec">methods</span>…ty-violating theories, which in four dimensions requires the
-presence of a massless scalar field, was presented [60].
-In [61, 62, 63], these theories were tested against the exquisite constraint obtained on the speed of GW propagation from the binary NS event <mark>GW170817</mark>/GRB 170817A, which estimated that cGWc_{\rm GW} is the same as the speed of light in vacuum to one part in 101510^{15}.
-dCS gravity is the only ghost-free, parity-violating theory in four dimensions that is consistent with
-this constraint [64, 61].
-Therefore,…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">methods · <span class="cptag">counterpart name, not the GW signal</span></span>…ing theories, which in four dimensions requires the
-presence of a massless scalar field, was presented [60].
-In [61, 62, 63], these theories were tested against the exquisite constraint obtained on the speed of GW propagation from the binary NS event GW170817/<mark class="cp">GRB 170817A</mark>, which estimated that cGWc_{\rm GW} is the same as the speed of light in vacuum to one part in 101510^{15}.
-dCS gravity is the only ghost-free, parity-violating theory in four dimensions that is consistent with
-this constraint [64, 61].
-Therefore, our results…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …were tested against the exquisite constraint obtained on the speed of GW propagation from the binary NS event GW170817/GRB 170817A, which estimated that cGWc_{\rm GW} is the same as the speed of light in vacuum to one part in 10…</li><li><span class="sec">methods · counterpart name</span> …ed against the exquisite constraint obtained on the speed of GW propagation from the binary NS event GW170817/GRB 170817A, which estimated that cGWc_{\rm GW} is the same as the speed of light in vacuum to one part in 101510^{15}. d…</li></ul>
+    </details>
     
   </div>
   <div class="form">

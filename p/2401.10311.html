@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Realistic anisotropic neutron stars: Pressure effects</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2401.10311" target="_blank" rel="noopener" class="mono">arXiv:2401.10311</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">In this paper, we study the impact of anisotropy on neutron stars with different equations of state, which have been modeled by a piecewise polytropic function with continuous sound speed. Anisotropic pressure in neutron stars is often attributed to interior magnetic fields, rotation, and the presence of exotic matter or condensates. We quantify the presence of anisotropy within the star by assuming a quasilocal relationship. We find that the radial and tangential sound velocities constrain the range of anisotropy allowed within the star. As expected, the anisotropy affects the macroscopic properties of stars, and it can be introduced to reconcile them with astrophysical observations. For instance, the maximum mass of anisotropic neutron stars can be increased by up to 15% compared to the maximum mass of the corresponding isotropic configuration. This allows neutron stars to reach masses greater than 2.5 M&lt;SUB&gt;☉&lt;/SUB&gt; , which may explain the secondary compact object of the GW190814 event. Additionally, we propose a universal relation for the binding energy of an anisotropic neutron star as a function of the star&#39;s compactness and the degree of anisotropy.</p></details>
+<div class="small mut mono">arXiv:2401.10311</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">In this paper, we study the impact of anisotropy on neutron stars with different equations of state, which have been modeled by a piecewise polytropic function with continuous sound speed. Anisotropic pressure in neutron stars is often attributed to interior magnetic fields, rotation, and the presence of exotic matter or condensates. We quantify the presence of anisotropy within the star by assuming a quasilocal relationship. We find that the radial and tangential sound velocities constrain the range of anisotropy allowed within the star. As expected, the anisotropy affects the macroscopic properties of stars, and it can be introduced to reconcile them with astrophysical observations. For instance, the maximum mass of anisotropic neutron stars can be increased by up to 15% compared to the maximum mass of the corresponding isotropic configuration. This allows neutron stars to reach masses greater than 2.5 M&lt;SUB&gt;☉&lt;/SUB&gt; , which may explain the secondary compact object of the GW190814 event. Additionally, we propose a universal relation for the binding energy of an anisotropic neutron star as a function of the star&#39;s compactness and the degree of anisotropy.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2401.10311v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,75 +159,22 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">2 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">2 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…that an anisotropic NS, based on the Horvat et al. [30] model, is consistent with the constraints imposed by NS multimessenger observations. Furthermore, the range of pressure anisotropy inside stars was constrained in [38] using tidal deformability data from <mark>GW170817</mark>. Similarly, Das [44] and Ranjan Mohanty et al. [45] constrained the canonical moment of inertia and f-mode frequency for different degrees of anisotropy using the GW170817 and GW190814 events. Additionally, the inferred mass and equatorial radius from the NIC…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ure anisotropy inside stars was constrained in [38] using tidal deformability data from GW170817. Similarly, Das [44] and Ranjan Mohanty et al. [45] constrained the canonical moment of inertia and f-mode frequency for different degrees of anisotropy using the <mark>GW170817</mark> and GW190814 events. Additionally, the inferred mass and equatorial radius from the NICER observations of the pulsars PSR J0030+045 [46, 47] and PSR J0740+662 [48, 49] could further constrain the anisotropy range allowed within a NS.
-
-The significance of acco…</div>
+    <p class="where">Named 5 times:
+      introduction ×3, reference list ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2401.10311v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>… NS}, where the mass density ρ⁡(RNS)=104\rho(R_{\rm NS})=10^{4}  g  cm-3. In this sense, the mass of the configuration is M=m⁡(RNS)M=m(R_{\rm NS}). In particular, this code has been used to constrain several configurations of neutron and quark stars using the <mark>GW170817</mark> observation [57]. In addition, we have used this code to study anisotropic quark stars with an interacting quark equation of state, where the contribution of the fourth-order corrections parameter a4 of the QCD perturbation on the radial and tangential pressu…</div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">references</span>…syi, A. Sulaksono, and T. Sumaryada, Neutron-star
-deformation due to anisotropic momentum distribution of neutron-star
-matter, Phys. Rev. C 100, 055804 (2019). 
-
- 
-[38]
-B. Biswas and S. Bose, Tidal deformability of an
-anisotropic compact star: Implications of <mark>GW170817</mark>, Phys. Rev. D 99, 104002
-(2019), arXiv:1903.04956 [gr-qc] . 
-
- 
-[39]
-Z. Roupas, Secondary component of
-gravitational-wave signal GW190814 as an anisotropic neutron star, Astrophys. Space Sci. 366, 9
-(2021), arXiv:2007.10679 [gr-qc] . 
-
- 
-[40]
-D. D. Doneva and…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[38]</span> · 3 places</span><div class="cite">…sotropy has remarkable effects on the structure and properties of NS, including observable properties such as the mass-radius ratio [6, 33], moment of inertia [34], redshift [35], tidal deformability <mark class="ref">[36, 37, 38]</mark>, maximum mass [32, 39], and non-radial oscillation [40]. Furthermore, anisotropy can stabilize stellar configurations that would otherwise be unstable [30, 21, 41]. For example, Biswas and Bose [38] …</div><div class="cite">…, 38], maximum mass [32, 39], and non-radial oscillation [40]. Furthermore, anisotropy can stabilize stellar configurations that would otherwise be unstable [30, 21, 41]. For example, Biswas and Bose <mark class="ref">[38]</mark> noted that certain EOS ruled out by gravitational waves and electromagnetic observations could become viable if the star attains a substantial degree of anisotropy.
-
-The influence of pressure anisotr…</div><div class="cite">… NS, based on the Horvat et al. [30] model, is consistent with the constraints imposed by NS multimessenger observations. Furthermore, the range of pressure anisotropy inside stars was constrained in <mark class="ref">[38]</mark> using tidal deformability data from GW170817. Similarly, Das [44] and Ranjan Mohanty et al. [45] constrained the canonical moment of inertia and f-mode frequency for different degrees of anisotropy u…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…cs, Rev. Mex. Fis. E 58, arXiv:1212.1421 (2012), arXiv:1212.1421 [gr-qc] . 
-
- 
-[57]
-G. Arroyo-Chávez, A. Cruz-Osorio, F. D. Lora-Clavijo, C. Campuzano Vargas, and L. A. García Mora, Neutron and quark stars: constraining the parameters for simple EoS using
-the <mark>GW170817</mark>, Astrophys. Space Sci. 365, 43 (2020), arXiv:2002.08879 [gr-qc] . 
-
- 
-[58]
-S. L. Shapiro and S. A. Teukolsky, Black holes, white dwarfs and neutron stars. The physics
-of compact objects (1983). 
-
- 
-[59]
-M. Karlovini and L. Samuelsson, Elastic stars in
-general…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[57]</span> · 1 place</span><div class="cite">… sense, the mass of the configuration is M=m⁡(RNS)M=m(R_{\rm NS}). In particular, this code has been used to constrain several configurations of neutron and quark stars using the GW170817 observation <mark class="ref">[57]</mark>. In addition, we have used this code to study anisotropic quark stars with an interacting quark equation of state, where the contribution of the fourth-order corrections parameter a4 of the QCD pertu…</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …re, the range of pressure anisotropy inside stars was constrained in [38] using tidal deformability data from GW170817.</li><li><span class="sec">introduction</span> …onstrained the canonical moment of inertia and f-mode frequency for different degrees of anisotropy using the GW170817 and GW190814 events.</li><li><span class="sec">introduction</span> …particular, this code has been used to constrain several configurations of neutron and quark stars using the GW170817 observation [57].</li><li><span class="sec">cites it as [38]</span> …properties such as the mass-radius ratio [6, 33], moment of inertia [34], redshift [35], tidal deformability [36, 37, 38], maximum mass [32, 39], and non-radial oscillation [40]. Furthermore, anisotropy can stabilize stellar config…</li><li><span class="sec">cites it as [38]</span> …stabilize stellar configurations that would otherwise be unstable [30, 21, 41]. For example, Biswas and Bose [38] noted that certain EOS ruled out by gravitational waves and electromagnetic observations could become viable…</li><li><span class="sec">cites it as [57]</span> …e has been used to constrain several configurations of neutron and quark stars using the GW170817 observation [57]. In addition, we have used this code to study anisotropic quark stars with an interacting quark equation of s…</li></ul>
     </details>
     
   </div>
@@ -243,163 +211,15 @@ general…
 <section class="card" data-i="1" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>11 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…anisotropic neutron stars can be increased by up to 15% compared to the maximum mass of the corresponding isotropic configuration. This allows neutron stars to reach masses greater than 2.5​M⊙2.5M_{\odot}, which may explain the secondary compact object of the <mark>GW190814</mark> event. Additionally, we propose a universal relation for the binding energy of an anisotropic neutron star as a function of the star’s compactness and the degree of anisotropy.
-
- 
-
-I Introduction
-
-Neutron stars (NS) are extremely dense and compact objects tha…</div>
+    <p class="where">Named 11 times:
+      introduction ×7, reference list ×2, abstract, discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2401.10311v1#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…y inside stars was constrained in [38] using tidal deformability data from GW170817. Similarly, Das [44] and Ranjan Mohanty et al. [45] constrained the canonical moment of inertia and f-mode frequency for different degrees of anisotropy using the GW170817 and <mark>GW190814</mark> events. Additionally, the inferred mass and equatorial radius from the NICER observations of the pulsars PSR J0030+045 [46, 47] and PSR J0740+662 [48, 49] could further constrain the anisotropy range allowed within a NS.
-
-The significance of accounting for an…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…dicate observational constrains given by the pulsar masses of PSR J0348+0432 [62] and PSR J0952-0607, the mass and radius NICER constraints for the pulsars PSR J0030+0451 [46, 47] and PSR J0740+662 [48, 49], and the mass of the secondary compact object of the <mark>GW190814</mark> event [63]. The dashed gray line corresponds to the faster observed pulsar, PSR J1748-2446ad [64], and the dotted gray line to the Buchdahl limit for the star compactness [65]. 
-
-Figure 4: Same as Fig. 3 but for anisotropic NSs with, λa\lambda_{a} ϵ\epsilon (…</div>
-    
-    
-    <details><summary>8 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…g. 3 but for anisotropic NSs with, λa\lambda_{a} ϵ\epsilon (−2,2)(-2,2) for two selected EOS: BHF and GM1Y6. Only models satisfying the stability and causality conditions are displayed.
-
-  EoS 
-  PSR J0348+0432 
-PSR J0952-0607 
-PSR J0030+0451 
-PSR J0740+6620 
-<mark>GW190814</mark> 
-
-M&gt;1.97​M⊙M&gt;1.97M_{\odot}
-M&gt;2.17​M⊙M&gt;2.17M_{\odot}
-NICER
-NICER
-M&gt;2.5​M⊙M&gt;2.5M_{\odot}
-
-BHF
-λa&gt;0.24\lambda_{a}&gt;0.24
-λa&gt;0.52\lambda_{a}&gt;0.52
-✗
-✗
-✗
-
-KDE0v
-λa&gt;0.08\lambda_{a}&gt;0.08
-λa&gt;0.88\lambda_{a}&gt;0.88
-λa&gt;0.24\lambda_{a}&gt;0.24
-✗
-✗
-
-KDE1v
-λa&gt;0.08\lambda_{a}&gt;0.08…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…01\pm 0.04~M_{\odot} [62] and PSR J0952-0607 with 2.35±0.17​M⊙2.35\pm 0.17M_{\odot} [66].
-
-• 
-
-NICER constraints for the mass-radius relation of PSR J0030+0451 [46, 47] and PSR J0740+662 [48, 49].
-
-• 
-
-The mass of the secondary compact object of the merger in <mark>GW190814</mark> [63], which is between 2.52.5 and 2.7​M⊙2.7~M_{\odot}.
-
-As can be seen in Fig. 3, no isotropic model could explain the massive secondary object of GW190814 as a non-rotating NS. On the other hand, BHF, KDE0v, KDE1v-EOS, SKOP and QHC19-EOS would be ruled out b…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…451 [46, 47] and PSR J0740+662 [48, 49].
-
-• 
-
-The mass of the secondary compact object of the merger in GW190814 [63], which is between 2.52.5 and 2.7​M⊙2.7~M_{\odot}.
-
-As can be seen in Fig. 3, no isotropic model could explain the massive secondary object of <mark>GW190814</mark> as a non-rotating NS. On the other hand, BHF, KDE0v, KDE1v-EOS, SKOP and QHC19-EOS would be ruled out by the constraints of pulsar observations. However, anisotropic configurations have the potential to satisfy some of these constraints for a given EOS, when …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…n with λa&gt;0.52\lambda_{a}&gt;0.52 could model the pulsar PSR J0030+0451. On the other hand, GM1Y6-EOS satisfies nearly all observational constraints, and a configuration with λa&gt;0.56\lambda_{a}&gt;0.56 of the anisotropic model could describe the secondary object of <mark>GW190814</mark>.
-
-In Table 1 we report the value range of the anisotropic parameter that satisfies the observational constraint for each EOS considered here. If the boundary value of the anisotropic parameter is negative, it means that the corresponding isotropic model satis…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ns that the corresponding isotropic model satisfies the given constraint. Notably, NICER observations of PSR J0030+0451 rule out BHF, KDE0v, and KDE1v-EOS, even when anisotropic configurations are taken into consideration. The secondary object observed in the <mark>GW190814</mark> event could potentially be explained as an anisotropic NS with SKI3, SKI5, GM1Y6, BsK25, and XMLSL-EOS.
-
-III.2 Compactness and Binding-Energy
-
-For a non-rotating, spherically symmetric NS, its total gravitational mass is defined as:
-
-MNS=∫0RNS4​π​r2​ϵ​𝑑rM_{\r…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…and gravitational wave data. We conclude than an anisotropic configuration has the potential to satisfy the observational constraints, especially if the corresponding isotropic configuration does not (see Table 1). For example, the massive secondary object of <mark>GW190814</mark> could be explained by an anisotropic NS.
-
-Finally, we propose a universal relation for the binding energy of anisotropic stars, given by Eq. 21. This relation is satisfied for all EOSs used here, regardless of their particle composition. It is worth saying th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…C 100, 055804 (2019). 
-
- 
-[38]
-B. Biswas and S. Bose, Tidal deformability of an
-anisotropic compact star: Implications of GW170817, Phys. Rev. D 99, 104002
-(2019), arXiv:1903.04956 [gr-qc] . 
-
- 
-[39]
-Z. Roupas, Secondary component of
-gravitational-wave signal <mark>GW190814</mark> as an anisotropic neutron star, Astrophys. Space Sci. 366, 9
-(2021), arXiv:2007.10679 [gr-qc] . 
-
- 
-[40]
-D. D. Doneva and S. S. Yazadjiev, Nonradial
-oscillations of anisotropic neutron stars in the Cowling approximation, Phys. Rev. D 85, 124023 (2012), arXiv:…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[39]</span> · 1 place</span><div class="cite">…cts on the structure and properties of NS, including observable properties such as the mass-radius ratio [6, 33], moment of inertia [34], redshift [35], tidal deformability [36, 37, 38], maximum mass <mark class="ref">[32, 39]</mark>, and non-radial oscillation [40]. Furthermore, anisotropy can stabilize stellar configurations that would otherwise be unstable [30, 21, 41]. For example, Biswas and Bose [38] noted that certain EOS …</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…, T. T. Pennucci, S. M. Ransom, I. H. Stairs, J. van Leeuwen, J. P. W. Verbiest, and D. G. Whelan, A Massive Pulsar in a
-Compact Relativistic Binary, Science 340, 448 (2013), arXiv:1304.6875 [astro-ph.HE] . 
-
- 
-[63]
-R. Abbott, T. D. Abbott, and a. e. Abraham, <mark>GW190814</mark>:
-Gravitational Waves from the Coalescence of a 23 Solar Mass Black Hole with a
-2.6 Solar Mass Compact Object, Astrophys. J. Lett. 896, L44
-(2020), arXiv:2006.12611 [astro-ph.HE] . 
-
- 
-[64]
-J. W. T. Hessels, S. M. Ransom, I. H. Stairs, P. C. C. Freire, V. M. K…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[63]</span> · 2 places</span><div class="cite">…2 [62] and PSR J0952-0607, the mass and radius NICER constraints for the pulsars PSR J0030+0451 [46, 47] and PSR J0740+662 [48, 49], and the mass of the secondary compact object of the GW190814 event <mark class="ref">[63]</mark>. The dashed gray line corresponds to the faster observed pulsar, PSR J1748-2446ad [64], and the dotted gray line to the Buchdahl limit for the star compactness [65]. 
-
-Figure 4: Same as Fig. 3 but fo…</div><div class="cite">… 0.17M_{\odot} [66].
-
-• 
-
-NICER constraints for the mass-radius relation of PSR J0030+0451 [46, 47] and PSR J0740+662 [48, 49].
-
-• 
-
-The mass of the secondary compact object of the merger in GW190814 <mark class="ref">[63]</mark>, which is between 2.52.5 and 2.7​M⊙2.7~M_{\odot}.
-
-As can be seen in Fig. 3, no isotropic model could explain the massive secondary object of GW190814 as a non-rotating NS. On the other hand, BHF, KD…</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (12, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …stars to reach masses greater than 2.5​M⊙2.5M_{\odot}, which may explain the secondary compact object of the GW190814 event.</li><li><span class="sec">introduction</span> …e canonical moment of inertia and f-mode frequency for different degrees of anisotropy using the GW170817 and GW190814 events.</li><li><span class="sec">introduction</span> …lsars PSR J0030+0451 [46, 47] and PSR J0740+662 [48, 49], and the mass of the secondary compact object of the GW190814 event [63].</li><li><span class="sec">introduction</span> EoS PSR J0348+0432 PSR J0952-0607 PSR J0030+0451 PSR J0740+6620 GW190814</li><li><span class="sec">introduction</span> The mass of the secondary compact object of the merger in GW190814 [63], which is between 2.52.5 and 2.7​M⊙2.7~M_{\odot}.</li><li><span class="sec">introduction</span> As can be seen in Fig. 3, no isotropic model could explain the massive secondary object of GW190814 as a non-rotating NS.</li><li><span class="sec">introduction</span> …a configuration with λa&gt;0.56\lambda_{a}&gt;0.56 of the anisotropic model could describe the secondary object of GW190814.</li><li><span class="sec">introduction</span> The secondary object observed in the GW190814 event could potentially be explained as an anisotropic NS with SKI3, SKI5, GM1Y6, BsK25, and XMLSL-EOS.</li></ul>
     </details>
     
   </div>

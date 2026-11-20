@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,29 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Which Black Hole Is Spinning? Probing the Origin of Black Hole Spin with Gravitational Waves</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2311.05182" target="_blank" rel="noopener" class="mono">arXiv:2311.05182</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Theoretical studies of angular momentum transport suggest that isolated stellar-mass black holes are born with negligible dimensionless spin magnitudes χ ≲ 0.01. However, recent gravitational-wave observations indicate ≳40% of binary black hole systems contain at least one black hole with a nonnegligible spin magnitude. One explanation is that the firstborn black hole spins up the stellar core of what will become the second-born black hole through tidal interactions. Typically, the second-born black hole is the &#34;secondary&#34; (less massive) black hole though it may become the &#34;primary&#34; (more massive) black hole through a process known as mass-ratio reversal. We investigate this hypothesis by analyzing data from the third gravitational-wave transient catalog using a &#34;single-spin&#34; framework in which only one black hole may spin in any given binary. Given this assumption, we show that at least 28% (90% credibility) of the LIGO─Virgo─KAGRA binaries contain a primary with significant spin, possibly indicative of mass-ratio reversal. We find no evidence for binaries that contain a secondary with significant spin. However, the single-spin framework is moderately disfavored (natural log Bayes factor $\mathrm{ln}{ \mathcal B }=3.1$ ) when compared to a model that allows both black holes to spin. If future studies can firmly establish that most merging binaries contain two spinning black holes, it may call into question our understanding of formation mechanisms for binary black holes or the efficiency of angular momentum transport in black hole progenitors.</p></details>
+<div class="small mut mono">arXiv:2311.05182</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Theoretical studies of angular momentum transport suggest that isolated stellar-mass black holes are born with negligible dimensionless spin magnitudes χ ≲ 0.01. However, recent gravitational-wave observations indicate ≳40% of binary black hole systems contain at least one black hole with a nonnegligible spin magnitude. One explanation is that the firstborn black hole spins up the stellar core of what will become the second-born black hole through tidal interactions. Typically, the second-born black hole is the &#34;secondary&#34; (less massive) black hole though it may become the &#34;primary&#34; (more massive) black hole through a process known as mass-ratio reversal. We investigate this hypothesis by analyzing data from the third gravitational-wave transient catalog using a &#34;single-spin&#34; framework in which only one black hole may spin in any given binary. Given this assumption, we show that at least 28% (90% credibility) of the LIGO─Virgo─KAGRA binaries contain a primary with significant spin, possibly indicative of mass-ratio reversal. We find no evidence for binaries that contain a secondary with significant spin. However, the single-spin framework is moderately disfavored (natural log Bayes factor $\mathrm{ln}{ \mathcal B }=3.1$ ) when compared to a model that allows both black holes to spin. If future studies can firmly establish that most merging binaries contain two spinning black holes, it may call into question our understanding of formation mechanisms for binary black holes or the efficiency of angular momentum transport in black hole progenitors.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2311.05182v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">8 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">8 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2311.05182v3#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…re is in ℬprimary{\cal B}_{\mathrm{primary}}, indicating that it is relatively difficult to ascertain if the primary is spinning by itself.
-The four events with the highest evidence for spin (darkest blue) are labelled, being GW190412_053044, GW190517_055101, <mark>GW151226</mark>, and GW191204_171526.
-
-IV Discussion
-
-We find that the spin properties of the binary black holes in GWTC-3 require at least 28%28\% of all binaries to include a primary with non-negligible spin.
-Among spinning binaries, we find that at least 59%59\% of system…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> …vents with the highest evidence for spin (darkest blue) are labelled, being GW190412_053044, GW190517_055101, GW151226, and GW191204_171526.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -180,15 +201,16 @@ Among spinning binaries, we find that at least 59%59\% of system…</div>
 <section class="card" data-i="1" data-event="GW190403_051519">
   <div class="ctx">
     <div class="evname mono">GW190403_051519</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2311.05182v3#:~:text=GW190403_051519" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190403_051519</span>.</p>
     
     
-    <div class="mention"><span class="sec">discussion</span>…ry has a greater orbital separation so is more easily misaligned by smaller natal kicks [18].
-However, these findings are disputed by [70], who question the assumption that all secondary-mass black holes can be tidally spun up.
-
-[59] highlights the BBH merger <mark>GW190403_051519</mark>: an event that does not pass the threshold for inclusion in population studies, yet has the highest inferred effective inspiral spin of any LVK observation to date χeff≈0.7\chi_{\mathrm{eff}}\approx 0.7.
-This event, if authentic, provides a strong signature f…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> [59] highlights the BBH merger GW190403_051519: an event that does not pass the threshold for inclusion in population studies, yet has the highest inferred…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -224,17 +246,16 @@ This event, if authentic, provides a strong signature f…</div>
 <section class="card" data-i="2" data-event="GW190412">
   <div class="ctx">
     <div class="evname mono">GW190412</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2311.05182v3#:~:text=GW190412_053044" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190412_053044</span> or <span class="mono hit">GW190412</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…\cal B}_{\mathrm{single}} than there is in ℬprimary{\cal B}_{\mathrm{primary}}, indicating that it is relatively difficult to ascertain if the primary is spinning by itself.
-The four events with the highest evidence for spin (darkest blue) are labelled, being <mark>GW190412_053044</mark>, GW190517_055101, GW151226, and GW191204_171526.
-
-IV Discussion
-
-We find that the spin properties of the binary black holes in GWTC-3 require at least 28%28\% of all binaries to include a primary with non-negligible spin.
-Among spinning binaries, we find that…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> The four events with the highest evidence for spin (darkest blue) are labelled, being GW190412_053044, GW190517_055101, GW151226, and GW191204_171526.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -270,17 +291,16 @@ Among spinning binaries, we find that…</div>
 <section class="card" data-i="3" data-event="GW190517_055101">
   <div class="ctx">
     <div class="evname mono">GW190517_055101</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2311.05182v3#:~:text=GW190517_055101" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190517_055101</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…single}} than there is in ℬprimary{\cal B}_{\mathrm{primary}}, indicating that it is relatively difficult to ascertain if the primary is spinning by itself.
-The four events with the highest evidence for spin (darkest blue) are labelled, being GW190412_053044, <mark>GW190517_055101</mark>, GW151226, and GW191204_171526.
-
-IV Discussion
-
-We find that the spin properties of the binary black holes in GWTC-3 require at least 28%28\% of all binaries to include a primary with non-negligible spin.
-Among spinning binaries, we find that at least 59%59\%…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> The four events with the highest evidence for spin (darkest blue) are labelled, being GW190412_053044, GW190517_055101, GW151226, and GW191204_171526.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -316,15 +336,16 @@ Among spinning binaries, we find that at least 59%59\%…</div>
 <section class="card" data-i="4" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2311.05182v3#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
-    <div class="mention"><span class="sec">discussion</span>….
-At the same time, the high stellar densities and escape velocities of AGNs provide a suitable environment for potential hierarchical mergers, producing black holes with χi≈0.7\chi_{i}\approx 0.7 [77, see, for example]—and large masses like the components of <mark>GW190521</mark> [4, 6].
-These black holes may then be spun down to magnitudes consistent with gravitational-wave observations (χi≈0.2−0.4\chi_{i}\approx 0.2-0.4) via retrograde accretion of gas in the AGN disk [48].
-
-Black holes observed in high-mass X-ray binaries (with low…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> …ing black holes with χi≈0.7\chi_{i}\approx 0.7 [77, see, for example]—and large masses like the components of GW190521 [4, 6].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -360,35 +381,16 @@ Black holes observed in high-mass X-ray binaries (with low…</div>
 <section class="card" data-i="5" data-event="GW191109_010717">
   <div class="ctx">
     <div class="evname mono">GW191109_010717</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…r dataset begins with the 69 BBH observations from the third LVK gravitational-wave transient catalog GWTC-3 [5] that were considered reliable for population analyses [7, events with a false alarm rate &lt;1​yr−1&lt;1\mathrm{yr}^{-1};].
-However, we omit two events, <mark>GW191109_010717</mark> and GW200129_065458, due to concerns related to data quality [20, 45, 54, 79], so that we analyze 67 BBH events.
-We find that the inclusion of these two events does not drastically change our results (see Section III).
-
-For each BBH event, we perform three se…</div>
+    <p class="where">Named 3 times:
+      results ×2, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2311.05182v3#:~:text=GW191109_010717" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191109_010717</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>… by a natural log Bayes factor ln⁡ℬ=1.2\ln\mathcal{B}=1.2.
-No noteworthy covariance in mixing fractions arises within this framework.
-
-It is, however, an interesting preliminary result that we are keen to revisit as more data becomes available.
-When including <mark>GW191109_010717</mark> and GW200129_065458 (or either event on its own), we find that support for the both-spin model increases by Δ​ln⁡ℬ≲1\Delta\ln\mathcal{B}\lesssim 1.
-
-Next, we set aside for a moment the possibility that both black holes have non-negligible spin, and assume tha…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…59 (90% credibility).
-We rule out λ1=0\lambda_{1}=0 with high credibility.
-The posterior is peaked at λ1=1\lambda_{1}=1, the point in parameter space where no secondary black holes have appreciable spin.
-These results do not change meaningfully when including <mark>GW191109_010717</mark>, GW200129_065458, or both.
-
-As a check, we analyze 10 simulated signals with χ1=0\chi_{1}=0 and χ2&gt;0\chi_{2}&gt;0 drawn from a beta distribution.
-As expected, the resulting posterior from hierarchical inference peaks at (λ0=0,λ1=0CLOSE(\lambda_{0}=0,\lambda_{1}=…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> However, we omit two events, GW191109_010717 and GW200129_065458, due to concerns related to data quality [20, 45, 54, 79], so that we analyze 67 BBH even…</li><li><span class="sec">results</span> When including GW191109_010717 and GW200129_065458 (or either event on its own), we find that support for the both-spin model increases by Δ…</li><li><span class="sec">results</span> These results do not change meaningfully when including GW191109_010717, GW200129_065458, or both.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -424,17 +426,16 @@ As expected, the resulting posterior from hierarchical inference peaks at (λ0=0
 <section class="card" data-i="6" data-event="GW191204_171526">
   <div class="ctx">
     <div class="evname mono">GW191204_171526</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2311.05182v3#:~:text=GW191204_171526" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191204_171526</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…ary{\cal B}_{\mathrm{primary}}, indicating that it is relatively difficult to ascertain if the primary is spinning by itself.
-The four events with the highest evidence for spin (darkest blue) are labelled, being GW190412_053044, GW190517_055101, GW151226, and <mark>GW191204_171526</mark>.
-
-IV Discussion
-
-We find that the spin properties of the binary black holes in GWTC-3 require at least 28%28\% of all binaries to include a primary with non-negligible spin.
-Among spinning binaries, we find that at least 59%59\% of systems have a non-negligib…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> …highest evidence for spin (darkest blue) are labelled, being GW190412_053044, GW190517_055101, GW151226, and GW191204_171526.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -470,35 +471,16 @@ Among spinning binaries, we find that at least 59%59\% of systems have a non-neg
 <section class="card" data-i="7" data-event="GW200129_065458">
   <div class="ctx">
     <div class="evname mono">GW200129_065458</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…h the 69 BBH observations from the third LVK gravitational-wave transient catalog GWTC-3 [5] that were considered reliable for population analyses [7, events with a false alarm rate &lt;1​yr−1&lt;1\mathrm{yr}^{-1};].
-However, we omit two events, GW191109_010717 and <mark>GW200129_065458</mark>, due to concerns related to data quality [20, 45, 54, 79], so that we analyze 67 BBH events.
-We find that the inclusion of these two events does not drastically change our results (see Section III).
-
-For each BBH event, we perform three sets of parameter esti…</div>
+    <p class="where">Named 3 times:
+      results ×2, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2311.05182v3#:~:text=GW200129_065458" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200129_065458</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…yes factor ln⁡ℬ=1.2\ln\mathcal{B}=1.2.
-No noteworthy covariance in mixing fractions arises within this framework.
-
-It is, however, an interesting preliminary result that we are keen to revisit as more data becomes available.
-When including GW191109_010717 and <mark>GW200129_065458</mark> (or either event on its own), we find that support for the both-spin model increases by Δ​ln⁡ℬ≲1\Delta\ln\mathcal{B}\lesssim 1.
-
-Next, we set aside for a moment the possibility that both black holes have non-negligible spin, and assume that spinning black hol…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ty).
-We rule out λ1=0\lambda_{1}=0 with high credibility.
-The posterior is peaked at λ1=1\lambda_{1}=1, the point in parameter space where no secondary black holes have appreciable spin.
-These results do not change meaningfully when including GW191109_010717, <mark>GW200129_065458</mark>, or both.
-
-As a check, we analyze 10 simulated signals with χ1=0\chi_{1}=0 and χ2&gt;0\chi_{2}&gt;0 drawn from a beta distribution.
-As expected, the resulting posterior from hierarchical inference peaks at (λ0=0,λ1=0CLOSE(\lambda_{0}=0,\lambda_{1}=0), which assures…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> However, we omit two events, GW191109_010717 and GW200129_065458, due to concerns related to data quality [20, 45, 54, 79], so that we analyze 67 BBH events.</li><li><span class="sec">results</span> When including GW191109_010717 and GW200129_065458 (or either event on its own), we find that support for the both-spin model increases by Δ​ln⁡ℬ≲1\Delta\ln\mat…</li><li><span class="sec">results</span> These results do not change meaningfully when including GW191109_010717, GW200129_065458, or both.</li></ul>
+    </details>
     
   </div>
   <div class="form">

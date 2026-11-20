@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Pseudospectrum and time-domain analysis of the EFT corrected black holes</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2508.13894" target="_blank" rel="noopener" class="mono">arXiv:2508.13894</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We study the linear perturbations of a spherically symmetric black hole corrected by dimension-6 terms in the effective field theory (EFT) of gravity. The solution is asymptotically flat and characterized by two parameters—a mass parameter &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; and a dimensionless parameter &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;ϵ&lt;/mml:mi&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; related to the EFT length scale &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;l&lt;/mml:mi&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;, and the perturbation equation incorporates a velocity factor which is not constant. The quasinormal modes (QNMs) and time-domain waveforms are studied within the hyperboloidal framework. This approach reproduces the breakdown of the isospectrality and reveals that higher overtones are more sensitive to &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;ϵ&lt;/mml:mi&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;. As for the time domain, the mismatch function is introduced and found to scale as &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msup&gt;&lt;mml:mi&gt;ϵ&lt;/mml:mi&gt;&lt;mml:mn&gt;2&lt;/mml:mn&gt;&lt;/mml:msup&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;, which demonstrates that the waveform is stable as &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;ϵ&lt;/mml:mi&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; varies. Finally, a velocity-dependent energy norm is employed to compute the pseudospectrum and characterize the migration of the QNM spectrum. We further define a quantity &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;∊&lt;/mml:mi&gt;&lt;mml:mi&gt;c&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; that describes the magnitude of the instability of a QNM spectrum. Our analysis reveals that the dependence of &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;∊&lt;/mml:mi&gt;&lt;mml:mi&gt;c&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; on &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;ϵ&lt;/mml:mi&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; is complicated—it may increase, decrease or even be nonmonotonic.</p></details>
+<div class="small mut mono">arXiv:2508.13894</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We study the linear perturbations of a spherically symmetric black hole corrected by dimension-6 terms in the effective field theory (EFT) of gravity. The solution is asymptotically flat and characterized by two parameters—a mass parameter &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; and a dimensionless parameter &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;ϵ&lt;/mml:mi&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; related to the EFT length scale &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;l&lt;/mml:mi&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;, and the perturbation equation incorporates a velocity factor which is not constant. The quasinormal modes (QNMs) and time-domain waveforms are studied within the hyperboloidal framework. This approach reproduces the breakdown of the isospectrality and reveals that higher overtones are more sensitive to &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;ϵ&lt;/mml:mi&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;. As for the time domain, the mismatch function is introduced and found to scale as &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msup&gt;&lt;mml:mi&gt;ϵ&lt;/mml:mi&gt;&lt;mml:mn&gt;2&lt;/mml:mn&gt;&lt;/mml:msup&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;, which demonstrates that the waveform is stable as &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;ϵ&lt;/mml:mi&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; varies. Finally, a velocity-dependent energy norm is employed to compute the pseudospectrum and characterize the migration of the QNM spectrum. We further define a quantity &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;∊&lt;/mml:mi&gt;&lt;mml:mi&gt;c&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; that describes the magnitude of the instability of a QNM spectrum. Our analysis reveals that the dependence of &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;∊&lt;/mml:mi&gt;&lt;mml:mi&gt;c&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; on &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mi&gt;ϵ&lt;/mml:mi&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; is complicated—it may increase, decrease or even be nonmonotonic.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2508.13894v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,19 +159,23 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">2 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">2 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2508.13894v2#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…. (4) is required, rather than the spherically symmetric case considered in this work. In [78], the authors investigated such a spinning black hole solution within an effective field theory framework. By applying a Bayesian analysis to the ringdown signals of <mark>GW150914</mark> and GW200129, they derived an upper bound on the length scale ll associated with dimension-6 operators in the effective action, namely l⩽38.2​kml\leqslant 38.2\,\text{km}.
-
-Given that the Schwarzschild radius of the Sun is approximately 2.95​km2.95\,\text{km}…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> By applying a Bayesian analysis to the ringdown signals of GW150914 and GW200129, they derived an upper bound on the length scale ll associated with dimension-6 operators in the…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -186,13 +211,16 @@ Given that the Schwarzschild radius of the Sun is approximately 2.95​km2.95\,\
 <section class="card" data-i="1" data-event="GW200129_065458">
   <div class="ctx">
     <div class="evname mono">GW200129_065458</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2508.13894v2#:~:text=GW200129" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200129</span> or <span class="mono hit">GW200129_065458</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…ired, rather than the spherically symmetric case considered in this work. In [78], the authors investigated such a spinning black hole solution within an effective field theory framework. By applying a Bayesian analysis to the ringdown signals of GW150914 and <mark>GW200129</mark>, they derived an upper bound on the length scale ll associated with dimension-6 operators in the effective action, namely l⩽38.2​kml\leqslant 38.2\,\text{km}.
-
-Given that the Schwarzschild radius of the Sun is approximately 2.95​km2.95\,\text{km}, the mass MM…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> By applying a Bayesian analysis to the ringdown signals of GW150914 and GW200129, they derived an upper bound on the length scale ll associated with dimension-6 operators in the effective ac…</li></ul>
+    </details>
     
   </div>
   <div class="form">

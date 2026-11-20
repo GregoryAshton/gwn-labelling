@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Long-lived remnants from binary neutron star mergers</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1803.10865" target="_blank" rel="noopener" class="mono">arXiv:1803.10865</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Massive neutron stars (NSs) with lifetimes of at least several seconds are expected to be the result of a sizable fraction of NS mergers. We study their formation using a large set of numerical relativity simulations. We show that they are initially endowed with angular momentum that significantly exceeds the mass-shedding limit for rigidly rotating equilibria. We find that gravitational wave (GW) emission is not able to remove this excess angular momentum within the time over which solid body rotation should be achieved. Instead, we argue that the excess angular momentum could be carried away by massive winds. Long-lived merger remnants are also formed with larger gravitational masses than those of rigidly rotating NSs having the same number of baryons. The excess mass is likely radiated in the form of neutrinos. The evolution of long-lived remnants on the viscous time-scale is thus determined by the interplay of finite-temperature effects, mass ejection, and neutrinos with potentially dramatic consequences for the remnants&#39; properties and stability. We also provide an empirical fit for the spin of the remnant at the end of its viscous evolution as a function of its final mass, and we discuss the implications for the magnetar model of short gamma-ray bursts (SGRBs). Finally, we investigate the possible electromagnetic signatures associated with the viscous ejecta. Massive outflows possibly resulting from the formation of long-lived remnants would power unusually bright, blue kilonova counterparts to GW events and SGRBs whose detection would provide smoking gun evidence for the formation of long-lived remnants.</p></details>
+<div class="small mut mono">arXiv:1803.10865</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Massive neutron stars (NSs) with lifetimes of at least several seconds are expected to be the result of a sizable fraction of NS mergers. We study their formation using a large set of numerical relativity simulations. We show that they are initially endowed with angular momentum that significantly exceeds the mass-shedding limit for rigidly rotating equilibria. We find that gravitational wave (GW) emission is not able to remove this excess angular momentum within the time over which solid body rotation should be achieved. Instead, we argue that the excess angular momentum could be carried away by massive winds. Long-lived merger remnants are also formed with larger gravitational masses than those of rigidly rotating NSs having the same number of baryons. The excess mass is likely radiated in the form of neutrinos. The evolution of long-lived remnants on the viscous time-scale is thus determined by the interplay of finite-temperature effects, mass ejection, and neutrinos with potentially dramatic consequences for the remnants&#39; properties and stability. We also provide an empirical fit for the spin of the remnant at the end of its viscous evolution as a function of its final mass, and we discuss the implications for the magnetar model of short gamma-ray bursts (SGRBs). Finally, we investigate the possible electromagnetic signatures associated with the viscous ejecta. Massive outflows possibly resulting from the formation of long-lived remnants would power unusually bright, blue kilonova counterparts to GW events and SGRBs whose detection would provide smoking gun evidence for the formation of long-lived remnants.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1803.10865v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,119 +159,22 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>6 mentions · <span class="cptag">3 by counterpart name</span></h3>
+    <p class="where">Named 6 times:
+      methods ×4, introduction ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1803.10865v3#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">3 mentions use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention"><span class="sec">introduction</span>…ble massive NSs (MNSs) if their mass is
-below the maximum mass of a nonrotating NS
-(Hotokezaka
-et al., 2013; Giacomazzo &amp;
-Perna, 2013; Foucart
-et al., 2016a; Kastaun
-et al., 2016; Ciolfi et al., 2017; Kiuchi
-et al., 2018).
-
-In the case of the binary NS merger <mark>GW170817</mark>
-(Abbott
-et al., 2017a; Abbott
-et al., 2017b; Abbott
-et al., 2017c), the
-most likely outcome was a HMNS (Margalit &amp;
-Metzger, 2017; Shibata et al., 2017; Radice
-et al., 2018). However, the formation of a long-lived
-remnant for GW170817 is not completely ruled o…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…e of the binary NS merger GW170817
-(Abbott
-et al., 2017a; Abbott
-et al., 2017b; Abbott
-et al., 2017c), the
-most likely outcome was a HMNS (Margalit &amp;
-Metzger, 2017; Shibata et al., 2017; Radice
-et al., 2018). However, the formation of a long-lived
-remnant for <mark>GW170817</mark> is not completely ruled out (Yu &amp; Dai, 2017; Ai
-et al., 2018; Geng
-et al., 2018; Li
-et al., 2018). Indeed, the formation of
-SMNS is expected to occur in a sizable fraction of mergers
-(Lasky
-et al., 2014; Gao
-et al., 2016; Piro
-et al., 2017). This expectation …</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">methods · <span class="cptag">counterpart name, not the GW signal</span></span>…ctinides is expected to
-significantly increase κ\kappa, delaying the kilonova peak and shifting
-its spectrum to larger wavelenghts (Kasen
-et al., 2013; Barnes &amp;
-Kasen, 2013; Tanaka &amp;
-Hotokezaka, 2013).
-
-The detection of a transient compatible with a kilonova (<mark class="cp">AT2017gfo</mark>;
-Arcavi
-et al. 2017; Coulter
-et al. 2017; Drout
-et al. 2017; Evans
-et al. 2017; Kasliwal
-et al. 2017; Nicholl
-et al. 2017; Smartt
-et al. 2017; Soares-Santos
-et al. 2017; Tanvir
-et al. 2017) in association to GW170817
-confirmed our present understanding of NS …</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">methods</span>…f a transient compatible with a kilonova (AT2017gfo;
-Arcavi
-et al. 2017; Coulter
-et al. 2017; Drout
-et al. 2017; Evans
-et al. 2017; Kasliwal
-et al. 2017; Nicholl
-et al. 2017; Smartt
-et al. 2017; Soares-Santos
-et al. 2017; Tanvir
-et al. 2017) in association to <mark>GW170817</mark>
-confirmed our present understanding of NS mergers and gave, for the
-first time, the possibility to constraint their ejecta properties and
-nucleosynthetic yields (Kasen et al., 2017; Rosswog et al., 2018). The
-analysis of the light curves and of the spectrum r…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">methods · <span class="cptag">counterpart name, not the GW signal</span></span>…nts using the semi-analytical model
-we introduced in Perego
-et al. (2017). This includes the contribution
-of ejecta with different physical origin, geometry, and thermodynamical
-properties (details below). We calibrated the free parameters in this
-model using <mark class="cp">AT2017gfo</mark> in Perego
-et al. (2017). For the calculation of
-the light curves, we assume azimuthal symmetry and discretize the solid
-angle in thirty slices, equally spaced in cos⁡(θ)\cos({\theta}), θ\theta being
-the polar angle. We place the observer at a distance of 40 M…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">methods · <span class="cptag">counterpart name, not the GW signal</span></span>…ese properties is sometimes
-referred to as the purple component (Tanaka
-et al., 2017; Villar
-et al., 2017, e.g.). For this component we take κej;disk=κpurple=5​cm2​g−1\kappa_{\rm ej;disk}=\kappa_{\rm purple}=5\,{\rm cm^{2}g^{-1}}, which is consistent with
-the <mark class="cp">AT2017gfo</mark> photometry after the first few days
-(Perego
-et al., 2017). We assume the remnant viscous ejecta to be less
-neutron rich than either the dynamical ejecta or the disk wind ejecta
-because of the neutrino irradiation from the remnant
-(Fujibayashi et al., 2018), a…</div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> In the case of the binary NS merger GW170817 (Abbott et al., 2017a; Abbott et al., 2017b; Abbott et al., 2017c), the most likely outcome was a HMNS (Marga…</li><li><span class="sec">introduction</span> However, the formation of a long-lived remnant for GW170817 is not completely ruled out (Yu &amp; Dai, 2017; Ai et al., 2018; Geng et al., 2018; Li et al., 2018).</li><li><span class="sec">methods · counterpart name</span> The detection of a transient compatible with a kilonova (AT2017gfo; Arcavi et al. 2017; Coulter et al. 2017; Drout et al. 2017; Evans et al. 2017; Kasliwal et al. 2017; Nicholl…</li><li><span class="sec">methods</span> …17; Nicholl et al. 2017; Smartt et al. 2017; Soares-Santos et al. 2017; Tanvir et al. 2017) in association to GW170817 confirmed our present understanding of NS mergers and gave, for the first time, the possibility to constraint…</li><li><span class="sec">methods · counterpart name</span> We calibrated the free parameters in this model using AT2017gfo in Perego et al.</li><li><span class="sec">methods · counterpart name</span> …κpurple=5​cm2​g−1\kappa_{\rm ej;disk}=\kappa_{\rm purple}=5\,{\rm cm^{2}g^{-1}}, which is consistent with the AT2017gfo photometry after the first few days (Perego et al., 2017).</li></ul>
     </details>
     
   </div>

@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Real-time Search for Compact Binary Mergers in Advanced LIGO and Virgo&#39;s Third Observing Run Using PyCBC Live</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2008.07494" target="_blank" rel="noopener" class="mono">arXiv:2008.07494</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The third observing run of Advanced LIGO and Advanced Virgo took place between 2019 April and 2020 March and resulted in dozens of gravitational-wave candidates, many of which are now published as confident detections. A crucial requirement of the third observing run was the rapid identification and public reporting of compact binary mergers, which enabled massive follow-up observation campaigns with electromagnetic and neutrino observatories. PyCBC Live is a low-latency search for compact binary mergers based on frequency-domain matched filtering, which was used during the second and third observing runs, together with other low-latency analyses, to generate these rapid alerts from the data acquired by LIGO and Virgo. This paper describes and evaluates the improvements made to PyCBC Live after the second observing run, which defined its operation and performance during the third observing run.</p></details>
+<div class="small mut mono">arXiv:2008.07494</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The third observing run of Advanced LIGO and Advanced Virgo took place between 2019 April and 2020 March and resulted in dozens of gravitational-wave candidates, many of which are now published as confident detections. A crucial requirement of the third observing run was the rapid identification and public reporting of compact binary mergers, which enabled massive follow-up observation campaigns with electromagnetic and neutrino observatories. PyCBC Live is a low-latency search for compact binary mergers based on frequency-domain matched filtering, which was used during the second and third observing runs, together with other low-latency analyses, to generate these rapid alerts from the data acquired by LIGO and Virgo. This paper describes and evaluates the improvements made to PyCBC Live after the second observing run, which defined its operation and performance during the third observing run.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2008.07494v4" target="_blank" rel="noopener">Open the paper (arXiv HTML, v4) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,90 +159,22 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">3 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">3 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…rch
-
-II.4 Identification of signals in a single detector
-
-II.5 Source classification
-
-II.6 Search for maximum-SNR template
-
-III Evaluating the improved search technique
-
-III.1 Sensitivity in simulated data
-
-III.2 Sensitivity in real data
-
-III.3 Redetection of <mark>GW170814</mark> and GW170817
-
-III.4 Latency
-
-III.5 Astrophysical classification
-
-IV Discussion
-
-Acknowledgements
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2008.07494v4 [astro-ph.HE] 01 Feb 2022
-
-Realtime search for compact binary mergers in…</div>
+    <p class="where">Named 4 times:
+      introduction ×2, title/headings, discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2008.07494v4#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…“HL”) and the final-O3 (“HLV”) search configurations.
-The simulated signals are added to real data from Advanced LIGO and
-Advanced Virgo’s third run. The lighter bands represent the 1​σ1\sigma
-uncertainties from the Monte Carlo sampling.
-
-III.3 Redetection of <mark>GW170814</mark> and GW170817
-
-PyCBC Live in the O3 configuration detects GW170814 in O2 data as a coincidence
-between the two LIGO detectors, with a LIGO-Virgo network SNR of ≈15\approx 15.
-With the method described in Section II.3, and using 5 hours
-of lookback background, …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…d signals are added to real data from Advanced LIGO and
-Advanced Virgo’s third run. The lighter bands represent the 1​σ1\sigma
-uncertainties from the Monte Carlo sampling.
-
-III.3 Redetection of GW170814 and GW170817
-
-PyCBC Live in the O3 configuration detects <mark>GW170814</mark> in O2 data as a coincidence
-between the two LIGO detectors, with a LIGO-Virgo network SNR of ≈15\approx 15.
-With the method described in Section II.3, and using 5 hours
-of lookback background, the candidate is assigned a false-alarm rate of 1 in
-≈200\approx 2…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">discussion</span>… future runs.
-We evaluated these improvements in multiple ways: first by recovering simulated
-signals added into ideal detector noise, then by recovering simulated signals
-added into real O3 data, and finally by reanalyzing a segment of O2 data
-containing the <mark>GW170814</mark> and GW170817 events, and discussing how these events
-are detected by the new analysis.
-The improvements we introduced do not impact the latency.
-
-During O3, 5656 alerts were issued on the GCN without retraction.
-PyCBC Live contributed to 3434 of them.
-Only 11…</div>
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> III.3 Redetection of GW170814 and GW170817</li><li><span class="sec">introduction</span> PyCBC Live in the O3 configuration detects GW170814 in O2 data as a coincidence between the two LIGO detectors, with a LIGO-Virgo network SNR of ≈15\approx 15.</li><li><span class="sec">discussion</span> …ing simulated signals added into real O3 data, and finally by reanalyzing a segment of O2 data containing the GW170814 and GW170817 events, and discussing how these events are detected by the new analysis.</li></ul>
     </details>
     
   </div>
@@ -258,194 +211,15 @@ Only 11…</div>
 <section class="card" data-i="1" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>13 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…ntification of signals in a single detector
-
-II.5 Source classification
-
-II.6 Search for maximum-SNR template
-
-III Evaluating the improved search technique
-
-III.1 Sensitivity in simulated data
-
-III.2 Sensitivity in real data
-
-III.3 Redetection of GW170814 and <mark>GW170817</mark>
-
-III.4 Latency
-
-III.5 Astrophysical classification
-
-IV Discussion
-
-Acknowledgements
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2008.07494v4 [astro-ph.HE] 01 Feb 2022
-
-Realtime search for compact binary mergers in Advanced LIG…</div>
+    <p class="where">Named 13 times:
+      introduction ×11, title/headings, discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2008.07494v4#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…st two observing runs, O1 and O2, between 2015 and 2017
-[1, 18, 11].
-From these two runs, over a dozen confident observations of binary black hole
-(BBH) mergers and one binary neutron star (BNS) merger were made
-[3, 4, 51, 57, 69, 71, 70, 55].
-The BNS merger, <mark>GW170817</mark>, was observed within a minute of the data being
-recorded, was associated with a gamma ray burst [6] and was
-subsequently followed up by a large number of observatories spanning the whole
-electromagnetic (EM) spectrum [7].
-Without the realtime identification a…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…in a minute of the data being
-recorded, was associated with a gamma ray burst [6] and was
-subsequently followed up by a large number of observatories spanning the whole
-electromagnetic (EM) spectrum [7].
-Without the realtime identification and localization of <mark>GW170817</mark> as a merging
-pair of neutron stars, these observations would not have been possible.
-
-The third observing run of Advanced LIGO and Advanced Virgo, O3, began in
-April 2019 and ended in March 2020.
-Thanks to hardware improvements in the detectors, the ranges fo…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>… the LIGO observatories in
-the last few months of O2, when its sensitivity was typically 1/41/4 to 1/31/3
-that of the LIGO instruments.
-Despite the smaller sensitivity, the inclusion of Virgo markedly improved the
-localization of important candidates, such as <mark>GW170817</mark> [3].
-However, Virgo’s contribution to the overall network sensitivity was limited,
-as quantified by its integrated BNS observed time-volume of 4×1034\times 10^{3} Mpc3 yr
-compared to 5×1055\times 10^{5} Mpc3 yr for LIGO-Hanford33
- 3
- 
- 
- 
- See
-https://www.vir…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…
-Therefore, a non-negligible fraction of signals are unable to produce
-coincident triggers in two or more detectors
-[30, 55].
-By chance, two events that were very promising targets for EM followup
-observation were first identified as single-detector triggers:
-<mark>GW170817</mark>, initially seen as a single-detector trigger in
-LIGO Hanford due to a large glitch affecting LIGO Livingston
-[3] and GW190425, observed by LIGO Livingston
-and Virgo, but too weak to be detectable in Virgo [5].
-In cases like these, we have a single-detector tr…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…f days over which the fit smoothing
-is performed.
-
-Using the originally recorded trigger from LIGO Hanford, and the conservative
-fit values calculated from the O2 data from July 2017, we estimate the single-detector trigger
-false alarm rate in LIGO Hanford of <mark>GW170817</mark> to be 1 per 𝒪⁡(109)\mathcal{O}(10^{9}) yr.
-If we choose the mean fit combination, then the estimated false alarm rate would
-be 1 per 𝒪⁡(1011)\mathcal{O}(10^{11}) yr.
-
-II.5 Source classification
-
-Source classification between different possible types of coales…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… final-O3 (“HLV”) search configurations.
-The simulated signals are added to real data from Advanced LIGO and
-Advanced Virgo’s third run. The lighter bands represent the 1​σ1\sigma
-uncertainties from the Monte Carlo sampling.
-
-III.3 Redetection of GW170814 and <mark>GW170817</mark>
-
-PyCBC Live in the O3 configuration detects GW170814 in O2 data as a coincidence
-between the two LIGO detectors, with a LIGO-Virgo network SNR of ≈15\approx 15.
-With the method described in Section II.3, and using 5 hours
-of lookback background, the candidate…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ncidence
-between the two LIGO detectors, with a LIGO-Virgo network SNR of ≈15\approx 15.
-With the method described in Section II.3, and using 5 hours
-of lookback background, the candidate is assigned a false-alarm rate of 1 in
-≈200\approx 200 yr.
-
-The case of <mark>GW170817</mark> is more interesting because of the glitch affecting the
-LIGO-Livingston data seconds before merger [3].
-Although the glitch is automatically gated by PyCBC Live, the surrounding data
-are still flagged as affected by a glitch by the low-latency data-quality fl…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…glitch by the low-latency data-quality flags,
-preventing a LIGO double coincidence from taking place.
-In addition, the small Virgo SNR also prevents a double coincidence between
-LIGO-Hanford and Virgo.
-Nevertheless, using the method described in Section II.4, <mark>GW170817</mark>
-is reported as a LIGO-Hanford single-detector candidate with false-alarm rate of
-1 in ≈109\approx 10^{9} yr.
-
-PyCBC Live can also be configured to ignore data-quality flags.
-Under this configuration, GW170817 is detected instead as a LIGO double
-coincidence a…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…eless, using the method described in Section II.4, GW170817
-is reported as a LIGO-Hanford single-detector candidate with false-alarm rate of
-1 in ≈109\approx 10^{9} yr.
-
-PyCBC Live can also be configured to ignore data-quality flags.
-Under this configuration, <mark>GW170817</mark> is detected instead as a LIGO double
-coincidence and is assigned a false-alarm rate lower than 11 in
-≈17\approx 17 yr by the method of Section II.3.
-The much higher value with respect to the single-detector candidate is due to
-the upper limit on the double-co…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…absence of a detectable signal in Virgo produces a relatively large followup
-p-value (see Eq. 2), which cannot overcome the
-penalty of the trials factor.
-In fact, this situation matches our second numerical example in Section
-II.3.
-Hence, when comparing these <mark>GW170817</mark> false-alarm rates, one has to bear in mind
-that the LIGO-Hanford-only rate is an extrapolation from months of data, while
-the Hanford-Livingston-Virgo rate is an upper limit based on just 55 hr of data.
-
-In both configurations, however, GW170817 is reported w…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…mparing these GW170817 false-alarm rates, one has to bear in mind
-that the LIGO-Hanford-only rate is an extrapolation from months of data, while
-the Hanford-Livingston-Virgo rate is an upper limit based on just 55 hr of data.
-
-In both configurations, however, <mark>GW170817</mark> is reported with a false-alarm rate
-well beyond what is required to issue a public alert on the GCN and to consider
-the candidate worthwhile of followup observations.
-
-III.4 Latency
-
-We measure the latency of the analysis by repeatedly replaying a week of O2
-…</div>
+    <details class="lines"><summary>Show the sentences (12, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> III.3 Redetection of GW170814 and GW170817</li><li><span class="sec">introduction</span> The BNS merger, GW170817, was observed within a minute of the data being recorded, was associated with a gamma ray burst [6] and was s…</li><li><span class="sec">introduction</span> Without the realtime identification and localization of GW170817 as a merging pair of neutron stars, these observations would not have been possible.</li><li><span class="sec">introduction</span> …aller sensitivity, the inclusion of Virgo markedly improved the localization of important candidates, such as GW170817 [3].</li><li><span class="sec">introduction</span> …at were very promising targets for EM followup observation were first identified as single-detector triggers: GW170817, initially seen as a single-detector trigger in LIGO Hanford due to a large glitch affecting LIGO Livingston…</li><li><span class="sec">introduction</span> …from the O2 data from July 2017, we estimate the single-detector trigger false alarm rate in LIGO Hanford of GW170817 to be 1 per 𝒪⁡(109)\mathcal{O}(10^{9}) yr.</li><li><span class="sec">introduction</span> The case of GW170817 is more interesting because of the glitch affecting the LIGO-Livingston data seconds before merger [3].</li><li><span class="sec">introduction</span> Nevertheless, using the method described in Section II.4, GW170817 is reported as a LIGO-Hanford single-detector candidate with false-alarm rate of 1 in ≈109\approx 10^{9} yr.</li></ul>
     </details>
     
   </div>
@@ -482,19 +256,16 @@ We measure the latency of the analysis by repeatedly replaying a week of O2
 <section class="card" data-i="2" data-event="GW190425">
   <div class="ctx">
     <div class="evname mono">GW190425</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2008.07494v4#:~:text=GW190425" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190425</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…By chance, two events that were very promising targets for EM followup
-observation were first identified as single-detector triggers:
-GW170817, initially seen as a single-detector trigger in
-LIGO Hanford due to a large glitch affecting LIGO Livingston
-[3] and <mark>GW190425</mark>, observed by LIGO Livingston
-and Virgo, but too weak to be detectable in Virgo [5].
-In cases like these, we have a single-detector trigger and no coincidence.
-We cannot rely on the usual robust time-slide approach to establish the false-alarm
-rate of the trig…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …lly seen as a single-detector trigger in LIGO Hanford due to a large glitch affecting LIGO Livingston [3] and GW190425, observed by LIGO Livingston and Virgo, but too weak to be detectable in Virgo [5].</li></ul>
+    </details>
     
   </div>
   <div class="form">

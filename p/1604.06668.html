@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,145 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Test of the Weak Equivalence Principle using LIGO observations of GW150914 and Fermi observations of GBM transient 150914</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1604.06668" target="_blank" rel="noopener" class="mono">arXiv:1604.06668</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">About 0.4 s after the Laser Interferometer Gravitational-Wave Observatory (LIGO) detected a transient gravitational-wave (GW) signal GW150914, the Fermi Gamma-ray Burst Monitor (GBM) also found a weak electromagnetic transient (GBM transient 150914). Time and location coincidences favor a possible association between GW150904 and GBM transient 150914. Under this possible association, we adopt Fermi&#39;s electromagnetic (EM) localization and derive constraints on possible violations of the Weak Equivalence Principle (WEP) from the observations of two events. Our calculations are based on four comparisons: (1) The first is the comparison of the initial GWs detected at the two LIGO sites. From the different polarizations of these initial GWs, we obtain a limit on any difference in the parametrized post-Newtonian (PPN) parameter ∆γ ≲10&lt;SUP&gt;-10&lt;/SUP&gt;. (2) The second is a comparison of GWs and possible EM waves. Using a traditional super-Eddington accretion model for GBM transient 150914, we again obtain an upper limit ∆γ ≲10&lt;SUP&gt;-10&lt;/SUP&gt;. Compared with previous results for photons and neutrinos, our limits are five orders of magnitude stronger than those from PeV neutrinos in blazar flares, and seven orders stronger than those from MeV neutrinos in SN1987A. (3) The third is a comparison of GWs with different frequencies in the range [35 Hz, 250 Hz]. (4) The fourth is a comparison of EM waves with different energies in the range [1 keV, 10 MeV]. These last two comparisons lead to an even stronger limit, ∆γ ≲10&lt;SUP&gt;-8&lt;/SUP&gt;. Our results highlight the potential of multi-messenger signals exploiting different emission channels to strengthen existing tests of the WEP.</p></details>
+<div class="small mut mono">arXiv:1604.06668</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">About 0.4 s after the Laser Interferometer Gravitational-Wave Observatory (LIGO) detected a transient gravitational-wave (GW) signal GW150914, the Fermi Gamma-ray Burst Monitor (GBM) also found a weak electromagnetic transient (GBM transient 150914). Time and location coincidences favor a possible association between GW150904 and GBM transient 150914. Under this possible association, we adopt Fermi&#39;s electromagnetic (EM) localization and derive constraints on possible violations of the Weak Equivalence Principle (WEP) from the observations of two events. Our calculations are based on four comparisons: (1) The first is the comparison of the initial GWs detected at the two LIGO sites. From the different polarizations of these initial GWs, we obtain a limit on any difference in the parametrized post-Newtonian (PPN) parameter ∆γ ≲10&lt;SUP&gt;-10&lt;/SUP&gt;. (2) The second is a comparison of GWs and possible EM waves. Using a traditional super-Eddington accretion model for GBM transient 150914, we again obtain an upper limit ∆γ ≲10&lt;SUP&gt;-10&lt;/SUP&gt;. Compared with previous results for photons and neutrinos, our limits are five orders of magnitude stronger than those from PeV neutrinos in blazar flares, and seven orders stronger than those from MeV neutrinos in SN1987A. (3) The third is a comparison of GWs with different frequencies in the range [35 Hz, 250 Hz]. (4) The fourth is a comparison of EM waves with different energies in the range [1 keV, 10 MeV]. These last two comparisons lead to an even stronger limit, ∆γ ≲10&lt;SUP&gt;-8&lt;/SUP&gt;. Our results highlight the potential of multi-messenger signals exploiting different emission channels to strengthen existing tests of the WEP.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1604.06668v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>31 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…s
-
-IV Constraints on WEP by the maximum time delay
-
-V Conclusion
-
-Acknowledgements
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1604.06668v3 [gr-qc] 19 Apr 2017
-
-Test of the Weak Equivalence Principle using LIGO observations of <mark>GW150914</mark>
-and Fermi observations of GBM transient 150914
-
-Molin Liu1
-
-Thanks: Corresponding author
-E-mail address: mlliu@xynu.edu.cn
-
-Affiliation: 1Institute for Gravitation and Astrophysics, College of Physics and Electronic Engineering, Xinyang Normal University, Xin…</div>
+    <p class="where">Named 31 times:
+      introduction ×10, results ×10, conclusion ×7, reference list ×2, title/headings, abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/1604.06668v3#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>…cs, School of Physics and Optoelectronic Technology, Dalian University of Technology, Dalian, 116024, P. R. China
-
-Abstract
-
- 
-About 0.4 s after the Laser Interferometer Gravitational-Wave Observatory (LIGO) detected a transient gravitational-wave (GW) signal <mark>GW150914</mark>, the Fermi Gamma-ray Burst Monitor (GBM) also found a weak electromagnetic transient (GBM transient 150914).
-Time and location coincidences favor a possible association between GW150904 and GBM transient 150914.
-Under this possible association, we adopt Fermi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…e potential of multi-messenger signals exploiting different emission channels to strengthen existing tests of the WEP.
-
- 
-
-Keywords: 
-
-Gravitational-waves; Black hole physics; Gamma-ray bursts; Binaries
-
-I Introduction
-
-Recently, gravitational-wave (GW) event <mark>GW150914</mark> was observed by the Laser Interferometer Gravitational-Wave Observatory (LIGO) and Virgo collaborations [1, 2, 3, 4, 5].
-Its reconstructed waveform is consistent with the signal from a binary black hole (BH) merger. Its frequency sweeps from 35 Hz to 250 Hz i…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…black hole (BH) merger. Its frequency sweeps from 35 Hz to 250 Hz in duration 200 ms.
-Although the sky maps have been released, including final localization from LALInference [4], the precise localization is still ill-constrained.
-Meanwhile, about 0.4 s after <mark>GW150914</mark> trigger time, a weak but hard gamma-ray transient lasting 1.024 s was detected by the Gamma-ray Burst Monitor (GBM) instrument on the Fermi Gamma-ray Space Telescope, with a false alarm probability of 0.0022 [6].
-This event is known as GBM transient 150914.
-I…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… followed by X-ray, optical and radio afterglows lasting some hours or days [7, 8].
-Due to the coincidence in their times and locations, it has been argued that GBM transient 150914 may be one such GW-triggered electromagnetic (EM) counterpart associated with <mark>GW150914</mark> [12, 10, 11, 9].
-In particular, a fast optical transient can emerge from a disk-driven outflow in cases where an accretion disk exists around a BH and the disk wind is driven by radiation or coronal magnetic fields in the super-Eddington accretion disk model …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…is the gravitational potential, which consists of three parts: the potential of Milky Way galaxy Um​wU_{mw}, the host galaxy Uh​o​s​tU_{host} and the intergalactic potential UI​GU_{IG} between our galaxy and host galaxy.
-
-Recently, the inspiral portion of the <mark>GW150914</mark> signal with a 0.2 s time delay was used to obtain a constraint on WEP violation of order 10−910^{-9} [28] (see also [29]).
-Our study differs from Refs. [28] and [29] in both the method of calculation used and range of frequencies considered.
-In Ref. [28] the …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…z, and the maximum time delay is equal to the full duration time 0.4 s (Sec. IV).
-With this expanded frequency range, we can obtain stronger constraints.
-
-We note also that a time difference between separate detectors was measured with high precision by LIGO.
-<mark>GW150914</mark> arrived first at Livingston (L​1L1) and 6.9−0.4+0.56.9^{+0.5}_{-0.4} ms later at Hanford (H​1H1), a light-travel distance of 10 ms away from L​1L1 [1].
-Is this shift is related to gravitational time delay, and can it be used to test WEP?
-Wave-particle duality…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…s us that the initial GWs arriving at the two LIGO detectors should be dual to a graviton as a particle with given energy.
-The latter can then be used to test the WEP.
-
-Based on the above considerations, we obtain the constraints on violations of the WEP from <mark>GW150914</mark> and GBM transient 150914, using Fermi’s possible EM localization.
-Four kinds of the constraints are considered here:
-First is the comparison between two detectors’ initial GWs, which have different polarizations (Section II).
-Second is the comparison between …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…inds of the constraints are considered here:
-First is the comparison between two detectors’ initial GWs, which have different polarizations (Section II).
-Second is the comparison between GWs and EM waves (Section III).
-Third is the comparison between GWs from <mark>GW150914</mark> in the full frequency range from 35 Hz to 250 Hz, and fourth is the comparison between EM waves from GBM transient 150914 in the full energy range from 1 keV to 10 MeV (Section IV).
-
-II Constraints on WEP by initial GWs with minor astrophysical intrinsic time…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…f the amplitudes of initial GWs arrived at L​1L1 and H​1H1 have the same magnitude, the strains hL​1h_{L1} and hH​1h_{H1} must be the same, which is also not compatible with the observation.
-
-Until now we can know that, according to the data release for event <mark>GW150914</mark> [35], the initial GWs indeed are not the same, and have clearly different polarizations. Specifically, these waves have the different phase (the first case), or have the different amplitude (the second case), or have one combination of two cases. On the other…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…gravitational field satisfy the relationship
-
-Δ​tg​r​a&lt;(6.9−10​cos⁡θ)​ ms,\Delta t_{gra}&lt;(6.9-10\cos\theta)\text{~ms},
-
-(19)
-
-where −90∘&lt;θ&lt;−46.4∘-90^{\circ}&lt;\theta&lt;-46.4^{\circ} or 46.4∘&lt;θ&lt;90∘46.4^{\circ}&lt;\theta&lt;90^{\circ}. Because the present localization of <mark>GW150914</mark> is ill-constrained, it is impossible to get a more accurate result of θ\theta by current observation data alone. The minimal time delay takes place at the angle ±46.4∘\pm 46.4^{\circ} which corresponds to the situation of that 6.9 ms delay completely comes fr…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ording to Eq.(21), one can get Δ∼10−20\Delta\sim 10^{-20} or δ​Δ​γ∼10−30\delta\Delta\gamma\sim 10^{-30}. It is clear that even for the maximum uncertainty the influence of δ​d\delta d on the results is also very small, and can be ignored for the cosmic source <mark>GW150914</mark>. Actually, because the celestial equatorial coordinate system related to a cosmic source is very big for two points on Earth, it is reasonable to ignore the difference of coordinates about L​1L1 and H​1H1 in this large coordinate system.
-
-Figure 3: The path d…</div>
+    <details class="lines"><summary>Show the sentences (31, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Test of the Weak Equivalence Principle using LIGO observations of GW150914 and Fermi observations of GBM transient 150914</li><li><span class="sec">abstract</span> …aser Interferometer Gravitational-Wave Observatory (LIGO) detected a transient gravitational-wave (GW) signal GW150914, the Fermi Gamma-ray Burst Monitor (GBM) also found a weak electromagnetic transient (GBM transient 150914).</li><li><span class="sec">introduction</span> Recently, gravitational-wave (GW) event GW150914 was observed by the Laser Interferometer Gravitational-Wave Observatory (LIGO) and Virgo collaborations [1, 2…</li><li><span class="sec">introduction</span> Meanwhile, about 0.4 s after GW150914 trigger time, a weak but hard gamma-ray transient lasting 1.024 s was detected by the Gamma-ray Burst Monitor…</li><li><span class="sec">introduction</span> …rgued that GBM transient 150914 may be one such GW-triggered electromagnetic (EM) counterpart associated with GW150914 [12, 10, 11, 9].</li><li><span class="sec">introduction</span> Recently, the inspiral portion of the GW150914 signal with a 0.2 s time delay was used to obtain a constraint on WEP violation of order 10−910^{-9} [28] (se…</li><li><span class="sec">introduction</span> GW150914 arrived first at Livingston (L​1L1) and 6.9−0.4+0.56.9^{+0.5}_{-0.4} ms later at Hanford (H​1H1), a light-tra…</li><li><span class="sec">introduction</span> Based on the above considerations, we obtain the constraints on violations of the WEP from GW150914 and GBM transient 150914, using Fermi’s possible EM localization.</li></ul>
     </details>
     
   </div>

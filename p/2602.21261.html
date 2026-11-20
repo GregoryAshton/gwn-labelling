@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Using thermodynamics to learn gravitational wave physics</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2602.21261" target="_blank" rel="noopener" class="mono">arXiv:2602.21261</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Black holes are some of the most interesting objects in the Universe. While they first arise in the complicated behavior of general relativity, the physical laws ruling their behavior are surprisingly simple. For example, one of the core facts about black holes is that their area never decreases, much like the entropy in thermodynamics. In this note directed at introductory physics students and their instructors, we use this similarity to understand properties of black hole physics using standard techniques from an undergraduate course in thermal physics. We explore the never-decreasing nature of black hole area to obtain bounds on the energy emitted in a black hole merger (a calculation originally done by Hawking). We show how this allows us to think of black holes in manners very similar to heat engines, and how these ideas have been used in modern gravitational wave observatories to test general relativity. This allows a research-level topic to be discussed in introductory physics lectures.</p></details>
+<div class="small mut mono">arXiv:2602.21261</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Black holes are some of the most interesting objects in the Universe. While they first arise in the complicated behavior of general relativity, the physical laws ruling their behavior are surprisingly simple. For example, one of the core facts about black holes is that their area never decreases, much like the entropy in thermodynamics. In this note directed at introductory physics students and their instructors, we use this similarity to understand properties of black hole physics using standard techniques from an undergraduate course in thermal physics. We explore the never-decreasing nature of black hole area to obtain bounds on the energy emitted in a black hole merger (a calculation originally done by Hawking). We show how this allows us to think of black holes in manners very similar to heat engines, and how these ideas have been used in modern gravitational wave observatories to test general relativity. This allows a research-level topic to be discussed in introductory physics lectures.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2602.21261v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,91 +159,22 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">4 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">4 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>6 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…elativity holds. If a given merger of two massive objects does not obey the area theorem, then one of these hypothesis must be false. This can be tested through gravitational wave observations.
-
-Take for instance the first direct gravitational wave detection, <mark>GW150914</mark> [3]. This event consisted of the merger of two black holes with masses M1≈36 M⊙M_{1}\approx$36\text{\,}\mathrm{M_{\odot}}$ and M2≈29 M⊙M_{2}\approx$29\text{\,}\mathrm{M_{\odot}}$ into a final black hole of mass M≈62 M⊙M\approx$62\text{\,}\mathrm{M_{\odot}}$. …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…2}\approx$29\text{\,}\mathrm{M_{\odot}}$ into a final black hole of mass M≈62 M⊙M\approx$62\text{\,}\mathrm{M_{\odot}}$. Above, M⊙\mathrm{M_{\odot}} denotes the solar mass. We can estimate the efficiency of emission of gravitational waves in this process as
-
-η<mark>GW150914</mark>=1−MM1+M2≈4.6%.\eta_{\text{GW150914}}=1-\frac{M}{M_{1}+M_{2}}\approx 4.6\%.
-
-(20)
-
-This seems well within the theoretical limitations we could obtain using the area theorem. In fact, for Schwarzschild black holes with these masses, the theoretical limit would …</div>
+    <p class="where">Named 6 times:
+      discussion ×5, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2602.21261v2#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">discussion</span>…ot}}$ into a final black hole of mass M≈62 M⊙M\approx$62\text{\,}\mathrm{M_{\odot}}$. Above, M⊙\mathrm{M_{\odot}} denotes the solar mass. We can estimate the efficiency of emission of gravitational waves in this process as
-
-ηGW150914=1−MM1+M2≈4.6%.\eta_{\text{<mark>GW150914</mark>}}=1-\frac{M}{M_{1}+M_{2}}\approx 4.6\%.
-
-(20)
-
-This seems well within the theoretical limitations we could obtain using the area theorem. In fact, for Schwarzschild black holes with these masses, the theoretical limit would be close to 30%30\%, as shown in Eq…</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">discussion</span>…e carried away by the gravitational waves. Furthermore, the uncertainties in the measured values are very important, since they tell us how sure we can be that the area theorem holds. Isi et al. [12] did such a detailed investigation, and found that the event <mark>GW150914</mark> obeyed the area theorem with more than 95%95\% probability (∼2​σ\sim 2\sigma). We notice that in these tests it is often more convenient to compute the total area of black holes before and after the collision and check that it increases, instead of computing …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>… M1≈33.6 M⊙M_{1}\approx$33.6\text{\,}\mathrm{M_{\odot}}$ and M2≈32.2 M⊙M_{2}\approx$32.2\text{\,}\mathrm{M_{\odot}}$ merging into a final black hole of mass M≈62.7 M⊙M\approx$62.7\text{\,}\mathrm{M_{\odot}}$. Notice the masses are very similar to those in the <mark>GW150914</mark> detection. Nonetheless, LIGO has been considerably improved in the ten years between both events, and the uncertainties in GW250114 are considerably smaller. The analysis performed by the LIGO, Virgo, and KAGRA collaborations has found the area theorem was re…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…9–220.
-
-External Links: Document
-
-Cited by: §VI.
-
-[11]
-S. W. Hawking (1976)
-
-.
-
-Commun. Math. Phys. 46 (2), pp. 206.
-
-External Links: Document
-
-[12]
-M. Isi, W. M. Farr, M. Giesler, M. A. Scheel, and S. A. Teukolsky (2021)
-
-Testing the black-hole area law with <mark>GW150914</mark>.
-
-Phys. Rev. Lett. 127 (1).
-
-External Links: 2012.04486,
-Document
-
-Cited by: §I,
-§VI.
-
-[13]
-S. Tang, H. Wang, Y. Li, and Y. Fan (2026)
-
-Verification of the black hole area law with GW230815.
-
-Sci. Bull. 71 (1), pp. 83–88.
-
-External Links: 2509.03480,
-Document…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[12]</span> · 2 places</span><div class="cite">…ty of finding new gravitational physics beyond general relativity.
-
-One of the most interesting predictions that has been recently tested through gravitational wave observations is the “area theorem” <mark class="ref">[12, 13, 2]</mark>. This result by Hawking [8], Hawking [9] states that, under mild hypotheses, the total area of black holes in the universe never decreases. Hence, the black hole area behaves very similarly to the en…</div><div class="cite">…can be carried away by the gravitational waves. Furthermore, the uncertainties in the measured values are very important, since they tell us how sure we can be that the area theorem holds. Isi et al. <mark class="ref">[12]</mark> did such a detailed investigation, and found that the event GW150914 obeyed the area theorem with more than 95%95\% probability (∼2​σ\sim 2\sigma). We notice that in these tests it is often more conv…</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> Take for instance the first direct gravitational wave detection, GW150914 [3].</li><li><span class="sec">discussion</span> ηGW150914=1−MM1+M2≈4.6%.\eta_{\text{GW150914}}=1-\frac{M}{M_{1}+M_{2}}\approx 4.6\%.</li><li><span class="sec">discussion</span> Isi et al. [12] did such a detailed investigation, and found that the event GW150914 obeyed the area theorem with more than 95%95\% probability (∼2​σ\sim 2\sigma).</li><li><span class="sec">discussion</span> Notice the masses are very similar to those in the GW150914 detection.</li><li><span class="sec">cites it as [12]</span> …sting predictions that has been recently tested through gravitational wave observations is the “area theorem” [12, 13, 2]. This result by Hawking [8], Hawking [9] states that, under mild hypotheses, the total area of black holes in…</li><li><span class="sec">cites it as [12]</span> …ured values are very important, since they tell us how sure we can be that the area theorem holds. Isi et al. [12] did such a detailed investigation, and found that the event GW150914 obeyed the area theorem with more than 9…</li></ul>
     </details>
     
   </div>
@@ -259,37 +211,16 @@ One of the most interesting predictions that has been recently tested through gr
 <section class="card" data-i="1" data-event="GW241011_233834">
   <div class="ctx">
     <div class="evname mono">GW241011_233834</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      discussion, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2602.21261v2#:~:text=GW241011" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW241011</span> or <span class="mono hit">GW241011_233834</span>.</p>
     
     
-    <div class="mention"><span class="sec">discussion</span>… which this may have happened [1]. A black hole that was formed through a merger is expected to have a few distinctive features, such as very large masses compared to their predecessors and a very large spin. The fact that component black holes of the mergers <mark>GW241011</mark> and GW241110 present those features suggest they may have been formed in previous coalescences. It cannot be said with certainty that these black holes are indeed of second-generation, but their detection suggests hierarchical mergers could happen in our univ…</div>
     
-    
-    
-    <div class="mention"><span class="sec">references</span>… supported by the São Paulo Research Foundation (FAPESP) under grant 2025/05161-0. The work of CCRE was supported by the Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq) under grant 131663/2025-9.
-
-References
-
-[1]
-A. G. Abac et al. (2025)
-
-<mark>GW241011</mark> and GW241110: exploring binary formation and fundamental physics with asymmetric, high-spin black hole coalescences.
-
-Astrophys. J. Lett. 993 (1).
-
-External Links: 2510.26931,
-Document
-
-Cited by: §VI.
-
-[2]
-A. G. Abac et al. (2025)
-
-GW250114: testing Hawking’s…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[1]</span> · 1 place</span><div class="cite">…encounter yet another black hole to merge with. In spite of this, recent observations by the LIGO, Virgo, and KAGRA collaborations report two gravitational wave events in which this may have happened <mark class="ref">[1]</mark>. A black hole that was formed through a merger is expected to have a few distinctive features, such as very large masses compared to their predecessors and a very large spin. The fact that component …</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> The fact that component black holes of the mergers GW241011 and GW241110 present those features suggest they may have been formed in previous coalescences.</li><li><span class="sec">cites it as [1]</span> …he LIGO, Virgo, and KAGRA collaborations report two gravitational wave events in which this may have happened [1]. A black hole that was formed through a merger is expected to have a few distinctive features, such as very l…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -325,37 +256,16 @@ GW250114: testing Hawking’s…
 <section class="card" data-i="2" data-event="GW241110_124123">
   <div class="ctx">
     <div class="evname mono">GW241110_124123</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      discussion, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2602.21261v2#:~:text=GW241110" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW241110</span> or <span class="mono hit">GW241110_124123</span>.</p>
     
     
-    <div class="mention"><span class="sec">discussion</span>…ay have happened [1]. A black hole that was formed through a merger is expected to have a few distinctive features, such as very large masses compared to their predecessors and a very large spin. The fact that component black holes of the mergers GW241011 and <mark>GW241110</mark> present those features suggest they may have been formed in previous coalescences. It cannot be said with certainty that these black holes are indeed of second-generation, but their detection suggests hierarchical mergers could happen in our universe after al…</div>
     
-    
-    
-    <div class="mention"><span class="sec">references</span>… the São Paulo Research Foundation (FAPESP) under grant 2025/05161-0. The work of CCRE was supported by the Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq) under grant 131663/2025-9.
-
-References
-
-[1]
-A. G. Abac et al. (2025)
-
-GW241011 and <mark>GW241110</mark>: exploring binary formation and fundamental physics with asymmetric, high-spin black hole coalescences.
-
-Astrophys. J. Lett. 993 (1).
-
-External Links: 2510.26931,
-Document
-
-Cited by: §VI.
-
-[2]
-A. G. Abac et al. (2025)
-
-GW250114: testing Hawking’s area law and…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[1]</span> · 1 place</span><div class="cite">…encounter yet another black hole to merge with. In spite of this, recent observations by the LIGO, Virgo, and KAGRA collaborations report two gravitational wave events in which this may have happened <mark class="ref">[1]</mark>. A black hole that was formed through a merger is expected to have a few distinctive features, such as very large masses compared to their predecessors and a very large spin. The fact that component …</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> The fact that component black holes of the mergers GW241011 and GW241110 present those features suggest they may have been formed in previous coalescences.</li><li><span class="sec">cites it as [1]</span> …he LIGO, Virgo, and KAGRA collaborations report two gravitational wave events in which this may have happened [1]. A black hole that was formed through a merger is expected to have a few distinctive features, such as very l…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -391,66 +301,15 @@ GW250114: testing Hawking’s area law and…
 <section class="card" data-i="3" data-event="GW250114_082203">
   <div class="ctx">
     <div class="evname mono">GW250114_082203</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…(∼2​σ\sim 2\sigma). We notice that in these tests it is often more convenient to compute the total area of black holes before and after the collision and check that it increases, instead of computing an efficiency bound.
-
-Much more recently, LIGO observed the <mark>GW250114</mark> event [2], which involved black holes of masses M1≈33.6 M⊙M_{1}\approx$33.6\text{\,}\mathrm{M_{\odot}}$ and M2≈32.2 M⊙M_{2}\approx$32.2\text{\,}\mathrm{M_{\odot}}$ merging into a final black hole of mass M≈62.7 M⊙M\approx$62.7\text{\,}\mathrm{M_{\odot}}$. Not…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…final black hole of mass M≈62.7 M⊙M\approx$62.7\text{\,}\mathrm{M_{\odot}}$. Notice the masses are very similar to those in the GW150914 detection. Nonetheless, LIGO has been considerably improved in the ten years between both events, and the uncertainties in <mark>GW250114</mark> are considerably smaller. The analysis performed by the LIGO, Virgo, and KAGRA collaborations has found the area theorem was respected with high credibility (&gt;3.4​σ&gt;3.4\sigma) in GW250114 [2].
-
-As the technology of gravitational wave observatories improves—an…</div>
+    <p class="where">Named 4 times:
+      discussion ×3, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2602.21261v2#:~:text=GW250114" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW250114</span> or <span class="mono hit">GW250114_082203</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">discussion</span>…improved in the ten years between both events, and the uncertainties in GW250114 are considerably smaller. The analysis performed by the LIGO, Virgo, and KAGRA collaborations has found the area theorem was respected with high credibility (&gt;3.4​σ&gt;3.4\sigma) in <mark>GW250114</mark> [2].
-
-As the technology of gravitational wave observatories improves—and as new observatories are constructed—the uncertainties in the data will become progressively smaller. This means that, with time, tests of the area theorem will allows us to learn whethe…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">references</span>…bac et al. (2025)
-
-GW241011 and GW241110: exploring binary formation and fundamental physics with asymmetric, high-spin black hole coalescences.
-
-Astrophys. J. Lett. 993 (1).
-
-External Links: 2510.26931,
-Document
-
-Cited by: §VI.
-
-[2]
-A. G. Abac et al. (2025)
-
-<mark>GW250114</mark>: testing Hawking’s area law and the Kerr nature of black holes.
-
-Phys. Rev. Lett. 135 (11).
-
-External Links: 2509.08054,
-Document
-
-Cited by: §I,
-§VI.
-
-[3]
-B. P. Abbott et al. (2016)
-
-Observation of gravitational waves from a binary black hole merger.
-
-Phys. R…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[2]</span> · 3 places</span><div class="cite">…ty of finding new gravitational physics beyond general relativity.
-
-One of the most interesting predictions that has been recently tested through gravitational wave observations is the “area theorem” <mark class="ref">[12, 13, 2]</mark>. This result by Hawking [8], Hawking [9] states that, under mild hypotheses, the total area of black holes in the universe never decreases. Hence, the black hole area behaves very similarly to the en…</div><div class="cite">…nt to compute the total area of black holes before and after the collision and check that it increases, instead of computing an efficiency bound.
-
-Much more recently, LIGO observed the GW250114 event <mark class="ref">[2]</mark>, which involved black holes of masses M1≈33.6 M⊙M_{1}\approx$33.6\text{\,}\mathrm{M_{\odot}}$ and M2≈32.2 M⊙M_{2}\approx$32.2\text{\,}\mathrm{M_{\odot}}$ merging into a final black hole of mass M≈62.…</div><div class="cite">…in GW250114 are considerably smaller. The analysis performed by the LIGO, Virgo, and KAGRA collaborations has found the area theorem was respected with high credibility (&gt;3.4​σ&gt;3.4\sigma) in GW250114 <mark class="ref">[2]</mark>.
-
-As the technology of gravitational wave observatories improves—and as new observatories are constructed—the uncertainties in the data will become progressively smaller. This means that, with time, …</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> Much more recently, LIGO observed the GW250114 event [2], which involved black holes of masses M1≈33.6 M⊙M_{1}\approx$33.6\text{\,}\mathrm{M_{\odot}}$ and M…</li><li><span class="sec">discussion</span> …netheless, LIGO has been considerably improved in the ten years between both events, and the uncertainties in GW250114 are considerably smaller.</li><li><span class="sec">discussion</span> …and KAGRA collaborations has found the area theorem was respected with high credibility (&gt;3.4​σ&gt;3.4\sigma) in GW250114 [2].</li><li><span class="sec">cites it as [2]</span> …sting predictions that has been recently tested through gravitational wave observations is the “area theorem” [12, 13, 2]. This result by Hawking [8], Hawking [9] states that, under mild hypotheses, the total area of black holes in…</li><li><span class="sec">cites it as [2]</span> …it increases, instead of computing an efficiency bound. Much more recently, LIGO observed the GW250114 event [2], which involved black holes of masses M1≈33.6 M⊙M_{1}\approx$33.6\text{\,}\mathrm{M_{\odot}}$ and M2≈32.2 M⊙M…</li></ul>
     </details>
     
   </div>

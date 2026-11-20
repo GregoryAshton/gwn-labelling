@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,188 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>The impact of the crust equation of state on the analysis of GW170817</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1902.04616" target="_blank" rel="noopener" class="mono">arXiv:1902.04616</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The detection of GW170817, the first neutron star-neutron star merger observed by Advanced LIGO and Virgo, and its following analyses represent the first contributions of gravitational wave data to understanding dense matter. Parameterizing the high density section of the equation of state of both neutron stars through spectral decomposition, and imposing a lower limit on the maximum mass value, led to an estimate of the stars&#39; radii of [ image ] km and [ image ] km (Abbott et al 2018 Phys. Rev. Lett. 121 161101). These values do not, however, take into account any uncertainty owed to the choice of the crust low-density equation of state, which was fixed to reproduce the SLy equation of state model (Douchin and Haensel 2001 Astron. Astrophys. 380 151). We here re-analyze GW170817 data and establish that different crust models do not strongly impact the mass or tidal deformability of a neutron star-it is impossible to distinguish between low-density models with gravitational wave analysis. However, the crust does have an effect on inferred radius. We predict the systematic error due to this effect using neutron star structure equations, and compare the prediction to results from full parameter estimation runs. For GW170817, this systematic error affects the radius estimate by 0.3 km, approximately [ image ] of the neutron stars&#39; radii.</p></details>
+<div class="small mut mono">arXiv:1902.04616</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The detection of GW170817, the first neutron star-neutron star merger observed by Advanced LIGO and Virgo, and its following analyses represent the first contributions of gravitational wave data to understanding dense matter. Parameterizing the high density section of the equation of state of both neutron stars through spectral decomposition, and imposing a lower limit on the maximum mass value, led to an estimate of the stars&#39; radii of [ image ] km and [ image ] km (Abbott et al 2018 Phys. Rev. Lett. 121 161101). These values do not, however, take into account any uncertainty owed to the choice of the crust low-density equation of state, which was fixed to reproduce the SLy equation of state model (Douchin and Haensel 2001 Astron. Astrophys. 380 151). We here re-analyze GW170817 data and establish that different crust models do not strongly impact the mass or tidal deformability of a neutron star-it is impossible to distinguish between low-density models with gravitational wave analysis. However, the crust does have an effect on inferred radius. We predict the systematic error due to this effect using neutron star structure equations, and compare the prediction to results from full parameter estimation runs. For GW170817, this systematic error affects the radius estimate by 0.3 km, approximately [ image ] of the neutron stars&#39; radii.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1902.04616v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>13 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>The impact of the crust equation of state on the analysis of <mark>GW170817</mark>
-
- 
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- 
- 
-
- 
- arXiv is now an independent nonprofit!
- Learn more
- &amp;times;
- 
-
- 
- 
- Back to arXi…</div>
+    <p class="where">Named 13 times:
+      introduction ×6, abstract ×3, title/headings ×2, conclusion ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1902.04616v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…rametrization model
-
-3 Parameter Estimation
-
-4 Systematic Error Estimate
-
-5 Conclusions
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1902.04616v1 [gr-qc] 12 Feb 2019
-
-The impact of the crust equation of state on the analysis of <mark>GW170817</mark>
-
-R. Gamba
-
-  
-J. S. Read
-
-  
-L. E. Wade
-
-Email: rossella.gamba@edu.unito.it
-
-Affiliation:  Kenyon College, Gambier, OH 43022, USA
-
-Abstract
-
- 
-The detection of GW170817, the first neutron star-neutron star merger observed by Advanced LIGO and Virgo, and its f…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>….04616v1 [gr-qc] 12 Feb 2019
-
-The impact of the crust equation of state on the analysis of GW170817
-
-R. Gamba
-
-  
-J. S. Read
-
-  
-L. E. Wade
-
-Email: rossella.gamba@edu.unito.it
-
-Affiliation:  Kenyon College, Gambier, OH 43022, USA
-
-Abstract
-
- 
-The detection of <mark>GW170817</mark>, the first neutron star-neutron star merger observed by Advanced LIGO and Virgo, and its following analyses represent the first contributions of gravitational wave data to understanding dense matter. Parameterizing the high density section of the equation of …</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…R2=11.9−1.4+1.4R_{2}=11.9_{-1.4}^{+1.4} km [1]. These values do not, however, take into account any uncertainty owed to the choice of the crust low-density equation of state, which was fixed to reproduce the SLy equation of state model [2]. We here re-analyze <mark>GW170817</mark> data and establish that different crust models do not strongly impact the mass or tidal deformability of a neutron star – it is impossible to distinguish between low-density models with gravitational wave analysis. However, the crust does have an effect on in…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…h gravitational wave analysis. However, the crust does have an effect on inferred radius. We predict the systematic error due to this effect using neutron star structure equations, and compare the prediction to results from full parameter estimation runs. For <mark>GW170817</mark>, this systematic error affects the radius estimate by 0.3 km, approximately 3%3\% of the neutron stars’ radii.
-
- 
-
-1 Introduction
-
-The composition and structure of neutron stars (NS) is a longstanding question for discussion in the scientific community. Knowi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ties of these very dense objects would contribute to the understanding of matter under extreme conditions, with implications for both astrophysics and nuclear physics, as reviewed in e.g. [3, 4, 5, 6].
-
-In August 2017, the first observation of a NS-NS merger, <mark>GW170817</mark> [7], was made by the Advanced LIGO [8] and Virgo [9] instruments.
-Its subsequent analysis represents the first contribution of gravitational-wave (GW) data to understanding dense matter and the NS radius RR [7, 1, 10, 11, 12, 13, 14, 15]. Rapid detection and …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…densities, and that therefore in this region the constraints obtained from analyses are independent of uncertainties in crust.
-
-The aim of this paper is to quantify the effect of the choice of the crust equation of state (EOS) on parameter estimation (PE) for <mark>GW170817</mark>, especially on the radius estimate of [1]. In order to do so, we re-analyse the GW data with LALInference
-[39], following the parameterized EOS method of [40], but
-modifying the low-density region. In the LIGO-Virgo analysis [1], densities below ρ≈1014​g/c​m3…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…[44]. In parallel, we try to predict the effect of this change without full reanalysis: by gluing different crusts to core EOSs recovered in [1], we obtain a quantitative prediction of the impact of the crust on the radii recovered for the NSs involved in the <mark>GW170817</mark> coalescence.
-We find that varying the crust has negligible impact on the Λ\Lambda and M distributions, but can shift the implied radius up by ≈0.3\approx 0.3 km in the full PE.
-
-The paper is organized as follows: section 2 is dedicated to the NSs’ EOS, focusi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…p_{0} is the starting point of the decomposition in the energy density-pressure plane and
-
-μ(p)=exp[−∫p0pd​p′p′​Γ​(p′)]\mu(p)=exp[-\int_{p_{0}}^{p}{\frac{dp^{\prime}}{p^{\prime}\Gamma(p^{\prime})}}]
-
-(5)
-
-3 Parameter Estimation
-
-Running PE on the real data of <mark>GW170817</mark> using spectral decomposition means that every spectral coefficient γi,i∈[0,3]\gamma_{i},i\in[0,3] is sampled, in place of the tidal deformabilities Λ1\Lambda_{1} and Λ2\Lambda_{2}, by stochastically walking through the parameter space [40]. In order to cover …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ch operations.
-By additionally imposing a lower limit of 1.97 solar masses on the maximum mass value supported by the EOS, and fixing the low-density section of the EOS to reproduce the SLy model, the radii of the two NSs involved in the binary coalescence of <mark>GW170817</mark> were estimated to be R1=11.9−1.4+1.4R_{1}=11.9^{+1.4}_{-1.4} km and R2=11.9−1.4+1.4R_{2}=11.9^{+1.4}_{-1.4} km.
-In our LALInference Markov chain Monte Carlo (MCMC) run, the hard-coded SLy crust was switched to the S0=30S_{0}=30 MeV L=65L=65 MeV EOS (figure 2)…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…_{SLy}^{m}-R_{30-65}^{m} and Δ​R+=R34−35m−RS​L​ym\Delta R^{+}=R_{34-35}^{m}-R_{SLy}^{m}. We find Δ​R1+=0.1\Delta R_{1}^{+}=0.1 km, Δ​R1−=0.2\Delta R_{1}^{-}=0.2 km and Δ​R2+=0.1\Delta R_{2}^{+}=0.1 km, Δ​R2−=0.2\Delta R_{2}^{-}=0.2 km.
-The radii of the NSs of <mark>GW170817</mark> then become
-R1=(11.9−1.4−0.2+1.4+0.1)R_{1}=(11.9^{+1.4+0.1}_{-1.4-0.2}) km and R2=(11.9−1.4−0.2+1.4+0.1)R_{2}=(11.9^{+1.4+0.1}_{-1.4-0.2}) km.
-
-More physical insight can be obtained by mapping the 90%90\% pressure-density credible levels curves, appropriately…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…dering a range of realistic crust EOSs, whose parameters S0S_{0} and LL at saturation density span the intervals [30−34][30-34] MeV and [30−70][30-70] MeV respectively, we selected the S0=30S_{0}=30 MeV and L=65L=65 MeV crust model and re-analyzed the data of <mark>GW170817</mark>.
-In parallel, we successfully predicted the outcome of the re-analysis, i.e the NS radii values. Such values were then used to compute the systematic error to be added to the radii estimates of GW170817, which amounts to a total of 0.3 km, approximately 3%3\%…</div>
+    <details class="lines"><summary>Show the sentences (12, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> The impact of the crust equation of state on the analysis of GW170817</li><li><span class="sec">abstract</span> The detection of GW170817, the first neutron star-neutron star merger observed by Advanced LIGO and Virgo, and its following analyses r…</li><li><span class="sec">abstract</span> We here re-analyze GW170817 data and establish that different crust models do not strongly impact the mass or tidal deformability of a ne…</li><li><span class="sec">abstract</span> For GW170817, this systematic error affects the radius estimate by 0.3 km, approximately 3%3\% of the neutron stars’ radii…</li><li><span class="sec">introduction</span> In August 2017, the first observation of a NS-NS merger, GW170817 [7], was made by the Advanced LIGO [8] and Virgo [9] instruments.</li><li><span class="sec">introduction</span> …is to quantify the effect of the choice of the crust equation of state (EOS) on parameter estimation (PE) for GW170817, especially on the radius estimate of [1].</li><li><span class="sec">introduction</span> …btain a quantitative prediction of the impact of the crust on the radii recovered for the NSs involved in the GW170817 coalescence.</li><li><span class="sec">introduction</span> Running PE on the real data of GW170817 using spectral decomposition means that every spectral coefficient γi,i∈[0,3]\gamma_{i},i\in[0,3] is sampled,…</li></ul>
     </details>
     
   </div>

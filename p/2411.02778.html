@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,95 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Distinguishing the Demographics of Compact Binaries with Merger Entropy Index</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2411.02778" target="_blank" rel="noopener" class="mono">arXiv:2411.02778</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The coalescence of binary black holes and neutron stars increases the entropy in the universe. The release of entropy from the inspiral stage to the merger depends primarily on the mass and spin vectors of the compact binary. In this study, we report a novel application of entropy to study the demographics of the compact binaries reported by the LIGO-Virgo-KAGRA (LVK) Collaboration. We compute an astrophysical distribution of the Merger Entropy Index ($\mathcal{I}_\mathrm{BBH}$) - a mass-independent measure of the efficiency of entropy transfer for black hole binaries - for all the events reported in the LVK Gravitational-Wave Transient Catalogs. We derive $\mathcal{I}_\mathrm{BBH}$ for six astrophysically motivated population models describing dynamical and isolated formation channels. We find that $\mathcal{I}_\mathrm{BBH}$ offers a new criterion to probe the formation channels of LVK events with compact objects in the upper $(\gtrsim 60~M_\odot)$ and lower ($\lesssim 5~M_\odot$) mass-gaps. For GW190521, an event with both objects in the upper mass gap, $\mathcal{I}_\mathrm{BBH}$ distribution strongly favors second-generation mergers. For GW230529, a new event with the primary object in the lower mass gap, we note that $\mathcal{I}_\mathrm{BBH}$ mildly favors it with neutron star - black holes events. Our work provides a new framework to study the underlying demographics of compact binaries in the data-rich era of gravitational-wave astronomy.</p></details>
+<div class="small mut mono">arXiv:2411.02778</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The coalescence of binary black holes and neutron stars increases the entropy in the universe. The release of entropy from the inspiral stage to the merger depends primarily on the mass and spin vectors of the compact binary. In this study, we report a novel application of entropy to study the demographics of the compact binaries reported by the LIGO-Virgo-KAGRA (LVK) Collaboration. We compute an astrophysical distribution of the Merger Entropy Index ($\mathcal{I}_\mathrm{BBH}$) - a mass-independent measure of the efficiency of entropy transfer for black hole binaries - for all the events reported in the LVK Gravitational-Wave Transient Catalogs. We derive $\mathcal{I}_\mathrm{BBH}$ for six astrophysically motivated population models describing dynamical and isolated formation channels. We find that $\mathcal{I}_\mathrm{BBH}$ offers a new criterion to probe the formation channels of LVK events with compact objects in the upper $(\gtrsim 60~M_\odot)$ and lower ($\lesssim 5~M_\odot$) mass-gaps. For GW190521, an event with both objects in the upper mass gap, $\mathcal{I}_\mathrm{BBH}$ distribution strongly favors second-generation mergers. For GW230529, a new event with the primary object in the lower mass gap, we note that $\mathcal{I}_\mathrm{BBH}$ mildly favors it with neutron star - black holes events. Our work provides a new framework to study the underlying demographics of compact binaries in the data-rich era of gravitational-wave astronomy.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2411.02778v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">12 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">12 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW190403_051519">
   <div class="ctx">
     <div class="evname mono">GW190403_051519</div>
-    <h3>8 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…BH\mathcal{I}_{\mathrm{BBH}}
-
-m1,m2≥60​M⊙m_{1},m_{2}\geq 60~M_{\odot}
-GW190426
-0.21−0.08+0.110.21^{+0.11}_{-0.08}
-
-(ii: Both in upper gap)
-GW190521
-0.26−0.07+0.090.26^{+0.09}_{-0.07}
-
-GW200220
-0.22−0.06+0.130.22^{+0.13}_{-0.06}
-
-m1≥60​M⊙m_{1}\geq 60~M_{\odot}
-<mark>GW190403</mark>
-0.14−0.08+0.110.14^{+0.11}_{-0.08}
-
-(iii: Primary in upper gap)
-GW190519
-0.19−0.04+0.080.19^{+0.08}_{-0.04}
-
-GW190602
-0.20−0.06+0.110.20^{+0.11}_{-0.06}
-
-GW190706
-0.18−0.05+0.080.18^{+0.08}_{-0.05}
-
-GW190929
-0.18−0.06+0.120.18^{+0.12}_{-0.06}
-
-GW191109
-0.33−0…</div>
+    <p class="where">Named 8 times:
+      results ×8.</p>
+    <p class="where"><a href="https://arxiv.org/html/2411.02778v1#:~:text=GW190403" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190403</span> or <span class="mono hit">GW190403_051519</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…rom data quality issues and glitch [12, 107, 103], which affects the parameter estimation including negative χeff\chi_{\mathrm{eff}} and can be the origin of an inconsistent ℐBBH\mathcal{I}_{\mathrm{BBH}} in comparison to other LVK events.
-
-On the other hand, <mark>GW190403</mark> has the lowest ℐBBH=0.14−0.08+0.11\mathcal{I}_{\mathrm{BBH}}=0.14^{+0.11}_{-0.08} among all the 9 events in the high-mass population. This is consistent with expectations since the GW190403 has highest recorded spin-orbit alignment among all LVK events (χeff=…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…{\mathrm{BBH}} in comparison to other LVK events.
-
-On the other hand, GW190403 has the lowest ℐBBH=0.14−0.08+0.11\mathcal{I}_{\mathrm{BBH}}=0.14^{+0.11}_{-0.08} among all the 9 events in the high-mass population. This is consistent with expectations since the <mark>GW190403</mark> has highest recorded spin-orbit alignment among all LVK events (χeff=0.68−0.43+0.16\chi_{\mathrm{eff}}=0.68^{+0.16}_{-0.43}), thus a stronger preference for smaller ℐBBH\mathcal{I}_{\mathrm{BBH}}. The large positive χeff\chi_{\mathrm{eff}} of GW190403 indicat…</div>
-    
-    
-    <details><summary>5 more</summary>
-    <div class="mention"><span class="sec">results</span>…nce the GW190403 has highest recorded spin-orbit alignment among all LVK events (χeff=0.68−0.43+0.16\chi_{\mathrm{eff}}=0.68^{+0.16}_{-0.43}), thus a stronger preference for smaller ℐBBH\mathcal{I}_{\mathrm{BBH}}. The large positive χeff\chi_{\mathrm{eff}} of <mark>GW190403</mark> indicates significant alignment between spin and orbit, providing hints to isolated formation scenario [25, 80, 22, 87, 16].
-
-Furthermore, GW190403 is the most asymmetric binary in the high-mass population (q=0.25−0.11+0.54)(q={0.25}_{-0.11}^{+0.54}). Highly …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…a stronger preference for smaller ℐBBH\mathcal{I}_{\mathrm{BBH}}. The large positive χeff\chi_{\mathrm{eff}} of GW190403 indicates significant alignment between spin and orbit, providing hints to isolated formation scenario [25, 80, 22, 87, 16].
-
-Furthermore, <mark>GW190403</mark> is the most asymmetric binary in the high-mass population (q=0.25−0.11+0.54)(q={0.25}_{-0.11}^{+0.54}). Highly asymmetric BBH has the least entropy transfer and therefore drives ℐBBH\mathcal{I}_{\mathrm{BBH}} towards its lower bound. As seen in Fig. 1, GW1904…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…190403 is the most asymmetric binary in the high-mass population (q=0.25−0.11+0.54)(q={0.25}_{-0.11}^{+0.54}). Highly asymmetric BBH has the least entropy transfer and therefore drives ℐBBH\mathcal{I}_{\mathrm{BBH}} towards its lower bound. As seen in Fig. 1, <mark>GW190403</mark> also shows the largest standard deviation in ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution among all the LVK events. This event has a low SNR of 7.6−1.1+0.6{7.6}^{+0.6}_{-1.1} [16], resulting in a much larger uncertainty in the inspiral parameters, and subseque…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…mathrm{BBH}} distribution among all the LVK events. This event has a low SNR of 7.6−1.1+0.6{7.6}^{+0.6}_{-1.1} [16], resulting in a much larger uncertainty in the inspiral parameters, and subsequently broader ℐBBH\mathcal{I}_{\mathrm{BBH}} posterior. Yet, the <mark>GW190403</mark> does exhibit multiple peaks in its ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution, which is characteristic of moderate mass-ratio binary being impacted by its spin orientations.
-
-The link between asymmetric BBH events and lower ℐBBH\mathcal{I}_{\mathrm{BBH}} is …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…e remaining events, GW190519, GW190706, and GW190929, show a slight preference for the isolated formation channel. Due to the low SNR and broader ℐBBH\mathcal{I}_{\mathrm{BBH}} posterior discussed in Sec. III.1, the ℐBBH\mathcal{I}_{\mathrm{BBH}} formalism of <mark>GW190403</mark> does not favor any of six population model with medium similarity.
-
-III.4 Comparing Population Models with LVK Lower Mass Gap Events
-
-Figure 4: ℐBBH\mathcal{I}_{\mathrm{BBH}} posteriors of GW230529 with three confirmed NSBH events (blue dotted), GWTC-3 PP mod…</div>
+    <details class="lines"><summary>Show the sentences (8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> m1≥60​M⊙m_{1}\geq 60~M_{\odot} GW190403 0.14−0.08+0.110.14^{+0.11}_{-0.08}</li><li><span class="sec">results</span> On the other hand, GW190403 has the lowest ℐBBH=0.14−0.08+0.11\mathcal{I}_{\mathrm{BBH}}=0.14^{+0.11}_{-0.08} among all the 9 events in t…</li><li><span class="sec">results</span> This is consistent with expectations since the GW190403 has highest recorded spin-orbit alignment among all LVK events (χeff=0.68−0.43+0.16\chi_{\mathrm{eff}}=0.68^{…</li><li><span class="sec">results</span> The large positive χeff\chi_{\mathrm{eff}} of GW190403 indicates significant alignment between spin and orbit, providing hints to isolated formation scenario [25, 8…</li><li><span class="sec">results</span> Furthermore, GW190403 is the most asymmetric binary in the high-mass population (q=0.25−0.11+0.54)(q={0.25}_{-0.11}^{+0.54}).</li><li><span class="sec">results</span> As seen in Fig. 1, GW190403 also shows the largest standard deviation in ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution among all the LVK ev…</li><li><span class="sec">results</span> Yet, the GW190403 does exhibit multiple peaks in its ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution, which is characteristic of mo…</li><li><span class="sec">results</span> III.1, the ℐBBH\mathcal{I}_{\mathrm{BBH}} formalism of GW190403 does not favor any of six population model with medium similarity.</li></ul>
     </details>
     
   </div>
@@ -247,46 +201,16 @@ Figure 4: ℐBBH\mathcal{I}_{\mathrm{BBH}} posteriors of GW230529 with three con
 <section class="card" data-i="1" data-event="GW190519_153544">
   <div class="ctx">
     <div class="evname mono">GW190519_153544</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…90426
-0.21−0.08+0.110.21^{+0.11}_{-0.08}
-
-(ii: Both in upper gap)
-GW190521
-0.26−0.07+0.090.26^{+0.09}_{-0.07}
-
-GW200220
-0.22−0.06+0.130.22^{+0.13}_{-0.06}
-
-m1≥60​M⊙m_{1}\geq 60~M_{\odot}
-GW190403
-0.14−0.08+0.110.14^{+0.11}_{-0.08}
-
-(iii: Primary in upper gap)
-<mark>GW190519</mark>
-0.19−0.04+0.080.19^{+0.08}_{-0.04}
-
-GW190602
-0.20−0.06+0.110.20^{+0.11}_{-0.06}
-
-GW190706
-0.18−0.05+0.080.18^{+0.08}_{-0.05}
-
-GW190929
-0.18−0.06+0.120.18^{+0.12}_{-0.06}
-
-GW191109
-0.33−0.08+0.130.33^{+0.13}_{-0.08}
-
-m2∈[2,5]​M⊙m_{2}\in[2,5]~M_{\odot}
-GW190814…</div>
+    <p class="where">Named 2 times:
+      results ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2411.02778v1#:~:text=GW190519" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190519</span> or <span class="mono hit">GW190519_153544</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…ibutions consistent with 1G+2G population. The ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution of GW190602 is 85% favored towards 1G+2G and about the same as the isolated channel, making it challenging to differentiate between them. However, the remaining events, <mark>GW190519</mark>, GW190706, and GW190929, show a slight preference for the isolated formation channel. Due to the low SNR and broader ℐBBH\mathcal{I}_{\mathrm{BBH}} posterior discussed in Sec. III.1, the ℐBBH\mathcal{I}_{\mathrm{BBH}} formalism of GW190403 does not favor any …</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> (iii: Primary in upper gap) GW190519 0.19−0.04+0.080.19^{+0.08}_{-0.04}</li><li><span class="sec">results</span> However, the remaining events, GW190519, GW190706, and GW190929, show a slight preference for the isolated formation channel.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -322,102 +246,15 @@ GW190814…</div>
 <section class="card" data-i="2" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>8 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…isolated formation channels. We find that ℐBBH\mathcal{I}_{\mathrm{BBH}} offers a new criterion to probe the formation channels of LVK events with compact objects in the upper (≳60​M⊙)(\gtrsim 60~M_{\odot}) and lower (≲5​M⊙\lesssim 5~M_{\odot}) mass-gaps. For <mark>GW190521</mark>, an event with both objects in the upper mass gap, ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution strongly favors second-generation mergers. For GW230529, a new event with the primary object in the lower mass gap, we note that ℐBBH\mathcal{I}_{\mathrm{BBH}} mild…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…0]​M⊙[40,~60]~M_{\odot} [48, 78]. The events with the PISN gap are astrophysically interesting as their merger provides direct evidence of intermediate-mass black holes [102,105]​M⊙[10^{2},10^{5}]~M_{\odot} [63].
-The most prominent example of such a binary is <mark>GW190521</mark> [6], in which both m1=85−14+21​M⊙m_{1}=85^{+21}_{-14}~M_{\odot} and m2=66−18+17​M⊙m_{2}=66^{+17}_{-18}~M_{\odot} are in the PISN mass-gap, and the remnant at mf=142−16+28​M⊙m_{\mathrm{f}}=142^{+28}_{-16}~M_{\odot} is an intermediate-mass black hole [7].
-
-Bina…</div>
+    <p class="where">Named 8 times:
+      results ×5, abstract, introduction, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2411.02778v1#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>… in the source frame. ℐBBH\mathcal{I}_{\mathrm{BBH}} values are present with 90% confidence interval.
-
-Event Type
-Name
-ℐBBH\mathcal{I}_{\mathrm{BBH}}
-
-m1,m2≥60​M⊙m_{1},m_{2}\geq 60~M_{\odot}
-GW190426
-0.21−0.08+0.110.21^{+0.11}_{-0.08}
-
-(ii: Both in upper gap)
-<mark>GW190521</mark>
-0.26−0.07+0.090.26^{+0.09}_{-0.07}
-
-GW200220
-0.22−0.06+0.130.22^{+0.13}_{-0.06}
-
-m1≥60​M⊙m_{1}\geq 60~M_{\odot}
-GW190403
-0.14−0.08+0.110.14^{+0.11}_{-0.08}
-
-(iii: Primary in upper gap)
-GW190519
-0.19−0.04+0.080.19^{+0.08}_{-0.04}
-
-GW190602
-0.20−0.06+0.110.20^{…</div>
-    
-    
-    <details><summary>5 more</summary>
-    <div class="mention"><span class="sec">results</span>…ases, the combined posterior of ℐBBH\mathcal{I}_{\mathrm{BBH}} is corrected for the selection effects as described in Sec. II.3.
-
-Among all LVK events, GW191109 shows the largest ℐBBH\mathcal{I}_{\mathrm{BBH}} = 0.33−0.08+0.130.33^{+0.13}_{-0.08}, followed by <mark>GW190521</mark> ℐBBH\mathcal{I}_{\mathrm{BBH}} = 0.26−0.07+0.090.26^{+0.09}_{-0.07}. Both these events belong to the high-mass population (categories ii, iii), with primary masses of 65−11+1165^{+11}_{-11} and 85−14+21​M⊙85^{+21}_{-14}~M_{\odot} respectively. Other most mass…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ry ii. The high spin typical of the 2G+2G population contributes to the lower consistency in ℐBBH\mathcal{I}_{\mathrm{BBH}} between the PISN-PISN BBH and the GWTC-3 population. Stellar BBH (category i) also make up the majority of the GWTC-3 population [14].
-
-<mark>GW190521</mark>, the second-most massive BBH event reported to date, with both black holes residing in the PISN mass gap, has ℐBBH=0.26−0.07+0.09\mathcal{I}_{\mathrm{BBH}}=0.26^{+0.09}_{-0.07}, which shows a 91% match with 2G+2G model. In contrast, ℐBBH\mathcal{I}_{\mathrm{B…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…tribution favors the 2G+2G model, suggesting that the high progenitor masses likely result from hierarchical mergers. This conclusion matches with results from many recent literature [92, 6, 62, 43, 68, 57, 79]. Additionally, ℐBBH\mathcal{I}_{\mathrm{BBH}} of <mark>GW190521</mark> has low consistency (41%) with GWTC-3 populations, indicating that a flatter PP model may be required to fit these high-mass events [74].
-
-The most massive BBH detected so far in GW190426 has ℐBBH=0.21−0.08+0.11\mathcal{I}_{\mathrm{BBH}}=0.21^{+0.11}_{-0.08},…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…o fit these high-mass events [74].
-
-The most massive BBH detected so far in GW190426 has ℐBBH=0.21−0.08+0.11\mathcal{I}_{\mathrm{BBH}}=0.21^{+0.11}_{-0.08}, which is consistent with ℐBBH\mathcal{I}_{\mathrm{BBH}} posteriors of GWTC-3 population by 80%. Unlike <mark>GW190521</mark>, ℐBBH\mathcal{I}_{\mathrm{BBH}} of this event matches with 2G+2G the least (55%), while shows higher consistency with 1G+2G (91%) and isolated (82%) models. The primary black hole, with a mass of 106−24+45​M⊙106^{+45}_{-24}~{M}_{\odot}, can reasonably be seco…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…el, I., &amp; de Mink, S. E. 2016, MNRAS, 458, 2634, doi: 10.1093/mnras/stw379
-
- 
-[78]
-
-Marchant, P., &amp; Moriya, T. J. 2020, Astronomy &amp;amp; Astrophysics, 640, L18, doi: 10.1051/0004-6361/202038902
-
- 
-[79]
-
-Morton, S., Rinaldi, S., Torres-Orjuela, A., et al. 2023, <mark>GW190521</mark>: a binary black hole merger inside an active galactic nucleus?
-
-https://arxiv.org/abs/2310.16025
-
- 
-[80]
-
-Olejak, A., &amp; Belczynski, K. 2021, ApJ, 921, L2, doi: 10.3847/2041-8213/ac2f48
-
- 
-[81]
-
-Ossokine, S., Buonanno, A., Marsat, S., et al. 2020, Physical Rev…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[79]</span> · 1 place</span><div class="cite">…\mathrm{BBH}} distribution favors the 2G+2G model, suggesting that the high progenitor masses likely result from hierarchical mergers. This conclusion matches with results from many recent literature <mark class="ref">[92, 6, 62, 43, 68, 57, 79]</mark>. Additionally, ℐBBH\mathcal{I}_{\mathrm{BBH}} of GW190521 has low consistency (41%) with GWTC-3 populations, indicating that a flatter PP model may be required to fit these high-mass events [74].
-
-Th…</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> For GW190521, an event with both objects in the upper mass gap, ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution strongly favor…</li><li><span class="sec">introduction</span> The most prominent example of such a binary is GW190521 [6], in which both m1=85−14+21​M⊙m_{1}=85^{+21}_{-14}~M_{\odot} and m2=66−18+17​M⊙m_{2}=66^{+17}_{-18}~M_{\od…</li><li><span class="sec">results</span> (ii: Both in upper gap) GW190521 0.26−0.07+0.090.26^{+0.09}_{-0.07}</li><li><span class="sec">results</span> …, GW191109 shows the largest ℐBBH\mathcal{I}_{\mathrm{BBH}} = 0.33−0.08+0.130.33^{+0.13}_{-0.08}, followed by GW190521 ℐBBH\mathcal{I}_{\mathrm{BBH}} = 0.26−0.07+0.090.26^{+0.09}_{-0.07}.</li><li><span class="sec">results</span> GW190521, the second-most massive BBH event reported to date, with both black holes residing in the PISN mass gap, has…</li><li><span class="sec">results</span> Additionally, ℐBBH\mathcal{I}_{\mathrm{BBH}} of GW190521 has low consistency (41%) with GWTC-3 populations, indicating that a flatter PP model may be required to fit…</li><li><span class="sec">results</span> Unlike GW190521, ℐBBH\mathcal{I}_{\mathrm{BBH}} of this event matches with 2G+2G the least (55%), while shows higher consiste…</li><li><span class="sec">cites it as [79]</span> …ses likely result from hierarchical mergers. This conclusion matches with results from many recent literature [92, 6, 62, 43, 68, 57, 79]. Additionally, ℐBBH\mathcal{I}_{\mathrm{BBH}} of GW190521 has low consistency (41%) with GWTC-3 populations,…</li></ul>
     </details>
     
   </div>
@@ -454,46 +291,16 @@ Th…</div>
 <section class="card" data-i="3" data-event="GW190602_175927">
   <div class="ctx">
     <div class="evname mono">GW190602_175927</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…: Both in upper gap)
-GW190521
-0.26−0.07+0.090.26^{+0.09}_{-0.07}
-
-GW200220
-0.22−0.06+0.130.22^{+0.13}_{-0.06}
-
-m1≥60​M⊙m_{1}\geq 60~M_{\odot}
-GW190403
-0.14−0.08+0.110.14^{+0.11}_{-0.08}
-
-(iii: Primary in upper gap)
-GW190519
-0.19−0.04+0.080.19^{+0.08}_{-0.04}
-
-<mark>GW190602</mark>
-0.20−0.06+0.110.20^{+0.11}_{-0.06}
-
-GW190706
-0.18−0.05+0.080.18^{+0.08}_{-0.05}
-
-GW190929
-0.18−0.06+0.120.18^{+0.12}_{-0.06}
-
-GW191109
-0.33−0.08+0.130.33^{+0.13}_{-0.08}
-
-m2∈[2,5]​M⊙m_{2}\in[2,5]~M_{\odot}
-GW190814
-0.06−0.01+0.010.06^{+0.01}_{-0.01}
-
-(iv: Sec…</div>
+    <p class="where">Named 2 times:
+      results ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2411.02778v1#:~:text=GW190602" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190602</span> or <span class="mono hit">GW190602_175927</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…mathrm{BBH}} favors 1G+2G model more than 1G+1G model. This is consistent with the simulations from [74], which show PISN BH-Stellar BH binaries have mass ratio distributions consistent with 1G+2G population. The ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution of <mark>GW190602</mark> is 85% favored towards 1G+2G and about the same as the isolated channel, making it challenging to differentiate between them. However, the remaining events, GW190519, GW190706, and GW190929, show a slight preference for the isolated formation channel. Due to …</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW190602 0.20−0.06+0.110.20^{+0.11}_{-0.06}</li><li><span class="sec">results</span> The ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution of GW190602 is 85% favored towards 1G+2G and about the same as the isolated channel, making it challenging to differentia…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -529,46 +336,16 @@ GW190814
 <section class="card" data-i="4" data-event="GW190706_222641">
   <div class="ctx">
     <div class="evname mono">GW190706_222641</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>….26^{+0.09}_{-0.07}
-
-GW200220
-0.22−0.06+0.130.22^{+0.13}_{-0.06}
-
-m1≥60​M⊙m_{1}\geq 60~M_{\odot}
-GW190403
-0.14−0.08+0.110.14^{+0.11}_{-0.08}
-
-(iii: Primary in upper gap)
-GW190519
-0.19−0.04+0.080.19^{+0.08}_{-0.04}
-
-GW190602
-0.20−0.06+0.110.20^{+0.11}_{-0.06}
-
-<mark>GW190706</mark>
-0.18−0.05+0.080.18^{+0.08}_{-0.05}
-
-GW190929
-0.18−0.06+0.120.18^{+0.12}_{-0.06}
-
-GW191109
-0.33−0.08+0.130.33^{+0.13}_{-0.08}
-
-m2∈[2,5]​M⊙m_{2}\in[2,5]~M_{\odot}
-GW190814
-0.06−0.01+0.010.06^{+0.01}_{-0.01}
-
-(iv: Secondary in lower gap)
-GW200210
-0.06−0.02+0.030…</div>
+    <p class="where">Named 2 times:
+      results ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2411.02778v1#:~:text=GW190706" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190706</span> or <span class="mono hit">GW190706_222641</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…onsistent with 1G+2G population. The ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution of GW190602 is 85% favored towards 1G+2G and about the same as the isolated channel, making it challenging to differentiate between them. However, the remaining events, GW190519, <mark>GW190706</mark>, and GW190929, show a slight preference for the isolated formation channel. Due to the low SNR and broader ℐBBH\mathcal{I}_{\mathrm{BBH}} posterior discussed in Sec. III.1, the ℐBBH\mathcal{I}_{\mathrm{BBH}} formalism of GW190403 does not favor any of six pop…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW190706 0.18−0.05+0.080.18^{+0.08}_{-0.05}</li><li><span class="sec">results</span> However, the remaining events, GW190519, GW190706, and GW190929, show a slight preference for the isolated formation channel.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -604,54 +381,16 @@ GW200210
 <section class="card" data-i="5" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…GW190519
-0.19−0.04+0.080.19^{+0.08}_{-0.04}
-
-GW190602
-0.20−0.06+0.110.20^{+0.11}_{-0.06}
-
-GW190706
-0.18−0.05+0.080.18^{+0.08}_{-0.05}
-
-GW190929
-0.18−0.06+0.120.18^{+0.12}_{-0.06}
-
-GW191109
-0.33−0.08+0.130.33^{+0.13}_{-0.08}
-
-m2∈[2,5]​M⊙m_{2}\in[2,5]~M_{\odot}
-<mark>GW190814</mark>
-0.06−0.01+0.010.06^{+0.01}_{-0.01}
-
-(iv: Secondary in lower gap)
-GW200210
-0.06−0.02+0.030.06^{+0.03}_{-0.02}
-
-m2∈[1,2]​M⊙m_{2}\in[1,2]~M_{\odot}
-GW191219
-0.02−0.00+0.010.02^{+0.01}_{-0.00}
-
-(Stellar BH + NS )
-GW200105
-0.10−0.01+0.030.10^{+0.03}_{-0.01}
-
-GW200…</div>
+    <p class="where">Named 3 times:
+      results ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/2411.02778v1#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…{BBH}} is deemed unsuitable for BNS or NSBH events due to the uncertainty in the entropy calculation for their pre- and post-merger objects. However, the formalism can be applied to GW events with secondary objects in the lower mass gap (category-iv), such as <mark>GW190814</mark> and GW200210 [5, 9, 13], by treating them as BBH. As shown in Fig. 1, both these events in the lower mass gap display sharp spikes around ℐBBH∼0.06\mathcal{I}_{\mathrm{BBH}}\sim 0.06. Since the mass-ratio of these binaries is q∼0.1q\sim 0.1, their spin orient…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ince the mass-ratio of these binaries is q∼0.1q\sim 0.1, their spin orientations (χeff∼0)(\chi_{\mathrm{eff}}\sim 0) have no substantial impact on ℐBBH\mathcal{I}_{\mathrm{BBH}} unless the black holes are highly anti-aligned [69]. Since the secondary mass for <mark>GW190814</mark> is measured and constrained more precisely than GW200210, their ℐBBH\mathcal{I}_{\mathrm{BBH}} posterior is narrower.
-
-III.2 ℐBBH\mathcal{I}_{\mathrm{BBH}} of Population Models
-
-In Fig. 2, we highlight the distribution of ℐBBH\mathcal{I}_{\mathrm{BBH}} for al…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> m2∈[2,5]​M⊙m_{2}\in[2,5]~M_{\odot} GW190814 0.06−0.01+0.010.06^{+0.01}_{-0.01}</li><li><span class="sec">results</span> …the formalism can be applied to GW events with secondary objects in the lower mass gap (category-iv), such as GW190814 and GW200210 [5, 9, 13], by treating them as BBH.</li><li><span class="sec">results</span> Since the secondary mass for GW190814 is measured and constrained more precisely than GW200210, their ℐBBH\mathcal{I}_{\mathrm{BBH}} posterior is n…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -687,45 +426,16 @@ In Fig. 2, we highlight the distribution of ℐBBH\mathcal{I}_{\mathrm{BBH}} for
 <section class="card" data-i="6" data-event="GW190929_012149">
   <div class="ctx">
     <div class="evname mono">GW190929_012149</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>….22^{+0.13}_{-0.06}
-
-m1≥60​M⊙m_{1}\geq 60~M_{\odot}
-GW190403
-0.14−0.08+0.110.14^{+0.11}_{-0.08}
-
-(iii: Primary in upper gap)
-GW190519
-0.19−0.04+0.080.19^{+0.08}_{-0.04}
-
-GW190602
-0.20−0.06+0.110.20^{+0.11}_{-0.06}
-
-GW190706
-0.18−0.05+0.080.18^{+0.08}_{-0.05}
-
-<mark>GW190929</mark>
-0.18−0.06+0.120.18^{+0.12}_{-0.06}
-
-GW191109
-0.33−0.08+0.130.33^{+0.13}_{-0.08}
-
-m2∈[2,5]​M⊙m_{2}\in[2,5]~M_{\odot}
-GW190814
-0.06−0.01+0.010.06^{+0.01}_{-0.01}
-
-(iv: Secondary in lower gap)
-GW200210
-0.06−0.02+0.030.06^{+0.03}_{-0.02}
-
-m2∈[1,2]​M⊙m_{2}\in[1,2]…</div>
+    <p class="where">Named 2 times:
+      results ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2411.02778v1#:~:text=GW190929" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190929</span> or <span class="mono hit">GW190929_012149</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>… 1G+2G population. The ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution of GW190602 is 85% favored towards 1G+2G and about the same as the isolated channel, making it challenging to differentiate between them. However, the remaining events, GW190519, GW190706, and <mark>GW190929</mark>, show a slight preference for the isolated formation channel. Due to the low SNR and broader ℐBBH\mathcal{I}_{\mathrm{BBH}} posterior discussed in Sec. III.1, the ℐBBH\mathcal{I}_{\mathrm{BBH}} formalism of GW190403 does not favor any of six population model …</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW190929 0.18−0.06+0.120.18^{+0.12}_{-0.06}</li><li><span class="sec">results</span> However, the remaining events, GW190519, GW190706, and GW190929, show a slight preference for the isolated formation channel.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -761,135 +471,15 @@ m2∈[1,2]​M⊙m_{2}\in[1,2]…</div>
 <section class="card" data-i="7" data-event="GW191109_010717">
   <div class="ctx">
     <div class="evname mono">GW191109_010717</div>
-    <h3>10 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…\odot}
-GW190403
-0.14−0.08+0.110.14^{+0.11}_{-0.08}
-
-(iii: Primary in upper gap)
-GW190519
-0.19−0.04+0.080.19^{+0.08}_{-0.04}
-
-GW190602
-0.20−0.06+0.110.20^{+0.11}_{-0.06}
-
-GW190706
-0.18−0.05+0.080.18^{+0.08}_{-0.05}
-
-GW190929
-0.18−0.06+0.120.18^{+0.12}_{-0.06}
-
-<mark>GW191109</mark>
-0.33−0.08+0.130.33^{+0.13}_{-0.08}
-
-m2∈[2,5]​M⊙m_{2}\in[2,5]~M_{\odot}
-GW190814
-0.06−0.01+0.010.06^{+0.01}_{-0.01}
-
-(iv: Secondary in lower gap)
-GW200210
-0.06−0.02+0.030.06^{+0.03}_{-0.02}
-
-m2∈[1,2]​M⊙m_{2}\in[1,2]~M_{\odot}
-GW191219
-0.02−0.00+0.010.02^{+0.01…</div>
+    <p class="where">Named 10 times:
+      results ×8, reference list ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2411.02778v1#:~:text=GW191109" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191109</span> or <span class="mono hit">GW191109_010717</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…-mystery BH, we find ℐBBH=0.06−0.01+0.02\mathcal{I}_{\mathrm{BBH}}=0.06^{+0.02}_{-0.01}. For each of these cases, the combined posterior of ℐBBH\mathcal{I}_{\mathrm{BBH}} is corrected for the selection effects as described in Sec. II.3.
-
-Among all LVK events, <mark>GW191109</mark> shows the largest ℐBBH\mathcal{I}_{\mathrm{BBH}} = 0.33−0.08+0.130.33^{+0.13}_{-0.08}, followed by GW190521 ℐBBH\mathcal{I}_{\mathrm{BBH}} = 0.26−0.07+0.090.26^{+0.09}_{-0.07}. Both these events belong to the high-mass population (categories ii, iii), with pr…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…iguration and thus a larger (smaller) value for ℐBBH\mathcal{I}_{\mathrm{BBH}}. As we demonstrate in Sec. III.3, this feature of ℐBBH\mathcal{I}_{\mathrm{BBH}} makes for a powerful probe to test astrophysical formation channels for a GW event.
-
-In the case of <mark>GW191109</mark>, the higher value of ℐBBH\mathcal{I}_{\mathrm{BBH}} can be mainly attributed to significant anti-alignment of black hole spins with respect to the orbital angular momentum (χeff=−0.29−0.31+0.42\chi_{\mathrm{eff}}=-0.29^{+0.42}_{-0.31}). The spin configuration…</div>
-    
-    
-    <details><summary>7 more</summary>
-    <div class="mention"><span class="sec">results</span>…e higher value of ℐBBH\mathcal{I}_{\mathrm{BBH}} can be mainly attributed to significant anti-alignment of black hole spins with respect to the orbital angular momentum (χeff=−0.29−0.31+0.42\chi_{\mathrm{eff}}=-0.29^{+0.42}_{-0.31}). The spin configuration of <mark>GW191109</mark> provides hints to dynamical formation scenario [90, 17, 115]. However, GW191109 suffers from data quality issues and glitch [12, 107, 103], which affects the parameter estimation including negative χeff\chi_{\mathrm{eff}} and can be the origin of an inconsist…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…nificant anti-alignment of black hole spins with respect to the orbital angular momentum (χeff=−0.29−0.31+0.42\chi_{\mathrm{eff}}=-0.29^{+0.42}_{-0.31}). The spin configuration of GW191109 provides hints to dynamical formation scenario [90, 17, 115]. However, <mark>GW191109</mark> suffers from data quality issues and glitch [12, 107, 103], which affects the parameter estimation including negative χeff\chi_{\mathrm{eff}} and can be the origin of an inconsistent ℐBBH\mathcal{I}_{\mathrm{BBH}} in comparison to other LVK events.
-
-On the ot…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…≥60%\geq 60\%. In contrast to GW190426, GW200220 shows explicitly higher consistency in ℐBBH\mathcal{I}_{\mathrm{BBH}} with 1G+2G (93%) than isolated models (75%), so ℐBBH\mathcal{I}_{\mathrm{BBH}} disfavors the isolated formation channel.
-
-On the other hand, <mark>GW191109</mark> has the least similarity across all population models. The ℐBBH\mathcal{I}_{\mathrm{BBH}} posterior for this event is only 10% consistent with isolated BBHs and 14% consistent with 1G+1G binaries, but shows a relatively higher 57% match with the 2G+2G populat…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… the 2G+2G population, supporting the hierarchical merger model for the massive primary black hole and spin configuration. Since GWTC-3 PP model is derived with a strong bias towards χeff∼0\chi_{\mathrm{eff}}\sim 0 [14], ℐBBH\mathcal{I}_{\mathrm{BBH}} between <mark>GW191109</mark> and GWTC-3 PP only matches by 11%. As suggested in Sec. III.1 and Table 1, this event has the largest ℐBBH\mathcal{I}_{\mathrm{BBH}} due to significant spin-orbit misalignment. Since this event does not show high similarity (green category) with any populatio…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ec. III.1 and Table 1, this event has the largest ℐBBH\mathcal{I}_{\mathrm{BBH}} due to significant spin-orbit misalignment. Since this event does not show high similarity (green category) with any population model, we provide an independent confirmation that <mark>GW191109</mark> may be affected by a glitch.
-
-For all the six events in category iii, we note their ℐBBH\mathcal{I}_{\mathrm{BBH}} favors 1G+2G model more than 1G+1G model. This is consistent with the simulations from [74], which show PISN BH-Stellar BH binaries have mass ra…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…ns of the Astronomical Society of Australia, 36, doi: 10.1017/pasa.2019.2
-
- 
-[102]
-
-Tiwari, V. 2018, Classical and Quantum Gravity, 35, 145009, doi: 10.1088/1361-6382/aac89d
-
- 
-[103]
-
-Udall, R., Hourihane, S., Miller, S., et al. 2024, The anti-aligned spin of <mark>GW191109</mark>: glitch mitigation and its implications.
-
-https://arxiv.org/abs/2409.03912
-
- 
-[104]
-
-van Son, L. A. C., de Mink, S. E., Renzo, M., et al. 2022, The Astrophysical Journal, 940, 184, doi: 10.3847/1538-4357/ac9b0a
-
- 
-[105]
-
-Varma, V., Gerosa, D., HeÌ bert, F., S…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[103]</span> · 1 place</span><div class="cite">…i_{\mathrm{eff}}=-0.29^{+0.42}_{-0.31}). The spin configuration of GW191109 provides hints to dynamical formation scenario [90, 17, 115]. However, GW191109 suffers from data quality issues and glitch <mark class="ref">[12, 107, 103]</mark>, which affects the parameter estimation including negative χeff\chi_{\mathrm{eff}} and can be the origin of an inconsistent ℐBBH\mathcal{I}_{\mathrm{BBH}} in comparison to other LVK events.
-
-On the o…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…847/2041-8213/aba74e
-
- 
-[114]
-
-Zevin, M., Bavera, S. S., Berry, C. P. L., et al. 2021, The Astrophysical Journal, 910, 152, doi: 10.3847/1538-4357/abe40e
-
- 
-[115]
-
-Zhang, R. C., Fragione, G., Kimball, C., &amp; Kalogera, V. 2023, On the Likely Dynamical Origin of <mark>GW191109</mark> and of Binary Black Hole Mergers with Negative Effective Spin.
-
-https://arxiv.org/abs/2302.07284
-
- 
-[116]
-
-Zhu, J.-P., Hu, R.-C., Kang, Y., et al. 2024a, Formation of GW230529 from Isolated Binary Evolution and Its Electromagnetic Counterparts.
-
-https://arxiv…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[115]</span> · 1 place</span><div class="cite">…e spins with respect to the orbital angular momentum (χeff=−0.29−0.31+0.42\chi_{\mathrm{eff}}=-0.29^{+0.42}_{-0.31}). The spin configuration of GW191109 provides hints to dynamical formation scenario <mark class="ref">[90, 17, 115]</mark>. However, GW191109 suffers from data quality issues and glitch [12, 107, 103], which affects the parameter estimation including negative χeff\chi_{\mathrm{eff}} and can be the origin of an inconsiste…</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (10, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW191109 0.33−0.08+0.130.33^{+0.13}_{-0.08}</li><li><span class="sec">results</span> Among all LVK events, GW191109 shows the largest ℐBBH\mathcal{I}_{\mathrm{BBH}} = 0.33−0.08+0.130.33^{+0.13}_{-0.08}, followed by GW190521 ℐ…</li><li><span class="sec">results</span> In the case of GW191109, the higher value of ℐBBH\mathcal{I}_{\mathrm{BBH}} can be mainly attributed to significant anti-alignment of…</li><li><span class="sec">results</span> The spin configuration of GW191109 provides hints to dynamical formation scenario [90, 17, 115].</li><li><span class="sec">results</span> However, GW191109 suffers from data quality issues and glitch [12, 107, 103], which affects the parameter estimation including…</li><li><span class="sec">results</span> On the other hand, GW191109 has the least similarity across all population models.</li><li><span class="sec">results</span> …rived with a strong bias towards χeff∼0\chi_{\mathrm{eff}}\sim 0 [14], ℐBBH\mathcal{I}_{\mathrm{BBH}} between GW191109 and GWTC-3 PP only matches by 11%.</li><li><span class="sec">results</span> …show high similarity (green category) with any population model, we provide an independent confirmation that GW191109 may be affected by a glitch.</li></ul>
     </details>
     
   </div>
@@ -926,53 +516,16 @@ https://arxiv…
 <section class="card" data-i="8" data-event="GW191219_163120">
   <div class="ctx">
     <div class="evname mono">GW191219_163120</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…0.120.18^{+0.12}_{-0.06}
-
-GW191109
-0.33−0.08+0.130.33^{+0.13}_{-0.08}
-
-m2∈[2,5]​M⊙m_{2}\in[2,5]~M_{\odot}
-GW190814
-0.06−0.01+0.010.06^{+0.01}_{-0.01}
-
-(iv: Secondary in lower gap)
-GW200210
-0.06−0.02+0.030.06^{+0.03}_{-0.02}
-
-m2∈[1,2]​M⊙m_{2}\in[1,2]~M_{\odot}
-<mark>GW191219</mark>
-0.02−0.00+0.010.02^{+0.01}_{-0.00}
-
-(Stellar BH + NS )
-GW200105
-0.10−0.01+0.030.10^{+0.03}_{-0.01}
-
-GW200115
-0.12−0.04+0.220.12^{+0.22}_{-0.04}
-
-m1∈[2,5]​M⊙m_{1}\in[2,5]~M_{\odot}
-GW230529
-0.18−0.08+0.070.18^{+0.07}_{-0.08}
-
-(Primary in lower gap + NS)
-
-Table…</div>
+    <p class="where">Named 3 times:
+      results ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/2411.02778v1#:~:text=GW191219" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191219</span> or <span class="mono hit">GW191219_163120</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…tween light black holes, thus permitting us to compute the merger entropy. The ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution of GW230529 is shown in Fig. 4. Alongside, we have included ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution from the three known NSBH events <mark>GW191219</mark>, GW200105, and GW200115. For these NSBH events, we have the samples from IMRPhenomXHM model to compute ℐBBH\mathcal{I}_{\mathrm{BBH}}.
-
-When comparing with individual LVK NSBH events, we find that ℐBBH\mathcal{I}_{\mathrm{BBH}} of GW230529 shows the highest s…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…H events, we find that ℐBBH\mathcal{I}_{\mathrm{BBH}} of GW230529 shows the highest similarity with GW200115 (61%), which is a confirmed NSBH event with q=0.26−0.10+0.35q=0.26^{+0.35}_{-0.10}. In contrast, GW230529 favors the other two asymmetric NSBH events, <mark>GW191219</mark> and GW200105, only with 1.5% and 17% respectively.
-
-Furthermore, we derive the ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution for an NSBH population model described in [27]. This model features the parameter distributions for binaries with secondary compact obje…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> m2∈[1,2]​M⊙m_{2}\in[1,2]~M_{\odot} GW191219 0.02−0.00+0.010.02^{+0.01}_{-0.00}</li><li><span class="sec">results</span> Alongside, we have included ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution from the three known NSBH events GW191219, GW200105, and GW200115.</li><li><span class="sec">results</span> In contrast, GW230529 favors the other two asymmetric NSBH events, GW191219 and GW200105, only with 1.5% and 17% respectively.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1008,50 +561,16 @@ Furthermore, we derive the ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution for an 
 <section class="card" data-i="9" data-event="GW200105_162426">
   <div class="ctx">
     <div class="evname mono">GW200105_162426</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…0.08}
-
-m2∈[2,5]​M⊙m_{2}\in[2,5]~M_{\odot}
-GW190814
-0.06−0.01+0.010.06^{+0.01}_{-0.01}
-
-(iv: Secondary in lower gap)
-GW200210
-0.06−0.02+0.030.06^{+0.03}_{-0.02}
-
-m2∈[1,2]​M⊙m_{2}\in[1,2]~M_{\odot}
-GW191219
-0.02−0.00+0.010.02^{+0.01}_{-0.00}
-
-(Stellar BH + NS )
-<mark>GW200105</mark>
-0.10−0.01+0.030.10^{+0.03}_{-0.01}
-
-GW200115
-0.12−0.04+0.220.12^{+0.22}_{-0.04}
-
-m1∈[2,5]​M⊙m_{1}\in[2,5]~M_{\odot}
-GW230529
-0.18−0.08+0.070.18^{+0.07}_{-0.08}
-
-(Primary in lower gap + NS)
-
-Table 2: The similarity of ℐBBH\mathcal{I}_{\mathrm{BBH}} between dif…</div>
+    <p class="where">Named 3 times:
+      results ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/2411.02778v1#:~:text=GW200105" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200105</span> or <span class="mono hit">GW200105_162426</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…t black holes, thus permitting us to compute the merger entropy. The ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution of GW230529 is shown in Fig. 4. Alongside, we have included ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution from the three known NSBH events GW191219, <mark>GW200105</mark>, and GW200115. For these NSBH events, we have the samples from IMRPhenomXHM model to compute ℐBBH\mathcal{I}_{\mathrm{BBH}}.
-
-When comparing with individual LVK NSBH events, we find that ℐBBH\mathcal{I}_{\mathrm{BBH}} of GW230529 shows the highest similarity …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…find that ℐBBH\mathcal{I}_{\mathrm{BBH}} of GW230529 shows the highest similarity with GW200115 (61%), which is a confirmed NSBH event with q=0.26−0.10+0.35q=0.26^{+0.35}_{-0.10}. In contrast, GW230529 favors the other two asymmetric NSBH events, GW191219 and <mark>GW200105</mark>, only with 1.5% and 17% respectively.
-
-Furthermore, we derive the ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution for an NSBH population model described in [27]. This model features the parameter distributions for binaries with secondary compact object ≲5​M⊙\less…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> (Stellar BH + NS ) GW200105 0.10−0.01+0.030.10^{+0.03}_{-0.01}</li><li><span class="sec">results</span> …side, we have included ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution from the three known NSBH events GW191219, GW200105, and GW200115.</li><li><span class="sec">results</span> In contrast, GW230529 favors the other two asymmetric NSBH events, GW191219 and GW200105, only with 1.5% and 17% respectively.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1087,49 +606,16 @@ Furthermore, we derive the ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution for an 
 <section class="card" data-i="10" data-event="GW200115_042309">
   <div class="ctx">
     <div class="evname mono">GW200115_042309</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…90814
-0.06−0.01+0.010.06^{+0.01}_{-0.01}
-
-(iv: Secondary in lower gap)
-GW200210
-0.06−0.02+0.030.06^{+0.03}_{-0.02}
-
-m2∈[1,2]​M⊙m_{2}\in[1,2]~M_{\odot}
-GW191219
-0.02−0.00+0.010.02^{+0.01}_{-0.00}
-
-(Stellar BH + NS )
-GW200105
-0.10−0.01+0.030.10^{+0.03}_{-0.01}
-
-<mark>GW200115</mark>
-0.12−0.04+0.220.12^{+0.22}_{-0.04}
-
-m1∈[2,5]​M⊙m_{1}\in[2,5]~M_{\odot}
-GW230529
-0.18−0.08+0.070.18^{+0.07}_{-0.08}
-
-(Primary in lower gap + NS)
-
-Table 2: The similarity of ℐBBH\mathcal{I}_{\mathrm{BBH}} between different BBH population models. The lower the v…</div>
+    <p class="where">Named 3 times:
+      results ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/2411.02778v1#:~:text=GW200115" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200115</span> or <span class="mono hit">GW200115_042309</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>… thus permitting us to compute the merger entropy. The ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution of GW230529 is shown in Fig. 4. Alongside, we have included ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution from the three known NSBH events GW191219, GW200105, and <mark>GW200115</mark>. For these NSBH events, we have the samples from IMRPhenomXHM model to compute ℐBBH\mathcal{I}_{\mathrm{BBH}}.
-
-When comparing with individual LVK NSBH events, we find that ℐBBH\mathcal{I}_{\mathrm{BBH}} of GW230529 shows the highest similarity with GW200115 …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… GW200115. For these NSBH events, we have the samples from IMRPhenomXHM model to compute ℐBBH\mathcal{I}_{\mathrm{BBH}}.
-
-When comparing with individual LVK NSBH events, we find that ℐBBH\mathcal{I}_{\mathrm{BBH}} of GW230529 shows the highest similarity with <mark>GW200115</mark> (61%), which is a confirmed NSBH event with q=0.26−0.10+0.35q=0.26^{+0.35}_{-0.10}. In contrast, GW230529 favors the other two asymmetric NSBH events, GW191219 and GW200105, only with 1.5% and 17% respectively.
-
-Furthermore, we derive the ℐBBH\mathcal{I}_{\ma…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW200115 0.12−0.04+0.220.12^{+0.22}_{-0.04}</li><li><span class="sec">results</span> …included ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution from the three known NSBH events GW191219, GW200105, and GW200115.</li><li><span class="sec">results</span> …al LVK NSBH events, we find that ℐBBH\mathcal{I}_{\mathrm{BBH}} of GW230529 shows the highest similarity with GW200115 (61%), which is a confirmed NSBH event with q=0.26−0.10+0.35q=0.26^{+0.35}_{-0.10}.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1165,118 +651,15 @@ Furthermore, we derive the ℐBBH\mathcal{I}_{\ma…</div>
 <section class="card" data-i="11" data-event="GW230529_181500">
   <div class="ctx">
     <div class="evname mono">GW230529_181500</div>
-    <h3>11 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…act objects in the upper (≳60​M⊙)(\gtrsim 60~M_{\odot}) and lower (≲5​M⊙\lesssim 5~M_{\odot}) mass-gaps. For GW190521, an event with both objects in the upper mass gap, ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution strongly favors second-generation mergers. For <mark>GW230529</mark>, a new event with the primary object in the lower mass gap, we note that ℐBBH\mathcal{I}_{\mathrm{BBH}} mildly favors it with neutron star - black holes events. Our work provides a new framework to study the underlying demographics of compact binaries in the …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… or a very heavy neutron star [100, 113, 5, 39]. Previous studies have explained this mass gap from the inefficiency of core-collapse supernovae and the internal structure of neutron stars [38]. A new event from the Fourth Observing Run of LVK (2023-present), <mark>GW230529</mark> [1], with m​1=3.6−1.3+0.8​M⊙m1=3.6^{+0.8}_{-1.3}~M_{\odot}, offers the most conclusive evidence of mystery events in bin (iv).
-
-Within the 83 LVK BBH events, there are 3 confirmed detections of binaries with the primary and secondary object in the upper mass …</div>
+    <p class="where">Named 11 times:
+      results ×8, abstract, introduction, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2411.02778v1#:~:text=GW230529" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW230529</span> or <span class="mono hit">GW230529_181500</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…0.06−0.02+0.030.06^{+0.03}_{-0.02}
-
-m2∈[1,2]​M⊙m_{2}\in[1,2]~M_{\odot}
-GW191219
-0.02−0.00+0.010.02^{+0.01}_{-0.00}
-
-(Stellar BH + NS )
-GW200105
-0.10−0.01+0.030.10^{+0.03}_{-0.01}
-
-GW200115
-0.12−0.04+0.220.12^{+0.22}_{-0.04}
-
-m1∈[2,5]​M⊙m_{1}\in[2,5]~M_{\odot}
-<mark>GW230529</mark>
-0.18−0.08+0.070.18^{+0.07}_{-0.08}
-
-(Primary in lower gap + NS)
-
-Table 2: The similarity of ℐBBH\mathcal{I}_{\mathrm{BBH}} between different BBH population models. The lower the value, the more distinction between the two models.
-
-Uniform
-1G+1G
-1G+2G
-2G+2G
-Is…</div>
-    
-    
-    <details><summary>8 more</summary>
-    <div class="mention"><span class="sec">results</span>…n Sec. III.1, the ℐBBH\mathcal{I}_{\mathrm{BBH}} formalism of GW190403 does not favor any of six population model with medium similarity.
-
-III.4 Comparing Population Models with LVK Lower Mass Gap Events
-
-Figure 4: ℐBBH\mathcal{I}_{\mathrm{BBH}} posteriors of <mark>GW230529</mark> with three confirmed NSBH events (blue dotted), GWTC-3 PP model, and NSBH population (grey solid) as reference.
-
-In April 2024, LVK announced GW230529 from O4 [1], a potential BNS coalescence or NSBH merger event. The primary compact object has a mass of 3.6−…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ing Population Models with LVK Lower Mass Gap Events
-
-Figure 4: ℐBBH\mathcal{I}_{\mathrm{BBH}} posteriors of GW230529 with three confirmed NSBH events (blue dotted), GWTC-3 PP model, and NSBH population (grey solid) as reference.
-
-In April 2024, LVK announced <mark>GW230529</mark> from O4 [1], a potential BNS coalescence or NSBH merger event. The primary compact object has a mass of 3.6−1.3+0.8​M⊙3.6^{+0.8}_{-1.3}M_{\odot}, which sits in the lower mass gap with 99% confidence interval. The primary object is too heavy to fit into our cu…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…it into our current understanding of neutron star mass distribution [82, 75, 76] and the neutron star equation of state [61]. The secondary object (m2=1.4−1.2+0.6​M⊙m_{2}=1.4^{+0.6}_{-1.2}M_{\odot}) is likely a neutron star.
-
-To understand the demographics of <mark>GW230529</mark>, we apply the ℐBBH\mathcal{I}_{\mathrm{BBH}} formalism to the available parameter estimation samples from the IMRPhenomXHM model [86]. This model does not incorporate tidal disruptions expected [116], but instead assumes coalescence between light black holes,…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…from the IMRPhenomXHM model [86]. This model does not incorporate tidal disruptions expected [116], but instead assumes coalescence between light black holes, thus permitting us to compute the merger entropy. The ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution of <mark>GW230529</mark> is shown in Fig. 4. Alongside, we have included ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution from the three known NSBH events GW191219, GW200105, and GW200115. For these NSBH events, we have the samples from IMRPhenomXHM model to compute ℐBBH\mathcal{I}_{\math…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…e known NSBH events GW191219, GW200105, and GW200115. For these NSBH events, we have the samples from IMRPhenomXHM model to compute ℐBBH\mathcal{I}_{\mathrm{BBH}}.
-
-When comparing with individual LVK NSBH events, we find that ℐBBH\mathcal{I}_{\mathrm{BBH}} of <mark>GW230529</mark> shows the highest similarity with GW200115 (61%), which is a confirmed NSBH event with q=0.26−0.10+0.35q=0.26^{+0.35}_{-0.10}. In contrast, GW230529 favors the other two asymmetric NSBH events, GW191219 and GW200105, only with 1.5% and 17% respectively.
-
-Furt…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…\mathrm{BBH}}.
-
-When comparing with individual LVK NSBH events, we find that ℐBBH\mathcal{I}_{\mathrm{BBH}} of GW230529 shows the highest similarity with GW200115 (61%), which is a confirmed NSBH event with q=0.26−0.10+0.35q=0.26^{+0.35}_{-0.10}. In contrast, <mark>GW230529</mark> favors the other two asymmetric NSBH events, GW191219 and GW200105, only with 1.5% and 17% respectively.
-
-Furthermore, we derive the ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution for an NSBH population model described in [27]. This model features the parameter …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ribution peaks at q∼0.1q\sim 0.1. The spin distribution of neutron stars is assumed to be uniform between 0 and 0.7. The ℐBBH\mathcal{I}_{\mathrm{BBH}} posterior of NSBH population model peaks ∼0.06\sim 0.06. We find that the ℐBBH\mathcal{I}_{\mathrm{BBH}} of <mark>GW230529</mark> favors the GWTC-3 PP model (60%) over the NSBH population model (33%).
-
-IV Conclusion
-
-In this work, we demonstrate a novel application of the Merger Entropy Index (ℐBBH\mathcal{I}_{\mathrm{BBH}}) formalism for probing the astrophysical formation channels of …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…, Fragione, G., Kimball, C., &amp; Kalogera, V. 2023, On the Likely Dynamical Origin of GW191109 and of Binary Black Hole Mergers with Negative Effective Spin.
-
-https://arxiv.org/abs/2302.07284
-
- 
-[116]
-
-Zhu, J.-P., Hu, R.-C., Kang, Y., et al. 2024a, Formation of <mark>GW230529</mark> from Isolated Binary Evolution and Its Electromagnetic Counterparts.
-
-https://arxiv.org/abs/2404.10596
-
- 
-[117]
-
-Zhu, J.-P., Qin, Y., Wang, Z.-H.-T., et al. 2024b, Formation of Lower Mass-gap Black Hole–Neutron Star Binary Mergers through Super-Eddington Stab…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[116]</span> · 1 place</span><div class="cite">…30529, we apply the ℐBBH\mathcal{I}_{\mathrm{BBH}} formalism to the available parameter estimation samples from the IMRPhenomXHM model [86]. This model does not incorporate tidal disruptions expected <mark class="ref">[116]</mark>, but instead assumes coalescence between light black holes, thus permitting us to compute the merger entropy. The ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution of GW230529 is shown in Fig. 4. Alongside…</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (11, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> For GW230529, a new event with the primary object in the lower mass gap, we note that ℐBBH\mathcal{I}_{\mathrm{BBH}} mildl…</li><li><span class="sec">introduction</span> A new event from the Fourth Observing Run of LVK (2023-present), GW230529 [1], with m​1=3.6−1.3+0.8​M⊙m1=3.6^{+0.8}_{-1.3}~M_{\odot}, offers the most conclusive evidence of mystery ev…</li><li><span class="sec">results</span> m1∈[2,5]​M⊙m_{1}\in[2,5]~M_{\odot} GW230529 0.18−0.08+0.070.18^{+0.07}_{-0.08}</li><li><span class="sec">results</span> Figure 4: ℐBBH\mathcal{I}_{\mathrm{BBH}} posteriors of GW230529 with three confirmed NSBH events (blue dotted), GWTC-3 PP model, and NSBH population (grey solid) as referenc…</li><li><span class="sec">results</span> In April 2024, LVK announced GW230529 from O4 [1], a potential BNS coalescence or NSBH merger event.</li><li><span class="sec">results</span> To understand the demographics of GW230529, we apply the ℐBBH\mathcal{I}_{\mathrm{BBH}} formalism to the available parameter estimation samples from the…</li><li><span class="sec">results</span> The ℐBBH\mathcal{I}_{\mathrm{BBH}} distribution of GW230529 is shown in Fig. 4.</li><li><span class="sec">results</span> When comparing with individual LVK NSBH events, we find that ℐBBH\mathcal{I}_{\mathrm{BBH}} of GW230529 shows the highest similarity with GW200115 (61%), which is a confirmed NSBH event with q=0.26−0.10+0.35q=0.26…</li></ul>
     </details>
     
   </div>

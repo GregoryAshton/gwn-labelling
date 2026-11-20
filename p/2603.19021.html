@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,51 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>GWTC-4.0: Tests of General Relativity. III. Tests of the Remnants</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2603.19021" target="_blank" rel="noopener" class="mono">arXiv:2603.19021</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">This is the third paper of the set recording the results of the suite of tests of general relativity (GR) performed on the signals from the fourth Gravitational-Wave Transient Catalog (GWTC-4.0), where we focus on the remnants of the binary mergers. We examine for the first time 42 events from the first part of the fourth observing run of the LIGO-Virgo-KAGRA detectors, alongside events from the previous observation runs, restricting our analysis to the confident signals, which were measured in at least two detectors and that have false alarm rates $\le 10^{-3} \mathrm{yr}^{-1}$. This paper focuses on seven tests of the coalescence remnants. Three of these are tests of the ringdown and its consistency with the expected quasinormal mode spectrum of a Kerr black hole. Specifically, two tests analyze just the ringdown in the time domain, and the third test analyzes the entire signal in the frequency domain. Four tests allow for the existence of possible echoes arriving after the end of the ringdown, which are not expected in GR. We find overall consistency of the remnants with GR. When combining events by multiplying likelihoods (hierarchically), one analysis finds that the GR prediction lies at the boundary of the $98.6^{+1.4}_{-9.4}\%$ ($99.3^{+0.7}_{-4.5}\%$) credible region, an increase from $93.8^{+6.1}_{-20.0}\%$ ($94.9^{+4.4}_{-18.2}\%$) for GWTC-3.0. Here the ranges of values comes from bootstrapping to account for the finite number of events analyzed and suggest that some of the apparently significant deviation could be attributed to variance due to the finite catalog. Since the significance also decreases to 92.2% (96.2%) when including the more recent very loud event GW250114, there is no strong evidence for a GR deviation. We find no evidence for post-merger echoes in the events that were analyzed. (Abridged)</p></details>
+<div class="small mut mono">arXiv:2603.19021</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">This is the third paper of the set recording the results of the suite of tests of general relativity (GR) performed on the signals from the fourth Gravitational-Wave Transient Catalog (GWTC-4.0), where we focus on the remnants of the binary mergers. We examine for the first time 42 events from the first part of the fourth observing run of the LIGO-Virgo-KAGRA detectors, alongside events from the previous observation runs, restricting our analysis to the confident signals, which were measured in at least two detectors and that have false alarm rates $\le 10^{-3} \mathrm{yr}^{-1}$. This paper focuses on seven tests of the coalescence remnants. Three of these are tests of the ringdown and its consistency with the expected quasinormal mode spectrum of a Kerr black hole. Specifically, two tests analyze just the ringdown in the time domain, and the third test analyzes the entire signal in the frequency domain. Four tests allow for the existence of possible echoes arriving after the end of the ringdown, which are not expected in GR. We find overall consistency of the remnants with GR. When combining events by multiplying likelihoods (hierarchically), one analysis finds that the GR prediction lies at the boundary of the $98.6^{+1.4}_{-9.4}\%$ ($99.3^{+0.7}_{-4.5}\%$) credible region, an increase from $93.8^{+6.1}_{-20.0}\%$ ($94.9^{+4.4}_{-18.2}\%$) for GWTC-3.0. Here the ranges of values comes from bootstrapping to account for the finite number of events analyzed and suggest that some of the apparently significant deviation could be attributed to variance due to the finite catalog. Since the significance also decreases to 92.2% (96.2%) when including the more recent very loud event GW250114, there is no strong evidence for a GR deviation. We find no evidence for post-merger echoes in the events that were analyzed. (Abridged)</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/pdf/2603.19021v1" target="_blank" rel="noopener">Open the paper (PDF, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched; it's a PDF, so use your viewer's search.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">12 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">12 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW190408_181802">
   <div class="ctx">
     <div class="evname mono">GW190408_181802</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190408</span> or <span class="mono hit">GW190408_181802</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…1 2.67+0.16
-−0.05 0.68+0.01
-−0.03 0.72+0.24
-−0.21 ··· ··· ··· ··· ··· + ···
-GW17081812.0 +0.3
-−0.4 72.6+6.0
-−5.2 0.69+0.08
-−0.08 0.80+0.18
-−0.24 ··· ··· ···++ + +···
-GW170823 12.2+0.2
-−0.3 87.2+11.0
-−9.1 0.71+0.08
-−0.09 0.78+0.20
-−0.30 ++ ··· ··· ++ + + +
-O3a <mark>GW190408</mark> 18180214.6 +0.2
-−0.3 53.3+3.1
-−2.9 0.67+0.06
-−0.07 0.75+0.21
-−0.26 ++··· ···++ +···+
-GW190412 19.8+0.2
-−0.3 40.7+5.5
-−4.6 0.66+0.05
-−0.04 0.325+0.172
-−0.097 ··· ··· ··· ++ + ··· +
-GW190421 21385610.7 +0.2
-−0.4 103+12
-−11 0.66+0.09
-−0.12 0.78+0.20
-−0.32 ··· ··…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …·· ···++ + +··· GW170823 12.2+0.2 −0.3 87.2+11.0 −9.1 0.71+0.08 −0.09 0.78+0.20 −0.30 ++ ··· ··· ++ + + + O3a GW190408 18180214.6 +0.2 −0.3 53.3+3.1 −2.9 0.67+0.06 −0.07 0.75+0.21 −0.26 ++··· ···++ +···+ GW190412 19.8+0.2 −0.3 4…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -202,39 +201,16 @@ GW190421 21385610.7 +0.2
 <section class="card" data-i="1" data-event="GW190503_185404">
   <div class="ctx">
     <div class="evname mono">GW190503_185404</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190503 185404</span> or <span class="mono hit">GW190503_185404</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…−0.3 53.3+3.1
-−2.9 0.67+0.06
-−0.07 0.75+0.21
-−0.26 ++··· ···++ +···+
-GW190412 19.8+0.2
-−0.3 40.7+5.5
-−4.6 0.66+0.05
-−0.04 0.325+0.172
-−0.097 ··· ··· ··· ++ + ··· +
-GW190421 21385610.7 +0.2
-−0.4 103+12
-−11 0.66+0.09
-−0.12 0.78+0.20
-−0.32 ··· ··· ···++ +··· ···
-<mark>GW190503 185404</mark> 12.1+0.2
-−0.4 86+12
-−12 0.66+0.09
-−0.15 0.69+0.27
-−0.29 ··· ··· ··· ++ + ··· ···
-GW190512 18071412.7 +0.3
-−0.4 43.4+4.4
-−2.7 0.65+0.06
-−0.07 0.54+0.36
-−0.18 ++··· ···++ +···+
-GW190513 205428 12.5+0.3
-−0.4 72.8+13.4
-−8.2 0.72+0.13
-−0.14 0.52+0.41
-−0.20 ++ ··· …</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …·· ++ + ··· + GW190421 21385610.7 +0.2 −0.4 103+12 −11 0.66+0.09 −0.12 0.78+0.20 −0.32 ··· ··· ···++ +··· ··· GW190503 185404 12.1+0.2 −0.4 86+12 −12 0.66+0.09 −0.15 0.69+0.27 −0.29 ··· ··· ··· ++ + ··· ··· GW190512 18071412.7 +0.3 −0.…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -270,38 +246,16 @@ GW190513 205428 12.5+0.3
 <section class="card" data-i="2" data-event="GW190728_064510">
   <div class="ctx">
     <div class="evname mono">GW190728_064510</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190728 064510</span> or <span class="mono hit">GW190728_064510</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…−1.7 0.68+0.04
-−0.05 0.58+0.36
-−0.18 ++··· ···++··· ··· ···
-GW190720 000836 10.9+0.3
-−0.8 24.2+4.4
-−1.6 0.71+0.05
-−0.05 0.53+0.35
-−0.24 ··· ··· ··· ++ + ··· ···
-GW190727 06033311.7 +0.2
-−0.5 100.2+12.2
-−9.8 0.73+0.10
-−0.10 0.79+0.18
-−0.29 ++··· ···++ +··· ···
-<mark>GW190728 064510</mark> 13.1+0.3
-−0.4 22.82+5.59
-−0.77 0.71+0.04
-−0.04 0.64+0.30
-−0.36 ··· ··· ··· ++ + ··· ···
-GW19081425.3 +0.1
-−0.2 27.0+1.5
-−1.3 0.28+0.03
-−0.03 0.111+0.012
-−0.011 ··· ··· ··· ···+···+
-GW190828 063405 16.5+0.2
-−0.3 76.0+7.7
-−5.5 0.76+0.07
-−0.07 0.82+0.15
-−0.26 ++…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …+ ··· ··· GW190727 06033311.7 +0.2 −0.5 100.2+12.2 −9.8 0.73+0.10 −0.10 0.79+0.18 −0.29 ++··· ···++ +··· ··· GW190728 064510 13.1+0.3 −0.4 22.82+5.59 −0.77 0.71+0.04 −0.04 0.64+0.30 −0.36 ··· ··· ··· ++ + ··· ··· GW19081425.3 +0.1 −0.…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -337,38 +291,16 @@ GW190828 063405 16.5+0.2
 <section class="card" data-i="3" data-event="GW200219_094415">
   <div class="ctx">
     <div class="evname mono">GW200219_094415</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200219</span> or <span class="mono hit">GW200219_094415</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…3.4 0.73+0.06
-−0.05 0.85+0.12
-−0.41 ++ ✓ ··· ··· + ++ ···
-GW200202 15431310.8 +0.2
-−0.4 18.12+2.09
-−0.35 0.69+0.03
-−0.04 0.72+0.24
-−0.31 ··· ··· ··· ···+ ++···
-GW200208 130117 10.8+0.3
-−0.5 87.5+10.3
-−9.1 0.66+0.09
-−0.13 0.73+0.23
-−0.29 ··· ✓ ··· ··· + ++ ···
-<mark>GW200219</mark> 09441510.7 +0.3
-−0.5 98+13
-−11 0.66+0.10
-−0.13 0.77+0.21
-−0.32 ··· ··· ··· ···+ ++ +
-GW200224 222234 20.0+0.2
-−0.2 90.5+7.6
-−6.4 0.73+0.07
-−0.07 0.82+0.16
-−0.26 ++ ✓ ··· ··· + ++ ···
-GW200225 06042112.5 +0.3
-−0.4 39.4+2.9
-−3.6 0.66+0.07
-−0.13 0.73+0.23
-−0.28 …</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …··+ ++··· GW200208 130117 10.8+0.3 −0.5 87.5+10.3 −9.1 0.66+0.09 −0.13 0.73+0.23 −0.29 ··· ✓ ··· ··· + ++ ··· GW200219 09441510.7 +0.3 −0.5 98+13 −11 0.66+0.10 −0.13 0.77+0.21 −0.32 ··· ··· ··· ···+ ++ + GW200224 222234 20.0+0.2…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -404,39 +336,16 @@ GW200225 06042112.5 +0.3
 <section class="card" data-i="4" data-event="GW200225_060421">
   <div class="ctx">
     <div class="evname mono">GW200225_060421</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200225</span> or <span class="mono hit">GW200225_060421</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>….5+10.3
-−9.1 0.66+0.09
-−0.13 0.73+0.23
-−0.29 ··· ✓ ··· ··· + ++ ···
-GW200219 09441510.7 +0.3
-−0.5 98+13
-−11 0.66+0.10
-−0.13 0.77+0.21
-−0.32 ··· ··· ··· ···+ ++ +
-GW200224 222234 20.0+0.2
-−0.2 90.5+7.6
-−6.4 0.73+0.07
-−0.07 0.82+0.16
-−0.26 ++ ✓ ··· ··· + ++ ···
-<mark>GW200225</mark> 06042112.5 +0.3
-−0.4 39.4+2.9
-−3.6 0.66+0.07
-−0.13 0.73+0.23
-−0.28 ··· ··· ··· ···+ ++ +
-GW200311 115853 17.8+0.2
-−0.2 72.4+5.6
-−5.1 0.69+0.07
-−0.08 0.82+0.16
-−0.27 ++ ✓ ··· ··· + ++ +
-GW200316 21575610.3 +0.4
-−0.7 24.4+9.0
-−1.1 0.70+0.04
-−0.04 0.59+0.34
-−0.3…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …· ···+ ++ + GW200224 222234 20.0+0.2 −0.2 90.5+7.6 −6.4 0.73+0.07 −0.07 0.82+0.16 −0.26 ++ ✓ ··· ··· + ++ ··· GW200225 06042112.5 +0.3 −0.4 39.4+2.9 −3.6 0.66+0.07 −0.13 0.73+0.23 −0.28 ··· ··· ··· ···+ ++ + GW200311 115853 17.8…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -472,53 +381,16 @@ GW200316 21575610.3 +0.4
 <section class="card" data-i="5" data-event="GW230518_125908">
   <div class="ctx">
     <div class="evname mono">GW230518_125908</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>… al. 2025e), as well as some events from previous runs,
-O1 (Abbott et al. 2016), O2 (Abbott et al. 2019a,b), O3a (Ab-
-bott et al. 2024, 2021a), and O3b (Abbott et al. 2023a, 2025),
-which have been used for a subset of the tests. Of the O4a
-events tested here, <mark>GW230518 125908</mark> has masses consistent
-with a neutron star–BH binary, while the rest all have masses
-consistent with BBHs. The loud event GW230814 230901
-arXiv:2603.19021v1 [gr-qc] 19 Mar 2026
-
-2
-Table 1. Event selection table for the analyses in this paper, from O4a and the …</div>
+    <p class="where">Named 2 times:
+      title/headings, methods.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW230518 125908</span> or <span class="mono hit">GW230518_125908</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…9
-−3.6 0.66+0.07
-−0.13 0.73+0.23
-−0.28 ··· ··· ··· ···+ ++ +
-GW200311 115853 17.8+0.2
-−0.2 72.4+5.6
-−5.1 0.69+0.07
-−0.08 0.82+0.16
-−0.27 ++ ✓ ··· ··· + ++ +
-GW200316 21575610.3 +0.4
-−0.7 24.4+9.0
-−1.1 0.70+0.04
-−0.04 0.59+0.34
-−0.38 ··· ··· ··· ···+ ++···
-O4a <mark>GW230518 125908</mark> 14.2+0.2
-−0.4 9.97+0.79
-−0.83 0.38+0.03
-−0.03 0.18+0.04
-−0.03 ··· ··· ··· ··· ··· ✓ ···
-GW230601 22413412.3 +0.2
-−0.3 164+16
-−15 0.67+0.12
-−0.13 0.69+0.26
-−0.30 ✓··· ···✓···✓ ✓
-GW230605 065343 10.5+0.3
-−0.4 32.6+4.7
-−1.2 0.69+0.05
-−0.05 0.65+0.31
-−0.29 ··· ··…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Of the O4a events tested here, GW230518 125908 has masses consistent with a neutron star–BH binary, while the rest all have masses consistent with BBHs.</li><li><span class="sec">methods</span> …+ ++ + GW200316 21575610.3 +0.4 −0.7 24.4+9.0 −1.1 0.70+0.04 −0.04 0.59+0.34 −0.38 ··· ··· ··· ···+ ++··· O4a GW230518 125908 14.2+0.2 −0.4 9.97+0.79 −0.83 0.38+0.03 −0.03 0.18+0.04 −0.03 ··· ··· ··· ··· ··· ✓ ··· GW230601 22413412.3 +…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -554,68 +426,16 @@ GW230605 065343 10.5+0.3
 <section class="card" data-i="6" data-event="GW230731_215307">
   <div class="ctx">
     <div class="evname mono">GW230731_215307</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…+0.2
-−0.3 79.0+5.9
-−5.2 0.69+0.08
-−0.06 0.85+0.14
-−0.24 ✓ ✓···✓ ✓ ✓ ✓
-GW230630 234532 9.4+0.3
-−0.5 19.29+2.46
-−0.56 0.66+0.04
-−0.05 0.67+0.29
-−0.28 ··· ··· ··· ✓ ✓ ✓ ···
-GW230702 1854539.5 +0.3
-−0.5 82+23
-−11 0.64+0.13
-−0.15 0.45+0.45
-−0.25 ··· ··· ···✓ ✓ ✓ ✓
-<mark>GW230731 215307</mark> 11.9+0.2
-−0.3 20.99+1.73
-−0.33 0.67+0.04
-−0.03 0.76+0.22
-−0.29 ··· ··· ··· ✓ ✓ ✓ ✓
-GW230811 03211612.8 +0.3
-−0.4 76.0+6.7
-−5.0 0.69+0.09
-−0.09 0.63+0.31
-−0.22 ✓··· ···✓ ✓ ✓ ✓
-GW230814 061920 9.4+0.3
-−0.5 176+22
-−25 0.69+0.12
-−0.14 0.62+0.32
-−0.29 ✓ ··· ··· ✓ …</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW230731 215307</span> or <span class="mono hit">GW230731_215307</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…ses.
-Eventlog 10BIMRE(ADA)
-IMR log10BIMRE(BHP)
-IMR
-GW230601 224134−0.2···
-GW230605 0653430.0 0.0
-GW230606 0043050.0−0.1
-GW230609 064958−0.1···
-GW230624 113103−1.1···
-GW230627 015337−2.3···
-GW230628 231200−0.1−0.4
-GW230630 2345320.0 0.0
-GW230702 185453−0.1−0.1
-<mark>GW230731 215307</mark>−0.3 0.2
-GW230811 032116−2.2−0.4
-GW230814 0619200.0✓ –
-GW230824 033047−0.6···
-GW230904 0510131.1✓ –
-GW230914 111401−0.1 0.0
-GW230919 215712−0.2−0.2
-GW230920 071124−0.3−0.1
-GW230922 020344−0.2 0.1
-GW230922 0406580.6···
-GW230924 124453−0.5 0.1
-GW230927 043729−0.…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …· ··· ··· ✓ ✓ ✓ ··· GW230702 1854539.5 +0.3 −0.5 82+23 −11 0.64+0.13 −0.15 0.45+0.45 −0.25 ··· ··· ···✓ ✓ ✓ ✓ GW230731 215307 11.9+0.2 −0.3 20.99+1.73 −0.33 0.67+0.04 −0.03 0.76+0.22 −0.29 ··· ··· ··· ✓ ✓ ✓ ✓ GW230811 03211612.8 +0.3 −…</li><li><span class="sec">methods</span> …4 113103−1.1··· GW230627 015337−2.3··· GW230628 231200−0.1−0.4 GW230630 2345320.0 0.0 GW230702 185453−0.1−0.1 GW230731 215307−0.3 0.2 GW230811 032116−2.2−0.4 GW230814 0619200.0✓ – GW230824 033047−0.6··· GW230904 0510131.1✓ – GW230914 1…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -651,40 +471,16 @@ GW230927 043729−0.…</div>
 <section class="card" data-i="7" data-event="GW230904_051013">
   <div class="ctx">
     <div class="evname mono">GW230904_051013</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW230904 051013</span> or <span class="mono hit">GW230904_051013</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…11612.8 +0.3
-−0.4 76.0+6.7
-−5.0 0.69+0.09
-−0.09 0.63+0.31
-−0.22 ✓··· ···✓ ✓ ✓ ✓
-GW230814 061920 9.4+0.3
-−0.5 176+22
-−25 0.69+0.12
-−0.14 0.62+0.32
-−0.29 ✓ ··· ··· ✓ ✓– ✓ ✓
-GW230824 03304710.0 +0.2
-−0.4 148+16
-−16 0.68+0.10
-−0.13 0.71+0.26
-−0.34 ✓··· ···✓···✓ ✓
-<mark>GW230904 051013</mark> 10.2+0.3
-−0.5 20.30+3.03
-−0.55 0.69+0.04
-−0.04 0.68+0.29
-−0.31 ··· ··· ··· ✓ ✓– ✓ ···
-GW230914 11140116.2 +0.2
-−0.3 135+14
-−13 0.71+0.09
-−0.14 0.62+0.32
-−0.26 ✓ ✓···✓ ✓ ✓ ✓
-GW230919 215712 15.7+0.2
-−0.3 58.4+3.2
-−2.6 0.75+0.06
-−0.05 0.79+0.18
-−0.25 ··· ··· ··…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …9 ✓ ··· ··· ✓ ✓– ✓ ✓ GW230824 03304710.0 +0.2 −0.4 148+16 −16 0.68+0.10 −0.13 0.71+0.26 −0.34 ✓··· ···✓···✓ ✓ GW230904 051013 10.2+0.3 −0.5 20.30+3.03 −0.55 0.69+0.04 −0.04 0.68+0.29 −0.31 ··· ··· ··· ✓ ✓– ✓ ··· GW230914 11140116.2 +0.…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -720,34 +516,16 @@ GW230919 215712 15.7+0.2
 <section class="card" data-i="8" data-event="GW231020_142947">
   <div class="ctx">
     <div class="evname mono">GW231020_142947</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231020 142947</span> or <span class="mono hit">GW231020_142947</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…
-GW230904 0510131.1✓ –
-GW230914 111401−0.1 0.0
-GW230919 215712−0.2−0.2
-GW230920 071124−0.3−0.1
-GW230922 020344−0.2 0.1
-GW230922 0406580.6···
-GW230924 124453−0.5 0.1
-GW230927 043729−0.2 0.1
-GW230927 153832−0.2−0.1
-GW230928 215827−0.2···
-GW231001 140220−0.1−0.2
-<mark>GW231020 142947</mark>−1.5−1.2
-GW231028 153006−0.2···
-GW231102 071736−0.2−0.5
-GW231104 133418−0.2✓ –
-GW231108 125142−0.4−0.5
-GW231110 040320−0.6 0.0
-GW231113 200417−0.9✓ –
-GW231114 043211−0.2✓ –
-GW231118 005626−2.4···
-GW231118 090602−0.7···
-GW231123 135430−2.5−5.9
-GW231206 233134−0…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …124453−0.5 0.1 GW230927 043729−0.2 0.1 GW230927 153832−0.2−0.1 GW230928 215827−0.2··· GW231001 140220−0.1−0.2 GW231020 142947−1.5−1.2 GW231028 153006−0.2··· GW231102 071736−0.2−0.5 GW231104 133418−0.2✓ – GW231108 125142−0.4−0.5 GW23111…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -783,64 +561,16 @@ GW231206 233134−0…</div>
 <section class="card" data-i="9" data-event="GW231114_043211">
   <div class="ctx">
     <div class="evname mono">GW231114_043211</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…53.2+2.9
-−2.3 0.66+0.06
-−0.05 0.75+0.22
-−0.23 ✓··· ···✓ ✓ ✓ ✓
-GW231110 040320 11.0+0.3
-−0.4 40.7+4.1
-−1.7 0.74+0.06
-−0.05 0.65+0.30
-−0.25 ··· ··· ··· ✓ ✓ ✓ ···
-GW231113 20041710.1 +0.3
-−0.5 22.10+3.80
-−0.72 0.72+0.06
-−0.04 0.65+0.31
-−0.31 ··· ··· ···✓ ✓ – ✓ ✓
-<mark>GW231114 043211</mark> 9.8+0.3
-−0.5 37.6+10.0
-−4.3 0.61+0.06
-−0.06 0.36+0.27
-−0.17 ··· ··· ··· ✓ ✓– ✓ ···
-GW231118 00562610.5 +0.3
-−0.5 40.4+5.4
-−2.4 0.80+0.06
-−0.05 0.55+0.37
-−0.22 ··· ··· ···✓···✓···
-GW231118 090602 10.9+0.4
-−0.4 24.3+14.1
-−1.3 0.70+0.08
-−0.04 0.56+0.38
-−0.41 ···…</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231114 043211</span> or <span class="mono hit">GW231114_043211</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…GW230927 043729−0.2 0.1
-GW230927 153832−0.2−0.1
-GW230928 215827−0.2···
-GW231001 140220−0.1−0.2
-GW231020 142947−1.5−1.2
-GW231028 153006−0.2···
-GW231102 071736−0.2−0.5
-GW231104 133418−0.2✓ –
-GW231108 125142−0.4−0.5
-GW231110 040320−0.6 0.0
-GW231113 200417−0.9✓ –
-<mark>GW231114 043211</mark>−0.2✓ –
-GW231118 005626−2.4···
-GW231118 090602−0.7···
-GW231123 135430−2.5−5.9
-GW231206 233134−0.4−0.1
-GW231206 233901−0.4−0.7
-GW231213 111417−0.1 0.1
-GW231223 032836−0.2−0.2
-GW231224 024321−0.7✓ –
-GW231226 101520−1.3−1.9
-NOTE—Ellipses indicate events that do n…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …✓ ✓ ✓ ··· GW231113 20041710.1 +0.3 −0.5 22.10+3.80 −0.72 0.72+0.06 −0.04 0.65+0.31 −0.31 ··· ··· ···✓ ✓ – ✓ ✓ GW231114 043211 9.8+0.3 −0.5 37.6+10.0 −4.3 0.61+0.06 −0.06 0.36+0.27 −0.17 ··· ··· ··· ✓ ✓– ✓ ··· GW231118 00562610.5 +0.3 −…</li><li><span class="sec">methods</span> …071736−0.2−0.5 GW231104 133418−0.2✓ – GW231108 125142−0.4−0.5 GW231110 040320−0.6 0.0 GW231113 200417−0.9✓ – GW231114 043211−0.2✓ – GW231118 005626−2.4··· GW231118 090602−0.7··· GW231123 135430−2.5−5.9 GW231206 233134−0.4−0.1 GW231206…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -876,227 +606,15 @@ NOTE—Ellipses indicate events that do n…</div>
 <section class="card" data-i="10" data-event="GW231123_135430">
   <div class="ctx">
     <div class="evname mono">GW231123_135430</div>
-    <h3>15 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>….0
-−4.3 0.61+0.06
-−0.06 0.36+0.27
-−0.17 ··· ··· ··· ✓ ✓– ✓ ···
-GW231118 00562610.5 +0.3
-−0.5 40.4+5.4
-−2.4 0.80+0.06
-−0.05 0.55+0.37
-−0.22 ··· ··· ···✓···✓···
-GW231118 090602 10.9+0.4
-−0.4 24.3+14.1
-−1.3 0.70+0.08
-−0.04 0.56+0.38
-−0.41 ··· ··· ··· ✓ ··· ✓ ···
-<mark>GW231123</mark> 13543020.7 +0.2
-−0.3 304+40
-−42 0.84+0.07
-−0.19 0.74+0.22
-−0.38 ++··· ···✓ ✓ ✓ ✓
-GW231206 233134 11.0+0.3
-−0.4 93.1+9.4
-−9.0 0.67+0.09
-−0.10 0.81+0.17
-−0.28 ✓ ··· ··· ✓ ✓ ✓ ✓
-GW231206 23390121.0 +0.1
-−0.2 80.7+4.7
-−4.1 0.67+0.06
-−0.07 0.76+0.21
-−0.25 ✓ ✓···✓ …</div>
+    <p class="where">Named 15 times:
+      methods ×15.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231123</span> or <span class="mono hit">GW231123_135430</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>… containing the 200 mode; see Figure 2(b).
-For all events, 90% CL overlap is found with GR results,
-signalling consistency with the GR prediction. Since we do
-not find any evidence for a second mode, we do not extend
-the search beyond two modes.
-For the event <mark>GW231123 135430</mark> (henceforth shortened to
-GW231123), where we present results in Abac et al. (2025g),
-we find evidence for additional modes until a ringdown start
-time of 32.3 ms (21.6G ¯M det
-f /c3) past the peak of the signal.
-It is unclear if the ringdown start times, for …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>….
-For all events, 90% CL overlap is found with GR results,
-signalling consistency with the GR prediction. Since we do
-not find any evidence for a second mode, we do not extend
-the search beyond two modes.
-For the event GW231123 135430 (henceforth shortened to
-<mark>GW231123</mark>), where we present results in Abac et al. (2025g),
-we find evidence for additional modes until a ringdown start
-time of 32.3 ms (21.6G ¯M det
-f /c3) past the peak of the signal.
-It is unclear if the ringdown start times, for which such ev-
-idence is recovered…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">methods</span>…1.6G ¯M det
-f /c3) past the peak of the signal.
-It is unclear if the ringdown start times, for which such ev-
-idence is recovered, lie within the regime of validity of the
-stationary ringdown templates deployed. This is due to the
-complex signal morphology of <mark>GW231123</mark>, as discussed in
-Abac et al. (2025g). Among the multi-mode ringdown tem-
-plates with positive evidence, the ones yielding consistency
-with IMR results contain mode contributions that are not pre-
-dicted to be significantly excited in the IMR template. This
-di…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…des.
-0.2s] , with the sky position inferred from the IMR analysis.
-To determine the events to which we apply this analysis, we
-considered the four events with the highest total SNRs and
-then selected the two with the largest redshifted final masses,
-excluding <mark>GW231123</mark> due to waveform uncertainties (Abac
-et al. 2025g). The two selected events are GW231028 153006
-and GW231226 101520. We do not report results for any
-events from previous observing runs, though GW150914 was
-analyzed in Ma et al. (2023a,b); Lu et al. (2025).
-Th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…bedi 2025). No strong evidence of echoes
-from BBH has been reported. Wu et al. (2025) also analyzes
-two O4 events with a different method than those used in
-this paper, similarly reporting no detection of echo signals.
-Weak-to-moderate evidence of echoes from <mark>GW231123</mark> has
-been reported by Lai et al. (2026). However, the echoes they
-consider overlap with the merger–ringdown, so their analysis
-does not allow for the post-merger echoes we consider. Thus,
-their results are not comparable to ours.
-3.1.Waveform template based an…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ion criteria.
-We summarize the values of log10BIMRE
-IMR in Table 6. For
-both models, all log10BIMRE
-IMR values are below the thresh-
-old. In the absence of echoes, we expect log10BIMRE
-IMR val-
-0.0 0.2 0.4 0.6 0.8 1.0
-A
-0.0
-0.2
-0.4
-0.6
-0.8
-1.0
-GW230922_040658
-<mark>GW231123_135430</mark>
-prior
-Figure 10.Distribution of the amplitude A and the decay rate γ
-for the ADA modeled echoes analysis. The contours are the 90%
-credible regions, and the posteriors that deviate from the prior are
-highlighted in color. The prior distribution is shown in th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… or below zero, which we indeed see in Figure 9.
-Therefore, we conclude that we have not found any significant
-echoes that can be modeled by the ADA and BHP models in
-the O4a events.
-10 15 20
-0
-200
-400
-600
-800
-1000techo/tM
-200 400 600
-techo/tM
-GW230922_040658 <mark>GW231123_135430</mark>
-Figure 11.Distribution of the time of the first echo relative to
-the merger techo and the time delay between echoes ∆techo, as
-inferred by the ADA modeled echoes analysis for the events that are
-highlighted in Figure 10.
-
-21
-Table 6.Values of log10BIMRE
-IMR f…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…·
-GW231001 140220−0.1−0.2
-GW231020 142947−1.5−1.2
-GW231028 153006−0.2···
-GW231102 071736−0.2−0.5
-GW231104 133418−0.2✓ –
-GW231108 125142−0.4−0.5
-GW231110 040320−0.6 0.0
-GW231113 200417−0.9✓ –
-GW231114 043211−0.2✓ –
-GW231118 005626−2.4···
-GW231118 090602−0.7···
-<mark>GW231123 135430</mark>−2.5−5.9
-GW231206 233134−0.4−0.1
-GW231206 233901−0.4−0.7
-GW231213 111417−0.1 0.1
-GW231223 032836−0.2−0.2
-GW231224 024321−0.7✓ –
-GW231226 101520−1.3−1.9
-NOTE—Ellipses indicate events that do not satisfy the event selection
-criteria for a given model and ✓–’s in…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… of
-techo and ∆techo for the above two events in Figure 11. For
-GW230922 040658, we visually inspected the data quality
-around the event and found that the echo inference results may
-be associated with some excess power after the merger in both
-detectors. For <mark>GW231123</mark>, the techo posterior distributions
-are constrained to∼17t M , which means that the analysis
-is latching onto features in the early post-merger data. For
-additional discussion of possible interpretations and effects
-in GW231123, see Abac et al. (2025g,h). For …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…he merger in both
-detectors. For GW231123, the techo posterior distributions
-are constrained to∼17t M , which means that the analysis
-is latching onto features in the early post-merger data. For
-additional discussion of possible interpretations and effects
-in <mark>GW231123</mark>, see Abac et al. (2025g,h). For both events,
-the ∆techo posterior distributions are uninformative. To sum-
-marize, for these two events, the post-ringdown data are fit
-well with only one echo, which is inconsistent with the model
-assuming multiple echoes used…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…respect to the waveform
-model of the CBC posterior samples used for the off-source
-injections; for practical reasons related to the availability of
-CBC parameter-estimation results at the time of our analy-
-sis, we adopted IMRPHENOMXPHM for the events through
-<mark>GW231123</mark> and NRSUR7DQ4 for the remaining five events.
-Table 7.Results from the minimally modeledCWB echo analysis
-Eventp-value Post-merger
-SNR
-GW230601 2241340.516 +0.010
-−0.010 &lt;0.1
-GW230606 0043050.063 +0.006
-−0.005 0.3
-GW230609 0649580.431 +0.012
-−0.012 &lt;0.1
-GW2306…</div>
+    <details class="lines"><summary>Show the sentences (14, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …✓···✓··· GW231118 090602 10.9+0.4 −0.4 24.3+14.1 −1.3 0.70+0.08 −0.04 0.56+0.38 −0.41 ··· ··· ··· ✓ ··· ✓ ··· GW231123 13543020.7 +0.2 −0.3 304+40 −42 0.84+0.07 −0.19 0.74+0.22 −0.38 ++··· ···✓ ✓ ✓ ✓ GW231206 233134 11.0+0.3 −0.…</li><li><span class="sec">methods</span> For the event GW231123 135430 (henceforth shortened to GW231123), where we present results in Abac et al.</li><li><span class="sec">methods</span> This is due to the complex signal morphology of GW231123, as discussed in Abac et al.</li><li><span class="sec">methods</span> …nts with the highest total SNRs and then selected the two with the largest redshifted final masses, excluding GW231123 due to waveform uncertainties (Abac et al. 2025g).</li><li><span class="sec">methods</span> Weak-to-moderate evidence of echoes from GW231123 has been reported by Lai et al.</li><li><span class="sec">methods</span> …ce of echoes, we expect log10BIMRE IMR val- 0.0 0.2 0.4 0.6 0.8 1.0 A 0.0 0.2 0.4 0.6 0.8 1.0 GW230922_040658 GW231123_135430 prior Figure 10.Distribution of the amplitude A and the decay rate γ for the ADA modeled echoes analysis.</li><li><span class="sec">methods</span> …nd BHP models in the O4a events. 10 15 20 0 200 400 600 800 1000techo/tM 200 400 600 techo/tM GW230922_040658 GW231123_135430 Figure 11.Distribution of the time of the first echo relative to the merger techo and the time delay between…</li><li><span class="sec">methods</span> …10 040320−0.6 0.0 GW231113 200417−0.9✓ – GW231114 043211−0.2✓ – GW231118 005626−2.4··· GW231118 090602−0.7··· GW231123 135430−2.5−5.9 GW231206 233134−0.4−0.1 GW231206 233901−0.4−0.7 GW231213 111417−0.1 0.1 GW231223 032836−0.2−0.2 GW231…</li></ul>
     </details>
     
   </div>
@@ -1133,310 +651,15 @@ GW2306…</div>
 <section class="card" data-i="11" data-event="GW231226_101520">
   <div class="ctx">
     <div class="evname mono">GW231226_101520</div>
-    <h3>19 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…d two independent searches
-for general excess coherent power after the merger. We find overall consistency of the remnants withGR, and
-the tightest single-event constraint on the damping time of the dominant (2,2,0) QNM of all the GWTC-4.0
-events is found for <mark>GW231226 101520</mark> by the frequency domain ringdown analysis. When combining events by
-multiplying likelihoods (hierarchically), that analysis finds that the GR prediction lies at the boundary of the
-98.6+1.4
-−9.4% (99.3+0.7
-−4.5%) credible region, an increase from 93.8+6.1
-−20…</div>
+    <p class="where">Named 19 times:
+      methods ×18, title/headings.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231226</span> or <span class="mono hit">GW231226_101520</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…+0.2
-−0.4 99+15
-−12 0.71+0.09
-−0.09 0.79+0.19
-−0.30 ✓ ··· ··· ✓ ✓ ✓ ✓
-GW231223 0328368.8 +0.3
-−0.5 124+18
-−20 0.63+0.13
-−0.17 0.71+0.26
-−0.41 ✓··· ···✓ ✓ ✓ ✓
-GW231224 024321 12.9+0.2
-−0.3 18.74+1.12
-−0.24 0.68+0.04
-−0.03 0.79+0.19
-−0.26 ··· ··· ··· ✓ ✓– ✓ ···
-<mark>GW231226</mark> 10152033.7 +0.1
-−0.1 87.6+3.4
-−3.2 0.67+0.04
-−0.04 0.88+0.11
-−0.19 ✓ ✓ ✓ ✓ ✓ ✓ ✓
-NOTE—Event selection table for the analyses in this paper, from O4a (Abac et al. 2025e) and the previous observing runs O1 (Abbott et al.
-2016), O2 (Abbott et al. 2019a), O3a (Ab…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…29
-−0.49 0.67+0.13
-−0.19 −1.00 0.04
-GW231213 1114174.93 99 +15
-−12 87+34
-−23 105+11
-−12 0.71+0.09
-−0.09 0.55+0.33
-−0.48 0.77+0.13
-−0.24 −1.23 0.01
-GW231223 0328364.12 124 +18
-−20 118+79
-−72 129+18
-−19 0.63+0.13
-−0.17 0.47+0.44
-−0.42 0.73+0.16
-−0.26 −0.91 0.10
-<mark>GW231226</mark> 10152075.67 87.6 +3.4
-−3.2 97+17
-−20 87.0+4.9
-−5.6 0.67+0.04
-−0.04 0.72+0.16
-−0.39 0.67+0.09
-−0.12 −1.15 0.02
-NOTE—The median and symmetric 90% credible intervals of the redshifted final mass and final spin, inferred from the full IMR analysis (Abac
-et al. 20…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">methods</span>…onanno et al. 2007). To reduce computational cost,
-we impose that the Kerr amplitudes obey the reflection sym-
-metry stated in Section 2. Since the difference between the
-±m modes is expected to be an order of magnitude smaller
-
-8
-0 100 200 300
-(1 + z)Mf [M⊙]
-<mark>GW231226 101520</mark>
-GW231223 032836
-GW231213 111417
-GW231206 233901
-GW231206 233134
-GW231108 125142
-GW231102 071736
-GW231028 153006
-GW231001 140220
-GW230928 215827
-GW230927 153832
-GW230927 043729
-GW230924 124453
-GW230922 040658
-GW230922 020344
-GW230914 111401
-GW230824 033047
-GW2…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…tudes of the different modes
-are expressed as a function of the progenitor parameters, here
-
-9
-(a) 
- (b) 
- (c) 
-GW230914_111401
-220 + mn = 220 + 200
-GW230922_040658
-220 + mn = 220 + 221
-GW231001_140220
-220 + mn = 220 + 221
-GW231028_153006
-220 + mn = 220 + 200
-<mark>GW231226_101520</mark>
-220 + mn = 220 + 210
-HM
-H0 = 10 threshold
-10
- 5
- 0 5 10 15 20
-tstart tpeak [GMdet
-f /c3]
-2
-1
-0
-1
-2
-3
-4
-5
-6
-7
-log10 2DS
-1DS
-10
- 5
- 0 5 10 15 20
-tstart tpeak [GMdet
-f /c3]
-2
-1
-0
-1
-2
-3
-4
-5
-6
-7
-log10 220 + mn
-220
-6
- 4
- 2
- 0 2 4 6
-tstart tpeak [GMdet
-f /c3]
-0.50
-0…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…Postmerger in
-Gennari et al. (2024), that analysis used an approximation for
-the peak time that has since been found to lead to nonnegli-
-
-10
-1.0
- 0.5
- 0.0 0.5 1.0
-f220
-0.5
-0.0
-0.5
-1.0
-220
-Hierarchical combination
-Hierarchical combination (log10 22
-Noise &gt; 8)
-<mark>GW231226_101520</mark>
-GW231028_153006
-Figure 3. 90% contours for the posterior probability distribution of
-frequency deviationδ ˆf220 and damping timeδˆτ220 for the analysis
-with a KerrPostmerger template including all HMs and frac-
-tional deviations in the (ℓ,m,n) = (2,2,0) mode …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…1.16)187.7 +29.7
-−49.5 (159.9+15.0
-−14.8)0.86 +0.08
-−0.30 (0.70+0.09
-−0.10)
-GW231206 233901−0.03 +0.12
-−0.09 0.01+0.36
-−0.28 203.5+17.9
-−13.4 (209.8+7.4
-−11.5)4.80 +1.87
-−1.34 (4.87+0.41
-−0.32)81.5 +17.3
-−17.7 (80.7+4.6
-−4.1)0.65 +0.19
-−0.40 (0.67+0.06
-−0.07)
-<mark>GW231226</mark> 1015200.02 +0.14
-−0.07 0.04+0.25
-−0.20 192.3+8.2
-−7.1 (191.5+4.3
-−4.4)5.66 +1.26
-−1.06 (5.29+0.29
-−0.25)92.0 +10.7
-−12.2 (87.8+3.4
-−3.2)0.73 +0.10
-−0.18 (0.67+0.04
-−0.04)
-NOTE—Median values and symmetric 90% credible intervals for the one-dimensional marginal…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…BH, in the coprecessing frame. The functions ˜Aℓm(t)
-and ˜ϕℓm(t) are constrained by the requirement that the am-
-plitude and phase of ˜hℓm(t) are continuously differentiable
-
-12
-0.4
- 0.2
- 0.0 0.2 0.4
-f220
-0.50
-0.25
-0.00
-0.25
-0.50
-0.75
-1.00
-220
-GW200129_065458
-<mark>GW231226_101520</mark>
-hierarchically
-combined
-joint posterior
-f220
-220
-10 1
-100
-| i|
-45
-55
-65
-75
-85
-95
-105
-115
-125
-135
-145
-155
-(1 + z)M/M
-Figure 4.Left panel: The 90% credible regions of the posterior probability distribution of the fractional deviations in the frequency and dampi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…time of the (2,2,0) QNM, (δ ˆf220,δˆτ220), and their corresponding one-dimensional marginalized posterior distributions, for events passing a
-SNR threshold of 8 in both the inspiral and post-inspiral signal. We highlight the posteriors for GW200129 065458 and <mark>GW231226 101520</mark>.
-The joint constraints on (δ ˆf220,δˆτ220) obtained multiplying the posteriors (given a flat prior) from individual events are given by the filled
-grey contours, while the hierarchical method of combination yields the teal contours. The apparent deviation fro…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…vents are combined by multiplying posteriors (hierarchically). For comparison, we mark bounds from GWTC-3.0 results, using the
-PSEOBNRV5PHM model (Pompili et al. 2025), with filled/unfilled upward V-shaped markers. The bounds from GW200129 065458 (square)
-and <mark>GW231226 101520</mark> (diamond) are indicated with separate markers.
-at the matching time and are calibrated to a large set of NR
-simulations of BBHs with aligned spins (Pompili et al. 2023).
-In BH perturbation theory, the mode decomposition used
-to define QNMs assumes a frame whe…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…nd
-damping time of the (2,2,0) QNM, for all events listed in
-Table 3. The contours are colored according to the median
-detector-frame total mass (1 +z)M of the corresponding
-binary. We specifically highlight the posteriors from two
-events, GW200129 065458 and <mark>GW231226 101520</mark> (Abbott
-et al. 2023a; Abac et al. 2025e), which are among the loud-
-est observed so far and provide the strongest single-event
-bounds on the frequency and damping time deviations, re-
-spectively. Combined constraints are shown both by the
-joint posterior, obt…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…r this event are consistent with those reported in GWTC-
-3.0 (Abbott et al. 2025). We have verified that the inclusion of
-this event does not significantly affect the combined results,
-and we keep it in the analysis as in previous works.
-Among the O4a events, <mark>GW231226 101520</mark> is the loudest
-currently analyzed, with a median SNR of33.7, and yields the
-tightest single-event constraints on the (2,2,0) damping in
-GWTC-4.0. The posterior shows a slight tail toward positive
-values of δ ˆf220, correlated with support for unequal mass
-rat…</div>
+    <details class="lines"><summary>Show the sentences (19, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> …ngle-event constraint on the damping time of the dominant (2,2,0) QNM of all the GWTC-4.0 events is found for GW231226 101520 by the frequency domain ringdown analysis.</li><li><span class="sec">methods</span> …✓ ✓ ✓ ✓ GW231224 024321 12.9+0.2 −0.3 18.74+1.12 −0.24 0.68+0.04 −0.03 0.79+0.19 −0.26 ··· ··· ··· ✓ ✓– ✓ ··· GW231226 10152033.7 +0.1 −0.1 87.6+3.4 −3.2 0.67+0.04 −0.04 0.88+0.11 −0.19 ✓ ✓ ✓ ✓ ✓ ✓ ✓ NOTE—Event selection table f…</li><li><span class="sec">methods</span> …31223 0328364.12 124 +18 −20 118+79 −72 129+18 −19 0.63+0.13 −0.17 0.47+0.44 −0.42 0.73+0.16 −0.26 −0.91 0.10 GW231226 10152075.67 87.6 +3.4 −3.2 97+17 −20 87.0+4.9 −5.6 0.67+0.04 −0.04 0.72+0.16 −0.39 0.67+0.09 −0.12 −1.15 0.02…</li><li><span class="sec">methods</span> 8 0 100 200 300 (1 + z)Mf [M⊙] GW231226 101520 GW231223 032836 GW231213 111417 GW231206 233901 GW231206 233134 GW231108 125142 GW231102 071736 GW231028 1530…</li><li><span class="sec">methods</span> …W230922_040658 220 + mn = 220 + 221 GW231001_140220 220 + mn = 220 + 221 GW231028_153006 220 + mn = 220 + 200 GW231226_101520 220 + mn = 220 + 210 HM H0 = 10 threshold 10 5 0 5 10 15 20 tstart tpeak [GMdet f /c3] 2 1 0 1 2 3 4 5 6 7 lo…</li><li><span class="sec">methods</span> …5 0.0 0.5 1.0 f220 0.5 0.0 0.5 1.0 220 Hierarchical combination Hierarchical combination (log10 22 Noise &gt; 8) GW231226_101520 GW231028_153006 Figure 3. 90% contours for the posterior probability distribution of frequency deviationδ ˆf2…</li><li><span class="sec">methods</span> ….4 −11.5)4.80 +1.87 −1.34 (4.87+0.41 −0.32)81.5 +17.3 −17.7 (80.7+4.6 −4.1)0.65 +0.19 −0.40 (0.67+0.06 −0.07) GW231226 1015200.02 +0.14 −0.07 0.04+0.25 −0.20 192.3+8.2 −7.1 (191.5+4.3 −4.4)5.66 +1.26 −1.06 (5.29+0.29 −0.25)92.0…</li><li><span class="sec">methods</span> 12 0.4 0.2 0.0 0.2 0.4 f220 0.50 0.25 0.00 0.25 0.50 0.75 1.00 220 GW200129_065458 GW231226_101520 hierarchically combined joint posterior f220 220 10 1 100 | i| 45 55 65 75 85 95 105 115 125 135 145 155 (1 +…</li></ul>
     </details>
     
   </div>

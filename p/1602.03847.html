@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,214 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>GW150914: Implications for the Stochastic Gravitational-Wave Background from Binary Black Holes</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1602.03847" target="_blank" rel="noopener" class="mono">arXiv:1602.03847</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The LIGO detection of the gravitational wave transient GW150914, from the inspiral and merger of two black holes with masses ≳30 M&lt;SUB&gt;☉&lt;/SUB&gt;, suggests a population of binary black holes with relatively high mass. This observation implies that the stochastic gravitational-wave background from binary black holes, created from the incoherent superposition of all the merging binaries in the Universe, could be higher than previously expected. Using the properties of GW150914, we estimate the energy density of such a background from binary black holes. In the most sensitive part of the Advanced LIGO and Advanced Virgo band for stochastic backgrounds (near 25 Hz), we predict Ω&lt;SUB&gt;GW&lt;/SUB&gt;(f =25 Hz )=1. 1&lt;SUB&gt;-0.9&lt;/SUB&gt;&lt;SUP&gt;+2.7&lt;/SUP&gt;×10&lt;SUP&gt;-9&lt;/SUP&gt; with 90% confidence. This prediction is robustly demonstrated for a variety of formation scenarios with different parameters. The differences between models are small compared to the statistical uncertainty arising from the currently poorly constrained local coalescence rate. We conclude that this background is potentially measurable by the Advanced LIGO and Advanced Virgo detectors operating at their projected final sensitivity.</p></details>
+<div class="small mut mono">arXiv:1602.03847</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The LIGO detection of the gravitational wave transient GW150914, from the inspiral and merger of two black holes with masses ≳30 M&lt;SUB&gt;☉&lt;/SUB&gt;, suggests a population of binary black holes with relatively high mass. This observation implies that the stochastic gravitational-wave background from binary black holes, created from the incoherent superposition of all the merging binaries in the Universe, could be higher than previously expected. Using the properties of GW150914, we estimate the energy density of such a background from binary black holes. In the most sensitive part of the Advanced LIGO and Advanced Virgo band for stochastic backgrounds (near 25 Hz), we predict Ω&lt;SUB&gt;GW&lt;/SUB&gt;(f =25 Hz )=1. 1&lt;SUB&gt;-0.9&lt;/SUB&gt;&lt;SUP&gt;+2.7&lt;/SUP&gt;×10&lt;SUP&gt;-9&lt;/SUP&gt; with 90% confidence. This prediction is robustly demonstrated for a variety of formation scenarios with different parameters. The differences between models are small compared to the statistical uncertainty arising from the currently poorly constrained local coalescence rate. We conclude that this background is potentially measurable by the Advanced LIGO and Advanced Virgo detectors operating at their projected final sensitivity.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1602.03847v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>21 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span><mark>GW150914</mark>: Implications for the stochastic gravitational-wave background from binary black holes
-
- 
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- …</div>
+    <p class="where">Named 21 times:
+      introduction ×11, results ×5, title/headings ×2, abstract ×2, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/1602.03847v2#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…Report Issue
- 
- 
- 
- 
- 
- 
- Back to Abstract
- 
- 
- 
- 
- 
- 
- Download PDF
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-Abstract
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1602.03847v2 [gr-qc] 20 Mar 2016
-
-<mark>GW150914</mark>: Implications for the stochastic gravitational-wave background from binary black holes
-
-B. P. Abbott,1 R. Abbott,1 T. D. Abbott,2 M. R. Abernathy,1 F. Acernese,3,4
-K. Ackley,5 C. Adams,6 T. Adams,7
-P. Addesso,3 R. X. Adhikari,1 V. B. Adya,8 C. Affeldt,8 M. Ag…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…n: University of Washington, Seattle, WA 98195, USA 
-
-Affiliation: Kenyon College, Gambier, OH 43022, USA 
-
-Affiliation: Abilene Christian University, Abilene, TX 79699, USA 
-
-August 24, 2026
-
-Abstract
-
- 
-The LIGO detection of the gravitational wave transient <mark>GW150914</mark>, from the inspiral and merger of two black holes with masses ≳ 30\gtrsim\,30 M⊙, suggests a population of
-binary black holes with relatively high mass.
-This observation implies that the stochastic gravitational-wave background from binary black holes, created…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">abstract</span>… mass.
-This observation implies that the stochastic gravitational-wave background from binary black holes, created from the incoherent superposition of all the merging binaries in the Universe, could be higher than previously expected.
-Using the properties of <mark>GW150914</mark>, we estimate the energy density of such a background from binary black holes.
-In the most sensitive part of the Advanced LIGO/Virgo band for stochastic backgrounds
-(near 25​Hz25\,\mathrm{Hz}),
-we predict ΩGW​(f=25​Hz)=1.1−0.9+2.7×10−9\Omega_{\text{GW}}(f=25\,…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…vanced LIGO/Virgo detectors operating at their projected final sensitivity.
-
- 
-
-pacs
-
-04.80.Nn, 04.25.dg, 95.85.Sz, 97.80.-d 
-
-Introduction —
-On September 14, 2015 the Advanced LIGO [1, 2] Hanford and Livingston detectors observed the gravitational-wave event <mark>GW150914</mark> with a significance in excess of 5.15.1σ\sigma [3].
-The observed signal is consistent with a binary black hole waveform with component masses of m1=m_{1}=36−4+536_{-4}^{+5}  M⊙ and m2=m_{2}=29−4+429_{-4}^{+4}  M⊙, as measured in the source frame, and coalesci…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…_{2}=29−4+429_{-4}^{+4}  M⊙, as measured in the source frame, and coalescing at a luminosity distance of 410−180+160410_{-180}^{+160}  Mpc, corresponding to a redshift of z=0.09−0.04+0.03z={\color[rgb]{0,0,0}0.09_{-0.04}^{+0.03}} [3, 4].
-
-For every event like <mark>GW150914</mark> observed by advanced gravitational-wave detectors, there are many more too distant to be resolved. The gravitational waves from these unresolvable events combine to create a stochastic background, which can be detected by correlating the signals from two or m…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…le events combine to create a stochastic background, which can be detected by correlating the signals from two or more gravitational-wave detectors [5]. While it has long been known that the advanced detectors could observe such a background, the detection of <mark>GW150914</mark> suggests that the binary black hole background level is likely to be at the higher end of previous predictions (see, e.g., [6, 7, 8, 9, 10, 11, 12, 13]).
-
-Heavy black holes like GW150914 are predicted to form in low-metallicity stellar environments, lower tha…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…the advanced detectors could observe such a background, the detection of GW150914 suggests that the binary black hole background level is likely to be at the higher end of previous predictions (see, e.g., [6, 7, 8, 9, 10, 11, 12, 13]).
-
-Heavy black holes like <mark>GW150914</mark> are predicted to form in low-metallicity stellar environments, lower than about half of solar metallicity, and in the presence of relatively weak massive-star winds [14]. These masses are also larger than the masses inferred from reliable dynamical measuremen…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… massive-star winds [14]. These masses are also larger than the masses inferred from reliable dynamical measurements in black-hole X-ray binaries. More massive binaries emit more energy in gravitational waves. Hence, the measurement of the component masses of <mark>GW150914</mark> favors a higher amplitude of the corresponding gravitational-wave background.
-
-In addition, the coalescence rate of binary black holes like GW150914 in the local Universe is estimated to be 16−13+38​Gpc−3​yr−1{\color[rgb]{0,0,0}{16}^{+{38}}_{-{13}}\,\mathrm{G…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…re massive binaries emit more energy in gravitational waves. Hence, the measurement of the component masses of GW150914 favors a higher amplitude of the corresponding gravitational-wave background.
-
-In addition, the coalescence rate of binary black holes like <mark>GW150914</mark> in the local Universe is estimated to be 16−13+38​Gpc−3​yr−1{\color[rgb]{0,0,0}{16}^{+{38}}_{-{13}}\,\mathrm{Gpc}^{-3}\,\mathrm{yr}^{-1}} [15] median with 90% credible interva.
-This rate excludes the lower end of pre-detection rate estimates [14], while being…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…excludes the lower end of pre-detection rate estimates [14], while being consistent with the higher end.
-A higher coalescence rate also implies a brighter stochastic background.
-
-There are currently two possible formation channels that are consistent with the <mark>GW150914</mark> event [14]. Binary black holes may be formed from isolated binaries of massive stars in galactic fields, or through dynamical interactions in dense stellar environments such as globular clusters [14]. The evolution of the merger rate with redshift depends in …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…e evolution of the merger rate with redshift depends in part on the assumed formation scenario.
-
-In this paper we discuss the detectability of the
-stochastic background produced by binary black holes throughout the Universe based on
-the measured properties of <mark>GW150914</mark>.
-
-Binary black hole background —
-The energy density spectrum of gravitational waves is described by the following dimensionless quantity [5]:
-
-ΩGW​(f)=fρc​d​ρGWd​f,\displaystyle\Omega_{\text{GW}}(f)=\frac{f}{\rho_{c}}\frac{d\rho_{\text{GW}}}{df}\,,
-
-(1)
-
-wher…</div>
+    <details class="lines"><summary>Show the sentences (19, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> GW150914: Implications for the stochastic gravitational-wave background from binary black holes</li><li><span class="sec">abstract</span> The LIGO detection of the gravitational wave transient GW150914, from the inspiral and merger of two black holes with masses ≳ 30\gtrsim\,30 M⊙, suggests a population of bin…</li><li><span class="sec">abstract</span> Using the properties of GW150914, we estimate the energy density of such a background from binary black holes.</li><li><span class="sec">introduction</span> …mber 14, 2015 the Advanced LIGO [1, 2] Hanford and Livingston detectors observed the gravitational-wave event GW150914 with a significance in excess of 5.15.1σ\sigma [3].</li><li><span class="sec">introduction</span> For every event like GW150914 observed by advanced gravitational-wave detectors, there are many more too distant to be resolved.</li><li><span class="sec">introduction</span> While it has long been known that the advanced detectors could observe such a background, the detection of GW150914 suggests that the binary black hole background level is likely to be at the higher end of previous prediction…</li><li><span class="sec">introduction</span> Heavy black holes like GW150914 are predicted to form in low-metallicity stellar environments, lower than about half of solar metallicity, an…</li><li><span class="sec">introduction</span> Hence, the measurement of the component masses of GW150914 favors a higher amplitude of the corresponding gravitational-wave background.</li></ul>
     </details>
     
   </div>

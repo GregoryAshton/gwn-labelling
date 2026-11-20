@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,252 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Noise residuals for GW150914 using maximum likelihood and numerical relativity templates</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1903.02401" target="_blank" rel="noopener" class="mono">arXiv:1903.02401</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We reexamine the results presented in [1] in which the properties of the noise residuals in the 40 ms chirp domain of GW150914 were investigated. This paper confirmed the presence of strong (i.e., about 0.80) correlations between residual noise in the Hanford and Livingston detectors in the chirp domain as previously seen by [2] when using a numerical relativity template given in [3]. It was also shown in [4] that a so-called maximum likelihood template can reduce these statistically significant cross-correlations. Here, we demonstrate that the reduction of correlation and statistical significance is due to (i) the use of a peculiar template with extreme spin (0.977), which is qualitatively different from the properties of GW150914 originally published by LIGO, (ii) a suspicious MCMC chain, (iii) uncertainties in the matching of the maximum likelihood (ML) template to the data in the Fourier domain, and (iv) a biased estimation of the significance that gives counterintuitive results. We show that rematching the maximum likelihood template to the data in the 0.2 s domain containing the GW150914 signal restores these correlations at the level of 60% of those found previously [5]. With necessary corrections, the probability given in [6] for the residual correlation will decrease by more than one order of magnitude. Since the ML template is itself problematic, results associated with it are illustrative rather than final.</p></details>
+<div class="small mut mono">arXiv:1903.02401</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We reexamine the results presented in [1] in which the properties of the noise residuals in the 40 ms chirp domain of GW150914 were investigated. This paper confirmed the presence of strong (i.e., about 0.80) correlations between residual noise in the Hanford and Livingston detectors in the chirp domain as previously seen by [2] when using a numerical relativity template given in [3]. It was also shown in [4] that a so-called maximum likelihood template can reduce these statistically significant cross-correlations. Here, we demonstrate that the reduction of correlation and statistical significance is due to (i) the use of a peculiar template with extreme spin (0.977), which is qualitatively different from the properties of GW150914 originally published by LIGO, (ii) a suspicious MCMC chain, (iii) uncertainties in the matching of the maximum likelihood (ML) template to the data in the Fourier domain, and (iv) a biased estimation of the significance that gives counterintuitive results. We show that rematching the maximum likelihood template to the data in the 0.2 s domain containing the GW150914 signal restores these correlations at the level of 60% of those found previously [5]. With necessary corrections, the probability given in [6] for the residual correlation will decrease by more than one order of magnitude. Since the ML template is itself problematic, results associated with it are illustrative rather than final.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1903.02401v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>30 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>Noise residuals for <mark>GW150914</mark> using maximum likelihood and numerical relativity templates
-
- 
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- 
- 
-
- 
- arXiv is now an inde…</div>
+    <p class="where">Named 30 times:
+      appendix ×14, conclusion ×6, abstract ×3, reference list ×3, title/headings ×2, introduction ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.02401v3#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…arson cross-correlator for LIGO noise
-
-B A toy model of residuals
-
-B.1 Residuals correlations for the high amplitude case.
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1903.02401v3 [astro-ph.IM] 13 May 2019
-
-Noise residuals for <mark>GW150914</mark> using maximum likelihood and numerical
-relativity templates 
-
-Andrew D. Jackson
-
-Email: jackson@nbi.dk
-
-Affiliation: The Niels Bohr International Academy, Blegdamsvej 17, DK-2100
-Copenhagen, Denmark
-
-  
-Hao Liu
-
-Email: liuhao@nbi.dk
-
-Affiliation: The Niels Bo…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…y
-
-Email: naselsky@nbi.dk
-
-Affiliation: The Niels Bohr Institute &amp; Discovery Center, Blegdamsvej 17,
-DK-2100 Copenhagen, Denmark
-
-Abstract
-
- 
-We reexamine the results presented in [1] in which the
-properties of the noise residuals in the 40 ms chirp domain of <mark>GW150914</mark> were
-investigated. This paper confirmed the presence of strong (i.e., about 0.80)
-correlations between residual noise in the Hanford and Livingston detectors in
-the chirp domain as previously seen by [2] when using a
-numerical relativity template given in [3]…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…e statistically significant cross-correlations. Here,
-we demonstrate that the reduction of correlation and statistical significance
-is due to (i) the use of a peculiar template with extreme spin (0.977), which
-is qualitatively different from the properties of <mark>GW150914</mark> originally
-published by LIGO, (ii) a suspicious MCMC chain, (iii) uncertainties in the
-matching of the maximum likelihood (ML) template to the data in the Fourier
-domain, and (iv) a biased estimation of the significance that gives
-counterintuitive results. We…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…he maximum likelihood (ML) template to the data in the Fourier
-domain, and (iv) a biased estimation of the significance that gives
-counterintuitive results. We show that rematching the maximum likelihood
-template to the data in the 0.2 s domain containing the <mark>GW150914</mark> signal
-restores these correlations at the level of 60%60\% of those found
-previously [1]. With necessary corrections, the
-probability given in [1] for the residual correlation
-will decrease by more than one order of magnitude. Since the ML template is
-itself …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…strative rather than
-final.
-
- 
-
-1 Introduction and Motivation.
-
-Knowledge of the properties of noise in the LIGO Hanford and Livingston data
-sets is crucial for verification of the methods used to determined the
-physical nature and quantitative details of the <mark>GW150914</mark> event and all
-subsequent events [3]. In practice, the maximum
-likelihood method used in [1] to analyze the GW events
-effectively assumes that the noise is both stationary and Gaussian. The
-validity of these crucial assumptions can be tested by considering the…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…rucial assumptions can be tested by considering the
-cross-correlations of the Hanford and Livingston noise residuals, which should
-be at the level of chance correlations. In [2] we
-explored the assumption of uncorrelated Hanford/Livingston noise residuals for
-<mark>GW150914</mark> by considering a windowed Pearson cross-correlator (see
-Appendix A for more details). Significant abnormal
-correlations were found.
-
-Using a numerical relativity (NR) template [3], we
-identified [2] three 40 ms domains of significant
-noise correlation in a 0.…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…e details). Significant abnormal
-correlations were found.
-
-Using a numerical relativity (NR) template [3], we
-identified [2] three 40 ms domains of significant
-noise correlation in a 0.2 s record11
- 1
- 
- 
- 
- The strain data for a 0.2 s
-time interval including <mark>GW150914</mark> and the NR template are available at the LIGO
-Open Science Center (LOSC). In the present paper, time positions are measured
-relative to the 32 seconds centered at GPS time 1126259462, a convention
-established in some of the files of the initial LOSC release. …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…he LIGO
-Open Science Center (LOSC). In the present paper, time positions are measured
-relative to the 32 seconds centered at GPS time 1126259462, a convention
-established in some of the files of the initial LOSC release. For example, the
-peak amplitude of the <mark>GW150914</mark> event occurs at approximately 16.42 seconds.:
-the chirp domain (16.39-16.43s) with a Hanford/Livingston cross-correlation of
-0.800.80, the precursor domain (16.27-16.31s) with a cross-correlation of
-0.600.60, and the echo domain (16.47-16.51s) during ring-dow…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…y [1] is essentially identical to
-ours [2, 4]. Using a bandpass
-window of 35≤f≤35035\leq f\leq 350 Hz, none of the 37240 templates considered
-in [5] (from which the ML template is extracted) can
-reduce the precursor effect observed during the first 0.10.1s of <mark>GW150914</mark>.
-(This leads to a cross-correlation of 0.600.60 between H/L residuals.) Indeed,
-in this time window the NR template, like all other templates filtered from
-35≤f≤35035\leq f\leq 350 Hz, is almost negligible in comparison with noise.
-
-Our goal here is to reeval…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…window the NR template, like all other templates filtered from
-35≤f≤35035\leq f\leq 350 Hz, is almost negligible in comparison with noise.
-
-Our goal here is to reevaluate the methods and results
-of [1] with regard to their claims about the noise
-residuals for <mark>GW150914</mark>. We will first show that the matching of the ML
-template to the data depends on the estimator assumed.
-In [1] the quantity to be optimized is a complex
-overlap function (of Hanford and Livingston strain data) with the same overall
-phase for each template. (Se…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…}^{p})
-2.4915268
-0.7928019
-
-14
-tc (from 1126259462)
-0.4175646
-0.4151170
-
-15a
-coa_phase
-0.6883212
-N/A
-
-15b
-phase_shift ϕ0\phi_{0}
--0.9155276
-1.7576289
-
-15c
-summed phase
--0.2272064
-1.7576289
-
-SNR
-24.36169
-24.33653
-
-Table 1: The parameters of the ML template for <mark>GW150914</mark> used
-by [1]. The large number of digits is especially
-important for “tc” in order to ensure that the uncertainty in
-positioning is much less than the possible ±10\pm 10 ms delay in the
-arrival time. The ML parameters (in the column “Old values”) were taken
-fr…</div>
+    <details class="lines"><summary>Show the sentences (31, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Noise residuals for GW150914 using maximum likelihood and numerical relativity templates</li><li><span class="sec">abstract</span> …mine the results presented in [1] in which the properties of the noise residuals in the 40 ms chirp domain of GW150914 were investigated.</li><li><span class="sec">abstract</span> …use of a peculiar template with extreme spin (0.977), which is qualitatively different from the properties of GW150914 originally published by LIGO, (ii) a suspicious MCMC chain, (iii) uncertainties in the matching of the maximu…</li><li><span class="sec">abstract</span> We show that rematching the maximum likelihood template to the data in the 0.2 s domain containing the GW150914 signal restores these correlations at the level of 60%60\% of those found previously [1].</li><li><span class="sec">introduction</span> …rucial for verification of the methods used to determined the physical nature and quantitative details of the GW150914 event and all subsequent events [3].</li><li><span class="sec">introduction</span> In [2] we explored the assumption of uncorrelated Hanford/Livingston noise residuals for GW150914 by considering a windowed Pearson cross-correlator (see Appendix A for more details).</li><li><span class="sec">appendix</span> The strain data for a 0.2 s time interval including GW150914 and the NR template are available at the LIGO Open Science Center (LOSC).</li><li><span class="sec">appendix</span> For example, the peak amplitude of the GW150914 event occurs at approximately 16.42 seconds.: the chirp domain (16.39-16.43s) with a Hanford/Livingston cross…</li></ul>
     </details>
     
   </div>

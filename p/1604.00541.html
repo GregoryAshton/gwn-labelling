@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,67 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>What gravity waves are telling about quantum spacetime</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1604.00541" target="_blank" rel="noopener" class="mono">arXiv:1604.00541</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We discuss various modified dispersion relations motivated by quantum gravity which might affect the propagation of the recently observed gravitational-wave signal of the event GW150914. We find that the bounds set by the data on the characteristic quantum-gravity mass scale M are too weak to constrain these scenarios and, in general, much weaker than the expected M &amp;gt;10&lt;SUP&gt;4&lt;/SUP&gt; eV for a correction to the dispersion relation linear in 1 /M . We illustrate this issue by giving lower bounds on M , plus an upper bound coming from constraints on the size of a quantum ergosphere. We also show that a phenomenological dispersion relation ω&lt;SUP&gt;2&lt;/SUP&gt;=k&lt;SUP&gt;2&lt;/SUP&gt;(1 +α k&lt;SUP&gt;n&lt;/SUP&gt;/M&lt;SUP&gt;n&lt;/SUP&gt;) is compatible with observations and, at the same time, has a phenomenologically viable mass M &amp;gt;10 TeV only in the quite restrictive range 0 &amp;lt;n &amp;lt;0.68 . Remarkably, this is the domain of multiscale spacetimes but not of known quantum-gravity models.</p></details>
+<div class="small mut mono">arXiv:1604.00541</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We discuss various modified dispersion relations motivated by quantum gravity which might affect the propagation of the recently observed gravitational-wave signal of the event GW150914. We find that the bounds set by the data on the characteristic quantum-gravity mass scale M are too weak to constrain these scenarios and, in general, much weaker than the expected M &amp;gt;10&lt;SUP&gt;4&lt;/SUP&gt; eV for a correction to the dispersion relation linear in 1 /M . We illustrate this issue by giving lower bounds on M , plus an upper bound coming from constraints on the size of a quantum ergosphere. We also show that a phenomenological dispersion relation ω&lt;SUP&gt;2&lt;/SUP&gt;=k&lt;SUP&gt;2&lt;/SUP&gt;(1 +α k&lt;SUP&gt;n&lt;/SUP&gt;/M&lt;SUP&gt;n&lt;/SUP&gt;) is compatible with observations and, at the same time, has a phenomenologically viable mass M &amp;gt;10 TeV only in the quite restrictive range 0 &amp;lt;n &amp;lt;0.68 . Remarkably, this is the domain of multiscale spacetimes but not of known quantum-gravity models.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1604.00541v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>6 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>… de la Materia, CSIC, Serrano 121, 28006 Madrid, Spain
-
-April 1, 2016
-
-Abstract
-
- 
-We discuss various modified dispersion relations motivated by quantum gravity which might affect the propagation of the recently observed gravitational-wave signal of the event <mark>GW150914</mark>. We find that the bounds set by the data on the characteristic quantum-gravity mass scale MM are too weak to constrain these scenarios and, in general, much weaker than the expected M&gt;104​eVM&gt;10^{4}\,\text{eV} for a correction to the dispersion relation linea…</div>
+    <p class="where">Named 6 times:
+      abstract ×6.</p>
+    <p class="where"><a href="https://arxiv.org/html/1604.00541v3#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>…cal origin by LIGO, we have entered a veritable gold mine of data that we can use to constrain theories beyond both the Standard Model and general relativity. In particular, the recent constraint on Lorentz violations from the gravitational waves of the event <mark>GW150914</mark> [1, 2] were used in Ref. [3] to bound generic quantum-gravity effects. Given a dispersion relation ω2=ω2​(k)\omega^{2}=\omega^{2}(k) in ℏ=1=c\hbar=1=c units, the velocity of propagation of a wave front is given by the group velocity
-
-v:=d​ωd​k.v:=\frac{d\omeg…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…step we assumed a small mass. The difference Δ​v:=v−1≃v−k/ω\Delta v:=v-1\simeq v-k/\omega between the propagation speed of the signal and the speed of light is approximately equal to
-
-Δ​v≃−m22​ω2.\Delta v\simeq-\frac{m^{2}}{2\omega^{2}}\,.
-
-(3)
-
-The signal of <mark>GW150914</mark> is peaked at frequencies (energies) ω≈100​Hz≈6.6×10−14​eV\omega\approx 100\,{\rm Hz}\approx 6.6\times 10^{-14}\,\text{eV}. In Ref. [1, 2], an upper bound for the mass of the graviton was found from Eq. (3), m&lt;1.2×10−22​eVm&lt;1.2\times 10^{-22}\,{\rm eV}, leadin…</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…{\beta}=O(1) values.
-
-To connect with observations, we impose the correction Δ​MBH=β~​M2/MBH\Delta M_{\text{BH}}=\tilde{\beta}M^{2}/M_{\text{BH}} to be no greater than the experimental error δ​MBH\delta M_{\text{BH}} on the mass of the final black hole in the <mark>GW150914</mark> merger:
-
-Δ​MBH&lt;δ​MBH⇒M&lt;MBH​δ​MBHβ~.\Delta M_{\text{BH}}&lt;\delta M_{\text{BH}}\quad\Rightarrow\quad M&lt;\sqrt{\frac{M_{\text{BH}}\,\delta M_{\text{BH}}}{\tilde{\beta}}}\,.
-
-(19)
-
-For the LIGO merger, the mass was estimated to be MBH=62±4​M⊙M_{\text{BH}}=62\pm 4\,…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>… states representing a Schwarzschild metric. In this case, it is easy to see that Δ​vlqg≃γ/2\Delta v_{\textsc{lqg}}\simeq{\gamma}/{2}, which immediately yields the bound γ&lt;3×10−18\gamma&lt;3\times 10^{-18}.
-
-To conclude, we have seen in several examples that the <mark>GW150914</mark> gravitational-wave event cannot constrain efficiently the typical dispersion relations arising in quantum gravity. The IR correction ω2=k2​[1+O⁡(kn/Mn)]\omega^{2}=k^{2}[1+O(k^{n}/M^{n})] to the standard dispersion relation of gravitons is subject to the restr…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…n the fractional exponent α\alpha appearing in the measure describing an anomalous spacetime geometry with multifractal properties. This exponent lies in the range 0&lt;α&lt;10&lt;\alpha&lt;1, the central value α=1/2\alpha=1/2 being somewhat typical. For that theory, the <mark>GW150914</mark> event does provide valuable information and useful bounds on the scale MM at which fractal effects become important. The results of [23] contribute to illustrate the ultimate reason of the weakness of the constraints found in the present paper, which is neith…</div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …um gravity which might affect the propagation of the recently observed gravitational-wave signal of the event GW150914.</li><li><span class="sec">abstract</span> In particular, the recent constraint on Lorentz violations from the gravitational waves of the event GW150914 [1, 2] were used in Ref. [3] to bound generic quantum-gravity effects.</li><li><span class="sec">abstract</span> The signal of GW150914 is peaked at frequencies (energies) ω≈100​Hz≈6.6×10−14​eV\omega\approx 100\,{\rm Hz}\approx 6.6\times 10^{-14…</li><li><span class="sec">abstract</span> …e no greater than the experimental error δ​MBH\delta M_{\text{BH}} on the mass of the final black hole in the GW150914 merger:</li><li><span class="sec">abstract</span> To conclude, we have seen in several examples that the GW150914 gravitational-wave event cannot constrain efficiently the typical dispersion relations arising in quantum gra…</li><li><span class="sec">abstract</span> For that theory, the GW150914 event does provide valuable information and useful bounds on the scale MM at which fractal effects become imp…</li></ul>
     </details>
     
   </div>

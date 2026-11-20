@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,44 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>High-Spin BBH Subpopulation from AGN Accretion</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2605.09351" target="_blank" rel="noopener" class="mono">arXiv:2605.09351</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The formation environments of merging binary black holes remain uncertain. While hierarchical assembly in dense stellar clusters has been widely explored as an explanation for black holes exceeding the stellar-mass limit, growth through gas accretion in active galactic nucleus (AGN) disks is an alternative that has received less observational scrutiny. Here we search for an accretion-origin subpopulation using only spin magnitudes, fitting a three-component mixture model to 166 binary black hole mergers from LIGO--Virgo--KAGRA with component shapes fixed from theoretical predictions and only the mixing fractions inferred from the data. We find strong evidence ($ln B = 5.7$) that $\sim 10\%$ (90% credible interval $[1\%, 14\%]$) of detected mergers belong to a subpopulation with primary spins clustered near $a_1 \approx 0.9$, consistent with the theoretical prediction for accretion spin-up. The hierarchical-merger prediction of $a_1 \approx 0.7$ is decisively disfavored as the location of the high-spin subpopulation ($ln B = 5.7$). Post hoc validation reveals that the accretion candidates have systematically higher masses (median $m_1 = 58\,M_\odot$) and aligned spins (median $χ_{\rm eff} = 0.33$, vs. $0.04$ for standard-dominated events). The accretion subpopulation is not limited to systems above the pair-instability mass gap: GW190517 ($m_1 \approx 39 M_\odot$) is among the top candidates, demonstrating that accretion spin-up operates across a range of masses. GW190521, previously interpreted as a hierarchical merger, shows comparable support for an accretion origin. These results provide the first population-level observational evidence for an accretion-origin subpopulation in black hole mergers.</p></details>
+<div class="small mut mono">arXiv:2605.09351</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The formation environments of merging binary black holes remain uncertain. While hierarchical assembly in dense stellar clusters has been widely explored as an explanation for black holes exceeding the stellar-mass limit, growth through gas accretion in active galactic nucleus (AGN) disks is an alternative that has received less observational scrutiny. Here we search for an accretion-origin subpopulation using only spin magnitudes, fitting a three-component mixture model to 166 binary black hole mergers from LIGO--Virgo--KAGRA with component shapes fixed from theoretical predictions and only the mixing fractions inferred from the data. We find strong evidence ($ln B = 5.7$) that $\sim 10\%$ (90% credible interval $[1\%, 14\%]$) of detected mergers belong to a subpopulation with primary spins clustered near $a_1 \approx 0.9$, consistent with the theoretical prediction for accretion spin-up. The hierarchical-merger prediction of $a_1 \approx 0.7$ is decisively disfavored as the location of the high-spin subpopulation ($ln B = 5.7$). Post hoc validation reveals that the accretion candidates have systematically higher masses (median $m_1 = 58\,M_\odot$) and aligned spins (median $χ_{\rm eff} = 0.33$, vs. $0.04$ for standard-dominated events). The accretion subpopulation is not limited to systems above the pair-instability mass gap: GW190517 ($m_1 \approx 39 M_\odot$) is among the top candidates, demonstrating that accretion spin-up operates across a range of masses. GW190521, previously interpreted as a hierarchical merger, shows comparable support for an accretion origin. These results provide the first population-level observational evidence for an accretion-origin subpopulation in black hole mergers.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2605.09351v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">5 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">5 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW190517_055101">
   <div class="ctx">
     <div class="evname mono">GW190517_055101</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…e systematically higher masses (median m1=58​M⊙m_{1}=58\,M_{\odot}) and aligned spins (median χeff=0.33\chi_{\rm eff}=0.33, vs. 0.040.04 for standard-dominated events). The accretion subpopulation is not limited to systems above the pair-instability mass gap: <mark>GW190517</mark> (m1≈39​M⊙m_{1}\approx 39\,M_{\odot}) is among the top candidates, demonstrating that accretion spin-up operates across a range of masses. GW190521, previously interpreted as a hierarchical merger, shows comparable support for
-an accretion origin. These result…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…e accretion candidates. GW231123, the most massive BBH merger detected to date, is the most confident accretion candidate, with
-pacc&gt;0.97p_{\rm acc}&gt;0.97 across all analysis variants.
-Both spins are high (a1=0.90a_{1}=0.90, a2=0.91a_{2}=0.91 with
-NRSur7dq4).
-
-<mark>GW190517</mark>, with m1≈39​M⊙m_{1}\approx 39\,M_{\odot} [29], is notable as an accretion candidate below the pair-instability mass gap. Its high primary spin (a1=0.87a_{1}=0.87) is characteristic of the accretion channel, demonstrating that accretion spin-up can occur witho…</div>
+    <p class="where">Named 4 times:
+      conclusion ×2, abstract, results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2605.09351v1#:~:text=GW190517" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190517</span> or <span class="mono hit">GW190517_055101</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">conclusion</span>…retion fraction, in which both components are rapidly spinning, consistent with spin-up by accretion from a circumbinary disk.
-
-Our analysis is largely independent of Hussain et al. [23], who used GWTC-3 and report that their high-spin subpopulation hinges on <mark>GW190517</mark>, whereas our sample extends through O4 and is driven primarily by GW231123, with GW190517 one of several supporting candidates. Moreover, the isolated-binary channels (e.g., chemically homogeneous evolution) invoked in Hussain et al. [23] are not expected to …</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">conclusion</span>… accretion from a circumbinary disk.
-
-Our analysis is largely independent of Hussain et al. [23], who used GWTC-3 and report that their high-spin subpopulation hinges on GW190517, whereas our sample extends through O4 and is driven primarily by GW231123, with <mark>GW190517</mark> one of several supporting candidates. Moreover, the isolated-binary channels (e.g., chemically homogeneous evolution) invoked in Hussain et al. [23] are not expected to produce black holes above the pair-instability mass gap, disfavoring that interpretation a…</div>
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> The accretion subpopulation is not limited to systems above the pair-instability mass gap: GW190517 (m1≈39​M⊙m_{1}\approx 39\,M_{\odot}) is among the top candidates, demonstrating that accretion spin-up operat…</li><li><span class="sec">results</span> GW190517, with m1≈39​M⊙m_{1}\approx 39\,M_{\odot} [29], is notable as an accretion candidate below the pair-instabilit…</li><li><span class="sec">conclusion</span> …y independent of Hussain et al. [23], who used GWTC-3 and report that their high-spin subpopulation hinges on GW190517, whereas our sample extends through O4 and is driven primarily by GW231123, with GW190517 one of several supp…</li></ul>
     </details>
     
   </div>
@@ -196,63 +201,15 @@ Our analysis is largely independent of Hussain et al. [23], who used GWTC-3 and
 <section class="card" data-i="1" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…rd-dominated events). The accretion subpopulation is not limited to systems above the pair-instability mass gap: GW190517 (m1≈39​M⊙m_{1}\approx 39\,M_{\odot}) is among the top candidates, demonstrating that accretion spin-up operates across a range of masses. <mark>GW190521</mark>, previously interpreted as a hierarchical merger, shows comparable support for
-an accretion origin. These results provide the first population-level observational evidence for an accretion-origin subpopulation in black hole mergers.
-
- 
-
-Keywords: 
-
-gravitatio…</div>
+    <p class="where">Named 5 times:
+      results ×2, abstract, introduction, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2605.09351v1#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…llapse at roughly
-∼\sim50 M⊙M_{\odot}, due to pulsational and pair-instability
-supernovae
-[21, 53, 14].
-Despite this expectation, several gravitational-wave events
-contain black holes with component masses at or well above
-this limit.
-Notable examples include <mark>GW190521</mark>, with component masses
-m1=85−14+21​M⊙m_{1}=85^{+21}_{-14}\,M_{\odot} and
-m2=66−18+17​M⊙m_{2}=66^{+17}_{-18}\,M_{\odot}, and GW231123, the most
-massive binary black hole merger detected to date, with
-m1=137−18+23​M⊙m_{1}=137^{+23}_{-18}\,M_{\odot} and
-m2=101−5…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ogate model
-[51], which is calibrated directly to numerical
-relativity simulations within its domain of validity.
-NRSur7dq4 samples are available for 90 events: 43 from the
-official GWTC-4.0 release, 46 from the NRSurCat-1 reanalysis
-of O1–O3 events [24], and <mark>GW190521</mark> from its
-dedicated discovery analysis [32].
-For the remaining 76 events, which fall outside the NRSur7dq4
-calibration region, we use the mixed-approximant posterior
-samples provided in the standard catalog releases.
-We examine the sensitivity of our results t…</div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">results</span>… acc}. Accretion candidates cluster at high spin, with several above the pair-instability stellar limit (∼\sim50 M⊙M_{\odot}, dashed). Horizontal lines indicate the accretion (0.9) and hierarchical (0.7) spin predictions. Key accretion candidates are labeled. <mark>GW190521</mark> appears near the hierarchical prediction at its median a1a_{1}, but both its primary and secondary spin posteriors are broad with significant support at high values.
-
-As a post hoc validation, we examine properties of the accretion candidates that were not us…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ately high, and its primary mass above
-the pair-instability gap is consistent with growth through
-gas accretion in an AGN disk.
-
-GW191109 (pacc=0.56p_{\rm acc}=0.56, m1≈65​M⊙m_{1}\approx 65\,M_{\odot}) sits near the boundary of the pair-instability mass gap.
-
-<mark>GW190521</mark> [2], widely interpreted as a hierarchical merger based on its location in the pair-instability mass gap, receives pacc=0.54p_{\rm acc}=0.54. Although the median spins (a1=0.70a_{1}=0.70, a2=0.70a_{2}=0.70) nominally coincide with the hierarchical prediction, …</div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> GW190521, previously interpreted as a hierarchical merger, shows comparable support for an accretion origin.</li><li><span class="sec">introduction</span> Notable examples include GW190521, with component masses m1=85−14+21​M⊙m_{1}=85^{+21}_{-14}\,M_{\odot} and m2=66−18+17​M⊙m_{2}=66^{+17}_{-18}\,…</li><li><span class="sec">methods</span> …90 events: 43 from the official GWTC-4.0 release, 46 from the NRSurCat-1 reanalysis of O1–O3 events [24], and GW190521 from its dedicated discovery analysis [32].</li><li><span class="sec">results</span> GW190521 appears near the hierarchical prediction at its median a1a_{1}, but both its primary and secondary spin poste…</li><li><span class="sec">results</span> GW190521 [2], widely interpreted as a hierarchical merger based on its location in the pair-instability mass gap, rece…</li></ul>
     </details>
     
   </div>
@@ -289,19 +246,16 @@ GW191109 (pacc=0.56p_{\rm acc}=0.56, m1≈65​M⊙m_{1}\approx 65\,M_{\odot}) s
 <section class="card" data-i="2" data-event="GW191109_010717">
   <div class="ctx">
     <div class="evname mono">GW191109_010717</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2605.09351v1#:~:text=GW191109" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191109</span> or <span class="mono hit">GW191109_010717</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…7​M⊙m_{1}\approx 97\,M_{\odot} and q=0.53q=0.53,
-receives pacc=0.64p_{\rm acc}=0.64. Its primary spin of
-a1=0.73a_{1}=0.73 is moderately high, and its primary mass above
-the pair-instability gap is consistent with growth through
-gas accretion in an AGN disk.
-
-<mark>GW191109</mark> (pacc=0.56p_{\rm acc}=0.56, m1≈65​M⊙m_{1}\approx 65\,M_{\odot}) sits near the boundary of the pair-instability mass gap.
-
-GW190521 [2], widely interpreted as a hierarchical merger based on its location in the pair-instability mass gap, receives pacc=0.54p_{\r…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW191109 (pacc=0.56p_{\rm acc}=0.56, m1≈65​M⊙m_{1}\approx 65\,M_{\odot}) sits near the boundary of the pair-instabilit…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -337,17 +291,16 @@ GW190521 [2], widely interpreted as a hierarchical merger based on its location 
 <section class="card" data-i="3" data-event="GW231028_153006">
   <div class="ctx">
     <div class="evname mono">GW231028_153006</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2605.09351v1#:~:text=GW231028" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231028</span> or <span class="mono hit">GW231028_153006</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…} [29], is notable as an accretion candidate below the pair-instability mass gap. Its high primary spin (a1=0.87a_{1}=0.87) is characteristic of the accretion channel, demonstrating that accretion spin-up can occur without requiring growth to extreme masses.
-
-<mark>GW231028</mark>, with m1≈97​M⊙m_{1}\approx 97\,M_{\odot} and q=0.53q=0.53,
-receives pacc=0.64p_{\rm acc}=0.64. Its primary spin of
-a1=0.73a_{1}=0.73 is moderately high, and its primary mass above
-the pair-instability gap is consistent with growth through
-gas accretion in an …</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW231028, with m1≈97​M⊙m_{1}\approx 97\,M_{\odot} and q=0.53q=0.53, receives pacc=0.64p_{\rm acc}=0.64.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -383,39 +336,16 @@ gas accretion in an …</div>
 <section class="card" data-i="4" data-event="GW231123_135430">
   <div class="ctx">
     <div class="evname mono">GW231123_135430</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…eral gravitational-wave events
-contain black holes with component masses at or well above
-this limit.
-Notable examples include GW190521, with component masses
-m1=85−14+21​M⊙m_{1}=85^{+21}_{-14}\,M_{\odot} and
-m2=66−18+17​M⊙m_{2}=66^{+17}_{-18}\,M_{\odot}, and <mark>GW231123</mark>, the most
-massive binary black hole merger detected to date, with
-m1=137−18+23​M⊙m_{1}=137^{+23}_{-18}\,M_{\odot} and
-m2=101−51+22​M⊙m_{2}=101^{+22}_{-51}\,M_{\odot}
-[2, 30].
-These observations indicate that at least a subset of merging
-black holes cannot be …</div>
+    <p class="where">Named 3 times:
+      introduction, results, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2605.09351v1#:~:text=GW231123" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231123</span> or <span class="mono hit">GW231123_135430</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…rgers predict spins near a≈0.7a\approx 0.7 with broader tilt distributions. Large aligned/antialigned spins, consistent with accretion, are favored in most cases.
-
-Figure 4 shows the spin magnitude and tilt distributions for the top five accretion candidates. <mark>GW231123</mark>, the most massive BBH merger detected to date, is the most confident accretion candidate, with
-pacc&gt;0.97p_{\rm acc}&gt;0.97 across all analysis variants.
-Both spins are high (a1=0.90a_{1}=0.90, a2=0.91a_{2}=0.91 with
-NRSur7dq4).
-
-GW190517, with m1≈39​M⊙m_{1}\app…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…with spin-up by accretion from a circumbinary disk.
-
-Our analysis is largely independent of Hussain et al. [23], who used GWTC-3 and report that their high-spin subpopulation hinges on GW190517, whereas our sample extends through O4 and is driven primarily by <mark>GW231123</mark>, with GW190517 one of several supporting candidates. Moreover, the isolated-binary channels (e.g., chemically homogeneous evolution) invoked in Hussain et al. [23] are not expected to produce black holes above the pair-instability mass gap, disfavoring that i…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …t masses m1=85−14+21​M⊙m_{1}=85^{+21}_{-14}\,M_{\odot} and m2=66−18+17​M⊙m_{2}=66^{+17}_{-18}\,M_{\odot}, and GW231123, the most massive binary black hole merger detected to date, with m1=137−18+23​M⊙m_{1}=137^{+23}_{-18}\,M_{\o…</li><li><span class="sec">results</span> GW231123, the most massive BBH merger detected to date, is the most confident accretion candidate, with pacc&gt;0.97p_{\r…</li><li><span class="sec">conclusion</span> …high-spin subpopulation hinges on GW190517, whereas our sample extends through O4 and is driven primarily by GW231123, with GW190517 one of several supporting candidates.</li></ul>
+    </details>
     
   </div>
   <div class="form">

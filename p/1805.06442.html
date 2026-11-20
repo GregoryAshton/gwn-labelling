@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,32 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Reconstructing phenomenological distributions of compact binaries via gravitational wave observations</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1805.06442" target="_blank" rel="noopener" class="mono">arXiv:1805.06442</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Gravitational wave (GW) measurements will provide insight into the population of coalescing compact binaries throughout the universe. We describe and demonstrate a flexible parametric method to infer the event rate as a function of compact binary parameters, accounting for Poisson error and selection biases. Using synthetic data based on projections for LIGO and Virgo&#39;s third observing run (O3), we discuss how well GW measurements could constrain the mass and spin distribution of coalescing neutron stars and black holes (BHs) in the near future, within the context of several phenomenological models described in this work. We demonstrate that only a few tens of events can enable astrophysically significant constraints on the spin magnitude and orientation distribution of BHs in merging binaries. We discuss how astrophysical priors or other measurements can inform the interpretation of future measurements. Using publicly available results, we estimate the event rate versus mass for binary black holes (BBHs). To connect to previously published work, we provide estimates including reported O2 BBH candidates, making several unwarranted but simplifying assumptions for the sensitivity of the network and completeness of the reported set of events. Consistent with prior work, we find BHs in binaries likely have low natal spin. With available results and a population favoring low spin, we cannot presently constrain the typical misalignments of the binary black hole population. All of the tools described in this work are publicly available and ready-to-use to interpret real or synthetic LIGO data, and to synthesize projected data from future observing runs.</p></details>
+<div class="small mut mono">arXiv:1805.06442</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Gravitational wave (GW) measurements will provide insight into the population of coalescing compact binaries throughout the universe. We describe and demonstrate a flexible parametric method to infer the event rate as a function of compact binary parameters, accounting for Poisson error and selection biases. Using synthetic data based on projections for LIGO and Virgo&#39;s third observing run (O3), we discuss how well GW measurements could constrain the mass and spin distribution of coalescing neutron stars and black holes (BHs) in the near future, within the context of several phenomenological models described in this work. We demonstrate that only a few tens of events can enable astrophysically significant constraints on the spin magnitude and orientation distribution of BHs in merging binaries. We discuss how astrophysical priors or other measurements can inform the interpretation of future measurements. Using publicly available results, we estimate the event rate versus mass for binary black holes (BBHs). To connect to previously published work, we provide estimates including reported O2 BBH candidates, making several unwarranted but simplifying assumptions for the sensitivity of the network and completeness of the reported set of events. Consistent with prior work, we find BHs in binaries likely have low natal spin. With available results and a population favoring low spin, we cannot presently constrain the typical misalignments of the binary black hole population. All of the tools described in this work are publicly available and ready-to-use to interpret real or synthetic LIGO data, and to synthesize projected data from future observing runs.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1805.06442v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">6 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">6 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1805.06442v3#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…e BH parameters,
-including spin. We will conduct full end-to-end calculations with synthetic data and state of the art models in future work.
-
-IV Analysis of reported observational results
-
-To date, five confident binary black hole mergers have been reported:
-<mark>GW150914</mark> [89], GW151226 [77], GW170104 [90], GW170608 [91], and GW170814 [92] –
-the latter discovered jointly with the Advanced Virgo instrument [3],
-Additionally, an astrophysically plausible candidate BBH signal has been reported (LVT151012) [5].
-In this section, we…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> To date, five confident binary black hole mergers have been reported: GW150914 [89], GW151226 [77], GW170104 [90], GW170608 [91], and GW170814 [92] – the latter discovered jointly with the…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -183,17 +201,16 @@ In this section, we…</div>
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1805.06442v3#:~:text=LVT151012" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">LVT151012</span> or <span class="mono hit">GW151012</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…ergers have been reported:
-GW150914 [89], GW151226 [77], GW170104 [90], GW170608 [91], and GW170814 [92] –
-the latter discovered jointly with the Advanced Virgo instrument [3],
-Additionally, an astrophysically plausible candidate BBH signal has been reported (<mark>LVT151012</mark>) [5].
-In this section, we describe inferences about the binary black hole population based on reported events, deduced from
-these reported observations and a simplified model for the network’s search sensitivity. For
-O1 events, most notably for GW151226, we u…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …nced Virgo instrument [3], Additionally, an astrophysically plausible candidate BBH signal has been reported (LVT151012) [5].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -229,76 +246,15 @@ O1 events, most notably for GW151226, we u…</div>
 <section class="card" data-i="2" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>7 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… represent a fair sample of
-the results of LIGO’s first two observing runs (O1 and O2), we corroborate
-previous results, finding black hole
-spins are likely small and that the black hole mass spectrum may have an upper bound. Due to small BH spins, except
-for <mark>GW151226</mark>, we can extract no information about typical BBH spin-orbit misalignments.
-We emphasize our demonstration uses a nonfinal sample for LIGO’s O2 survey: depending on that survey’s results, applying our methods to final O2 results
-could produce substantially dif…</div>
+    <p class="where">Named 7 times:
+      methods ×5, introduction, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1805.06442v3#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…ref}=15M_{\odot}
-and
-characterize the overall event rate not by its normalization, which depends on unobserved binaries with high and low
-masses, but by the event rate ℛ​p​(mref){\cal R}p(m_{\rm ref}) of binaries whose primary m1m_{1} has a mass comparable to
-<mark>GW151226</mark> [77].
-We identify other natural coordinates for the distribution of m1m_{1} via its detection-weighted cumulative distribution 𝒫(&lt;m1){\cal P}(&lt;m_{1}):
-
-𝒫(&lt;x)=∫d​λ​V​(λ)​p​(λ)​Θ​(x−m1​(λ))∫d​λ​V​(λ)​p​(λ)\displaystyle{\cal P}(&lt;x)=\frac{\int d\lambda V(\lambda)…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…,
-including spin. We will conduct full end-to-end calculations with synthetic data and state of the art models in future work.
-
-IV Analysis of reported observational results
-
-To date, five confident binary black hole mergers have been reported:
-GW150914 [89], <mark>GW151226</mark> [77], GW170104 [90], GW170608 [91], and GW170814 [92] –
-the latter discovered jointly with the Advanced Virgo instrument [3],
-Additionally, an astrophysically plausible candidate BBH signal has been reported (LVT151012) [5].
-In this section, we describe infer…</div>
-    
-    
-    <details><summary>4 more</summary>
-    <div class="mention"><span class="sec">methods</span>…ted (LVT151012) [5].
-In this section, we describe inferences about the binary black hole population based on reported events, deduced from
-these reported observations and a simplified model for the network’s search sensitivity. For
-O1 events, most notably for <mark>GW151226</mark>, we use full posterior inferences derived from GW data, provided by the
-LIGO Scientific Collaboration.
-For O2 events, in lieu of full posterior inferences, we use the procedure described in Appendix A to generate synthetic posterior distributions which closel…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…population distribution
-of χeff\chi_{\rm eff} remains nearly symmetrically distributed around zero, we can with increasing confidence bound the
-fraction of binaries that are preferentially aligned and with modest spin.
-With at least one BH known to have spin (<mark>GW151226</mark>) and for simplicitly assuming the BH spin and mass distribution are
-uncorrelated, we are led to weakly disfavor scenarios where BHs are preferentially aligned (i.e., small σ\sigma is
-disfavored). We emphasize, however, that this conclusion is driven by the ab…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…tion are
-uncorrelated, we are led to weakly disfavor scenarios where BHs are preferentially aligned (i.e., small σ\sigma is
-disfavored). We emphasize, however, that this conclusion is driven by the absence of strong support for any spin
-in all but one binary (<mark>GW151226</mark>). We would arrive at the same nominal conclusion for a comparable number of random
-draws from a binary population model with perfectly aligned binaries with small BH spins. Future and more informative observations of BH binaries could significantly alter this…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>… spins
-reported for O1 and O2 events. The lack of support for large χeff\chi_{\rm eff} in any observation to date strongly
-suggests that BH spins cannot be large.
-Conversely, an observation of a binary with χeff\chi_{\rm eff} bounded below by ϵ\epsilon (e.g., <mark>GW151226</mark>) implies that
-a significant fraction of BH spins must be greater than of order ϵ\epsilon.
-
-Figure 11: Why χeff\chi_{\rm eff} measurements constrain the maximum spin: cumulative distribution function for χeff\chi_{\rm eff} for toy models with isotropic spins a…</div>
+    <details class="lines"><summary>Show the sentences (7): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Due to small BH spins, except for GW151226, we can extract no information about typical BBH spin-orbit misalignments.</li><li><span class="sec">methods</span> …by the event rate ℛ​p​(mref){\cal R}p(m_{\rm ref}) of binaries whose primary m1m_{1} has a mass comparable to GW151226 [77].</li><li><span class="sec">methods</span> To date, five confident binary black hole mergers have been reported: GW150914 [89], GW151226 [77], GW170104 [90], GW170608 [91], and GW170814 [92] – the latter discovered jointly with the Advanced Virgo…</li><li><span class="sec">methods</span> For O1 events, most notably for GW151226, we use full posterior inferences derived from GW data, provided by the LIGO Scientific Collaboration.</li><li><span class="sec">methods</span> With at least one BH known to have spin (GW151226) and for simplicitly assuming the BH spin and mass distribution are uncorrelated, we are led to weakly disfav…</li><li><span class="sec">methods</span> …however, that this conclusion is driven by the absence of strong support for any spin in all but one binary (GW151226).</li><li><span class="sec">appendix</span> Conversely, an observation of a binary with χeff\chi_{\rm eff} bounded below by ϵ\epsilon (e.g., GW151226) implies that a significant fraction of BH spins must be greater than of order ϵ\epsilon.</li></ul>
     </details>
     
   </div>
@@ -335,19 +291,16 @@ Figure 11: Why χeff\chi_{\rm eff} measurements constrain the maximum spin: cumu
 <section class="card" data-i="3" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1805.06442v3#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…n. We will conduct full end-to-end calculations with synthetic data and state of the art models in future work.
-
-IV Analysis of reported observational results
-
-To date, five confident binary black hole mergers have been reported:
-GW150914 [89], GW151226 [77], <mark>GW170104</mark> [90], GW170608 [91], and GW170814 [92] –
-the latter discovered jointly with the Advanced Virgo instrument [3],
-Additionally, an astrophysically plausible candidate BBH signal has been reported (LVT151012) [5].
-In this section, we describe inferences about the…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> To date, five confident binary black hole mergers have been reported: GW150914 [89], GW151226 [77], GW170104 [90], GW170608 [91], and GW170814 [92] – the latter discovered jointly with the Advanced Virgo instrument [3]…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -383,19 +336,16 @@ In this section, we describe inferences about the…</div>
 <section class="card" data-i="4" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1805.06442v3#:~:text=GW170608" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…uct full end-to-end calculations with synthetic data and state of the art models in future work.
-
-IV Analysis of reported observational results
-
-To date, five confident binary black hole mergers have been reported:
-GW150914 [89], GW151226 [77], GW170104 [90], <mark>GW170608</mark> [91], and GW170814 [92] –
-the latter discovered jointly with the Advanced Virgo instrument [3],
-Additionally, an astrophysically plausible candidate BBH signal has been reported (LVT151012) [5].
-In this section, we describe inferences about the binary black h…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …te, five confident binary black hole mergers have been reported: GW150914 [89], GW151226 [77], GW170104 [90], GW170608 [91], and GW170814 [92] – the latter discovered jointly with the Advanced Virgo instrument [3], Additionally,…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -431,19 +381,16 @@ In this section, we describe inferences about the binary black h…</div>
 <section class="card" data-i="5" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1805.06442v3#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>… calculations with synthetic data and state of the art models in future work.
-
-IV Analysis of reported observational results
-
-To date, five confident binary black hole mergers have been reported:
-GW150914 [89], GW151226 [77], GW170104 [90], GW170608 [91], and <mark>GW170814</mark> [92] –
-the latter discovered jointly with the Advanced Virgo instrument [3],
-Additionally, an astrophysically plausible candidate BBH signal has been reported (LVT151012) [5].
-In this section, we describe inferences about the binary black hole population base…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …binary black hole mergers have been reported: GW150914 [89], GW151226 [77], GW170104 [90], GW170608 [91], and GW170814 [92] – the latter discovered jointly with the Advanced Virgo instrument [3], Additionally, an astrophysically…</li></ul>
+    </details>
     
   </div>
   <div class="form">

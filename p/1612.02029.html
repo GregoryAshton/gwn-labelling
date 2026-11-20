@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,39 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Upper Limits on the Stochastic Gravitational-Wave Background from Advanced LIGO&#39;s First Observing Run</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1612.02029" target="_blank" rel="noopener" class="mono">arXiv:1612.02029</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">A wide variety of astrophysical and cosmological sources are expected to contribute to a stochastic gravitational-wave background. Following the observations of GW150914 and GW151226, the rate and mass of coalescing binary black holes appear to be greater than many previous expectations. As a result, the stochastic background from unresolved compact binary coalescences is expected to be particularly loud. We perform a search for the isotropic stochastic gravitational-wave background using data from Advanced Laser Interferometer Gravitational Wave Observatory&#39;s (aLIGO) first observing run. The data display no evidence of a stochastic gravitational-wave signal. We constrain the dimensionless energy density of gravitational waves to be Ω&lt;SUB&gt;0&lt;/SUB&gt;&amp;lt;1.7 ×10&lt;SUP&gt;-7&lt;/SUP&gt; with 95% confidence, assuming a flat energy density spectrum in the most sensitive part of the LIGO band (20-86 Hz). This is a factor of ∼33 times more sensitive than previous measurements. We also constrain arbitrary power-law spectra. Finally, we investigate the implications of this search for the background of binary black holes using an astrophysical model for the background.</p></details>
+<div class="small mut mono">arXiv:1612.02029</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">A wide variety of astrophysical and cosmological sources are expected to contribute to a stochastic gravitational-wave background. Following the observations of GW150914 and GW151226, the rate and mass of coalescing binary black holes appear to be greater than many previous expectations. As a result, the stochastic background from unresolved compact binary coalescences is expected to be particularly loud. We perform a search for the isotropic stochastic gravitational-wave background using data from Advanced Laser Interferometer Gravitational Wave Observatory&#39;s (aLIGO) first observing run. The data display no evidence of a stochastic gravitational-wave signal. We constrain the dimensionless energy density of gravitational waves to be Ω&lt;SUB&gt;0&lt;/SUB&gt;&amp;lt;1.7 ×10&lt;SUP&gt;-7&lt;/SUP&gt; with 95% confidence, assuming a flat energy density spectrum in the most sensitive part of the LIGO band (20-86 Hz). This is a factor of ∼33 times more sensitive than previous measurements. We also constrain arbitrary power-law spectra. Finally, we investigate the implications of this search for the background of binary black holes using an astrophysical model for the background.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1612.02029v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">2 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">2 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…A 
-
-Affiliation: Abilene Christian University, Abilene, TX 79699, USA 
-
-Affiliation: 
-
-Abstract
-
- 
-A wide variety of astrophysical and cosmological sources are expected to contribute to a stochastic gravitational-wave background. Following the observations of <mark>GW150914</mark> and GW151226, the rate and mass of coalescing binary black holes appear to be greater than many previous expectations. As a result, the stochastic background from unresolved compact binary coalescences is expected to be particularly loud. We perform a search …</div>
+    <p class="where">Named 2 times:
+      abstract ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1612.02029v3#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>…nd provides the opportunity to study a number of different environments within the Universe.
-
-The recent detections of binary black hole (BBH) coalescences by Advanced LIGO [32, 33] suggest that the Universe may be rich with coalescing BBHs.
-While events like <mark>GW150914</mark> and GW151226 are loud enough to be clearly detected, we expect there to be many more events that are too far away to be individually resolved and that contribute to the background. Since this BBH population originates from sources that are too distant to be i…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> Following the observations of GW150914 and GW151226, the rate and mass of coalescing binary black holes appear to be greater than many previous expe…</li><li><span class="sec">abstract</span> While events like GW150914 and GW151226 are loud enough to be clearly detected, we expect there to be many more events that are too far…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -190,25 +201,16 @@ While events like <mark>GW150914</mark> and GW151226 are loud enough to be clear
 <section class="card" data-i="1" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…on: Abilene Christian University, Abilene, TX 79699, USA 
-
-Affiliation: 
-
-Abstract
-
- 
-A wide variety of astrophysical and cosmological sources are expected to contribute to a stochastic gravitational-wave background. Following the observations of GW150914 and <mark>GW151226</mark>, the rate and mass of coalescing binary black holes appear to be greater than many previous expectations. As a result, the stochastic background from unresolved compact binary coalescences is expected to be particularly loud. We perform a search for the isotr…</div>
+    <p class="where">Named 2 times:
+      abstract ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1612.02029v3#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>…he opportunity to study a number of different environments within the Universe.
-
-The recent detections of binary black hole (BBH) coalescences by Advanced LIGO [32, 33] suggest that the Universe may be rich with coalescing BBHs.
-While events like GW150914 and <mark>GW151226</mark> are loud enough to be clearly detected, we expect there to be many more events that are too far away to be individually resolved and that contribute to the background. Since this BBH population originates from sources that are too distant to be individually d…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> Following the observations of GW150914 and GW151226, the rate and mass of coalescing binary black holes appear to be greater than many previous expectations.</li><li><span class="sec">abstract</span> While events like GW150914 and GW151226 are loud enough to be clearly detected, we expect there to be many more events that are too far away to be in…</li></ul>
+    </details>
     
   </div>
   <div class="form">

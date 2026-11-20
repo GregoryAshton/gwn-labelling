@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,170 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Rapid and accurate parameter inference for coalescing, precessing compact binaries</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1805.10457" target="_blank" rel="noopener" class="mono">arXiv:1805.10457</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Extending prior work by Pankow et al, we introduce RIFT, an algorithm to perform Rapid parameter Inference on gravitational wave sources via Iterative Fitting. We demonstrate this approach can correctly recover the parameters of coalescing compact binary systems, using detailed comparisons of RIFT to the well-tested LALInference software library. We provide several examples where the unique speed and flexibility of RIFT enables otherwise intractable or awkward parameter inference analyses, including (a) adopting either costly and novel models for outgoing gravitational waves; and (b) mixed approximations, each suitable to different parts of the compact binary parameter space. We demonstrate how \RIFT{} can be applied to binary neutron stars, both for parameter inference and direct constraints on the nuclear equation of state.</p></details>
+<div class="small mut mono">arXiv:1805.10457</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Extending prior work by Pankow et al, we introduce RIFT, an algorithm to perform Rapid parameter Inference on gravitational wave sources via Iterative Fitting. We demonstrate this approach can correctly recover the parameters of coalescing compact binary systems, using detailed comparisons of RIFT to the well-tested LALInference software library. We provide several examples where the unique speed and flexibility of RIFT enables otherwise intractable or awkward parameter inference analyses, including (a) adopting either costly and novel models for outgoing gravitational waves; and (b) mixed approximations, each suitable to different parts of the compact binary parameter space. We demonstrate how \RIFT{} can be applied to binary neutron stars, both for parameter inference and direct constraints on the nuclear equation of state.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1805.10457v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">6 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">6 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>21 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…ications
-
-V.1 Parameter inference via mixed models
-
-V.2 Investigating systematics
-
-V.3 Astrophysical population inference
-
-V.4 Inferences about the nuclear equation of state
-
-VI Analysis of real events
-
-VI.1 Reproducing the interpretation of a real GW source: <mark>GW150914</mark>
-
-VI.2 Reanalysis of LVT151012
-
-VII Discussion
-
-Acknowledgements
-
-A Coordinate systems and priors
-
-A.1 Masses
-
-A.2 Spins
-
-A.3 Tides
-
-B Supplementary validation studies of iterative posterior generation
-
-C Evaluating the evidence for an equation of state
-
-Refer…</div>
+    <p class="where">Named 21 times:
+      methods ×18, title/headings, appendix, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1805.10457v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">appendix</span>…at subset
-of variables characterizes the most easily measurable quantities – then these dimensionally-reduced iterations cause the remaining
-degrees of freedom to be efficiently and randomly explored. As a concrete example,
-for massive binary black holes like <mark>GW150914</mark>, even if precessing, the likelihood can be well approximated using just ℳ,η,χe​f​f{\cal M},\eta,\chi_{eff} [11], though after more iterations our fitting procedure captures more subtle features of the
-fit and hence posterior.
-After these first few seed iterat…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…etector data is exactly equal to the expected response due to our synthetic source. For our binary black hole
-investigations, we assume gaussian detector noise in a two-detector,
-characterized by the same noise strain power spectrum adopted in our analysis of <mark>GW150914</mark> in this and prior work
-[11]. Four our binary neutron star investigation, we assume gaussian noise in a three-detector
-network (Hanford/Livingston/Virgo) operating at design sensitivity.
-Each source has been scaled to have an SNR ∼20\sim 20.
-
-IV.1 Aligned NR S…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">methods</span>…​a​x=3\ell_{max}=3) draws sharper conclusions about at least one of the parameters: the
-binary mass ratio. [Conclusions about the other parameters are not significantly impacted by including higher-order modes.]
-A similar result was found with a reanalysis of <mark>GW150914</mark> where the LVC compared the data directly to NR [11].
-
-IV.2 Precessing NR Source
-
-To test our approach on a precessing source, we generated a synthetic precessing signal using the second row of Table
-1 (SXS-1), corresponding to a comparable-mass system with mo…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…r calibration – has no impact on our estimates
-of intrinsic source parameters.
-Gravitational wave strain data identical to the inputs employed here are available from the LIGO Open Science Center
-[73].
-
-VI.1 Reproducing the interpretation of a real GW source: <mark>GW150914</mark>
-
-In this section, we analyze GW150914 with RIFT and LI using several different approximate waveform models.
-In these comparisons, we employ real LIGO data to analyze GW150914, estimating strain noise power spectral densities (PSDs) for both events from data s…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…stimates
-of intrinsic source parameters.
-Gravitational wave strain data identical to the inputs employed here are available from the LIGO Open Science Center
-[73].
-
-VI.1 Reproducing the interpretation of a real GW source: GW150914
-
-In this section, we analyze <mark>GW150914</mark> with RIFT and LI using several different approximate waveform models.
-In these comparisons, we employ real LIGO data to analyze GW150914, estimating strain noise power spectral densities (PSDs) for both events from data segments near each event, similar to th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… Open Science Center
-[73].
-
-VI.1 Reproducing the interpretation of a real GW source: GW150914
-
-In this section, we analyze GW150914 with RIFT and LI using several different approximate waveform models.
-In these comparisons, we employ real LIGO data to analyze <mark>GW150914</mark>, estimating strain noise power spectral densities (PSDs) for both events from data segments near each event, similar to the PSDs
-used in [4].
-We also employ different spin priors, such as the volumetric spin prior [Eq. (15)], than those employed by Abbott et …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…n using
-NRSur7dq2 we adopt a minimum frequency of 30​Hz30{\rm Hz}; however, we adopt
-a minimum frequency of 20​Hz20{\rm Hz} for our other analyses. The choice of lower cutoff frequency has little impact on our comparisons [11].
-
-Figure 7 shows our analyses of <mark>GW150914</mark> with LI and RIFT using nonprecessing waveform models,
-all computed using a prior where that each χi,z\chi_{i,z} is a uniform random number.
-First and foremost, the good agreement between the solid and dotted blue lines (IMRPhenomD) demonstrates how LI and RIF…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…emost, the good agreement between the solid and dotted blue lines (IMRPhenomD) demonstrates how LI and RIFT agree when applied to the same data with the same
-noise model, even in real detector noise.
-Second, as in previous result derived by directly comparing <mark>GW150914</mark> to numerical solutions of Einstein’s
-equations [11], we find that our posterior inferences derived a waveform model that includes higher modes
-(here, NRSur7dq2 with ℓ≤3\ell\leq 3) more sharply constrains some parameters like the binary mass ratio qq. Addition…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ompanion study devoted to direct comparison to numerical relativity solutions, we will more carefully address
-differences between this result and the analysis presented in [11], using numerical relativity simulations to
-fill the gaps.
-
-Figure 7: Reanalysis of <mark>GW150914</mark>: Aligned models - This figure shows the results of a reanalysis of the
-first GW detection GW150914, using a prior where each χi,z\chi_{i,z} is a uniform random number and the
-assumption that both spins must be parallel to the orbital angular momentum. The top…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ly address
-differences between this result and the analysis presented in [11], using numerical relativity simulations to
-fill the gaps.
-
-Figure 7: Reanalysis of GW150914: Aligned models - This figure shows the results of a reanalysis of the
-first GW detection <mark>GW150914</mark>, using a prior where each χi,z\chi_{i,z} is a uniform random number and the
-assumption that both spins must be parallel to the orbital angular momentum. The top two
-panels show one- and two-dimensional marginal distributions in redshifted total mass Mtot,q,χe…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… NRSur7dq2 and other approximations principally due to the range of validity of
-the NRSur7dq2 model, which is valid only for 1/q&gt;0.51/q&gt;0.5 and |χi|&lt;0.8|\chi_{i}|&lt;0.8.
-
-Next, to provide a comparison that allows for all spin degrees of freedom, we analyze with <mark>GW150914</mark> RIFT and SEOBNRv3 [75] or NRSur7dq2 (ℓ≤3\ell\leq 3), on the one
-hand, and with LI and IMRPhenomPv2 [3, 4] on the other.
-Figure 8 shows the 90% confidence intervals for the RIFT+SEOBNRv3, RIFT+NRSur7dq2 (ℓ≤3\ell\leq 3), and LI+IMRPhenomPv2 analyses
-in black, g…</div>
+    <details class="lines"><summary>Show the sentences (19, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> VI.1 Reproducing the interpretation of a real GW source: GW150914</li><li><span class="sec">appendix</span> As a concrete example, for massive binary black holes like GW150914, even if precessing, the likelihood can be well approximated using just ℳ,η,χe​f​f{\cal M},\eta,\chi_{eff} [1…</li><li><span class="sec">methods</span> …tor noise in a two-detector, characterized by the same noise strain power spectrum adopted in our analysis of GW150914 in this and prior work [11].</li><li><span class="sec">methods</span> …not significantly impacted by including higher-order modes.] A similar result was found with a reanalysis of GW150914 where the LVC compared the data directly to NR [11].</li><li><span class="sec">methods</span> In this section, we analyze GW150914 with RIFT and LI using several different approximate waveform models.</li><li><span class="sec">methods</span> In these comparisons, we employ real LIGO data to analyze GW150914, estimating strain noise power spectral densities (PSDs) for both events from data segments near each event,…</li><li><span class="sec">methods</span> Figure 7 shows our analyses of GW150914 with LI and RIFT using nonprecessing waveform models, all computed using a prior where that each χi,z\chi_{i,…</li><li><span class="sec">methods</span> Second, as in previous result derived by directly comparing GW150914 to numerical solutions of Einstein’s equations [11], we find that our posterior inferences derived a waveform…</li></ul>
     </details>
     
   </div>
@@ -322,107 +201,15 @@ in black, g…</div>
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>7 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…ence via mixed models
-
-V.2 Investigating systematics
-
-V.3 Astrophysical population inference
-
-V.4 Inferences about the nuclear equation of state
-
-VI Analysis of real events
-
-VI.1 Reproducing the interpretation of a real GW source: GW150914
-
-VI.2 Reanalysis of <mark>LVT151012</mark>
-
-VII Discussion
-
-Acknowledgements
-
-A Coordinate systems and priors
-
-A.1 Masses
-
-A.2 Spins
-
-A.3 Tides
-
-B Supplementary validation studies of iterative posterior generation
-
-C Evaluating the evidence for an equation of state
-
-References
-
- 
- License: arXiv.org p…</div>
+    <p class="where">Named 7 times:
+      methods ×6, title/headings.</p>
+    <p class="where"><a href="https://arxiv.org/html/1805.10457v1#:~:text=LVT151012" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">LVT151012</span> or <span class="mono hit">GW151012</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>… IMRPhenomPv2. The top right panel
-shows significant differences between NRSur7dq2 and other approximations principally due to the range of validity of
-the NRSur7dq2 model, which is valid only for 1/q&gt;0.51/q&gt;0.5 and |χi|&lt;0.8|\chi_{i}|&lt;0.8.
-
-VI.2 Reanalysis of <mark>LVT151012</mark>
-
-To demonstrate RIFT’s ability to estimate nongaussian posteriors of low-significance events in real
-detector noise, Figure 9 presents parameter inferences for LVT151012 with RIFT and LI, performed with
-SEOBNRv3 (black) and IMRPhenomPv2 (blue dotted) respecti…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…l, which is valid only for 1/q&gt;0.51/q&gt;0.5 and |χi|&lt;0.8|\chi_{i}|&lt;0.8.
-
-VI.2 Reanalysis of LVT151012
-
-To demonstrate RIFT’s ability to estimate nongaussian posteriors of low-significance events in real
-detector noise, Figure 9 presents parameter inferences for <mark>LVT151012</mark> with RIFT and LI, performed with
-SEOBNRv3 (black) and IMRPhenomPv2 (blue dotted) respectively. The analysis uses frequencies between fmin=20​Hzf_{\rm min}=20{\rm Hz} and
-1700​Hz1700{\rm Hz}, with a volumetric spin prior. The two analyses demonstrate a level o…</div>
-    
-    
-    <details><summary>4 more</summary>
-    <div class="mention"><span class="sec">methods</span>…ween fmin=20​Hzf_{\rm min}=20{\rm Hz} and
-1700​Hz1700{\rm Hz}, with a volumetric spin prior. The two analyses demonstrate a level of agreement consistent with previously-demonstrated model systematics.
-
-While we have also performed a corresponding analysis of <mark>LVT151012</mark> with NRSur7dq2, including higher harmonics. Within the
-range of mass ratios accessible to NRSur7dq2, we see good agreement between an analysis with SEOBNRv4 and NRSur7dq2. However,
-due to the limited qq domain of NRSur7dq2, we defer a detailed quantitative di…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…igher harmonics. Within the
-range of mass ratios accessible to NRSur7dq2, we see good agreement between an analysis with SEOBNRv4 and NRSur7dq2. However,
-due to the limited qq domain of NRSur7dq2, we defer a detailed quantitative discussion of higher modes in <mark>LVT151012</mark> to
-companion work employing numerical relativity simulations to fill the gaps.
-
-Figure 9: Reanalysis of LVT151012 This figure shows two analyses of
-LVT151012. The 2D plot shows the PE results in the effective spin (χeff\chi_{\rm eff})-mass ratio (q)
-parameter…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…s with SEOBNRv4 and NRSur7dq2. However,
-due to the limited qq domain of NRSur7dq2, we defer a detailed quantitative discussion of higher modes in LVT151012 to
-companion work employing numerical relativity simulations to fill the gaps.
-
-Figure 9: Reanalysis of <mark>LVT151012</mark> This figure shows two analyses of
-LVT151012. The 2D plot shows the PE results in the effective spin (χeff\chi_{\rm eff})-mass ratio (q)
-parameter space (see Eq. 2 and Eq. 1 respectively). The other two panels show the corresponding
-1D distributions for each p…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…to the limited qq domain of NRSur7dq2, we defer a detailed quantitative discussion of higher modes in LVT151012 to
-companion work employing numerical relativity simulations to fill the gaps.
-
-Figure 9: Reanalysis of LVT151012 This figure shows two analyses of
-<mark>LVT151012</mark>. The 2D plot shows the PE results in the effective spin (χeff\chi_{\rm eff})-mass ratio (q)
-parameter space (see Eq. 2 and Eq. 1 respectively). The other two panels show the corresponding
-1D distributions for each parameter. Curves and 90% contours have been …</div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> VI.2 Reanalysis of LVT151012</li><li><span class="sec">methods</span> …sian posteriors of low-significance events in real detector noise, Figure 9 presents parameter inferences for LVT151012 with RIFT and LI, performed with SEOBNRv3 (black) and IMRPhenomPv2 (blue dotted) respectively.</li><li><span class="sec">methods</span> While we have also performed a corresponding analysis of LVT151012 with NRSur7dq2, including higher harmonics.</li><li><span class="sec">methods</span> …er, due to the limited qq domain of NRSur7dq2, we defer a detailed quantitative discussion of higher modes in LVT151012 to companion work employing numerical relativity simulations to fill the gaps.</li><li><span class="sec">methods</span> Figure 9: Reanalysis of LVT151012 This figure shows two analyses of LVT151012.</li></ul>
     </details>
     
   </div>
@@ -459,61 +246,16 @@ parameter space (see Eq. 2 and Eq. 1 respectively). The other two panels show th
 <section class="card" data-i="2" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…process interpolation strategy can and has been trivially applied to the (fixed) grid
-provided by numerical relativity simulations, generalizing prior work [11, 76]. Described in a companion work
-[14], this approach was performed to supplement the analysis of <mark>GW170104</mark>, GW170608,
-and GW170814 [5, 7, 6].
-Our strategy can also be trivially employed to construct posterior distributions
-that mix approximations, using different approaches in different parts of parameter space, with the boundaries
-differentiating between approxim…</div>
+    <p class="where">Named 2 times:
+      discussion, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1805.10457v1#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">references</span>…ration).
-
-Binary black hole mergers in the First Advanced LIGO observing run.
-
-Phys. Rev. X, 6:041015, October 2016.
-
- 
-[5]
-
-B. P. Abbott, R. Abbott, T. D. Abbott, F. Acernese, K. Ackley,
-C. Adams, T. Adams, P. Addesso, R. X. Adhikari, V. B. Adya, and
-et al.
-
-<mark>GW170104</mark>: Observation of a 50-Solar-Mass Binary Black Hole
-Coalescence at Redshift 0.2.
-
-Physical Review Letters, 118(22):221101, June 2017.
-
- 
-[6]
-
-The LIGO Scientific Collaboration, the Virgo Collaboration, B. P. Abbott,
-R. Abbott, T. D. Abbott, F. Acernese, K. Ackl…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[5]</span> · 2 places</span><div class="cite">…onstraints
-on the nuclear equation of state.
-
- 
-
-I Introduction
-
-The Advanced LIGO [1] and Virgo [2] ground-based gravitational wave (GW) detectors have
-identified several coalescing compact binaries <mark class="ref">[3, 4, 5, 6, 7, 8]</mark>. Over the next few years, hundreds more will be
-confidently identified, with proportionally more uncertain candidates at the margins of detector sensitivity. These
-sources provide an opportunity and …</div><div class="cite">…d by numerical relativity simulations, generalizing prior work [11, 76]. Described in a companion work
-[14], this approach was performed to supplement the analysis of GW170104, GW170608,
-and GW170814 <mark class="ref">[5, 7, 6]</mark>.
-Our strategy can also be trivially employed to construct posterior distributions
-that mix approximations, using different approaches in different parts of parameter space, with the boundaries
-differ…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> Described in a companion work [14], this approach was performed to supplement the analysis of GW170104, GW170608, and GW170814 [5, 7, 6].</li><li><span class="sec">cites it as [5]</span> …Virgo [2] ground-based gravitational wave (GW) detectors have identified several coalescing compact binaries [3, 4, 5, 6, 7, 8]. Over the next few years, hundreds more will be confidently identified, with proportionally more uncertain ca…</li><li><span class="sec">cites it as [5]</span> …mpanion work [14], this approach was performed to supplement the analysis of GW170104, GW170608, and GW170814 [5, 7, 6]. Our strategy can also be trivially employed to construct posterior distributions that mix approximations, us…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -549,60 +291,16 @@ differ…</div>
 <section class="card" data-i="3" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…terpolation strategy can and has been trivially applied to the (fixed) grid
-provided by numerical relativity simulations, generalizing prior work [11, 76]. Described in a companion work
-[14], this approach was performed to supplement the analysis of GW170104, <mark>GW170608</mark>,
-and GW170814 [5, 7, 6].
-Our strategy can also be trivially employed to construct posterior distributions
-that mix approximations, using different approaches in different parts of parameter space, with the boundaries
-differentiating between approximations cho…</div>
+    <p class="where">Named 2 times:
+      discussion, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1805.10457v1#:~:text=GW170608" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">references</span>…
-
-Physical Review Letters, 119(14):141101, October 2017.
-
- 
-[7]
-
-The LIGO Scientific Collaboration, the Virgo Collaboration, B. P. Abbott,
-R. Abbott, T. D. Abbott, F. Acernese, K. Ackley, C. Adams,
-T. Adams, P. Addesso, R. X. Adhikari, V. B. Adya, and et al.
-
-<mark>GW170608</mark>: Observation of a 19 Solar-mass Binary Black Hole
-Coalescence.
-
-Astrophysical Journal, 851:L35, December 2017.
-
- 
-[8]
-
-The LIGO Scientific Collaboration, the Virgo Collaboration, B. P. Abbott,
-R. Abbott, T. D. Abbott, F. Acernese, K. Ackley, C. Adams,
-T. Adam…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[7]</span> · 2 places</span><div class="cite">…onstraints
-on the nuclear equation of state.
-
- 
-
-I Introduction
-
-The Advanced LIGO [1] and Virgo [2] ground-based gravitational wave (GW) detectors have
-identified several coalescing compact binaries <mark class="ref">[3, 4, 5, 6, 7, 8]</mark>. Over the next few years, hundreds more will be
-confidently identified, with proportionally more uncertain candidates at the margins of detector sensitivity. These
-sources provide an opportunity and …</div><div class="cite">…d by numerical relativity simulations, generalizing prior work [11, 76]. Described in a companion work
-[14], this approach was performed to supplement the analysis of GW170104, GW170608,
-and GW170814 <mark class="ref">[5, 7, 6]</mark>.
-Our strategy can also be trivially employed to construct posterior distributions
-that mix approximations, using different approaches in different parts of parameter space, with the boundaries
-differ…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> Described in a companion work [14], this approach was performed to supplement the analysis of GW170104, GW170608, and GW170814 [5, 7, 6].</li><li><span class="sec">cites it as [7]</span> …Virgo [2] ground-based gravitational wave (GW) detectors have identified several coalescing compact binaries [3, 4, 5, 6, 7, 8]. Over the next few years, hundreds more will be confidently identified, with proportionally more uncertain ca…</li><li><span class="sec">cites it as [7]</span> …mpanion work [14], this approach was performed to supplement the analysis of GW170104, GW170608, and GW170814 [5, 7, 6]. Our strategy can also be trivially employed to construct posterior distributions that mix approximations, us…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -638,59 +336,16 @@ differ…</div>
 <section class="card" data-i="4" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…rategy can and has been trivially applied to the (fixed) grid
-provided by numerical relativity simulations, generalizing prior work [11, 76]. Described in a companion work
-[14], this approach was performed to supplement the analysis of GW170104, GW170608,
-and <mark>GW170814</mark> [5, 7, 6].
-Our strategy can also be trivially employed to construct posterior distributions
-that mix approximations, using different approaches in different parts of parameter space, with the boundaries
-differentiating between approximations chosen post-facto…</div>
+    <p class="where">Named 2 times:
+      discussion, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1805.10457v1#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">references</span>….2.
-
-Physical Review Letters, 118(22):221101, June 2017.
-
- 
-[6]
-
-The LIGO Scientific Collaboration, the Virgo Collaboration, B. P. Abbott,
-R. Abbott, T. D. Abbott, F. Acernese, K. Ackley, C. Adams,
-T. Adams, P. Addesso, R. X. Adhikari, V. B. Adya, and et al.
-
-<mark>GW170814</mark>: A Three-Detector Observation of Gravitational Waves from a
-Binary Black Hole Coalescence.
-
-Physical Review Letters, 119(14):141101, October 2017.
-
- 
-[7]
-
-The LIGO Scientific Collaboration, the Virgo Collaboration, B. P. Abbott,
-R. Abbott, T. D. Abbott, F. Ac…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[6]</span> · 2 places</span><div class="cite">…onstraints
-on the nuclear equation of state.
-
- 
-
-I Introduction
-
-The Advanced LIGO [1] and Virgo [2] ground-based gravitational wave (GW) detectors have
-identified several coalescing compact binaries <mark class="ref">[3, 4, 5, 6, 7, 8]</mark>. Over the next few years, hundreds more will be
-confidently identified, with proportionally more uncertain candidates at the margins of detector sensitivity. These
-sources provide an opportunity and …</div><div class="cite">…d by numerical relativity simulations, generalizing prior work [11, 76]. Described in a companion work
-[14], this approach was performed to supplement the analysis of GW170104, GW170608,
-and GW170814 <mark class="ref">[5, 7, 6]</mark>.
-Our strategy can also be trivially employed to construct posterior distributions
-that mix approximations, using different approaches in different parts of parameter space, with the boundaries
-differ…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> …d in a companion work [14], this approach was performed to supplement the analysis of GW170104, GW170608, and GW170814 [5, 7, 6].</li><li><span class="sec">cites it as [6]</span> …Virgo [2] ground-based gravitational wave (GW) detectors have identified several coalescing compact binaries [3, 4, 5, 6, 7, 8]. Over the next few years, hundreds more will be confidently identified, with proportionally more uncertain ca…</li><li><span class="sec">cites it as [6]</span> …mpanion work [14], this approach was performed to supplement the analysis of GW170104, GW170608, and GW170814 [5, 7, 6]. Our strategy can also be trivially employed to construct posterior distributions that mix approximations, us…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -726,65 +381,16 @@ differ…</div>
 <section class="card" data-i="5" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>… of this procedure, applied to the spectral equation of state
-parameterization introduced by Lindblom [67, 68] and to a synthetic BNS generated
-using the APR4 equation of state [69], as previously analyzed in Figure 3. For this low-redshift
-source, similar to <mark>GW170817</mark>, we will assume the redshift is well-determined, eliminating that factor in the integrand.
-[Equivalently, for this low-redshift source, the source-frame and detector-frame masses are sufficiently similar that λ⁡(m1,z|γ)≃λ⁡(m1|γ)\lambda(m_{1,z}|\gamma)\simeq\l…</div>
+    <p class="where">Named 3 times:
+      methods ×2, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1805.10457v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…used to infer the equation of state from
-individual BNS GW measurements [72], our approach will make the best use of multiple observations, as
-we don’t need additional infrastructure or approximations to estimate I⁡(γ)I(\gamma).
-
-For low-redshift sources like <mark>GW170817</mark> where λ⁡(mz)≃λ⁡(m)\lambda(m_{z})\simeq\lambda(m) and hence
-where the redshift distribution p⁡(z|m1,m2)p(z|m_{1},m_{2}) is not needed, and equivalently for sources with known host galaxy
-redshifts, we have also explored an alternative approach to compute
-I⁡(γ)…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…-mass Binary Black Hole
-Coalescence.
-
-Astrophysical Journal, 851:L35, December 2017.
-
- 
-[8]
-
-The LIGO Scientific Collaboration, the Virgo Collaboration, B. P. Abbott,
-R. Abbott, T. D. Abbott, F. Acernese, K. Ackley, C. Adams,
-T. Adams, P. Addesso, and et al.
-
-<mark>GW170817</mark>: Observation of gravitational waves from a binary neutron
-star inspiral.
-
-Phys. Rev. Lett, 119:141101, October 2017.
-
- 
-[9]
-
-J. Veitch, V. Raymond, B. Farr, W. M. Farr, P. Graff, S. Vitale,
-B. Aylott, K. Blackburn, N. Christensen, M. Coughlin, W. D. Pozzo,
-F.…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[8]</span> · 1 place</span><div class="cite">…onstraints
-on the nuclear equation of state.
-
- 
-
-I Introduction
-
-The Advanced LIGO [1] and Virgo [2] ground-based gravitational wave (GW) detectors have
-identified several coalescing compact binaries <mark class="ref">[3, 4, 5, 6, 7, 8]</mark>. Over the next few years, hundreds more will be
-confidently identified, with proportionally more uncertain candidates at the margins of detector sensitivity. These
-sources provide an opportunity and …</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> For this low-redshift source, similar to GW170817, we will assume the redshift is well-determined, eliminating that factor in the integrand. [Equivalently, for…</li><li><span class="sec">methods</span> For low-redshift sources like GW170817 where λ⁡(mz)≃λ⁡(m)\lambda(m_{z})\simeq\lambda(m) and hence where the redshift distribution p⁡(z|m1,m2)p(z|m_{…</li><li><span class="sec">cites it as [8]</span> …Virgo [2] ground-based gravitational wave (GW) detectors have identified several coalescing compact binaries [3, 4, 5, 6, 7, 8]. Over the next few years, hundreds more will be confidently identified, with proportionally more uncertain ca…</li></ul>
+    </details>
     
   </div>
   <div class="form">

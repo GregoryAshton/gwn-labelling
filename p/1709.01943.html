@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,136 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Explaining LIGO&#39;s observations via isolated binary evolution with natal kicks</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1709.01943" target="_blank" rel="noopener" class="mono">arXiv:1709.01943</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We compare binary evolution models with different assumptions about black-hole natal kicks to the first gravitational-wave observations performed by the LIGO detectors. Our comparisons attempt to reconcile merger rate, masses, spins, and spin-orbit misalignments of all current observations with state-of-the-art formation scenarios of binary black holes formed in isolation. We estimate that black holes (BHs) should receive natal kicks at birth of the order of σ ≃200 (50 ) km /s if tidal processes do (not) realign stellar spins. Our estimate is driven by two simple factors. The natal kick dispersion σ is bounded from above because large kicks disrupt too many binaries (reducing the merger rate below the observed value). Conversely, the natal kick distribution is bounded from below because modest kicks are needed to produce a range of spin-orbit misalignments. A distribution of misalignments increases our models&#39; compatibility with LIGO&#39;s observations, if all BHs are likely to have natal spins. Unlike related work which adopts a concrete BH natal spin prescription, we explore a range of possible BH natal spin distributions. Within the context of our models, for all of the choices of σ used here and within the context of one simple fiducial parameterized spin distribution, observations favor low BH natal spin.</p></details>
+<div class="small mut mono">arXiv:1709.01943</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We compare binary evolution models with different assumptions about black-hole natal kicks to the first gravitational-wave observations performed by the LIGO detectors. Our comparisons attempt to reconcile merger rate, masses, spins, and spin-orbit misalignments of all current observations with state-of-the-art formation scenarios of binary black holes formed in isolation. We estimate that black holes (BHs) should receive natal kicks at birth of the order of σ ≃200 (50 ) km /s if tidal processes do (not) realign stellar spins. Our estimate is driven by two simple factors. The natal kick dispersion σ is bounded from above because large kicks disrupt too many binaries (reducing the merger rate below the observed value). Conversely, the natal kick distribution is bounded from below because modest kicks are needed to produce a range of spin-orbit misalignments. A distribution of misalignments increases our models&#39; compatibility with LIGO&#39;s observations, if all BHs are likely to have natal spins. Unlike related work which adopts a concrete BH natal spin prescription, we explore a range of possible BH natal spin distributions. Within the context of our models, for all of the choices of σ used here and within the context of one simple fiducial parameterized spin distribution, observations favor low BH natal spin.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1709.01943v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">4 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">4 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>11 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…isotropic spins generated independently and uniformly in magnitude. This
-prior was adopted when analyzing all LIGO events. The
-solid black line shows the empirical cumulative distribution for χeff\chi_{\rm eff}, derived from the collection of
-events α=\alpha= <mark>GW150914</mark>, GW151226, and LVT151012 via their
-posterior cumulative distributions Pα​(χeff)P_{\alpha}(\chi_{\rm eff}) via P⁡(χeff)=∑αPα​(χeff)/3P(\chi_{\rm eff})=\sum_{\alpha}P_{\alpha}(\chi_{\rm eff})/3. In this curve, the posterior distributions are provided by LIGO’s …</div>
+    <p class="where">Named 11 times:
+      results ×5, introduction ×3, appendix ×2, acknowledgements.</p>
+    <p class="where"><a href="https://arxiv.org/html/1709.01943v3#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…x A for details.
-
-III Comparison with gravitational wave observations
-
-III.1 Gravitational wave observations of binary black holes
-
-During its first observing run of T1=48.6​daysT_{1}=48.6\;{\rm days},
-LIGO has reported the observation of three BH-BH mergers: <mark>GW150914</mark>,
-LVT151012, and GW151226
-[1, 77, 4]. In an analysis
-of T2=11​daysT_{2}=11~{\rm days} of data from its second
-observing run, at comparable sensitivity, LIGO has since reported the
-observation of another binary BH: GW170104
-[5].
-To draw out more insight from ea…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…th χ1=χ2=0.5\chi_{1}=\chi_{2}=0.5,
-henceforth denoted
-collectively as JJ, and henceforth use ln⁡K\ln K as shorthand for ln⁡Ki​J\ln K_{iJ}.
-
-In what follows, we will mainly discuss comparisons of our models to all of LIGO’s reported detection candidates in O1: <mark>GW150914</mark>, GW151226, and
-LVT151012 [4].
-We do this because LIGO’s
-O1 observational time and survey results are well-defined and comprehensively reported [4]; because we can employ detailed
-inference results for all O1 events; and because, as we show below, adding GW170…</div>
-    
-    
-    <details><summary>8 more</summary>
-    <div class="mention"><span class="sec">results</span>… is motivated by our results below.
-
-IV Results
-
-In this section we calculate the Bayes factor ln⁡K\ln K for each of the binary evolution models described above. Unless
-otherwise noted, we compare our models to LIGO’s O1 observations (i.e., the observation of <mark>GW150914</mark>, GW151226, and
-LVT151012), using each model’s correlated predictions for the event rate, joint mass
-distribution (m1,m2m_{1},m_{2}), χeff\chi_{\rm eff} distribution, and the distribution of θ1,θ2\theta_{1},\theta_{2}.
-For numerical context, a Bayes factor of …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…mplausible (e.g., more than 148:1 odds against), whereas anything within 22 of the peak are reasonably likely.
-
-Figure 3: Standard small-kick scenario (M10) requires small natal BH spin: Left panel: A plot of the Bayes factor KK derived by
-comparing GW151226, <mark>GW150914</mark>, and LVT151012 to the M10 (blue) formation scenario, versus the magnitude of assumed BH
-natal spin χ1=χ2\chi_{1}=\chi_{2}. All other models are shown for comparison. Colors and numbers indicate the
-Bayes factor; dark colors denote particularly unlikely config…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… hence have nearly or exactly zero
-spin-orbit misalignment.
-
-If heavy BH binaries have negligible spin-orbit misalignment, then natal BH spins are directly constrained from LIGO’s
-measurements (e.g., of χeff\chi_{\rm eff}). For example, LIGO’s observations of <mark>GW150914</mark> severely constrain
-its component spins to be small, if the spins must be strictly and positively aligned [48, 49].
-Conversely, however, LIGO’s observations for GW151226 require some nonzero spin.
-Combined, if we assume all BHs have spins drawn from the same, …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…is true and
-all BHs have the same natal spins, then this natal spin is likely small.
-
-IV.2 BH natal kicks and misalignment (O1)
-
-In the absence of BH natal kicks, the preponderance of observed BH-BH binaries consistent with χeff≃0\chi_{\rm eff}\simeq 0
-(e.g., <mark>GW150914</mark> and GW170104)
-provided conditional evidence in favor of small BH natal spins. But even small BH natal kicks can frequently produce
-significant spin-orbit misalignment. Once one incorporates models that permit nonzero BH natal kicks, then
-even binary BHs with …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…bout the second-born spin rather than the first. Paradoxically, large natal spin on the
-first born BH is consistent with observations. The second born BH cannot significantly misalign its
-spin through a natal kick; therefore, for comparable mass binaries like <mark>GW150914</mark>, we know that the second-born BH spin
-must be small, if it is strongly aligned. More broadly, since observations rule out large χeff\chi_{\rm eff}, binary
-formation scenarios with tides and with χ1&gt;χ2\chi_{1}&gt;\chi_{2} fit the data substantially better
-than sc…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">acknowledgements</span>…nly account for
-some of the degrees of freedom.
-
-To verify and better understand our results, we can also approximate the likelihood function, using
-suitable summary statistics. As an example, Abbott, B. P. et al. (2016g) [49] reproduce parameter estimates of
-<mark>GW150914</mark> using a Gaussian approximation to the likelihood and the assumption of perfect spin-orbit alignment. Using
-this approximation, and a similar approximation for GW151226, we can alternatively approximate each integral appearing
-in the likelihood by using the (w…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>… eff}\simeq-0.12); the reported network SNR of GW170104 (i.e., ρ≃13.0\rho\simeq 13.0); and a suitable single-detector noise power spectrum. Our effective Fisher matrix estimate for the inverse
-covariance matrix Γ\Gamma [98] adopted the noise power spectrum at
-<mark>GW150914</mark>, using a minimum frequency fmin=30​Hzf_{\rm min}=30{\rm Hz}; employed the (nonprecessing) SEOBNRv4 approximation [99],
-evaluated on a grid in ℳc,η,χ1,z,χ2,z\mathcal{M}_{\mathrm{c}},\eta,\chi_{1,z},\chi_{2,z}; and fit as a quadratic function of ℳc,η,χeff\mathc…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…al{M}_{\mathrm{c}},\eta,\chi_{1,z},\chi_{2,z}; and fit as a quadratic function of ℳc,η,χeff\mathcal{M}_{\mathrm{c}},\eta,\chi_{\rm eff}.
-We adopt a nonprecessing model and lower-dimensional Fisher matrix approximation because the posterior of this event,
-like <mark>GW150914</mark>, is consistent with nonprecessing spins and is very well approximated, in these parameters, by a
-nonprecessing model; see, e.g., [49].
-This simple approximation captures important correlations between ℳc,η\mathcal{M}_{\mathrm{c}},\eta and χeff\chi_{\rm eff}, …</div>
+    <details class="lines"><summary>Show the sentences (11, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …the empirical cumulative distribution for χeff\chi_{\rm eff}, derived from the collection of events α=\alpha= GW150914, GW151226, and LVT151012 via their posterior cumulative distributions Pα​(χeff)P_{\alpha}(\chi_{\rm eff}) via…</li><li><span class="sec">introduction</span> …bserving run of T1=48.6​daysT_{1}=48.6\;{\rm days}, LIGO has reported the observation of three BH-BH mergers: GW150914, LVT151012, and GW151226 [1, 77, 4].</li><li><span class="sec">introduction</span> …llows, we will mainly discuss comparisons of our models to all of LIGO’s reported detection candidates in O1: GW150914, GW151226, and LVT151012 [4].</li><li><span class="sec">results</span> Unless otherwise noted, we compare our models to LIGO’s O1 observations (i.e., the observation of GW150914, GW151226, and LVT151012), using each model’s correlated predictions for the event rate, joint mass distribut…</li><li><span class="sec">results</span> …(M10) requires small natal BH spin: Left panel: A plot of the Bayes factor KK derived by comparing GW151226, GW150914, and LVT151012 to the M10 (blue) formation scenario, versus the magnitude of assumed BH natal spin χ1=χ2\chi_…</li><li><span class="sec">results</span> For example, LIGO’s observations of GW150914 severely constrain its component spins to be small, if the spins must be strictly and positively aligned [48,…</li><li><span class="sec">results</span> …natal kicks, the preponderance of observed BH-BH binaries consistent with χeff≃0\chi_{\rm eff}\simeq 0 (e.g., GW150914 and GW170104) provided conditional evidence in favor of small BH natal spins.</li><li><span class="sec">results</span> …BH cannot significantly misalign its spin through a natal kick; therefore, for comparable mass binaries like GW150914, we know that the second-born BH spin must be small, if it is strongly aligned.</li></ul>
     </details>
     
   </div>
@@ -288,74 +201,15 @@ This simple approximation captures important correlations between ℳc,η\mathca
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>6 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…d independently and uniformly in magnitude. This
-prior was adopted when analyzing all LIGO events. The
-solid black line shows the empirical cumulative distribution for χeff\chi_{\rm eff}, derived from the collection of
-events α=\alpha= GW150914, GW151226, and <mark>LVT151012</mark> via their
-posterior cumulative distributions Pα​(χeff)P_{\alpha}(\chi_{\rm eff}) via P⁡(χeff)=∑αPα​(χeff)/3P(\chi_{\rm eff})=\sum_{\alpha}P_{\alpha}(\chi_{\rm eff})/3. In this curve, the posterior distributions are provided by LIGO’s full O1 analysis results …</div>
+    <p class="where">Named 6 times:
+      introduction ×3, results ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/1709.01943v3#:~:text=LVT151012" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">LVT151012</span> or <span class="mono hit">GW151012</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…tails.
-
-III Comparison with gravitational wave observations
-
-III.1 Gravitational wave observations of binary black holes
-
-During its first observing run of T1=48.6​daysT_{1}=48.6\;{\rm days},
-LIGO has reported the observation of three BH-BH mergers: GW150914,
-<mark>LVT151012</mark>, and GW151226
-[1, 77, 4]. In an analysis
-of T2=11​daysT_{2}=11~{\rm days} of data from its second
-observing run, at comparable sensitivity, LIGO has since reported the
-observation of another binary BH: GW170104
-[5].
-To draw out more insight from each observat…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…i_{2}=0.5,
-henceforth denoted
-collectively as JJ, and henceforth use ln⁡K\ln K as shorthand for ln⁡Ki​J\ln K_{iJ}.
-
-In what follows, we will mainly discuss comparisons of our models to all of LIGO’s reported detection candidates in O1: GW150914, GW151226, and
-<mark>LVT151012</mark> [4].
-We do this because LIGO’s
-O1 observational time and survey results are well-defined and comprehensively reported [4]; because we can employ detailed
-inference results for all O1 events; and because, as we show below, adding GW170104 to our analysis produ…</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">results</span>…ults below.
-
-IV Results
-
-In this section we calculate the Bayes factor ln⁡K\ln K for each of the binary evolution models described above. Unless
-otherwise noted, we compare our models to LIGO’s O1 observations (i.e., the observation of GW150914, GW151226, and
-<mark>LVT151012</mark>), using each model’s correlated predictions for the event rate, joint mass
-distribution (m1,m2m_{1},m_{2}), χeff\chi_{\rm eff} distribution, and the distribution of θ1,θ2\theta_{1},\theta_{2}.
-For numerical context, a Bayes factor of ln⁡10≃2.3\ln 10\simeq 2.3…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…g., more than 148:1 odds against), whereas anything within 22 of the peak are reasonably likely.
-
-Figure 3: Standard small-kick scenario (M10) requires small natal BH spin: Left panel: A plot of the Bayes factor KK derived by
-comparing GW151226, GW150914, and <mark>LVT151012</mark> to the M10 (blue) formation scenario, versus the magnitude of assumed BH
-natal spin χ1=χ2\chi_{1}=\chi_{2}. All other models are shown for comparison. Colors and numbers indicate the
-Bayes factor; dark colors denote particularly unlikely configurations. Right…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…{2}/m_{1}&gt;0.5, m1+m2&lt;75​M⊙m_{1}+m_{2}&lt;75M_{\odot},
-m2&gt;3​M⊙m_{2}&gt;3M_{\odot}, and m1&lt;40​M⊙m_{1}&lt;40M_{\odot}). Counting up the distinct waveforms used by gravitational wave searches in O2
-[84], including spin, there are only 236
-templates with chirp masses above <mark>LVT151012</mark> (i.e., ℳc&gt;15​M⊙\mathcal{M}_{\mathrm{c}}&gt;15M_{\odot}), and only ≃\simeq 1,200 with chirp masses above GW151226 (i.e.,
-ℳc&gt;8.88​M⊙\mathcal{M}_{\mathrm{c}}&gt;8.88M_{\odot}).
-This estimate is highly optimistic, because it neglects distance and hence redshift uncerta…</div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …distribution for χeff\chi_{\rm eff}, derived from the collection of events α=\alpha= GW150914, GW151226, and LVT151012 via their posterior cumulative distributions Pα​(χeff)P_{\alpha}(\chi_{\rm eff}) via P⁡(χeff)=∑αPα​(χeff)/3P(…</li><li><span class="sec">introduction</span> …un of T1=48.6​daysT_{1}=48.6\;{\rm days}, LIGO has reported the observation of three BH-BH mergers: GW150914, LVT151012, and GW151226 [1, 77, 4].</li><li><span class="sec">introduction</span> …scuss comparisons of our models to all of LIGO’s reported detection candidates in O1: GW150914, GW151226, and LVT151012 [4].</li><li><span class="sec">results</span> …wise noted, we compare our models to LIGO’s O1 observations (i.e., the observation of GW150914, GW151226, and LVT151012), using each model’s correlated predictions for the event rate, joint mass distribution (m1,m2m_{1},m_{2}), χ…</li><li><span class="sec">results</span> …s small natal BH spin: Left panel: A plot of the Bayes factor KK derived by comparing GW151226, GW150914, and LVT151012 to the M10 (blue) formation scenario, versus the magnitude of assumed BH natal spin χ1=χ2\chi_{1}=\chi_{2}.</li><li><span class="sec">results</span> …gravitational wave searches in O2 [84], including spin, there are only 236 templates with chirp masses above LVT151012 (i.e., ℳc&gt;15​M⊙\mathcal{M}_{\mathrm{c}}&gt;15M_{\odot}), and only ≃\simeq 1,200 with chirp masses above GW151226…</li></ul>
     </details>
     
   </div>
@@ -392,134 +246,15 @@ This estimate is highly optimistic, because it neglects distance and hence redsh
 <section class="card" data-i="2" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>17 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ngle compelling and unambiguous observation can be explained only with a BH natal kick, the assumption of small but nonzero BH natal kicks provides a natural explanation for several observations, including the posterior spin-orbit misalignment distribution of <mark>GW151226</mark> and the galactic x-ray binary misalignment [32, 33, 34, 35] and recoil velocity [36, 37, 38, 39, 40, 41]. Modest BH natal kicks can be produced by, for example, suitable neutrino-driven supernova engines; see, e.g., [42] and references therein.
-
-We compare bi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…spins generated independently and uniformly in magnitude. This
-prior was adopted when analyzing all LIGO events. The
-solid black line shows the empirical cumulative distribution for χeff\chi_{\rm eff}, derived from the collection of
-events α=\alpha= GW150914, <mark>GW151226</mark>, and LVT151012 via their
-posterior cumulative distributions Pα​(χeff)P_{\alpha}(\chi_{\rm eff}) via P⁡(χeff)=∑αPα​(χeff)/3P(\chi_{\rm eff})=\sum_{\alpha}P_{\alpha}(\chi_{\rm eff})/3. In this curve, the posterior distributions are provided by LIGO’s full O1 an…</div>
+    <p class="where">Named 17 times:
+      results ×10, introduction ×4, conclusion ×2, acknowledgements.</p>
+    <p class="where"><a href="https://arxiv.org/html/1709.01943v3#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…parison with gravitational wave observations
-
-III.1 Gravitational wave observations of binary black holes
-
-During its first observing run of T1=48.6​daysT_{1}=48.6\;{\rm days},
-LIGO has reported the observation of three BH-BH mergers: GW150914,
-LVT151012, and <mark>GW151226</mark>
-[1, 77, 4]. In an analysis
-of T2=11​daysT_{2}=11~{\rm days} of data from its second
-observing run, at comparable sensitivity, LIGO has since reported the
-observation of another binary BH: GW170104
-[5].
-To draw out more insight from each observation, rather th…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>….5\chi_{1}=\chi_{2}=0.5,
-henceforth denoted
-collectively as JJ, and henceforth use ln⁡K\ln K as shorthand for ln⁡Ki​J\ln K_{iJ}.
-
-In what follows, we will mainly discuss comparisons of our models to all of LIGO’s reported detection candidates in O1: GW150914, <mark>GW151226</mark>, and
-LVT151012 [4].
-We do this because LIGO’s
-O1 observational time and survey results are well-defined and comprehensively reported [4]; because we can employ detailed
-inference results for all O1 events; and because, as we show below, adding GW170104 to our…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ted by our results below.
-
-IV Results
-
-In this section we calculate the Bayes factor ln⁡K\ln K for each of the binary evolution models described above. Unless
-otherwise noted, we compare our models to LIGO’s O1 observations (i.e., the observation of GW150914, <mark>GW151226</mark>, and
-LVT151012), using each model’s correlated predictions for the event rate, joint mass
-distribution (m1,m2m_{1},m_{2}), χeff\chi_{\rm eff} distribution, and the distribution of θ1,θ2\theta_{1},\theta_{2}.
-For numerical context, a Bayes factor of ln⁡10≃2.3\…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…n
-effect implausible (e.g., more than 148:1 odds against), whereas anything within 22 of the peak are reasonably likely.
-
-Figure 3: Standard small-kick scenario (M10) requires small natal BH spin: Left panel: A plot of the Bayes factor KK derived by
-comparing <mark>GW151226</mark>, GW150914, and LVT151012 to the M10 (blue) formation scenario, versus the magnitude of assumed BH
-natal spin χ1=χ2\chi_{1}=\chi_{2}. All other models are shown for comparison. Colors and numbers indicate the
-Bayes factor; dark colors denote particularly unlik…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…rom LIGO’s
-measurements (e.g., of χeff\chi_{\rm eff}). For example, LIGO’s observations of GW150914 severely constrain
-its component spins to be small, if the spins must be strictly and positively aligned [48, 49].
-Conversely, however, LIGO’s observations for <mark>GW151226</mark> require some nonzero spin.
-Combined, if we assume all BHs have spins drawn from the same, mass-independent distribution and have negligible
-spin-orbit misalignments, then we conclude BH natal
-spins should be preferentially small. [We will return to this state…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…lain the data, for a wide range of BH spins.
-When natal kicks greater than 25​km/s25{\rm km/s} are included, the BH natal spin is nearly unconstrained. As
-is particularly apparent in Fig. 4, some natal BH spin is required to reproduce the nonzero spin seen in <mark>GW151226</mark>.
-
-Larger kicks produce frequent, large spin-orbit misalignments and therefore greater consistency with the properties of
-all of LIGO’s observed binary BHs. Spin-orbit misalignment is consistent with
-the spin distribution of GW151226, and helpful to explain th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…e the nonzero spin seen in GW151226.
-
-Larger kicks produce frequent, large spin-orbit misalignments and therefore greater consistency with the properties of
-all of LIGO’s observed binary BHs. Spin-orbit misalignment is consistent with
-the spin distribution of <mark>GW151226</mark>, and helpful to explain the distribution of χeff\chi_{\rm eff} for LIGO’s other observations.
-However, larger kicks also disrupt more binaries, substantially decreasing
-the overall event rate (see Fig. 1).
-Fig. 4 illustrates the tradeoff between spin-orbit mi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…simeq 0. The “tides” scenario produces smaller
-misalignments for the second-born BH.
-Fig. 4 quantitatively illustrates how the “no tides” scenario marginally fits the data
-better. In order to reproduce the inferred distribution of spin-orbit misalignments (in <mark>GW151226</mark>) and low χeff\chi_{\rm eff} (for all
-events so far), the
-“tides” models likely have (a) larger BH natal kicks ≃200​kms/s\simeq 200{\rm kms/s} and (b) low BH natal spins
-χ1,2≲0.2\chi_{1,2}\lesssim 0.2. Conversely, when “no tides” act to realign the second BH s…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…e
-processes that can misalign heavy BH spins, like M10; and which adopt a common natal BH spin for all BHs are difficult to reconcile with
-LIGO’s observations.
-On the one hand, GW170104 would require extremely small natal spins in this scenario; on the
-other, <mark>GW151226</mark> requires nonzero spin.
-Of course, a probabilistic (mixture) model allowing for a wide range of mass-independent BH natal spins can easily
-reproduce LIGO’s observations, even without permitting any alignment; see also [42],
-which adopts a deterministic model t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ropic BH natal kicks. This conclusion follows from the modest
-χeff\chi_{\rm eff} seen so far for all events.
-Conversely, if we assume efficient alignment of the second-born BH, then the observed distribution of χeff\chi_{\rm eff}
-(and θ1\theta_{1}, mostly for <mark>GW151226</mark>) suggest large BH natal kicks, as illustrated by the bottom right panel of Fig. 4.
-
-IV.6 Information provided by the mass distribution 
-
-Figure 7: Detection-weighted total mass distributions of our models, labeled by their
-σkick\sigma_{\mathrm{kick}} values, …</div>
+    <details class="lines"><summary>Show the sentences (17, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …natural explanation for several observations, including the posterior spin-orbit misalignment distribution of GW151226 and the galactic x-ray binary misalignment [32, 33, 34, 35] and recoil velocity [36, 37, 38, 39, 40, 41].</li><li><span class="sec">introduction</span> …cal cumulative distribution for χeff\chi_{\rm eff}, derived from the collection of events α=\alpha= GW150914, GW151226, and LVT151012 via their posterior cumulative distributions Pα​(χeff)P_{\alpha}(\chi_{\rm eff}) via P⁡(χeff)=…</li><li><span class="sec">introduction</span> …aysT_{1}=48.6\;{\rm days}, LIGO has reported the observation of three BH-BH mergers: GW150914, LVT151012, and GW151226 [1, 77, 4].</li><li><span class="sec">introduction</span> …will mainly discuss comparisons of our models to all of LIGO’s reported detection candidates in O1: GW150914, GW151226, and LVT151012 [4].</li><li><span class="sec">results</span> Unless otherwise noted, we compare our models to LIGO’s O1 observations (i.e., the observation of GW150914, GW151226, and LVT151012), using each model’s correlated predictions for the event rate, joint mass distribution (m1,m2…</li><li><span class="sec">results</span> …k scenario (M10) requires small natal BH spin: Left panel: A plot of the Bayes factor KK derived by comparing GW151226, GW150914, and LVT151012 to the M10 (blue) formation scenario, versus the magnitude of assumed BH natal spin…</li><li><span class="sec">results</span> Conversely, however, LIGO’s observations for GW151226 require some nonzero spin.</li><li><span class="sec">results</span> As is particularly apparent in Fig. 4, some natal BH spin is required to reproduce the nonzero spin seen in GW151226.</li></ul>
     </details>
     
   </div>
@@ -556,177 +291,15 @@ Figure 7: Detection-weighted total mass distributions of our models, labeled by 
 <section class="card" data-i="3" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>26 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…II.2 Comparing models to observations
-
-IV Results
-
-IV.1 Standard scenario and limits on BH natal spins (O1)
-
-IV.2 BH natal kicks and misalignment (O1)
-
-IV.3 Tides and realignment (O1)
-
-IV.4 BH natal spins, given misalignment (O1)
-
-IV.5 Information provided by <mark>GW170104</mark>
-
-IV.6 Information provided by the mass distribution
-
-V Predictions and projections
-
-VI Conclusions
-
-Acknowledgements
-
-A APPROXIMATING PARAMETER DISTRIBUTIONS FROM FINITE SAMPLES
-
-B HIERARCHICAL COMPARISONS OF OBSERVATIONS WITH DATA
-
-C APPROXIMATE POSTERIOR DI…</div>
+    <p class="where">Named 26 times:
+      results ×8, appendix ×8, introduction ×7, title/headings ×2, acknowledgements.</p>
+    <p class="where"><a href="https://arxiv.org/html/1709.01943v3#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…ion provided by the mass distribution
-
-V Predictions and projections
-
-VI Conclusions
-
-Acknowledgements
-
-A APPROXIMATING PARAMETER DISTRIBUTIONS FROM FINITE SAMPLES
-
-B HIERARCHICAL COMPARISONS OF OBSERVATIONS WITH DATA
-
-C APPROXIMATE POSTERIOR DISTRIBUTION FOR <mark>GW170104</mark>
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1709.01943v3 [astro-ph.HE] 20 Jun 2018
-
-Explaining LIGO’s observations via isolated binary evolution with natal kicks
-
-Daniel Wysocki
-
-Email: dw2081@rit.edu
-
-Affiliation: Rochester I…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…P⁡(χeff)=∑αPα​(χeff)/3P(\chi_{\rm eff})=\sum_{\alpha}P_{\alpha}(\chi_{\rm eff})/3. In this curve, the posterior distributions are provided by LIGO’s full O1 analysis results [4], as described
-in the text. The solid red
-line shows the corresponding result when <mark>GW170104</mark> is included. The approximate posterior distribution for GW170104 is
-based on published results, as described in Appendix C.
-
-The procedure described above samples a synthetic universe and synthetic observations by LIGO. However, to
-compare to LIGO’s observati…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…chi_{\rm eff})/3. In this curve, the posterior distributions are provided by LIGO’s full O1 analysis results [4], as described
-in the text. The solid red
-line shows the corresponding result when GW170104 is included. The approximate posterior distribution for <mark>GW170104</mark> is
-based on published results, as described in Appendix C.
-
-The procedure described above samples a synthetic universe and synthetic observations by LIGO. However, to
-compare to LIGO’s observations, we need to be able to assess the likelihood of generic binar…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…e observation of three BH-BH mergers: GW150914,
-LVT151012, and GW151226
-[1, 77, 4]. In an analysis
-of T2=11​daysT_{2}=11~{\rm days} of data from its second
-observing run, at comparable sensitivity, LIGO has since reported the
-observation of another binary BH: <mark>GW170104</mark>
-[5].
-To draw out more insight from each observation, rather than use the
-coarse summary statistics LIGO provides in tabular form, we employ the
-underlying posterior parameter distribution estimates provided by the
-LIGO Scientific Collaboration for the three O…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ight from each observation, rather than use the
-coarse summary statistics LIGO provides in tabular form, we employ the
-underlying posterior parameter distribution estimates provided by the
-LIGO Scientific Collaboration for the three O1 events
-[4, 48, 47]. For <mark>GW170104</mark>, we instead adopt an approximate posterior
-distribution described in
-Appendix C based solely on reported tabular results; that said, we
-are confident that this approximation makes no difference to our conclusions.
-For each event, for brevity indexed by an int…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…50914, GW151226, and
-LVT151012 [4].
-We do this because LIGO’s
-O1 observational time and survey results are well-defined and comprehensively reported [4]; because we can employ detailed
-inference results for all O1 events; and because, as we show below, adding <mark>GW170104</mark> to our analysis produces little
-change to our results. Using the approximate posterior described in Appendix C for GW170104, we will also compare all reported LIGO observations (O1 and GW170104) to our models.
-
-Critically, for clarity and to emphasize the inf…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…comprehensively reported [4]; because we can employ detailed
-inference results for all O1 events; and because, as we show below, adding GW170104 to our analysis produces little
-change to our results. Using the approximate posterior described in Appendix C for <mark>GW170104</mark>, we will also compare all reported LIGO observations (O1 and GW170104) to our models.
-
-Critically, for clarity and to emphasize the information content of the data, in several of our figures we will illustrate the marginal
-likelihood of the data p⁡({d}|Λ)p(\{…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… results for all O1 events; and because, as we show below, adding GW170104 to our analysis produces little
-change to our results. Using the approximate posterior described in Appendix C for GW170104, we will also compare all reported LIGO observations (O1 and <mark>GW170104</mark>) to our models.
-
-Critically, for clarity and to emphasize the information content of the data, in several of our figures we will illustrate the marginal
-likelihood of the data p⁡({d}|Λ)p(\{d\}|\Lambda) evaluated assuming all binaries are formed with identical…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… (but fixed); color indicates the Bayes factor. As this scenario predicts strictly aligned spins for the heaviest BH-BH binaries, only small BH natal spins are consistent with LIGO’s
-constraints on the (aligned) BH spin parameter χeff\chi_{\rm eff} in O1 (and <mark>GW170104</mark>); see
-Abbott, B. P. et al. (2016g) [49], Abbott, B. P. et al. (2017) [5] and
-[54].
-
-IV.1 Standard scenario and limits on BH natal spins (O1)
-
-The M10 model allows us to examine the implications of binary evolution with effectively zero natal kicks. The M10 mo…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ll BHs have the same natal spins, then this natal spin is likely small.
-
-IV.2 BH natal kicks and misalignment (O1)
-
-In the absence of BH natal kicks, the preponderance of observed BH-BH binaries consistent with χeff≃0\chi_{\rm eff}\simeq 0
-(e.g., GW150914 and <mark>GW170104</mark>)
-provided conditional evidence in favor of small BH natal spins. But even small BH natal kicks can frequently produce
-significant spin-orbit misalignment. Once one incorporates models that permit nonzero BH natal kicks, then
-even binary BHs with large BH nata…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…and natal kick (σkick\sigma_{\mathrm{kick}}). The left and right panels
-correspond to “no tides” and “tides,” respectively.
-The top two panels use only the O1 events; the bottom two panels account for the events and network sensitivity updates
-reported in the <mark>GW170104</mark> discovery paper. In each panel, the zero point of the Bayes factor is normalized to the
-BH-BH formation scenario with χ1=χ2=0.5\chi_{1}=\chi_{2}=0.5 and σ=70​km/s\sigma=70\;{\rm km/s} and “tides.”
-
-IV.3 Tides and realignment (O1)
-
-All other things being equal…</div>
+    <details class="lines"><summary>Show the sentences (22, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> IV.5 Information provided by GW170104</li><li><span class="sec">title/headings</span> C APPROXIMATE POSTERIOR DISTRIBUTION FOR GW170104</li><li><span class="sec">introduction</span> The solid red line shows the corresponding result when GW170104 is included.</li><li><span class="sec">introduction</span> The approximate posterior distribution for GW170104 is based on published results, as described in Appendix C.</li><li><span class="sec">introduction</span> …econd observing run, at comparable sensitivity, LIGO has since reported the observation of another binary BH: GW170104 [5].</li><li><span class="sec">introduction</span> For GW170104, we instead adopt an approximate posterior distribution described in Appendix C based solely on reported tabu…</li><li><span class="sec">introduction</span> …4]; because we can employ detailed inference results for all O1 events; and because, as we show below, adding GW170104 to our analysis produces little change to our results.</li><li><span class="sec">introduction</span> Using the approximate posterior described in Appendix C for GW170104, we will also compare all reported LIGO observations (O1 and GW170104) to our models.</li></ul>
     </details>
     
   </div>

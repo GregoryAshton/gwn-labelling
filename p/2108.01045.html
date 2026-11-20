@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,163 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>GWTC-2.1: Deep extended catalog of compact binary coalescences observed by LIGO and Virgo during the first half of the third observing run</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2108.01045" target="_blank" rel="noopener" class="mono">arXiv:2108.01045</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The second Gravitational-Wave Transient Catalog, GWTC-2, reported on 39 compact binary coalescences observed by the Advanced LIGO and Advanced Virgo detectors between 1 April 2019 &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mrow&gt;&lt;mml:mn&gt;15&lt;/mml:mn&gt;&lt;mml:mo&gt;∶&lt;/mml:mo&gt;&lt;mml:mn&gt;00&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; UTC and 1 October 2019 &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mrow&gt;&lt;mml:mn&gt;15&lt;/mml:mn&gt;&lt;mml:mo&gt;∶&lt;/mml:mo&gt;&lt;mml:mn&gt;00&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; UTC. Here, we present GWTC-2.1, which reports on a deeper list of candidate events observed over the same period. We analyze the final version of the strain data over this period with improved calibration and better subtraction of excess noise, which has been publicly released. We employ three matched-filter search pipelines for candidate identification, and estimate the probability of astrophysical origin for each candidate event. While GWTC-2 used a false alarm rate threshold of 2 per year, we include in GWTC-2.1, 1201 candidates that pass a false alarm rate threshold of 2 per day. We calculate the source properties of a subset of 44 high-significance candidates that have a probability of astrophysical origin greater than 0.5. Of these candidates, 36 have been reported in GWTC-2. We also calculate updated source properties for all binary black hole events previously reported in GWTC-1. If the eight additional high-significance candidates presented here are astrophysical, the mass range of events that are unambiguously identified as binary black holes (both objects &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mo&gt;≥&lt;/mml:mo&gt;&lt;mml:mn&gt;3&lt;/mml:mn&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;mml:mo stretchy=&#34;false&#34;&gt;⊙&lt;/mml:mo&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;) is increased compared to GWTC-2, with total masses from &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mo&gt;∼&lt;/mml:mo&gt;&lt;mml:mn&gt;14&lt;/mml:mn&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;mml:mo stretchy=&#34;false&#34;&gt;⊙&lt;/mml:mo&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; for GW190924_021846 to &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mo&gt;∼&lt;/mml:mo&gt;&lt;mml:mn&gt;182&lt;/mml:mn&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;mml:mo stretchy=&#34;false&#34;&gt;⊙&lt;/mml:mo&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; for GW190426_190642. Source properties calculated using our default prior suggest that the primary components of two new candidate events (GW190403_051519 and GW190426_190642) fall in the mass gap predicted by pair-instability supernova theory. We also expand the population of binaries with significantly asymmetric mass ratios reported in GWTC-2 by an additional two events (the mass ratio is less than 0.65 and 0.44 at 90% probability for GW190403_051519 and GW190917_114630 respectively), and find that two of the eight new events have effective inspiral spins &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;mml:mo&gt;&amp;gt;&lt;/mml:mo&gt;&lt;mml:mn&gt;0&lt;/mml:mn&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; (at 90% credibility), while no binary is consistent with &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;mml:mo&gt;&amp;lt;&lt;/mml:mo&gt;&lt;mml:mn&gt;0&lt;/mml:mn&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; at the same significance. We provide updated estimates for rates of binary black hole and binary neutron star coalescence in the local Universe.</p></details>
+<div class="small mut mono">arXiv:2108.01045</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The second Gravitational-Wave Transient Catalog, GWTC-2, reported on 39 compact binary coalescences observed by the Advanced LIGO and Advanced Virgo detectors between 1 April 2019 &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mrow&gt;&lt;mml:mn&gt;15&lt;/mml:mn&gt;&lt;mml:mo&gt;∶&lt;/mml:mo&gt;&lt;mml:mn&gt;00&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; UTC and 1 October 2019 &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mrow&gt;&lt;mml:mn&gt;15&lt;/mml:mn&gt;&lt;mml:mo&gt;∶&lt;/mml:mo&gt;&lt;mml:mn&gt;00&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; UTC. Here, we present GWTC-2.1, which reports on a deeper list of candidate events observed over the same period. We analyze the final version of the strain data over this period with improved calibration and better subtraction of excess noise, which has been publicly released. We employ three matched-filter search pipelines for candidate identification, and estimate the probability of astrophysical origin for each candidate event. While GWTC-2 used a false alarm rate threshold of 2 per year, we include in GWTC-2.1, 1201 candidates that pass a false alarm rate threshold of 2 per day. We calculate the source properties of a subset of 44 high-significance candidates that have a probability of astrophysical origin greater than 0.5. Of these candidates, 36 have been reported in GWTC-2. We also calculate updated source properties for all binary black hole events previously reported in GWTC-1. If the eight additional high-significance candidates presented here are astrophysical, the mass range of events that are unambiguously identified as binary black holes (both objects &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mo&gt;≥&lt;/mml:mo&gt;&lt;mml:mn&gt;3&lt;/mml:mn&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;mml:mo stretchy=&#34;false&#34;&gt;⊙&lt;/mml:mo&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;) is increased compared to GWTC-2, with total masses from &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mo&gt;∼&lt;/mml:mo&gt;&lt;mml:mn&gt;14&lt;/mml:mn&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;mml:mo stretchy=&#34;false&#34;&gt;⊙&lt;/mml:mo&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; for GW190924_021846 to &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mo&gt;∼&lt;/mml:mo&gt;&lt;mml:mn&gt;182&lt;/mml:mn&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;mml:mo stretchy=&#34;false&#34;&gt;⊙&lt;/mml:mo&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; for GW190426_190642. Source properties calculated using our default prior suggest that the primary components of two new candidate events (GW190403_051519 and GW190426_190642) fall in the mass gap predicted by pair-instability supernova theory. We also expand the population of binaries with significantly asymmetric mass ratios reported in GWTC-2 by an additional two events (the mass ratio is less than 0.65 and 0.44 at 90% probability for GW190403_051519 and GW190917_114630 respectively), and find that two of the eight new events have effective inspiral spins &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;mml:mo&gt;&amp;gt;&lt;/mml:mo&gt;&lt;mml:mn&gt;0&lt;/mml:mn&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; (at 90% credibility), while no binary is consistent with &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;mml:mo&gt;&amp;lt;&lt;/mml:mo&gt;&lt;mml:mn&gt;0&lt;/mml:mn&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; at the same significance. We provide updated estimates for rates of binary black hole and binary neutron star coalescence in the local Universe.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/pdf/2108.01045v2" target="_blank" rel="noopener">Open the paper (PDF, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched; it's a PDF, so use your viewer's search.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">12 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">12 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>7 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…as-
-tronomy, started by the Advanced Laser Interferometer
-Gravitational-Wave Observatory (LIGO) [1] and the Ad-
-vanced Virgo [2] detectors. The ﬁrst observing run (O1)
-of the advanced detectors yielded the ﬁrst detection of
-GWs from a binary black hole (BBH), <mark>GW150914</mark> [3].
-By the end of O1, the LIGO Scientiﬁc and Virgo Collab-
-oration (LVC) had reported on three BBH events [4].
-The second observing run (O2) of the advanced de-
-tectors saw the ﬁrst direct detection of GWs from a
-binary neutron star (BNS), GW170817 [5]. This…</div>
+    <p class="where">Named 7 times:
+      appendix ×3, methods ×2, introduction, data.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">appendix</span>…o the broad support, with stronger
-preference for equal masses, reported in GWTC-2.
-Independent results with the IMRPhenomXPHM
-model for many of these events were previously pre-
-
-31
-Event M
-(M⊙)
-M
-(M⊙)
-m1
-(M⊙)
-m2
-(M⊙)
-χeﬀ DL
-(Gpc)
-z M f
-(M⊙)
-χf ∆Ω
-(deg2)
-SNR
-<mark>GW150914</mark> 64.5+3.7
-−3.2 27.9+1.7
-−1.5 34.6+4.4
-−2.6 30.0+2.9
-−4.6 −0.04+0.12
-−0.14 0.47+0.14
-−0.16 0.10+0.03
-−0.03 61.5+3.4
-−2.9 0.68+0.05
-−0.05 250 26.0+0.1
-−0.2
-GW151012 38 .8+10.3
-−4.7 15.6+2.3
-−1.5 24.8+14.5
-−6.3 13.6+4.5
-−4.9 0.12+0.28
-−0.21 1.00+0.64
-−0.49 0.20+0…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…s con-
-ﬁgurations used and the generated datasets containing
-the source properties inferred in order to encourage re-
-producibility and further model comparisons, especially
-as more events are added to the population of observed
-CBCs.
-
-32
-0 30 60 90 120
-m1/M⊙
-<mark>GW150914</mark>
-GW151012
-GW151226
-GW170104
-GW170608
-GW170729
-GW170809
-GW170814
-GW170818
-GW170823
-0 20 40 60
-m2/M⊙
-0.0 0.5 1.0
-q
-−1 0 1
-χeﬀ
-0 2 4 6
-DL/Gpc
-FIG. 7. Marginal posterior distributions on the primary mass m1, secondary mass m2, mass ratio q, eﬀective inspiral spin …</div>
-    
-    
-    <details><summary>4 more</summary>
-    <div class="mention"><span class="sec">appendix</span>…ith Multiple Populations,” Phys. Rev. D 91,
-023005 (2015), arXiv:1302.5341 [astro-ph.IM].
-[27] B. P. Abbott et al. (LIGO Scientiﬁc Collaboration,
-Virgo Collaboration), “The Rate of Binary Black Hole
-Mergers Inferred from Advanced LIGO Observations
-Surrounding <mark>GW150914</mark>,” Astrophys. J.833, L1 (2016),
-arXiv:1602.03842 [astro-ph.HE].
-[28] B. P. Abbott et al. (LIGO Scientiﬁc Collaboration,
-Virgo Collaboration), “Supplement: The Rate of Bi-
-nary Black Hole Mergers Inferred from Advanced LIGO
-Observations Surrounding GW150914,” A…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…ing GW150914,” Astrophys. J.833, L1 (2016),
-arXiv:1602.03842 [astro-ph.HE].
-[28] B. P. Abbott et al. (LIGO Scientiﬁc Collaboration,
-Virgo Collaboration), “Supplement: The Rate of Bi-
-nary Black Hole Mergers Inferred from Advanced LIGO
-Observations Surrounding <mark>GW150914</mark>,” Astrophys. J.
-Suppl. 227, 14 (2016), arXiv:1606.03939 [astro-ph.HE].
-[29] R. Abbott et al. (LIGO Scientiﬁc, VIRGO), “Search
-for Lensing Signatures in the Gravitational-Wave
-Observations from the First Half of LIGO–Virgo’s
-Third Observing Run,” Astrophys. J.…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…onitor (VIM) Web User Interface (WUI) User Guide ,
-Tech. Rep. VIR-0546A-16 (Virgo, 2016).
-[89] B. P. Abbott et al. (LIGO Scientiﬁc Collaboration,
-Virgo Collaboration), “Characterization of transient
-noise in Advanced LIGO relevant to gravitational wave
-signal <mark>GW150914</mark>,” Class. Quantum Grav. 33, 134001
-(2016), arXiv:1602.03844 [gr-qc].
-[90] L. K. Nuttall, “Characterizing transient noise in the
-LIGO detectors,” Phil. Trans. Roy. Soc. Lond. A 376,
-20170286 (2018), arXiv:1804.07592 [astro-ph.IM].
-[91] S. Soni et al. , “Discove…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ased gravitational-wave
-observations using the lalinference software library,”
-Phys. Rev. D 91, 042003 (2015), arXiv:1409.7215 [gr-
-qc].
-[138] B. P. Abbott et al. (LIGO Scientiﬁc Collaboration,
-Virgo Collaboration), “Properties of the Binary Black
-Hole Merger <mark>GW150914</mark>,” Phys. Rev. Lett. 116, 241102
-(2016), arXiv:1602.03840 [gr-qc].
-[139] Lee S. Finn, “Detection, measurement and gravita-
-tional radiation,” Phys. Rev. D 46, 5236–5249 (1992),
-arXiv:gr-qc/9209010 [gr-qc].
-[140] I. M. Romero-Shaw et al., “Bayesian inference for…</div>
+    <details class="lines"><summary>Show the sentences (7): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …bserving run (O1) of the advanced detectors yielded the ﬁrst detection of GWs from a binary black hole (BBH), GW150914 [3].</li><li><span class="sec">appendix</span> 31 Event M (M⊙) M (M⊙) m1 (M⊙) m2 (M⊙) χeﬀ DL (Gpc) z M f (M⊙) χf ∆Ω (deg2) SNR GW150914 64.5+3.7 −3.2 27.9+1.7 −1.5 34.6+4.4 −2.6 30.0+2.9 −4.6 −0.04+0.12 −0.14 0.47+0.14 −0.16 0.10+0.03 −0.03 61.5…</li><li><span class="sec">appendix</span> 32 0 30 60 90 120 m1/M⊙ GW150914 GW151012 GW151226 GW170104 GW170608 GW170729 GW170809 GW170814 GW170818 GW170823 0 20 40 60 m2/M⊙ 0.0 0.5 1.0…</li><li><span class="sec">appendix</span> …o Collaboration), “The Rate of Binary Black Hole Mergers Inferred from Advanced LIGO Observations Surrounding GW150914,” Astrophys.</li><li><span class="sec">data</span> …n), “Supplement: The Rate of Bi- nary Black Hole Mergers Inferred from Advanced LIGO Observations Surrounding GW150914,” Astrophys.</li><li><span class="sec">methods</span> …o Collaboration), “Characterization of transient noise in Advanced LIGO relevant to gravitational wave signal GW150914,” Class.</li><li><span class="sec">methods</span> (LIGO Scientiﬁc Collaboration, Virgo Collaboration), “Properties of the Binary Black Hole Merger GW150914,” Phys.</li></ul>
     </details>
     
   </div>
@@ -315,159 +201,15 @@ arXiv:gr-qc/9209010 [gr-qc].
 <section class="card" data-i="1" data-event="GW190413_134308">
   <div class="ctx">
     <div class="evname mono">GW190413_134308</div>
-    <h3>8 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…etail the status
-of the detectors and interferometer subsystems [87, 88].
-Feedback from GW searches also gives an indication of
-the impact of data quality on the sensitivity of a search.
-To exclude identiﬁed instances of poor data quality from
-Name Mitigation
-<mark>GW190413 134308</mark> L1 glitch subtraction, glitch-only
-model
-GW190425 L1 glitch subtraction, glitch-only
-model
-GW190503 185404 L1 glitch subtraction, glitch-only
-model
-GW190513 205428 L1 glitch subtraction, glitch-only
-model
-GW190514 065416 L1 glitch subtraction, glitch-only
-mod…</div>
+    <p class="where">Named 8 times:
+      appendix ×6, introduction ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190413 134308</span> or <span class="mono hit">GW190413_134308</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>… 181802 HLV 8.7× 10−5 14.4 1.00 &lt; 1.0× 10−5 14.7 1.00 2.5× 10−4 13.1‡ 1.00 &lt; 1.2× 10−4 13.7‡ 1.00
-GW190412 HLV &lt; 1.0× 10−5 18.2 1.00 &lt; 1.0× 10−5 19.0 1.00 &lt; 1.1× 10−4 17.4‡ 1.00 &lt; 1.2× 10−4 17.9‡ 1.00
-GW190413 052954 HLV – – – – – – 170 8.5 0.13 0.82 8.5 0.93
-<mark>GW190413 134308</mark> HLV 0.34 10.3 0.99 39 10.1 0.04 21 9.3‡ 0.48 0.18 8.9 ‡ 0.99
-GW190421 213856 HL 1.2 9.7 0.99 0.0028 10.5 1.00 5.9 10.1 0.75 0.014 10.1 1.00
-GW190425 LV – – – 0.034† 12.9 0.78 – – – – – –
-GW190426 190642 HLV – – – – – – – – – 4.1 9.6 0.75
-GW190503 185404 HLV 0…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…ted both in this section and in
-Appendix A, the quoted source properties are taken
-from a set of posterior samples constructed from the
-two IMRPhenomXPHM and SEOBNRv4PHM analyses
-with each given equal weight. For a subset of events
-(GW151226, GW190413 052954, <mark>GW190413 134308</mark>,
-GW190421 213856, GW190426 190642, GW190521,
-GW190602 175927, GW190719 215514,
-GW190725 174728, GW190803 022701,
-GW190814, GW190828 063405, GW190828 065509,
-GW190917 114630, GW190926 050336 and
-GW190929 012149) the respective SEOBNRv4PHM
-analyses were incompl…</div>
-    
-    
-    <details><summary>5 more</summary>
-    <div class="mention"><span class="sec">appendix</span>…ately
-twice as distant as the most distant events that were re-
-ported in GWTC-2 [7, 8] as also shown in Appendix A 2.
-In addition GW190426 190642, GW190805 211137,
-GW190916 200658 and GW190926 050336 all have
-inferred distances comparable to, or larger than,
-<mark>GW190413 134308</mark>, further highlighting the access to the
-distant Universe provided in GWTC-2.1.
-Another eﬀect of the modest SNR of the new events is
-their comparatively poor localization on the sky. The
-best localized event is GW190805 211137 with a 90%
-credible region of ∆Ω …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…ed LIGO and Advanced Virgo, we provide a
-reanalysis of these 36 events using the BBH waveform
-models described in Sec. V A. We present results
-combining samples from analyses using both the
-IMRPhenomXPHM and SEOBNRv4PHM, with the
-exception of GW190413 052954, <mark>GW190413 134308</mark>,
-GW190421 213856, GW190521, GW190602 175927,
-GW190719 215514, GW190803 022701, GW190814,
-GW190828 063405, GW190828 065509 and
-GW190929 012149 which, as mentioned earlier in
-Sec. V D, were analysed using IMRPhenomXPHM
-only. As also described in Sec. V A, for t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…2
-−0.13 0.72+0.24
-−0.22 0.15+0.04
-−0.04 35.6+4.8
-−4.5 0.66+0.05
-−0.04 240 19 .8+0.2
-−0.3
-GW190413 052954 58.0+10.6
-−7.8 24.5+4.6
-−3.4 33.7+10.4
-−6.4 24.2+6.5
-−7.0 −0.04+0.27
-−0.32 3.32+1.91
-−1.40 0.56+0.25
-−0.21 55.5+10.1
-−7.3 0.67+0.10
-−0.12 650 9.0+0.4
-−0.8
-<mark>GW190413 134308</mark> 81 .3+16.8
-−11.8 33.3+7.8
-−6.3 51.3+16.6
-−12.6 30.4+11.7
-−12.7−0.01+0.28
-−0.38 3.80+2.48
-−1.83 0.62+0.32
-−0.26 78.0+16.1
-−11.5 0.68+0.12
-−0.18 630 10 .6+0.4
-−0.5
-GW190421 213856 73.6+13.2
-−9.5 31.4+6.0
-−4.6 42.0+10.1
-−7.4 32.0+8.3
-−9.8 −0.10+0.21
-−0.27 2.59+1…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…SEOBNRv4PHM analyses, with the exception of the SNRs that are taken from the IMRPhenomXPHM
-analysis alone (as RIFT, which was used for the SEOBNRv4PHM analysis, does not output that quantity). Additionally,
-following Sec. V D, the results for GW190413 052954, <mark>GW190413 134308</mark>, GW190421 213856, GW190521, GW190602 175927,
-GW190719 215514, GW190803 022701, GW190814, GW190828 063405, GW190828 065509 and GW190929 012149 are from
-analyses using the IMRPhenomXPHM model only. For GW190425, we report results from the high-spin (|⃗ χ1|&lt; 0.8…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…the one-dimensional posterior distributions are visualized in Fig. 8. Two-dimensional projections
-of the 90% credible regions in the M–q andM–χeﬀ planes are shown in grey in Fig. 4 and Fig. 5.
-
-34
-0 40 80 120 160
-m1/M⊙
-GW190408 181802
-GW190412
-GW190413 052954
-<mark>GW190413 134308</mark>
-GW190421 213856
-GW190425
-GW190503 185404
-GW190512 180714
-GW190513 205428
-GW190514 065416
-GW190517 055101
-GW190519 153544
-GW190521
-GW190521 074359
-GW190527 092055
-GW190602 175927
-GW190620 030421
-GW190630 185205
-GW190701 203306
-GW190706 222641
-GW190707 093326
-G…</div>
+    <details class="lines"><summary>Show the sentences (8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> To exclude identiﬁed instances of poor data quality from Name Mitigation GW190413 134308 L1 glitch subtraction, glitch-only model GW190425 L1 glitch subtraction, glitch-only model GW190503 185404 L1…</li><li><span class="sec">introduction</span> …1.00 &lt; 1.1× 10−4 17.4‡ 1.00 &lt; 1.2× 10−4 17.9‡ 1.00 GW190413 052954 HLV – – – – – – 170 8.5 0.13 0.82 8.5 0.93 GW190413 134308 HLV 0.34 10.3 0.99 39 10.1 0.04 21 9.3‡ 0.48 0.18 8.9 ‡ 0.99 GW190421 213856 HL 1.2 9.7 0.99 0.0028 10.5 1.00…</li><li><span class="sec">appendix</span> For a subset of events (GW151226, GW190413 052954, GW190413 134308, GW190421 213856, GW190426 190642, GW190521, GW190602 175927, GW190719 215514, GW190725 174728, GW190803 0227…</li><li><span class="sec">appendix</span> …190805 211137, GW190916 200658 and GW190926 050336 all have inferred distances comparable to, or larger than, GW190413 134308, further highlighting the access to the distant Universe provided in GWTC-2.1.</li><li><span class="sec">appendix</span> …ng samples from analyses using both the IMRPhenomXPHM and SEOBNRv4PHM, with the exception of GW190413 052954, GW190413 134308, GW190421 213856, GW190521, GW190602 175927, GW190719 215514, GW190803 022701, GW190814, GW190828 063405, GW1…</li><li><span class="sec">appendix</span> …4.2+6.5 −7.0 −0.04+0.27 −0.32 3.32+1.91 −1.40 0.56+0.25 −0.21 55.5+10.1 −7.3 0.67+0.10 −0.12 650 9.0+0.4 −0.8 GW190413 134308 81 .3+16.8 −11.8 33.3+7.8 −6.3 51.3+16.6 −12.6 30.4+11.7 −12.7−0.01+0.28 −0.38 3.80+2.48 −1.83 0.62+0.32 −0.2…</li><li><span class="sec">appendix</span> V D, the results for GW190413 052954, GW190413 134308, GW190421 213856, GW190521, GW190602 175927, GW190719 215514, GW190803 022701, GW190814, GW190828 063405, GW1…</li><li><span class="sec">appendix</span> 34 0 40 80 120 160 m1/M⊙ GW190408 181802 GW190412 GW190413 052954 GW190413 134308 GW190421 213856 GW190425 GW190503 185404 GW190512 180714 GW190513 205428 GW190514 065416 GW190517 055101 GW19…</li></ul>
     </details>
     
   </div>
@@ -504,233 +246,15 @@ G…</div>
 <section class="card" data-i="2" data-event="GW190426_190642">
   <div class="ctx">
     <div class="evname mono">GW190426_190642</div>
-    <h3>19 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…h-signiﬁcance candidates
-presented here are astrophysical, the mass range of events that are unambiguously identiﬁed as
-binary black holes (both objects≥ 3M⊙) is increased compared to GWTC-2, with total masses from
-
-9
-∼ 14M⊙ for GW190924 021846 to ∼ 182M⊙ for <mark>GW190426 190642</mark>. The primary components of
-two new candidate events (GW190403 051519 and GW190426 190642) fall in the mass gap predicted
-by pair-instability supernova theory. We also expand the population of binaries with signiﬁcantly
-asymmetric mass ratios reported in GWTC-…</div>
+    <p class="where">Named 19 times:
+      appendix ×6, methods ×6, conclusion ×3, title/headings ×2, introduction ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190426 190642</span> or <span class="mono hit">GW190426_190642</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…are unambiguously identiﬁed as
-binary black holes (both objects≥ 3M⊙) is increased compared to GWTC-2, with total masses from
-
-9
-∼ 14M⊙ for GW190924 021846 to ∼ 182M⊙ for GW190426 190642. The primary components of
-two new candidate events (GW190403 051519 and <mark>GW190426 190642</mark>) fall in the mass gap predicted
-by pair-instability supernova theory. We also expand the population of binaries with signiﬁcantly
-asymmetric mass ratios reported in GWTC-2 by an additional two events (the mass ratio is less
-than 0.65 and 0.44 at 90% probabili…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ulting pastro would not have made the
-threshold of 0.5. There is also non-stationary noise
-in the LIGO Livingston detector at the time of this
-event, but we have no evidence that the FAR of the
-event is misestimated. Out of the 8 new candidates, 5
-candidates (<mark>GW190426 190642</mark>, GW190725 174728,
-GW190805 211137, GW190916 200658, and
-GW190925 232845) were identiﬁed in the LVC search for
-gravitationally lensed candidates in O3a data [29], while
-4 candidates (GW190725 174728, GW190916 200658,
-GW190925 232845, and GW190926 050336) were …</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…190413 052954 HLV – – – – – – 170 8.5 0.13 0.82 8.5 0.93
-GW190413 134308 HLV 0.34 10.3 0.99 39 10.1 0.04 21 9.3‡ 0.48 0.18 8.9 ‡ 0.99
-GW190421 213856 HL 1.2 9.7 0.99 0.0028 10.5 1.00 5.9 10.1 0.75 0.014 10.1 1.00
-GW190425 LV – – – 0.034† 12.9 0.78 – – – – – –
-<mark>GW190426 190642</mark> HLV – – – – – – – – – 4.1 9.6 0.75
-GW190503 185404 HLV 0.013 12.8 1.00 &lt; 1.0× 10−5 12.0 1.00 0.038 12.2 ‡ 1.00 0.0026 12.2 ‡ 1.00
-GW190512 180714 HLV 0.038 11.7 0.99 &lt; 1.0× 10−5 12.2 1.00 1.1× 10−4 12.4‡ 1.00 &lt; 1.1× 10−4 12.4‡ 1.00
-GW190513 205428 HLV 0.11 13…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…pendix A, the quoted source properties are taken
-from a set of posterior samples constructed from the
-two IMRPhenomXPHM and SEOBNRv4PHM analyses
-with each given equal weight. For a subset of events
-(GW151226, GW190413 052954, GW190413 134308,
-GW190421 213856, <mark>GW190426 190642</mark>, GW190521,
-GW190602 175927, GW190719 215514,
-GW190725 174728, GW190803 022701,
-GW190814, GW190828 063405, GW190828 065509,
-GW190917 114630, GW190926 050336 and
-GW190929 012149) the respective SEOBNRv4PHM
-analyses were incomplete at the time of journal
-submiss…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…I.
-
-23
-Event M
-(M⊙)
-M
-(M⊙)
-m1
-(M⊙)
-m2
-(M⊙)
-χeﬀ DL
-(Gpc)
-z M f
-(M⊙)
-χf ∆Ω
-(deg2)
-SNR
-GW190403 051519 106.6+26.7
-−23.634.0+15.1
-−8.4 85.0+27.8
-−33.0 20.0+26.3
-−8.4 0.68+0.16
-−0.43 8.28+6.72
-−4.29 1.18+0.73
-−0.53 102.2+26.3
-−24.30.91+0.05
-−0.17 3900 7.6+0.6
-−1.1
-<mark>GW190426 190642</mark> 182.3+40.2
-−35.776.0+19.1
-−17.4 105.5+45.3
-−24.176.0+26.2
-−36.5 0.23+0.42
-−0.41 4.58+3.40
-−2.28 0.73+0.41
-−0.32 172.9+37.7
-−33.60.77+0.14
-−0.16 4600 8 .7+0.4
-−0.6
-GW190725 174728 18.3+7.4
-−1.9 7.4+0.5
-−0.5 11.8+10.1
-−3.0 6.3+2.1
-−2.5 −0.04+0.36
-−0.16 1.03+0.5…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…RPhenomXPHM model only. A subset of the one-dimensional
-posterior distributions are visualized in Fig. 3. Two-dimensional projections of the 90% credible regions in the M–q andM–χeﬀ
-planes are shown in Fig. 4 and Fig. 5.
-0 50 100 150 200
-m1/M⊙
-GW190403 051519
-<mark>GW190426 190642</mark>
-GW190725 174728
-GW190805 211137
-GW190916 200658
-GW190917 114630
-GW190925 232845
-GW190926 050336
-0 50 100
-m2/M⊙
-0.0 0.5 1.0
-q
-−1 0 1
-χeﬀ
-0 5 10 15 20
-DL/Gpc
-FIG. 3. Marginal posterior distributions on the primary mass m1, secondary mass m2, mass ratio q, eﬀect…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…% credible intervals in Table VI.
-1. Masses
-The masses inferred for the 8 events presented in
-this section are generally comparable to, or higher,
-than the binaries reported in GWTC-2 [7, 8], as shown
-in Fig. 4. We ﬁnd that the most massive BBH in
-GWTC-2.1 is <mark>GW190426 190642</mark> with a total mass of
-182.3+40.2
-−35.7M⊙ and a remnant mass of 172 .9+37.7
-−33.6M⊙; it
-probably supersedes the previous most massive BBH
-GW1905212 with total mass of 153.1+42.2
-−16.2M⊙ and a rem-
-nant mass of 147.4+40.0
-−16.0M⊙ as reported in Appendix A 2.
-Bot…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…ith a total mass of
-182.3+40.2
-−35.7M⊙ and a remnant mass of 172 .9+37.7
-−33.6M⊙; it
-probably supersedes the previous most massive BBH
-GW1905212 with total mass of 153.1+42.2
-−16.2M⊙ and a rem-
-nant mass of 147.4+40.0
-−16.0M⊙ as reported in Appendix A 2.
-Both <mark>GW190426 190642</mark> and GW190403 051519 join
-GW190519 153544, GW190521, GW190602 175927 and
-GW190706 222641 in a population of BBHs with over
-2 In GWTC-2, GW190521 was inferred to have a total mass of
-163.9+39.2
-−23.5M⊙ and remnant mass of 156 .3+36.8
-−22.4M⊙ [8]
-
-24
-50% posteri…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…ly the most dis-
-tant event, with a recovered DL = 8.28+6.72
-−4.29 Gpc cor-
-responding to a redshift z = 1.18+0.73
-−0.53 approximately
-twice as distant as the most distant events that were re-
-ported in GWTC-2 [7, 8] as also shown in Appendix A 2.
-In addition <mark>GW190426 190642</mark>, GW190805 211137,
-GW190916 200658 and GW190926 050336 all have
-inferred distances comparable to, or larger than,
-GW190413 134308, further highlighting the access to the
-distant Universe provided in GWTC-2.1.
-Another eﬀect of the modest SNR of the new events i…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… such uncertainties for speciﬁc candidates, and
-discuss possible astrophysical implications under the hy-
-pothesis that the candidates do originate from compact
-object mergers.
-Parameter estimation indicates that two of the new
-candidates, GW190403 051519 and <mark>GW190426 190642</mark>,
-if astrophysical, have sources with a large total mass
-(&amp; 100 M⊙, Table VI). Both were found only by the
-PyCBC-BBH analysis with a low SNR and relatively low
-pastro. They were also not recovered as signiﬁcant events
-in the focused search of O3 data for inter…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…40–70M⊙, [32–40]). Adopting a rather
-conservative estimate of mlow = 65M⊙, the primary
-component of GW190403 051519 (m1 = 85.0+27.8
-−33.0M⊙)
-has a probability 0.16 of being below mlow with our
-standard mass prior, while the primary and secondary
-components of <mark>GW190426 190642</mark> (m1 = 105.5+45.3
-−24.1M⊙
-and m2 = 76.0+26.2
-−36.5M⊙) are below mlow with probabil-
-ities of 0.00078 and 0.30, respectively. The upper edge
-of the mass gap is even more uncertain, with theoret-
-ical predictions suggesting mup ≈ 120 M⊙ [201, 202].
-The primary m…</div>
+    <details class="lines"><summary>Show the sentences (19, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> 9 ∼ 14M⊙ for GW190924 021846 to ∼ 182M⊙ for GW190426 190642.</li><li><span class="sec">title/headings</span> The primary components of two new candidate events (GW190403 051519 and GW190426 190642) fall in the mass gap predicted by pair-instability supernova theory.</li><li><span class="sec">introduction</span> Out of the 8 new candidates, 5 candidates (GW190426 190642, GW190725 174728, GW190805 211137, GW190916 200658, and GW190925 232845) were identiﬁed in the LVC search for…</li><li><span class="sec">introduction</span> …HL 1.2 9.7 0.99 0.0028 10.5 1.00 5.9 10.1 0.75 0.014 10.1 1.00 GW190425 LV – – – 0.034† 12.9 0.78 – – – – – – GW190426 190642 HLV – – – – – – – – – 4.1 9.6 0.75 GW190503 185404 HLV 0.013 12.8 1.00 &lt; 1.0× 10−5 12.0 1.00 0.038 12.2 ‡ 1.0…</li><li><span class="sec">appendix</span> For a subset of events (GW151226, GW190413 052954, GW190413 134308, GW190421 213856, GW190426 190642, GW190521, GW190602 175927, GW190719 215514, GW190725 174728, GW190803 022701, GW190814, GW190828 063405, GW1…</li><li><span class="sec">appendix</span> …0+26.3 −8.4 0.68+0.16 −0.43 8.28+6.72 −4.29 1.18+0.73 −0.53 102.2+26.3 −24.30.91+0.05 −0.17 3900 7.6+0.6 −1.1 GW190426 190642 182.3+40.2 −35.776.0+19.1 −17.4 105.5+45.3 −24.176.0+26.2 −36.5 0.23+0.42 −0.41 4.58+3.40 −2.28 0.73+0.41 −0.…</li><li><span class="sec">appendix</span> …ble regions in the M–q andM–χeﬀ planes are shown in Fig. 4 and Fig. 5. 0 50 100 150 200 m1/M⊙ GW190403 051519 GW190426 190642 GW190725 174728 GW190805 211137 GW190916 200658 GW190917 114630 GW190925 232845 GW190926 050336 0 50 100 m2/M…</li><li><span class="sec">appendix</span> We ﬁnd that the most massive BBH in GWTC-2.1 is GW190426 190642 with a total mass of 182.3+40.2 −35.7M⊙ and a remnant mass of 172 .9+37.7 −33.6M⊙; it probably supersedes the…</li></ul>
     </details>
     
   </div>
@@ -767,110 +291,15 @@ The primary m…</div>
 <section class="card" data-i="3" data-event="GW190503_185404">
   <div class="ctx">
     <div class="evname mono">GW190503_185404</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ves an indication of
-the impact of data quality on the sensitivity of a search.
-To exclude identiﬁed instances of poor data quality from
-Name Mitigation
-GW190413 134308 L1 glitch subtraction, glitch-only
-model
-GW190425 L1 glitch subtraction, glitch-only
-model
-<mark>GW190503 185404</mark> L1 glitch subtraction, glitch-only
-model
-GW190513 205428 L1 glitch subtraction, glitch-only
-model
-GW190514 065416 L1 glitch subtraction, glitch-only
-model
-GW190701 203306 L1 glitch subtraction, glitch+signal
-model
-GW190727 060333 L1 fmin: 50 Hz
-GW190814 L1 fm…</div>
+    <p class="where">Named 4 times:
+      introduction ×2, appendix ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190503 185404</span> or <span class="mono hit">GW190503_185404</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>… 0.93
-GW190413 134308 HLV 0.34 10.3 0.99 39 10.1 0.04 21 9.3‡ 0.48 0.18 8.9 ‡ 0.99
-GW190421 213856 HL 1.2 9.7 0.99 0.0028 10.5 1.00 5.9 10.1 0.75 0.014 10.1 1.00
-GW190425 LV – – – 0.034† 12.9 0.78 – – – – – –
-GW190426 190642 HLV – – – – – – – – – 4.1 9.6 0.75
-<mark>GW190503 185404</mark> HLV 0.013 12.8 1.00 &lt; 1.0× 10−5 12.0 1.00 0.038 12.2 ‡ 1.00 0.0026 12.2 ‡ 1.00
-GW190512 180714 HLV 0.038 11.7 0.99 &lt; 1.0× 10−5 12.2 1.00 1.1× 10−4 12.4‡ 1.00 &lt; 1.1× 10−4 12.4‡ 1.00
-GW190513 205428 HLV 0.11 13.0 0.99 1.3× 10−5 12.3 1.00 19 11.6‡ 0.49 0.044 11.…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…10.1
-−7.4 32.0+8.3
-−9.8 −0.10+0.21
-−0.27 2.59+1.49
-−1.24 0.45+0.21
-−0.19 70.5+12.4
-−9.0 0.66+0.09
-−0.12 1200 10.7+0.2
-−0.4
-GW190425 3 .4+0.3
-−0.1 1.44+0.02
-−0.02 2.1+0.5
-−0.4 1.3+0.3
-−0.2 0.07+0.07
-−0.05 0.15+0.08
-−0.06 0.03+0.02
-−0.01 – – 8700 12 .4+0.4
-−0.4
-<mark>GW190503 185404</mark> 69.4+10.1
-−8.6 29.3+4.5
-−4.4 41.3+10.3
-−7.7 28.3+7.5
-−9.2 −0.05+0.23
-−0.30 1.52+0.63
-−0.60 0.29+0.10
-−0.10 66.5+9.4
-−7.9 0.66+0.09
-−0.15 100 12.2+0.2
-−0.4
-GW190512 180714 35 .8+4.1
-−3.5 14.6+1.4
-−0.9 23.2+5.6
-−5.6 12.5+3.5
-−2.6 0.02+0.13
-−0.14 1.46+0.51
-−0.59…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">appendix</span>…ns are visualized in Fig. 8. Two-dimensional projections
-of the 90% credible regions in the M–q andM–χeﬀ planes are shown in grey in Fig. 4 and Fig. 5.
-
-34
-0 40 80 120 160
-m1/M⊙
-GW190408 181802
-GW190412
-GW190413 052954
-GW190413 134308
-GW190421 213856
-GW190425
-<mark>GW190503 185404</mark>
-GW190512 180714
-GW190513 205428
-GW190514 065416
-GW190517 055101
-GW190519 153544
-GW190521
-GW190521 074359
-GW190527 092055
-GW190602 175927
-GW190620 030421
-GW190630 185205
-GW190701 203306
-GW190706 222641
-GW190707 093326
-GW190708 232457
-GW190719 215514
-GW190720 0…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …on GW190413 134308 L1 glitch subtraction, glitch-only model GW190425 L1 glitch subtraction, glitch-only model GW190503 185404 L1 glitch subtraction, glitch-only model GW190513 205428 L1 glitch subtraction, glitch-only model GW190514 06…</li><li><span class="sec">introduction</span> …4 10.1 1.00 GW190425 LV – – – 0.034† 12.9 0.78 – – – – – – GW190426 190642 HLV – – – – – – – – – 4.1 9.6 0.75 GW190503 185404 HLV 0.013 12.8 1.00 &lt; 1.0× 10−5 12.0 1.00 0.038 12.2 ‡ 1.00 0.0026 12.2 ‡ 1.00 GW190512 180714 HLV 0.038 11.7…</li><li><span class="sec">appendix</span> …+0.02 −0.02 2.1+0.5 −0.4 1.3+0.3 −0.2 0.07+0.07 −0.05 0.15+0.08 −0.06 0.03+0.02 −0.01 – – 8700 12 .4+0.4 −0.4 GW190503 185404 69.4+10.1 −8.6 29.3+4.5 −4.4 41.3+10.3 −7.7 28.3+7.5 −9.2 −0.05+0.23 −0.30 1.52+0.63 −0.60 0.29+0.10 −0.10 66…</li><li><span class="sec">appendix</span> 34 0 40 80 120 160 m1/M⊙ GW190408 181802 GW190412 GW190413 052954 GW190413 134308 GW190421 213856 GW190425 GW190503 185404 GW190512 180714 GW190513 205428 GW190514 065416 GW190517 055101 GW190519 153544 GW190521 GW190521 074359 GW19…</li></ul>
     </details>
     
   </div>
@@ -907,157 +336,15 @@ GW190720 0…</div>
 <section class="card" data-i="4" data-event="GW190602_175927">
   <div class="ctx">
     <div class="evname mono">GW190602_175927</div>
-    <h3>7 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…10−4 13.2‡ 1.00
-GW190521 HLV 0.042 13.0 0.96 0.20 13.3 0.79 0.44 13.7 ‡ 0.96 0.0013 13.6 ‡ 1.00
-GW190521 074359 HL &lt; 1.0× 10−5 22.2 1.00 &lt; 1.0× 10−5 24.4 1.00 &lt; 1.8× 10−5 24.0 1.00 &lt; 2.3× 10−5 24.0 1.00
-GW190527 092055 HL – – – 0.23 8.7 0.85 – – – 19 8.4 0.33
-<mark>GW190602 175927</mark> HLV 3.0× 10−4 12.6 1.00 &lt; 1.0× 10−5 12.3 1.00 0.29 11.9 ‡ 0.98 0.013 11.9 ‡ 1.00
-GW190620 030421 LV – – – 0.011† 10.9 0.99 – – – – – –
-GW190630 185205 LV – – – &lt; 1.0× 10−5 15.2 1.00 – – – 0.24 15.1 1.00
-GW190701 203306 HLV 35 11.3 0.87 0.0057 11.7 0.99 0.064 …</div>
+    <p class="where">Named 7 times:
+      appendix ×6, introduction.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190602 175927</span> or <span class="mono hit">GW190602_175927</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">appendix</span>… properties are taken
-from a set of posterior samples constructed from the
-two IMRPhenomXPHM and SEOBNRv4PHM analyses
-with each given equal weight. For a subset of events
-(GW151226, GW190413 052954, GW190413 134308,
-GW190421 213856, GW190426 190642, GW190521,
-<mark>GW190602 175927</mark>, GW190719 215514,
-GW190725 174728, GW190803 022701,
-GW190814, GW190828 063405, GW190828 065509,
-GW190917 114630, GW190926 050336 and
-GW190929 012149) the respective SEOBNRv4PHM
-analyses were incomplete at the time of journal
-submission, hence we report result…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…37.7
-−33.6M⊙; it
-probably supersedes the previous most massive BBH
-GW1905212 with total mass of 153.1+42.2
-−16.2M⊙ and a rem-
-nant mass of 147.4+40.0
-−16.0M⊙ as reported in Appendix A 2.
-Both GW190426 190642 and GW190403 051519 join
-GW190519 153544, GW190521, <mark>GW190602 175927</mark> and
-GW190706 222641 in a population of BBHs with over
-2 In GWTC-2, GW190521 was inferred to have a total mass of
-163.9+39.2
-−23.5M⊙ and remnant mass of 156 .3+36.8
-−22.4M⊙ [8]
-
-24
-50% posterior support for total mass M &gt;100M⊙ [8].
-While the majority of the ne…</div>
-    
-    
-    <details><summary>4 more</summary>
-    <div class="mention"><span class="sec">appendix</span>…nalysis of these 36 events using the BBH waveform
-models described in Sec. V A. We present results
-combining samples from analyses using both the
-IMRPhenomXPHM and SEOBNRv4PHM, with the
-exception of GW190413 052954, GW190413 134308,
-GW190421 213856, GW190521, <mark>GW190602 175927</mark>,
-GW190719 215514, GW190803 022701, GW190814,
-GW190828 063405, GW190828 065509 and
-GW190929 012149 which, as mentioned earlier in
-Sec. V D, were analysed using IMRPhenomXPHM
-only. As also described in Sec. V A, for the BNS
-event GW190425, the IMRPhenomP NRTida…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…3
-−0.13 1.08+0.58
-−0.53 0.21+0.10
-−0.10 72.6+6.5
-−5.4 0.71+0.06
-−0.06 470 25 .9+0.1
-−0.2
-GW190527 092055 58.1+18.1
-−8.8 23.9+6.8
-−3.9 35.6+18.7
-−8.0 22.2+9.0
-−8.7 0.10+0.22
-−0.22 2.52+2.08
-−1.23 0.44+0.29
-−0.19 55.5+17.9
-−8.5 0.71+0.10
-−0.16 3500 8.0+0.4
-−0.9
-<mark>GW190602 175927</mark> 115.6+19.2
-−14.8 48.0+9.5
-−9.7 71.8+18.1
-−14.6 44.8+15.5
-−19.6 0.12+0.25
-−0.28 2.84+1.93
-−1.28 0.49+0.26
-−0.20 110.5+17.9
-−13.90.72+0.11
-−0.17 740 13 .2+0.2
-−0.3
-GW190620 030421 92.7+18.5
-−13.2 38.1+8.5
-−7.2 58.0+19.2
-−13.3 35.0+13.1
-−14.5 0.34+0.22
-−0.29 2.9…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…the SNRs that are taken from the IMRPhenomXPHM
-analysis alone (as RIFT, which was used for the SEOBNRv4PHM analysis, does not output that quantity). Additionally,
-following Sec. V D, the results for GW190413 052954, GW190413 134308, GW190421 213856, GW190521, <mark>GW190602 175927</mark>,
-GW190719 215514, GW190803 022701, GW190814, GW190828 063405, GW190828 065509 and GW190929 012149 are from
-analyses using the IMRPhenomXPHM model only. For GW190425, we report results from the high-spin (|⃗ χ1|&lt; 0.89) analysis,
-and since the calculation of th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>… 4 and Fig. 5.
-
-34
-0 40 80 120 160
-m1/M⊙
-GW190408 181802
-GW190412
-GW190413 052954
-GW190413 134308
-GW190421 213856
-GW190425
-GW190503 185404
-GW190512 180714
-GW190513 205428
-GW190514 065416
-GW190517 055101
-GW190519 153544
-GW190521
-GW190521 074359
-GW190527 092055
-<mark>GW190602 175927</mark>
-GW190620 030421
-GW190630 185205
-GW190701 203306
-GW190706 222641
-GW190707 093326
-GW190708 232457
-GW190719 215514
-GW190720 000836
-GW190727 060333
-GW190728 064510
-GW190731 140936
-GW190803 022701
-GW190814
-GW190828 063405
-GW190828 065509
-GW190910 112807
-GW190915 2…</div>
+    <details class="lines"><summary>Show the sentences (7): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …4.4 1.00 &lt; 1.8× 10−5 24.0 1.00 &lt; 2.3× 10−5 24.0 1.00 GW190527 092055 HL – – – 0.23 8.7 0.85 – – – 19 8.4 0.33 GW190602 175927 HLV 3.0× 10−4 12.6 1.00 &lt; 1.0× 10−5 12.3 1.00 0.29 11.9 ‡ 0.98 0.013 11.9 ‡ 1.00 GW190620 030421 LV – – – 0.0…</li><li><span class="sec">appendix</span> …r a subset of events (GW151226, GW190413 052954, GW190413 134308, GW190421 213856, GW190426 190642, GW190521, GW190602 175927, GW190719 215514, GW190725 174728, GW190803 022701, GW190814, GW190828 063405, GW190828 065509, GW190917 1146…</li><li><span class="sec">appendix</span> Both GW190426 190642 and GW190403 051519 join GW190519 153544, GW190521, GW190602 175927 and GW190706 222641 in a population of BBHs with over 2 In GWTC-2, GW190521 was inferred to have a total mass…</li><li><span class="sec">appendix</span> …henomXPHM and SEOBNRv4PHM, with the exception of GW190413 052954, GW190413 134308, GW190421 213856, GW190521, GW190602 175927, GW190719 215514, GW190803 022701, GW190814, GW190828 063405, GW190828 065509 and GW190929 012149 which, as m…</li><li><span class="sec">appendix</span> …2.2+9.0 −8.7 0.10+0.22 −0.22 2.52+2.08 −1.23 0.44+0.29 −0.19 55.5+17.9 −8.5 0.71+0.10 −0.16 3500 8.0+0.4 −0.9 GW190602 175927 115.6+19.2 −14.8 48.0+9.5 −9.7 71.8+18.1 −14.6 44.8+15.5 −19.6 0.12+0.25 −0.28 2.84+1.93 −1.28 0.49+0.26 −0.2…</li><li><span class="sec">appendix</span> V D, the results for GW190413 052954, GW190413 134308, GW190421 213856, GW190521, GW190602 175927, GW190719 215514, GW190803 022701, GW190814, GW190828 063405, GW190828 065509 and GW190929 012149 are from an…</li><li><span class="sec">appendix</span> …0714 GW190513 205428 GW190514 065416 GW190517 055101 GW190519 153544 GW190521 GW190521 074359 GW190527 092055 GW190602 175927 GW190620 030421 GW190630 185205 GW190701 203306 GW190706 222641 GW190707 093326 GW190708 232457 GW190719 2155…</li></ul>
     </details>
     
   </div>
@@ -1094,108 +381,15 @@ GW190915 2…</div>
 <section class="card" data-i="5" data-event="GW190720_000836">
   <div class="ctx">
     <div class="evname mono">GW190720_000836</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…5 12.5 1.00 3.7× 10−4 11.7‡ 1.00 0.34 12.6 ‡ 1.00
-GW190707 093326 HL 0.032 12.6 1.00 &lt; 1.0× 10−5 13.2 1.00 &lt; 1.0× 10−5 13.0 1.00 &lt; 1.9× 10−5 13.0 1.00
-GW190708 232457 LV – – – 3.1× 10−4† 13.1 1.00 – – – – – –
-GW190719 215514 HL – – – – – – – – – 0.63 8.0 0.92
-<mark>GW190720 000836</mark> HLV 0.094 11.6 1.00 &lt; 1.0× 10−5 11.5 1.00 1.4× 10−4 10.6‡ 1.00 &lt; 7.8× 10−5 11.4 1.00
-GW190725 174728* HLV 3.1 9.8 0.59 – – – 0.46 9.1 ‡ 0.96 2.9 8.8 ‡ 0.82
-GW190727 060333 HLV 0.023 12.0 1.00 &lt; 1.0× 10−5 12.1 1.00 0.0056 11.4 ‡ 1.00 2.0× 10−4 11.1‡ 1.00
-GW190…</div>
+    <p class="where">Named 4 times:
+      introduction ×2, appendix ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190720 000836</span> or <span class="mono hit">GW190720_000836</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…me MBTA GstLAL PyCBC PyCBC-BBH
-pBBH pNSBH pBNS pastro pBBH pNSBH pBNS pastro pBBH pNSBH pBNS pastro pBBH pNSBH pastro
-GW190425 – – – – 0.00 0.00 0.78 0.78 – – – – – – –
-GW190707 093326 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.93 0.07 0.00 1.00 0.93 0.07 1.00
-<mark>GW190720 000836</mark> 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.95 0.05 0.00 1.00 1.00 0.00 1.00
-GW190725 174728 0.59 0.00 0.00 0.59 – – – – 0.79 0.17 0.00 0.96 0.58 0.24 0.82
-GW190728 064510 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.97 0.03 0.00 1.00 0.97 0.03 1.00
-GW190814 0.93 …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…0 0.93+0.31
-−0.39 0.19+0.06
-−0.07 30.1+2.9
-−2.1 0.68+0.04
-−0.05 11000 13 .4+0.2
-−0.3
-GW190719 215514 57.2+38.4
-−11.6 22.8+8.3
-−4.3 36.6+42.1
-−11.1 19.9+10.0
-−9.3 0.25+0.33
-−0.32 3.73+3.12
-−2.07 0.61+0.39
-−0.30 54.5+38.3
-−11.1 0.76+0.13
-−0.18 3600 7.9+0.3
-−0.7
-<mark>GW190720 000836</mark> 21 .8+3.8
-−2.0 9.0+0.4
-−0.8 14.2+5.6
-−3.3 7.5+2.2
-−1.8 0.19+0.14
-−0.11 0.77+0.65
-−0.26 0.16+0.11
-−0.05 20.8+3.9
-−2.0 0.71+0.05
-−0.05 260 10 .9+0.3
-−0.8
-GW190727 060333 68.8+10.2
-−7.8 29.4+4.6
-−3.7 38.9+8.9
-−6.0 30.2+6.5
-−8.3 0.09+0.25
-−0.27 3.07+1.30
-−1.23 0.…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">appendix</span>…503 185404
-GW190512 180714
-GW190513 205428
-GW190514 065416
-GW190517 055101
-GW190519 153544
-GW190521
-GW190521 074359
-GW190527 092055
-GW190602 175927
-GW190620 030421
-GW190630 185205
-GW190701 203306
-GW190706 222641
-GW190707 093326
-GW190708 232457
-GW190719 215514
-<mark>GW190720 000836</mark>
-GW190727 060333
-GW190728 064510
-GW190731 140936
-GW190803 022701
-GW190814
-GW190828 063405
-GW190828 065509
-GW190910 112807
-GW190915 235702
-GW190924 021846
-GW190929 012149
-GW190930 133541
-0 25 50 75 100
-m2/M⊙
-0.0 0.5 1.0
-q
-−1 0 1
-χeﬀ
-0 3 6 9 12
-DL/Gpc
-FIG. 8. Ma…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …GW190708 232457 LV – – – 3.1× 10−4† 13.1 1.00 – – – – – – GW190719 215514 HL – – – – – – – – – 0.63 8.0 0.92 GW190720 000836 HLV 0.094 11.6 1.00 &lt; 1.0× 10−5 11.5 1.00 1.4× 10−4 10.6‡ 1.00 &lt; 7.8× 10−5 11.4 1.00 GW190725 174728* HLV 3.1…</li><li><span class="sec">introduction</span> …0.78 – – – – – – – GW190707 093326 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.93 0.07 0.00 1.00 0.93 0.07 1.00 GW190720 000836 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.95 0.05 0.00 1.00 1.00 0.00 1.00 GW190725 174728 0.59 0.00 0.00 0.5…</li><li><span class="sec">appendix</span> …9+10.0 −9.3 0.25+0.33 −0.32 3.73+3.12 −2.07 0.61+0.39 −0.30 54.5+38.3 −11.1 0.76+0.13 −0.18 3600 7.9+0.3 −0.7 GW190720 000836 21 .8+3.8 −2.0 9.0+0.4 −0.8 14.2+5.6 −3.3 7.5+2.2 −1.8 0.19+0.14 −0.11 0.77+0.65 −0.26 0.16+0.11 −0.05 20.8+3…</li><li><span class="sec">appendix</span> …190620 030421 GW190630 185205 GW190701 203306 GW190706 222641 GW190707 093326 GW190708 232457 GW190719 215514 GW190720 000836 GW190727 060333 GW190728 064510 GW190731 140936 GW190803 022701 GW190814 GW190828 063405 GW190828 065509 GW19…</li></ul>
     </details>
     
   </div>
@@ -1232,228 +426,15 @@ FIG. 8. Ma…</div>
 <section class="card" data-i="6" data-event="GW190725_174728">
   <div class="ctx">
     <div class="evname mono">GW190725_174728</div>
-    <h3>16 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…o a pastro threshold from a FAR threshold,
-one can expect to add BBH events while dropping some
-low-mass events.
-All the 8 new candidates with pastro greater than
-0.5 are classiﬁed as BBHs, that is, pBBH is greater
-than pNSBH and pBNS. Only one new candidate,
-<mark>GW190725 174728</mark>, has a non-negligible probability
-in a source class other than BBH, with non-zero
-pNSBH (Table III). Out of the 8 candidates, only
-two (GW190725 174728 and GW190916 200658) are
-assigned pastro &gt; 0.5 by more than one pipeline. Diﬀer-
-ences between pipelines ar…</div>
+    <p class="where">Named 16 times:
+      introduction ×7, appendix ×4, methods ×3, conclusion ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190725 174728</span> or <span class="mono hit">GW190725_174728</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…eater than
-0.5 are classiﬁed as BBHs, that is, pBBH is greater
-than pNSBH and pBNS. Only one new candidate,
-GW190725 174728, has a non-negligible probability
-in a source class other than BBH, with non-zero
-pNSBH (Table III). Out of the 8 candidates, only
-two (<mark>GW190725 174728</mark> and GW190916 200658) are
-assigned pastro &gt; 0.5 by more than one pipeline. Diﬀer-
-ences between pipelines are expected, due to the eﬀects
-of random noise ﬂuctuations on the diﬀerent ranking
-statistics used, and due to diﬀerent assumed signal
-distributions and …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ld not have made the
-threshold of 0.5. There is also non-stationary noise
-in the LIGO Livingston detector at the time of this
-event, but we have no evidence that the FAR of the
-event is misestimated. Out of the 8 new candidates, 5
-candidates (GW190426 190642, <mark>GW190725 174728</mark>,
-GW190805 211137, GW190916 200658, and
-GW190925 232845) were identiﬁed in the LVC search for
-gravitationally lensed candidates in O3a data [29], while
-4 candidates (GW190725 174728, GW190916 200658,
-GW190925 232845, and GW190926 050336) were also
-
-16
-Name Ins…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…t is misestimated. Out of the 8 new candidates, 5
-candidates (GW190426 190642, GW190725 174728,
-GW190805 211137, GW190916 200658, and
-GW190925 232845) were identiﬁed in the LVC search for
-gravitationally lensed candidates in O3a data [29], while
-4 candidates (<mark>GW190725 174728</mark>, GW190916 200658,
-GW190925 232845, and GW190926 050336) were also
-
-16
-Name Inst. MBTA GstLAL PyCBC PyCBC-BBH
-FAR (yr−1) SNRpastro FAR (yr−1) SNRpastro FAR (yr−1) SNR pastro FAR (yr−1) SNR pastro
-GW190403 051519 HLV – – – – – – – – – 7.7 8.0 0.61
-GW190408 1818…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… 1.00 &lt; 1.0× 10−5 13.0 1.00 &lt; 1.9× 10−5 13.0 1.00
-GW190708 232457 LV – – – 3.1× 10−4† 13.1 1.00 – – – – – –
-GW190719 215514 HL – – – – – – – – – 0.63 8.0 0.92
-GW190720 000836 HLV 0.094 11.6 1.00 &lt; 1.0× 10−5 11.5 1.00 1.4× 10−4 10.6‡ 1.00 &lt; 7.8× 10−5 11.4 1.00
-<mark>GW190725 174728</mark>* HLV 3.1 9.8 0.59 – – – 0.46 9.1 ‡ 0.96 2.9 8.8 ‡ 0.82
-GW190727 060333 HLV 0.023 12.0 1.00 &lt; 1.0× 10−5 12.1 1.00 0.0056 11.4 ‡ 1.00 2.0× 10−4 11.1‡ 1.00
-GW190728 064510 HLV 7.5× 10−4 13.1 1.00 &lt; 1.0× 10−5 13.4 1.00 &lt; 8.2× 10−5 13.0‡ 1.00 &lt; 7.8× 10−5 13.0‡ 1.0…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…H
-BBH (b) MBTA
-100 101 102
-Events
-0.1
-1.0
-10.0
-Cumulative source probabilities
-GW190924 021846
-GW190814
-GW190612 115526
-NBBH = 24.95
-NNSBH = 3.8
-NBNS = 0.22
-BNS
-NSBH
-BBH
-(c) PyCBC
-100 101 102
-Events
-0.1
-1.0
-10.0
-Cumulative source probabilities
-GW190924 021846
-<mark>GW190725 174728</mark>
-NBBH = 44.5
-NNSBH = 1.4
-NSBH
-BBH (d) PyCBC-BBH
-FIG. 2. Cumulative sum of pBNS, pNSBH, pBBH as a function of the candidates that pass a FAR threshold of 2 per day. The
-events are shown in decreasing order of pastro. The sum of the source probabilities shown he…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…S pastro pBBH pNSBH pastro
-GW190425 – – – – 0.00 0.00 0.78 0.78 – – – – – – –
-GW190707 093326 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.93 0.07 0.00 1.00 0.93 0.07 1.00
-GW190720 000836 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.95 0.05 0.00 1.00 1.00 0.00 1.00
-<mark>GW190725 174728</mark> 0.59 0.00 0.00 0.59 – – – – 0.79 0.17 0.00 0.96 0.58 0.24 0.82
-GW190728 064510 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.97 0.03 0.00 1.00 0.97 0.03 1.00
-GW190814 0.93 0.07 0.00 1.00 0.19 0.81 0.00 1.00 0.54 0.46 0.00 1.00 – – –
-GW190924 021846 0.92 0.07 0.00…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…f posterior samples constructed from the
-two IMRPhenomXPHM and SEOBNRv4PHM analyses
-with each given equal weight. For a subset of events
-(GW151226, GW190413 052954, GW190413 134308,
-GW190421 213856, GW190426 190642, GW190521,
-GW190602 175927, GW190719 215514,
-<mark>GW190725 174728</mark>, GW190803 022701,
-GW190814, GW190828 063405, GW190828 065509,
-GW190917 114630, GW190926 050336 and
-GW190929 012149) the respective SEOBNRv4PHM
-analyses were incomplete at the time of journal
-submission, hence we report results from the IMRPhe-
-nomXPHM only fo…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>….28+6.72
-−4.29 1.18+0.73
-−0.53 102.2+26.3
-−24.30.91+0.05
-−0.17 3900 7.6+0.6
-−1.1
-GW190426 190642 182.3+40.2
-−35.776.0+19.1
-−17.4 105.5+45.3
-−24.176.0+26.2
-−36.5 0.23+0.42
-−0.41 4.58+3.40
-−2.28 0.73+0.41
-−0.32 172.9+37.7
-−33.60.77+0.14
-−0.16 4600 8 .7+0.4
-−0.6
-<mark>GW190725 174728</mark> 18.3+7.4
-−1.9 7.4+0.5
-−0.5 11.8+10.1
-−3.0 6.3+2.1
-−2.5 −0.04+0.36
-−0.16 1.03+0.52
-−0.43 0.20+0.09
-−0.08 17.6+7.7
-−1.8 0.65+0.09
-−0.07 2200 9.1+0.4
-−0.7
-GW190805 211137 76 .7+19.5
-−13.8 31.9+8.8
-−6.3 46.2+15.4
-−11.2 30.6+11.8
-−11.3 0.37+0.29
-−0.39 6.13+3.72
-−3…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…HM analyses, with the exception of the SNRs that are taken
-from the IMRPhenomXPHM analysis alone (as RIFT, which was used for the SEOBNRv4PHM analysis, does not output that
-quantity). Additionally, following Sec. V D, the results presented for GW190426190642, <mark>GW190725 174728</mark>, GW190917 114630
-and GW190926 050336 are taken from an analysis using the IMRPhenomXPHM model only. A subset of the one-dimensional
-posterior distributions are visualized in Fig. 3. Two-dimensional projections of the 90% credible regions in the M–q andM–χeﬀ
-p…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…l only. A subset of the one-dimensional
-posterior distributions are visualized in Fig. 3. Two-dimensional projections of the 90% credible regions in the M–q andM–χeﬀ
-planes are shown in Fig. 4 and Fig. 5.
-0 50 100 150 200
-m1/M⊙
-GW190403 051519
-GW190426 190642
-<mark>GW190725 174728</mark>
-GW190805 211137
-GW190916 200658
-GW190917 114630
-GW190925 232845
-GW190926 050336
-0 50 100
-m2/M⊙
-0.0 0.5 1.0
-q
-−1 0 1
-χeﬀ
-0 5 10 15 20
-DL/Gpc
-FIG. 3. Marginal posterior distributions on the primary mass m1, secondary mass m2, mass ratio q, eﬀective inspiral spi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…nto the broader im-
-pact of these model systematic eﬀects, and their impact
-on the inferred source parameters for the population of
-GW events presented here, is left for a future study.
-5. Comparison to 3-OGC
-Out of the 8 new events presented in this
-section, <mark>GW190725 174728</mark>, GW190916 200658,
-GW190925 232845 and GW190926 050336 were also
-independently identiﬁed and analyzed as part of 3-
-OGC [17] using the PyCBC Inference package [189] and
-the IMRPhenomXPHM waveform model. We compare
-the inferred source properties for these event…</div>
+    <details class="lines"><summary>Show the sentences (15, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Only one new candidate, GW190725 174728, has a non-negligible probability in a source class other than BBH, with non-zero pNSBH (Table III).</li><li><span class="sec">introduction</span> Out of the 8 candidates, only two (GW190725 174728 and GW190916 200658) are assigned pastro &gt; 0.5 by more than one pipeline.</li><li><span class="sec">introduction</span> Out of the 8 new candidates, 5 candidates (GW190426 190642, GW190725 174728, GW190805 211137, GW190916 200658, and GW190925 232845) were identiﬁed in the LVC search for gravitationally…</li><li><span class="sec">introduction</span> …8.0 0.92 GW190720 000836 HLV 0.094 11.6 1.00 &lt; 1.0× 10−5 11.5 1.00 1.4× 10−4 10.6‡ 1.00 &lt; 7.8× 10−5 11.4 1.00 GW190725 174728* HLV 3.1 9.8 0.59 – – – 0.46 9.1 ‡ 0.96 2.9 8.8 ‡ 0.82 GW190727 060333 HLV 0.023 12.0 1.00 &lt; 1.0× 10−5 12.1 1…</li><li><span class="sec">introduction</span> …= 0.22 BNS NSBH BBH (c) PyCBC 100 101 102 Events 0.1 1.0 10.0 Cumulative source probabilities GW190924 021846 GW190725 174728 NBBH = 44.5 NNSBH = 1.4 NSBH BBH (d) PyCBC-BBH FIG. 2.</li><li><span class="sec">introduction</span> ….00 0.93 0.07 1.00 GW190720 000836 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.95 0.05 0.00 1.00 1.00 0.00 1.00 GW190725 174728 0.59 0.00 0.00 0.59 – – – – 0.79 0.17 0.00 0.96 0.58 0.24 0.82 GW190728 064510 1.00 0.00 0.00 1.00 1.00 0.00…</li><li><span class="sec">appendix</span> …190413 052954, GW190413 134308, GW190421 213856, GW190426 190642, GW190521, GW190602 175927, GW190719 215514, GW190725 174728, GW190803 022701, GW190814, GW190828 063405, GW190828 065509, GW190917 114630, GW190926 050336 and GW190929 0…</li><li><span class="sec">appendix</span> …26.2 −36.5 0.23+0.42 −0.41 4.58+3.40 −2.28 0.73+0.41 −0.32 172.9+37.7 −33.60.77+0.14 −0.16 4600 8 .7+0.4 −0.6 GW190725 174728 18.3+7.4 −1.9 7.4+0.5 −0.5 11.8+10.1 −3.0 6.3+2.1 −2.5 −0.04+0.36 −0.16 1.03+0.52 −0.43 0.20+0.09 −0.08 17.6+…</li></ul>
     </details>
     
   </div>
@@ -1490,105 +471,15 @@ the inferred source properties for these event…</div>
 <section class="card" data-i="7" data-event="GW190728_064510">
   <div class="ctx">
     <div class="evname mono">GW190728_064510</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…00836 HLV 0.094 11.6 1.00 &lt; 1.0× 10−5 11.5 1.00 1.4× 10−4 10.6‡ 1.00 &lt; 7.8× 10−5 11.4 1.00
-GW190725 174728* HLV 3.1 9.8 0.59 – – – 0.46 9.1 ‡ 0.96 2.9 8.8 ‡ 0.82
-GW190727 060333 HLV 0.023 12.0 1.00 &lt; 1.0× 10−5 12.1 1.00 0.0056 11.4 ‡ 1.00 2.0× 10−4 11.1‡ 1.00
-<mark>GW190728 064510</mark> HLV 7.5× 10−4 13.1 1.00 &lt; 1.0× 10−5 13.4 1.00 &lt; 8.2× 10−5 13.0‡ 1.00 &lt; 7.8× 10−5 13.0‡ 1.00
-GW190731 140936 HL 6.1 9.1 0.80 0.33 8.5 0.78 – – – 1.9 7.8 0.83
-GW190803 022701 HLV 77 9.0 0.96 0.073 9.1 0.94 81 8.7‡ 0.17 0.39 8.7 ‡ 0.97
-GW190805 211137 HLV – – – …</div>
+    <p class="where">Named 4 times:
+      introduction ×2, appendix ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190728 064510</span> or <span class="mono hit">GW190728_064510</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…W190707 093326 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.93 0.07 0.00 1.00 0.93 0.07 1.00
-GW190720 000836 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.95 0.05 0.00 1.00 1.00 0.00 1.00
-GW190725 174728 0.59 0.00 0.00 0.59 – – – – 0.79 0.17 0.00 0.96 0.58 0.24 0.82
-<mark>GW190728 064510</mark> 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.97 0.03 0.00 1.00 0.97 0.03 1.00
-GW190814 0.93 0.07 0.00 1.00 0.19 0.81 0.00 1.00 0.54 0.46 0.00 1.00 – – –
-GW190924 021846 0.92 0.07 0.00 0.99 1.00 0.00 0.00 1.00 0.44 0.56 0.00 1.00 0.44 0.56 1.00
-GW190930 133541 0.…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>….14
-−0.11 0.77+0.65
-−0.26 0.16+0.11
-−0.05 20.8+3.9
-−2.0 0.71+0.05
-−0.05 260 10 .9+0.3
-−0.8
-GW190727 060333 68.8+10.2
-−7.8 29.4+4.6
-−3.7 38.9+8.9
-−6.0 30.2+6.5
-−8.3 0.09+0.25
-−0.27 3.07+1.30
-−1.23 0.52+0.18
-−0.18 65.4+9.5
-−7.3 0.73+0.09
-−0.11 380 11.7+0.2
-−0.5
-<mark>GW190728 064510</mark> 20 .7+4.2
-−1.4 8.6+0.6
-−0.3 12.5+6.9
-−2.3 8.0+1.7
-−2.6 0.13+0.19
-−0.07 0.88+0.26
-−0.38 0.18+0.05
-−0.07 19.7+4.4
-−1.4 0.71+0.04
-−0.04 400 13 .1+0.3
-−0.4
-GW190731 140936 70.7+16.3
-−11.4 29.7+7.4
-−5.3 41.8+12.7
-−9.1 29.0+10.2
-−9.9 0.07+0.28
-−0.25 3.33+2.35
-−1.77…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">appendix</span>…513 205428
-GW190514 065416
-GW190517 055101
-GW190519 153544
-GW190521
-GW190521 074359
-GW190527 092055
-GW190602 175927
-GW190620 030421
-GW190630 185205
-GW190701 203306
-GW190706 222641
-GW190707 093326
-GW190708 232457
-GW190719 215514
-GW190720 000836
-GW190727 060333
-<mark>GW190728 064510</mark>
-GW190731 140936
-GW190803 022701
-GW190814
-GW190828 063405
-GW190828 065509
-GW190910 112807
-GW190915 235702
-GW190924 021846
-GW190929 012149
-GW190930 133541
-0 25 50 75 100
-m2/M⊙
-0.0 0.5 1.0
-q
-−1 0 1
-χeﬀ
-0 3 6 9 12
-DL/Gpc
-FIG. 8. Marginal posterior distributions o…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …8.8 ‡ 0.82 GW190727 060333 HLV 0.023 12.0 1.00 &lt; 1.0× 10−5 12.1 1.00 0.0056 11.4 ‡ 1.00 2.0× 10−4 11.1‡ 1.00 GW190728 064510 HLV 7.5× 10−4 13.1 1.00 &lt; 1.0× 10−5 13.4 1.00 &lt; 8.2× 10−5 13.0‡ 1.00 &lt; 7.8× 10−5 13.0‡ 1.00 GW190731 140936 H…</li><li><span class="sec">introduction</span> …0.05 0.00 1.00 1.00 0.00 1.00 GW190725 174728 0.59 0.00 0.00 0.59 – – – – 0.79 0.17 0.00 0.96 0.58 0.24 0.82 GW190728 064510 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.97 0.03 0.00 1.00 0.97 0.03 1.00 GW190814 0.93 0.07 0.00 1.00 0.19…</li><li><span class="sec">appendix</span> …30.2+6.5 −8.3 0.09+0.25 −0.27 3.07+1.30 −1.23 0.52+0.18 −0.18 65.4+9.5 −7.3 0.73+0.09 −0.11 380 11.7+0.2 −0.5 GW190728 064510 20 .7+4.2 −1.4 8.6+0.6 −0.3 12.5+6.9 −2.3 8.0+1.7 −2.6 0.13+0.19 −0.07 0.88+0.26 −0.38 0.18+0.05 −0.07 19.7+4…</li><li><span class="sec">appendix</span> …190701 203306 GW190706 222641 GW190707 093326 GW190708 232457 GW190719 215514 GW190720 000836 GW190727 060333 GW190728 064510 GW190731 140936 GW190803 022701 GW190814 GW190828 063405 GW190828 065509 GW190910 112807 GW190915 235702 GW19…</li></ul>
     </details>
     
   </div>
@@ -1625,267 +516,15 @@ FIG. 8. Marginal posterior distributions o…</div>
 <section class="card" data-i="8" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>20 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ave a primary component mass in the pair
-instability gap [32–40], and one of those shows support
-for high spin and unequal masses. We also ﬁnd a new
-candidate whose masses are consistent with a neutron
-star–black hole binary (NSBH), although as in the case
-of <mark>GW190814</mark> [41], we cannot rule out the possibility that
-the secondary component of the candidate could be a
-low-mass black hole.
-In this work, all the analyses make use of the ﬁnal
-version of the strain data with improved calibration and
-noise subtraction, which includ…</div>
+    <p class="where">Named 20 times:
+      appendix ×7, introduction ×6, methods ×6, data.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…W190503 185404 L1 glitch subtraction, glitch-only
-model
-GW190513 205428 L1 glitch subtraction, glitch-only
-model
-GW190514 065416 L1 glitch subtraction, glitch-only
-model
-GW190701 203306 L1 glitch subtraction, glitch+signal
-model
-GW190727 060333 L1 fmin: 50 Hz
-<mark>GW190814</mark> L1 fmin: 30 Hz; H1 non-observing
-data used
-GW190924 021846 L1 glitch subtraction, glitch-only
-model
-TABLE I. List of candidate-speciﬁc data usage and mitiga-
-tion methods for parameter estimates. Only candidate events
-for which mitigation of instrumental arti…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… 1.0× 10−5 13.4 1.00 &lt; 8.2× 10−5 13.0‡ 1.00 &lt; 7.8× 10−5 13.0‡ 1.00
-GW190731 140936 HL 6.1 9.1 0.80 0.33 8.5 0.78 – – – 1.9 7.8 0.83
-GW190803 022701 HLV 77 9.0 0.96 0.073 9.1 0.94 81 8.7‡ 0.17 0.39 8.7 ‡ 0.97
-GW190805 211137 HLV – – – – – – – – – 0.63 8.3 0.95
-<mark>GW190814</mark> LV &lt; 2.0× 10−4 20.4 1.00 &lt; 1.0× 10−5 22.2 1.00 0.17 19.5 1.00 – – –
-GW190828 063405 HLV &lt; 1.0× 10−5 15.2 1.00 &lt; 1.0× 10−5 16.3 1.00 &lt; 8.5× 10−5 13.9‡ 1.00 &lt; 7.0× 10−5 15.9‡ 1.00
-GW190828 065509 HLV 0.16 10.8 0.96 3.5× 10−5 11.1 1.00 2.8× 10−4 10.5‡ 1.00 1.1× …</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>… be consistent with
-the limiting FARs from other pipelines. Dashes indicate that a pipeline did not ﬁnd the event with a FAR smaller than the
-subthreshold FAR threshold of 2 per day.
-
-17
-100 101 102
-Events
-0.1
-1.0
-10.0
-Cumulative source probabilities
-GW190425
-<mark>GW190814</mark>
-GW190531 023648
-NBBH = 34.59
-NNSBH = 1.54
-NBNS = 0.81
-BNS
-NSBH
-BBH
-(a) GstLAL
-100 101 102
-Events
-0.1
-1.0
-10.0
-Cumulative source probabilities
-NBBH = 29.66
-NNSBH = 0.66
-NBNS = 0.49
-BNS
-NSBH
-BBH (b) MBTA
-100 101 102
-Events
-0.1
-1.0
-10.0
-Cumulative source probabi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… 34.59
-NNSBH = 1.54
-NBNS = 0.81
-BNS
-NSBH
-BBH
-(a) GstLAL
-100 101 102
-Events
-0.1
-1.0
-10.0
-Cumulative source probabilities
-NBBH = 29.66
-NNSBH = 0.66
-NBNS = 0.49
-BNS
-NSBH
-BBH (b) MBTA
-100 101 102
-Events
-0.1
-1.0
-10.0
-Cumulative source probabilities
-GW190924 021846
-<mark>GW190814</mark>
-GW190612 115526
-NBBH = 24.95
-NNSBH = 3.8
-NBNS = 0.22
-BNS
-NSBH
-BBH
-(c) PyCBC
-100 101 102
-Events
-0.1
-1.0
-10.0
-Cumulative source probabilities
-GW190924 021846
-GW190725 174728
-NBBH = 44.5
-NNSBH = 1.4
-NSBH
-BBH (d) PyCBC-BBH
-FIG. 2. Cumulative sum of pBNS, pNSBH, p…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…W190720 000836 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.95 0.05 0.00 1.00 1.00 0.00 1.00
-GW190725 174728 0.59 0.00 0.00 0.59 – – – – 0.79 0.17 0.00 0.96 0.58 0.24 0.82
-GW190728 064510 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.97 0.03 0.00 1.00 0.97 0.03 1.00
-<mark>GW190814</mark> 0.93 0.07 0.00 1.00 0.19 0.81 0.00 1.00 0.54 0.46 0.00 1.00 – – –
-GW190924 021846 0.92 0.07 0.00 0.99 1.00 0.00 0.00 1.00 0.44 0.56 0.00 1.00 0.44 0.56 1.00
-GW190930 133541 0.87 0.00 0.00 0.87 0.76 0.00 0.00 0.76 0.93 0.07 0.00 1.00 0.85 0.15 1.00
-TABLE III. …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…he co-precessing frame to the precessing waveforms in
-the inertial frame [61, 62].
-For GW190917 114630, the less massive component is
-indicated to lie below 3 M⊙ and hence to have a strong
-likelihood of being a NS instead of a BH. Following the
-discussion for <mark>GW190814</mark> [41], the nature of the less mas-
-sive compact object in GW190917 114630 cannot be dis-
-cerned from the GW data at present. This is primarily
-
-22
-dependent on the unequal masses [157–159] which will
-lead the merger of the binary to occur before an eventual
-NS…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>… for any
-realistic NS EoS [157]. The lack of an observable NS dis-
-ruption thus removes the potential for the observed sig-
-nal to contain any additional information above a point-
-particle baseline. For this reason, we present results for
-GW190917 114630 and <mark>GW190814</mark> based on the BBH
-waveform models discussed above.
-For GW190425, the only O3a event in this cata-
-log classiﬁed as a BNS, we follow the analysis pre-
-sented in [8, 160] and report ﬁndings using the IMRPhe-
-nomP NRTidal waveform model [64, 65] which is based
-up…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…om the
-two IMRPhenomXPHM and SEOBNRv4PHM analyses
-with each given equal weight. For a subset of events
-(GW151226, GW190413 052954, GW190413 134308,
-GW190421 213856, GW190426 190642, GW190521,
-GW190602 175927, GW190719 215514,
-GW190725 174728, GW190803 022701,
-<mark>GW190814</mark>, GW190828 063405, GW190828 065509,
-GW190917 114630, GW190926 050336 and
-GW190929 012149) the respective SEOBNRv4PHM
-analyses were incomplete at the time of journal
-submission, hence we report results from the IMRPhe-
-nomXPHM only for these events.
-A selection…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…nd microlensing surveys
-ﬁnd no evidence for a mass gap between NSs and BHs
-[266, 267]. GWTC-2 BBH observations also suggest a
-dearth of systems between 2 .6 M⊙ and 6 M⊙ [121, 268].
-The only conﬁrmed GW event in GWTC-2 with a
-component in the lower mass gap is <mark>GW190814</mark> [41].
-Numerical and theoretical models do not exclude the
-formation of compact objects in this mass range from
-a core-collapse supernova [269–272]. Other scenarios
-to explain the formation of binary compact objects in
-this mass range include mergers in multip…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…odels described in Sec. V A. We present results
-combining samples from analyses using both the
-IMRPhenomXPHM and SEOBNRv4PHM, with the
-exception of GW190413 052954, GW190413 134308,
-GW190421 213856, GW190521, GW190602 175927,
-GW190719 215514, GW190803 022701, <mark>GW190814</mark>,
-GW190828 063405, GW190828 065509 and
-GW190929 012149 which, as mentioned earlier in
-Sec. V D, were analysed using IMRPhenomXPHM
-only. As also described in Sec. V A, for the BNS
-event GW190425, the IMRPhenomP NRTidal waveform
-model [64, 65] was used. The anal…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…0.25 3.33+2.35
-−1.77 0.56+0.31
-−0.26 67.4+15.3
-−10.8 0.71+0.12
-−0.14 3600 8.8+0.3
-−0.4
-GW190803 022701 65 .0+12.0
-−8.1 27.6+5.4
-−3.8 37.7+9.8
-−6.7 27.6+7.6
-−8.5 −0.01+0.23
-−0.28 3.19+1.63
-−1.47 0.54+0.22
-−0.22 62.1+11.2
-−7.6 0.68+0.09
-−0.12 1000 9 .3+0.3
-−0.5
-<mark>GW190814</mark> 25.9+1.3
-−1.3 6.11+0.06
-−0.05 23.3+1.4
-−1.4 2.6+0.1
-−0.1 0.00+0.07
-−0.07 0.23+0.04
-−0.05 0.05+0.01
-−0.01 25.7+1.3
-−1.3 0.28+0.03
-−0.03 22 25.3+0.1
-−0.2
-GW190828 063405 57 .2+7.9
-−4.3 24.6+3.6
-−2.0 31.9+5.4
-−4.1 25.8+4.9
-−5.3 0.15+0.15
-−0.16 2.07+0.65
-−0.92 0.…</div>
+    <details class="lines"><summary>Show the sentences (19, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …andidate whose masses are consistent with a neutron star–black hole binary (NSBH), although as in the case of GW190814 [41], we cannot rule out the possibility that the secondary component of the candidate could be a low-mass bl…</li><li><span class="sec">introduction</span> …, glitch-only model GW190701 203306 L1 glitch subtraction, glitch+signal model GW190727 060333 L1 fmin: 50 Hz GW190814 L1 fmin: 30 Hz; H1 non-observing data used GW190924 021846 L1 glitch subtraction, glitch-only model TABLE I.</li><li><span class="sec">introduction</span> …V 77 9.0 0.96 0.073 9.1 0.94 81 8.7‡ 0.17 0.39 8.7 ‡ 0.97 GW190805 211137 HLV – – – – – – – – – 0.63 8.3 0.95 GW190814 LV &lt; 2.0× 10−4 20.4 1.00 &lt; 1.0× 10−5 22.2 1.00 0.17 19.5 1.00 – – – GW190828 063405 HLV &lt; 1.0× 10−5 15.2 1.00…</li><li><span class="sec">introduction</span> 17 100 101 102 Events 0.1 1.0 10.0 Cumulative source probabilities GW190425 GW190814 GW190531 023648 NBBH = 34.59 NNSBH = 1.54 NBNS = 0.81 BNS NSBH BBH (a) GstLAL 100 101 102 Events 0.1 1.0 10.0…</li><li><span class="sec">introduction</span> ….96 0.58 0.24 0.82 GW190728 064510 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.97 0.03 0.00 1.00 0.97 0.03 1.00 GW190814 0.93 0.07 0.00 1.00 0.19 0.81 0.00 1.00 0.54 0.46 0.00 1.00 – – – GW190924 021846 0.92 0.07 0.00 0.99 1.00 0.…</li><li><span class="sec">appendix</span> Following the discussion for GW190814 [41], the nature of the less mas- sive compact object in GW190917 114630 cannot be dis- cerned from the GW da…</li><li><span class="sec">appendix</span> For this reason, we present results for GW190917 114630 and GW190814 based on the BBH waveform models discussed above.</li><li><span class="sec">appendix</span> …190421 213856, GW190426 190642, GW190521, GW190602 175927, GW190719 215514, GW190725 174728, GW190803 022701, GW190814, GW190828 063405, GW190828 065509, GW190917 114630, GW190926 050336 and GW190929 012149) the respective SEOBN…</li></ul>
     </details>
     
   </div>
@@ -1922,91 +561,16 @@ GW190828 063405 57 .2+7.9
 <section class="card" data-i="9" data-event="GW190910_112807">
   <div class="ctx">
     <div class="evname mono">GW190910_112807</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…20.4 1.00 &lt; 1.0× 10−5 22.2 1.00 0.17 19.5 1.00 – – –
-GW190828 063405 HLV &lt; 1.0× 10−5 15.2 1.00 &lt; 1.0× 10−5 16.3 1.00 &lt; 8.5× 10−5 13.9‡ 1.00 &lt; 7.0× 10−5 15.9‡ 1.00
-GW190828 065509 HLV 0.16 10.8 0.96 3.5× 10−5 11.1 1.00 2.8× 10−4 10.5‡ 1.00 1.1× 10−4 10.5‡ 1.00
-<mark>GW190910 112807</mark> LV – – – 0.0029† 13.4 1.00 – – – – – –
-GW190915 235702 HLV 0.0055 12.7 1.00 &lt; 1.0× 10−5 13.0 1.00 6.8× 10−4 13.0‡ 1.00 &lt; 7.0× 10−5 13.1‡ 1.00
-GW190916 200658* HLV 6.9× 103 8.2 0.66 12 8.2 0.09 – – – 4.7 7.9 ‡ 0.64
-GW190917 114630 HLV – – – 0.66 9.5 0.77 – – –…</div>
+    <p class="where">Named 3 times:
+      appendix ×2, introduction.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190910 112807</span> or <span class="mono hit">GW190910_112807</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">appendix</span>…0.15
-−0.16 2.07+0.65
-−0.92 0.38+0.10
-−0.15 54.3+7.3
-−4.0 0.74+0.07
-−0.07 340 16 .5+0.2
-−0.3
-GW190828 065509 34.3+5.2
-−4.3 13.4+1.4
-−1.0 23.7+6.8
-−6.7 10.4+3.8
-−2.2 0.05+0.16
-−0.17 1.54+0.69
-−0.65 0.29+0.11
-−0.11 33.0+5.3
-−4.3 0.64+0.08
-−0.08 590 10.2+0.4
-−0.5
-<mark>GW190910 112807</mark> 78 .0+9.3
-−9.1 33.5+4.2
-−4.1 43.8+7.6
-−6.8 34.2+6.6
-−7.3 0.00+0.17
-−0.20 1.52+1.09
-−0.63 0.29+0.17
-−0.11 74.4+8.5
-−8.6 0.69+0.07
-−0.08 9600 14 .5+0.2
-−0.3
-GW190915 235702 57.2+7.1
-−5.3 24.4+3.0
-−2.3 32.6+8.8
-−4.9 24.5+4.9
-−5.8 −0.03+0.19
-−0.24 1.75+0.71
-−0.65…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…527 092055
-GW190602 175927
-GW190620 030421
-GW190630 185205
-GW190701 203306
-GW190706 222641
-GW190707 093326
-GW190708 232457
-GW190719 215514
-GW190720 000836
-GW190727 060333
-GW190728 064510
-GW190731 140936
-GW190803 022701
-GW190814
-GW190828 063405
-GW190828 065509
-<mark>GW190910 112807</mark>
-GW190915 235702
-GW190924 021846
-GW190929 012149
-GW190930 133541
-0 25 50 75 100
-m2/M⊙
-0.0 0.5 1.0
-q
-−1 0 1
-χeﬀ
-0 3 6 9 12
-DL/Gpc
-FIG. 8. Marginal posterior distributions on the primary mass m1, secondary mass m2, mass ratio q, eﬀective inspiral spin χeﬀ
-and lu…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …5 15.9‡ 1.00 GW190828 065509 HLV 0.16 10.8 0.96 3.5× 10−5 11.1 1.00 2.8× 10−4 10.5‡ 1.00 1.1× 10−4 10.5‡ 1.00 GW190910 112807 LV – – – 0.0029† 13.4 1.00 – – – – – – GW190915 235702 HLV 0.0055 12.7 1.00 &lt; 1.0× 10−5 13.0 1.00 6.8× 10−4 1…</li><li><span class="sec">appendix</span> …10.4+3.8 −2.2 0.05+0.16 −0.17 1.54+0.69 −0.65 0.29+0.11 −0.11 33.0+5.3 −4.3 0.64+0.08 −0.08 590 10.2+0.4 −0.5 GW190910 112807 78 .0+9.3 −9.1 33.5+4.2 −4.1 43.8+7.6 −6.8 34.2+6.6 −7.3 0.00+0.17 −0.20 1.52+1.09 −0.63 0.29+0.17 −0.11 74.4…</li><li><span class="sec">appendix</span> …0836 GW190727 060333 GW190728 064510 GW190731 140936 GW190803 022701 GW190814 GW190828 063405 GW190828 065509 GW190910 112807 GW190915 235702 GW190924 021846 GW190929 012149 GW190930 133541 0 25 50 75 100 m2/M⊙ 0.0 0.5 1.0 q −1 0 1 χeﬀ…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -2042,253 +606,15 @@ and lu…</div>
 <section class="card" data-i="10" data-event="GW190916_200658">
   <div class="ctx">
     <div class="evname mono">GW190916_200658</div>
-    <h3>12 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…er space, 165 subregions are
-used. This ﬁner resolution has the beneﬁt of revealing
-events in population-rich areas, even if the overall back-
-ground rate for their ranking statistic value is larger than
-few per year, as in the case of the high mass BBH event
-<mark>GW190916 200658</mark> presented in Table II.
-3. PyCBC
-In previous LVC searches [4, 7, 8, 122], the oﬄine Py-
-CBC [53, 123] pipeline has analyzed data only from the
-two LIGO detectors. In this analysis, PyCBC was ex-
-tended to search data from the three-detector LIGO–
-Virgo network…</div>
+    <p class="where">Named 12 times:
+      introduction ×5, appendix ×3, methods ×3, conclusion.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190916 200658</span> or <span class="mono hit">GW190916_200658</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…lassiﬁed as BBHs, that is, pBBH is greater
-than pNSBH and pBNS. Only one new candidate,
-GW190725 174728, has a non-negligible probability
-in a source class other than BBH, with non-zero
-pNSBH (Table III). Out of the 8 candidates, only
-two (GW190725 174728 and <mark>GW190916 200658</mark>) are
-assigned pastro &gt; 0.5 by more than one pipeline. Diﬀer-
-ences between pipelines are expected, due to the eﬀects
-of random noise ﬂuctuations on the diﬀerent ranking
-statistics used, and due to diﬀerent assumed signal
-distributions and other choices. In pr…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…0.5. There is also non-stationary noise
-in the LIGO Livingston detector at the time of this
-event, but we have no evidence that the FAR of the
-event is misestimated. Out of the 8 new candidates, 5
-candidates (GW190426 190642, GW190725 174728,
-GW190805 211137, <mark>GW190916 200658</mark>, and
-GW190925 232845) were identiﬁed in the LVC search for
-gravitationally lensed candidates in O3a data [29], while
-4 candidates (GW190725 174728, GW190916 200658,
-GW190925 232845, and GW190926 050336) were also
-
-16
-Name Inst. MBTA GstLAL PyCBC PyCBC-BBH
-FAR…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…. Out of the 8 new candidates, 5
-candidates (GW190426 190642, GW190725 174728,
-GW190805 211137, GW190916 200658, and
-GW190925 232845) were identiﬁed in the LVC search for
-gravitationally lensed candidates in O3a data [29], while
-4 candidates (GW190725 174728, <mark>GW190916 200658</mark>,
-GW190925 232845, and GW190926 050336) were also
-
-16
-Name Inst. MBTA GstLAL PyCBC PyCBC-BBH
-FAR (yr−1) SNRpastro FAR (yr−1) SNRpastro FAR (yr−1) SNR pastro FAR (yr−1) SNR pastro
-GW190403 051519 HLV – – – – – – – – – 7.7 8.0 0.61
-GW190408 181802 HLV 8.7× 10−5 …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…1.00
-GW190828 065509 HLV 0.16 10.8 0.96 3.5× 10−5 11.1 1.00 2.8× 10−4 10.5‡ 1.00 1.1× 10−4 10.5‡ 1.00
-GW190910 112807 LV – – – 0.0029† 13.4 1.00 – – – – – –
-GW190915 235702 HLV 0.0055 12.7 1.00 &lt; 1.0× 10−5 13.0 1.00 6.8× 10−4 13.0‡ 1.00 &lt; 7.0× 10−5 13.1‡ 1.00
-<mark>GW190916 200658</mark>* HLV 6.9× 103 8.2 0.66 12 8.2 0.09 – – – 4.7 7.9 ‡ 0.64
-GW190917 114630 HLV – – – 0.66 9.5 0.77 – – – – – –
-GW190924 021846 HLV 0.0049 11.9 0.99 &lt; 1.0× 10−5 13.0 1.00 &lt; 8.2× 10−5 12.4‡ 1.00 8.3× 10−5 12.5‡ 1.00
-GW190925 232845* HV 100 9.4 0.35 – – – 73 9.0 0.…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…6 1.03+0.52
-−0.43 0.20+0.09
-−0.08 17.6+7.7
-−1.8 0.65+0.09
-−0.07 2200 9.1+0.4
-−0.7
-GW190805 211137 76 .7+19.5
-−13.8 31.9+8.8
-−6.3 46.2+15.4
-−11.2 30.6+11.8
-−11.3 0.37+0.29
-−0.39 6.13+3.72
-−3.08 0.92+0.43
-−0.40 72.4+18.2
-−13.2 0.82+0.09
-−0.16 1600 8 .1+0.5
-−0.7
-<mark>GW190916 200658</mark> 68.0+18.3
-−13.1 26.9+8.2
-−5.4 43.8+19.9
-−12.6 23.3+12.5
-−10.0 0.20+0.33
-−0.31 4.94+3.71
-−2.38 0.77+0.45
-−0.32 65.0+17.3
-−12.6 0.74+0.13
-−0.24 2400 8.1+0.3
-−0.5
-GW190917 114630 11 .8+3.0
-−2.8 3.7+0.2
-−0.2 9.7+3.4
-−3.9 2.1+1.1
-−0.4 −0.08+0.21
-−0.43 0.72+0.30
-−0…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…nsional
-posterior distributions are visualized in Fig. 3. Two-dimensional projections of the 90% credible regions in the M–q andM–χeﬀ
-planes are shown in Fig. 4 and Fig. 5.
-0 50 100 150 200
-m1/M⊙
-GW190403 051519
-GW190426 190642
-GW190725 174728
-GW190805 211137
-<mark>GW190916 200658</mark>
-GW190917 114630
-GW190925 232845
-GW190926 050336
-0 50 100
-m2/M⊙
-0.0 0.5 1.0
-q
-−1 0 1
-χeﬀ
-0 5 10 15 20
-DL/Gpc
-FIG. 3. Marginal posterior distributions on the primary mass m1, secondary mass m2, mass ratio q, eﬀective inspiral spin χeﬀ
-and luminosity distance DL…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…a recovered DL = 8.28+6.72
-−4.29 Gpc cor-
-responding to a redshift z = 1.18+0.73
-−0.53 approximately
-twice as distant as the most distant events that were re-
-ported in GWTC-2 [7, 8] as also shown in Appendix A 2.
-In addition GW190426 190642, GW190805 211137,
-<mark>GW190916 200658</mark> and GW190926 050336 all have
-inferred distances comparable to, or larger than,
-GW190413 134308, further highlighting the access to the
-distant Universe provided in GWTC-2.1.
-Another eﬀect of the modest SNR of the new events is
-their comparatively poor localiz…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…m-
-pact of these model systematic eﬀects, and their impact
-on the inferred source parameters for the population of
-GW events presented here, is left for a future study.
-5. Comparison to 3-OGC
-Out of the 8 new events presented in this
-section, GW190725 174728, <mark>GW190916 200658</mark>,
-GW190925 232845 and GW190926 050336 were also
-independently identiﬁed and analyzed as part of 3-
-OGC [17] using the PyCBC Inference package [189] and
-the IMRPhenomXPHM waveform model. We compare
-the inferred source properties for these events as pre-
-sented …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…4],
-while the majority of mergers in GWTC-2 are associ-
-ated with low values of χeﬀ, with a slight preference
-
-26
-2 4 7 10 20 40 70 100 200 400
-M/M⊙
-0.0
-0.2
-0.4
-0.6
-0.8
-1.0
-q
-m
-1
-= 3
-M
-⊙
-m2 = 3M⊙
-GW190403 051519
-GW190426 190642
-GW190725 174728
-GW190805 211137
-<mark>GW190916 200658</mark>
-GW190917 114630
-GW190925 232845
-GW190926 050336
-FIG. 4. Contours representing the 90% credible regions in the total mass M and mass ratio q plane for all events reported
-in this catalog. The events that are new to this catalog with pastro &gt; 0.5, highlighted i…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…are expected
-if the primary and secondary components are a second-
-and a ﬁrst-generation BH, respectively [208, 209, 211], or
-if the primary BH is the result of a stellar merger in a
-young star cluster [216].
-Four of the other new candidates (GW190805 211137,
-<mark>GW190916 200658</mark>, GW190925 232845,
-GW190926 050336) fall in the mass range of the
-bulk of GWTC-2 BBHs, while the secondary component
-of GW190725 174728 has a 0.18 probability of lying in
-the lower mass gap (∼ 2–5 M⊙). The existence of a lower
-mass gap was inferred from observ…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…174728
-shows some support for a secondary component mass in
-the lower mass gap (2–5M ⊙). GW190917 114630, the
-
-28
-1 2 4 7 10 20 40 70 100
-M/M⊙
-−1.00
-−0.75
-−0.50
-−0.25
-0.00
-0.25
-0.50
-0.75
-1.00
-χeﬀ
-GW190403 051519
-GW190426 190642
-GW190725 174728
-GW190805 211137
-<mark>GW190916 200658</mark>
-GW190917 114630
-GW190925 232845
-GW190926 050336
-FIG. 5. Contours representing the 90% credible regions in the plane of chirp mass M and eﬀective inspiral spin χeﬀ for all
-events reported in this catalog. The events that are new to this catalog with pastro &gt; 0…</div>
+    <details class="lines"><summary>Show the sentences (11, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …rate for their ranking statistic value is larger than few per year, as in the case of the high mass BBH event GW190916 200658 presented in Table II. 3.</li><li><span class="sec">introduction</span> Out of the 8 candidates, only two (GW190725 174728 and GW190916 200658) are assigned pastro &gt; 0.5 by more than one pipeline.</li><li><span class="sec">introduction</span> Out of the 8 new candidates, 5 candidates (GW190426 190642, GW190725 174728, GW190805 211137, GW190916 200658, and GW190925 232845) were identiﬁed in the LVC search for gravitationally lensed candidates in O3a data [29]…</li><li><span class="sec">introduction</span> …– – – GW190915 235702 HLV 0.0055 12.7 1.00 &lt; 1.0× 10−5 13.0 1.00 6.8× 10−4 13.0‡ 1.00 &lt; 7.0× 10−5 13.1‡ 1.00 GW190916 200658* HLV 6.9× 103 8.2 0.66 12 8.2 0.09 – – – 4.7 7.9 ‡ 0.64 GW190917 114630 HLV – – – 0.66 9.5 0.77 – – – – – – G…</li><li><span class="sec">appendix</span> …11.8 −11.3 0.37+0.29 −0.39 6.13+3.72 −3.08 0.92+0.43 −0.40 72.4+18.2 −13.2 0.82+0.09 −0.16 1600 8 .1+0.5 −0.7 GW190916 200658 68.0+18.3 −13.1 26.9+8.2 −5.4 43.8+19.9 −12.6 23.3+12.5 −10.0 0.20+0.33 −0.31 4.94+3.71 −2.38 0.77+0.45 −0.32…</li><li><span class="sec">appendix</span> …in Fig. 4 and Fig. 5. 0 50 100 150 200 m1/M⊙ GW190403 051519 GW190426 190642 GW190725 174728 GW190805 211137 GW190916 200658 GW190917 114630 GW190925 232845 GW190926 050336 0 50 100 m2/M⊙ 0.0 0.5 1.0 q −1 0 1 χeﬀ 0 5 10 15 20 DL/Gpc F…</li><li><span class="sec">appendix</span> In addition GW190426 190642, GW190805 211137, GW190916 200658 and GW190926 050336 all have inferred distances comparable to, or larger than, GW190413 134308, further highl…</li><li><span class="sec">methods</span> Comparison to 3-OGC Out of the 8 new events presented in this section, GW190725 174728, GW190916 200658, GW190925 232845 and GW190926 050336 were also independently identiﬁed and analyzed as part of 3- OGC [17] us…</li></ul>
     </details>
     
   </div>
@@ -2325,22 +651,16 @@ events reported in this catalog. The events that are new to this catalog with pa
 <section class="card" data-i="11" data-event="GW200115_042309">
   <div class="ctx">
     <div class="evname mono">GW200115_042309</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200115 042309</span> or <span class="mono hit">GW200115_042309</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…tainties in the pa-
-rameters of the population models used, while the BNS
-rate estimate assumed a population uniform in compo-
-nent masses between 1 M⊙ and 2.5 M⊙. The merger rate
-of NSBHs was recently calculated following the discovery
-of GW200105 162426 and <mark>GW200115 042309</mark> [133], and
-we do not update it here.
-Here, we present complementary BBH and BNS rate
-estimates based solely on the matched ﬁlter search
-pipeline outputs, with methods that allow us to in-
-corporate a large number of likely noise (background)
-events [26] and t…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> The merger rate of NSBHs was recently calculated following the discovery of GW200105 162426 and GW200115 042309 [133], and we do not update it here.</li></ul>
+    </details>
     
   </div>
   <div class="form">

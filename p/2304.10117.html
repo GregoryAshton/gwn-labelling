@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,120 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Testing the first law of black hole mechanics with gravitational waves</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2304.10117" target="_blank" rel="noopener" class="mono">arXiv:2304.10117</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The successful observation of gravitational waves has provided humanity with an additional method to explore the universe, particularly black holes. In this study, we utilize data from LIGO and Virgo gravitational wave observations to test the first law of black hole mechanics, employing two different approaches. We consider the secondary compact object as a perturbation to the primary black hole before the merger, and the remnant black hole as a stationary black hole after the merger. In the pre-merger and post-merger analysis, our results demonstrate consistency with the first law, with an error level of approximate 25% at a 68% credibility level for GW190403_051519. In the full inspiral-merger-ringdown analysis, our results show consistency with the first law of black hole mechanics, with an error level of about 6% at a 68% credibility level and 10% at a 95% credibility level for GW191219_163120. Additionally, we observe that the higher the mass ratio of the gravitational wave source, the more consistent our results are with the first law of black hole mechanics. Overall, our study sheds light on the nature of compact binary coalescence and their implications for black hole mechanics.</p></details>
+<div class="small mut mono">arXiv:2304.10117</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The successful observation of gravitational waves has provided humanity with an additional method to explore the universe, particularly black holes. In this study, we utilize data from LIGO and Virgo gravitational wave observations to test the first law of black hole mechanics, employing two different approaches. We consider the secondary compact object as a perturbation to the primary black hole before the merger, and the remnant black hole as a stationary black hole after the merger. In the pre-merger and post-merger analysis, our results demonstrate consistency with the first law, with an error level of approximate 25% at a 68% credibility level for GW190403_051519. In the full inspiral-merger-ringdown analysis, our results show consistency with the first law of black hole mechanics, with an error level of about 6% at a 68% credibility level and 10% at a 95% credibility level for GW191219_163120. Additionally, we observe that the higher the mass ratio of the gravitational wave source, the more consistent our results are with the first law of black hole mechanics. Overall, our study sheds light on the nature of compact binary coalescence and their implications for black hole mechanics.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2304.10117v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">12 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">12 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…come increasingly important for developing a comprehensive theory of quantum gravity. The advent of gravitational wave (GW) astronomy has opened a new window on the study of BHs [5, 6]. In 2015, the LIGO detectors observed a GW signal from a binary BH system, <mark>GW150914</mark>, which was the first direct detection of GWs by human beings [7]. Since then, a number of GW events have been observed, providing valuable insights into BH mergers and their properties [8, 9]. In addition, observational testing of BH properties is made possib…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…g, Y. Wang, T. Yang, X.-Y. Yang, S.
-Yu, and X. Zhang, The Gravitational-wave physics II: Progress, Sci. China-Phys. Mech. Astron. 64, 120401 (2021)
-
- 
-[10]
-M. Isi, W. M. Farr, M. Giesler, M. A. Scheel, and S. A. Teukolsky, Testing the black-hole area law with <mark>GW150914</mark>, Phys. Rev. Lett. 127, 011103 (2021).
-
- 
-[11]
-M. Isi, M. Giesler, W. M. Farr, M. A. Scheel, and S. A. Teukolsky, Testing the no-hair theorem with GW150914, Phys. Rev. Lett. 123, 111102 (2019).
-
- 
-[12]
-J. D. Bekenstein, Black Holes and Entropy, Phys. Rev. D 7,…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[10]</span> · 2 places</span><div class="cite">… addition, observational testing of BH properties is made possible with the aid of various methods. For example, the black-hole area law, also known as the second law of BH mechanics, has been tested <mark class="ref">[10]</mark>, along with the BH no-hair theorem [11]. Here, we present a new GW observational test on the first law of BH mechanics.
-
-The first law of BH mechanics, also known as the Bekenstein-Smarr formula, has…</div><div class="cite">…ry axisymmetric BH if the BH settles down to a new stationary axisymmetric BH after some infinitesimal physical process [12, 13, 14, 15].
-While the second law of BH mechanics has been tested with GWs <mark class="ref">[10]</mark>, the first law has yet to be confirmed.
-
-GWs carry valuable information about their sources. By analyzing the data from GW observations, we can indirectly obtain information about the sources. In thi…</div>
-    </div></div>
+    <p class="where">Named 5 times:
+      reference list ×4, introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2304.10117v2#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">references</span>…
-M. Isi, W. M. Farr, M. Giesler, M. A. Scheel, and S. A. Teukolsky, Testing the black-hole area law with GW150914, Phys. Rev. Lett. 127, 011103 (2021).
-
- 
-[11]
-M. Isi, M. Giesler, W. M. Farr, M. A. Scheel, and S. A. Teukolsky, Testing the no-hair theorem with <mark>GW150914</mark>, Phys. Rev. Lett. 123, 111102 (2019).
-
- 
-[12]
-J. D. Bekenstein, Black Holes and Entropy, Phys. Rev. D 7, 2333 (1973).
-
- 
-[13]
-L. Smarr, Mass Formula for Kerr Black Holes, Phys. Rev. Lett. 30, 71 (1973).
-
- 
-[14]
-J. M. Bardeen, B. Carter, and S. W. Hawking, The…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[11]</span> · 1 place</span><div class="cite">…roperties is made possible with the aid of various methods. For example, the black-hole area law, also known as the second law of BH mechanics, has been tested [10], along with the BH no-hair theorem <mark class="ref">[11]</mark>. Here, we present a new GW observational test on the first law of BH mechanics.
-
-The first law of BH mechanics, also known as the Bekenstein-Smarr formula, has important implications for our understa…</div>
-    </div></div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">references</span>…r-Birnholtz, B. Krishnan, A. B. Nielsen, A. H. Nitz, and C. M. Biwer, Observational tests of the black hole area increase law, Phys. Rev. D 97, 124069 (2018).
-
- 
-[18]
-R. Abbott et al. (LIGO Scientific and Virgo Collaboration), Tests of general relativity with <mark>GW150914</mark>, Phys. Rev. Lett. 116, 221101 (2016).
-
- 
-[19]
- G. Ashton et al, BILBY: A User-friendly Bayesian Inference Library for Gravitational-wave Astronomy, Astrophys. J. Suppl. Ser. 241, 27 (2019).
-
- 
-[20]
-G. Carullo, W. D. Pozzo, and J. Veitch, Observational black h…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[18]</span> · 1 place</span><div class="cite">…the accuracy of our results using the fractional difference, (ra−re)/re(r_{a}-r_{e})/r_{e}, where rar_{a} represents the actual value of rr and rer_{e} represents the expected value of rr, which is 1 <mark class="ref">[18]</mark>.
-
-By calculating this fractional difference, we can measure the level of error in our data and determine how closely it matches our theoretical expectations. This is an important step in ensuring the…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…ton et al, BILBY: A User-friendly Bayesian Inference Library for Gravitational-wave Astronomy, Astrophys. J. Suppl. Ser. 241, 27 (2019).
-
- 
-[20]
-G. Carullo, W. D. Pozzo, and J. Veitch, Observational black hole spectroscopy: A time-domain multimode analysis of <mark>GW150914</mark>, Phys. Rev. D 99, 123029 (2019).
-
- 
-[21]
-R. Abbott et al. (LIGO Scientific and Virgo Collaboration), GWTC-2.1: Deep Extended Catalog of Compact Binary Coalescences Observed by LIGO and Virgo During the First Half of the Third Observing Run, arXiv:2108.01045v2…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[20]</span> · 1 place</span><div class="cite">…oft.docs.ligo.org/bilby/. [19] package in the frequency domain. For the post-merger data, we estimate mfm_{f} and χf\chi_{f} utilizing pyRing22
- 2
- 
- 
- 
- 
- 
- 
- 
- https://lscsoft.docs.ligo.org/pyring/ <mark class="ref">[20]</mark> Python package in the time domain. The pyRing package can measure remnant parameters by analyzing ringdown data directly and independently.
-
-The posterior samplers of m0,fm_{0,f} and χ0,f\chi_{0,f} i…</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> In 2015, the LIGO detectors observed a GW signal from a binary BH system, GW150914, which was the first direct detection of GWs by human beings [7].</li><li><span class="sec">cites it as [10]</span> …methods. For example, the black-hole area law, also known as the second law of BH mechanics, has been tested [10], along with the BH no-hair theorem [11]. Here, we present a new GW observational test on the first law of BH…</li><li><span class="sec">cites it as [10]</span> …nfinitesimal physical process [12, 13, 14, 15]. While the second law of BH mechanics has been tested with GWs [10], the first law has yet to be confirmed. GWs carry valuable information about their sources. By analyzing the…</li><li><span class="sec">cites it as [11]</span> …ea law, also known as the second law of BH mechanics, has been tested [10], along with the BH no-hair theorem [11]. Here, we present a new GW observational test on the first law of BH mechanics. The first law of BH mechanic…</li><li><span class="sec">cites it as [18]</span> …, where rar_{a} represents the actual value of rr and rer_{e} represents the expected value of rr, which is 1 [18]. By calculating this fractional difference, we can measure the level of error in our data and determine how…</li><li><span class="sec">cites it as [20]</span> …we estimate mfm_{f} and χf\chi_{f} utilizing pyRing22 2 https://lscsoft.docs.ligo.org/pyring/ [20] Python package in the time domain. The pyRing package can measure remnant parameters by analyzing ringdown da…</li></ul>
     </details>
     
   </div>
@@ -272,107 +201,15 @@ The posterior samplers of m0,fm_{0,f} and χ0,f\chi_{0,f} i…</div>
 <section class="card" data-i="1" data-event="GW190403_051519">
   <div class="ctx">
     <div class="evname mono">GW190403_051519</div>
-    <h3>18 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…efore the merger, and the remnant black hole as a stationary black hole after the merger. In the pre-merger and post-merger analysis, our results demonstrate consistency with the first law, with an error level of approximate 25% at a 68% credibility level for <mark>GW190403_051519</mark>. In the full inspiral-merger-ringdown analysis, our results show consistency with the first law of black hole mechanics, with an error level of about 6% at a 68% credibility level and 10% at a 95% credibility level for GW191219_163120. Additionally, we observ…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…s essential to ensure that the chosen GW event has a large mass ratio. When the collision occurs, we consider the secondary compact object as a perturbation to the primary black hole. We conducted separate analyses using the pre-merger and post-merger data of <mark>GW190403_051519</mark>, with mass ratios of approximately 4. Additionally, we analyzed the complete IMR data of all GW events with a mass ratio higher than 3 that have been observed thus far. Among these events, GW191219_163120 exhibits the highest mass ratio of 27 and serves as an…</div>
+    <p class="where">Named 18 times:
+      methods ×12, appendix ×3, abstract, introduction, discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2304.10117v2#:~:text=GW190403_051519" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190403_051519</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…rphi represent the polar and azimuthal angles, respectively. In our study, we specifically focus on the fundamental mode (with n=0n=0) of the dominant mode (with l=m=2l=m=2).
-
-3 The pre-merger and post-merger analysis
-
-In this section, we analyze the GW event <mark>GW190403_051519</mark> [21], which has a mass ratio of approximately 4.
-This event corresponds to a binary black hole coalescence signal observed during the first half of the third observation run of Advanced LIGO and Advanced Virgo.
-
-We employ the Bilby package along with the Dyna…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">methods</span>…le coalescence signal observed during the first half of the third observation run of Advanced LIGO and Advanced Virgo.
-
-We employ the Bilby package along with the Dynasty sampler to estimate the values of m0m_{0} and a0a_{0}. The summary of the parameters for <mark>GW190403_051519</mark> estimated with Billy is showed in Table 3 in the Appendix. The waveform model utilized is IMRPhenomXPHM [22]. The priors for the mass ratio, chirp mass, and χ\chi are set as [0.1, 1], [50, 100], and [0, 1] respectively. For the GW190403_051519 event, we deter…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… parameters for GW190403_051519 estimated with Billy is showed in Table 3 in the Appendix. The waveform model utilized is IMRPhenomXPHM [22]. The priors for the mass ratio, chirp mass, and χ\chi are set as [0.1, 1], [50, 100], and [0, 1] respectively. For the <mark>GW190403_051519</mark> event, we determine the values of mfm_{f} and afa_{f} using the pyRing package and the CPnest sampler. The summary of the parameters for GW190403_051519 estimated with pyRing is showed in Table 4 in the Appendix. The priors for mfm_{f}, χf\chi_{f}, and the st…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…for the mass ratio, chirp mass, and χ\chi are set as [0.1, 1], [50, 100], and [0, 1] respectively. For the GW190403_051519 event, we determine the values of mfm_{f} and afa_{f} using the pyRing package and the CPnest sampler. The summary of the parameters for <mark>GW190403_051519</mark> estimated with pyRing is showed in Table 4 in the Appendix. The priors for mfm_{f}, χf\chi_{f}, and the starting time of the ringdown are chosen as [140, 310], [0.6, 1], and 1238303737.22 respectively. All masses are measured in the detector frame and are exp…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…2 respectively. All masses are measured in the detector frame and are expressed in solar masses.
-The specific values of m0,fm_{0,f} and a0,fa_{0,f} are presented in Table 1 additionally.
-
-We present the result of testing the first law of the BH mechanics with <mark>GW190403_051519</mark> in Fig.2. The 68% credible region is (-25.02%, 1.33%), yielding an approximate 25% error level.
-
-Table 1: The parameter values are obtained from different analyses. m0prem_{0}^{\mathrm{pre}} and χ0pre\chi_{0}^{\mathrm{pre}} are measured from the pre-merger da…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ector frame and are expressed in solar masses.
-
-Event
-m0prem_{0}^{\mathrm{pre}}
-mfpostm_{\mathrm{f}}^{\mathrm{post}}
-mfIMRm_{\mathrm{f}}^{\mathrm{IMR}}
-χ0pre\chi_{0}^{\mathrm{pre}}
-χfpost\chi_{\mathrm{f}}^{\mathrm{post}}
-χfIMR\chi_{\mathrm{f}}^{\mathrm{IMR}}
-
-<mark>GW190403_051519</mark>
-182.81−76.86+40.47182.81_{-76.86}^{+40.47}
-206.63−48.73+73.01206.63_{-48.73}^{+73.01}
-225.47−47.45+36.53225.47_{-47.45}^{+36.53}
-0.83−0.70+0.140.83_{-0.70}^{+0.14}
-0.84−0.21+0.140.84_{-0.21}^{+0.14}
-0.91−0.17+0.050.91_{-0.17}^{+0.05}
-
-Figure 1: The probabilit…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…1206.63_{-48.73}^{+73.01}
-225.47−47.45+36.53225.47_{-47.45}^{+36.53}
-0.83−0.70+0.140.83_{-0.70}^{+0.14}
-0.84−0.21+0.140.84_{-0.21}^{+0.14}
-0.91−0.17+0.050.91_{-0.17}^{+0.05}
-
-Figure 1: The probability density distribution of the fractional difference of rr of <mark>GW190403_051519</mark>, whose mass ratio is about 4. We estimate m0m_{0} and χ0\chi_{0} with the Bilby package and mfm_{f} and χf\chi_{f} with the pyRing package. The green dashed lines indicate the 68% credible regions. The black dotted line indicates the expected value, which is …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…te m0m_{0} and χ0\chi_{0} with the Bilby package and mfm_{f} and χf\chi_{f} with the pyRing package. The green dashed lines indicate the 68% credible regions. The black dotted line indicates the expected value, which is 0.
-
-Figure 2: The remnant parameters of <mark>GW190403_051519</mark> are measured from the post-merger data analysis (solid blue) and the full IMR analysis (dashed blue). The top and right-hand panels display one-dimensional posteriors for mfm_{f} and χf\chi_{f}, respectively. Contours represent the 90% credible regions for mf…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…, which are derived directly and independently from the analysis of ringdown data. By assessing the consistency between these values, we can test the validity of GR. The values of mfIMRm_{\mathrm{f}}^{\mathrm{IMR}} and χfIMR\chi_{\mathrm{f}}^{\mathrm{IMR}} of <mark>GW190403_051519</mark> are obtained from LIGO and Virgo released55
- 5
- 
- 
- 
- 
- 
- 
- 
- https://zenodo.org/record/6513631/.. The results are shown in Fig. 2. As depicted in Fig. 2, 88% of the samples within the blue dashed contour lie within the overlapping region of the blue solid co…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…erlapping region of the blue solid contour. This indicates an agreement between the measured remnant parameters from both approaches, with an 88% probability. This result supports the validity of general relativity, and confirms that the remnant black hole of <mark>GW190403_051519</mark> is a Kerr black hole, as predicted by GR.
-
-4 The full inspiral-merger-ringdown analysis
-
-In the analysis conducted in the previous section, the results of testing the first law were not satisfactory. Our goal is to analyze events with higher mass ratios. Howe…</div>
+    <details class="lines"><summary>Show the sentences (18, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …nstrate consistency with the first law, with an error level of approximate 25% at a 68% credibility level for GW190403_051519.</li><li><span class="sec">introduction</span> We conducted separate analyses using the pre-merger and post-merger data of GW190403_051519, with mass ratios of approximately 4.</li><li><span class="sec">methods</span> In this section, we analyze the GW event GW190403_051519 [21], which has a mass ratio of approximately 4.</li><li><span class="sec">methods</span> The summary of the parameters for GW190403_051519 estimated with Billy is showed in Table 3 in the Appendix.</li><li><span class="sec">methods</span> For the GW190403_051519 event, we determine the values of mfm_{f} and afa_{f} using the pyRing package and the CPnest sampler.</li><li><span class="sec">methods</span> The summary of the parameters for GW190403_051519 estimated with pyRing is showed in Table 4 in the Appendix.</li><li><span class="sec">methods</span> We present the result of testing the first law of the BH mechanics with GW190403_051519 in Fig.2.</li><li><span class="sec">methods</span> GW190403_051519 182.81−76.86+40.47182.81_{-76.86}^{+40.47} 206.63−48.73+73.01206.63_{-48.73}^{+73.01} 225.47−47.45+36.53225.4…</li></ul>
     </details>
     
   </div>
@@ -409,42 +246,16 @@ In the analysis conducted in the previous section, the results of testing the fi
 <section class="card" data-i="2" data-event="GW190412">
   <div class="ctx">
     <div class="evname mono">GW190412</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2304.10117v2#:~:text=GW190412" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190412</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…ith a mass ratio higher than 3 that have been observed thus far. Ten events in total meet this criterion, with different mass ratios. Five of these events are from the O3a observation run of Advanced LIGO and Advanced Virgo [24], specifically GW190403_051519, <mark>GW190412</mark>, GW190426_152155, GW190814, and GW190917_114630. The remaining five events are from the O3b observation run [23], specifically GW191113_071753, GW191219_163120, GW200115_042309, GW200208_222617, and GW200210_ 092254. Our analysis confirms our hypothesis, as d…</div>
     
-    
-    
-    <div class="mention"><span class="sec">methods</span>…the error level.
-
-Table 2: Mass ratios and the fractional differences at 68% credible regions of twelve events in Fig. 4. The median value and the range of the 90% credible interval of mass ratios are provided.
-
-Event
-Mass ratio
-
-The fractional
-difference(%)
-
-<mark>GW190412_053044</mark>
-3.07−1.06+1.313.07_{-1.06}^{+1.31}
-19.63
-
-GW190426_152155
-3.66−2.07+4.133.66_{-2.07}^{+4.13}
-17.26
-
-GW200115_042309
-4.12−2.64+2.764.12_{-2.64}^{+2.76}
-26.73
-
-GW190403_051519
-4.34−2.84+4.334.34_{-2.84}^{+4.33}
-16.04
-
-GW200208_222617
-4.66−3.53+13.034.66_{-3.53}…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …ents are from the O3a observation run of Advanced LIGO and Advanced Virgo [24], specifically GW190403_051519, GW190412, GW190426_152155, GW190814, and GW190917_114630.</li><li><span class="sec">methods</span> GW190412_053044 3.07−1.06+1.313.07_{-1.06}^{+1.31} 19.63</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -480,44 +291,16 @@ GW200208_222617
 <section class="card" data-i="3" data-event="GW190426_152155">
   <div class="ctx">
     <div class="evname mono">GW190426_152155</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2304.10117v2#:~:text=GW190426_152155" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190426_152155</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>… ratio higher than 3 that have been observed thus far. Ten events in total meet this criterion, with different mass ratios. Five of these events are from the O3a observation run of Advanced LIGO and Advanced Virgo [24], specifically GW190403_051519, GW190412, <mark>GW190426_152155</mark>, GW190814, and GW190917_114630. The remaining five events are from the O3b observation run [23], specifically GW191113_071753, GW191219_163120, GW200115_042309, GW200208_222617, and GW200210_ 092254. Our analysis confirms our hypothesis, as demonstrated in Fi…</div>
     
-    
-    
-    <div class="mention"><span class="sec">methods</span>…differences at 68% credible regions of twelve events in Fig. 4. The median value and the range of the 90% credible interval of mass ratios are provided.
-
-Event
-Mass ratio
-
-The fractional
-difference(%)
-
-GW190412_053044
-3.07−1.06+1.313.07_{-1.06}^{+1.31}
-19.63
-
-<mark>GW190426_152155</mark>
-3.66−2.07+4.133.66_{-2.07}^{+4.13}
-17.26
-
-GW200115_042309
-4.12−2.64+2.764.12_{-2.64}^{+2.76}
-26.73
-
-GW190403_051519
-4.34−2.84+4.334.34_{-2.84}^{+4.33}
-16.04
-
-GW200208_222617
-4.66−3.53+13.034.66_{-3.53}^{+13.03}
-16.71
-
-GW200105_162426
-4.74−1.07+1.704.74_{-1.07…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …rom the O3a observation run of Advanced LIGO and Advanced Virgo [24], specifically GW190403_051519, GW190412, GW190426_152155, GW190814, and GW190917_114630.</li><li><span class="sec">methods</span> GW190426_152155 3.66−2.07+4.133.66_{-2.07}^{+4.13} 17.26</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -553,44 +336,16 @@ GW200105_162426
 <section class="card" data-i="4" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2304.10117v2#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…n 3 that have been observed thus far. Ten events in total meet this criterion, with different mass ratios. Five of these events are from the O3a observation run of Advanced LIGO and Advanced Virgo [24], specifically GW190403_051519, GW190412, GW190426_152155, <mark>GW190814</mark>, and GW190917_114630. The remaining five events are from the O3b observation run [23], specifically GW191113_071753, GW191219_163120, GW200115_042309, GW200208_222617, and GW200210_ 092254. Our analysis confirms our hypothesis, as demonstrated in Fig. 4. We s…</div>
     
-    
-    
-    <div class="mention"><span class="sec">methods</span>…34_{-2.84}^{+4.33}
-16.04
-
-GW200208_222617
-4.66−3.53+13.034.66_{-3.53}^{+13.03}
-16.71
-
-GW200105_162426
-4.74−1.07+1.704.74_{-1.07}^{+1.70}
-12.12
-
-GW191113_071753
-4.95−3.51+3.734.95_{-3.51}^{+3.73}
-13.36
-
-GW200210_092254
-8.49−2.47+4.528.49_{-2.47}^{+4.52}
-16.51
-
-<mark>GW190814</mark>
-8.96−0.62+0.758.96_{-0.62}^{+0.75}
-8.79
-
-GW191219_163120
-26.65−3.29+2.8626.65_{-3.29}^{+2.86}
-6.13
-
-5 Discussion and conclusions
-
-Our use of GW data observed by LIGO and Virgo provides both physical evidence and an observational test of this mathematically de…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …vation run of Advanced LIGO and Advanced Virgo [24], specifically GW190403_051519, GW190412, GW190426_152155, GW190814, and GW190917_114630.</li><li><span class="sec">methods</span> GW190814 8.96−0.62+0.758.96_{-0.62}^{+0.75} 8.79</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -626,11 +381,16 @@ Our use of GW data observed by LIGO and Virgo provides both physical evidence an
 <section class="card" data-i="5" data-event="GW190917_114630">
   <div class="ctx">
     <div class="evname mono">GW190917_114630</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2304.10117v2#:~:text=GW190917_114630" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190917_114630</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…been observed thus far. Ten events in total meet this criterion, with different mass ratios. Five of these events are from the O3a observation run of Advanced LIGO and Advanced Virgo [24], specifically GW190403_051519, GW190412, GW190426_152155, GW190814, and <mark>GW190917_114630</mark>. The remaining five events are from the O3b observation run [23], specifically GW191113_071753, GW191219_163120, GW200115_042309, GW200208_222617, and GW200210_ 092254. Our analysis confirms our hypothesis, as demonstrated in Fig. 4. We show the detailed mass…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …Advanced LIGO and Advanced Virgo [24], specifically GW190403_051519, GW190412, GW190426_152155, GW190814, and GW190917_114630.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -666,52 +426,16 @@ Our use of GW data observed by LIGO and Virgo provides both physical evidence an
 <section class="card" data-i="6" data-event="GW191113_071753">
   <div class="ctx">
     <div class="evname mono">GW191113_071753</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2304.10117v2#:~:text=GW191113_071753" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191113_071753</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…ve of these events are from the O3a observation run of Advanced LIGO and Advanced Virgo [24], specifically GW190403_051519, GW190412, GW190426_152155, GW190814, and GW190917_114630. The remaining five events are from the O3b observation run [23], specifically <mark>GW191113_071753</mark>, GW191219_163120, GW200115_042309, GW200208_222617, and GW200210_ 092254. Our analysis confirms our hypothesis, as demonstrated in Fig. 4. We show the detailed mass ratios and the fractional differences in Table 2. The figure shows that, in general, the highe…</div>
     
-    
-    
-    <div class="mention"><span class="sec">methods</span>…66_{-2.07}^{+4.13}
-17.26
-
-GW200115_042309
-4.12−2.64+2.764.12_{-2.64}^{+2.76}
-26.73
-
-GW190403_051519
-4.34−2.84+4.334.34_{-2.84}^{+4.33}
-16.04
-
-GW200208_222617
-4.66−3.53+13.034.66_{-3.53}^{+13.03}
-16.71
-
-GW200105_162426
-4.74−1.07+1.704.74_{-1.07}^{+1.70}
-12.12
-
-<mark>GW191113_071753</mark>
-4.95−3.51+3.734.95_{-3.51}^{+3.73}
-13.36
-
-GW200210_092254
-8.49−2.47+4.528.49_{-2.47}^{+4.52}
-16.51
-
-GW190814
-8.96−0.62+0.758.96_{-0.62}^{+0.75}
-8.79
-
-GW191219_163120
-26.65−3.29+2.8626.65_{-3.29}^{+2.86}
-6.13
-
-5 Discussion and conclusions
-
-Our use of GW data o…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> The remaining five events are from the O3b observation run [23], specifically GW191113_071753, GW191219_163120, GW200115_042309, GW200208_222617, and GW200210_ 092254.</li><li><span class="sec">methods</span> GW191113_071753 4.95−3.51+3.734.95_{-3.51}^{+3.73} 13.36</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -747,77 +471,15 @@ Our use of GW data o…</div>
 <section class="card" data-i="7" data-event="GW191219_163120">
   <div class="ctx">
     <div class="evname mono">GW191219_163120</div>
-    <h3>8 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…8% credibility level for GW190403_051519. In the full inspiral-merger-ringdown analysis, our results show consistency with the first law of black hole mechanics, with an error level of about 6% at a 68% credibility level and 10% at a 95% credibility level for <mark>GW191219_163120</mark>. Additionally, we observe that the higher the mass ratio of the gravitational wave source, the more consistent our results are with the first law of black hole mechanics. Overall, our study sheds light on the nature of compact binary coalescence and their imp…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… analyses using the pre-merger and post-merger data of GW190403_051519, with mass ratios of approximately 4. Additionally, we analyzed the complete IMR data of all GW events with a mass ratio higher than 3 that have been observed thus far. Among these events, <mark>GW191219_163120</mark> exhibits the highest mass ratio of 27 and serves as an excellent candidate for our analysis.
-
-2 Method
-
-The first law of BH mechanics is a fundamental result in the study of BHs that relates changes in the mass, angular momentum, and area of a stationary BH w…</div>
+    <p class="where">Named 8 times:
+      methods ×5, abstract, introduction, discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2304.10117v2#:~:text=GW191219_163120" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191219_163120</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…en more challenging. Therefore, we attempt a full IMR analysis, where the remnant parameters are obtained through numerical-relativity fits using the pre-merger parameters as raw data, rather than directly analyzing the ringdown signal.
-
-We begin by analyzing <mark>GW191219_163120</mark>, which is currently the event with the highest mass ratio observed. GW191219_163120 was observed during the second part of Advanced LIGO’s and Advanced Virgo’s third observing run [23]. This event features a BH primary component with a mass of 31.1−2.7+2.231.…</div>
-    
-    
-    <details><summary>5 more</summary>
-    <div class="mention"><span class="sec">methods</span>…rameters are obtained through numerical-relativity fits using the pre-merger parameters as raw data, rather than directly analyzing the ringdown signal.
-
-We begin by analyzing GW191219_163120, which is currently the event with the highest mass ratio observed. <mark>GW191219_163120</mark> was observed during the second part of Advanced LIGO’s and Advanced Virgo’s third observing run [23]. This event features a BH primary component with a mass of 31.1−2.7+2.231.1^{+2.2}_{-2.7} and a neutron star secondary component with a mass of 1.17−0.06+0.07…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… credible regions. The black dotted line indicates the expected value, which is 0.
-
-Figure 4: 68% credible measurements of the fractional difference of different mass ratios of GW sources. Each point represents a different GW event.
-
-The parameter samples for <mark>GW191219_163120</mark> were derived by matching different waveform models. The parameters values vary among different waveform models. To eliminate the effect of waveform models on our results, we combine three waveform models, IMRPhenomXPHM: HighSpin, IMRPhenomXPHM: LowSpin, and S…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…s are from the O3a observation run of Advanced LIGO and Advanced Virgo [24], specifically GW190403_051519, GW190412, GW190426_152155, GW190814, and GW190917_114630. The remaining five events are from the O3b observation run [23], specifically GW191113_071753, <mark>GW191219_163120</mark>, GW200115_042309, GW200208_222617, and GW200210_ 092254. Our analysis confirms our hypothesis, as demonstrated in Fig. 4. We show the detailed mass ratios and the fractional differences in Table 2. The figure shows that, in general, the higher the mass ratio …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…3+13.034.66_{-3.53}^{+13.03}
-16.71
-
-GW200105_162426
-4.74−1.07+1.704.74_{-1.07}^{+1.70}
-12.12
-
-GW191113_071753
-4.95−3.51+3.734.95_{-3.51}^{+3.73}
-13.36
-
-GW200210_092254
-8.49−2.47+4.528.49_{-2.47}^{+4.52}
-16.51
-
-GW190814
-8.96−0.62+0.758.96_{-0.62}^{+0.75}
-8.79
-
-<mark>GW191219_163120</mark>
-26.65−3.29+2.8626.65_{-3.29}^{+2.86}
-6.13
-
-5 Discussion and conclusions
-
-Our use of GW data observed by LIGO and Virgo provides both physical evidence and an observational test of this mathematically derived law. We are the first to test this law using GWs, w…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…e have turned to an alternative analysis approach. The full IMR analysis can demonstrate that if our analysis of the ringdown signal is sufficiently advanced and refined, the error level of testing the first law will be significantly reduced. In our analysis, <mark>GW191219_163120</mark>, which has the highest mass ratio among the events considered, exhibits an error level of approximately 10% at a 95% credibility level.
-
-We totally analyze ten events with the full IMR analysis. We find that the error level of testing the first law is related…</div>
+    <details class="lines"><summary>Show the sentences (8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …mechanics, with an error level of about 6% at a 68% credibility level and 10% at a 95% credibility level for GW191219_163120.</li><li><span class="sec">introduction</span> Among these events, GW191219_163120 exhibits the highest mass ratio of 27 and serves as an excellent candidate for our analysis.</li><li><span class="sec">methods</span> We begin by analyzing GW191219_163120, which is currently the event with the highest mass ratio observed.</li><li><span class="sec">methods</span> GW191219_163120 was observed during the second part of Advanced LIGO’s and Advanced Virgo’s third observing run [23].</li><li><span class="sec">methods</span> The parameter samples for GW191219_163120 were derived by matching different waveform models.</li><li><span class="sec">methods</span> The remaining five events are from the O3b observation run [23], specifically GW191113_071753, GW191219_163120, GW200115_042309, GW200208_222617, and GW200210_ 092254.</li><li><span class="sec">methods</span> GW191219_163120 26.65−3.29+2.8626.65_{-3.29}^{+2.86} 6.13</li><li><span class="sec">discussion</span> In our analysis, GW191219_163120, which has the highest mass ratio among the events considered, exhibits an error level of approximately 10% a…</li></ul>
     </details>
     
   </div>
@@ -854,47 +516,16 @@ We totally analyze ten events with the full IMR analysis. We find that the error
 <section class="card" data-i="8" data-event="GW200105_162426">
   <div class="ctx">
     <div class="evname mono">GW200105_162426</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2304.10117v2#:~:text=GW200105_162426" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200105_162426</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…07_{-1.06}^{+1.31}
-19.63
-
-GW190426_152155
-3.66−2.07+4.133.66_{-2.07}^{+4.13}
-17.26
-
-GW200115_042309
-4.12−2.64+2.764.12_{-2.64}^{+2.76}
-26.73
-
-GW190403_051519
-4.34−2.84+4.334.34_{-2.84}^{+4.33}
-16.04
-
-GW200208_222617
-4.66−3.53+13.034.66_{-3.53}^{+13.03}
-16.71
-
-<mark>GW200105_162426</mark>
-4.74−1.07+1.704.74_{-1.07}^{+1.70}
-12.12
-
-GW191113_071753
-4.95−3.51+3.734.95_{-3.51}^{+3.73}
-13.36
-
-GW200210_092254
-8.49−2.47+4.528.49_{-2.47}^{+4.52}
-16.51
-
-GW190814
-8.96−0.62+0.758.96_{-0.62}^{+0.75}
-8.79
-
-GW191219_163120
-26.65−3.29+2.8626.65_{-3.29}^{+2.86…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW200105_162426 4.74−1.07+1.704.74_{-1.07}^{+1.70} 12.12</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -930,48 +561,16 @@ GW191219_163120
 <section class="card" data-i="9" data-event="GW200115_042309">
   <div class="ctx">
     <div class="evname mono">GW200115_042309</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2304.10117v2#:~:text=GW200115_042309" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200115_042309</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…a observation run of Advanced LIGO and Advanced Virgo [24], specifically GW190403_051519, GW190412, GW190426_152155, GW190814, and GW190917_114630. The remaining five events are from the O3b observation run [23], specifically GW191113_071753, GW191219_163120, <mark>GW200115_042309</mark>, GW200208_222617, and GW200210_ 092254. Our analysis confirms our hypothesis, as demonstrated in Fig. 4. We show the detailed mass ratios and the fractional differences in Table 2. The figure shows that, in general, the higher the mass ratio of the GW source,…</div>
     
-    
-    
-    <div class="mention"><span class="sec">methods</span>…g. 4. The median value and the range of the 90% credible interval of mass ratios are provided.
-
-Event
-Mass ratio
-
-The fractional
-difference(%)
-
-GW190412_053044
-3.07−1.06+1.313.07_{-1.06}^{+1.31}
-19.63
-
-GW190426_152155
-3.66−2.07+4.133.66_{-2.07}^{+4.13}
-17.26
-
-<mark>GW200115_042309</mark>
-4.12−2.64+2.764.12_{-2.64}^{+2.76}
-26.73
-
-GW190403_051519
-4.34−2.84+4.334.34_{-2.84}^{+4.33}
-16.04
-
-GW200208_222617
-4.66−3.53+13.034.66_{-3.53}^{+13.03}
-16.71
-
-GW200105_162426
-4.74−1.07+1.704.74_{-1.07}^{+1.70}
-12.12
-
-GW191113_071753
-4.95−3.51+3.734.95_{-3.51…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …e remaining five events are from the O3b observation run [23], specifically GW191113_071753, GW191219_163120, GW200115_042309, GW200208_222617, and GW200210_ 092254.</li><li><span class="sec">methods</span> GW200115_042309 4.12−2.64+2.764.12_{-2.64}^{+2.76} 26.73</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1007,51 +606,16 @@ GW191113_071753
 <section class="card" data-i="10" data-event="GW200208_222617">
   <div class="ctx">
     <div class="evname mono">GW200208_222617</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2304.10117v2#:~:text=GW200208_222617" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200208_222617</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>… of Advanced LIGO and Advanced Virgo [24], specifically GW190403_051519, GW190412, GW190426_152155, GW190814, and GW190917_114630. The remaining five events are from the O3b observation run [23], specifically GW191113_071753, GW191219_163120, GW200115_042309, <mark>GW200208_222617</mark>, and GW200210_ 092254. Our analysis confirms our hypothesis, as demonstrated in Fig. 4. We show the detailed mass ratios and the fractional differences in Table 2. The figure shows that, in general, the higher the mass ratio of the GW source, the smaller the …</div>
     
-    
-    
-    <div class="mention"><span class="sec">methods</span>…e fractional
-difference(%)
-
-GW190412_053044
-3.07−1.06+1.313.07_{-1.06}^{+1.31}
-19.63
-
-GW190426_152155
-3.66−2.07+4.133.66_{-2.07}^{+4.13}
-17.26
-
-GW200115_042309
-4.12−2.64+2.764.12_{-2.64}^{+2.76}
-26.73
-
-GW190403_051519
-4.34−2.84+4.334.34_{-2.84}^{+4.33}
-16.04
-
-<mark>GW200208_222617</mark>
-4.66−3.53+13.034.66_{-3.53}^{+13.03}
-16.71
-
-GW200105_162426
-4.74−1.07+1.704.74_{-1.07}^{+1.70}
-12.12
-
-GW191113_071753
-4.95−3.51+3.734.95_{-3.51}^{+3.73}
-13.36
-
-GW200210_092254
-8.49−2.47+4.528.49_{-2.47}^{+4.52}
-16.51
-
-GW190814
-8.96−0.62+0.758.96_{-0.62}^{+0.7…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …events are from the O3b observation run [23], specifically GW191113_071753, GW191219_163120, GW200115_042309, GW200208_222617, and GW200210_ 092254.</li><li><span class="sec">methods</span> GW200208_222617 4.66−3.53+13.034.66_{-3.53}^{+13.03} 16.71</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1087,44 +651,16 @@ GW190814
 <section class="card" data-i="11" data-event="GW200210_092254">
   <div class="ctx">
     <div class="evname mono">GW200210_092254</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2304.10117v2#:~:text=GW200210_092254" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200210_092254</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…12_{-2.64}^{+2.76}
-26.73
-
-GW190403_051519
-4.34−2.84+4.334.34_{-2.84}^{+4.33}
-16.04
-
-GW200208_222617
-4.66−3.53+13.034.66_{-3.53}^{+13.03}
-16.71
-
-GW200105_162426
-4.74−1.07+1.704.74_{-1.07}^{+1.70}
-12.12
-
-GW191113_071753
-4.95−3.51+3.734.95_{-3.51}^{+3.73}
-13.36
-
-<mark>GW200210_092254</mark>
-8.49−2.47+4.528.49_{-2.47}^{+4.52}
-16.51
-
-GW190814
-8.96−0.62+0.758.96_{-0.62}^{+0.75}
-8.79
-
-GW191219_163120
-26.65−3.29+2.8626.65_{-3.29}^{+2.86}
-6.13
-
-5 Discussion and conclusions
-
-Our use of GW data observed by LIGO and Virgo provides both physical evidence …</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW200210_092254 8.49−2.47+4.528.49_{-2.47}^{+4.52} 16.51</li></ul>
+    </details>
     
   </div>
   <div class="form">

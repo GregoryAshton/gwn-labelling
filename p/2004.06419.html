@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,207 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Neutron star merger remnants</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2004.06419" target="_blank" rel="noopener" class="mono">arXiv:2004.06419</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Binary neutron star mergers observations are a unique way to constrain fundamental physics and astrophysics at the extreme. The interpretation of gravitational-wave events and their electromagnetic counterparts crucially relies on general-relativistic models of the merger remnants. Quantitative models can be obtained only by means of numerical relativity simulations in &lt;inline-formula id=&#34;IEq1&#34;&gt;&lt;mml:math&gt;&lt;mml:mrow&gt;&lt;mml:mn&gt;3&lt;/mml:mn&gt;&lt;mml:mo&gt;+&lt;/mml:mo&gt;&lt;mml:mn&gt;1&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; dimensions including detailed input physics for the nuclear matter, electromagnetic and weak interactions. This review summarizes the current understanding of merger remnants focusing on some of the aspects that are relevant for multimessenger observations.</p></details>
+<div class="small mut mono">arXiv:2004.06419</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Binary neutron star mergers observations are a unique way to constrain fundamental physics and astrophysics at the extreme. The interpretation of gravitational-wave events and their electromagnetic counterparts crucially relies on general-relativistic models of the merger remnants. Quantitative models can be obtained only by means of numerical relativity simulations in &lt;inline-formula id=&#34;IEq1&#34;&gt;&lt;mml:math&gt;&lt;mml:mrow&gt;&lt;mml:mn&gt;3&lt;/mml:mn&gt;&lt;mml:mo&gt;+&lt;/mml:mo&gt;&lt;mml:mn&gt;1&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; dimensions including detailed input physics for the nuclear matter, electromagnetic and weak interactions. This review summarizes the current understanding of merger remnants focusing on some of the aspects that are relevant for multimessenger observations.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2004.06419v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">2 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">2 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>14 mentions · first 12 shown · <span class="cptag">3 by counterpart name</span></h3>
+    <p class="where">Named 14 times:
+      conclusion ×8, introduction ×4, appendix, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2004.06419v3#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">3 mentions use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention"><span class="sec">introduction</span>…e current understanding of merger
-remnants focusing on some of the aspects that are relevant for
-multimessenger observations.
-
- 
-
-Keywords: 
-
-Binary neutron star mergers remnants gravitational-waves numerical relativity
-
-1 Introduction
-
-The gravitational wave <mark>GW170817</mark> is compatible with a
-binary neutron star (BNS) inspiral of chirp mass 1.186​(1)​M⊙1.186(1){\rm M_{\odot}} [1, 2, 3].
-Significant signal-to-noise ratio (SNR) is found in the frequency range 30-600 Hz, roughly corresponding to the last thousand orbits to merger…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>….
-Significant signal-to-noise ratio (SNR) is found in the frequency range 30-600 Hz, roughly corresponding to the last thousand orbits to merger for an
-equal-mass binary with canonical mass M∼2.8​M⊙M\sim 2.8\,{\rm M_{\odot}}.
-The matched-filtering analysis of <mark>GW170817</mark> with tidal waveform templates
-provides us with an estimate of the
-reduced tidal parameter that is distributed around
-Λ~∼300\tilde{\Lambda}\sim 300 and smaller than ∼800{\sim}800
-[4, 5, 6, 7].
-LIGO-Virgo searches for short (≲1{\lesssim}1\,s), intermediate
-(≲50…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…Hence, the LIGO-Virgo detectors’ sensitivity was not sufficient to detect a
-signal from the merger phase and the remnant, which lie in the kiloHertz
-range [13].
-A similar conclusion holds for the second BNS event, GW190425, that
-was detected at lower SNR than <mark>GW170817</mark>[14].
-GW190425 has a chirp mass of 1.44​(2)​M⊙1.44(2)\,{\rm M_{\odot}} and it is associated to
-the heaviest BNS source known to date 11
- 1
- 
- 
- 
- A BH-NS source for GW
-has not been firmly excluded, e.g. [15].
-
-In absence of a GW detection, the merger remnant c…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…e a key astrophysical site for
-heavy-element production via the r-process
-[54, 55, 49, 56, 57, 58].
-The observational imprint of r-process element production is the kilonova electromagnetic transient, that was observed for the first time as the counterpart of <mark>GW170817</mark>.
-Because of their quasi-isotropic character, kilonovae are considered to be the most
-promising EM counterpart for future GW events
-[59, 60, 61, 62, 63].
-
-Appendix A summarizes the main input physics and
-numerical techniques employed for the NR simulations .
-
-…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…9\pm 0.23)\,C_{\text{max}}+(2.392\pm 0.064)\ .
-
-(14)
-
-Note that under the hypothesis that the merger did not promptly form a
-BH, the inversion of Eq. (13) leads to a bound on
-the maximum NS mass. This argument can be
-used to estimate the maximum NS mass after <mark>GW170817</mark>, by interpreting
-the GW counterpart as evidence for a NS
-remnant [85, 86, 87, 88].
-
-An alternative model for the prompt collapse threshold based on NR
-data is based on the tidal parameter κ2T\kappa^{\text{T}}_{2} [64]. An
-analysis of comparable-mass data of t…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">methods · <span class="cptag">counterpart name, not the GW signal</span></span>…microphysical EOS data with M1 or leakage+M1 scheme from
-[126, 203],
-microphysical EOS data with leakage+M0
-[33, 30, 200, 81, 205].
-The filled blue and red patches are the expected values of
-ejecta mass and velocity for blue and red components of the
-kilonova <mark class="cp">AT2017gfo</mark>, compiled by [210] and based on
-[211]. Figure courtesy of V.Nedora.
-
-Secular ejecta.
-
-Another type of ejecta is the secular winds originating from the
-remnant
-[50, 212, 41, 42, 43, 123, 51, 52, 45, 53, 33].
-Long-term Newtonian simulations of neutrino-cooled a…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…hin a few hours of the merger (blue),
-while low-YeY_{e} ejecta power kilonovae peaking in the infrared over a
-timescale of several days (red).
-
-8 Conclusion
-
-It is useful to summarize by focusing on the concrete examples of the two
-BNS events observed so far, <mark>GW170817</mark>
-[1, 2, 3, 216]
-and GW190425 [14].
-
-The source of GW170817 has mass M≃2.73−2.77​M⊙M\simeq 2.73-2.77{\rm M_{\odot}} and mass
-ratio up to q=1.37q=1.37 (1.891.89) depending on the low (high) spin prior
-utilized in the GW analysis
-[1, 2, 3].
-The merger was not obs…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…ecta power kilonovae peaking in the infrared over a
-timescale of several days (red).
-
-8 Conclusion
-
-It is useful to summarize by focusing on the concrete examples of the two
-BNS events observed so far, GW170817
-[1, 2, 3, 216]
-and GW190425 [14].
-
-The source of <mark>GW170817</mark> has mass M≃2.73−2.77​M⊙M\simeq 2.73-2.77{\rm M_{\odot}} and mass
-ratio up to q=1.37q=1.37 (1.891.89) depending on the low (high) spin prior
-utilized in the GW analysis
-[1, 2, 3].
-The merger was not observed but the merger frequency can be accurately
-predicted…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…tely
-predicted from the probability distribution of Λ~\tilde{\Lambda} using the NR fits
-discussed in Sec. 2. One finds that the (broad)
-distribution of Λ~\tilde{\Lambda} translates into fmrg=1719−214+163f_{\text{mrg}}=1719^{+163}_{-214} Hz [75].
-Combining the <mark>GW170817</mark> data with the prompt collapse models of
-Sec. 3, it is possible to rigorously predict via a
-Bayesian analysis that the probability of prompt BH formation is
-∼50−70%{\sim}50-70\%. However, if the constraint
-on the maximum mass M&gt;1.97​M⊙M&gt;1.97{\rm M_{\odot}} fro…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…the probability of prompt BH formation is
-∼50−70%{\sim}50-70\%. However, if the constraint
-on the maximum mass M&gt;1.97​M⊙M&gt;1.97{\rm M_{\odot}} from pulsar observations is imposed,
-the probability significantly decreases below 10%10\%. Hence, prompt
-collapse in <mark>GW170817</mark> is largely disfavoured by the GW
-analysis [84].
-
-A NS remnant would have emitted GWs at the
-characteristic frequency f2=2932−409+337f_{2}=2932^{+337}_{-409} Hz, that can be again estimated from the
-Λ~\tilde{\Lambda} posteriors together with the peak GW lumino…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">conclusion · <span class="cptag">counterpart name, not the GW signal</span></span>…with next-generation detectors [217, 218, 145, 219].
-
-The NR-based GW analysis of the prompt collapse supports
-the mainstream interpretation of the
-electromagnetic counterparts that suggests the formation of a short-lived NS
-remnant [85, 220, 86, 40, 88, 87].
-<mark class="cp">AT2017gfo</mark>, the kilonova counterpart of GW170817, has both a blue and
-a red component, thus suggesting that the ejecta had a broad range of
-compositions with at least a fraction being free of lanthanides.
-A fit of AT2017gfo light curves to a semianalytical two-component…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…8, 145, 219].
-
-The NR-based GW analysis of the prompt collapse supports
-the mainstream interpretation of the
-electromagnetic counterparts that suggests the formation of a short-lived NS
-remnant [85, 220, 86, 40, 88, 87].
-AT2017gfo, the kilonova counterpart of <mark>GW170817</mark>, has both a blue and
-a red component, thus suggesting that the ejecta had a broad range of
-compositions with at least a fraction being free of lanthanides.
-A fit of AT2017gfo light curves to a semianalytical two-components
-spherical kilonova model indicates t…</div>
+    <details class="lines"><summary>Show the sentences (14, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> The gravitational wave GW170817 is compatible with a binary neutron star (BNS) inspiral of chirp mass 1.186​(1)​M⊙1.186(1){\rm M_{\odot}} [1,…</li><li><span class="sec">introduction</span> The matched-filtering analysis of GW170817 with tidal waveform templates provides us with an estimate of the reduced tidal parameter that is distributed…</li><li><span class="sec">introduction</span> A similar conclusion holds for the second BNS event, GW190425, that was detected at lower SNR than GW170817[14].</li><li><span class="sec">introduction</span> …duction is the kilonova electromagnetic transient, that was observed for the first time as the counterpart of GW170817.</li><li><span class="sec">appendix</span> This argument can be used to estimate the maximum NS mass after GW170817, by interpreting the GW counterpart as evidence for a NS remnant [85, 86, 87, 88].</li><li><span class="sec">methods · counterpart name</span> …d red patches are the expected values of ejecta mass and velocity for blue and red components of the kilonova AT2017gfo, compiled by [210] and based on [211].</li><li><span class="sec">conclusion</span> It is useful to summarize by focusing on the concrete examples of the two BNS events observed so far, GW170817 [1, 2, 3, 216] and GW190425 [14].</li><li><span class="sec">conclusion</span> The source of GW170817 has mass M≃2.73−2.77​M⊙M\simeq 2.73-2.77{\rm M_{\odot}} and mass ratio up to q=1.37q=1.37 (1.891.89) dependin…</li></ul>
     </details>
     
   </div>
@@ -359,118 +201,15 @@ spherical kilonova model indicates t…</div>
 <section class="card" data-i="1" data-event="GW190425">
   <div class="ctx">
     <div class="evname mono">GW190425</div>
-    <h3>7 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…of quasi-periodic sources [8, 9, 10, 11, 12].
-Hence, the LIGO-Virgo detectors’ sensitivity was not sufficient to detect a
-signal from the merger phase and the remnant, which lie in the kiloHertz
-range [13].
-A similar conclusion holds for the second BNS event, <mark>GW190425</mark>, that
-was detected at lower SNR than GW170817[14].
-GW190425 has a chirp mass of 1.44​(2)​M⊙1.44(2)\,{\rm M_{\odot}} and it is associated to
-the heaviest BNS source known to date 11
- 1
- 
- 
- 
- A BH-NS source for GW
-has not been firmly excluded, e.g. [15].
-
-In a…</div>
+    <p class="where">Named 7 times:
+      conclusion ×5, introduction ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2004.06419v3#:~:text=GW190425" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190425</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…O-Virgo detectors’ sensitivity was not sufficient to detect a
-signal from the merger phase and the remnant, which lie in the kiloHertz
-range [13].
-A similar conclusion holds for the second BNS event, GW190425, that
-was detected at lower SNR than GW170817[14].
-<mark>GW190425</mark> has a chirp mass of 1.44​(2)​M⊙1.44(2)\,{\rm M_{\odot}} and it is associated to
-the heaviest BNS source known to date 11
- 1
- 
- 
- 
- A BH-NS source for GW
-has not been firmly excluded, e.g. [15].
-
-In absence of a GW detection, the merger remnant can be inferred…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…r (blue),
-while low-YeY_{e} ejecta power kilonovae peaking in the infrared over a
-timescale of several days (red).
-
-8 Conclusion
-
-It is useful to summarize by focusing on the concrete examples of the two
-BNS events observed so far, GW170817
-[1, 2, 3, 216]
-and <mark>GW190425</mark> [14].
-
-The source of GW170817 has mass M≃2.73−2.77​M⊙M\simeq 2.73-2.77{\rm M_{\odot}} and mass
-ratio up to q=1.37q=1.37 (1.891.89) depending on the low (high) spin prior
-utilized in the GW analysis
-[1, 2, 3].
-The merger was not observed but the merger frequen…</div>
-    
-    
-    <details><summary>4 more</summary>
-    <div class="mention"><span class="sec">conclusion</span>…[220].
-Combining the GW data and the phenomenological fit of the disc mass in
-Fig. 7 also leads to a possible lower bound on the tidal
-parameter and thus a stronger constraint on the tidal
-parameter 300≲Λ~≲800300\lesssim\tilde{\Lambda}\lesssim 800
-[40, 128].
-
-<mark>GW190425</mark> is associated to the heaviest BNS source known to date with
-M≃3.2−3.7​M⊙M\simeq 3.2-3.7{\rm M_{\odot}} [14]. The mass ratio of
-GW190425 can be as high as q∼1.25q\sim 1.25 (q∼2.5q\sim 2.5) for low (high)
-spin priors.
-Using the NR prompt collapse models present…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…arameter and thus a stronger constraint on the tidal
-parameter 300≲Λ~≲800300\lesssim\tilde{\Lambda}\lesssim 800
-[40, 128].
-
-GW190425 is associated to the heaviest BNS source known to date with
-M≃3.2−3.7​M⊙M\simeq 3.2-3.7{\rm M_{\odot}} [14]. The mass ratio of
-<mark>GW190425</mark> can be as high as q∼1.25q\sim 1.25 (q∼2.5q\sim 2.5) for low (high)
-spin priors.
-Using the NR prompt collapse models presented in Sec. 3, it
-is possible to estimated that the probability for the remnant of
-GW190425 to have collapsed promptly to a BH is ∼97%{\s…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>….2-3.7{\rm M_{\odot}} [14]. The mass ratio of
-GW190425 can be as high as q∼1.25q\sim 1.25 (q∼2.5q\sim 2.5) for low (high)
-spin priors.
-Using the NR prompt collapse models presented in Sec. 3, it
-is possible to estimated that the probability for the remnant of
-<mark>GW190425</mark> to have collapsed promptly to a BH is ∼97%{\sim}97\% [14].
-For an equal mass merger (q∼1q\sim 1), a prompt collapse does not form a
-significant disc as discussed in Sec. 6, and thus no bright
-electromagnetic counterparts would be expected from this event,
-e.g…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…ass merger (q∼1q\sim 1), a prompt collapse does not form a
-significant disc as discussed in Sec. 6, and thus no bright
-electromagnetic counterparts would be expected from this event,
-e.g. [230].
-However, the conclusions would be different in the scenario that
-<mark>GW190425</mark> was produced by an asymmetric binary with q≳1.6q\gtrsim 1.6.
-For large mass ratios, the prompt collapse threshold
-significantly decreases and massive neutron-rich discs are
-likely [81].
-One the one hand, the prompt collapse to BH outcome is strenghtened
-in th…</div>
+    <details class="lines"><summary>Show the sentences (7): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> A similar conclusion holds for the second BNS event, GW190425, that was detected at lower SNR than GW170817[14].</li><li><span class="sec">introduction</span> GW190425 has a chirp mass of 1.44​(2)​M⊙1.44(2)\,{\rm M_{\odot}} and it is associated to the heaviest BNS source known…</li><li><span class="sec">conclusion</span> …arize by focusing on the concrete examples of the two BNS events observed so far, GW170817 [1, 2, 3, 216] and GW190425 [14].</li><li><span class="sec">conclusion</span> GW190425 is associated to the heaviest BNS source known to date with M≃3.2−3.7​M⊙M\simeq 3.2-3.7{\rm M_{\odot}} [14].</li><li><span class="sec">conclusion</span> The mass ratio of GW190425 can be as high as q∼1.25q\sim 1.25 (q∼2.5q\sim 2.5) for low (high) spin priors.</li><li><span class="sec">conclusion</span> …ompt collapse models presented in Sec. 3, it is possible to estimated that the probability for the remnant of GW190425 to have collapsed promptly to a BH is ∼97%{\sim}97\% [14].</li><li><span class="sec">conclusion</span> However, the conclusions would be different in the scenario that GW190425 was produced by an asymmetric binary with q≳1.6q\gtrsim 1.6.</li></ul>
     </details>
     
   </div>

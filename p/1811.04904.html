@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,265 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Parameter estimation and statistical significance of echoes following black hole signals in the first Advanced LIGO observing run</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1811.04904" target="_blank" rel="noopener" class="mono">arXiv:1811.04904</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Searching for black hole echo signals with gravitational waves provides a means of probing the near-horizon regime of these objects. We demonstrate a pipeline to efficiently search for these signals in gravitational wave data and calculate model selection probabilities between signal and no-signal hypotheses. As an example of its use we calculate Bayes factors for the Abedi-Dykaar-Afshordi (ADA) model on events in LIGO&#39;s first observing run and compare to existing results in the literature. We discuss the benefits of using a full likelihood exploration over existing search methods that used template banks and calculated p-values. We use the waveforms of ADA, although the method is easily extendable to other waveforms. With these waveforms we are able to demonstrate a range of echo amplitudes that is already is ruled out by the data.</p></details>
+<div class="small mut mono">arXiv:1811.04904</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Searching for black hole echo signals with gravitational waves provides a means of probing the near-horizon regime of these objects. We demonstrate a pipeline to efficiently search for these signals in gravitational wave data and calculate model selection probabilities between signal and no-signal hypotheses. As an example of its use we calculate Bayes factors for the Abedi-Dykaar-Afshordi (ADA) model on events in LIGO&#39;s first observing run and compare to existing results in the literature. We discuss the benefits of using a full likelihood exploration over existing search methods that used template banks and calculated p-values. We use the waveforms of ADA, although the method is easily extendable to other waveforms. With these waveforms we are able to demonstrate a range of echo amplitudes that is already is ruled out by the data.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1811.04904v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">6 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">6 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>27 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…iv
- 
- 
-
- 
- 
- Why HTML?
- 
- 
- 
- 
- Report Issue
- 
- 
- 
- 
- 
- 
- Back to Abstract
- 
- 
- 
- 
- 
- 
- Download PDF
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-Abstract
-
-I Introduction
-
-II Methodology and analysis pipeline
-
-III Injections based on <mark>GW150914</mark>
-
-IV Events in the first observing run
-
-V Discussion and conclusions
-
-VI Acknowledgments
-
-References
-
-A Fiducial IMR waveform parameters
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1811.04904v2 [gr-qc] 20 Nov 2018
-
-Parameter estimation for…</div>
+    <p class="where">Named 27 times:
+      methods ×12, introduction ×7, discussion ×3, reference list ×3, title/headings, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1811.04904v2#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…the other parameters techot_{\mathrm{echo}} and t0t_{0} trunc. are explained more fully in [20].
-Table 1 gives the prior ranges we use for the relevant parameters.
-These are adapted for our purposes from the template bank search performed in [20].
-
-Echo
-Prior
-<mark>GW150914</mark>
-Injected
-
-param.
-range
-range
-value
-
-Δ​techo\Delta t_{\mathrm{echo}}
-inferred
-0.2825 to 0.3025 s
-0.2925 s
-
-techot_{\mathrm{echo}}
-Δ​techo±1%\Delta t_{\mathrm{echo}}\pm 1\%
-0.2795 to 0.3055 s
-0.2925 s
-
-t0t_{0} trunc.
-(−0.1​to​ 0)​Δ​techo(-0.1\mathrm{\;to\;}0)\D…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…parameter values found in that work, except for
-γ\gamma and t0t_{0} trunc. which are chosen to lie within the prior range
-rather than at the boundary.
-
-In the ADA model the range for Δ​techo\Delta t_{\mathrm{echo}} is inferred from the published
-parameters of <mark>GW150914</mark> [11], using 50%50\% ranges,
-and assuming Gaussian distributions. The Kerr metric formula is used for the
-light travel time between the light ring and a perfectly reflecting surface.
-This surface is assumed to be at a proper distance one Planck length along
-Bo…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…}} to vary independently from
-Δ​techo\Delta t_{\mathrm{echo}} within 1%1\% of its maximum values, and choose an explicit prior
-for the relative amplitude.
-
-Figure 1: Posterior on the echo parameters for a loud (SNR ∼17\sim 17)
-simulated signal. The signal has <mark>GW150914</mark>-like parameters at a fiducial
-distance of 400400\,Mpc. An amplitude factor of 0.4 is used for the echoes.
-Off-diagonal plots show 2D marginal posteriors; the white contours show the
-50%50\% and 90%90\% credible regions. Each point represents a random draw fro…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…s. We see that the
-injected parameter values, shown by the red lines, are all within the 90%90\%
-credible intervals. The log Bayes factor for this signal is 140.57140.57.
-
-Figure 2: Posterior on the echo parameters for a quiet simulated signal. The
-signal has <mark>GW150914</mark>-like parameters at a fiducial distance of 400400\,Mpc. An
-amplitude factor of 0.0125 is used for the echoes. Again, the injected
-values are shown by the red lines, while points are colored by the SNR at
-that point in the parameter space. The log Bayes factor …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…als in the data,
-we first test it on simulated echo signals with a variety of different
-amplitudes. These simulations are added to real detector data, which is made
-available by the Gravitational Wave Open Science Center (GWOSC) [33, 34], 100100 seconds after <mark>GW150914</mark>. The 100100-second delay
-makes it unlikely that the data at that time is contaminated by a real
-astrophysical signal [35]. We then apply our method directly
-to the three binary black hole events in O1: GW150914, LVT151012 and GW151226.
-Finally, we show how th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ce Center (GWOSC) [33, 34], 100100 seconds after GW150914. The 100100-second delay
-makes it unlikely that the data at that time is contaminated by a real
-astrophysical signal [35]. We then apply our method directly
-to the three binary black hole events in O1: <mark>GW150914</mark>, LVT151012 and GW151226.
-Finally, we show how these results can be used to place bounds on the
-reflectivity of structure that has formed a given distance from the location of
-the would-be horizon.
-
-Figure 3: The 90%90\% credible regions of the 2D marginal pos…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…s can be used to place bounds on the
-reflectivity of structure that has formed a given distance from the location of
-the would-be horizon.
-
-Figure 3: The 90%90\% credible regions of the 2D marginal posteriors of
-Δ​techo\Delta t_{\mathrm{echo}} and γ\gamma for <mark>GW150914</mark>-like simulated signals. Shown are a
-range of echo amplitudes (relative to the peak amplitude of the original
-signal) AA. The injected values are given by the horizontal and vertical red
-lines. For small values of AA, the 90%90\% contour covers most of the pri…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… the Bayes factor. Convergence of this result was checked
-by running with double the number of temperatures and ensuring that the results
-were consistent. The posterior distributions are constructed from the coldest
-temperature chain.
-
-III Injections based on <mark>GW150914</mark>
-
-To test our method we choose to examine simulated echo signals based on
-GW150914. This is, to date, the loudest binary black hole signal that has been
-observed via gravitational waves, and should play a central role in constraints
-derived from the data. Foll…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…he number of temperatures and ensuring that the results
-were consistent. The posterior distributions are constructed from the coldest
-temperature chain.
-
-III Injections based on GW150914
-
-To test our method we choose to examine simulated echo signals based on
-<mark>GW150914</mark>. This is, to date, the loudest binary black hole signal that has been
-observed via gravitational waves, and should play a central role in constraints
-derived from the data. Following ADA for simplicity, we choose to fix the base
-inspiral-merger-ringdown (IMR)…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ly available as part of
-LALSuite [39].
-These IMR signals are then used to produce echo signals
-with echo parameters given in Table 1. The simulated echo
-injections are added linearly at varying amplitudes to real detector noise
-(chosen to be 100 seconds after <mark>GW150914</mark>, far enough away to be uncontaminated
-by echo signals or any pre-merger signal). We then attempt to recover them with
-our analysis pipeline. Example results are shown in Figs
-1 and 2.
-
-Figure 4: Values of the maximum likelihood SNR and log Bayes factors for
-G…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…4, far enough away to be uncontaminated
-by echo signals or any pre-merger signal). We then attempt to recover them with
-our analysis pipeline. Example results are shown in Figs
-1 and 2.
-
-Figure 4: Values of the maximum likelihood SNR and log Bayes factors for
-<mark>GW150914</mark>-based injections with amplitudes from 0.025 to 0.4 at a distance of
-400Mpc. A linear fit is possible through the SNR points down to an amplitude
-around 0.1. The log Bayes factor is negative for amplitude values below
-∼0.07\sim 0.07 (indicating formal preferen…</div>
+    <details class="lines"><summary>Show the sentences (26, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> III Injections based on GW150914</li><li><span class="sec">introduction</span> Echo Prior GW150914 Injected</li><li><span class="sec">introduction</span> In the ADA model the range for Δ​techo\Delta t_{\mathrm{echo}} is inferred from the published parameters of GW150914 [11], using 50%50\% ranges, and assuming Gaussian distributions.</li><li><span class="sec">introduction</span> The signal has GW150914-like parameters at a fiducial distance of 400400\,Mpc.</li><li><span class="sec">introduction</span> …which is made available by the Gravitational Wave Open Science Center (GWOSC) [33, 34], 100100 seconds after GW150914.</li><li><span class="sec">introduction</span> We then apply our method directly to the three binary black hole events in O1: GW150914, LVT151012 and GW151226.</li><li><span class="sec">introduction</span> …The 90%90\% credible regions of the 2D marginal posteriors of Δ​techo\Delta t_{\mathrm{echo}} and γ\gamma for GW150914-like simulated signals.</li><li><span class="sec">methods</span> To test our method we choose to examine simulated echo signals based on GW150914.</li></ul>
     </details>
     
   </div>
@@ -417,210 +201,15 @@ around 0.1. The log Bayes factor is negative for amplitude values below
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>11 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…(GWOSC) [33, 34], 100100 seconds after GW150914. The 100100-second delay
-makes it unlikely that the data at that time is contaminated by a real
-astrophysical signal [35]. We then apply our method directly
-to the three binary black hole events in O1: GW150914, <mark>LVT151012</mark> and GW151226.
-Finally, we show how these results can be used to place bounds on the
-reflectivity of structure that has formed a given distance from the location of
-the would-be horizon.
-
-Figure 3: The 90%90\% credible regions of the 2D marginal posteriors of
-…</div>
+    <p class="where">Named 11 times:
+      methods ×7, discussion ×2, introduction, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1811.04904v2#:~:text=LVT151012" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">LVT151012</span> or <span class="mono hit">GW151012</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…techot_{\mathrm{echo}} shows distinct lines at
-certain values of time. These lines are unlikely to be associated with an
-astrophysical signal and are also seen in tests on simulated Gaussian noise
-with the same pipeline.
-
-As seen in Table 2, both GW151226 and <mark>LVT151012</mark> prefer the
-echoes hypothesis over Gaussian noise, but only marginally. These two events
-have lower amplitudes for the main signal than for GW150914 and thus echoes
-signals with the same relative amplitude would have a lower absolute amplitude
-relative to the …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ive amplitude would have a lower absolute amplitude
-relative to the ambient noise [21]. The detector noise is
-known not to be truly Gaussian for the LIGO detectors
-[42]. We performed 20 background tests on
-off-source data that lies before or after the time of <mark>LVT151012</mark> at intervals of
-50 seconds. Each of these tests is sufficiently separated in time from the
-others that it will not be contaminated by a common signal. In these background
-tests, two examples were found with a Bayes factor larger than the result for
-LVT151012 …</div>
-    
-    
-    <details><summary>8 more</summary>
-    <div class="mention"><span class="sec">methods</span>… LVT151012 at intervals of
-50 seconds. Each of these tests is sufficiently separated in time from the
-others that it will not be contaminated by a common signal. In these background
-tests, two examples were found with a Bayes factor larger than the result for
-<mark>LVT151012</mark> shown in Table 2. A total of four intervals returned
-Bayes factors that favoured the echo hypothesis over Gaussian noise. Backgrounds for similar (but not identical) echoes hypotheses were also studied in [30] who found evidence for significant tails in the d…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…evidence for significant tails in the distribution of Bayes factors in real detector noise versus simulated Gaussian noise.
-
-While it is interesting to speculate whether a signal model could be developed that
-postdicts echo signals for certain events, such as <mark>LVT151012</mark>, but not for
-others, such as GW150914, we do not pursue that here. The argument that
-LVT151012 should be accepted as a genuine binary black hole merger was given
-recently in [44], however we do not feel that the echoes data
-for LVT151012 is sufficiently stron…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…us simulated Gaussian noise.
-
-While it is interesting to speculate whether a signal model could be developed that
-postdicts echo signals for certain events, such as LVT151012, but not for
-others, such as GW150914, we do not pursue that here. The argument that
-<mark>LVT151012</mark> should be accepted as a genuine binary black hole merger was given
-recently in [44], however we do not feel that the echoes data
-for LVT151012 is sufficiently strong to seriously entertain a model where
-LVT15012-like events display echoes, but GW150914-like e…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…rtain events, such as LVT151012, but not for
-others, such as GW150914, we do not pursue that here. The argument that
-LVT151012 should be accepted as a genuine binary black hole merger was given
-recently in [44], however we do not feel that the echoes data
-for <mark>LVT151012</mark> is sufficiently strong to seriously entertain a model where
-LVT15012-like events display echoes, but GW150914-like events do not.
-
-The SNR values found for the maximum likelihood templates in
-Table 2 are comparable, although not identical to those found in
-[2…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…f the sum of the
-squares of the template SNRs as in [20], or as a maximization or
-marginalization of the likelihood function introduced here. We defer
-investigation of these subtle issues to future work.
-
-Event
-Log Bayes factor
-Max SNR
-
-GW150914
--1.8056
-2.86
-
-<mark>LVT151012</mark>
-1.2499
-5.5741
-
-GW151226
-0.4186
-4.07
-
-Table 2: Table of Bayes factor results. Negative values indicate that the
-Gaussian noise hypothesis is preferred. Positive values indicate that the
-echoes hypothesis is preferred after marginalization over parameters. Log
-…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…0] suggest that no
-more than 5%5\% of this energy is being reflected by near-horizon structure and
-re-emitted as echoes.
-
-We have seen that there is little evidence of ADA echo-like signals in the data of
-GW150914. Although there is some evidence of echoes in <mark>LVT151012</mark> and GW151226,
-as both show positive log Bayes factors, this evidence is not very strong.
-Sampling the true detector noise by running over off-source times, shows that
-the log Bayes factor found for LVT151012 is not unusual. A number of improved
-echo waveform …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…50914. Although there is some evidence of echoes in LVT151012 and GW151226,
-as both show positive log Bayes factors, this evidence is not very strong.
-Sampling the true detector noise by running over off-source times, shows that
-the log Bayes factor found for <mark>LVT151012</mark> is not unusual. A number of improved
-echo waveform models have been proposed; we defer running with these on further
-events to future work.
-
-VI Acknowledgments
-
-O.B. acknowledges the National Science Foundation (NSF) for financial support
-from Grant No. PHY-1…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>… A Fiducial IMR waveform parameters
-
-We list here the parameters of the base IMR waveforms used to construct the
-echo templates both for injections and for the searches. These values are
-obtained from the maximum likelihood values of [36].
-
-Parameter
-GW150914
-<mark>LVT151012</mark>
-GW151226
-
-mass1
-39.03
-22.87
-18.80
-
-mass2
-32.06
-18.67
-6.92
-
-spin1x
--0.87
-0.12
-0.44
-
-spin1y
--0.43
-0.19
-0.59
-
-spin1z
--0.06
--0.20
-0.33
-
-spin2x
--0.11
-0.018
-0.00
-
-spin2y
--0.03
--0.019
--0.017
-
-spin2z
--0.15
-0.062
-0.0033
-
-distance
-477
-751
-315
-
-ra
-1.57
-0.65
-2.23
-
-dec
--1…</div>
+    <details class="lines"><summary>Show the sentences (10, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> We then apply our method directly to the three binary black hole events in O1: GW150914, LVT151012 and GW151226.</li><li><span class="sec">methods</span> As seen in Table 2, both GW151226 and LVT151012 prefer the echoes hypothesis over Gaussian noise, but only marginally.</li><li><span class="sec">methods</span> We performed 20 background tests on off-source data that lies before or after the time of LVT151012 at intervals of 50 seconds.</li><li><span class="sec">methods</span> In these background tests, two examples were found with a Bayes factor larger than the result for LVT151012 shown in Table 2.</li><li><span class="sec">methods</span> …o speculate whether a signal model could be developed that postdicts echo signals for certain events, such as LVT151012, but not for others, such as GW150914, we do not pursue that here.</li><li><span class="sec">methods</span> The argument that LVT151012 should be accepted as a genuine binary black hole merger was given recently in [44], however we do not feel t…</li><li><span class="sec">methods</span> LVT151012 1.2499 5.5741</li><li><span class="sec">discussion</span> Although there is some evidence of echoes in LVT151012 and GW151226, as both show positive log Bayes factors, this evidence is not very strong.</li></ul>
     </details>
     
   </div>
@@ -657,173 +246,15 @@ dec
 <section class="card" data-i="2" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>6 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…4], 100100 seconds after GW150914. The 100100-second delay
-makes it unlikely that the data at that time is contaminated by a real
-astrophysical signal [35]. We then apply our method directly
-to the three binary black hole events in O1: GW150914, LVT151012 and <mark>GW151226</mark>.
-Finally, we show how these results can be used to place bounds on the
-reflectivity of structure that has formed a given distance from the location of
-the would-be horizon.
-
-Figure 3: The 90%90\% credible regions of the 2D marginal posteriors of
-Δ​techo\Delta…</div>
+    <p class="where">Named 6 times:
+      methods ×2, introduction, discussion, reference list, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/1811.04904v2#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…osterior for techot_{\mathrm{echo}} shows distinct lines at
-certain values of time. These lines are unlikely to be associated with an
-astrophysical signal and are also seen in tests on simulated Gaussian noise
-with the same pipeline.
-
-As seen in Table 2, both <mark>GW151226</mark> and LVT151012 prefer the
-echoes hypothesis over Gaussian noise, but only marginally. These two events
-have lower amplitudes for the main signal than for GW150914 and thus echoes
-signals with the same relative amplitude would have a lower absolute amplitude
-re…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…of the template SNRs as in [20], or as a maximization or
-marginalization of the likelihood function introduced here. We defer
-investigation of these subtle issues to future work.
-
-Event
-Log Bayes factor
-Max SNR
-
-GW150914
--1.8056
-2.86
-
-LVT151012
-1.2499
-5.5741
-
-<mark>GW151226</mark>
-0.4186
-4.07
-
-Table 2: Table of Bayes factor results. Negative values indicate that the
-Gaussian noise hypothesis is preferred. Positive values indicate that the
-echoes hypothesis is preferred after marginalization over parameters. Log
-Bayes values with magnit…</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">discussion</span>…t no
-more than 5%5\% of this energy is being reflected by near-horizon structure and
-re-emitted as echoes.
-
-We have seen that there is little evidence of ADA echo-like signals in the data of
-GW150914. Although there is some evidence of echoes in LVT151012 and <mark>GW151226</mark>,
-as both show positive log Bayes factors, this evidence is not very strong.
-Sampling the true detector noise by running over off-source times, shows that
-the log Bayes factor found for LVT151012 is not unusual. A number of improved
-echo waveform models have b…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…borations],
-“Observation of Gravitational Waves from a Binary Black Hole Merger,”
-Phys. Rev. Lett. 116 (2016) no.6, 061102
-doi:10.1103/PhysRevLett.116.061102
-[arXiv:1602.03837 [gr-qc]].
-
- 
-[10]
-
-B. P. Abbott et al. [LIGO Scientific and Virgo Collaborations],
-“<mark>GW151226</mark>: Observation of Gravitational Waves from a 22-Solar-Mass Binary Black Hole Coalescence,”
-Phys. Rev. Lett. 116 (2016) no.24, 241103
-doi:10.1103/PhysRevLett.116.241103
-[arXiv:1606.04855 [gr-qc]].
-
- 
-[11]
-
-B. P. Abbott et al. [LIGO Scientific and Virgo Collabora…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[10]</span> · 1 place</span><div class="cite">…n
-as is generally expected in general relativity, but instead some amount of the
-infalling wave would be reflected.
-
-Recent observations of gravitational waves from coalescences of binary black
-holes <mark class="ref">[9, 10, 11, 12, 13, 14]</mark> by the LIGO
-[15] and Virgo [16] detectors
-have allowed for a number of new tests of the near horizon structure of black
-holes [17, 18, 19]. One
-such test involves searching for echo signals that coul…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…l IMR waveform parameters
-
-We list here the parameters of the base IMR waveforms used to construct the
-echo templates both for injections and for the searches. These values are
-obtained from the maximum likelihood values of [36].
-
-Parameter
-GW150914
-LVT151012
-<mark>GW151226</mark>
-
-mass1
-39.03
-22.87
-18.80
-
-mass2
-32.06
-18.67
-6.92
-
-spin1x
--0.87
-0.12
-0.44
-
-spin1y
--0.43
-0.19
-0.59
-
-spin1z
--0.06
--0.20
-0.33
-
-spin2x
--0.11
-0.018
-0.00
-
-spin2y
--0.03
--0.019
--0.017
-
-spin2z
--0.15
-0.062
-0.0033
-
-distance
-477
-751
-315
-
-ra
-1.57
-0.65
-2.23
-
-dec
--1.27
-0.069…</div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> We then apply our method directly to the three binary black hole events in O1: GW150914, LVT151012 and GW151226.</li><li><span class="sec">methods</span> As seen in Table 2, both GW151226 and LVT151012 prefer the echoes hypothesis over Gaussian noise, but only marginally.</li><li><span class="sec">methods</span> GW151226 0.4186 4.07</li><li><span class="sec">discussion</span> Although there is some evidence of echoes in LVT151012 and GW151226, as both show positive log Bayes factors, this evidence is not very strong.</li><li><span class="sec">cites it as [10]</span> …wave would be reflected. Recent observations of gravitational waves from coalescences of binary black holes [9, 10, 11, 12, 13, 14] by the LIGO [15] and Virgo [16] detectors have allowed for a number of new tests of the near horizon structur…</li><li><span class="sec">appendix</span> Parameter GW150914 LVT151012 GW151226</li></ul>
     </details>
     
   </div>
@@ -860,41 +291,16 @@ dec
 <section class="card" data-i="3" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1811.04904v2#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…Virgo Collaborations],
-“Binary Black Hole Mergers in the first Advanced LIGO Observing Run,”
-Phys. Rev. X 6 (2016) no.4, 041015
-doi:10.1103/PhysRevX.6.041015
-[arXiv:1606.04856 [gr-qc]].
-
- 
-[12]
-
-B. P. Abbott et al. [LIGO Scientific and Virgo Collaborations],
-“<mark>GW170104</mark>: Observation of a 50-Solar-Mass Binary Black Hole Coalescence at Redshift 0.2,”
-Phys. Rev. Lett. 118, no. 22, 221101 (2017)
-doi:doi:10.1103/PhysRevLett.118.221101
-[arXiv:1706.01812 [gr-qc]].
-
- 
-[13]
-
-B. P. Abbott et al. [LIGO Scientific and Virgo Collaboratio…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[12]</span> · 1 place</span><div class="cite">…n
-as is generally expected in general relativity, but instead some amount of the
-infalling wave would be reflected.
-
-Recent observations of gravitational waves from coalescences of binary black
-holes <mark class="ref">[9, 10, 11, 12, 13, 14]</mark> by the LIGO
-[15] and Virgo [16] detectors
-have allowed for a number of new tests of the near horizon structure of black
-holes [17, 18, 19]. One
-such test involves searching for echo signals that coul…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [12]</span> …wave would be reflected. Recent observations of gravitational waves from coalescences of binary black holes [9, 10, 11, 12, 13, 14] by the LIGO [15] and Virgo [16] detectors have allowed for a number of new tests of the near horizon structur…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -930,41 +336,16 @@ such test involves searching for echo signals that coul…</div>
 <section class="card" data-i="4" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1811.04904v2#:~:text=GW170608" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…rvation of a 50-Solar-Mass Binary Black Hole Coalescence at Redshift 0.2,”
-Phys. Rev. Lett. 118, no. 22, 221101 (2017)
-doi:doi:10.1103/PhysRevLett.118.221101
-[arXiv:1706.01812 [gr-qc]].
-
- 
-[13]
-
-B. P. Abbott et al. [LIGO Scientific and Virgo Collaborations],
-“<mark>GW170608</mark>: Observation of a 19-solar-mass Binary Black Hole Coalescence,”
-Astrophys. J. 851, no. 2, L35 (2017)
-doi:10.3847/2041-8213/aa9f0c
-[arXiv:1711.05578 [astro-ph.HE]].
-
- 
-[14]
-
-B. P. Abbott et al. [LIGO Scientific and Virgo Collaborations],
-“GW170814: A Three-Det…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[13]</span> · 1 place</span><div class="cite">…n
-as is generally expected in general relativity, but instead some amount of the
-infalling wave would be reflected.
-
-Recent observations of gravitational waves from coalescences of binary black
-holes <mark class="ref">[9, 10, 11, 12, 13, 14]</mark> by the LIGO
-[15] and Virgo [16] detectors
-have allowed for a number of new tests of the near horizon structure of black
-holes [17, 18, 19]. One
-such test involves searching for echo signals that coul…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [13]</span> …wave would be reflected. Recent observations of gravitational waves from coalescences of binary black holes [9, 10, 11, 12, 13, 14] by the LIGO [15] and Virgo [16] detectors have allowed for a number of new tests of the near horizon structur…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1000,42 +381,16 @@ such test involves searching for echo signals that coul…</div>
 <section class="card" data-i="5" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1811.04904v2#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…borations],
-“GW170608: Observation of a 19-solar-mass Binary Black Hole Coalescence,”
-Astrophys. J. 851, no. 2, L35 (2017)
-doi:10.3847/2041-8213/aa9f0c
-[arXiv:1711.05578 [astro-ph.HE]].
-
- 
-[14]
-
-B. P. Abbott et al. [LIGO Scientific and Virgo Collaborations],
-“<mark>GW170814</mark>: A Three-Detector Observation of Gravitational Waves from a Binary Black Hole Coalescence,”
-Phys. Rev. Lett. 119, no. 14, 141101 (2017)
-doi:10.1103/PhysRevLett.119.141101
-[arXiv:1709.09660 [gr-qc]].
-
- 
-[15]
-
-J. Aasi et al. [LIGO Scientific Collaboration],
-“Ad…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[14]</span> · 1 place</span><div class="cite">…n
-as is generally expected in general relativity, but instead some amount of the
-infalling wave would be reflected.
-
-Recent observations of gravitational waves from coalescences of binary black
-holes <mark class="ref">[9, 10, 11, 12, 13, 14]</mark> by the LIGO
-[15] and Virgo [16] detectors
-have allowed for a number of new tests of the near horizon structure of black
-holes [17, 18, 19]. One
-such test involves searching for echo signals that coul…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [14]</span> …wave would be reflected. Recent observations of gravitational waves from coalescences of binary black holes [9, 10, 11, 12, 13, 14] by the LIGO [15] and Virgo [16] detectors have allowed for a number of new tests of the near horizon structur…</li></ul>
+    </details>
     
   </div>
   <div class="form">

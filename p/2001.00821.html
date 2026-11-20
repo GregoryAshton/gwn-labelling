@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,126 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Echoes from the Abyss: A Status Update</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2001.00821" target="_blank" rel="noopener" class="mono">arXiv:2001.00821</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Gravitational wave echoes provide our most direct and surprising observational window into quantum nature of black holes. Three years ago, the first search for echoes from Planck-scale modifications of general relativity near black hole event horizons led to tentative evidence at false detection probability of 1\% arXiv:1612.00266 . The study introduced a naive phenomenological model and used the public data release by the Advanced LIGO gravitational wave observatory for the first observing run O1 (GW150914, GW151226, and LVT151012, now GW151012). Here, we provide a status update on various observational searches for echoes by independent groups, and argue that they can all be consistent if echoes are most prominent at lower frequencies and/or in binary mergers of more extreme mass ratio. We also point out that the only reported &#34;detection&#34; of echoes (with $&amp;gt;4\sigma$ confidence) at 1.0 second after the binary neutron star merger GW170817 arXiv:1803.10454 is coincident with the formation time of the black hole inferred from electromagnetic observations.</p></details>
+<div class="small mut mono">arXiv:2001.00821</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Gravitational wave echoes provide our most direct and surprising observational window into quantum nature of black holes. Three years ago, the first search for echoes from Planck-scale modifications of general relativity near black hole event horizons led to tentative evidence at false detection probability of 1\% arXiv:1612.00266 . The study introduced a naive phenomenological model and used the public data release by the Advanced LIGO gravitational wave observatory for the first observing run O1 (GW150914, GW151226, and LVT151012, now GW151012). Here, we provide a status update on various observational searches for echoes by independent groups, and argue that they can all be consistent if echoes are most prominent at lower frequencies and/or in binary mergers of more extreme mass ratio. We also point out that the only reported &#34;detection&#34; of echoes (with $&amp;gt;4\sigma$ confidence) at 1.0 second after the binary neutron star merger GW170817 arXiv:1803.10454 is coincident with the formation time of the black hole inferred from electromagnetic observations.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2001.00821v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">11 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">11 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>6 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…ck hole event horizons led to tentative evidence at false detection probability of 1% [1]. The study introduced a naive phenomenological model and used the public data release by the Advanced LIGO gravitational wave observatory for the first observing run O1 (<mark>GW150914</mark>, GW151226, and LVT151012, now GW151012). Here, we provide a status update on various observational searches for echoes by independent groups, and argue that they can all be consistent if echoes are most prominent at lower frequencies and/or in binary mergers …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…og-Bayes factors for echoes, reported in Table II of Nielsen et al. [14] for GW151012 and GW151226 having GW151012 as highest significant is also consistent with ordering of significance of signals found by Salemi et al. [15].
-
-5. 
-
-Noting that echo signal of <mark>GW150914</mark> [1] at time delay 0.3 sec had narrowest time window (±3%\pm 3\% in table II) and smallest energy (Table II in [1] ) compared to GW151226 and GW151012 is consistent with non-detection by Salemi et al. [15] and the negative Log Base factor by Nielsen et al. (Ta…</div>
+    <p class="where">Named 6 times:
+      methods ×4, abstract, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2001.00821v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…\% in table II) and smallest energy (Table II in [1] ) compared to GW151226 and GW151012 is consistent with non-detection by Salemi et al. [15] and the negative Log Base factor by Nielsen et al. (Table II in [14]).
-
-6. 
-
-Interestingly, the residual signal for <mark>GW150914</mark> [23] in supporting material of Salemi et al. [15] is consistent with 300 msec echo signal time delay reported in Table II of Echoes from the Abyss [1]. The fact that the postmerger signal only appears at a single pixel, suggests the weakness of the signal, as…</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">methods</span>…e earlier results based on the distribution of slopes, and thus adds further weight to the conclusion that postmerger signals found by Salemi et al. [15] are correlated with the mass ratio of the BBH mergers.
-
-Event
-p-value ±2​σ\pm 2\sigma
-average mass ratio
-
-<mark>GW150914</mark>
-0.94±0.020.94\pm 0.02
-0.86
-
-GW151012
-0.0037±0.00140.0037\pm 0.0014
-0.58
-
-GW151226
-0.025±0.0050.025\pm 0.005
-0.56
-
-GW170104
-0.07±0.010.07\pm 0.01
-0.65
-
-GW170608
-0.51±0.020.51\pm 0.02
-0.68
-
-GW170729
-0.09±0.010.09\pm 0.01
-0.68
-
-GW170809
-0.28±0.010.28\pm 0.01
-0.6…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…k et al. [13]):
-
-Uchikata et al. [11] reproduce the same background estimation as Westerweck et al. [13]. Therefore their p-value results and Poisson errors are compared to their O1 results shown in Table 2.
-
-Event
-Westerweck et al. [13]
-Uchikata et al. [11]
-
-<mark>GW150914</mark>
-0.238±0.0430.238\pm 0.043
-0.157±0.0350.157\pm 0.035
-
-GW151012
-0.063±0.0220.063\pm 0.022
-0.047±0.0190.047\pm 0.019
-
-GW151226
-0.476±0.0610.476\pm 0.061
-0.598±0.0690.598\pm 0.069
-
-Total
-0.032±0.0160.032\pm 0.016
-0.055±0.0210.055\pm 0.021
-
-Table 2: P-values along…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…ponses
-for GW151226,” https://www.atlas.aei.uni-hannover.de/work/salemi/reports/GWOSC_LH_GW151226_R1_org/ced/ced_1135136238_1200_GWOSC_LH_GW151226_R1_org_slag0_lag0_1_job1/L1H1_1135136350.312_1135136350.312/
-(b). 
-
- 
-[23]
-“Reconstructed Detector Responses
-for <mark>GW150914</mark>,” https://www.atlas.aei.uni-hannover.de/work/salemi/reports/GWOSC_LH_GW150914_R1_org/ced/ced_1126258800_1200_GWOSC_LH_GW150914_R1_org_slag0_lag0_1_job1/L1H1_1126259462.125_1126259462.125/
-(c). 
-
- 
-[24]
-“Parameter estimation sample
-release for GWTC-1,” https:/…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[23]</span> · 1 place</span><div class="cite">…151226 and GW151012 is consistent with non-detection by Salemi et al. [15] and the negative Log Base factor by Nielsen et al. (Table II in [14]).
-
-6. 
-
-Interestingly, the residual signal for GW150914 <mark class="ref">[23]</mark> in supporting material of Salemi et al. [15] is consistent with 300 msec echo signal time delay reported in Table II of Echoes from the Abyss [1]. The fact that the postmerger signal only appears at …</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …d the public data release by the Advanced LIGO gravitational wave observatory for the first observing run O1 (GW150914, GW151226, and LVT151012, now GW151012).</li><li><span class="sec">methods</span> Noting that echo signal of GW150914 [1] at time delay 0.3 sec had narrowest time window (±3%\pm 3\% in table II) and smallest energy (Table II in…</li><li><span class="sec">methods</span> Interestingly, the residual signal for GW150914 [23] in supporting material of Salemi et al. [15] is consistent with 300 msec echo signal time delay reported…</li><li><span class="sec">methods</span> GW150914 0.94±0.020.94\pm 0.02 0.86</li><li><span class="sec">methods</span> GW150914 0.238±0.0430.238\pm 0.043 0.157±0.0350.157\pm 0.035</li><li><span class="sec">cites it as [23]</span> …e Log Base factor by Nielsen et al. (Table II in [14]). 6. Interestingly, the residual signal for GW150914 [23] in supporting material of Salemi et al. [15] is consistent with 300 msec echo signal time delay reported in T…</li></ul>
     </details>
     
   </div>
@@ -278,131 +201,15 @@ Interestingly, the residual signal for GW150914 <mark class="ref">[23]</mark> in
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>17 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…ed to tentative evidence at false detection probability of 1% [1]. The study introduced a naive phenomenological model and used the public data release by the Advanced LIGO gravitational wave observatory for the first observing run O1 (GW150914, GW151226, and <mark>LVT151012</mark>, now GW151012). Here, we provide a status update on various observational searches for echoes by independent groups, and argue that they can all be consistent if echoes are most prominent at lower frequencies and/or in binary mergers of more extreme mass rati…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>… evidence at false detection probability of 1% [1]. The study introduced a naive phenomenological model and used the public data release by the Advanced LIGO gravitational wave observatory for the first observing run O1 (GW150914, GW151226, and LVT151012, now <mark>GW151012</mark>). Here, we provide a status update on various observational searches for echoes by independent groups, and argue that they can all be consistent if echoes are most prominent at lower frequencies and/or in binary mergers of more extreme mass ratio. We also poi…</div>
+    <p class="where">Named 17 times:
+      methods ×14, abstract ×2, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2001.00821v1#:~:text=GW151012" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151012</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…r finding. However, we caution that these similarities do not guarantee that the signals found are the same (or real), but rather provides support for further investigation.
-
-1. 
-
-The time delays of 0.1 sec and 0.2 sec for post-merger signals for GW151226 and <mark>GW151012</mark> respectively found by Salemi et al. [15], are consistent with time delays first reported in Table II of [1].
-
-2. 
-
-Results of [1, 11, 13, 14, 15, 2] show consistency for Planckian echoes, at p-values of 0.002%−5%0.002\%-5\% for O1 and O2 events.
-
-3. 
-
-The rec…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">methods</span>… reported in Table II of [1].
-
-2. 
-
-Results of [1, 11, 13, 14, 15, 2] show consistency for Planckian echoes, at p-values of 0.002%−5%0.002\%-5\% for O1 and O2 events.
-
-3. 
-
-The reconstructed detector response for post-merger signals of the events GW151226 and <mark>GW151012</mark> [21, 22] in [15] show consistent amplitudes (0.33, 0.34)×\times(maximum amplitude of main event) with what was obtained in Table II of Echoes from the Abyss [1].
-
-Additionally, energies reported in [1] (Appendix A) is also consistent with strength of signals …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…itude of main event) with what was obtained in Table II of Echoes from the Abyss [1].
-
-Additionally, energies reported in [1] (Appendix A) is also consistent with strength of signals found by Salemi et al. [15].
-
-Finally, having highest value SNR reported for <mark>GW151012</mark> in [1] (Table II and Fig. 6) is also consistent with highest significant event in [15].
-
-4. 
-
-Log-Bayes factors for echoes, reported in Table II of Nielsen et al. [14] for GW151012 and GW151226 having GW151012 as highest significant is also consistent with or…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…s found by Salemi et al. [15].
-
-Finally, having highest value SNR reported for GW151012 in [1] (Table II and Fig. 6) is also consistent with highest significant event in [15].
-
-4. 
-
-Log-Bayes factors for echoes, reported in Table II of Nielsen et al. [14] for <mark>GW151012</mark> and GW151226 having GW151012 as highest significant is also consistent with ordering of significance of signals found by Salemi et al. [15].
-
-5. 
-
-Noting that echo signal of GW150914 [1] at time delay 0.3 sec had narrowest time window (±3%\pm 3\% in table II)…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>….
-
-Finally, having highest value SNR reported for GW151012 in [1] (Table II and Fig. 6) is also consistent with highest significant event in [15].
-
-4. 
-
-Log-Bayes factors for echoes, reported in Table II of Nielsen et al. [14] for GW151012 and GW151226 having <mark>GW151012</mark> as highest significant is also consistent with ordering of significance of signals found by Salemi et al. [15].
-
-5. 
-
-Noting that echo signal of GW150914 [1] at time delay 0.3 sec had narrowest time window (±3%\pm 3\% in table II) and smallest energy (Table I…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…istent with ordering of significance of signals found by Salemi et al. [15].
-
-5. 
-
-Noting that echo signal of GW150914 [1] at time delay 0.3 sec had narrowest time window (±3%\pm 3\% in table II) and smallest energy (Table II in [1] ) compared to GW151226 and <mark>GW151012</mark> is consistent with non-detection by Salemi et al. [15] and the negative Log Base factor by Nielsen et al. (Table II in [14]).
-
-6. 
-
-Interestingly, the residual signal for GW150914 [23] in supporting material of Salemi et al. [15] is consistent with 300 msec e…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…i et al. [15] is consistent with 300 msec echo signal time delay reported in Table II of Echoes from the Abyss [1]. The fact that the postmerger signal only appears at a single pixel, suggests the weakness of the signal, as mentioned above.
-
-7. 
-
-Furthermore, <mark>GW151012</mark> as the most significant echoes signal obtained by Westerweck et al. [13] (p-value of 6% in their Table I) is also consistent with the most significant signal found by Salemi et al. [15] (p-value of 0.4%).
-
-8. 
-
-The echo search results of Uchikata et al. [11] …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…sen et al. [14] and Westerweck et al. [13].
-
-II.2 Evidence for dependence of significance of echoes on binary BH mass ratio,
-Comment on: Salemi et al. [15]
-
-In this part, we comment on the conclusion of Salemi et al. [15] about the post-merger signal found in <mark>GW151012</mark>, which they claim to have arrived from a different sky location than the main event. We then provide possible evidence for how mass ratio of LIGO BBH events are correlated with the significance of the echo signals they report.
-
-II.2.1 Comment on: Salemi et al…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…e then provide possible evidence for how mass ratio of LIGO BBH events are correlated with the significance of the echo signals they report.
-
-II.2.1 Comment on: Salemi et al. [15]
-
-Salemi et al. [15] claimed that the significant postmerger signal they see for <mark>GW151012</mark> has arrived from a different sky location. Although posterior probability of time delay between Hanford and Livingston (Fig. 4 of [15]) is consistent with this claim (which is a posteriori statistics), it would be very unlikely from their reported post-merger…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ir reported post-merger signal statistical significance p-value≃0.004\simeq 0.004 that assumes spatial coincident with the main event. We also note that all the secondary (post-merger) clusters they claim (and search for) as signals in their Figs. 3 and 5 for <mark>GW151012</mark> and GW151226 respectively are monochromatic. This would clearly lead to a degeneracy in the inference of time-delay. We note that in the secondary signal of GW151012, the null (residual) plot of Salemi et al. [15] in Fig. 3 appears to have the dominant peak o…</div>
+    <details class="lines"><summary>Show the sentences (16, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …e by the Advanced LIGO gravitational wave observatory for the first observing run O1 (GW150914, GW151226, and LVT151012, now GW151012).</li><li><span class="sec">abstract</span> …ed LIGO gravitational wave observatory for the first observing run O1 (GW150914, GW151226, and LVT151012, now GW151012).</li><li><span class="sec">methods</span> The time delays of 0.1 sec and 0.2 sec for post-merger signals for GW151226 and GW151012 respectively found by Salemi et al. [15], are consistent with time delays first reported in Table II of [1].</li><li><span class="sec">methods</span> The reconstructed detector response for post-merger signals of the events GW151226 and GW151012 [21, 22] in [15] show consistent amplitudes (0.33, 0.34)×\times(maximum amplitude of main event) with what wa…</li><li><span class="sec">methods</span> Finally, having highest value SNR reported for GW151012 in [1] (Table II and Fig. 6) is also consistent with highest significant event in [15].</li><li><span class="sec">methods</span> Log-Bayes factors for echoes, reported in Table II of Nielsen et al. [14] for GW151012 and GW151226 having GW151012 as highest significant is also consistent with ordering of significance of signa…</li><li><span class="sec">methods</span> …arrowest time window (±3%\pm 3\% in table II) and smallest energy (Table II in [1] ) compared to GW151226 and GW151012 is consistent with non-detection by Salemi et al. [15] and the negative Log Base factor by Nielsen et al.</li><li><span class="sec">methods</span> Furthermore, GW151012 as the most significant echoes signal obtained by Westerweck et al. [13] (p-value of 6% in their Table I) is…</li></ul>
     </details>
     
   </div>
@@ -439,165 +246,15 @@ Salemi et al. [15] claimed that the significant postmerger signal they see for <
 <section class="card" data-i="2" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>9 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…ent horizons led to tentative evidence at false detection probability of 1% [1]. The study introduced a naive phenomenological model and used the public data release by the Advanced LIGO gravitational wave observatory for the first observing run O1 (GW150914, <mark>GW151226</mark>, and LVT151012, now GW151012). Here, we provide a status update on various observational searches for echoes by independent groups, and argue that they can all be consistent if echoes are most prominent at lower frequencies and/or in binary mergers of more ex…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ities of their finding. However, we caution that these similarities do not guarantee that the signals found are the same (or real), but rather provides support for further investigation.
-
-1. 
-
-The time delays of 0.1 sec and 0.2 sec for post-merger signals for <mark>GW151226</mark> and GW151012 respectively found by Salemi et al. [15], are consistent with time delays first reported in Table II of [1].
-
-2. 
-
-Results of [1, 11, 13, 14, 15, 2] show consistency for Planckian echoes, at p-values of 0.002%−5%0.002\%-5\% for O1 and O2 events.
-…</div>
+    <p class="where">Named 9 times:
+      methods ×7, abstract, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2001.00821v1#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>… delays first reported in Table II of [1].
-
-2. 
-
-Results of [1, 11, 13, 14, 15, 2] show consistency for Planckian echoes, at p-values of 0.002%−5%0.002\%-5\% for O1 and O2 events.
-
-3. 
-
-The reconstructed detector response for post-merger signals of the events <mark>GW151226</mark> and GW151012 [21, 22] in [15] show consistent amplitudes (0.33, 0.34)×\times(maximum amplitude of main event) with what was obtained in Table II of Echoes from the Abyss [1].
-
-Additionally, energies reported in [1] (Appendix A) is also consistent with strengt…</div>
-    
-    
-    <details><summary>6 more</summary>
-    <div class="mention"><span class="sec">methods</span>…lemi et al. [15].
-
-Finally, having highest value SNR reported for GW151012 in [1] (Table II and Fig. 6) is also consistent with highest significant event in [15].
-
-4. 
-
-Log-Bayes factors for echoes, reported in Table II of Nielsen et al. [14] for GW151012 and <mark>GW151226</mark> having GW151012 as highest significant is also consistent with ordering of significance of signals found by Salemi et al. [15].
-
-5. 
-
-Noting that echo signal of GW150914 [1] at time delay 0.3 sec had narrowest time window (±3%\pm 3\% in table II) and smallest…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… is also consistent with ordering of significance of signals found by Salemi et al. [15].
-
-5. 
-
-Noting that echo signal of GW150914 [1] at time delay 0.3 sec had narrowest time window (±3%\pm 3\% in table II) and smallest energy (Table II in [1] ) compared to <mark>GW151226</mark> and GW151012 is consistent with non-detection by Salemi et al. [15] and the negative Log Base factor by Nielsen et al. (Table II in [14]).
-
-6. 
-
-Interestingly, the residual signal for GW150914 [23] in supporting material of Salemi et al. [15] is consistent wi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ost-merger signal statistical significance p-value≃0.004\simeq 0.004 that assumes spatial coincident with the main event. We also note that all the secondary (post-merger) clusters they claim (and search for) as signals in their Figs. 3 and 5 for GW151012 and <mark>GW151226</mark> respectively are monochromatic. This would clearly lead to a degeneracy in the inference of time-delay. We note that in the secondary signal of GW151012, the null (residual) plot of Salemi et al. [15] in Fig. 3 appears to have the dominant peak of the cluster…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…t to the conclusion that postmerger signals found by Salemi et al. [15] are correlated with the mass ratio of the BBH mergers.
-
-Event
-p-value ±2​σ\pm 2\sigma
-average mass ratio
-
-GW150914
-0.94±0.020.94\pm 0.02
-0.86
-
-GW151012
-0.0037±0.00140.0037\pm 0.0014
-0.58
-
-<mark>GW151226</mark>
-0.025±0.0050.025\pm 0.005
-0.56
-
-GW170104
-0.07±0.010.07\pm 0.01
-0.65
-
-GW170608
-0.51±0.020.51\pm 0.02
-0.68
-
-GW170729
-0.09±0.010.09\pm 0.01
-0.68
-
-GW170809
-0.28±0.010.28\pm 0.01
-0.68
-
-GW170814
-0.10±0.010.10\pm 0.01
-0.82
-
-GW170818
-0.87±0.020.87\pm 0.02
-0.75
-
-GW170…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…value results and Poisson errors are compared to their O1 results shown in Table 2.
-
-Event
-Westerweck et al. [13]
-Uchikata et al. [11]
-
-GW150914
-0.238±0.0430.238\pm 0.043
-0.157±0.0350.157\pm 0.035
-
-GW151012
-0.063±0.0220.063\pm 0.022
-0.047±0.0190.047\pm 0.019
-
-<mark>GW151226</mark>
-0.476±0.0610.476\pm 0.061
-0.598±0.0690.598\pm 0.069
-
-Total
-0.032±0.0160.032\pm 0.016
-0.055±0.0210.055\pm 0.021
-
-Table 2: P-values along with Poisson errors for ADA waveform searches in O1 events [11]. The results are consistent within the Poisson errors for a…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…ponses
-for GW151012,” https://www.atlas.aei.uni-hannover.de/work/salemi/reports/GWOSC_LH_GW151012_R1_org/ced/ced_1128678000_1200_GWOSC_LH_GW151012_R1_org_slag0_lag0_1_job1/L1H1_1128678900.375_1128678900.375/
-(a). 
-
- 
-[22]
-“Reconstructed Detector Responses
-for <mark>GW151226</mark>,” https://www.atlas.aei.uni-hannover.de/work/salemi/reports/GWOSC_LH_GW151226_R1_org/ced/ced_1135136238_1200_GWOSC_LH_GW151226_R1_org_slag0_lag0_1_job1/L1H1_1135136350.312_1135136350.312/
-(b). 
-
- 
-[23]
-“Reconstructed Detector Responses
-for GW150914,” https://…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[22]</span> · 1 place</span><div class="cite">… show consistency for Planckian echoes, at p-values of 0.002%−5%0.002\%-5\% for O1 and O2 events.
-
-3. 
-
-The reconstructed detector response for post-merger signals of the events GW151226 and GW151012 <mark class="ref">[21, 22]</mark> in [15] show consistent amplitudes (0.33, 0.34)×\times(maximum amplitude of main event) with what was obtained in Table II of Echoes from the Abyss [1].
-
-Additionally, energies reported in [1] (Appen…</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (9, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …ic data release by the Advanced LIGO gravitational wave observatory for the first observing run O1 (GW150914, GW151226, and LVT151012, now GW151012).</li><li><span class="sec">methods</span> The time delays of 0.1 sec and 0.2 sec for post-merger signals for GW151226 and GW151012 respectively found by Salemi et al. [15], are consistent with time delays first reported in Tabl…</li><li><span class="sec">methods</span> The reconstructed detector response for post-merger signals of the events GW151226 and GW151012 [21, 22] in [15] show consistent amplitudes (0.33, 0.34)×\times(maximum amplitude of main event)…</li><li><span class="sec">methods</span> Log-Bayes factors for echoes, reported in Table II of Nielsen et al. [14] for GW151012 and GW151226 having GW151012 as highest significant is also consistent with ordering of significance of signals found by S…</li><li><span class="sec">methods</span> …0.3 sec had narrowest time window (±3%\pm 3\% in table II) and smallest energy (Table II in [1] ) compared to GW151226 and GW151012 is consistent with non-detection by Salemi et al. [15] and the negative Log Base factor by Niels…</li><li><span class="sec">methods</span> …condary (post-merger) clusters they claim (and search for) as signals in their Figs. 3 and 5 for GW151012 and GW151226 respectively are monochromatic.</li><li><span class="sec">methods</span> GW151226 0.025±0.0050.025\pm 0.005 0.56</li><li><span class="sec">methods</span> GW151226 0.476±0.0610.476\pm 0.061 0.598±0.0690.598\pm 0.069</li></ul>
     </details>
     
   </div>
@@ -634,91 +291,16 @@ Additionally, energies reported in [1] (Appen…</div>
 <section class="card" data-i="3" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ls found by Salemi et al. [15] are correlated with the mass ratio of the BBH mergers.
-
-Event
-p-value ±2​σ\pm 2\sigma
-average mass ratio
-
-GW150914
-0.94±0.020.94\pm 0.02
-0.86
-
-GW151012
-0.0037±0.00140.0037\pm 0.0014
-0.58
-
-GW151226
-0.025±0.0050.025\pm 0.005
-0.56
-
-<mark>GW170104</mark>
-0.07±0.010.07\pm 0.01
-0.65
-
-GW170608
-0.51±0.020.51\pm 0.02
-0.68
-
-GW170729
-0.09±0.010.09\pm 0.01
-0.68
-
-GW170809
-0.28±0.010.28\pm 0.01
-0.68
-
-GW170814
-0.10±0.010.10\pm 0.01
-0.82
-
-GW170818
-0.87±0.020.87\pm 0.02
-0.75
-
-GW170823
-0.60±0.020.60\pm 0.02
-0.74
-
-Table 1: …</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2001.00821v1#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…first developed and used on O1 data, and thus the small p-value using O2 data, which is completely independent, severely reduces chances of this being a statistical fluke.
-
-The combined O2 with O1 events gives total p-value=0.047.
-
-Event
-Uchikata et al. [11]
-
-<mark>GW170104</mark>
-0.071
-
-GW170608
-0.079
-
-GW170729
-0.567
-
-GW170814
-0.024
-
-GW170818
-0.929
-
-GW170823
-0.055
-
-Total
-0.039
-
-Table 3: P-values for O2 events [11]. The results show O2 events have same small p-values as O1.
-
-III.2 Status update on the GW170817 postmerger echoes: Electr…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170104 0.07±0.010.07\pm 0.01 0.65</li><li><span class="sec">methods</span> GW170104 0.071</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -754,91 +336,16 @@ III.2 Status update on the GW170817 postmerger echoes: Electr…</div>
 <section class="card" data-i="4" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…rrelated with the mass ratio of the BBH mergers.
-
-Event
-p-value ±2​σ\pm 2\sigma
-average mass ratio
-
-GW150914
-0.94±0.020.94\pm 0.02
-0.86
-
-GW151012
-0.0037±0.00140.0037\pm 0.0014
-0.58
-
-GW151226
-0.025±0.0050.025\pm 0.005
-0.56
-
-GW170104
-0.07±0.010.07\pm 0.01
-0.65
-
-<mark>GW170608</mark>
-0.51±0.020.51\pm 0.02
-0.68
-
-GW170729
-0.09±0.010.09\pm 0.01
-0.68
-
-GW170809
-0.28±0.010.28\pm 0.01
-0.68
-
-GW170814
-0.10±0.010.10\pm 0.01
-0.82
-
-GW170818
-0.87±0.020.87\pm 0.02
-0.75
-
-GW170823
-0.60±0.020.60\pm 0.02
-0.74
-
-Table 1: Events and p-values versus average ma…</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2001.00821v1#:~:text=GW170608" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…and used on O1 data, and thus the small p-value using O2 data, which is completely independent, severely reduces chances of this being a statistical fluke.
-
-The combined O2 with O1 events gives total p-value=0.047.
-
-Event
-Uchikata et al. [11]
-
-GW170104
-0.071
-
-<mark>GW170608</mark>
-0.079
-
-GW170729
-0.567
-
-GW170814
-0.024
-
-GW170818
-0.929
-
-GW170823
-0.055
-
-Total
-0.039
-
-Table 3: P-values for O2 events [11]. The results show O2 events have same small p-values as O1.
-
-III.2 Status update on the GW170817 postmerger echoes: Electromagnetic confir…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170608 0.51±0.020.51\pm 0.02 0.68</li><li><span class="sec">methods</span> GW170608 0.079</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -874,93 +381,16 @@ III.2 Status update on the GW170817 postmerger echoes: Electromagnetic confir…
 <section class="card" data-i="5" data-event="GW170729">
   <div class="ctx">
     <div class="evname mono">GW170729</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…BH mergers.
-
-Event
-p-value ±2​σ\pm 2\sigma
-average mass ratio
-
-GW150914
-0.94±0.020.94\pm 0.02
-0.86
-
-GW151012
-0.0037±0.00140.0037\pm 0.0014
-0.58
-
-GW151226
-0.025±0.0050.025\pm 0.005
-0.56
-
-GW170104
-0.07±0.010.07\pm 0.01
-0.65
-
-GW170608
-0.51±0.020.51\pm 0.02
-0.68
-
-<mark>GW170729</mark>
-0.09±0.010.09\pm 0.01
-0.68
-
-GW170809
-0.28±0.010.28\pm 0.01
-0.68
-
-GW170814
-0.10±0.010.10\pm 0.01
-0.82
-
-GW170818
-0.87±0.020.87\pm 0.02
-0.75
-
-GW170823
-0.60±0.020.60\pm 0.02
-0.74
-
-Table 1: Events and p-values versus average mass ratios for post-coalescence signal…</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2001.00821v1#:~:text=GW170729" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170729</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…ata, and thus the small p-value using O2 data, which is completely independent, severely reduces chances of this being a statistical fluke.
-
-The combined O2 with O1 events gives total p-value=0.047.
-
-Event
-Uchikata et al. [11]
-
-GW170104
-0.071
-
-GW170608
-0.079
-
-<mark>GW170729</mark>
-0.567
-
-GW170814
-0.024
-
-GW170818
-0.929
-
-GW170823
-0.055
-
-Total
-0.039
-
-Table 3: P-values for O2 events [11]. The results show O2 events have same small p-values as O1.
-
-III.2 Status update on the GW170817 postmerger echoes: Electromagnetic confirmation
-
-In [2], …</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170729 0.09±0.010.09\pm 0.01 0.68</li><li><span class="sec">methods</span> GW170729 0.567</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -996,54 +426,16 @@ In [2], …</div>
 <section class="card" data-i="6" data-event="GW170809">
   <div class="ctx">
     <div class="evname mono">GW170809</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2001.00821v1#:~:text=GW170809" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170809</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…sigma
-average mass ratio
-
-GW150914
-0.94±0.020.94\pm 0.02
-0.86
-
-GW151012
-0.0037±0.00140.0037\pm 0.0014
-0.58
-
-GW151226
-0.025±0.0050.025\pm 0.005
-0.56
-
-GW170104
-0.07±0.010.07\pm 0.01
-0.65
-
-GW170608
-0.51±0.020.51\pm 0.02
-0.68
-
-GW170729
-0.09±0.010.09\pm 0.01
-0.68
-
-<mark>GW170809</mark>
-0.28±0.010.28\pm 0.01
-0.68
-
-GW170814
-0.10±0.010.10\pm 0.01
-0.82
-
-GW170818
-0.87±0.020.87\pm 0.02
-0.75
-
-GW170823
-0.60±0.020.60\pm 0.02
-0.74
-
-Table 1: Events and p-values versus average mass ratios for post-coalescence signals reported by Salemi et al. [15]. The…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170809 0.28±0.010.28\pm 0.01 0.68</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1079,86 +471,16 @@ Table 1: Events and p-values versus average mass ratios for post-coalescence sig
 <section class="card" data-i="7" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…94±0.020.94\pm 0.02
-0.86
-
-GW151012
-0.0037±0.00140.0037\pm 0.0014
-0.58
-
-GW151226
-0.025±0.0050.025\pm 0.005
-0.56
-
-GW170104
-0.07±0.010.07\pm 0.01
-0.65
-
-GW170608
-0.51±0.020.51\pm 0.02
-0.68
-
-GW170729
-0.09±0.010.09\pm 0.01
-0.68
-
-GW170809
-0.28±0.010.28\pm 0.01
-0.68
-
-<mark>GW170814</mark>
-0.10±0.010.10\pm 0.01
-0.82
-
-GW170818
-0.87±0.020.87\pm 0.02
-0.75
-
-GW170823
-0.60±0.020.60\pm 0.02
-0.74
-
-Table 1: Events and p-values versus average mass ratios for post-coalescence signals reported by Salemi et al. [15]. The highlighted rows indicate the most s…</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2001.00821v1#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…e small p-value using O2 data, which is completely independent, severely reduces chances of this being a statistical fluke.
-
-The combined O2 with O1 events gives total p-value=0.047.
-
-Event
-Uchikata et al. [11]
-
-GW170104
-0.071
-
-GW170608
-0.079
-
-GW170729
-0.567
-
-<mark>GW170814</mark>
-0.024
-
-GW170818
-0.929
-
-GW170823
-0.055
-
-Total
-0.039
-
-Table 3: P-values for O2 events [11]. The results show O2 events have same small p-values as O1.
-
-III.2 Status update on the GW170817 postmerger echoes: Electromagnetic confirmation
-
-In [2], we used a model-…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170814 0.10±0.010.10\pm 0.01 0.82</li><li><span class="sec">methods</span> GW170814 0.024</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1194,120 +516,15 @@ In [2], we used a model-…</div>
 <section class="card" data-i="8" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>10 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…vidence for dependence of significance of echoes on binary BH mass ratio
-
-III Echoes from the Abyss: Status update O2 and independent astrophysical considerations
-
-III.1 Uchikata et al. [11] search for ADA waveform [1] in O1 and O2
-
-III.2 Status update on the <mark>GW170817</mark> postmerger echoes: Electromagnetic confirmation
-
-IV Conclusion and Discussions
-
-V Acknowledgement
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2001.00821v1 [gr-qc] 03 Jan 2020
-
-Echoes from the Abyss: A Status Update
-
-Jahed Abed…</div>
+    <p class="where">Named 10 times:
+      methods ×6, conclusion ×2, title/headings, abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/2001.00821v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>… consistent if echoes are most prominent at lower frequencies and/or in binary mergers of more extreme mass ratio. We also point out that the only reported “detection” of echoes (with &gt;4​σ&gt;4\sigma confidence) at 1.0 second after the binary neutron star merger <mark>GW170817</mark> [2] is coincident with the formation time of the black hole inferred from electromagnetic observations.
-
- 
-
-I Introduction
-
-The direct observation of gravitational waves [3, 4, 5, 6] has provided an unprecedented opportunity to test general relativity (GR) in…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ions).
-
-Most significant claim was reported by us in [2], where we examined the existence of echoes by building an optimal model-agnostic search strategy via cross-correlating the two detectors in frequency/time in first binary neutron star (BNS) merger event <mark>GW170817</mark> in O2.
-If a BNS merger event can collapse into a black hole (Fig. 2), it also provides an opportunity to test GR at the extreme physical condition of the formation of a horizon. While the current LIGO/Virgo detectors are limited to low frequencies and thus un…</div>
-    
-    
-    <details><summary>7 more</summary>
-    <div class="mention"><span class="sec">methods</span>…lusions are objective, only if they can be reproduced by independent groups, using independent methods. Here, we give a brief status update on independent searches for ADA waveform [1] in O2 BBH events, and postmerger BH formation signal [2] in the BNS event (<mark>GW170817</mark> in O2) from astrophysical considerations.
-
-III.1 Uchikata et al. [11] search for ADA waveform [1] in O1 and O2
-
-Uchikata et al. [11] (Appendix A) have also searched for the ADA waveform (Equation I) [1] except that they set the cut-off parameter t0t_{0} (desc…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ent
-Uchikata et al. [11]
-
-GW170104
-0.071
-
-GW170608
-0.079
-
-GW170729
-0.567
-
-GW170814
-0.024
-
-GW170818
-0.929
-
-GW170823
-0.055
-
-Total
-0.039
-
-Table 3: P-values for O2 events [11]. The results show O2 events have same small p-values as O1.
-
-III.2 Status update on the <mark>GW170817</mark> postmerger echoes: Electromagnetic confirmation
-
-In [2], we used a model-agnostic search to find tentative detection of echoes at fe​c​h​o≃72f_{echo}\simeq 72 Hz, around 1.0 sec after the BNS merger event GW170817. Gill et al. [26], using completely independe…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…l p-values as O1.
-
-III.2 Status update on the GW170817 postmerger echoes: Electromagnetic confirmation
-
-In [2], we used a model-agnostic search to find tentative detection of echoes at fe​c​h​o≃72f_{echo}\simeq 72 Hz, around 1.0 sec after the BNS merger event <mark>GW170817</mark>. Gill et al. [26], using completely independent Astrophysical considerations, have also determined that the remnant of GW170817 must have collapsed into a BH at tcoll=0.98−0.26+0.31t_{\rm coll}=0.98^{+0.31}_{-0.26} sec. This timescale for collapse was first r…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…agnostic search to find tentative detection of echoes at fe​c​h​o≃72f_{echo}\simeq 72 Hz, around 1.0 sec after the BNS merger event GW170817. Gill et al. [26], using completely independent Astrophysical considerations, have also determined that the remnant of <mark>GW170817</mark> must have collapsed into a BH at tcoll=0.98−0.26+0.31t_{\rm coll}=0.98^{+0.31}_{-0.26} sec. This timescale for collapse was first reported by Abedi and Afshordi in [2]. Error-bar for this observation along with the detected GW signal of echo as a consequence …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…des [26] strong and independent evidence for this detection.
-
-Figure 6: Amplitude-time plot of echo signal found at 1.0 sec and frequency of 72 Hz [2] after the merger. Gill et al. [26] use independent Astrophysical considerations to argue that the remnant of <mark>GW170817</mark> must have collapsed into a BH at tcoll=0.98−0.26+0.31t_{\rm coll}=0.98^{+0.31}_{-0.26} sec. The same timescale for collapse was reported first by Abedi and Afshordi [2]. Error-bar (in blue) is the time of collapse considering this independent observation in […</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…ult as these parameters are not treated as independent in ADA search and were treated as universal in combining several events.
-
-2. 
-
-Binary neutron star merger:
-Gill et al. [26] with independent astrophysical consideration have determined that the remnant of <mark>GW170817</mark> must have collapsed to a BH after tcoll=0.98−0.26+0.31t_{\rm coll}=0.98^{+0.31}_{-0.26} sec. This time is consistent with what we already reported in [2] as collapse to black hole via detection of echo signal with 4.2​σ4.2\sigma significance. The echo signal …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…collapse to black hole via detection of echo signal with 4.2​σ4.2\sigma significance. The echo signal and error-bar for this observation are compared in Fig. 6. The question that remains is whether astrophysical black holes with significant accretion (such as <mark>GW170817</mark> remnant) should have similar echo properties as the quantum black holes in vacuum. Another possibility (already discussed in [2]) is that the detected “echo” signal is due to extremely narrow quasi-periodic oscillations in the BH accretion disk (and not a sig…</div>
+    <details class="lines"><summary>Show the sentences (9, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> III.2 Status update on the GW170817 postmerger echoes: Electromagnetic confirmation</li><li><span class="sec">abstract</span> …orted “detection” of echoes (with &gt;4​σ&gt;4\sigma confidence) at 1.0 second after the binary neutron star merger GW170817 [2] is coincident with the formation time of the black hole inferred from electromagnetic observations.</li><li><span class="sec">methods</span> …egy via cross-correlating the two detectors in frequency/time in first binary neutron star (BNS) merger event GW170817 in O2.</li><li><span class="sec">methods</span> …dent searches for ADA waveform [1] in O2 BBH events, and postmerger BH formation signal [2] in the BNS event (GW170817 in O2) from astrophysical considerations.</li><li><span class="sec">methods</span> …d tentative detection of echoes at fe​c​h​o≃72f_{echo}\simeq 72 Hz, around 1.0 sec after the BNS merger event GW170817.</li><li><span class="sec">methods</span> …al. [26], using completely independent Astrophysical considerations, have also determined that the remnant of GW170817 must have collapsed into a BH at tcoll=0.98−0.26+0.31t_{\rm coll}=0.98^{+0.31}_{-0.26} sec.</li><li><span class="sec">methods</span> Gill et al. [26] use independent Astrophysical considerations to argue that the remnant of GW170817 must have collapsed into a BH at tcoll=0.98−0.26+0.31t_{\rm coll}=0.98^{+0.31}_{-0.26} sec.</li><li><span class="sec">conclusion</span> …tar merger: Gill et al. [26] with independent astrophysical consideration have determined that the remnant of GW170817 must have collapsed to a BH after tcoll=0.98−0.26+0.31t_{\rm coll}=0.98^{+0.31}_{-0.26} sec.</li></ul>
     </details>
     
   </div>
@@ -1344,82 +561,16 @@ Gill et al. [26] with independent astrophysical consideration have determined th
 <section class="card" data-i="9" data-event="GW170818">
   <div class="ctx">
     <div class="evname mono">GW170818</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…0037±0.00140.0037\pm 0.0014
-0.58
-
-GW151226
-0.025±0.0050.025\pm 0.005
-0.56
-
-GW170104
-0.07±0.010.07\pm 0.01
-0.65
-
-GW170608
-0.51±0.020.51\pm 0.02
-0.68
-
-GW170729
-0.09±0.010.09\pm 0.01
-0.68
-
-GW170809
-0.28±0.010.28\pm 0.01
-0.68
-
-GW170814
-0.10±0.010.10\pm 0.01
-0.82
-
-<mark>GW170818</mark>
-0.87±0.020.87\pm 0.02
-0.75
-
-GW170823
-0.60±0.020.60\pm 0.02
-0.74
-
-Table 1: Events and p-values versus average mass ratios for post-coalescence signals reported by Salemi et al. [15]. The highlighted rows indicate the most significant postmerger signals reporte…</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2001.00821v1#:~:text=GW170818" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170818</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…using O2 data, which is completely independent, severely reduces chances of this being a statistical fluke.
-
-The combined O2 with O1 events gives total p-value=0.047.
-
-Event
-Uchikata et al. [11]
-
-GW170104
-0.071
-
-GW170608
-0.079
-
-GW170729
-0.567
-
-GW170814
-0.024
-
-<mark>GW170818</mark>
-0.929
-
-GW170823
-0.055
-
-Total
-0.039
-
-Table 3: P-values for O2 events [11]. The results show O2 events have same small p-values as O1.
-
-III.2 Status update on the GW170817 postmerger echoes: Electromagnetic confirmation
-
-In [2], we used a model-agnostic search …</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170818 0.87±0.020.87\pm 0.02 0.75</li><li><span class="sec">methods</span> GW170818 0.929</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1455,79 +606,16 @@ In [2], we used a model-agnostic search …</div>
 <section class="card" data-i="10" data-event="GW170823">
   <div class="ctx">
     <div class="evname mono">GW170823</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…51226
-0.025±0.0050.025\pm 0.005
-0.56
-
-GW170104
-0.07±0.010.07\pm 0.01
-0.65
-
-GW170608
-0.51±0.020.51\pm 0.02
-0.68
-
-GW170729
-0.09±0.010.09\pm 0.01
-0.68
-
-GW170809
-0.28±0.010.28\pm 0.01
-0.68
-
-GW170814
-0.10±0.010.10\pm 0.01
-0.82
-
-GW170818
-0.87±0.020.87\pm 0.02
-0.75
-
-<mark>GW170823</mark>
-0.60±0.020.60\pm 0.02
-0.74
-
-Table 1: Events and p-values versus average mass ratios for post-coalescence signals reported by Salemi et al. [15]. The highlighted rows indicate the most significant postmerger signals reported in [15]. We see that the most signi…</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2001.00821v1#:~:text=GW170823" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170823</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…hich is completely independent, severely reduces chances of this being a statistical fluke.
-
-The combined O2 with O1 events gives total p-value=0.047.
-
-Event
-Uchikata et al. [11]
-
-GW170104
-0.071
-
-GW170608
-0.079
-
-GW170729
-0.567
-
-GW170814
-0.024
-
-GW170818
-0.929
-
-<mark>GW170823</mark>
-0.055
-
-Total
-0.039
-
-Table 3: P-values for O2 events [11]. The results show O2 events have same small p-values as O1.
-
-III.2 Status update on the GW170817 postmerger echoes: Electromagnetic confirmation
-
-In [2], we used a model-agnostic search to find tentativ…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170823 0.60±0.020.60\pm 0.02 0.74</li><li><span class="sec">methods</span> GW170823 0.055</li></ul>
+    </details>
     
   </div>
   <div class="form">

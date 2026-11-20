@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Compact star of holographic nuclear matter and GW170817</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1902.08477" target="_blank" rel="noopener" class="mono">arXiv:1902.08477</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We use a holographic model of quantum chromodynamics to extract the equation of state (EoS) for the cold nuclear matter of moderate baryon density. This model is based on the Sakai-Sugimoto model in the deconfined Witten&#39;s geometry with the additional point-like D4-brane instanton configuration as the holographic baryons. Our EoS takes the following doubly-polytropic form: ∊ = 2.629A&lt;SUP&gt;-0.192&lt;/SUP&gt;p&lt;SUP&gt;1.192&lt;/SUP&gt; + 0.131A&lt;SUP&gt;0.544&lt;/SUP&gt;p&lt;SUP&gt;0.456&lt;/SUP&gt; with A a tunable parameter of order 10&lt;SUP&gt;-1&lt;/SUP&gt;, where ∊ and p are the energy density and pressure, respectively. The sound speed satisfies the causality constraint and breaks the sound barrier. We solve the Tolman-Oppenheimer-Volkoff equations for the compact stars and obtain the reasonable compactness for the proper choices of A. Based on these configurations we further calculate the tidal deformability of the single and binary stars. We find our results agree with the inferred values of LIGO/Virgo data analysis for GW170817.</p></details>
+<div class="small mut mono">arXiv:1902.08477</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We use a holographic model of quantum chromodynamics to extract the equation of state (EoS) for the cold nuclear matter of moderate baryon density. This model is based on the Sakai-Sugimoto model in the deconfined Witten&#39;s geometry with the additional point-like D4-brane instanton configuration as the holographic baryons. Our EoS takes the following doubly-polytropic form: ∊ = 2.629A&lt;SUP&gt;-0.192&lt;/SUP&gt;p&lt;SUP&gt;1.192&lt;/SUP&gt; + 0.131A&lt;SUP&gt;0.544&lt;/SUP&gt;p&lt;SUP&gt;0.456&lt;/SUP&gt; with A a tunable parameter of order 10&lt;SUP&gt;-1&lt;/SUP&gt;, where ∊ and p are the energy density and pressure, respectively. The sound speed satisfies the causality constraint and breaks the sound barrier. We solve the Tolman-Oppenheimer-Volkoff equations for the compact stars and obtain the reasonable compactness for the proper choices of A. Based on these configurations we further calculate the tidal deformability of the single and binary stars. We find our results agree with the inferred values of LIGO/Virgo data analysis for GW170817.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1902.08477v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,165 +159,22 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>23 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>Compact Star of Holographic Nuclear Matter and <mark>GW170817</mark>
-
- 
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- 
- 
-
- 
- arXiv is now an independent nonprofit!
- Learn more
- &amp;times;
- 
-
- 
- 
- Back to arXi…</div>
+    <p class="where">Named 23 times:
+      introduction ×11, reference list ×7, title/headings ×2, conclusion ×2, abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/1902.08477v2#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…ction
-
-II Holographic nuclear matters
-
-III Equation of state
-
-IV The holographic stars
-
-V Conclusion
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1902.08477v2 [hep-ph] 08 Jan 2020
-
-Compact Star of Holographic Nuclear Matter and <mark>GW170817</mark>
-
-Kilar Zhang
-
-Email: kilar.zhang@gmail.com
-
-Affiliation: Department of Physics, National Taiwan Normal University, Taipei 11677, Taiwan
-
-  
-Takayuki Hirayama
-
-Email: hirayama@isc.chubu.ac.jp
-
-Affiliation: College of Engineering, Chubu University,
-1200 Matsumo…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>… obtain the reasonable compactness for the proper choices of 𝒜\cal A. Based on these configurations we further calculate the tidal deformability of the single and binary stars. We find our results agree with the inferred values of LIGO/Virgo data analysis for <mark>GW170817</mark>.
-
- 
-
-I Introduction
-
-Tremendous gravity can transform the ordinary matter in a compact star into exotic nuclear matter such as neutron liquid or quark-gluon plasma, which are hard to produce on earth and whose properties remain to be clarified after decades o…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…’s hydrodynamical properties such as equation of state (EoS). A novel way of observing the tidal deformation is to detect the gravitational wave emitted during the binary merger of compact stars such as neutron stars (NS) [3]. A recent example is LIGO/Virgo’s <mark>GW170817</mark> on the observation of gravitational wave from the merger of binary neutron stars (BNS)[4, 5, 6, 7], which yields the masses of the neutron stars and the upper bound on the tidal deformability, and has inspired closer examination of the EoS, see for examples […</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ation for the case of moderate baryon density. Our EoS has only one tunable parameter, and by the proper choice we find the mass, radius and tidal deformability of the compact stars are in excellent agreement with the inferred values from the data analysis of <mark>GW170817</mark>.
-
-This paper is organized as follows. In section II we briefly review the construction of holographic nuclear matters as the point-like D4-brane instantons based on SS model in the deconfined phase. In section III we extract the EoS of nuclear matters at mode…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…he holographic model constructed in section II. In section IV we then apply this EoS to solve for the compact stars and show the configurations are comparable with neutron stars. Moreover, we further compare the tidal Love numbers with the ones extracted from <mark>GW170817</mark> observation and find excellent agreement. Section V is the conclusion.
-
-II Holographic nuclear matters
-
-The meson-brane action of the SS model consists of the non-Abelian Dirac-Born-Infeld (DBI) action and the Chern-Simons (CS) action of the D​8D8 and D​8¯\ov…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… is about 1.62​M⊙1.62M_{\odot} for ℓ−7=19000\ell^{-7}=19000, and we expect this value will be lower if one further increases ℓ\ell. We choose 1.62​M⊙1.62M_{\odot} because it is still larger than the upper bound 1.6​M⊙1.6M_{\odot} shown in the data analysis of <mark>GW170817</mark> [4, 6]. Moreover, we can also infer that the compactness M/RM/R increase as ℓ−7\ell^{-7} increases. In (b) of Fig. 2 we see that the core pressure is about 10−3​p⊙10^{-3}p_{\odot} so that the baryon density is a few nsn_{s}.
-
-(a) MM vs RR
-
-(b) pcp_{c} vs MM
-
-…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…f enough by tuning ℓ\ell to support the star with mass in excess of 2​M⊙2M_{\odot} in some astrophysical observations [1]. We can constrain ℓ\ell further by also evaluating the tidal deformability and compare with the inference values from observation data of <mark>GW170817</mark> [4, 6]. The tidal deformability characterizes how the shape of the star is deformed by the external gravitational field, and is defined as the dimensionless coefficient Λ\Lambda in the following linear response relation
-
-Qi​j=−(MM⊙)5​Λ​ℰi​jQ_{ij}=-\left({M\ov…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ar as intuitively expected.
-
-Figure 3: Tidal deformability (Λ\Lambda) vs Mass (MM) for the holographic stars of EoS (21) with the same set of values and labels for ℓ\ell as in Fig. 2. The middle straight line roughly indicates the upper bound on Λ\Lambda from <mark>GW170817</mark>. The results show that it is easier to deform the less compact stars.
-
-Figure 4: Tidal deformability of the binary holographic stars of EoS (21) vs one of the masses (λ~\tilde{\lambda} vs M1M_{1}) for partial set of the values for ℓ\ell used in Fig. 2. The on…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… of the binary holographic stars of EoS (21) vs one of the masses (λ~\tilde{\lambda} vs M1M_{1}) for partial set of the values for ℓ\ell used in Fig. 2. The ones labelled by 77, 88 and 99 are consistent with the estimated value 300−230+420300^{+420}_{-230} of <mark>GW170817</mark>.
-
-We see from Fig. 3 that Λ\Lambda can cover a large range. However, the data analysis of GW170817 [4, 6] shows that the tidal deformability is moderately constrained. As GW170817 is a system of binary neutron stars, the data is fitted for the following combi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…r partial set of the values for ℓ\ell used in Fig. 2. The ones labelled by 77, 88 and 99 are consistent with the estimated value 300−230+420300^{+420}_{-230} of GW170817.
-
-We see from Fig. 3 that Λ\Lambda can cover a large range. However, the data analysis of <mark>GW170817</mark> [4, 6] shows that the tidal deformability is moderately constrained. As GW170817 is a system of binary neutron stars, the data is fitted for the following combined quantity
-
-Λ~=1613​(M1+12​M2)​M14​Λ1+(M2+12​M1)​M24​Λ2(M1+M2)5\tilde{\Lambda}={16\over 13}{(M_{1…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… and 99 are consistent with the estimated value 300−230+420300^{+420}_{-230} of GW170817.
-
-We see from Fig. 3 that Λ\Lambda can cover a large range. However, the data analysis of GW170817 [4, 6] shows that the tidal deformability is moderately constrained. As <mark>GW170817</mark> is a system of binary neutron stars, the data is fitted for the following combined quantity
-
-Λ~=1613​(M1+12​M2)​M14​Λ1+(M2+12​M1)​M24​Λ2(M1+M2)5\tilde{\Lambda}={16\over 13}{(M_{1}+12M_{2})M_{1}^{4}\Lambda_{1}+(M_{2}+12M_{1})M_{2}^{4}\Lambda_{2}\over(M_{1}+M_{…</div>
+    <details class="lines"><summary>Show the sentences (19, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Compact Star of Holographic Nuclear Matter and GW170817</li><li><span class="sec">abstract</span> We find our results agree with the inferred values of LIGO/Virgo data analysis for GW170817.</li><li><span class="sec">introduction</span> A recent example is LIGO/Virgo’s GW170817 on the observation of gravitational wave from the merger of binary neutron stars (BNS)[4, 5, 6, 7], which yie…</li><li><span class="sec">introduction</span> …ormability of the compact stars are in excellent agreement with the inferred values from the data analysis of GW170817.</li><li><span class="sec">introduction</span> Moreover, we further compare the tidal Love numbers with the ones extracted from GW170817 observation and find excellent agreement.</li><li><span class="sec">introduction</span> ….62M_{\odot} because it is still larger than the upper bound 1.6​M⊙1.6M_{\odot} shown in the data analysis of GW170817 [4, 6].</li><li><span class="sec">introduction</span> …her by also evaluating the tidal deformability and compare with the inference values from observation data of GW170817 [4, 6].</li><li><span class="sec">introduction</span> The middle straight line roughly indicates the upper bound on Λ\Lambda from GW170817.</li></ul>
     </details>
     
   </div>

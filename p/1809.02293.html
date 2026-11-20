@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,48 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>An introduction to Bayesian inference in gravitational-wave astronomy: Parameter estimation, model selection, and hierarchical models</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1809.02293" target="_blank" rel="noopener" class="mono">arXiv:1809.02293</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">This is an introduction to Bayesian inference with a focus on hierarchical models and hyper-parameters. We write primarily for an audience of Bayesian novices, but we hope to provide useful insights for seasoned veterans as well. Examples are drawn from gravitational-wave astronomy, though we endeavour for the presentation to be understandable to a broader audience. We begin with a review of the fundamentals: likelihoods, priors, and posteriors. Next, we discuss Bayesian evidence, Bayes factors, odds ratios, and model selection. From there, we describe how posteriors are estimated using samplers such as Markov Chain Monte Carlo algorithms and nested sampling. Finally, we generalise the formalism to discuss hyper-parameters and hierarchical models. We include extensive appendices discussing the creation of credible intervals, Gaussian noise, explicit marginalisation, posterior predictive distributions, and selection effects.</p></details>
+<div class="small mut mono">arXiv:1809.02293</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">This is an introduction to Bayesian inference with a focus on hierarchical models and hyper-parameters. We write primarily for an audience of Bayesian novices, but we hope to provide useful insights for seasoned veterans as well. Examples are drawn from gravitational-wave astronomy, though we endeavour for the presentation to be understandable to a broader audience. We begin with a review of the fundamentals: likelihoods, priors, and posteriors. Next, we discuss Bayesian evidence, Bayes factors, odds ratios, and model selection. From there, we describe how posteriors are estimated using samplers such as Markov Chain Monte Carlo algorithms and nested sampling. Finally, we generalise the formalism to discuss hyper-parameters and hierarchical models. We include extensive appendices discussing the creation of credible intervals, Gaussian noise, explicit marginalisation, posterior predictive distributions, and selection effects.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1809.02293v9" target="_blank" rel="noopener">Open the paper (arXiv HTML, v9) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">3 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">3 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>… the tool that allows us to reconstruct sky maps of where a binary neutron star merged (Abbott
-et al., 2017b), to determine that GW170104 merged 880−390+450​Mpc880^{+450}_{-390}\,\mathrm{Mpc} away from Earth (Abbott
-et al., 2017a), and that the black holes in <mark>GW150914</mark> had masses of 35−3+5​M⊙35^{+5}_{-3}\,\mathrm{M_{\odot}} and 33−4+3​M⊙33^{+3}_{-4}\,\mathrm{M_{\odot}} (Abbott
-et al., 2016b).
-We use it to determine the Hubble constant (Abbott et al., 2017c), to study the formation mechanism of black hole binaries (Vitale
-et…</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1809.02293v9#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…\theta^{\prime}.
-It is normalized so that
-
-∫d​θ​p​(θ|d)=1\displaystyle\int d\theta\,p(\theta|d)=1
-
-(2)
-
-The posterior distribution is what we use to construct credible intervals that tell us, for example, the component masses of a binary black hole event like <mark>GW150914</mark>.
-For details about the construction of credible intervals, see Appendix A.
-
-According to Bayes theorem, the posterior distribution is given by
-
-p⁡(θ|d)=ℒ⁡(d|θ)​π​(θ)𝒵.\displaystyle p(\theta|d)=\frac{{\cal L}(d|\theta)\,\pi(\theta)}{\cal Z}.
-
-(3)
-
-Here, ℒ⁡(d|θ…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …90+450​Mpc880^{+450}_{-390}\,\mathrm{Mpc} away from Earth (Abbott et al., 2017a), and that the black holes in GW150914 had masses of 35−3+5​M⊙35^{+5}_{-3}\,\mathrm{M_{\odot}} and 33−4+3​M⊙33^{+3}_{-4}\,\mathrm{M_{\odot}} (Abbott…</li><li><span class="sec">methods</span> …onstruct credible intervals that tell us, for example, the component masses of a binary black hole event like GW150914.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -199,16 +201,16 @@ Here, ℒ⁡(d|θ…</div>
 <section class="card" data-i="1" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1809.02293v9#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…the tools that allow us to make statements about the Universe based on data.
-In gravitational-wave astronomy, Bayesian inference is the tool that allows us to reconstruct sky maps of where a binary neutron star merged (Abbott
-et al., 2017b), to determine that <mark>GW170104</mark> merged 880−390+450​Mpc880^{+450}_{-390}\,\mathrm{Mpc} away from Earth (Abbott
-et al., 2017a), and that the black holes in GW150914 had masses of 35−3+5​M⊙35^{+5}_{-3}\,\mathrm{M_{\odot}} and 33−4+3​M⊙33^{+3}_{-4}\,\mathrm{M_{\odot}} (Abbott
-et al., 2016b).
-We…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …ws us to reconstruct sky maps of where a binary neutron star merged (Abbott et al., 2017b), to determine that GW170104 merged 880−390+450​Mpc880^{+450}_{-390}\,\mathrm{Mpc} away from Earth (Abbott et al., 2017a), and that the bl…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -244,78 +246,16 @@ We…</div>
 <section class="card" data-i="2" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ue of θa\theta_{a}.
-
-This is nicely illustrated with an example.
-There is a well-known covariance between the luminosity distance of a merging compact binary from Earth DLD_{L} and the inclination angle θJ​N\theta_{JN}.
-For the binary neutron star coalescence <mark>GW170817</mark>, we are able to constrain the inclination angle much better when we use the known distance and sky location of the host galaxy compared to the constraint obtained using the gravitational-wave measurement alone1010
- 10
- 
- 
- 
- The viewing angle = Θ=min⁡(θJ​N,18…</div>
+    <p class="where">Named 3 times:
+      methods, results, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1809.02293v9#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…trained to be &lt;28∘&lt;28^{\circ} with the electromagnetic counterpart, and &lt;55∘&lt;55^{\circ} without it (Abbott
-et al., 2017b).
-Results from (Abbott
-et al., 2019) are shown in Fig. 1.
-
-Figure 1: The joint posterior for luminosity distance and inclination angle for <mark>GW170817</mark> from (Abbott
-et al., 2019).
-The blue contours show the credible region obtained using gravitational-wave data alone.
-The purple contours show the smaller credible region obtained by employing a relatively narrow prior on distance obtained with electromagnetic…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…heory of Probability, third edn.
-Oxford, Oxford, England
-
- 
-Khan et al. (2016)
-
-Khan S., Husa S., andFrank Ohme M. H., Pürrer M., Forteza X. J.,
-Bohé A., 2016, Phys. Rev. D, 93, 044007
-
- 
-LIGO/Virgo ()
-
-LIGO/Virgo, Properties of the binary neutron star merger <mark>GW170817</mark>,
-https://dcc.ligo.org/LIGO-P1800061/public
-
- 
-Lange
-et al. (2018)
-
-Lange J., O’Shaughnessy R., Rizzo M., 2018,
-https://arxiv.org/abs/1805.10457
-
- 
-Lentati et al. (2014)
-
-Lentati L., Alexander P., Hobson M. P., Feroz F., van Haasteren R., Lee
-K., Shannon R. M.…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">Khan 2016</span> · 1 place</span><div class="cite">…bserved at Earth.
-
-μ=μ22+μ2−2,\displaystyle\mu=\mu_{22}+\mu_{2-2},
-
-(54)
-
-This is a valid assumption, e.g., for the widely used waveform approximants—e.g., TaylorF2 (Damour
-et al., 2005), IMRPhenomD (<mark class="ref">Khan et al., 2016</mark>), IMRPhenomP (Hannam et al., 2014)—but not for waveforms that employ higher order modes, e.g., (Blackman et al., 2017).
-Given this approximation2121
- 21
- 
- 
- 
- We emphasize that the phase at coalesce…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> For the binary neutron star coalescence GW170817, we are able to constrain the inclination angle much better when we use the known distance and sky location o…</li><li><span class="sec">results</span> Figure 1: The joint posterior for luminosity distance and inclination angle for GW170817 from (Abbott et al., 2019).</li><li><span class="sec">cites it as Khan 2016</span> …assumption, e.g., for the widely used waveform approximants—e.g., TaylorF2 (Damour et al., 2005), IMRPhenomD (Khan et al., 2016), IMRPhenomP (Hannam et al., 2014)—but not for waveforms that employ higher order modes, e.g., (Blackman et a…</li></ul>
+    </details>
     
   </div>
   <div class="form">

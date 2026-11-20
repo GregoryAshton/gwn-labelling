@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,27 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Inferring the Neutron Star Maximum Mass and Lower Mass Gap in Neutron Star-Black Hole Systems with Spin</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2202.05164" target="_blank" rel="noopener" class="mono">arXiv:2202.05164</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Gravitational-wave (GW) detections of merging neutron star-black hole (NSBH) systems probe astrophysical neutron star (NS) and black hole (BH) mass distributions, especially at the transition between NS and BH masses. Of particular interest are the maximum NS mass, minimum BH mass, and potential mass gap between them. While previous GW population analyses assumed all NSs obey the same maximum mass, if rapidly spinning NSs exist, they can extend to larger maximum masses than nonspinning NSs. In fact, several authors have proposed that the ~2.6 M &lt;SUB&gt;☉&lt;/SUB&gt; object in the event GW190814-either the most massive NS or least massive BH observed to date-is a rapidly spinning NS. We therefore infer the NSBH mass distribution jointly with the NS spin distribution, modeling the NS maximum mass as a function of spin. Using four LIGO-Virgo NSBH events including GW190814, if we assume that the NS spin distribution is uniformly distributed up to the maximum (breakup) spin, we infer the maximum nonspinning NS mass is ${2.7}_{-0.4}^{+0.5}\,{M}_{\odot }$ (90% credibility), while assuming only nonspinning NSs, the NS maximum mass must be &amp;gt;2.53 M &lt;SUB&gt;☉&lt;/SUB&gt; (90% credibility). The data support the mass gap&#39;s existence, with a minimum BH mass at ${5.4}_{-1.0}^{+0.7}{M}_{\odot }$ . With future observations, under simplified assumptions, 150 NSBH events may constrain the maximum nonspinning NS mass to ±0.02 M &lt;SUB&gt;☉&lt;/SUB&gt;, and we may even measure the relation between the NS spin and maximum mass entirely from GW data. If rapidly rotating NSs exist, their spins and masses must be modeled simultaneously to avoid biasing the NS maximum mass.</p></details>
+<div class="small mut mono">arXiv:2202.05164</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Gravitational-wave (GW) detections of merging neutron star-black hole (NSBH) systems probe astrophysical neutron star (NS) and black hole (BH) mass distributions, especially at the transition between NS and BH masses. Of particular interest are the maximum NS mass, minimum BH mass, and potential mass gap between them. While previous GW population analyses assumed all NSs obey the same maximum mass, if rapidly spinning NSs exist, they can extend to larger maximum masses than nonspinning NSs. In fact, several authors have proposed that the ~2.6 M &lt;SUB&gt;☉&lt;/SUB&gt; object in the event GW190814-either the most massive NS or least massive BH observed to date-is a rapidly spinning NS. We therefore infer the NSBH mass distribution jointly with the NS spin distribution, modeling the NS maximum mass as a function of spin. Using four LIGO-Virgo NSBH events including GW190814, if we assume that the NS spin distribution is uniformly distributed up to the maximum (breakup) spin, we infer the maximum nonspinning NS mass is ${2.7}_{-0.4}^{+0.5}\,{M}_{\odot }$ (90% credibility), while assuming only nonspinning NSs, the NS maximum mass must be &amp;gt;2.53 M &lt;SUB&gt;☉&lt;/SUB&gt; (90% credibility). The data support the mass gap&#39;s existence, with a minimum BH mass at ${5.4}_{-1.0}^{+0.7}{M}_{\odot }$ . With future observations, under simplified assumptions, 150 NSBH events may constrain the maximum nonspinning NS mass to ±0.02 M &lt;SUB&gt;☉&lt;/SUB&gt;, and we may even measure the relation between the NS spin and maximum mass entirely from GW data. If rapidly rotating NSs exist, their spins and masses must be modeled simultaneously to avoid biasing the NS maximum mass.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2202.05164v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">7 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">7 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW190426_152155">
   <div class="ctx">
     <div class="evname mono">GW190426_152155</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2202.05164v2#:~:text=GW190426_152155" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190426_152155</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>… Because the secondary mass in GW190814 falls squarely into the putative lower mass gap, it is unclear whether GW190814 is a NSBH or BBH event. Accordingly, we do not include GW190814 in every analysis, but consider how it affects population estimates. 
-
-4. 
-
-<mark>GW190426_152155</mark> (hereafter GW190426) [64]; m1=5.7−2.3+3.9​M⊙m_{1}=5.7^{+3.9}_{-2.3}M_{\odot}, m2=1.5−0.5+0.8​M⊙m_{2}=1.5^{+0.8}_{-0.5}M_{\odot}. GW190426 is relatively low-significance with a network SNR of ρ=10.1\rho=10.1, and so may or may not be a real NSBH event. Accordi…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW190426_152155 (hereafter GW190426) [64]; m1=5.7−2.3+3.9​M⊙m_{1}=5.7^{+3.9}_{-2.3}M_{\odot}, m2=1.5−0.5+0.8​M⊙m_{2}=1.5^{+0.…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -178,90 +201,15 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 <section class="card" data-i="1" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>48 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…ous GW population analyses assumed all NSs obey the same maximum mass, if rapidly spinning NSs exist, they can extend to larger maximum masses than nonspinning NSs. In fact, several authors have proposed that the ∼2.6​M⊙\sim 2.6\,M_{\odot} object in the event <mark>GW190814</mark> – either the most massive NS or least massive BH observed to date – is a rapidly spinning NS. We therefore infer the NSBH mass distribution jointly with the NS spin distribution, modeling the NS maximum mass as a function of spin. Using 4 LIGO–Virgo NSBH even…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>… most massive NS or least massive BH observed to date – is a rapidly spinning NS. We therefore infer the NSBH mass distribution jointly with the NS spin distribution, modeling the NS maximum mass as a function of spin. Using 4 LIGO–Virgo NSBH events including <mark>GW190814</mark>, if we assume that the NS spin distribution is uniformly distributed up to the maximum (breakup) spin, we infer the maximum non-spinning NS mass is 2.7−0.4+0.5​M⊙2.7^{+0.5}_{-0.4}\,M_{\odot} (90% credibility), while assuming only nonspinning NSs, the NS maxim…</div>
+    <p class="where">Named 48 times:
+      methods ×37, introduction ×5, conclusion ×4, abstract ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2202.05164v2#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…irst NSBH detections [33] seem to straddle either side of the proposed mass gap [42], especially when assuming astrophysically-motivated BH spins [44]. However, our understanding of the NS maximum mass and the mass gap from GWs is challenged by one discovery: <mark>GW190814</mark> [27]. The secondary mass of GW190814 is tightly measured at 2.6​M⊙2.6\,M_{\odot}, making it exceptionally lighter than BHs in BBH systems [45] but heavier than most estimates of MTOVM_{\mathrm{TOV}} [27, 46]. As a possible explanation, several authors have pr…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…addle either side of the proposed mass gap [42], especially when assuming astrophysically-motivated BH spins [44]. However, our understanding of the NS maximum mass and the mass gap from GWs is challenged by one discovery: GW190814 [27]. The secondary mass of <mark>GW190814</mark> is tightly measured at 2.6​M⊙2.6\,M_{\odot}, making it exceptionally lighter than BHs in BBH systems [45] but heavier than most estimates of MTOVM_{\mathrm{TOV}} [27, 46]. As a possible explanation, several authors have proposed that GW190814 is a spinning NS…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…econdary mass of GW190814 is tightly measured at 2.6​M⊙2.6\,M_{\odot}, making it exceptionally lighter than BHs in BBH systems [45] but heavier than most estimates of MTOVM_{\mathrm{TOV}} [27, 46]. As a possible explanation, several authors have proposed that <mark>GW190814</mark> is a spinning NS [47]. While MTOVM_{\mathrm{TOV}} limits the mass of nonspinning NSs, NSs with substantial spins can support ∼20%\sim 20\% more mass [48]. Unfortunately, it is difficult to test the spinning NS hypothesis for a single system, because the spin …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…}} limits the mass of nonspinning NSs, NSs with substantial spins can support ∼20%\sim 20\% more mass [48]. Unfortunately, it is difficult to test the spinning NS hypothesis for a single system, because the spin of the secondary 2.6​M⊙2.6\,M_{\odot} object in <mark>GW190814</mark> is virtually unconstrained from the GW signal.
-
-In this paper, we show that by studying a population of NSBH events, we may measure the NS maximum mass as a function of spin. We build upon the work of Zhu et al. [38], Farah et al. [42], The LIGO Scientific Co…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…et al. [39], who studied the population statistics of NSBH masses and BH spins, but allow the NS mass distribution to depend on NS spin for the first time. This method will not only enable more accurate classifications for NSBH versus BBH events in cases like <mark>GW190814</mark>, but will also prevent biases that would result from measuring MTOVM_{\mathrm{TOV}} while neglecting the dependence of the maximum NS mass on spin. As Biscoveanu et al. [49] previously showed, mismodeling the NS spin distribution can bias the inferred mass di…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…increases the uncertainty on MTOVM_{\mathrm{TOV}} and the spin–maximum mass relationship.
-
-III Application to LIGO–Virgo NSBH Detections
-
-III.1 Data and Event Selection
-
-Figure 3: 90% contours on m1m_{1} and m2m_{2} from the four NSBH events: GW190426 (grey), <mark>GW190814</mark> (blue), GW200105 (green), GW200115 (red). Plot features m1,m2m_{1},m_{2} under three spin priors “U+I” in dotted lines; “ZS” in dashed lines; “ZS + AS” solid (all 90% contours). The spin priors correspond to the models from Sec. II.1.1 with βs=0\beta_{s}=0. T…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ted at 90% confidence level) m1=8.9−1.5+1.2​M⊙m_{1}=8.9^{+1.2}_{-1.5}M_{\odot}, m2=1.9−0.2+0.3​M⊙m_{2}=1.9^{+0.3}_{-0.2}M_{\odot} 
-
-2. 
-
-GW200115 [33]; m1=5.7−2.1+1.8​M⊙m_{1}=5.7^{+1.8}_{-2.1}M_{\odot}, m2=1.5−0.3+0.7​M⊙m_{2}=1.5^{+0.7}_{-0.3}M_{\odot} 
-
-3. 
-
-<mark>GW190814</mark> [27]; m1=23.2−1.0+1.1​M⊙m_{1}=23.2^{+1.1}_{-1.0}M_{\odot}, m2=2.6−0.1+0.1​M⊙m_{2}=2.6^{+0.1}_{-0.1}M_{\odot}. Because the secondary mass in GW190814 falls squarely into the putative lower mass gap, it is unclear whether GW190814 is a NSBH or BBH event. Accord…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…]; m1=5.7−2.1+1.8​M⊙m_{1}=5.7^{+1.8}_{-2.1}M_{\odot}, m2=1.5−0.3+0.7​M⊙m_{2}=1.5^{+0.7}_{-0.3}M_{\odot} 
-
-3. 
-
-GW190814 [27]; m1=23.2−1.0+1.1​M⊙m_{1}=23.2^{+1.1}_{-1.0}M_{\odot}, m2=2.6−0.1+0.1​M⊙m_{2}=2.6^{+0.1}_{-0.1}M_{\odot}. Because the secondary mass in <mark>GW190814</mark> falls squarely into the putative lower mass gap, it is unclear whether GW190814 is a NSBH or BBH event. Accordingly, we do not include GW190814 in every analysis, but consider how it affects population estimates. 
-
-4. 
-
-GW190426_152155 (hereafter GW190426) [6…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…^{+0.7}_{-0.3}M_{\odot} 
-
-3. 
-
-GW190814 [27]; m1=23.2−1.0+1.1​M⊙m_{1}=23.2^{+1.1}_{-1.0}M_{\odot}, m2=2.6−0.1+0.1​M⊙m_{2}=2.6^{+0.1}_{-0.1}M_{\odot}. Because the secondary mass in GW190814 falls squarely into the putative lower mass gap, it is unclear whether <mark>GW190814</mark> is a NSBH or BBH event. Accordingly, we do not include GW190814 in every analysis, but consider how it affects population estimates. 
-
-4. 
-
-GW190426_152155 (hereafter GW190426) [64]; m1=5.7−2.3+3.9​M⊙m_{1}=5.7^{+3.9}_{-2.3}M_{\odot}, m2=1.5−0.5+0.8​M⊙m_{2}=1.…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…m_{1}=23.2^{+1.1}_{-1.0}M_{\odot}, m2=2.6−0.1+0.1​M⊙m_{2}=2.6^{+0.1}_{-0.1}M_{\odot}. Because the secondary mass in GW190814 falls squarely into the putative lower mass gap, it is unclear whether GW190814 is a NSBH or BBH event. Accordingly, we do not include <mark>GW190814</mark> in every analysis, but consider how it affects population estimates. 
-
-4. 
-
-GW190426_152155 (hereafter GW190426) [64]; m1=5.7−2.3+3.9​M⊙m_{1}=5.7^{+3.9}_{-2.3}M_{\odot}, m2=1.5−0.5+0.8​M⊙m_{2}=1.5^{+0.8}_{-0.5}M_{\odot}. GW190426 is relatively low-significanc…</div>
+    <details class="lines"><summary>Show the sentences (40, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> In fact, several authors have proposed that the ∼2.6​M⊙\sim 2.6\,M_{\odot} object in the event GW190814 – either the most massive NS or least massive BH observed to date – is a rapidly spinning NS.</li><li><span class="sec">abstract</span> Using 4 LIGO–Virgo NSBH events including GW190814, if we assume that the NS spin distribution is uniformly distributed up to the maximum (breakup) spin, we inf…</li><li><span class="sec">introduction</span> However, our understanding of the NS maximum mass and the mass gap from GWs is challenged by one discovery: GW190814 [27].</li><li><span class="sec">introduction</span> The secondary mass of GW190814 is tightly measured at 2.6​M⊙2.6\,M_{\odot}, making it exceptionally lighter than BHs in BBH systems [45] but…</li><li><span class="sec">introduction</span> As a possible explanation, several authors have proposed that GW190814 is a spinning NS [47].</li><li><span class="sec">introduction</span> …spinning NS hypothesis for a single system, because the spin of the secondary 2.6​M⊙2.6\,M_{\odot} object in GW190814 is virtually unconstrained from the GW signal.</li><li><span class="sec">introduction</span> This method will not only enable more accurate classifications for NSBH versus BBH events in cases like GW190814, but will also prevent biases that would result from measuring MTOVM_{\mathrm{TOV}} while neglecting the depe…</li><li><span class="sec">methods</span> Figure 3: 90% contours on m1m_{1} and m2m_{2} from the four NSBH events: GW190426 (grey), GW190814 (blue), GW200105 (green), GW200115 (red).</li></ul>
     </details>
     
   </div>
@@ -298,23 +246,16 @@ GW190426_152155 (hereafter GW190426) [64]; m1=5.7−2.3+3.9​M⊙m_{1}=5.7^{+3.
 <section class="card" data-i="2" data-event="GW190917_114630">
   <div class="ctx">
     <div class="evname mono">GW190917_114630</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…. Plot features m1,m2m_{1},m_{2} under three spin priors “U+I” in dotted lines; “ZS” in dashed lines; “ZS + AS” solid (all 90% contours). The spin priors correspond to the models from Sec. II.1.1 with βs=0\beta_{s}=0. Three additional GWTC-2 and GWTC-3 events <mark>GW190917_114630</mark>, GW191219_163120, GW200210_092254 are shown in black, using default LVK spin priors.
-
-In our population inference, we consider up to four LIGO–Virgo triggers as NSBH detections:
-
-1. 
-
-GW200105 [33]; (all measurements quoted at 90% confidence level) m1=8.9−1.5…</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2202.05164v2#:~:text=GW190917_114630" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190917_114630</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…set of 4 GW NSBH events from Abbott
-et al. [64] and Abbott
-et al. [33], which were available at the start of this work. During the course of this work, the latest LIGO–Virgo catalog GWTC-3 was released, which also includes the low-significance NSBH candidates <mark>GW190917_114630</mark>, GW191219_163120, GW200210_092254 [68, 69]; the inferred masses of these sources under the default priors are also shown in Figure 3. A similar full analysis could be applied to this larger sample of NSBH events, but we find only a slight shift in inferred va…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> Three additional GWTC-2 and GWTC-3 events GW190917_114630, GW191219_163120, GW200210_092254 are shown in black, using default LVK spin priors.</li><li><span class="sec">methods</span> …, the latest LIGO–Virgo catalog GWTC-3 was released, which also includes the low-significance NSBH candidates GW190917_114630, GW191219_163120, GW200210_092254 [68, 69]; the inferred masses of these sources under the default priors are…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -350,23 +291,16 @@ et al. [33], which were available at the start of this work. During the course 
 <section class="card" data-i="3" data-event="GW191219_163120">
   <div class="ctx">
     <div class="evname mono">GW191219_163120</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…1,m2m_{1},m_{2} under three spin priors “U+I” in dotted lines; “ZS” in dashed lines; “ZS + AS” solid (all 90% contours). The spin priors correspond to the models from Sec. II.1.1 with βs=0\beta_{s}=0. Three additional GWTC-2 and GWTC-3 events GW190917_114630, <mark>GW191219_163120</mark>, GW200210_092254 are shown in black, using default LVK spin priors.
-
-In our population inference, we consider up to four LIGO–Virgo triggers as NSBH detections:
-
-1. 
-
-GW200105 [33]; (all measurements quoted at 90% confidence level) m1=8.9−1.5+1.2​M⊙m_{1}=8.9^…</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2202.05164v2#:~:text=GW191219_163120" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191219_163120</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…events from Abbott
-et al. [64] and Abbott
-et al. [33], which were available at the start of this work. During the course of this work, the latest LIGO–Virgo catalog GWTC-3 was released, which also includes the low-significance NSBH candidates GW190917_114630, <mark>GW191219_163120</mark>, GW200210_092254 [68, 69]; the inferred masses of these sources under the default priors are also shown in Figure 3. A similar full analysis could be applied to this larger sample of NSBH events, but we find only a slight shift in inferred values of MTOVM_{\t…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> Three additional GWTC-2 and GWTC-3 events GW190917_114630, GW191219_163120, GW200210_092254 are shown in black, using default LVK spin priors.</li><li><span class="sec">methods</span> …–Virgo catalog GWTC-3 was released, which also includes the low-significance NSBH candidates GW190917_114630, GW191219_163120, GW200210_092254 [68, 69]; the inferred masses of these sources under the default priors are also shown in Fi…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -402,97 +336,15 @@ et al. [33], which were available at the start of this work. During the course 
 <section class="card" data-i="4" data-event="GW200105_162426">
   <div class="ctx">
     <div class="evname mono">GW200105_162426</div>
-    <h3>8 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ertainty on MTOVM_{\mathrm{TOV}} and the spin–maximum mass relationship.
-
-III Application to LIGO–Virgo NSBH Detections
-
-III.1 Data and Event Selection
-
-Figure 3: 90% contours on m1m_{1} and m2m_{2} from the four NSBH events: GW190426 (grey), GW190814 (blue), <mark>GW200105</mark> (green), GW200115 (red). Plot features m1,m2m_{1},m_{2} under three spin priors “U+I” in dotted lines; “ZS” in dashed lines; “ZS + AS” solid (all 90% contours). The spin priors correspond to the models from Sec. II.1.1 with βs=0\beta_{s}=0. Three additional G…</div>
+    <p class="where">Named 8 times:
+      methods ×8.</p>
+    <p class="where"><a href="https://arxiv.org/html/2202.05164v2#:~:text=GW200105" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200105</span> or <span class="mono hit">GW200105_162426</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>… βs=0\beta_{s}=0. Three additional GWTC-2 and GWTC-3 events GW190917_114630, GW191219_163120, GW200210_092254 are shown in black, using default LVK spin priors.
-
-In our population inference, we consider up to four LIGO–Virgo triggers as NSBH detections:
-
-1. 
-
-<mark>GW200105</mark> [33]; (all measurements quoted at 90% confidence level) m1=8.9−1.5+1.2​M⊙m_{1}=8.9^{+1.2}_{-1.5}M_{\odot}, m2=1.9−0.2+0.3​M⊙m_{2}=1.9^{+0.3}_{-0.2}M_{\odot} 
-
-2. 
-
-GW200115 [33]; m1=5.7−2.1+1.8​M⊙m_{1}=5.7^{+1.8}_{-2.1}M_{\odot}, m2=1.5−0.3+0.7​M⊙m_{2}=1.5^{+…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…significance with a network SNR of ρ=10.1\rho=10.1, and so may or may not be a real NSBH event. Accordingly, like with GW190814, we do not consider GW190426 in every analysis, but consider how it affects population estimates. 
-
-(a) GW190426
-
-(b) GW190814
-
-(c) <mark>GW200105</mark>
-
-(d) GW200115
-
-Figure 4: Posteriors on NS spin a2/aKepa_{2}/a_{\text{Kep}} from the NSBH events: GW190426, GW190814, GW200105, GW200115, inferred under different spin priors. “U+I” a2a_{2} samples in dotted black; “ZS” in dashed red; “ZS + AS” in solid blue.
-…</div>
-    
-    
-    <details><summary>5 more</summary>
-    <div class="mention"><span class="sec">methods</span>…4, we do not consider GW190426 in every analysis, but consider how it affects population estimates. 
-
-(a) GW190426
-
-(b) GW190814
-
-(c) GW200105
-
-(d) GW200115
-
-Figure 4: Posteriors on NS spin a2/aKepa_{2}/a_{\text{Kep}} from the NSBH events: GW190426, GW190814, <mark>GW200105</mark>, GW200115, inferred under different spin priors. “U+I” a2a_{2} samples in dotted black; “ZS” in dashed red; “ZS + AS” in solid blue.
-
-For GW200105 and GW200115, we use the “Combined_PHM_high_spin” parameter estimation samples from Abbott
-et al. [33]. For GW19…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… GW200115
-
-Figure 4: Posteriors on NS spin a2/aKepa_{2}/a_{\text{Kep}} from the NSBH events: GW190426, GW190814, GW200105, GW200115, inferred under different spin priors. “U+I” a2a_{2} samples in dotted black; “ZS” in dashed red; “ZS + AS” in solid blue.
-
-For <mark>GW200105</mark> and GW200115, we use the “Combined_PHM_high_spin” parameter estimation samples from Abbott
-et al. [33]. For GW190426, we use the “IMRPhenomNSBH” samples from Abbott
-et al. [64], and for GW190814, we use “IMRPhenomPv3HM” from Abbott
-et al. [27]11
- 1
- 
- 
- 
- The…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…44]. Because the secondary spin is poorly measured, a2a_{2} is poorly constrained and essentially recovers the broad prior (Figure 4).
-
-When fitting the population models, we divide the NSBH events into four different sets: “confident”, with just GW200115 and <mark>GW200105</mark>; “all”, with all four potential NSBH triggers; and excluding GW190814 and GW190426 one at a time each. For each event set, we repeat the population inference using the three different spin priors – “U+I”, “ZS”, and “ZS + AS” – and three different NS mass mode…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…econdary spin.
-
-Minimum BH mass: Across all models, the inferred BH minimum mass MBHM_{\text{BH}} is between 4–7 M⊙M_{\odot} with typical uncertainties of ±1​M⊙\pm 1M_{\odot}. Our default model using the “ZS” spin model, all 4 NSBH events (GW190814, GW190426, <mark>GW200105</mark>, GW200115), and random pairing (β=0\beta=0) results in MBH=5.4−1.0+0.7​M⊙M_{\mathrm{BH}}=5.4^{+0.7}_{-1.0}\,M_{\odot} (68% credibility). At the low end, we infer MBH=4.2−1.0+1.1​M⊙M_{\text{BH}}=4.2^{+1.1}_{-1.0}\,M_{\odot} using all 4 NSBH events, a uniform N…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…with amax/aKep=1a_{\text{max}}/a_{\text{Kep}}=1 (“low” spin).
-We simulate observations for LIGO at Design and A+ sensitivity. In total, we consider 3 NS models x 2 MTOVM_{\text{TOV}} values x 3 spin models x 2 detector sensitivities = 36 variations.
-
-Assuming <mark>GW200105</mark> and GW200115 are representative of the NSBH population, NSBH are expected to merge at a rate of 45−33+75​Gpc−3​yr−145^{+75}_{-33}\text{Gpc}^{-3}\text{yr}^{-1} (90% credibility) [33], resulting in between 2-20 NSBH/year at Design sensitivity and 8-80 NSBH/year…</div>
+    <details class="lines"><summary>Show the sentences (8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> Figure 3: 90% contours on m1m_{1} and m2m_{2} from the four NSBH events: GW190426 (grey), GW190814 (blue), GW200105 (green), GW200115 (red).</li><li><span class="sec">methods</span> GW200105 [33]; (all measurements quoted at 90% confidence level) m1=8.9−1.5+1.2​M⊙m_{1}=8.9^{+1.2}_{-1.5}M_{\odot}, m2…</li><li><span class="sec">methods</span> (c) GW200105</li><li><span class="sec">methods</span> Figure 4: Posteriors on NS spin a2/aKepa_{2}/a_{\text{Kep}} from the NSBH events: GW190426, GW190814, GW200105, GW200115, inferred under different spin priors. “U+I” a2a_{2} samples in dotted black; “ZS” in dashed red; “…</li><li><span class="sec">methods</span> For GW200105 and GW200115, we use the “Combined_PHM_high_spin” parameter estimation samples from Abbott et al. [33].</li><li><span class="sec">methods</span> …he population models, we divide the NSBH events into four different sets: “confident”, with just GW200115 and GW200105; “all”, with all four potential NSBH triggers; and excluding GW190814 and GW190426 one at a time each.</li><li><span class="sec">methods</span> Our default model using the “ZS” spin model, all 4 NSBH events (GW190814, GW190426, GW200105, GW200115), and random pairing (β=0\beta=0) results in MBH=5.4−1.0+0.7​M⊙M_{\mathrm{BH}}=5.4^{+0.7}_{-1.0}\,M…</li><li><span class="sec">methods</span> Assuming GW200105 and GW200115 are representative of the NSBH population, NSBH are expected to merge at a rate of 45−33+75​Gpc−…</li></ul>
     </details>
     
   </div>
@@ -529,98 +381,15 @@ Assuming <mark>GW200105</mark> and GW200115 are representative of the NSBH popul
 <section class="card" data-i="5" data-event="GW200115_042309">
   <div class="ctx">
     <div class="evname mono">GW200115_042309</div>
-    <h3>8 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…{\mathrm{TOV}} and the spin–maximum mass relationship.
-
-III Application to LIGO–Virgo NSBH Detections
-
-III.1 Data and Event Selection
-
-Figure 3: 90% contours on m1m_{1} and m2m_{2} from the four NSBH events: GW190426 (grey), GW190814 (blue), GW200105 (green), <mark>GW200115</mark> (red). Plot features m1,m2m_{1},m_{2} under three spin priors “U+I” in dotted lines; “ZS” in dashed lines; “ZS + AS” solid (all 90% contours). The spin priors correspond to the models from Sec. II.1.1 with βs=0\beta_{s}=0. Three additional GWTC-2 and GWTC-3 e…</div>
+    <p class="where">Named 8 times:
+      methods ×8.</p>
+    <p class="where"><a href="https://arxiv.org/html/2202.05164v2#:~:text=GW200115" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200115</span> or <span class="mono hit">GW200115_042309</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…lation inference, we consider up to four LIGO–Virgo triggers as NSBH detections:
-
-1. 
-
-GW200105 [33]; (all measurements quoted at 90% confidence level) m1=8.9−1.5+1.2​M⊙m_{1}=8.9^{+1.2}_{-1.5}M_{\odot}, m2=1.9−0.2+0.3​M⊙m_{2}=1.9^{+0.3}_{-0.2}M_{\odot} 
-
-2. 
-
-<mark>GW200115</mark> [33]; m1=5.7−2.1+1.8​M⊙m_{1}=5.7^{+1.8}_{-2.1}M_{\odot}, m2=1.5−0.3+0.7​M⊙m_{2}=1.5^{+0.7}_{-0.3}M_{\odot} 
-
-3. 
-
-GW190814 [27]; m1=23.2−1.0+1.1​M⊙m_{1}=23.2^{+1.1}_{-1.0}M_{\odot}, m2=2.6−0.1+0.1​M⊙m_{2}=2.6^{+0.1}_{-0.1}M_{\odot}. Because the secondary mass…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ith a network SNR of ρ=10.1\rho=10.1, and so may or may not be a real NSBH event. Accordingly, like with GW190814, we do not consider GW190426 in every analysis, but consider how it affects population estimates. 
-
-(a) GW190426
-
-(b) GW190814
-
-(c) GW200105
-
-(d) <mark>GW200115</mark>
-
-Figure 4: Posteriors on NS spin a2/aKepa_{2}/a_{\text{Kep}} from the NSBH events: GW190426, GW190814, GW200105, GW200115, inferred under different spin priors. “U+I” a2a_{2} samples in dotted black; “ZS” in dashed red; “ZS + AS” in solid blue.
-
-For GW200105 …</div>
-    
-    
-    <details><summary>5 more</summary>
-    <div class="mention"><span class="sec">methods</span>…ot consider GW190426 in every analysis, but consider how it affects population estimates. 
-
-(a) GW190426
-
-(b) GW190814
-
-(c) GW200105
-
-(d) GW200115
-
-Figure 4: Posteriors on NS spin a2/aKepa_{2}/a_{\text{Kep}} from the NSBH events: GW190426, GW190814, GW200105, <mark>GW200115</mark>, inferred under different spin priors. “U+I” a2a_{2} samples in dotted black; “ZS” in dashed red; “ZS + AS” in solid blue.
-
-For GW200105 and GW200115, we use the “Combined_PHM_high_spin” parameter estimation samples from Abbott
-et al. [33]. For GW190426, we u…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…gure 4: Posteriors on NS spin a2/aKepa_{2}/a_{\text{Kep}} from the NSBH events: GW190426, GW190814, GW200105, GW200115, inferred under different spin priors. “U+I” a2a_{2} samples in dotted black; “ZS” in dashed red; “ZS + AS” in solid blue.
-
-For GW200105 and <mark>GW200115</mark>, we use the “Combined_PHM_high_spin” parameter estimation samples from Abbott
-et al. [33]. For GW190426, we use the “IMRPhenomNSBH” samples from Abbott
-et al. [64], and for GW190814, we use “IMRPhenomPv3HM” from Abbott
-et al. [27]11
- 1
- 
- 
- 
- The parameter es…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ve mass gap [44]. Because the secondary spin is poorly measured, a2a_{2} is poorly constrained and essentially recovers the broad prior (Figure 4).
-
-When fitting the population models, we divide the NSBH events into four different sets: “confident”, with just <mark>GW200115</mark> and GW200105; “all”, with all four potential NSBH triggers; and excluding GW190814 and GW190426 one at a time each. For each event set, we repeat the population inference using the three different spin priors – “U+I”, “ZS”, and “ZS + AS” – and three different…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…pin.
-
-Minimum BH mass: Across all models, the inferred BH minimum mass MBHM_{\text{BH}} is between 4–7 M⊙M_{\odot} with typical uncertainties of ±1​M⊙\pm 1M_{\odot}. Our default model using the “ZS” spin model, all 4 NSBH events (GW190814, GW190426, GW200105, <mark>GW200115</mark>), and random pairing (β=0\beta=0) results in MBH=5.4−1.0+0.7​M⊙M_{\mathrm{BH}}=5.4^{+0.7}_{-1.0}\,M_{\odot} (68% credibility). At the low end, we infer MBH=4.2−1.0+1.1​M⊙M_{\text{BH}}=4.2^{+1.1}_{-1.0}\,M_{\odot} using all 4 NSBH events, a uniform NS mass dis…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…p=1a_{\text{max}}/a_{\text{Kep}}=1 (“low” spin).
-We simulate observations for LIGO at Design and A+ sensitivity. In total, we consider 3 NS models x 2 MTOVM_{\text{TOV}} values x 3 spin models x 2 detector sensitivities = 36 variations.
-
-Assuming GW200105 and <mark>GW200115</mark> are representative of the NSBH population, NSBH are expected to merge at a rate of 45−33+75​Gpc−3​yr−145^{+75}_{-33}\text{Gpc}^{-3}\text{yr}^{-1} (90% credibility) [33], resulting in between 2-20 NSBH/year at Design sensitivity and 8-80 NSBH/year during A+. A…</div>
+    <details class="lines"><summary>Show the sentences (8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …ontours on m1m_{1} and m2m_{2} from the four NSBH events: GW190426 (grey), GW190814 (blue), GW200105 (green), GW200115 (red).</li><li><span class="sec">methods</span> GW200115 [33]; m1=5.7−2.1+1.8​M⊙m_{1}=5.7^{+1.8}_{-2.1}M_{\odot}, m2=1.5−0.3+0.7​M⊙m_{2}=1.5^{+0.7}_{-0.3}M_{\odot}</li><li><span class="sec">methods</span> (d) GW200115</li><li><span class="sec">methods</span> …gure 4: Posteriors on NS spin a2/aKepa_{2}/a_{\text{Kep}} from the NSBH events: GW190426, GW190814, GW200105, GW200115, inferred under different spin priors. “U+I” a2a_{2} samples in dotted black; “ZS” in dashed red; “ZS + AS” i…</li><li><span class="sec">methods</span> For GW200105 and GW200115, we use the “Combined_PHM_high_spin” parameter estimation samples from Abbott et al. [33].</li><li><span class="sec">methods</span> …hen fitting the population models, we divide the NSBH events into four different sets: “confident”, with just GW200115 and GW200105; “all”, with all four potential NSBH triggers; and excluding GW190814 and GW190426 one at a time…</li><li><span class="sec">methods</span> Our default model using the “ZS” spin model, all 4 NSBH events (GW190814, GW190426, GW200105, GW200115), and random pairing (β=0\beta=0) results in MBH=5.4−1.0+0.7​M⊙M_{\mathrm{BH}}=5.4^{+0.7}_{-1.0}\,M_{\odot} (…</li><li><span class="sec">methods</span> Assuming GW200105 and GW200115 are representative of the NSBH population, NSBH are expected to merge at a rate of 45−33+75​Gpc−3​yr−145^{+75…</li></ul>
     </details>
     
   </div>
@@ -657,23 +426,16 @@ Assuming GW200105 and <mark>GW200115</mark> are representative of the NSBH popul
 <section class="card" data-i="6" data-event="GW200210_092254">
   <div class="ctx">
     <div class="evname mono">GW200210_092254</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…nder three spin priors “U+I” in dotted lines; “ZS” in dashed lines; “ZS + AS” solid (all 90% contours). The spin priors correspond to the models from Sec. II.1.1 with βs=0\beta_{s}=0. Three additional GWTC-2 and GWTC-3 events GW190917_114630, GW191219_163120, <mark>GW200210_092254</mark> are shown in black, using default LVK spin priors.
-
-In our population inference, we consider up to four LIGO–Virgo triggers as NSBH detections:
-
-1. 
-
-GW200105 [33]; (all measurements quoted at 90% confidence level) m1=8.9−1.5+1.2​M⊙m_{1}=8.9^{+1.2}_{-1.5}M_{\…</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2202.05164v2#:~:text=GW200210_092254" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200210_092254</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…t
-et al. [64] and Abbott
-et al. [33], which were available at the start of this work. During the course of this work, the latest LIGO–Virgo catalog GWTC-3 was released, which also includes the low-significance NSBH candidates GW190917_114630, GW191219_163120, <mark>GW200210_092254</mark> [68, 69]; the inferred masses of these sources under the default priors are also shown in Figure 3. A similar full analysis could be applied to this larger sample of NSBH events, but we find only a slight shift in inferred values of MTOVM_{\text{TOV}} and MBH…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> Three additional GWTC-2 and GWTC-3 events GW190917_114630, GW191219_163120, GW200210_092254 are shown in black, using default LVK spin priors.</li><li><span class="sec">methods</span> …TC-3 was released, which also includes the low-significance NSBH candidates GW190917_114630, GW191219_163120, GW200210_092254 [68, 69]; the inferred masses of these sources under the default priors are also shown in Figure 3.</li></ul>
+    </details>
     
   </div>
   <div class="form">

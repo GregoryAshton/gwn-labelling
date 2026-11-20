@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,320 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Inflationary phenomenology of Einstein Gauss-Bonnet gravity compatible with GW170817</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1908.07555" target="_blank" rel="noopener" class="mono">arXiv:1908.07555</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">In this work we shall study Einstein Gauss-Bonnet theories and we investigate when these can have their gravitational wave speed equal to the speed of light, which is unity in natural units, thus becoming compatible with the striking event GW170817. We demonstrate how this is possible and we show that if the scalar coupling to the Gauss-Bonnet invariant is constrained to satisfy a differential equation, the gravitational wave speed becomes equal to one. Accordingly, we investigate the inflationary phenomenology of the resulting restricted Einstein Gauss-Bonnet model, by assuming that the slow-roll conditions hold true. As we demonstrate, the compatibility with the observational data coming from the Planck 2018 collaboration, can be achieved, even for a power-law potential. We restricted ourselves to the study of the power-law potential, due to the lack of analyticity, however more realistic potentials can be used, in this case though the calculations are not easy to be performed analytically. We also pointed out that a string-corrected extension of the Einstein Gauss-Bonnet model we studied, containing terms of the form ∼ ξ (ϕ)G&lt;SUP&gt;ab&lt;/SUP&gt;∂&lt;SUB&gt;a&lt;/SUB&gt; ϕ∂&lt;SUB&gt;b&lt;/SUB&gt; ϕ can also provide a theory with gravity waves speed c&lt;SUB&gt;T&lt;/SUB&gt;&lt;SUP&gt;2&lt;/SUP&gt; = 1 in natural units, if the function ξ (ϕ) is appropriately constrained, however in the absence of the Gauss-Bonnet term ∼ ξ (ϕ) G the gravity waves speed can never be c&lt;SUB&gt;T&lt;/SUB&gt;&lt;SUP&gt;2&lt;/SUP&gt; = 1. Finally, we discuss which extensions of the above models can provide interesting cosmologies, since any combination of f (R , X , ϕ) gravities with the above string-corrected Einstein Gauss-Bonnet models can yield c&lt;SUB&gt;T&lt;/SUB&gt;&lt;SUP&gt;2&lt;/SUP&gt; = 1, with X = 1/2 ∂&lt;SUB&gt;μ&lt;/SUB&gt; ϕ∂&lt;SUP&gt;μ&lt;/SUP&gt; ϕ.</p></details>
+<div class="small mut mono">arXiv:1908.07555</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">In this work we shall study Einstein Gauss-Bonnet theories and we investigate when these can have their gravitational wave speed equal to the speed of light, which is unity in natural units, thus becoming compatible with the striking event GW170817. We demonstrate how this is possible and we show that if the scalar coupling to the Gauss-Bonnet invariant is constrained to satisfy a differential equation, the gravitational wave speed becomes equal to one. Accordingly, we investigate the inflationary phenomenology of the resulting restricted Einstein Gauss-Bonnet model, by assuming that the slow-roll conditions hold true. As we demonstrate, the compatibility with the observational data coming from the Planck 2018 collaboration, can be achieved, even for a power-law potential. We restricted ourselves to the study of the power-law potential, due to the lack of analyticity, however more realistic potentials can be used, in this case though the calculations are not easy to be performed analytically. We also pointed out that a string-corrected extension of the Einstein Gauss-Bonnet model we studied, containing terms of the form ∼ ξ (ϕ)G&lt;SUP&gt;ab&lt;/SUP&gt;∂&lt;SUB&gt;a&lt;/SUB&gt; ϕ∂&lt;SUB&gt;b&lt;/SUB&gt; ϕ can also provide a theory with gravity waves speed c&lt;SUB&gt;T&lt;/SUB&gt;&lt;SUP&gt;2&lt;/SUP&gt; = 1 in natural units, if the function ξ (ϕ) is appropriately constrained, however in the absence of the Gauss-Bonnet term ∼ ξ (ϕ) G the gravity waves speed can never be c&lt;SUB&gt;T&lt;/SUB&gt;&lt;SUP&gt;2&lt;/SUP&gt; = 1. Finally, we discuss which extensions of the above models can provide interesting cosmologies, since any combination of f (R , X , ϕ) gravities with the above string-corrected Einstein Gauss-Bonnet models can yield c&lt;SUB&gt;T&lt;/SUB&gt;&lt;SUP&gt;2&lt;/SUP&gt; = 1, with X = 1/2 ∂&lt;SUB&gt;μ&lt;/SUB&gt; ϕ∂&lt;SUP&gt;μ&lt;/SUP&gt; ϕ.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1908.07555v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>18 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>Inflationary Phenomenology of Einstein Gauss-Bonnet Gravity Compatible with <mark>GW170817</mark>
-
- 
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- 
- 
-
- 
- arXiv is now an independent nonprofit!
- Learn more
- &amp;times;
- 
-
- 
- 
- Back to arXi…</div>
+    <p class="where">Named 18 times:
+      introduction ×10, title/headings ×4, conclusion ×3, abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/1908.07555v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>… 
- 
-
- 
- 
- Why HTML?
- 
- 
- 
- 
- Report Issue
- 
- 
- 
- 
- 
- 
- Back to Abstract
- 
- 
- 
- 
- 
- 
- Download PDF
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-Abstract
-
-I Introduction
-
-II Compatibility of Einstein Gauss-Bonnet Theory of Gravity with <mark>GW170817</mark>
-
-III Inflationary Phenomenology of Viable Slow-roll Einstein Gauss-Bonnet Theory of Gravity
-
-III.1 Other String-corrected Theories of Gravity and
-Compatibility with GW170817
-
-IV Conclusions
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
-…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…act
-
-I Introduction
-
-II Compatibility of Einstein Gauss-Bonnet Theory of Gravity with GW170817
-
-III Inflationary Phenomenology of Viable Slow-roll Einstein Gauss-Bonnet Theory of Gravity
-
-III.1 Other String-corrected Theories of Gravity and
-Compatibility with <mark>GW170817</mark>
-
-IV Conclusions
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1908.07555v1 [gr-qc] 20 Aug 2019
-
-Inflationary Phenomenology of Einstein Gauss-Bonnet Gravity Compatible with GW170817
-
-S. D. Odintsov,1,2 
-V.K. Oikonomou,3,4,5,6
-††t…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">front_matter</span>…cted Theories of Gravity and
-Compatibility with GW170817
-
-IV Conclusions
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1908.07555v1 [gr-qc] 20 Aug 2019
-
-Inflationary Phenomenology of Einstein Gauss-Bonnet Gravity Compatible with <mark>GW170817</mark>
-
-S. D. Odintsov,1,2 
-V.K. Oikonomou,3,4,5,6
-††thanks: odintsov@ieec.uab.es††thanks: v.k.oikonomou1979@gmail.com
-Affiliation: 1) ICREA, Passeig Luis Companys, 23, 08010 Barcelona, Spain
-2) Institute of Space Sciences (IEEC-CSIC) C. Can Magrans
-s/n,
-08193 Barce…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…rmany 
-
-Abstract
-
- 
-In this work we shall study Einstein Gauss-Bonnet theories and we
-investigate when these can have their gravitational wave speed
-equal to the speed of light, which is unity in natural units, thus
-becoming compatible with the striking event <mark>GW170817</mark>. We
-demonstrate how this is possible and we show that if the scalar
-coupling to the Gauss-Bonnet invariant is constrained to satisfy a
-differential equation, the gravitational wave speed becomes equal
-to one. Accordingly, we investigate the inflationary pheno…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…36.+x, 98.80.-k, 98.80.Cq,11.25.-w
-
-I Introduction
-
-Cosmology and astrophysics at present are in the era of great
-reordering since the observational data offer incredible new
-insights in the field. Recently, the striking observed event of
-neutron star merging <mark>GW170817</mark> [1], validated the
-fact that the gravitational waves and electromagnetic waves have
-the same propagation speed. This observation narrowed down
-significantly the viable gravitational theories, since every
-theory that predicts a gravitational wave speed cT2c_{T…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…odified gravity models, was performed in
-[31].
-
-This paper is organized as follows: In section II we shall review
-the essential features of Einstein Gauss-Bonnet theories of
-gravity and we shall specify the reason which makes the theory
-invalid in view of the <mark>GW170817</mark> event. In section III we shall
-impose the slow-roll condition in the theory, and by using the
-slow-roll indices we shall find the implications of the slow-roll
-condition on the potential and the rest of the physical quantities
-of the theory. Accordingly, we s…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…physical quantities
-of the theory. Accordingly, we shall confront the theory with the
-observational data. At the end of section III, we shall consider
-several alternative forms of string-corrected theories, and we
-indicate how these can become compatible with <mark>GW170817</mark>. Finally
-the conclusions follow in the end of the paper.
-
-Before we proceed, in this paper we shall assume that the
-background metric is a flat Friedmann-Robertson-Walker (FRW)
-spacetime, with line element,
-
-d​s2=−d​t2+a​(t)2​∑i=1,2,3(d​xi)2,ds^{2}=-dt^{2}+a(…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ertson-Walker (FRW)
-spacetime, with line element,
-
-d​s2=−d​t2+a​(t)2​∑i=1,2,3(d​xi)2,ds^{2}=-dt^{2}+a(t)^{2}\sum_{i=1,2,3}\left(dx^{i}\right)^{2}\,,
-
-(1)
-
-with a⁡(t)a(t) being the scale factor.
-
-II Compatibility of Einstein Gauss-Bonnet Theory of Gravity with <mark>GW170817</mark>
-
-Let us first consider the simplest Einstein Gauss-Bonnet theory of
-gravity, in which case the gravitational action in vacuum is,
-
-𝒮=∫d4​x​−g​(12​f​(R,ϕ,X)−12​ξ​(ϕ)​c1​𝒢),\mathcal{S}=\int d^{4}x\sqrt{-g}\left(\frac{1}{2}f(R,\phi,X)-\frac{1}{2}\xi(\phi)c_{1}\m…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…onnet gravity model, with the
-scalar coupling to the Gauss-Bonnet invariant satisfying Eqs.
-(15) and (17). Obviously, if the
-Einstein Gauss-Bonnet satisfies Eqs. (15) and
-(17), it has a gravitational wave speed
-cT2=1c_{T}^{2}=1, thus it is compatible with the <mark>GW170817</mark>, and in this
-section we shall demonstrate that the GW170817 compatible Einstein
-Gauss-Bonnet model is also a viable inflationary model in the
-slow-roll approximation.
-
-The analytic calculation of the slow-roll indices and the
-corresponding observational indic…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…onnet invariant satisfying Eqs.
-(15) and (17). Obviously, if the
-Einstein Gauss-Bonnet satisfies Eqs. (15) and
-(17), it has a gravitational wave speed
-cT2=1c_{T}^{2}=1, thus it is compatible with the GW170817, and in this
-section we shall demonstrate that the <mark>GW170817</mark> compatible Einstein
-Gauss-Bonnet model is also a viable inflationary model in the
-slow-roll approximation.
-
-The analytic calculation of the slow-roll indices and the
-corresponding observational indices for inflation is quite
-difficult in the general case, so …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…, due to the fact that we wanted to
-obtain analytic results. Of course, more realistic potentials can
-be used in order to obtain more stringent results, however our
-purpose was solely to demonstrate that the viable Einstein
-Gauss-Bonnet theory that evades the <mark>GW170817</mark> constrain on the
-gravitational wave speed, can also provide a viable phenomenology.
-A more detailed and thorough analysis, with more realistic scalar
-potential, may require numerical analysis, so it is out of the
-scope of this paper.
-
-III.1 Other String-corre…</div>
+    <details class="lines"><summary>Show the sentences (14, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Inflationary Phenomenology of Einstein Gauss-Bonnet Gravity Compatible with GW170817</li><li><span class="sec">title/headings</span> II Compatibility of Einstein Gauss-Bonnet Theory of Gravity with GW170817</li><li><span class="sec">title/headings</span> III.1 Other String-corrected Theories of Gravity and Compatibility with GW170817</li><li><span class="sec">abstract</span> …qual to the speed of light, which is unity in natural units, thus becoming compatible with the striking event GW170817.</li><li><span class="sec">introduction</span> Recently, the striking observed event of neutron star merging GW170817 [1], validated the fact that the gravitational waves and electromagnetic waves have the same propagation spee…</li><li><span class="sec">introduction</span> …auss-Bonnet theories of gravity and we shall specify the reason which makes the theory invalid in view of the GW170817 event.</li><li><span class="sec">introduction</span> …several alternative forms of string-corrected theories, and we indicate how these can become compatible with GW170817.</li><li><span class="sec">introduction</span> (15) and (17), it has a gravitational wave speed cT2=1c_{T}^{2}=1, thus it is compatible with the GW170817, and in this section we shall demonstrate that the GW170817 compatible Einstein Gauss-Bonnet model is also a…</li></ul>
     </details>
     
   </div>

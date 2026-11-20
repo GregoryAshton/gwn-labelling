@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Gravitational waveforms and radiation powers of the triple system PSR J 0337 +1715 in modified theories of gravity</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1903.09865" target="_blank" rel="noopener" class="mono">arXiv:1903.09865</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">In this paper, we study the gravitational waveforms, polarizations and radiation powers of the first relativistic triple systems PSR J 0337 +1715 , observed in 2014, by using the post-Newtonian approximations to their lowest order. Although they cannot be observed either by the current or the next generation of the detectors, they do provide useful information to test different theories of gravity. In particular, we carry out the studies in three different theories, General Relativity (GR), Einstein-æther theory (æ-theory), and Brans-Dicke (BD) gravity. The tensor modes h&lt;SUB&gt;+&lt;/SUB&gt; and h&lt;SUB&gt;×&lt;/SUB&gt; exist in all three theories and have almost equal amplitudes. Their frequencies are all peaked at two locations, f&lt;SUB&gt;1&lt;/SUB&gt;&lt;SUP&gt;+,×&lt;/SUP&gt;=0.068658 μ Hz and f&lt;SUB&gt;2&lt;/SUB&gt;&lt;SUP&gt;+,×&lt;/SUP&gt;=14.212 μ Hz , which are about twice the outer and inner orbital frequencies of the triple system, as predicted in GR. In æ-theory, all of the six polarization modes are different from zero, but the breathing (h&lt;SUB&gt;b&lt;/SUB&gt;) and longitudinal (h&lt;SUB&gt;L&lt;/SUB&gt;) modes are not independent and also peaked at two frequencies. A somehow surprising result is that, for h&lt;SUB&gt;b&lt;/SUB&gt; and h&lt;SUB&gt;L&lt;/SUB&gt;, the peaked frequencies are not twice the outer and inner orbital frequencies, as for the h&lt;SUB&gt;+&lt;/SUB&gt; and h&lt;SUB&gt;×&lt;/SUB&gt; modes, but, instead, they are almost equal to them, f&lt;SUB&gt;1&lt;/SUB&gt;&lt;SUP&gt;b ,L&lt;/SUP&gt;=0.045772 μ Hz and f&lt;SUB&gt;2&lt;/SUB&gt;&lt;SUP&gt;b ,L&lt;/SUP&gt;=7.0947 μ Hz . A similar phenomenon is also observed in BD gravity, in which only the three modes h&lt;SUB&gt;+&lt;/SUB&gt;,h&lt;SUB&gt;×&lt;/SUB&gt;, and h&lt;SUB&gt;b&lt;/SUB&gt; exist, where f&lt;SUB&gt;1&lt;/SUB&gt;&lt;SUP&gt;b&lt;/SUP&gt; and f&lt;SUB&gt;2&lt;/SUB&gt;&lt;SUP&gt;b&lt;/SUP&gt; are almost equal to outer and inner orbital frequencies. We also study the radiation powers, and find that the quadrupole emission in each of the three theories has almost the same amplitude, but the dipole emission can be as big as the quadrupole emission in æ-theory. This provides a very promising window to obtain severe constraints on æ-theory by the multiband gravitational wave astronomy.</p></details>
+<div class="small mut mono">arXiv:1903.09865</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">In this paper, we study the gravitational waveforms, polarizations and radiation powers of the first relativistic triple systems PSR J 0337 +1715 , observed in 2014, by using the post-Newtonian approximations to their lowest order. Although they cannot be observed either by the current or the next generation of the detectors, they do provide useful information to test different theories of gravity. In particular, we carry out the studies in three different theories, General Relativity (GR), Einstein-æther theory (æ-theory), and Brans-Dicke (BD) gravity. The tensor modes h&lt;SUB&gt;+&lt;/SUB&gt; and h&lt;SUB&gt;×&lt;/SUB&gt; exist in all three theories and have almost equal amplitudes. Their frequencies are all peaked at two locations, f&lt;SUB&gt;1&lt;/SUB&gt;&lt;SUP&gt;+,×&lt;/SUP&gt;=0.068658 μ Hz and f&lt;SUB&gt;2&lt;/SUB&gt;&lt;SUP&gt;+,×&lt;/SUP&gt;=14.212 μ Hz , which are about twice the outer and inner orbital frequencies of the triple system, as predicted in GR. In æ-theory, all of the six polarization modes are different from zero, but the breathing (h&lt;SUB&gt;b&lt;/SUB&gt;) and longitudinal (h&lt;SUB&gt;L&lt;/SUB&gt;) modes are not independent and also peaked at two frequencies. A somehow surprising result is that, for h&lt;SUB&gt;b&lt;/SUB&gt; and h&lt;SUB&gt;L&lt;/SUB&gt;, the peaked frequencies are not twice the outer and inner orbital frequencies, as for the h&lt;SUB&gt;+&lt;/SUB&gt; and h&lt;SUB&gt;×&lt;/SUB&gt; modes, but, instead, they are almost equal to them, f&lt;SUB&gt;1&lt;/SUB&gt;&lt;SUP&gt;b ,L&lt;/SUP&gt;=0.045772 μ Hz and f&lt;SUB&gt;2&lt;/SUB&gt;&lt;SUP&gt;b ,L&lt;/SUP&gt;=7.0947 μ Hz . A similar phenomenon is also observed in BD gravity, in which only the three modes h&lt;SUB&gt;+&lt;/SUB&gt;,h&lt;SUB&gt;×&lt;/SUB&gt;, and h&lt;SUB&gt;b&lt;/SUB&gt; exist, where f&lt;SUB&gt;1&lt;/SUB&gt;&lt;SUP&gt;b&lt;/SUP&gt; and f&lt;SUB&gt;2&lt;/SUB&gt;&lt;SUP&gt;b&lt;/SUP&gt; are almost equal to outer and inner orbital frequencies. We also study the radiation powers, and find that the quadrupole emission in each of the three theories has almost the same amplitude, but the dipole emission can be as big as the quadrupole emission in æ-theory. This provides a very promising window to obtain severe constraints on æ-theory by the multiband gravitational wave astronomy.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1903.09865v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,68 +159,23 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">2 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">2 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…7}. After this is taken into account, we find that 𝒲𝒞/𝒲𝒜≃𝒪⁡(1){\cal{W}}_{\cal{C}}/{\cal{W}}_{\cal{A}}\simeq{\cal{O}}(1)
-for the current triple system.
-
-It is remarkable to note that, with the multi-band gravitational wave astronomy [16], joint observations of <mark>GW150914</mark>-like by LIGO/Virgo/KAGRA and LISA will improve bounds on dipole
-emission from black hole binaries by six orders of magnitude relative to current constraints [30]. Thus, it is very promising that the third generation of detectors, both space-borne and ground-b…</div>
+    <p class="where">Named 3 times:
+      introduction, conclusion, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.09865v2#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">conclusion</span>…onopole part is suppressed by a factor c14≲𝒪⁡(10−5)c_{14}\lesssim{\cal{O}}\left(10^{-5}\right),
-but the dipole part is almost in the same order of the quadrupole part. With the arrival of the multi-band gravitational wave astronomy [16], joint observations of <mark>GW150914</mark>-like by LIGO/Virgo/KAGRA and LISA will improve serve constraints on the dipole
-emission [30]. Thus, the multi-band gravitational wave astronomy will provide a very promising direction to constrain æ\ae-theory.
-
-We also carried out similar studies in BD gravit…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…instein-aether gravity: a status report, arXiv:0801.1547.
-
- 
-[15]
- C. Brans and R. H. Dicke, Mach’s Principle and a Relativistic Theory of Gravitation, Phys. Rev. 124, 925 (1961).
-
- 
-[16]
- A. Sesana, Prospects for Multi-band Gravitational-Wave Astronomy after <mark>GW150914</mark>, Phys. Rev. Lett. 116, 231102 (2016).
-
- 
-[17]
- B. Z. Foster, Phys. Rev. D76, 084033 (2007).
-
- 
-[18]
- K. Yagi, D. Blas, E. Barausse, and N. Yunes, Phys. Rev. D89, 084067 (2014).
-
- 
-[19]
- C. Will, Class. Quantum Grav. 35, 085001 (2018).
-
- 
-[20]
- M. Maggiore, Gr…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[16]</span> · 3 places</span><div class="cite">…n in æ\ae-theory can be as large as the quadrupole emission in GR, which can provide a very promising window to obtain severe constraints on æ\ae-theory by the multi-band gravitational wave astronomy <mark class="ref">[16]</mark>. There is also an appendix, in which we present a very brief introduction to æ{\ae}-theory [14].
-
-Before turning to the next section, we would like to note that, in the framework of æ-theory, Foster …</div><div class="cite">…ount, we find that 𝒲𝒞/𝒲𝒜≃𝒪⁡(1){\cal{W}}_{\cal{C}}/{\cal{W}}_{\cal{A}}\simeq{\cal{O}}(1)
-for the current triple system.
-
-It is remarkable to note that, with the multi-band gravitational wave astronomy <mark class="ref">[16]</mark>, joint observations of GW150914-like by LIGO/Virgo/KAGRA and LISA will improve bounds on dipole
-emission from black hole binaries by six orders of magnitude relative to current constraints [30]. Thus…</div><div class="cite">…factor c14≲𝒪⁡(10−5)c_{14}\lesssim{\cal{O}}\left(10^{-5}\right),
-but the dipole part is almost in the same order of the quadrupole part. With the arrival of the multi-band gravitational wave astronomy <mark class="ref">[16]</mark>, joint observations of GW150914-like by LIGO/Virgo/KAGRA and LISA will improve serve constraints on the dipole
-emission [30]. Thus, the multi-band gravitational wave astronomy will provide a very pro…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> It is remarkable to note that, with the multi-band gravitational wave astronomy [16], joint observations of GW150914-like by LIGO/Virgo/KAGRA and LISA will improve bounds on dipole emission from black hole binaries by six orde…</li><li><span class="sec">conclusion</span> With the arrival of the multi-band gravitational wave astronomy [16], joint observations of GW150914-like by LIGO/Virgo/KAGRA and LISA will improve serve constraints on the dipole emission [30].</li><li><span class="sec">cites it as [16]</span> …y promising window to obtain severe constraints on æ\ae-theory by the multi-band gravitational wave astronomy [16]. There is also an appendix, in which we present a very brief introduction to æ{\ae}-theory [14]. Before turn…</li><li><span class="sec">cites it as [16]</span> …r the current triple system. It is remarkable to note that, with the multi-band gravitational wave astronomy [16], joint observations of GW150914-like by LIGO/Virgo/KAGRA and LISA will improve bounds on dipole emission from…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -235,216 +211,15 @@ emission [30]. Thus, the multi-band gravitational wave astronomy will provide a 
 <section class="card" data-i="1" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>8 mentions · <span class="cptag">3 by counterpart name</span></h3>
+    <p class="where">Named 8 times:
+      reference list ×3, conclusion ×2, appendix ×2, introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.09865v2#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">3 mentions use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention"><span class="sec">introduction</span>…ting the GW signal on Sep. 14, 2015 [2]. After this, ten more GWs have been detected by LIGO Scientific Collaboration and Virgo Collaboration [3, 4, 5, 6, 7, 8]. The sources of these eleven GW events are all binary systems of black holes, except for the event <mark>GW170817</mark>, which is a binary system of neutron stars [7].
-
-In fact, there are about 13%13\% of low-mass stellar systems containing three or more stars [9], and 96%96\% of low-mass binaries with periods shorter than 3 days which are part of a larger hierarchy [10]. Rece…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…these parameters, while the frequencies of their Fourier transforms remain the same.
-
-The other two independent polarization modes in æ\ae-theory are the vector modes, hXh_{X} and hYh_{Y}, which are all proportional to c13c_{13}.
-The current observations from <mark>GW170817</mark> [7] and GRB 170817A [31] on the speed of the tensor mode requires c13≲10−15c_{13}\lesssim 10^{-15}. Therefore, these two modes are highly restricted by the limit
-of the speed of the tensor mode.
-
-We also studied the radiation power due to the tensor, vector a…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">conclusion · <span class="cptag">counterpart name, not the GW signal</span></span>… while the frequencies of their Fourier transforms remain the same.
-
-The other two independent polarization modes in æ\ae-theory are the vector modes, hXh_{X} and hYh_{Y}, which are all proportional to c13c_{13}.
-The current observations from GW170817 [7] and <mark class="cp">GRB 170817A</mark> [31] on the speed of the tensor mode requires c13≲10−15c_{13}\lesssim 10^{-15}. Therefore, these two modes are highly restricted by the limit
-of the speed of the tensor mode.
-
-We also studied the radiation power due to the tensor, vector and scalar modes in æ…</div>
-    
-    
-    <details><summary>5 more</summary>
-    <div class="mention"><span class="sec">appendix</span>…ac{2c_{1}-c_{13}(2c_{1}-c_{13})}{2c_{14}(1-c_{13})}\,,
-
-cT2\displaystyle c_{T}^{2}
-=\displaystyle=
-11−c13,\displaystyle\frac{1}{1-c_{13}},
-
-(A.7)
-
-where ci​j​k≡ci+cj+ckc_{ijk}\equiv c_{i}+c_{j}+c_{k}.
-
-Recently, the combination of the gravitational wave event <mark>GW170817</mark> [7], and the event of the gamma-ray burst
-GRB 170817A [31] provides a remarkably stringent constraint on the speed of the spin-2 mode,
-
-−3×10−15&lt;cT−1&lt;7×10−16,-3\times 10^{-15}&lt;c_{T}-1&lt;7\times 10^{-16},
-
-(A.8)
-
-which, together with Eq.(A.7), implies that
-
-|c13…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">appendix · <span class="cptag">counterpart name, not the GW signal</span></span>…\,,
-
-cT2\displaystyle c_{T}^{2}
-=\displaystyle=
-11−c13,\displaystyle\frac{1}{1-c_{13}},
-
-(A.7)
-
-where ci​j​k≡ci+cj+ckc_{ijk}\equiv c_{i}+c_{j}+c_{k}.
-
-Recently, the combination of the gravitational wave event GW170817 [7], and the event of the gamma-ray burst
-<mark class="cp">GRB 170817A</mark> [31] provides a remarkably stringent constraint on the speed of the spin-2 mode,
-
-−3×10−15&lt;cT−1&lt;7×10−16,-3\times 10^{-15}&lt;c_{T}-1&lt;7\times 10^{-16},
-
-(A.8)
-
-which, together with Eq.(A.7), implies that
-
-|c13|&lt;10−15.\left|c_{13}\right|&lt;10^{-15}.
-
-(A.9)
-
-Imposing…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…ravitational wave forms, polarizations, response functions and energy losses of triple systems in Einstein-Aether theory, Phys. Rev. D99, 023010 (2019) [arXiv:1810.07707].
-
- 
-[23]
- J. Oost, S. Mukohyama and A. Wang, Constraints on Einstein-aether theory after <mark>GW170817</mark>, Phys. Rev. D97, 124023 (2018) [arXiv:1802.04303].
-
- 
-[24]
- X. Zhao, et al., in preparation (2019).
-
- 
-[25]
- C.M. Will, Gravitational radiation, close binary systems, and the Brans-Dicke theory of gravity, Astrophys. J. 214, 826 (1997).
-
- 
-[26]
- X. Zhang, et …
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[23]</span> · 3 places</span><div class="cite">…displaystyle c_{3}
-=\displaystyle=
-−c1,c4=−2×10−5,\displaystyle-c_{1},\;\;c_{4}=-2\times 10^{-5},
-
-(2.19)
-
-which satisfy all the theoretical and observational constraints given by Eq.(A.11) (See also <mark class="ref">[23]</mark>). Note that for this choice we have c13=0c_{13}=0, and then the two modes hXæh_{X}^{\ae} and hYæh_{Y}^{\ae} vanish identically,
-
-hXæ=hYæ=0,(c13=0).h_{X}^{\ae}=h_{Y}^{\ae}=0,\;(c_{13}=0).
-
-(2.20)
-
-So,…</div><div class="cite">…elated to each other by Eq.(2.12). In comparing with h+h_{+} and h×h_{\times}, however,
-they are suppressed by a factor c14c_{14} which is observationally restricted to c14≲10−5c_{14}\lesssim 10^{-5} <mark class="ref">[23]</mark>. A somehow surprising result is that the two peaked frequencies are not two times of those of the inner and outer
-orbital frequencies of the triple system. Instead, they are about equal to them, f1b,…</div><div class="cite">…−7,\left|\alpha_{1}\right|\leq 10^{-4},\quad\left|\alpha_{2}\right|\leq 10^{-7},
-
-(A.10)
-
-from the Solar System observations [36], it was found that the parameter space of the theory is restricted to <mark class="ref">[23]</mark>,
-
-0≲c14≲c1,c14≲c2≲0.095,c14≲2.5×10−5.0\lesssim c_{14}\lesssim c_{1},\quad c_{14}\lesssim c_{2}\lesssim 0.095,\quad c_{14}\lesssim 2.5\times 10^{-5}.
-
-(A.11)
-
-Finally, we note that the theoretical and…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…nal waves from compact binary coalescences: (I) inspiral-merger, Gen. Relativ. Grav. 50, 46 (2018).
-
- 
-[31]
- B. P. Abbott et. al., Virgo, Fermi-GBM, INTEGRAL, LIGO Scientific Collaboration, Gravitational Waves and Gamma-rays from a Binary Neutron Star Merger: <mark>GW170817</mark> and GRB 170817A, Astrophys. J. 848 (2017) L13 [arXiv:1710.05834].
-
- 
-[32]
- T. Jacobson, D. Mattingly, Phys. Rev. D64, 024028 (2001).
-
- 
-[33]
- S. M. Carroll and E. A. Lim, Phys. Rev. D70, 123525 (2004).
-
- 
-[34]
- T. Jacobson, D. Mattingly, Phys. Rev. D70, 02400…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[31]</span> · 2 places</span><div class="cite">… other two independent polarization modes in æ\ae-theory are the vector modes, hXh_{X} and hYh_{Y}, which are all proportional to c13c_{13}.
-The current observations from GW170817 [7] and GRB 170817A <mark class="ref">[31]</mark> on the speed of the tensor mode requires c13≲10−15c_{13}\lesssim 10^{-15}. Therefore, these two modes are highly restricted by the limit
-of the speed of the tensor mode.
-
-We also studied the radiatio…</div><div class="cite">…c{1}{1-c_{13}},
-
-(A.7)
-
-where ci​j​k≡ci+cj+ckc_{ijk}\equiv c_{i}+c_{j}+c_{k}.
-
-Recently, the combination of the gravitational wave event GW170817 [7], and the event of the gamma-ray burst
-GRB 170817A <mark class="ref">[31]</mark> provides a remarkably stringent constraint on the speed of the spin-2 mode,
-
-−3×10−15&lt;cT−1&lt;7×10−16,-3\times 10^{-15}&lt;c_{T}-1&lt;7\times 10^{-16},
-
-(A.8)
-
-which, together with Eq.(A.7), implies that
-
-|c1…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">references · <span class="cptag">counterpart name, not the GW signal</span></span>…m compact binary coalescences: (I) inspiral-merger, Gen. Relativ. Grav. 50, 46 (2018).
-
- 
-[31]
- B. P. Abbott et. al., Virgo, Fermi-GBM, INTEGRAL, LIGO Scientific Collaboration, Gravitational Waves and Gamma-rays from a Binary Neutron Star Merger: GW170817 and <mark class="cp">GRB 170817A</mark>, Astrophys. J. 848 (2017) L13 [arXiv:1710.05834].
-
- 
-[32]
- T. Jacobson, D. Mattingly, Phys. Rev. D64, 024028 (2001).
-
- 
-[33]
- S. M. Carroll and E. A. Lim, Phys. Rev. D70, 123525 (2004).
-
- 
-[34]
- T. Jacobson, D. Mattingly, Phys. Rev. D70, 024003 (2004).
-
- 
-[35…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[31]</span> · 2 places</span><div class="cite">… other two independent polarization modes in æ\ae-theory are the vector modes, hXh_{X} and hYh_{Y}, which are all proportional to c13c_{13}.
-The current observations from GW170817 [7] and GRB 170817A <mark class="ref">[31]</mark> on the speed of the tensor mode requires c13≲10−15c_{13}\lesssim 10^{-15}. Therefore, these two modes are highly restricted by the limit
-of the speed of the tensor mode.
-
-We also studied the radiatio…</div><div class="cite">…c{1}{1-c_{13}},
-
-(A.7)
-
-where ci​j​k≡ci+cj+ckc_{ijk}\equiv c_{i}+c_{j}+c_{k}.
-
-Recently, the combination of the gravitational wave event GW170817 [7], and the event of the gamma-ray burst
-GRB 170817A <mark class="ref">[31]</mark> provides a remarkably stringent constraint on the speed of the spin-2 mode,
-
-−3×10−15&lt;cT−1&lt;7×10−16,-3\times 10^{-15}&lt;c_{T}-1&lt;7\times 10^{-16},
-
-(A.8)
-
-which, together with Eq.(A.7), implies that
-
-|c1…</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> The sources of these eleven GW events are all binary systems of black holes, except for the event GW170817, which is a binary system of neutron stars [7].</li><li><span class="sec">conclusion</span> The current observations from GW170817 [7] and GRB 170817A [31] on the speed of the tensor mode requires c13≲10−15c_{13}\lesssim 10^{-15}.</li><li><span class="sec">appendix</span> Recently, the combination of the gravitational wave event GW170817 [7], and the event of the gamma-ray burst GRB 170817A [31] provides a remarkably stringent constraint on the…</li><li><span class="sec">appendix · counterpart name</span> Recently, the combination of the gravitational wave event GW170817 [7], and the event of the gamma-ray burst GRB 170817A [31] provides a remarkably stringent constraint on the speed of the spin-2 mode,</li><li><span class="sec">cites it as [23]</span> …0^{-5}, (2.19) which satisfy all the theoretical and observational constraints given by Eq.(A.11) (See also [23]). Note that for this choice we have c13=0c_{13}=0, and then the two modes hXæh_{X}^{\ae} and hYæh_{Y}^{\ae} v…</li><li><span class="sec">cites it as [23]</span> …ey are suppressed by a factor c14c_{14} which is observationally restricted to c14≲10−5c_{14}\lesssim 10^{-5} [23]. A somehow surprising result is that the two peaked frequencies are not two times of those of the inner and o…</li><li><span class="sec">cites it as [31]</span> …hYh_{Y}, which are all proportional to c13c_{13}. The current observations from GW170817 [7] and GRB 170817A [31] on the speed of the tensor mode requires c13≲10−15c_{13}\lesssim 10^{-15}. Therefore, these two modes are hig…</li><li><span class="sec">cites it as [31]</span> …he combination of the gravitational wave event GW170817 [7], and the event of the gamma-ray burst GRB 170817A [31] provides a remarkably stringent constraint on the speed of the spin-2 mode, −3×10−15&lt;cT−1&lt;7×10−16,-3\times 1…</li></ul>
     </details>
     
   </div>

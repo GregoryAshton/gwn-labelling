@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,129 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>A morphology-independent search for gravitational wave echoes in data from the first and second observing runs of Advanced LIGO and Advanced Virgo</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1906.11168" target="_blank" rel="noopener" class="mono">arXiv:1906.11168</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Gravitational wave echoes have been proposed as a smoking-gun signature of exotic compact objects with near-horizon structure. Recently there have been observational claims that echoes are indeed present in stretches of data from Advanced LIGO and Advanced Virgo immediately following gravitational wave signals from presumed binary black hole mergers, as well as a binary neutron star merger. In this paper we deploy a morphology-independent search algorithm for echoes introduced by Tsang et al. [Phys. Rev. D 98, 024023 (2018), 10.1103/PhysRevD.98.024023], which (a) is able to accurately reconstruct a possible echoes signal with minimal assumptions about their morphology, and (b) computes Bayesian evidences for the hypotheses that the data contain a signal, an instrumental glitch, or just stationary, Gaussian noise. Here we apply this analysis method to all the significant events in the first Gravitational Wave Transient Catalog (GWTC-1), which comprises the signals from binary black hole and binary neutron star coalescences found during the first and second observing runs of Advanced LIGO and Advanced Virgo. In all cases, the ratios of evidences for signal versus noise and signal versus glitch do not rise above their respective &#34;background distributions&#34; obtained from detector noise, the smallest p -value being 3% (for event GW170823). Hence we find no statistically significant evidence for echoes in GWTC-1.</p></details>
+<div class="small mut mono">arXiv:1906.11168</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Gravitational wave echoes have been proposed as a smoking-gun signature of exotic compact objects with near-horizon structure. Recently there have been observational claims that echoes are indeed present in stretches of data from Advanced LIGO and Advanced Virgo immediately following gravitational wave signals from presumed binary black hole mergers, as well as a binary neutron star merger. In this paper we deploy a morphology-independent search algorithm for echoes introduced by Tsang et al. [Phys. Rev. D 98, 024023 (2018), 10.1103/PhysRevD.98.024023], which (a) is able to accurately reconstruct a possible echoes signal with minimal assumptions about their morphology, and (b) computes Bayesian evidences for the hypotheses that the data contain a signal, an instrumental glitch, or just stationary, Gaussian noise. Here we apply this analysis method to all the significant events in the first Gravitational Wave Transient Catalog (GWTC-1), which comprises the signals from binary black hole and binary neutron star coalescences found during the first and second observing runs of Advanced LIGO and Advanced Virgo. In all cases, the ratios of evidences for signal versus noise and signal versus glitch do not rise above their respective &#34;background distributions&#34; obtained from detector noise, the smallest p -value being 3% (for event GW170823). Hence we find no statistically significant evidence for echoes in GWTC-1.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1906.11168v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">11 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">11 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…r prior ranges,
-though pertaining to generalized wavelet decompositions rather than waveform templates,
-include the corresponding values for
-t0t_{0}, γ\gamma, and AA at which the template-based analysis of [22] claimed
-tentative evidence for echoes related to <mark>GW150914</mark>, GW151012, and GW151226.
-
-To construct background distributions for the log Bayes factors
-log⁡BS/N\log B_{S/N} and log⁡BS/G\log B_{S/G}, we use stretches of
-data preceding
-each coalescence event in GWTC-1 in the following way. In the interval between 1050 s a…</div>
+    <p class="where">Named 3 times:
+      methods ×2, results.</p>
+    <p class="where"><a href="https://arxiv.org/html/1906.11168v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>… prior range for the time of the first echo was centered
-at 1.0 s after the event time, where [28] claimed tentative evidence for an echo.
-For the
-associated pp-values,
-see Table 2.
-
-Event
-
-log⁡BS/N\log B_{S/N}
-
-pS/Np_{S/N}
-
-log⁡BS/G\log B_{S/G}
-
-pS/Gp_{S/G}
-
-<mark>GW150914</mark>
-
-2.32
-
-0.26
-
-2.95
-
-0.43
-
-GW151012
-
--0.59
-
-0.70
-
-0.35
-
-0.88
-
-GW151226
-
--0.67
-
-0.72
-
-2.48
-
-0.53
-
-GW170104
-
-1.09
-
-0.44
-
-3.80
-
-0.28
-
-GW170608
-
--0.90
-
-0.75
-
-0.90
-
-0.82
-
-GW170823
-
-6.11
-
-0.03
-
-5.29
-
-0.11
-
-Combined
-
-0.34
-
-0.57
-
-Table 1: Log Bayes factors for signal v…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ve boundary conditions just outside of where the
-horizon would have been, at mass ratio q=100q=100 [37, 38].
-The simulated signal was embedded
-into detector noise at a signal-to-noise ratio (SNR) of 12, roughly
-corresponding to the SNR in the ringdown part of <mark>GW150914</mark>, had it been observed with
-Advanced LIGO sensitivity of the second observing run. In all cases the whitened
-raw data is shown, along with the whitened signal reconstruction. We include these
-reconstructions for completeness; our main results are the ones in F…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …γ\gamma, and AA at which the template-based analysis of [22] claimed tentative evidence for echoes related to GW150914, GW151012, and GW151226.</li><li><span class="sec">methods</span> GW150914</li><li><span class="sec">results</span> …tector noise at a signal-to-noise ratio (SNR) of 12, roughly corresponding to the SNR in the ringdown part of GW150914, had it been observed with Advanced LIGO sensitivity of the second observing run.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -280,106 +201,16 @@ reconstructions for completeness; our main results are the ones in F…</div>
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…nges,
-though pertaining to generalized wavelet decompositions rather than waveform templates,
-include the corresponding values for
-t0t_{0}, γ\gamma, and AA at which the template-based analysis of [22] claimed
-tentative evidence for echoes related to GW150914, <mark>GW151012</mark>, and GW151226.
-
-To construct background distributions for the log Bayes factors
-log⁡BS/N\log B_{S/N} and log⁡BS/G\log B_{S/G}, we use stretches of
-data preceding
-each coalescence event in GWTC-1 in the following way. In the interval between 1050 s and 250 s b…</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1906.11168v1#:~:text=GW151012" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151012</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…irst echo was centered
-at 1.0 s after the event time, where [28] claimed tentative evidence for an echo.
-For the
-associated pp-values,
-see Table 2.
-
-Event
-
-log⁡BS/N\log B_{S/N}
-
-pS/Np_{S/N}
-
-log⁡BS/G\log B_{S/G}
-
-pS/Gp_{S/G}
-
-GW150914
-
-2.32
-
-0.26
-
-2.95
-
-0.43
-
-<mark>GW151012</mark>
-
--0.59
-
-0.70
-
-0.35
-
-0.88
-
-GW151226
-
--0.67
-
-0.72
-
-2.48
-
-0.53
-
-GW170104
-
-1.09
-
-0.44
-
-3.80
-
-0.28
-
-GW170608
-
--0.90
-
-0.75
-
-0.90
-
-0.82
-
-GW170823
-
-6.11
-
-0.03
-
-5.29
-
-0.11
-
-Combined
-
-0.34
-
-0.57
-
-Table 1: Log Bayes factors for signal versus noise and signal versus glit…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …nd AA at which the template-based analysis of [22] claimed tentative evidence for echoes related to GW150914, GW151012, and GW151226.</li><li><span class="sec">methods</span> GW151012</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -415,106 +246,16 @@ Table 1: Log Bayes factors for signal versus noise and signal versus glit…</di
 <section class="card" data-i="2" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ertaining to generalized wavelet decompositions rather than waveform templates,
-include the corresponding values for
-t0t_{0}, γ\gamma, and AA at which the template-based analysis of [22] claimed
-tentative evidence for echoes related to GW150914, GW151012, and <mark>GW151226</mark>.
-
-To construct background distributions for the log Bayes factors
-log⁡BS/N\log B_{S/N} and log⁡BS/G\log B_{S/G}, we use stretches of
-data preceding
-each coalescence event in GWTC-1 in the following way. In the interval between 1050 s and 250 s before
-the GPS …</div>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1906.11168v1#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…er the event time, where [28] claimed tentative evidence for an echo.
-For the
-associated pp-values,
-see Table 2.
-
-Event
-
-log⁡BS/N\log B_{S/N}
-
-pS/Np_{S/N}
-
-log⁡BS/G\log B_{S/G}
-
-pS/Gp_{S/G}
-
-GW150914
-
-2.32
-
-0.26
-
-2.95
-
-0.43
-
-GW151012
-
--0.59
-
-0.70
-
-0.35
-
-0.88
-
-<mark>GW151226</mark>
-
--0.67
-
-0.72
-
-2.48
-
-0.53
-
-GW170104
-
-1.09
-
-0.44
-
-3.80
-
-0.28
-
-GW170608
-
--0.90
-
-0.75
-
-0.90
-
-0.82
-
-GW170823
-
-6.11
-
-0.03
-
-5.29
-
-0.11
-
-Combined
-
-0.34
-
-0.57
-
-Table 1: Log Bayes factors for signal versus noise and signal versus glitch,
-and the corresponding pp-values…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …the template-based analysis of [22] claimed tentative evidence for echoes related to GW150914, GW151012, and GW151226.</li><li><span class="sec">methods</span> GW151226</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -550,94 +291,16 @@ and the corresponding pp-values…</div>
 <section class="card" data-i="3" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1906.11168v1#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…ed tentative evidence for an echo.
-For the
-associated pp-values,
-see Table 2.
-
-Event
-
-log⁡BS/N\log B_{S/N}
-
-pS/Np_{S/N}
-
-log⁡BS/G\log B_{S/G}
-
-pS/Gp_{S/G}
-
-GW150914
-
-2.32
-
-0.26
-
-2.95
-
-0.43
-
-GW151012
-
--0.59
-
-0.70
-
-0.35
-
-0.88
-
-GW151226
-
--0.67
-
-0.72
-
-2.48
-
-0.53
-
-<mark>GW170104</mark>
-
-1.09
-
-0.44
-
-3.80
-
-0.28
-
-GW170608
-
--0.90
-
-0.75
-
-0.90
-
-0.82
-
-GW170823
-
-6.11
-
-0.03
-
-5.29
-
-0.11
-
-Combined
-
-0.34
-
-0.57
-
-Table 1: Log Bayes factors for signal versus noise and signal versus glitch,
-and the corresponding pp-values,
-for events seen in two detectors.…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170104</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -673,95 +336,16 @@ for events seen in two detectors.…</div>
 <section class="card" data-i="4" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1906.11168v1#:~:text=GW170608" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…
-For the
-associated pp-values,
-see Table 2.
-
-Event
-
-log⁡BS/N\log B_{S/N}
-
-pS/Np_{S/N}
-
-log⁡BS/G\log B_{S/G}
-
-pS/Gp_{S/G}
-
-GW150914
-
-2.32
-
-0.26
-
-2.95
-
-0.43
-
-GW151012
-
--0.59
-
-0.70
-
-0.35
-
-0.88
-
-GW151226
-
--0.67
-
-0.72
-
-2.48
-
-0.53
-
-GW170104
-
-1.09
-
-0.44
-
-3.80
-
-0.28
-
-<mark>GW170608</mark>
-
--0.90
-
-0.75
-
-0.90
-
-0.82
-
-GW170823
-
-6.11
-
-0.03
-
-5.29
-
-0.11
-
-Combined
-
-0.34
-
-0.57
-
-Table 1: Log Bayes factors for signal versus noise and signal versus glitch,
-and the corresponding pp-values,
-for events seen in two detectors. The bottom row contains the
-combi…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170608</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -797,92 +381,16 @@ combi…</div>
 <section class="card" data-i="5" data-event="GW170729">
   <div class="ctx">
     <div class="evname mono">GW170729</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1906.11168v1#:~:text=GW170729" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170729</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…rsus noise and signal versus glitch,
-and the corresponding pp-values,
-for events seen in two detectors. The bottom row contains the
-combined pp-values for all these events together.
-
-Event
-
-log⁡BS/N\log B_{S/N}
-
-pS/Np_{S/N}
-
-log⁡BS/G\log B_{S/G}
-
-pS/Gp_{S/G}
-
-<mark>GW170729</mark>
-
-4.24
-
-0.67
-
-5.64
-
-0.62
-
-GW170809
-
-9.05
-
-0.31
-
-12.69
-
-0.09
-
-GW170814
-
-8.75
-
-0.33
-
-8.54
-
-0.34
-
-GW170817
-
-11.05
-
-0.19
-
-10.30
-
-0.20
-
-GW170817+1s
-
-6.19
-
-0.52
-
-9.39
-
-0.27
-
-GW170818
-
-10.39
-
-0.23
-
-9.36
-
-0.27
-
-Combined
-
-0.47
-
-0.22
-
-Table 2: The same as in Table 2, bu…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170729</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -918,105 +426,16 @@ Table 2: The same as in Table 2, bu…</div>
 <section class="card" data-i="6" data-event="GW170809">
   <div class="ctx">
     <div class="evname mono">GW170809</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…h,
-and the corresponding pp-values,
-for events seen in two detectors. The bottom row contains the
-combined pp-values for all these events together.
-
-Event
-
-log⁡BS/N\log B_{S/N}
-
-pS/Np_{S/N}
-
-log⁡BS/G\log B_{S/G}
-
-pS/Gp_{S/G}
-
-GW170729
-
-4.24
-
-0.67
-
-5.64
-
-0.62
-
-<mark>GW170809</mark>
-
-9.05
-
-0.31
-
-12.69
-
-0.09
-
-GW170814
-
-8.75
-
-0.33
-
-8.54
-
-0.34
-
-GW170817
-
-11.05
-
-0.19
-
-10.30
-
-0.20
-
-GW170817+1s
-
-6.19
-
-0.52
-
-9.39
-
-0.27
-
-GW170818
-
-10.39
-
-0.23
-
-9.36
-
-0.27
-
-Combined
-
-0.47
-
-0.22
-
-Table 2: The same as in Table 2, but now for the events
-that were see…</div>
+    <p class="where">Named 2 times:
+      methods, results.</p>
+    <p class="where"><a href="https://arxiv.org/html/1906.11168v1#:~:text=GW170809" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170809</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…ll as associated pp-values.
-All foreground results
-are in the support of the relevant background distributions. For signal versus noise,
-the smallest pp-value is 3% (the case of GW170823), whereas for signal versus glitch the pp-values do not
-go below 9% (see <mark>GW170809</mark>). In summary, we find
-no statistically significant evidence for echoes in GWTC-1. For
-the binary black hole observations in particular, this statement is in agreement with the template-based
-searches in [23, 25, 26]. (Note that
-a quantitative comparison of pp…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170809</li><li><span class="sec">results</span> …pp-value is 3% (the case of GW170823), whereas for signal versus glitch the pp-values do not go below 9% (see GW170809).</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1052,92 +471,16 @@ a quantitative comparison of pp…</div>
 <section class="card" data-i="7" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1906.11168v1#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…
-for events seen in two detectors. The bottom row contains the
-combined pp-values for all these events together.
-
-Event
-
-log⁡BS/N\log B_{S/N}
-
-pS/Np_{S/N}
-
-log⁡BS/G\log B_{S/G}
-
-pS/Gp_{S/G}
-
-GW170729
-
-4.24
-
-0.67
-
-5.64
-
-0.62
-
-GW170809
-
-9.05
-
-0.31
-
-12.69
-
-0.09
-
-<mark>GW170814</mark>
-
-8.75
-
-0.33
-
-8.54
-
-0.34
-
-GW170817
-
-11.05
-
-0.19
-
-10.30
-
-0.20
-
-GW170817+1s
-
-6.19
-
-0.52
-
-9.39
-
-0.27
-
-GW170818
-
-10.39
-
-0.23
-
-9.36
-
-0.27
-
-Combined
-
-0.47
-
-0.22
-
-Table 2: The same as in Table 2, but now for the events
-that were seen in three detectors. In the case o…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170814</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1173,282 +516,15 @@ that were seen in three detectors. In the case o…</div>
 <section class="card" data-i="8" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>6 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…G\log B_{S/G} (bottom),
-for the 2-detector events of GWTC-1. The
-associated pp-values can be found in Table 1.
-
-Figure 2: The same as in Fig. 1, but now for the 3-detector events
-of GWTC-1. The thin solid lines in each of the two panels are for an analysis
-of <mark>GW170817</mark> in which the prior range for the time of the first echo was centered
-at 1.0 s after the event time, where [28] claimed tentative evidence for an echo.
-For the
-associated pp-values,
-see Table 2.
-
-Event
-
-log⁡BS/N\log B_{S/N}
-
-pS/Np_{S/N}
-
-log⁡BS/G\log B_{S/G}
-
-…</div>
+    <p class="where">Named 6 times:
+      methods ×5, results.</p>
+    <p class="where"><a href="https://arxiv.org/html/1906.11168v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>… The bottom row contains the
-combined pp-values for all these events together.
-
-Event
-
-log⁡BS/N\log B_{S/N}
-
-pS/Np_{S/N}
-
-log⁡BS/G\log B_{S/G}
-
-pS/Gp_{S/G}
-
-GW170729
-
-4.24
-
-0.67
-
-5.64
-
-0.62
-
-GW170809
-
-9.05
-
-0.31
-
-12.69
-
-0.09
-
-GW170814
-
-8.75
-
-0.33
-
-8.54
-
-0.34
-
-<mark>GW170817</mark>
-
-11.05
-
-0.19
-
-10.30
-
-0.20
-
-GW170817+1s
-
-6.19
-
-0.52
-
-9.39
-
-0.27
-
-GW170818
-
-10.39
-
-0.23
-
-9.36
-
-0.27
-
-Combined
-
-0.47
-
-0.22
-
-Table 2: The same as in Table 2, but now for the events
-that were seen in three detectors. In the case of GW170817 we also include results…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…d pp-values for all these events together.
-
-Event
-
-log⁡BS/N\log B_{S/N}
-
-pS/Np_{S/N}
-
-log⁡BS/G\log B_{S/G}
-
-pS/Gp_{S/G}
-
-GW170729
-
-4.24
-
-0.67
-
-5.64
-
-0.62
-
-GW170809
-
-9.05
-
-0.31
-
-12.69
-
-0.09
-
-GW170814
-
-8.75
-
-0.33
-
-8.54
-
-0.34
-
-GW170817
-
-11.05
-
-0.19
-
-10.30
-
-0.20
-
-<mark>GW170817</mark>+1s
-
-6.19
-
-0.52
-
-9.39
-
-0.27
-
-GW170818
-
-10.39
-
-0.23
-
-9.36
-
-0.27
-
-Combined
-
-0.47
-
-0.22
-
-Table 2: The same as in Table 2, but now for the events
-that were seen in three detectors. In the case of GW170817 we also include results
-for which the prior range for the t…</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">methods</span>…8.75
-
-0.33
-
-8.54
-
-0.34
-
-GW170817
-
-11.05
-
-0.19
-
-10.30
-
-0.20
-
-GW170817+1s
-
-6.19
-
-0.52
-
-9.39
-
-0.27
-
-GW170818
-
-10.39
-
-0.23
-
-9.36
-
-0.27
-
-Combined
-
-0.47
-
-0.22
-
-Table 2: The same as in Table 2, but now for the events
-that were seen in three detectors. In the case of <mark>GW170817</mark> we also include results
-for which the prior range for the time of the first echo was centered
-at 1.0 s after the event time, where [28] claimed tentative evidence for an echo.
-The combined pp-values take the latter prior choice for this particular event.
-
-Fin…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ution with 2​N2N degrees of freedom.
-
-Figure 3: Stretches of whitened data (gray) and signal reconstructions (red)
-for a simulated echoes signal as described in the main text (top left panel) and for
-data immediately after the events in GWTC-1. In the case of <mark>GW170817</mark>,
-the first echo is searched for in an interval centered at 1.0 s after the
-event time. In all cases the event GPS time corresponds to the left bound of the panel.
-
-Results and discussion.
-Figures 1 and 2
-show background
-and foreground for log⁡BS/N\log B_{S/N}…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…based
-searches in [23, 25, 26]. (Note that
-a quantitative comparison of pp-values is hard to make, because of the very specific signal shapes
-that are assumed in the latter analyses.)
-
-Our results in Fig. 2 and Table 2 include
-the binary neutron star inspiral <mark>GW170817</mark>, analyzed in the same manner
-as the binary black hole merger signals.
-In [35], an analysis using the original
-BayesWave algorithm of [31, 32] (i.e. employing
-wavelets that are simple sine-Gaussians) yielded no evidence for a post-merger signal.
-Using our gene…</div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> The thin solid lines in each of the two panels are for an analysis of GW170817 in which the prior range for the time of the first echo was centered at 1.0 s after the event time, where [28…</li><li><span class="sec">methods</span> GW170817</li><li><span class="sec">methods</span> GW170817+1s</li><li><span class="sec">methods</span> In the case of GW170817 we also include results for which the prior range for the time of the first echo was centered at 1.0 s after…</li><li><span class="sec">methods</span> In the case of GW170817, the first echo is searched for in an interval centered at 1.0 s after the event time.</li><li><span class="sec">results</span> Our results in Fig. 2 and Table 2 include the binary neutron star inspiral GW170817, analyzed in the same manner as the binary black hole merger signals.</li></ul>
     </details>
     
   </div>
@@ -1485,92 +561,16 @@ Using our gene…</div>
 <section class="card" data-i="9" data-event="GW170818">
   <div class="ctx">
     <div class="evname mono">GW170818</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1906.11168v1#:~:text=GW170818" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170818</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…ther.
-
-Event
-
-log⁡BS/N\log B_{S/N}
-
-pS/Np_{S/N}
-
-log⁡BS/G\log B_{S/G}
-
-pS/Gp_{S/G}
-
-GW170729
-
-4.24
-
-0.67
-
-5.64
-
-0.62
-
-GW170809
-
-9.05
-
-0.31
-
-12.69
-
-0.09
-
-GW170814
-
-8.75
-
-0.33
-
-8.54
-
-0.34
-
-GW170817
-
-11.05
-
-0.19
-
-10.30
-
-0.20
-
-GW170817+1s
-
-6.19
-
-0.52
-
-9.39
-
-0.27
-
-<mark>GW170818</mark>
-
-10.39
-
-0.23
-
-9.36
-
-0.27
-
-Combined
-
-0.47
-
-0.22
-
-Table 2: The same as in Table 2, but now for the events
-that were seen in three detectors. In the case of GW170817 we also include results
-for which the prior range for the time of the first echo was centered
-at…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170818</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1606,121 +606,16 @@ at…</div>
 <section class="card" data-i="10" data-event="GW170823">
   <div class="ctx">
     <div class="evname mono">GW170823</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…s of Advanced LIGO and Advanced Virgo. In all cases,
-the ratios of evidences for signal versus noise and signal versus glitch do not
-rise above their respective “background distributions” obtained from detector noise,
-the smallest pp-value being 3% (for event <mark>GW170823</mark>).
-Hence we find no statistically significant evidence for echoes in GWTC-1.
-
- 
-
-pacs
-
-04.40.Dg,04.70.Dy,04.80.Cc
-
-Introduction.
-Over the past several years, the twin Advanced LIGO observatories [1]
-have been detecting gravitational wave (GW) signals from coal…</div>
+    <p class="where">Named 3 times:
+      abstract, methods, results.</p>
+    <p class="where"><a href="https://arxiv.org/html/1906.11168v1#:~:text=GW170823" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170823</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…Table 2.
-
-Event
-
-log⁡BS/N\log B_{S/N}
-
-pS/Np_{S/N}
-
-log⁡BS/G\log B_{S/G}
-
-pS/Gp_{S/G}
-
-GW150914
-
-2.32
-
-0.26
-
-2.95
-
-0.43
-
-GW151012
-
--0.59
-
-0.70
-
-0.35
-
-0.88
-
-GW151226
-
--0.67
-
-0.72
-
-2.48
-
-0.53
-
-GW170104
-
-1.09
-
-0.44
-
-3.80
-
-0.28
-
-GW170608
-
--0.90
-
-0.75
-
-0.90
-
-0.82
-
-<mark>GW170823</mark>
-
-6.11
-
-0.03
-
-5.29
-
-0.11
-
-Combined
-
-0.34
-
-0.57
-
-Table 1: Log Bayes factors for signal versus noise and signal versus glitch,
-and the corresponding pp-values,
-for events seen in two detectors. The bottom row contains the
-combined pp-values for all these events …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…nd in Tables 1 and 2
-we list the specific log Bayes factors for these cases, as well as associated pp-values.
-All foreground results
-are in the support of the relevant background distributions. For signal versus noise,
-the smallest pp-value is 3% (the case of <mark>GW170823</mark>), whereas for signal versus glitch the pp-values do not
-go below 9% (see GW170809). In summary, we find
-no statistically significant evidence for echoes in GWTC-1. For
-the binary black hole observations in particular, this statement is in agreement with the t…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …respective “background distributions” obtained from detector noise, the smallest pp-value being 3% (for event GW170823).</li><li><span class="sec">methods</span> GW170823</li><li><span class="sec">results</span> For signal versus noise, the smallest pp-value is 3% (the case of GW170823), whereas for signal versus glitch the pp-values do not go below 9% (see GW170809).</li></ul>
+    </details>
     
   </div>
   <div class="form">

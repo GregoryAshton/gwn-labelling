@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,215 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>BILBY: A User-friendly Bayesian Inference Library for Gravitational-wave Astronomy</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1811.02042" target="_blank" rel="noopener" class="mono">arXiv:1811.02042</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Bayesian parameter estimation is fast becoming the language of gravitational-wave astronomy. It is the method by which gravitational-wave data is used to infer the sources’ astrophysical properties. We introduce a user-friendly Bayesian inference library for gravitational-wave astronomy, BILBY. This PYTHON code provides expert-level parameter estimation infrastructure with straightforward syntax and tools that facilitate use by beginners. It allows users to perform accurate and reliable gravitational-wave parameter estimation on both real, freely available data from LIGO/Virgo and simulated data. We provide a suite of examples for the analysis of compact binary mergers and other types of signal models, including supernovae and the remnants of binary neutron star mergers. These examples illustrate how to change the signal model, implement new likelihood functions, and add new detectors. BILBY has additional functionality to do population studies using hierarchical Bayesian modeling. We provide an example in which we infer the shape of the black hole mass distribution from an ensemble of observations of binary black hole mergers.</p></details>
+<div class="small mut mono">arXiv:1811.02042</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Bayesian parameter estimation is fast becoming the language of gravitational-wave astronomy. It is the method by which gravitational-wave data is used to infer the sources’ astrophysical properties. We introduce a user-friendly Bayesian inference library for gravitational-wave astronomy, BILBY. This PYTHON code provides expert-level parameter estimation infrastructure with straightforward syntax and tools that facilitate use by beginners. It allows users to perform accurate and reliable gravitational-wave parameter estimation on both real, freely available data from LIGO/Virgo and simulated data. We provide a suite of examples for the analysis of compact binary mergers and other types of signal models, including supernovae and the remnants of binary neutron star mergers. These examples illustrate how to change the signal model, implement new likelihood functions, and add new detectors. BILBY has additional functionality to do population studies using hierarchical Bayesian modeling. We provide an example in which we infer the shape of the black hole mass distribution from an ensemble of observations of binary black hole mergers.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1811.02042v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">2 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">2 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>17 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-Abstract
-
-I Introduction
-
-II Bilby Design Philosophy
-
-III Code Overview
-
-III.1 Installation
-
-III.2 Packages
-
-III.2.1 The core package
-
-III.2.2 The gw package
-
-III.3 The hyper package
-
-IV Compact Binary Coalescence
-
-IV.1 <mark>GW150914</mark>: the onset of gravitational wave astronomy
-
-IV.2 Binary black hole merger injection
-
-IV.3 Measuring tidal effects in binary neutron star coalescences
-
-IV.4 Implementing New Waveforms
-
-IV.5 Adding detectors to the network
-
-V Alternative signal models
-
-V.1 Supe…</div>
+    <p class="where">Named 17 times:
+      methods ×16, title/headings.</p>
+    <p class="where"><a href="https://arxiv.org/html/1811.02042v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…th increasingly complex applications that are more likely of interest to specialists.
-
-The worked examples are as follows.
-Section IV is devoted to compact binary coalescences.
-In IV.1, we carry out parameter estimation with publicly-available data to analyze <mark>GW150914</mark>, the first ever gravitational-wave event.
-In IV.2, we study a simulated binary black hole signal added to Monte Carlo noise.
-In IV.3, we study the matter effects encoded in the gravitational waveforms of a binary neutron star inspiral.
-In IV.4, we show how it…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…δ​ϕ\delta\phi, ϕJL\phi_{\rm JL}
-rad.
-uniform
-0
-2​π2\pi
-
-dLd_{L}
-Mpc
-comoving
-10210^{2}
-5×1035\times 10^{3}
-
-ra
-rad.
-uniform
-0
-2​π2\pi
-
-dec
-rad.
-cos
-−π/2-\pi/2
-π/2\pi/2
-
-ι\iota
-rad.
-sin
-0
-π\pi
-
-ψ\psi
-rad.
-uniform
-0
-π\pi
-
-ϕc\phi_{c}
-rad.
-uniform
-0
-2​π2\pi
-
-IV.1 <mark>GW150914</mark>: the onset of gravitational wave astronomy
-
-The first direct detection of gravitational waves occurred on the 14th of September, 2015, when the two LIGO detectors [53] in Hanford, Washington and Livingston, Louisiana detected the coalescence of a binary black…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">methods</span>…+5}_{-3}\,M_{\odot} and 30−4+3​M⊙30^{+3}_{-4}\,M_{\odot} at 90% confidence [2].
-The distance to the source is determined to be 440−180+160​Mpc440^{+160}_{-180}\,\mathrm{Mpc} [2].
-
-In this example, we use Bilby to reproduce the parameter estimation results for <mark>GW150914</mark>.
-The data for published LIGO/Virgo events is made available through the Gravitational Wave Open Science Center [19]. Built-in Bilby functionality downloads and parses this data. We begin with the following two lines.
-
- &gt;&gt;&gt; import bilby
- &gt;&gt;&gt; interferometers = …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…o events is made available through the Gravitational Wave Open Science Center [19]. Built-in Bilby functionality downloads and parses this data. We begin with the following two lines.
-
- &gt;&gt;&gt; import bilby
- &gt;&gt;&gt; interferometers = bilby.gw.detector.get_event_data(&#34;<mark>GW150914</mark>&#34;)
-
-The first line of code imports the Bilby code-base into the Python environment. The second line returns a set of objects that contain the relevant data segments and associated data products relevant for the analysis for both the LIGO Hanford and Livingston…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ients for any Bayesian inference calculation are the likelihood and the prior. Default sets of priors can be called from the gw.prior module, and we also employ the default Gaussian noise likelihood (Eq. 1).
-
- &gt;&gt;&gt; prior = bilby.gw.prior.BBHPriorDict(filename=&#34;<mark>GW150914</mark>.prior&#34;)
- &gt;&gt;&gt; likelihood = bilby.gw.likelihood.get_binary_black_hole_likelihood(interferometers)
-
-The above code calls the GW150914 prior, which differs from the priors described in Tab. 1 in two main ways. Firstly, to speed up the running of the code it restr…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…or module, and we also employ the default Gaussian noise likelihood (Eq. 1).
-
- &gt;&gt;&gt; prior = bilby.gw.prior.BBHPriorDict(filename=&#34;GW150914.prior&#34;)
- &gt;&gt;&gt; likelihood = bilby.gw.likelihood.get_binary_black_hole_likelihood(interferometers)
-
-The above code calls the <mark>GW150914</mark> prior, which differs from the priors described in Tab. 1 in two main ways. Firstly, to speed up the running of the code it restricts the mass priors to between 30 and 50 M⊙ for the primary mass, and 20 and 40 M⊙ for the secondary mass. Moreover, this prior ca…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…istribution for all parameters in the model using the command
-
- &gt;&gt;&gt; result.plot_corner()
-
-The above example code produces posterior distributions that by eye, agree reasonably well with the parameter uncertainty associated with the published distributions for <mark>GW150914</mark>. The shape of the likelihood for the extrinsic parameters presents significant challenges for samplers, due to strong degeneracy’s between different sky locations, distances, inclination angles, and polarization angles [54, 55, see e.g.,]. For more accurate r…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…s. Such calibration uncertainty is built in to Bilby using the cubic spline parameterization [59], with example usage in the Bilby repository.
-
-Figure 1: Marginalised posterior source-mass distributions for the first binary black hole merger detected by LIGO, <mark>GW150914</mark>. We show the posterior distributions recovered using Bilby (blue), and those using LALInference (orange), using open data from the Gravitational Wave Open Science Centre [19]. The five lines of Bilby code required for reproducing the posteriors are shown in S…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…]. The five lines of Bilby code required for reproducing the posteriors are shown in Section IV.1.
-
-Figure 2: Marginalized posterior distributions on the binary inclination angle and luminosity distance for the first binary black hole merger detected by LIGO, <mark>GW150914</mark>. We show the posterior distributions recovered using Bilby (blue), and those using LALInference (orange), using open data from the Gravitational Wave Open Science Centre [19].
-
-Figure 3: Sky localisation uncertainty for GW150914. The blue marginalized posteri…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… hole merger detected by LIGO, GW150914. We show the posterior distributions recovered using Bilby (blue), and those using LALInference (orange), using open data from the Gravitational Wave Open Science Centre [19].
-
-Figure 3: Sky localisation uncertainty for <mark>GW150914</mark>. The blue marginalized posterior distributions are those recovered using Bilby, and the orange are those recovered using LALInference, using open data from the Gravitational Wave Open Science Center [19].
-
-IV.2 Binary black hole merger injection
-
-Bilby suppor…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… properties.
-
-In this first example44
- 4
- 
- 
- 
- This example is found in the Bilby git repository at https://git.ligo.org/lscsoft/bilby/blob/master/examples/injection_examples/basic_tutorial.py., we create a binary black hole signal with parameters similar to <mark>GW150914</mark> [1], albeit at a luminosity distance of dL=2d_{L}=2 Gpc (cf. dL≈400d_{L}\approx 400 Mpc for GW150914). We inject the signal into a network of LIGO-Livingston, LIGO-Hanford [53] and Virgo interferometers [61], each operating at design sensitivity. When doing e…</div>
+    <details class="lines"><summary>Show the sentences (15, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> IV.1 GW150914: the onset of gravitational wave astronomy</li><li><span class="sec">methods</span> In IV.1, we carry out parameter estimation with publicly-available data to analyze GW150914, the first ever gravitational-wave event.</li><li><span class="sec">methods</span> In this example, we use Bilby to reproduce the parameter estimation results for GW150914.</li><li><span class="sec">methods</span> &gt;&gt;&gt; import bilby &gt;&gt;&gt; interferometers = bilby.gw.detector.get_event_data(&#34;GW150914&#34;)</li><li><span class="sec">methods</span> &gt;&gt;&gt; prior = bilby.gw.prior.BBHPriorDict(filename=&#34;GW150914.prior&#34;) &gt;&gt;&gt; likelihood = bilby.gw.likelihood.get_binary_black_hole_likelihood(interferometers)</li><li><span class="sec">methods</span> The above code calls the GW150914 prior, which differs from the priors described in Tab. 1 in two main ways.</li><li><span class="sec">methods</span> …by eye, agree reasonably well with the parameter uncertainty associated with the published distributions for GW150914.</li><li><span class="sec">methods</span> …1: Marginalised posterior source-mass distributions for the first binary black hole merger detected by LIGO, GW150914.</li></ul>
     </details>
     
   </div>
@@ -367,31 +201,16 @@ In this first example44
 <section class="card" data-i="1" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ion we only search over the two black hole masses m1m_{1} and m2m_{2}, the luminosity distance dLd_{L}, and the inclination angle ι\iota.
-
-IV.3 Measuring tidal effects in binary neutron star coalescences
-
-The first detection of binary neutron star coalescence <mark>GW170817</mark> was a landmark event signalling the beginning of multimessenger gravitational-wave astronomy [6, 62]. Gravitational-wave parameter estimation of the inspiral is what ultimately determined that both objects were likely neutron stars, and provides the best-yet …</div>
+    <p class="where">Named 3 times:
+      methods ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/1811.02042v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…2k_{2}}{3}\left(\frac{c^{2}R}{Gm}\right)^{5},
-
-(2)
-
-is a fixed parameter for a given equation of state and neutron star mass. Here, k2k_{2} is the second Love number, RR and mm are the neutron star radius and mass, respectively. The binary neutron star merger <mark>GW170817</mark> provided constraints of Λ1.4=190−120+390\Lambda_{1.4}=190^{+390}_{-120} [4, 63], where the subscript denotes this is the estimate on Λ\Lambda assuming a 1.4 M⊙ neutron star, and the uncertainty is the 90% credible interval.
-
-Bilby can be used to study neutron…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…these neutron stars are highly dynamic, and can emit significant gravitational radiation potentially observable by Advanced LIGO and Virgo at design sensitivity out to ∼50\sim 50 Mpc [e.g., 81, and references therein]. While the ultimate fate of binary merger <mark>GW170817</mark> is unknown, no gravitational waves from a post-merger remnant were found [82, 5], which is not surprising given the interferometers were not operating at design sensitivity and the distances involved.
-
-Providing the sensitivity of gravitational-wave interfero…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> The first detection of binary neutron star coalescence GW170817 was a landmark event signalling the beginning of multimessenger gravitational-wave astronomy [6, 62].</li><li><span class="sec">methods</span> The binary neutron star merger GW170817 provided constraints of Λ1.4=190−120+390\Lambda_{1.4}=190^{+390}_{-120} [4, 63], where the subscript denotes…</li><li><span class="sec">methods</span> While the ultimate fate of binary merger GW170817 is unknown, no gravitational waves from a post-merger remnant were found [82, 5], which is not surprising giv…</li></ul>
+    </details>
     
   </div>
   <div class="form">

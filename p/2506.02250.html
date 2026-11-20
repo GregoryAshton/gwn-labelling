@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,69 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Seeking spinning subpopulations of black hole binaries via iterative density estimation</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2506.02250" target="_blank" rel="noopener" class="mono">arXiv:2506.02250</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Attempts to understand the formation of binary black hole (BBH) systems detected via gravitational wave (GW) emission are affected by many unknowns and uncertainties, from both the observational and theoretical (astrophysical modeling) sides. Binary component spins have been proposed as a means to investigate formation channels, however obtaining clear inferences is challenging, given the apparently low magnitude of almost all merging BH spins and their high measurement uncertainties. Even for the effective aligned spin &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; which is more precisely measured than component spins, specific model assumptions have been required to identify any clear trends. Here, we reconstruct the joint component mass and &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; distribution of BBH mergers with minimal assumptions using the GWTC-3 catalog, using an iterative kernel density estimation-based method. We reproduce some features seen in previous analyses, for instance a small but preferentially positive &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; for low-mass mergers; we also identify a possible subpopulation of higher-spin BBH with &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mo&gt;|&lt;/mml:mo&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;mml:mo&gt;|&lt;/mml:mo&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; up to &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mo&gt;∼&lt;/mml:mo&gt;&lt;mml:mn&gt;0.75&lt;/mml:mn&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; for primary masses &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;m&lt;/mml:mi&gt;&lt;mml:mn&gt;1&lt;/mml:mn&gt;&lt;/mml:msub&gt;&lt;mml:mo&gt;≳&lt;/mml:mo&gt;&lt;mml:mn&gt;40&lt;/mml:mn&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;mml:mo&gt;⊙&lt;/mml:mo&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;, in addition to the bulk of the distribution with &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mo&gt;|&lt;/mml:mo&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;mml:mo&gt;|&lt;/mml:mo&gt;&lt;mml:mo&gt;≲&lt;/mml:mo&gt;&lt;mml:mn&gt;0.2&lt;/mml:mn&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;. This finding is consistent with previous studies indicating a broader spin distribution at high mass, suggesting a distinct origin for the high-spin systems. We also identify a new potential trend of low-mass BBHs; the derivative of &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; with respect to &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;m&lt;/mml:mi&gt;&lt;mml:mn&gt;1&lt;/mml:mn&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; (&lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;m&lt;/mml:mi&gt;&lt;mml:mn&gt;2&lt;/mml:mn&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;) is positive (negative) over the &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mrow&gt;&lt;mml:mn&gt;10&lt;/mml:mn&gt;&lt;mml:mi&gt;─&lt;/mml:mi&gt;&lt;mml:mn&gt;15&lt;/mml:mn&gt;&lt;mml:msub&gt;&lt;mml:mrow&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;⊙&lt;/mml:mo&gt;&lt;/mml:mrow&gt;&lt;/mml:msub&gt;&lt;/mml:mrow&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; range. This apparent structure may be related to a previously reported anticorrelation between mass ratio and &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;.</p></details>
+<div class="small mut mono">arXiv:2506.02250</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Attempts to understand the formation of binary black hole (BBH) systems detected via gravitational wave (GW) emission are affected by many unknowns and uncertainties, from both the observational and theoretical (astrophysical modeling) sides. Binary component spins have been proposed as a means to investigate formation channels, however obtaining clear inferences is challenging, given the apparently low magnitude of almost all merging BH spins and their high measurement uncertainties. Even for the effective aligned spin &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; which is more precisely measured than component spins, specific model assumptions have been required to identify any clear trends. Here, we reconstruct the joint component mass and &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; distribution of BBH mergers with minimal assumptions using the GWTC-3 catalog, using an iterative kernel density estimation-based method. We reproduce some features seen in previous analyses, for instance a small but preferentially positive &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; for low-mass mergers; we also identify a possible subpopulation of higher-spin BBH with &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mo&gt;|&lt;/mml:mo&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;mml:mo&gt;|&lt;/mml:mo&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; up to &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mo&gt;∼&lt;/mml:mo&gt;&lt;mml:mn&gt;0.75&lt;/mml:mn&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; for primary masses &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;m&lt;/mml:mi&gt;&lt;mml:mn&gt;1&lt;/mml:mn&gt;&lt;/mml:msub&gt;&lt;mml:mo&gt;≳&lt;/mml:mo&gt;&lt;mml:mn&gt;40&lt;/mml:mn&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;mml:mo&gt;⊙&lt;/mml:mo&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;, in addition to the bulk of the distribution with &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mo&gt;|&lt;/mml:mo&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;mml:mo&gt;|&lt;/mml:mo&gt;&lt;mml:mo&gt;≲&lt;/mml:mo&gt;&lt;mml:mn&gt;0.2&lt;/mml:mn&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;. This finding is consistent with previous studies indicating a broader spin distribution at high mass, suggesting a distinct origin for the high-spin systems. We also identify a new potential trend of low-mass BBHs; the derivative of &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; with respect to &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;m&lt;/mml:mi&gt;&lt;mml:mn&gt;1&lt;/mml:mn&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; (&lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;m&lt;/mml:mi&gt;&lt;mml:mn&gt;2&lt;/mml:mn&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;) is positive (negative) over the &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:mrow&gt;&lt;mml:mn&gt;10&lt;/mml:mn&gt;&lt;mml:mi&gt;─&lt;/mml:mi&gt;&lt;mml:mn&gt;15&lt;/mml:mn&gt;&lt;mml:msub&gt;&lt;mml:mrow&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;⊙&lt;/mml:mo&gt;&lt;/mml:mrow&gt;&lt;/mml:msub&gt;&lt;/mml:mrow&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; range. This apparent structure may be related to a previously reported anticorrelation between mass ratio and &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;χ&lt;/mml:mi&gt;&lt;mml:mi&gt;eff&lt;/mml:mi&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2506.02250v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">3 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">3 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2506.02250v2#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…uncil (NSTC) in Taiwan.
-
-References
-
-[1]
-J. Aasi et al. (2015)
-
-Advanced LIGO.
-
-Class. Quant. Grav. 32, pp. 074001.
-
-External Links: 1411.4547,
-Document
-
-Cited by: §I.
-
-[2]
-B. P. Abbott et al. (2016)
-
-Astrophysical Implications of the Binary Black-Hole Merger <mark>GW150914</mark>.
-
-Astrophys. J. Lett. 818 (2), pp. L22.
-
-External Links: 1602.03846,
-Document
-
-Cited by: §I.
-
-[3]
-B. P. Abbott et al. (2016)
-
-Observation of Gravitational Waves from a Binary Black Hole Merger.
-
-Phys. Rev. Lett. 116 (6), pp. 061102.
-
-External Links: 1602.0383…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[2]</span> · 1 place</span><div class="cite">…m{eff}}.
-
- 
-
-I Introduction
-
-Ever since the first gravitational wave (GW) detection revealed a binary black hole (BBH) source with the—previously unsuspected—component masses of around 35 M⊙M_{\odot} <mark class="ref">[3, 2]</mark>,
-LIGO-Virgo observations [1, 12] of compact binaries have continued to yield surprises.
-Having a set of detected compact binaries, such as the order(100) candidates catalogued in the GWTC releases [4…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [2]</span> …ed a binary black hole (BBH) source with the—previously unsuspected—component masses of around 35 M⊙M_{\odot} [3, 2], LIGO-Virgo observations [1, 12] of compact binaries have continued to yield surprises. Having a set of detec…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -220,93 +201,16 @@ Having a set of detected compact binaries, such as the order(100) candidates cat
 <section class="card" data-i="1" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>… unusually low secondary mass (m2≃2.6​M⊙m_{2}\simeq 2.6\,M_{\odot}) [6], as this system could represent either a very massive neutron star or a light black hole, which is inconsistent with the primary BBH population we aim to analyze.
-For the highest-mass BBH <mark>GW190521</mark>, we prefer available PE results using the NRSurd7q4 waveform model [46] which is expected to give more accurate estimates than standard GWTC-3 choices for this event [5].
-Drawing 250 random samples from the posterior for each BBH event,
-our sensitive VT estim…</div>
+    <p class="where">Named 3 times:
+      reference list ×2, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2506.02250v2#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">references</span>…GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed by LIGO and Virgo during the First and Second Observing Runs.
-
-Phys. Rev. X 9 (3), pp. 031040.
-
-External Links: 1811.12907,
-Document
-
-Cited by: §I.
-
-[5]
-R. Abbott et al. (2020)
-
-<mark>GW190521</mark>: A Binary Black Hole Merger with a Total Mass of 150​M⊙150M_{\odot}.
-
-Phys. Rev. Lett. 125 (10), pp. 101102.
-
-External Links: 2009.01075,
-Document
-
-Cited by: §III.
-
-[6]
-R. Abbott et al. (2020)
-
-GW190814: Gravitational Waves from the Coalescence of a 23 Solar …
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[5]</span> · 1 place</span><div class="cite">…For the highest-mass BBH GW190521, we prefer available PE results using the NRSurd7q4 waveform model [46] which is expected to give more accurate estimates than standard GWTC-3 choices for this event <mark class="ref">[5]</mark>.
-Drawing 250 random samples from the posterior for each BBH event,
-our sensitive VT estimates at the masses and χeff\chi_{\mathrm{eff}} of the samples [51] are shown in Fig. 1.
-
-Figure 1: Chirp mass …</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…and Y. Fan (2024)
-
-Resolving the Stellar-Collapse and Hierarchical-Merger Origins of the Coalescing Black Holes.
-
-Phys. Rev. Lett. 133 (5), pp. 051401.
-
-External Links: 2303.02973,
-Document
-
-Cited by: §I.
-
-[46]
-LIGO Scientific and Virgo Collaborations (2020)
-
-<mark>GW190521</mark> parameter estimation samples and figure data.
-
-External Links: Link
-
-Cited by: §III.
-
-[47]
-LIGO Scientific and Virgo Collaborations (2021)
-
-GWTC-2.1: Candidate Data Release.
-
- Zenodo.
-
-External Links: Document,
-Link
-
-Cited by: §I,
-§III.
-
-[48]
-LIGO Scientific,…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[46]</span> · 1 place</span><div class="cite">…ar or a light black hole, which is inconsistent with the primary BBH population we aim to analyze.
-For the highest-mass BBH GW190521, we prefer available PE results using the NRSurd7q4 waveform model <mark class="ref">[46]</mark> which is expected to give more accurate estimates than standard GWTC-3 choices for this event [5].
-Drawing 250 random samples from the posterior for each BBH event,
-our sensitive VT estimates at the …</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> For the highest-mass BBH GW190521, we prefer available PE results using the NRSurd7q4 waveform model [46] which is expected to give more accura…</li><li><span class="sec">cites it as [5]</span> …form model [46] which is expected to give more accurate estimates than standard GWTC-3 choices for this event [5]. Drawing 250 random samples from the posterior for each BBH event, our sensitive VT estimates at the masses a…</li><li><span class="sec">cites it as [46]</span> …analyze. For the highest-mass BBH GW190521, we prefer available PE results using the NRSurd7q4 waveform model [46] which is expected to give more accurate estimates than standard GWTC-3 choices for this event [5]. Drawing 25…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -342,55 +246,16 @@ our sensitive VT estimates at the …</div>
 <section class="card" data-i="2" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>… bootstrap estimates.
-
-III Application to GWTC-3 Data
-
-We apply the iterative reweighted KDE to GWTC-3 public PE samples [49, 47], selecting 69 BBH candidate events from the cumulative O1-O3 catalog which have a false alarm rate below 1 per year and excluding <mark>GW190814</mark>, an outlier event with an unusually low secondary mass (m2≃2.6​M⊙m_{2}\simeq 2.6\,M_{\odot}) [6], as this system could represent either a very massive neutron star or a light black hole, which is inconsistent with the primary BBH population we aim to analyze.…</div>
+    <p class="where">Named 2 times:
+      methods, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2506.02250v2#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">references</span>…7,
-Document
-
-Cited by: §I.
-
-[5]
-R. Abbott et al. (2020)
-
-GW190521: A Binary Black Hole Merger with a Total Mass of 150​M⊙150M_{\odot}.
-
-Phys. Rev. Lett. 125 (10), pp. 101102.
-
-External Links: 2009.01075,
-Document
-
-Cited by: §III.
-
-[6]
-R. Abbott et al. (2020)
-
-<mark>GW190814</mark>: Gravitational Waves from the Coalescence of a 23 Solar Mass Black Hole with a 2.6 Solar Mass Compact Object.
-
-Astrophys. J. Lett. 896 (2), pp. L44.
-
-External Links: 2006.12611,
-Document
-
-Cited by: §III.
-
-[7]
-R. Abbott et al. (2021)
-
-GWTC-2: Compact Binary Co…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[6]</span> · 1 place</span><div class="cite">…ts from the cumulative O1-O3 catalog which have a false alarm rate below 1 per year and excluding GW190814, an outlier event with an unusually low secondary mass (m2≃2.6​M⊙m_{2}\simeq 2.6\,M_{\odot}) <mark class="ref">[6]</mark>, as this system could represent either a very massive neutron star or a light black hole, which is inconsistent with the primary BBH population we aim to analyze.
-For the highest-mass BBH GW190521, w…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …ndidate events from the cumulative O1-O3 catalog which have a false alarm rate below 1 per year and excluding GW190814, an outlier event with an unusually low secondary mass (m2≃2.6​M⊙m_{2}\simeq 2.6\,M_{\odot}) [6], as this sys…</li><li><span class="sec">cites it as [6]</span> …cluding GW190814, an outlier event with an unusually low secondary mass (m2≃2.6​M⊙m_{2}\simeq 2.6\,M_{\odot}) [6], as this system could represent either a very massive neutron star or a light black hole, which is inconsiste…</li></ul>
+    </details>
     
   </div>
   <div class="form">

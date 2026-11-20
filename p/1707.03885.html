@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,46 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>On the phantom barrier crossing and the bounds on the speed of sound in non-minimal derivative coupling theories</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1707.03885" target="_blank" rel="noopener" class="mono">arXiv:1707.03885</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">In this paper we investigate the so-called ‘phantom barrier crossing’ issue in a cosmological model based on the scalar-tensor theory with non-minimal derivative coupling to the Einstein tensor. Special attention will be paid to the physical bounds on the squared sound speed. The numeric results are geometrically illustrated by means of a qualitative procedure of analysis that is based on the mapping of the orbits in the phase plane onto the surfaces that represent physical quantities in the extended phase space, that is: the phase plane complemented with an additional dimension relative to the given physical parameter. We find that the cosmological model based on the non-minimal derivative coupling theory—this includes both the quintessence and the pure derivative coupling cases—has serious causality problems related to superluminal propagation of the scalar and tensor perturbations. Even more disturbing is the finding that, despite the fact that the underlying theory is free of the Ostrogradsky instability, the corresponding cosmological model is plagued by the Laplacian (classical) instability related with negative squared sound speed. This instability leads to an uncontrollable growth of the energy density of the perturbations that is inversely proportional to their wavelength. We show that, independent of the self-interaction potential, for positive coupling the tensor perturbations propagate superluminally, while for negative coupling a Laplacian instability arises. This latter instability invalidates the possibility for the model to describe the primordial inflation.</p></details>
+<div class="small mut mono">arXiv:1707.03885</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">In this paper we investigate the so-called ‘phantom barrier crossing’ issue in a cosmological model based on the scalar-tensor theory with non-minimal derivative coupling to the Einstein tensor. Special attention will be paid to the physical bounds on the squared sound speed. The numeric results are geometrically illustrated by means of a qualitative procedure of analysis that is based on the mapping of the orbits in the phase plane onto the surfaces that represent physical quantities in the extended phase space, that is: the phase plane complemented with an additional dimension relative to the given physical parameter. We find that the cosmological model based on the non-minimal derivative coupling theory—this includes both the quintessence and the pure derivative coupling cases—has serious causality problems related to superluminal propagation of the scalar and tensor perturbations. Even more disturbing is the finding that, despite the fact that the underlying theory is free of the Ostrogradsky instability, the corresponding cosmological model is plagued by the Laplacian (classical) instability related with negative squared sound speed. This instability leads to an uncontrollable growth of the energy density of the perturbations that is inversely proportional to their wavelength. We show that, independent of the self-interaction potential, for positive coupling the tensor perturbations propagate superluminally, while for negative coupling a Laplacian instability arises. This latter instability invalidates the possibility for the model to describe the primordial inflation.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1707.03885v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>4 mentions · <span class="cptag">2 by counterpart name</span></h3>
+    <p class="where">Named 4 times:
+      introduction ×2, discussion ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1707.03885v3#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">2 mentions use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention"><span class="sec">introduction</span>… difference in speed of photons and gravitons (cT2−c2)/c2≤6×10−15(c^{2}_{T}-c^{2})/c^{2}\leq 6\times 10^{-15} (cTc_{T} is the speed of the gravitational waves) implied by the announced detection of gravitational waves from the neutron star-neutron star merger <mark>GW170817</mark> and the simultaneous measurement of the gamma-ray burst GRB170817A [56].
-
-Before we go further, in order to unify the terminology and to be able to compare our results with other results in the bibliography, we want to make a comment on the sign of the coupli…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>…(c^{2}_{T}-c^{2})/c^{2}\leq 6\times 10^{-15} (cTc_{T} is the speed of the gravitational waves) implied by the announced detection of gravitational waves from the neutron star-neutron star merger GW170817 and the simultaneous measurement of the gamma-ray burst <mark class="cp">GRB170817A</mark> [56].
-
-Before we go further, in order to unify the terminology and to be able to compare our results with other results in the bibliography, we want to make a comment on the sign of the coupling constant α\alpha. This constant was named as κ\kappa in [23, 24]…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…nstraint on the difference in speed of photons and gravitons |cT2−1|≤10−15|c^{2}_{T}-1|\leq 10^{-15} (in this paper we have chosen the units where c2=1c^{2}=1) implied by the announced detection of gravitational waves from the neutron star-neutron star merger <mark>GW170817</mark> and the simultaneous measurement of the gamma-ray burst GRB170817A [56], since according to (46):
-
-cT2−1=2​x1−x⇒2​x≤10−15,c^{2}_{T}-1=\frac{2x}{1-x}\Rightarrow 2x\leq 10^{-15},
-
-we get that ϕ˙2≤105−109\dot{\phi}^{2}\leq 10^{5}-10^{9}GeV2, i. e., ϕ˙2≤10−33−10−…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention cp"><span class="sec">discussion · <span class="cptag">counterpart name, not the GW signal</span></span>…−1|≤10−15|c^{2}_{T}-1|\leq 10^{-15} (in this paper we have chosen the units where c2=1c^{2}=1) implied by the announced detection of gravitational waves from the neutron star-neutron star merger GW170817 and the simultaneous measurement of the gamma-ray burst <mark class="cp">GRB170817A</mark> [56], since according to (46):
-
-cT2−1=2​x1−x⇒2​x≤10−15,c^{2}_{T}-1=\frac{2x}{1-x}\Rightarrow 2x\leq 10^{-15},
-
-we get that ϕ˙2≤105−109\dot{\phi}^{2}\leq 10^{5}-10^{9}GeV2, i. e., ϕ˙2≤10−33−10−29​Mpl\dot{\phi}^{2}\leq 10^{-33}-10^{-29}M_{\text{pl}}, where Mpl≈…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …al waves) implied by the announced detection of gravitational waves from the neutron star-neutron star merger GW170817 and the simultaneous measurement of the gamma-ray burst GRB170817A [56].</li><li><span class="sec">introduction · counterpart name</span> …es from the neutron star-neutron star merger GW170817 and the simultaneous measurement of the gamma-ray burst GRB170817A [56].</li><li><span class="sec">discussion</span> …1c^{2}=1) implied by the announced detection of gravitational waves from the neutron star-neutron star merger GW170817 and the simultaneous measurement of the gamma-ray burst GRB170817A [56], since according to (46):</li><li><span class="sec">discussion · counterpart name</span> …es from the neutron star-neutron star merger GW170817 and the simultaneous measurement of the gamma-ray burst GRB170817A [56], since according to (46):</li></ul>
     </details>
     
   </div>

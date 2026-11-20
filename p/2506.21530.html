@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,68 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Detectability and parameter estimation for Einstein Telescope configurations with GWJulia</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2506.21530" target="_blank" rel="noopener" class="mono">arXiv:2506.21530</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Future gravitational-wave (GW) detectors are expected to detect tens of thousands of compact binary coalescences (CBC) per year, depending also on the final detectors layout. For this reason, it is essential to have a fast, reliable tool for forecasting how different detector layouts will affect parameter estimation for these events. The Fisher Information Matrix (FIM) is a common tool for tackling this problem. In this paper, we present a new open source code GWJulia to perform FIM analysis of CBC parameters, i.e., stellar black-hole binaries (BBH), neutron star binaries (BNS), and neutron star-black hole binaries (NSBH). The code is purely written in Julia, making it fast while maintaining a high level of accuracy. We consider a set of case studies to compare different Einstein Telescope (ET) designs. We compare a 10 km triangular configuration with two 15 km L-shaped detectors with different orientations and temperatures. We discuss also the accuracy of combinations of parameters, which is very informative for cosmology or population studies. Finally, we focus on the detection of golden events and explore how the FIM can guide posterior sampling of GW signals using a novel Hamiltonian Monte Carlo (HMC) sampler. The code is publicly available https://github.com/andrea-begnoni/GW.jl.</p></details>
+<div class="small mut mono">arXiv:2506.21530</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Future gravitational-wave (GW) detectors are expected to detect tens of thousands of compact binary coalescences (CBC) per year, depending also on the final detectors layout. For this reason, it is essential to have a fast, reliable tool for forecasting how different detector layouts will affect parameter estimation for these events. The Fisher Information Matrix (FIM) is a common tool for tackling this problem. In this paper, we present a new open source code GWJulia to perform FIM analysis of CBC parameters, i.e., stellar black-hole binaries (BBH), neutron star binaries (BNS), and neutron star-black hole binaries (NSBH). The code is purely written in Julia, making it fast while maintaining a high level of accuracy. We consider a set of case studies to compare different Einstein Telescope (ET) designs. We compare a 10 km triangular configuration with two 15 km L-shaped detectors with different orientations and temperatures. We discuss also the accuracy of combinations of parameters, which is very informative for cosmology or population studies. Finally, we focus on the detection of golden events and explore how the FIM can guide posterior sampling of GW signals using a novel Hamiltonian Monte Carlo (HMC) sampler. The code is publicly available https://github.com/andrea-begnoni/GW.jl.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2506.21530v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      methods, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2506.21530v2#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…ntity should also depend on the spin of the star. Once an EoS is chosen, the tidal deformability is a function of the mass only. Our choice for the NSs in BNS is the APR4 Akmal et al. (1998); Read et al. (2009); Özel and Freire (2016) EoS, which is allowed by <mark>GW170817</mark> Abbott and others (2017a) and can support NS masses up to our limit of MNSmax=2.15​M⊙M_{\rm NS}^{\rm max}=2.15\,M_{\odot}. Moreover, even though the difference between various EoS is significant Pacilio et al. (2022), their effect on the other parameter estim…</div>
     
-    
-    
-    <div class="mention"><span class="sec">references</span>…1,
-§3.3,
-§4.
-
-Abbott et al. (2016)
-B. P. Abbott et al.
-
-Observation of Gravitational Waves from a Binary Black Hole Merger.
-
-Phys. Rev. Lett. 116 (6), pp. 061102.
-
-External Links: 1602.03837,
-Document
-
-Cited by: §1.
-
-Abbott et al. (2017a)
-B. P. Abbott et al.
-
-<mark>GW170817</mark>: Observation of Gravitational Waves from a Binary Neutron Star Inspiral.
-
-Phys. Rev. Lett. 119 (16), pp. 161101.
-
-External Links: 1710.05832,
-Document
-
-Cited by: §1,
-§3.2.
-
-Abbott et al. (2017b)
-B. P. Abbott et al.
-
-Multi-messenger Observations of a Binary Ne…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">Abbott 2017a</span> · 2 places</span><div class="cite">…tion Matrix, Hamiltonian Monte Carlo
-
-††subheader: CERN-TH-2025-xxx
-
-1 Introduction
-
-Thanks to the groundbreaking detections made by the LIGO-Virgo-KAGRA Collaboration (LVK) Abbott and others (2016); <mark class="ref">Abbott and others (2017a</mark>); Abbott and others (2023b); Abbott and others (2017b), the field of Gravitational Wave (GW) has experienced a remarkable growth in recent years. After three observing runs, the catalog of GW events …</div><div class="cite">…en, the tidal deformability is a function of the mass only. Our choice for the NSs in BNS is the APR4 Akmal et al. (1998); Read et al. (2009); Özel and Freire (2016) EoS, which is allowed by GW170817 <mark class="ref">Abbott and others (2017a</mark>) and can support NS masses up to our limit of MNSmax=2.15​M⊙M_{\rm NS}^{\rm max}=2.15\,M_{\odot}. Moreover, even though the difference between various EoS is significant Pacilio et al. (2022), their …</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> (2009); Özel and Freire (2016) EoS, which is allowed by GW170817 Abbott and others (2017a) and can support NS masses up to our limit of MNSmax=2.15​M⊙M_{\rm NS}^{\rm max}=2.1…</li><li><span class="sec">cites it as Abbott 2017a</span> …s to the groundbreaking detections made by the LIGO-Virgo-KAGRA Collaboration (LVK) Abbott and others (2016); Abbott and others (2017a); Abbott and others (2023b); Abbott and others (2017b), the field of Gravitational Wave (GW) has experienced…</li><li><span class="sec">cites it as Abbott 2017a</span> …is the APR4 Akmal et al. (1998); Read et al. (2009); Özel and Freire (2016) EoS, which is allowed by GW170817 Abbott and others (2017a) and can support NS masses up to our limit of MNSmax=2.15​M⊙M_{\rm NS}^{\rm max}=2.15\,M_{\odot}. Moreover, e…</li></ul>
+    </details>
     
   </div>
   <div class="form">

@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>A Fog Over the Cosmological SGWB: Unresolved Massive Black Hole Binaries in the LISA Band</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2506.18965" target="_blank" rel="noopener" class="mono">arXiv:2506.18965</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Disentangling the rich astrophysical structure of the stochastic gravitational-wave background (SGWB) from its cosmological component is essential for the Laser Interferometer Space Antenna (LISA) to access the physics of the early Universe beyond the reach of any other probe. In this work, we develop an analytical framework to compute the astrophysical contribution to the SGWB arising from an unresolved ensemble of inspiraling and merging black hole binaries. Accounting for various resolvability thresholds, we leverage this framework to predict the amplitude, spectral shape, and detection signal-to-noise ratio of the unresolved background from massive black hole binaries (MBHBs), capturing the possible diversity of its SGWB imprint across a range of astrophysically motivated populations. Through a joint analysis of astrophysical and primordial contributions to the SGWB, we determine the minimum detectable amplitude of the cosmological background across a range of spectral shapes. We demonstrate that, even under optimistic subtraction thresholds, unresolved MBHBs can degrade the detectability of a cosmological signal by multiple orders of magnitude, depending on the spectral shape of the primordial component. Ultimately, the MBHB-induced astrophysical SGWB acts both as a veil and a lens: it imposes a fundamental limit on cosmological sensitivity, yet simultaneously reveals the hidden population of massive black holes beyond the reach of individual detections. Accurate modeling of this late-Universe background is therefore a prerequisite for robust component separation and for realizing LISA&#39;s full scientific potential.</p></details>
+<div class="small mut mono">arXiv:2506.18965</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Disentangling the rich astrophysical structure of the stochastic gravitational-wave background (SGWB) from its cosmological component is essential for the Laser Interferometer Space Antenna (LISA) to access the physics of the early Universe beyond the reach of any other probe. In this work, we develop an analytical framework to compute the astrophysical contribution to the SGWB arising from an unresolved ensemble of inspiraling and merging black hole binaries. Accounting for various resolvability thresholds, we leverage this framework to predict the amplitude, spectral shape, and detection signal-to-noise ratio of the unresolved background from massive black hole binaries (MBHBs), capturing the possible diversity of its SGWB imprint across a range of astrophysically motivated populations. Through a joint analysis of astrophysical and primordial contributions to the SGWB, we determine the minimum detectable amplitude of the cosmological background across a range of spectral shapes. We demonstrate that, even under optimistic subtraction thresholds, unresolved MBHBs can degrade the detectability of a cosmological signal by multiple orders of magnitude, depending on the spectral shape of the primordial component. Ultimately, the MBHB-induced astrophysical SGWB acts both as a veil and a lens: it imposes a fundamental limit on cosmological sensitivity, yet simultaneously reveals the hidden population of massive black holes beyond the reach of individual detections. Accurate modeling of this late-Universe background is therefore a prerequisite for robust component separation and for realizing LISA&#39;s full scientific potential.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2506.18965v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,38 +159,23 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2506.18965v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…gies Zwart, The gravitational wave signal from the galactic disk population of binaries containing two compact objects, Astron. Astrophys. 375, 890 (2001), arXiv:astro-ph/0105221 . 
-
- 
-[16]
-A. Sesana, Prospects for Multiband Gravitational-Wave Astronomy after <mark>GW150914</mark>, Phys. Rev. Lett. 116, 231102 (2016), arXiv:1602.06951 [gr-qc] . 
-
- 
-[17]
-M. Bonetti and A. Sesana, Gravitational wave background from extreme mass ratio inspirals, Phys. Rev. D 102, 103023 (2020), arXiv:2007.14403 [astro-ph.GA] . 
-
- 
-[18]
-R. J. E. Smith, C. …
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[16]</span> · 1 place</span><div class="cite">…vious work has typically considered astrophysical backgrounds from sources like galactic white dwarfs, stellar-mass black hole binaries, neutron star binaries, or extreme mass ratio inspirals (EMRIs) <mark class="ref">[15, 16, 17, 18, 19, 20]</mark>.
-However, in the context of the LISA band, prior studies have largely overlooked the contribution to the SGWB from unresolved massive black hole binary (MBHB) mergers.22
- 2
- 
- 
- 
- In this work, MBHBs…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [16]</span> …hite dwarfs, stellar-mass black hole binaries, neutron star binaries, or extreme mass ratio inspirals (EMRIs) [15, 16, 17, 18, 19, 20]. However, in the context of the LISA band, prior studies have largely overlooked the contribution to the SGWB…</li></ul>
+    </details>
     
   </div>
   <div class="form">

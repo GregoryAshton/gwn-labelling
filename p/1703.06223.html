@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,183 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Are merging black holes born from stellar collapse or previous mergers?</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1703.06223" target="_blank" rel="noopener" class="mono">arXiv:1703.06223</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Advanced LIGO detectors at Hanford and Livingston made two confirmed and one marginal detection of binary black holes during their first observing run. The first event, GW150914, was from the merger of two black holes much heavier that those whose masses have been estimated so far, indicating a formation scenario that might differ from &#34;ordinary&#34; stellar evolution. One possibility is that these heavy black holes resulted from a previous merger. When the progenitors of a black hole binary merger result from previous mergers, they should (on average) merge later, be more massive, and have spin magnitudes clustered around a dimensionless spin ∼0.7 . Here we ask the following question: can gravitational-wave observations determine whether merging black holes were born from the collapse of massive stars (&#34;first generation&#34;), rather than being the end product of earlier mergers (&#34;second generation&#34;)? We construct simple, observationally motivated populations of black hole binaries, and we use Bayesian model selection to show that measurements of the masses, luminosity distance (or redshift), and &#34;effective spin&#34; of black hole binaries can indeed distinguish between these different formation scenarios.</p></details>
+<div class="small mut mono">arXiv:1703.06223</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Advanced LIGO detectors at Hanford and Livingston made two confirmed and one marginal detection of binary black holes during their first observing run. The first event, GW150914, was from the merger of two black holes much heavier that those whose masses have been estimated so far, indicating a formation scenario that might differ from &#34;ordinary&#34; stellar evolution. One possibility is that these heavy black holes resulted from a previous merger. When the progenitors of a black hole binary merger result from previous mergers, they should (on average) merge later, be more massive, and have spin magnitudes clustered around a dimensionless spin ∼0.7 . Here we ask the following question: can gravitational-wave observations determine whether merging black holes were born from the collapse of massive stars (&#34;first generation&#34;), rather than being the end product of earlier mergers (&#34;second generation&#34;)? We construct simple, observationally motivated populations of black hole binaries, and we use Bayesian model selection to show that measurements of the masses, luminosity distance (or redshift), and &#34;effective spin&#34; of black hole binaries can indeed distinguish between these different formation scenarios.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1703.06223v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">3 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">3 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>9 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…ade de Lisboa, Avenida Rovisco Pais 1,
-1049 Lisboa, Portugal
-
-August 24, 2026
-
-Abstract
-
- 
-Advanced LIGO detectors at Hanford and Livingston made two confirmed
-and one marginal detection of binary black holes during their first
-observing run. The first event, <mark>GW150914</mark>, was from the merger of
-two black holes much heavier that those whose masses have been
-estimated so far, indicating a formation scenario that might differ
-from “ordinary” stellar evolution. One possibility is that these
-heavy black holes resulted from a previ…</div>
+    <p class="where">Named 9 times:
+      introduction ×5, abstract, methods, results, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/1703.06223v3#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…on
-scenarios.
-
- 
-
-I Introduction
-
-The observation of gravitational waves (GWs) from merging black hole
-(BH) binaries was a milestone in physics and
-astronomy [1, 2, 3].
-During their first observing run (O1), the Advanced LIGO detectors
-detected two GW events (<mark>GW150914</mark> and GW151226) and a marginal
-candidate LVT151012, which is also likely to be of astrophysical
-origin. The second observing run (O2) is currently ongoing, and
-Advanced Virgo is expected to join the detector network soon. Dozens
-of BH mergers may be detected by…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…field formation
-[7, 8, 9, 10, 11, 12, 13, 14]
-and cluster formation
-[15, 16, 17, 18]
-are broadly compatible with current Advanced LIGO
-observations [4].
-
-It is quite likely that both field and cluster formation channels are
-at work in nature. The first event, <mark>GW150914</mark>, was the most surprising,
-because the merging BHs are much heavier that those whose masses have
-been estimated so far in x-ray
-binaries [19, 20],
-indicating a formation scenario that might differ from “ordinary”
-stellar evolution.
-Alternative theoretical scen…</div>
-    
-    
-    <details><summary>6 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…much heavier that those whose masses have
-been estimated so far in x-ray
-binaries [19, 20],
-indicating a formation scenario that might differ from “ordinary”
-stellar evolution.
-Alternative theoretical scenarios which could explain the unexpected properties of <mark>GW150914</mark> include
-formation via hierarchical triples [21, 22, 23], a
-Population III origin for the binary members
-[24, 25, 26],
-chemically homogeneous evolution in short-period
-binaries [27, 28, 29],
-and a primordial origin for the merging BHs
-[30, 31].
-
-Figure 1: Cart…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ellar
-collapse can form second generation (2g) BHs via mergers. Imprints
-of these formation channels are left in the statistical distribution
-of masses, spins and redshift of the detected events.
-
-One possibility to explain the high mass of the merging BHs in
-<mark>GW150914</mark> is that these BHs did not form following stellar collapse,
-but rather from previous BH mergers. Field formation scenarios
-typically predict long delay times between the formation and merger of
-a BH binary
-[9], so repeated mergers seem unlikely. However
-gravit…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ordial BHs are also expected to merge very
-quickly [30, 31], so the
-possibility of repeated mergers in this scenario should not be
-excluded [38].
-
-In this paper, we ask the following question: can GW observations
-determine whether merging BHs such as those in <mark>GW150914</mark> were born
-directly from the collapse of massive stars (“first-generation” BHs,
-henceforth 1g) rather than being the end product of previous mergers
-(“second-generation” BHs, henceforth 2g)?
-
-Roughly speaking, one can expect mergers to leave several
-statistica…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>….9)
-3.5 (3.8)
-
-  power law  
-0.7 (1.0)
-1.3 (1.6)
-0.6 (0.6)
-
-Ad. LIGO (design)
-  flat  
-30.2 (37.8)
-1.4 (3.7)
-21.9 (10.11)
-
-  log  
-4.3 (7.0)
-0.6 (1.4)
-6.9 (5.1)
-
-  power law  
-0.6 (1.7)
-1.0 (3.8)
-0.6 (0.5)
-
-Table 1: Odds ratios from the three O1 observations (<mark>GW150914</mark>, GW151226 and LVT151012) and from hypothetical observations of the same events at Advanced LIGO design sensitivity. Odds ratios in parentheses were computed omitting all redshift information, i.e. considering the 3-dimensional vector of observables 𝐮={M,q,χef…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…, 93, 91] for previous studies of this problem in different contexts).
-
-V.1 LIGO O1 data
-
-We first apply our model comparison tool to the three LIGO O1 observations. The data set 𝐝\mathbf{d} consists of the maximum likelihood values provided in Ref. [3]:
-
-• 
-
-<mark>GW150914</mark>:
-
-M=65.3​M⊙M=65.3M_{\odot}, q=0.81q=0.81, z=0.090z=0.090, χeff=−0.06\chi_{\rm eff}=-0.06.
-
-• 
-
-GW151226:
-
-M=21.8​M⊙M=21.8M_{\odot}, q=0.52q=0.52, z=0.094z=0.094, χeff=0.21\chi_{\rm eff}=0.21.
-
-• 
-
-LVT151012:
-
-M=37​M⊙M=37M_{\odot}, q=0.57q=0.57, z=0.201z=0.201…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…evidence for their existence from GW data; otherwise, the data can be used to constrain astrophysical models that produce 2g BHs.
-
-As a first application of our Bayesian model selection framework, we perform model selection using the two confirmed detections (<mark>GW150914</mark> and GW151226) and the LVT151012 trigger from Advanced LIGO’s first observing run. It is quite remarkable that, even with only three data points, some of the comparisons show odds ratios as high as ∼10\sim 10 in favor of 1g BHs.
-As expected, model selection pe…</div>
+    <details class="lines"><summary>Show the sentences (9, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> The first event, GW150914, was from the merger of two black holes much heavier that those whose masses have been estimated so far, indi…</li><li><span class="sec">introduction</span> During their first observing run (O1), the Advanced LIGO detectors detected two GW events (GW150914 and GW151226) and a marginal candidate LVT151012, which is also likely to be of astrophysical origin.</li><li><span class="sec">introduction</span> The first event, GW150914, was the most surprising, because the merging BHs are much heavier that those whose masses have been estimate…</li><li><span class="sec">introduction</span> Alternative theoretical scenarios which could explain the unexpected properties of GW150914 include formation via hierarchical triples [21, 22, 23], a Population III origin for the binary members [24,…</li><li><span class="sec">introduction</span> One possibility to explain the high mass of the merging BHs in GW150914 is that these BHs did not form following stellar collapse, but rather from previous BH mergers.</li><li><span class="sec">introduction</span> …this paper, we ask the following question: can GW observations determine whether merging BHs such as those in GW150914 were born directly from the collapse of massive stars (“first-generation” BHs, henceforth 1g) rather than bei…</li><li><span class="sec">methods</span> Table 1: Odds ratios from the three O1 observations (GW150914, GW151226 and LVT151012) and from hypothetical observations of the same events at Advanced LIGO design sensit…</li><li><span class="sec">results</span> GW150914:</li></ul>
     </details>
     
   </div>
@@ -335,75 +201,15 @@ As expected, model selection pe…</div>
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…n of gravitational waves (GWs) from merging black hole
-(BH) binaries was a milestone in physics and
-astronomy [1, 2, 3].
-During their first observing run (O1), the Advanced LIGO detectors
-detected two GW events (GW150914 and GW151226) and a marginal
-candidate <mark>LVT151012</mark>, which is also likely to be of astrophysical
-origin. The second observing run (O2) is currently ongoing, and
-Advanced Virgo is expected to join the detector network soon. Dozens
-of BH mergers may be detected by the end of O2 or in the third run
-(O3), allowing…</div>
+    <p class="where">Named 4 times:
+      introduction, methods, results, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/1703.06223v3#:~:text=LVT151012" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">LVT151012</span> or <span class="mono hit">GW151012</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…law  
-0.7 (1.0)
-1.3 (1.6)
-0.6 (0.6)
-
-Ad. LIGO (design)
-  flat  
-30.2 (37.8)
-1.4 (3.7)
-21.9 (10.11)
-
-  log  
-4.3 (7.0)
-0.6 (1.4)
-6.9 (5.1)
-
-  power law  
-0.6 (1.7)
-1.0 (3.8)
-0.6 (0.5)
-
-Table 1: Odds ratios from the three O1 observations (GW150914, GW151226 and <mark>LVT151012</mark>) and from hypothetical observations of the same events at Advanced LIGO design sensitivity. Odds ratios in parentheses were computed omitting all redshift information, i.e. considering the 3-dimensional vector of observables 𝐮={M,q,χeff}{\bf u}=\{M,\,q,\,\chi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… maximum likelihood values provided in Ref. [3]:
-
-• 
-
-GW150914:
-
-M=65.3​M⊙M=65.3M_{\odot}, q=0.81q=0.81, z=0.090z=0.090, χeff=−0.06\chi_{\rm eff}=-0.06.
-
-• 
-
-GW151226:
-
-M=21.8​M⊙M=21.8M_{\odot}, q=0.52q=0.52, z=0.094z=0.094, χeff=0.21\chi_{\rm eff}=0.21.
-
-• 
-
-<mark>LVT151012</mark>:
-
-M=37​M⊙M=37M_{\odot}, q=0.57q=0.57, z=0.201z=0.201, χeff=0.03\chi_{\rm eff}=0.03.
-
-As stressed above, measurements errors are included in this analysis at the level of the catalogs, by spreading each source over multiple bins. A more in-depth study should m…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">conclusion</span>…om GW data; otherwise, the data can be used to constrain astrophysical models that produce 2g BHs.
-
-As a first application of our Bayesian model selection framework, we perform model selection using the two confirmed detections (GW150914 and GW151226) and the <mark>LVT151012</mark> trigger from Advanced LIGO’s first observing run. It is quite remarkable that, even with only three data points, some of the comparisons show odds ratios as high as ∼10\sim 10 in favor of 1g BHs.
-As expected, model selection performance improves with more obs…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …run (O1), the Advanced LIGO detectors detected two GW events (GW150914 and GW151226) and a marginal candidate LVT151012, which is also likely to be of astrophysical origin.</li><li><span class="sec">methods</span> Table 1: Odds ratios from the three O1 observations (GW150914, GW151226 and LVT151012) and from hypothetical observations of the same events at Advanced LIGO design sensitivity.</li><li><span class="sec">results</span> LVT151012:</li><li><span class="sec">conclusion</span> …tion framework, we perform model selection using the two confirmed detections (GW150914 and GW151226) and the LVT151012 trigger from Advanced LIGO’s first observing run.</li></ul>
     </details>
     
   </div>
@@ -440,82 +246,15 @@ As expected, model selection performance improves with more obs…</div>
 <section class="card" data-i="2" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…
-
- 
-
-I Introduction
-
-The observation of gravitational waves (GWs) from merging black hole
-(BH) binaries was a milestone in physics and
-astronomy [1, 2, 3].
-During their first observing run (O1), the Advanced LIGO detectors
-detected two GW events (GW150914 and <mark>GW151226</mark>) and a marginal
-candidate LVT151012, which is also likely to be of astrophysical
-origin. The second observing run (O2) is currently ongoing, and
-Advanced Virgo is expected to join the detector network soon. Dozens
-of BH mergers may be detected by the end of O…</div>
+    <p class="where">Named 4 times:
+      introduction, methods, results, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/1703.06223v3#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>….8)
-
-  power law  
-0.7 (1.0)
-1.3 (1.6)
-0.6 (0.6)
-
-Ad. LIGO (design)
-  flat  
-30.2 (37.8)
-1.4 (3.7)
-21.9 (10.11)
-
-  log  
-4.3 (7.0)
-0.6 (1.4)
-6.9 (5.1)
-
-  power law  
-0.6 (1.7)
-1.0 (3.8)
-0.6 (0.5)
-
-Table 1: Odds ratios from the three O1 observations (GW150914, <mark>GW151226</mark> and LVT151012) and from hypothetical observations of the same events at Advanced LIGO design sensitivity. Odds ratios in parentheses were computed omitting all redshift information, i.e. considering the 3-dimensional vector of observables 𝐮={M,q,χeff}{\bf u}=…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… our model comparison tool to the three LIGO O1 observations. The data set 𝐝\mathbf{d} consists of the maximum likelihood values provided in Ref. [3]:
-
-• 
-
-GW150914:
-
-M=65.3​M⊙M=65.3M_{\odot}, q=0.81q=0.81, z=0.090z=0.090, χeff=−0.06\chi_{\rm eff}=-0.06.
-
-• 
-
-<mark>GW151226</mark>:
-
-M=21.8​M⊙M=21.8M_{\odot}, q=0.52q=0.52, z=0.094z=0.094, χeff=0.21\chi_{\rm eff}=0.21.
-
-• 
-
-LVT151012:
-
-M=37​M⊙M=37M_{\odot}, q=0.57q=0.57, z=0.201z=0.201, χeff=0.03\chi_{\rm eff}=0.03.
-
-As stressed above, measurements errors are included in this analysis at…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">conclusion</span>…their existence from GW data; otherwise, the data can be used to constrain astrophysical models that produce 2g BHs.
-
-As a first application of our Bayesian model selection framework, we perform model selection using the two confirmed detections (GW150914 and <mark>GW151226</mark>) and the LVT151012 trigger from Advanced LIGO’s first observing run. It is quite remarkable that, even with only three data points, some of the comparisons show odds ratios as high as ∼10\sim 10 in favor of 1g BHs.
-As expected, model selection performance imp…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> During their first observing run (O1), the Advanced LIGO detectors detected two GW events (GW150914 and GW151226) and a marginal candidate LVT151012, which is also likely to be of astrophysical origin.</li><li><span class="sec">methods</span> Table 1: Odds ratios from the three O1 observations (GW150914, GW151226 and LVT151012) and from hypothetical observations of the same events at Advanced LIGO design sensitivity.</li><li><span class="sec">results</span> GW151226:</li><li><span class="sec">conclusion</span> …yesian model selection framework, we perform model selection using the two confirmed detections (GW150914 and GW151226) and the LVT151012 trigger from Advanced LIGO’s first observing run.</li></ul>
     </details>
     
   </div>

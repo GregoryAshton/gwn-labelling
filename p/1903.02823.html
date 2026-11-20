@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,246 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Looking for ancillary signals around GW150914</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1903.02823" target="_blank" rel="noopener" class="mono">arXiv:1903.02823</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We replicated the procedure in Liu and Jackson [1], who had found evidence for a low amplitude signal in the vicinity of GW150914. This was based upon the large correlation between the time integral of the Pearson cross-correlation coefficient in the off-source region of GW150914, and the Pearson cross-correlation in a narrow window around GW150914, for the same time lag between the two LIGO detectors as the gravitational wave signal. Our results mostly agree with those in Liu and Jackson [2]. We find the statistical significance of the observed cross-correlation to be about 2.5 σ. We also used the cross-correlation method to search for short duration signals at all other physical values of the time lag, within this 4096 second time interval, but do not find evidence for any statistically significant events in the off-source region.</p></details>
+<div class="small mut mono">arXiv:1903.02823</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We replicated the procedure in Liu and Jackson [1], who had found evidence for a low amplitude signal in the vicinity of GW150914. This was based upon the large correlation between the time integral of the Pearson cross-correlation coefficient in the off-source region of GW150914, and the Pearson cross-correlation in a narrow window around GW150914, for the same time lag between the two LIGO detectors as the gravitational wave signal. Our results mostly agree with those in Liu and Jackson [2]. We find the statistical significance of the observed cross-correlation to be about 2.5 σ. We also used the cross-correlation method to search for short duration signals at all other physical values of the time lag, within this 4096 second time interval, but do not find evidence for any statistically significant events in the off-source region.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1903.02823v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">6 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">6 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>99 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>Looking for ancillary signals around <mark>GW150914</mark>
-
- 
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- 
- 
-
- 
- arXiv is now an independent nonprofit!
- Learn more
- &amp;times;
- 
-
- 
- 
- Back to arXi…</div>
+    <p class="where">Named 99 times:
+      results ×56, introduction ×14, conclusion ×9, reference list ×9, data ×5, title/headings ×3, abstract ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.02823v3#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…s;
- 
-
- 
- 
- Back to arXiv
- 
- 
-
- 
- 
- Why HTML?
- 
- 
- 
- 
- Report Issue
- 
- 
- 
- 
- 
- 
- Back to Abstract
- 
- 
- 
- 
- 
- 
- Download PDF
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-Abstract
-
-1 Introduction
-
-2 Recap of LJ16
-
-3 Data Conditioning of <mark>GW150914</mark>
-
-4 Results from band-passing and notch filtering
-
-4.1 Correlation between CG​WC_{GW} and DD
-
-5 Results after band-pass filtering and whitening
-
-6 Cross-correlations after removing the GW signal
-
-7 Estimation of significance
-
-8 Conclusions
-
-Acknowledgements
-
-R…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…-correlations after removing the GW signal
-
-7 Estimation of significance
-
-8 Conclusions
-
-Acknowledgements
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1903.02823v3 [astro-ph.IM] 26 Mar 2019
-
-Looking for ancillary signals around <mark>GW150914</mark>
-
-Rahul Maroju
-
-Affiliation: Department of Electrical Engineering, IIT Hyderabad, Kandi, Telangana-502285, India
-
-Email: ee15btech11018@iith.ac.in
-
-  
-Sristi Ram Dyuthi
-
-Affiliation: Department of Electrical Engineering, IIT Hyderabad, Kandi, Telangana-502285,…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…nding author.
-
-Affiliation: Department of Physics, IIT Hyderabad, Kandi, Telangana-502285, India
-
-Email: shantanud@iith.ac.in
-
-Abstract
-
- 
-We replicated the procedure in Liu and Jackson [1], who had found evidence for a low amplitude signal in the vicinity of <mark>GW150914</mark>. This was based upon the large correlation between the time integral of the Pearson cross-correlation coefficient in the off-source region of GW150914, and the Pearson cross-correlation in a narrow window around GW150914, for the same time lag between the two…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…d the procedure in Liu and Jackson [1], who had found evidence for a low amplitude signal in the vicinity of GW150914. This was based upon the large correlation between the time integral of the Pearson cross-correlation coefficient in the off-source region of <mark>GW150914</mark>, and the Pearson cross-correlation in a narrow window around GW150914, for the same time lag between the two LIGO detectors as the gravitational wave signal. Our results mostly agree with those in Liu and Jackson [1]. We find the statistical significance of t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…ow amplitude signal in the vicinity of GW150914. This was based upon the large correlation between the time integral of the Pearson cross-correlation coefficient in the off-source region of GW150914, and the Pearson cross-correlation in a narrow window around <mark>GW150914</mark>, for the same time lag between the two LIGO detectors as the gravitational wave signal. Our results mostly agree with those in Liu and Jackson [1]. We find the statistical significance of the observed cross-correlation to be about 2.5 σ\sigma.
-We also used th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…cally significant events in the off-source region.
-
- 
-
-1 Introduction
-
-Three and half years ago, there was a watershed moment in astronomy with the detection of gravitational waves, by the LIGO detectors, starting with the first binary black hole merger, viz. <mark>GW150914</mark> [2]. Since then, the LIGO-VIRGO collaboration (LVC) has detected a total of seven binary black hole mergers (3, 4, 5, 6, 7) and one binary neutron star merger [8]. These detections (which led to the 2017 Nobel Prize in Physics) have provided a plethora of inf…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…f the detections, and later the full science-mode data from the first two observing runs [16].
-
-Nevertheless, a few groups have still raised a few concerns about some of the LIGO detections [17, 18].
-For example, Creswell et al [18] used data from LOSC around <mark>GW150914</mark> to point out that the calibration lines and also the residual noise show a peak in the cross-correlation at the same time lag as the original signal. However, at least two groups have been unable to reproduce these results, and therefore dispute these claims …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…e binary black hole and neutron star events. This work has also received a lot of attention and many groups have tried to reproduce these claims [25, 20, 26]. In Ref. [24], the authors have applied a regularization-based denoising technique to the data around <mark>GW150914</mark> and found that the reconstructed waveforms disagree at the high frequency end with the GR-based binary black hole template waveforms. Liu and Jackson [1] (LJ16 hereafter), calculated the Pearson cross-correlation coefficient for data from Hanford and Livingst…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…igh frequency end with the GR-based binary black hole template waveforms. Liu and Jackson [1] (LJ16 hereafter), calculated the Pearson cross-correlation coefficient for data from Hanford and Livingston detectors in the strain data covering 4096 seconds around <mark>GW150914</mark>. Using this analysis, they have found a tentative evidence (3.2σ\sigma) for a signal 10 minutes before GW150914, lasting for about 45 minutes with the same time lag as GW150914.
-
-Within the LVC, the GW150914 signal was detected by two independent pipelines: o…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…calculated the Pearson cross-correlation coefficient for data from Hanford and Livingston detectors in the strain data covering 4096 seconds around GW150914. Using this analysis, they have found a tentative evidence (3.2σ\sigma) for a signal 10 minutes before <mark>GW150914</mark>, lasting for about 45 minutes with the same time lag as GW150914.
-
-Within the LVC, the GW150914 signal was detected by two independent pipelines: one of which involves a matched filtering search from coalescing binaries and the second search involving a model…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…m Hanford and Livingston detectors in the strain data covering 4096 seconds around GW150914. Using this analysis, they have found a tentative evidence (3.2σ\sigma) for a signal 10 minutes before GW150914, lasting for about 45 minutes with the same time lag as <mark>GW150914</mark>.
-
-Within the LVC, the GW150914 signal was detected by two independent pipelines: one of which involves a matched filtering search from coalescing binaries and the second search involving a model-independent search for short duration signals of any waveform mo…</div>
+    <details class="lines"><summary>Show the sentences (88, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Looking for ancillary signals around GW150914</li><li><span class="sec">title/headings</span> 3 Data Conditioning of GW150914</li><li><span class="sec">abstract</span> …ed the procedure in Liu and Jackson [1], who had found evidence for a low amplitude signal in the vicinity of GW150914.</li><li><span class="sec">abstract</span> …orrelation between the time integral of the Pearson cross-correlation coefficient in the off-source region of GW150914, and the Pearson cross-correlation in a narrow window around GW150914, for the same time lag between the two…</li><li><span class="sec">introduction</span> GW150914 [2].</li><li><span class="sec">introduction</span> For example, Creswell et al [18] used data from LOSC around GW150914 to point out that the calibration lines and also the residual noise show a peak in the cross-correlation at t…</li><li><span class="sec">introduction</span> In Ref. [24], the authors have applied a regularization-based denoising technique to the data around GW150914 and found that the reconstructed waveforms disagree at the high frequency end with the GR-based binary black…</li><li><span class="sec">introduction</span> …on coefficient for data from Hanford and Livingston detectors in the strain data covering 4096 seconds around GW150914.</li></ul>
     </details>
     
   </div>
@@ -398,48 +201,16 @@ Within the LVC, the GW150914 signal was detected by two independent pipelines: o
 <section class="card" data-i="1" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.02823v3#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…Xiv e-prints (2017)
-arXiv:1710.05931 [1710.05931].
-
- 
-(16)
-
-M. Vallisneri, J. Kanner, R. Williams, A. Weinstein and B. Stephens, The
-LIGO Open Science Center,
-J. Phys. Conf.
-Ser. 610 (2015) 012021
-[1410.4839].
-
- 
-(17)
-
-Z. Chang, C.-G. Huang and Z.-C. Zhao, Is <mark>GW151226</mark> really a gravitational
-wave signal?,
-Chin. Phys.
-C41 (2017) 025001
-[1612.01615].
-
- 
-(18)
-
-J. Creswell, S. von Hausegger, A. D. Jackson, H. Liu and P. Naselsky, On
-the time lags of the LIGO signals,
-JCAP 1708 (2017) 013 [1706.04191].
-
- 
-(19)
-
-M. A. Green and J…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[17]</span> · 1 place</span><div class="cite">…und each of the detections, and later the full science-mode data from the first two observing runs [16].
-
-Nevertheless, a few groups have still raised a few concerns about some of the LIGO detections <mark class="ref">[17, 18]</mark>.
-For example, Creswell et al [18] used data from LOSC around GW150914 to point out that the calibration lines and also the residual noise show a peak in the cross-correlation at the same time lag as …</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [17]</span> …ing runs [16]. Nevertheless, a few groups have still raised a few concerns about some of the LIGO detections [17, 18]. For example, Creswell et al [18] used data from LOSC around GW150914 to point out that the calibration lines…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -475,39 +246,16 @@ For example, Creswell et al [18] used data from LOSC around GW150914 to point o
 <section class="card" data-i="2" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.02823v3#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>… Merger,
-Phys. Rev. Lett.
-116 (2016) 061102
-[1602.03837].
-
- 
-(3)
-
-Virgo, LIGO Scientific collaboration, Binary Black Hole
-Mergers in the first Advanced LIGO Observing Run,
-Phys. Rev. X6 (2016) 041015
-[1606.04856].
-
- 
-(4)
-
-VIRGO, LIGO Scientific collaboration, <mark>GW170104</mark>: Observation
-of a 50-Solar-Mass Binary Black Hole Coalescence at Redshift 0.2,
-Phys. Rev. Lett. 118
-(2017) 221101 [1706.01812].
-
- 
-(5)
-
-Virgo, LIGO Scientific collaboration, GW170814: A
-Three-Detector Observation of Gravitational Waves from a Binary Black Hol…
-    <div class="cites">
-      <span class="sec">Reference [4]: couldn't find where it is cited; check the paper.</span>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">reference list</span> VIRGO, LIGO Scientific collaboration, GW170104: Observation of a 50-Solar-Mass Binary Black Hole Coalescence at Redshift 0.2, Phys.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -543,40 +291,16 @@ Three-Detector Observation of Gravitational Waves from a Binary Black Hol…
 <section class="card" data-i="3" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.02823v3#:~:text=GW170608" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…1101 [1706.01812].
-
- 
-(5)
-
-Virgo, LIGO Scientific collaboration, GW170814: A
-Three-Detector Observation of Gravitational Waves from a Binary Black Hole
-Coalescence,
-Phys. Rev. Lett.
-119 (2017) 141101
-[1709.09660].
-
- 
-(6)
-
-Virgo, LIGO Scientific collaboration, <mark>GW170608</mark>: Observation
-of a 19-solar-mass Binary Black Hole Coalescence,
-Astrophys. J.
-851 (2017) L35
-[1711.05578].
-
- 
-(7)
-
-LIGO Scientific, Virgo collaboration, GWTC-1: A
-Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed by
-LIGO and Virgo during …
-    <div class="cites">
-      <span class="sec">Reference [6]: couldn't find where it is cited; check the paper.</span>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">reference list</span> Virgo, LIGO Scientific collaboration, GW170608: Observation of a 19-solar-mass Binary Black Hole Coalescence, Astrophys.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -612,40 +336,16 @@ LIGO and Virgo during …
 <section class="card" data-i="4" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.02823v3#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…X6 (2016) 041015
-[1606.04856].
-
- 
-(4)
-
-VIRGO, LIGO Scientific collaboration, GW170104: Observation
-of a 50-Solar-Mass Binary Black Hole Coalescence at Redshift 0.2,
-Phys. Rev. Lett. 118
-(2017) 221101 [1706.01812].
-
- 
-(5)
-
-Virgo, LIGO Scientific collaboration, <mark>GW170814</mark>: A
-Three-Detector Observation of Gravitational Waves from a Binary Black Hole
-Coalescence,
-Phys. Rev. Lett.
-119 (2017) 141101
-[1709.09660].
-
- 
-(6)
-
-Virgo, LIGO Scientific collaboration, GW170608: Observation
-of a 19-solar-mass Binary Black Hole Coalescence,
-A…
-    <div class="cites">
-      <span class="sec">Reference [5]: couldn't find where it is cited; check the paper.</span>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">reference list</span> Virgo, LIGO Scientific collaboration, GW170814: A Three-Detector Observation of Gravitational Waves from a Binary Black Hole Coalescence, Phys.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -681,246 +381,15 @@ A…
 <section class="card" data-i="5" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>7 mentions · <span class="cptag">1 by counterpart name</span></h3>
+    <p class="where">Named 7 times:
+      reference list ×7.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.02823v3#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
+    <p class="flag">1 mention use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    
-    <div class="mention"><span class="sec">references</span>…711.05578].
-
- 
-(7)
-
-LIGO Scientific, Virgo collaboration, GWTC-1: A
-Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed by
-LIGO and Virgo during the First and Second Observing Runs,
-1811.12907.
-
- 
-(8)
-
-Virgo, LIGO Scientific collaboration, <mark>GW170817</mark>: Observation
-of Gravitational Waves from a Binary Neutron Star Inspiral,
-Phys. Rev. Lett.
-119 (2017) 161101
-[1710.05832].
-
- 
-(9)
-
-M. C. Miller, Implications of the gravitational wave event GW150914,
-General Relativity and
-Gravitation 48 (2016) 95
-[1606.06526]…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[8]</span> · 1 place</span><div class="cite">… binary black hole merger, viz. GW150914 [2]. Since then, the LIGO-VIRGO collaboration (LVC) has detected a total of seven binary black hole mergers (3, 4, 5, 6, 7) and one binary neutron star merger <mark class="ref">[8]</mark>. These detections (which led to the 2017 Nobel Prize in Physics) have provided a plethora of information about astrophysics, nuclear physics, modified theories of gravity, rr-process nucleosynthesis,…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…y and
-Gravitation 48 (2016) 95
-[1606.06526].
-
- 
-(10)
-
-E. O. Kahya and S. Desai, Constraints on frequency-dependent violations
-of Shapiro delay from GW150914,
-Phys. Lett.
-B756 (2016) 265
-[1602.04779].
-
- 
-(11)
-
-S. Boran, S. Desai, E. O. Kahya and R. P. Woodard, <mark>GW170817</mark> Falsifies
-Dark Matter Emulators,
-Phys. Rev.
-D97 (2018) 041501
-[1710.06168].
-
- 
-(12)
-
-M. A. Green, J. W. Moffat and V. T. Toth, Modified gravity (MOG),
-the speed of gravitational radiation and the event GW170817/GRB170817A,
-Physics Letters
-B 780 (2018) 300
-[17…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[11]</span> · 1 place</span><div class="cite">…ed to the 2017 Nobel Prize in Physics) have provided a plethora of information about astrophysics, nuclear physics, modified theories of gravity, rr-process nucleosynthesis, Hubble constant, etc (eg. <mark class="ref">[9, 10, 11, 12, 13, 14, 15]</mark> and references therein). Along with the discoveries, the LIGO open science center (LOSC) has publicly initially released the strain data around each of the detections, and later the full science-mode…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>… Boran, S. Desai, E. O. Kahya and R. P. Woodard, GW170817 Falsifies
-Dark Matter Emulators,
-Phys. Rev.
-D97 (2018) 041501
-[1710.06168].
-
- 
-(12)
-
-M. A. Green, J. W. Moffat and V. T. Toth, Modified gravity (MOG),
-the speed of gravitational radiation and the event <mark>GW170817</mark>/GRB170817A,
-Physics Letters
-B 780 (2018) 300
-[1710.11177].
-
- 
-(13)
-
-J. M. Ezquiaga and M. Zumalacárregui, Dark Energy After GW170817: Dead
-Ends and the Road Ahead,
-Phys. Rev. Lett.
-119 (2017) 251304
-[1710.05901].
-
- 
-(14)
-
-Z. Carson, A. W. Steiner and K. Yagi,…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[12]</span> · 1 place</span><div class="cite">…ed to the 2017 Nobel Prize in Physics) have provided a plethora of information about astrophysics, nuclear physics, modified theories of gravity, rr-process nucleosynthesis, Hubble constant, etc (eg. <mark class="ref">[9, 10, 11, 12, 13, 14, 15]</mark> and references therein). Along with the discoveries, the LIGO open science center (LOSC) has publicly initially released the strain data around each of the detections, and later the full science-mode…</div>
-    </div></div>
-    
-    
-    <details><summary>4 more</summary>
-    <div class="mention cp"><span class="sec">references · <span class="cptag">counterpart name, not the GW signal</span></span>…. Desai, E. O. Kahya and R. P. Woodard, GW170817 Falsifies
-Dark Matter Emulators,
-Phys. Rev.
-D97 (2018) 041501
-[1710.06168].
-
- 
-(12)
-
-M. A. Green, J. W. Moffat and V. T. Toth, Modified gravity (MOG),
-the speed of gravitational radiation and the event GW170817/<mark class="cp">GRB170817A</mark>,
-Physics Letters
-B 780 (2018) 300
-[1710.11177].
-
- 
-(13)
-
-J. M. Ezquiaga and M. Zumalacárregui, Dark Energy After GW170817: Dead
-Ends and the Road Ahead,
-Phys. Rev. Lett.
-119 (2017) 251304
-[1710.05901].
-
- 
-(14)
-
-Z. Carson, A. W. Steiner and K. Yagi, Constraini…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[12]</span> · 1 place</span><div class="cite">…ed to the 2017 Nobel Prize in Physics) have provided a plethora of information about astrophysics, nuclear physics, modified theories of gravity, rr-process nucleosynthesis, Hubble constant, etc (eg. <mark class="ref">[9, 10, 11, 12, 13, 14, 15]</mark> and references therein). Along with the discoveries, the LIGO open science center (LOSC) has publicly initially released the strain data around each of the detections, and later the full science-mode…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…
-
- 
-(12)
-
-M. A. Green, J. W. Moffat and V. T. Toth, Modified gravity (MOG),
-the speed of gravitational radiation and the event GW170817/GRB170817A,
-Physics Letters
-B 780 (2018) 300
-[1710.11177].
-
- 
-(13)
-
-J. M. Ezquiaga and M. Zumalacárregui, Dark Energy After <mark>GW170817</mark>: Dead
-Ends and the Road Ahead,
-Phys. Rev. Lett.
-119 (2017) 251304
-[1710.05901].
-
- 
-(14)
-
-Z. Carson, A. W. Steiner and K. Yagi, Constraining nuclear matter
-parameters with GW170817, arXiv e-prints (2018) arXiv:1812.08910
-[1812.08910].
-
- 
-(15)
-
-B. D. Metzger, W…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[13]</span> · 1 place</span><div class="cite">…ed to the 2017 Nobel Prize in Physics) have provided a plethora of information about astrophysics, nuclear physics, modified theories of gravity, rr-process nucleosynthesis, Hubble constant, etc (eg. <mark class="ref">[9, 10, 11, 12, 13, 14, 15]</mark> and references therein). Along with the discoveries, the LIGO open science center (LOSC) has publicly initially released the strain data around each of the detections, and later the full science-mode…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…
-[1710.11177].
-
- 
-(13)
-
-J. M. Ezquiaga and M. Zumalacárregui, Dark Energy After GW170817: Dead
-Ends and the Road Ahead,
-Phys. Rev. Lett.
-119 (2017) 251304
-[1710.05901].
-
- 
-(14)
-
-Z. Carson, A. W. Steiner and K. Yagi, Constraining nuclear matter
-parameters with <mark>GW170817</mark>, arXiv e-prints (2018) arXiv:1812.08910
-[1812.08910].
-
- 
-(15)
-
-B. D. Metzger, Welcome to the Multi-Messenger Era! Lessons from a
-Neutron Star Merger and the Landscape Ahead, arXiv e-prints (2017)
-arXiv:1710.05931 [1710.05931].
-
- 
-(16)
-
-M. Vallisneri, J. Kanne…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[14]</span> · 1 place</span><div class="cite">…ed to the 2017 Nobel Prize in Physics) have provided a plethora of information about astrophysics, nuclear physics, modified theories of gravity, rr-process nucleosynthesis, Hubble constant, etc (eg. <mark class="ref">[9, 10, 11, 12, 13, 14, 15]</mark> and references therein). Along with the discoveries, the LIGO open science center (LOSC) has publicly initially released the strain data around each of the detections, and later the full science-mode…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…ls for
-GW150914 using maximum likelihood and numerical relativity templates,
-arXiv e-prints (2019) arXiv:1903.02401
-[1903.02401].
-
- 
-(22)
-
-J. Abedi and N. Afshordi, Echoes from the Abyss: A highly spinning black
-hole remnant for the binary neutron star merger <mark>GW170817</mark>,
-1803.10454.
-
- 
-(23)
-
-J. Abedi, H. Dykaar and N. Afshordi, Echoes from the Abyss: Tentative
-evidence for Planck-scale structure at black hole horizons,
-Phys. Rev.
-D96 (2017) 082004
-[1612.00266].
-
- 
-(24)
-
-A. Torres-Forné, A. Marquina, J. A. Font and J. M. Ibáñ…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[22]</span> · 1 place</span><div class="cite">…ese results, and therefore dispute these claims [19, 20] (see however [21]). Conversely, some other groups have found evidence for additional signals and anomalies potentially pointing to new Physics <mark class="ref">[1, 22, 23, 24]</mark>. In Refs. (22, 23), the authors have argued for a tentative evidence for echo signals post the merger of the compact objects in both the binary black hole and neutron star events. This work has also …</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [8]</span> …C) has detected a total of seven binary black hole mergers (3, 4, 5, 6, 7) and one binary neutron star merger [8]. These detections (which led to the 2017 Nobel Prize in Physics) have provided a plethora of information abou…</li><li><span class="sec">cites it as [11]</span> …physics, nuclear physics, modified theories of gravity, rr-process nucleosynthesis, Hubble constant, etc (eg. [9, 10, 11, 12, 13, 14, 15] and references therein). Along with the discoveries, the LIGO open science center (LOSC) has publicly initial…</li><li><span class="sec">cites it as [22]</span> …ome other groups have found evidence for additional signals and anomalies potentially pointing to new Physics [1, 22, 23, 24]. In Refs. (22, 23), the authors have argued for a tentative evidence for echo signals post the merger of the…</li></ul>
     </details>
     
   </div>

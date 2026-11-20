@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,148 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Highly eccentric non-spinning binary black hole mergers: quadrupolar post-merger waveforms</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2604.15431" target="_blank" rel="noopener" class="mono">arXiv:2604.15431</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We present numerically-informed closed-form expressions for the dominant $(\ell,m)=(2,2)$ waveform harmonic of the post-merger emission from mergers of non-spinning binary black holes with comparable masses on highly eccentric orbits. Using 233 non-spinning eccentric simulations from the RIT catalog, we construct time-dependent complex quasinormal mode amplitudes via a Bayesian procedure. We build multivariate polynomial models, represented as functions of the symmetric mass ratio $ν$ and two dynamics parameters evaluated at merger: the mass-rescaled effective energy $\hat{E}_{\mathrm{eff}}^{\mathrm{mrg}}$ and angular momentum $j_{\mathrm{mrg}}$. We further validate the post-merger non-circular waveform model by comparing it against simulations from the SXS catalog. Our models achieve mismatches around $\sim10^{-3}$, including for near-extreme eccentricities. The model can be directly combined with effective-one-body and phenomenological inspiral waveforms to produce accurate inspiral-merger-ringdown waveforms, essential for parameter estimation of both astrophysical and fundamental physics properties of the signals&#39; sources.</p></details>
+<div class="small mut mono">arXiv:2604.15431</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We present numerically-informed closed-form expressions for the dominant $(\ell,m)=(2,2)$ waveform harmonic of the post-merger emission from mergers of non-spinning binary black holes with comparable masses on highly eccentric orbits. Using 233 non-spinning eccentric simulations from the RIT catalog, we construct time-dependent complex quasinormal mode amplitudes via a Bayesian procedure. We build multivariate polynomial models, represented as functions of the symmetric mass ratio $ν$ and two dynamics parameters evaluated at merger: the mass-rescaled effective energy $\hat{E}_{\mathrm{eff}}^{\mathrm{mrg}}$ and angular momentum $j_{\mathrm{mrg}}$. We further validate the post-merger non-circular waveform model by comparing it against simulations from the SXS catalog. Our models achieve mismatches around $\sim10^{-3}$, including for near-extreme eccentricities. The model can be directly combined with effective-one-body and phenomenological inspiral waveforms to produce accurate inspiral-merger-ringdown waveforms, essential for parameter estimation of both astrophysical and fundamental physics properties of the signals&#39; sources.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2604.15431v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">7 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">7 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…product in a finite region [tstart,tend][t_{\rm start},t_{\rm end}], setting Ni,NtruncN_{i},N_{\rm trunc}.
-To compute the mismatches, we utilize the advanced LIGO design sensitivity curve: aLIGODesignSensitivityT1800044 [135] for the noise-covariance, and use <mark>GW150914</mark>-like values [11] for the total mass, M=60​M⊙M=60~{\rm M}_{\odot}, to rescale the waveform phasing from geometric to physical units.
-Finally, residuals are defined as δ​hℓ​m=hℓ​m−𝗁ℓ​m\delta h_{\ell m}=h_{\ell m}-\mathsf{h}_{\ell m}, where hℓ​mh_{\ell m} is the…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>….
-
-.
-
-External Links: 2603.19020
-
-Cited by: §I.
-
-[10]
-A. G. Abac et al. (2026)
-
-GWTC-4.0: Tests of General Relativity. III. Tests of the Remnants.
-
-.
-
-External Links: 2603.19021
-
-Cited by: §I.
-
-[11]
-B. P. Abbott et al. (2016)
-
-Tests of general relativity with <mark>GW150914</mark>.
-
-Phys. Rev. Lett. 116 (22), pp. 221101.
-
-Note: [Erratum: Phys.Rev.Lett. 121, 129902 (2018)]
-
-External Links: 1602.03841,
-Document
-
-Cited by: §IV.1.
-
-[12]
-B. P. Abbott et al. (2019)
-
-Search for Eccentric Binary Black Hole Mergers with Advanced LIGO and Advanc…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[11]</span> · 1 place</span><div class="cite">…truncN_{i},N_{\rm trunc}.
-To compute the mismatches, we utilize the advanced LIGO design sensitivity curve: aLIGODesignSensitivityT1800044 [135] for the noise-covariance, and use GW150914-like values <mark class="ref">[11]</mark> for the total mass, M=60​M⊙M=60~{\rm M}_{\odot}, to rescale the waveform phasing from geometric to physical units.
-Finally, residuals are defined as δ​hℓ​m=hℓ​m−𝗁ℓ​m\delta h_{\ell m}=h_{\ell m}-\math…</div>
-    </div></div>
+    <p class="where">Named 4 times:
+      methods ×2, reference list ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2604.15431v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">references</span>…V.2,
-§V.2,
-§V.2,
-§V.3,
-§V,
-§VI.
-
-[60]
-BayRing
-
-Note: github.com/GCArullo/bayRing
-
-External Links: Document,
-Link
-
-Cited by: §IV.1.
-
-[61]
-G. Carullo, W. Del Pozzo, and J. Veitch (2019)
-
-Observational Black Hole Spectroscopy: A time-domain multimode analysis of <mark>GW150914</mark>.
-
-Phys. Rev. D 99 (12), pp. 123029.
-
-Note: [Erratum: Phys.Rev.D 100, 089903 (2019)]
-
-External Links: 1902.07527,
-Document
-
-Cited by: §III.
-
-[62]
-pyRing: a time-domain ringdown analysis python package
-
-Note: git.ligo.org/lscsoft/pyring
-
-External Links: Documen…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[61]</span> · 1 place</span><div class="cite">… a modification of the non-precessing TEOBPM model [107], falling into the class of KerrPostmerger templates, as defined in Chapter 6, Ref. [38].
-The template is implemented within the pyRing package <mark class="ref">[61, 62]</mark>.
-Via phenomenological fits, this template aims to phenomenologically effectively capture transients [35, 131, 21], non-linearities [108, 143, 194, 76, 150, 131, 29, 76, 52, 167, 184, 145, 51, 47, 219…</div>
-    </div></div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">methods</span>…
-Modeling ringdown: Beyond the fundamental quasinormal modes.
-
-Phys. Rev. D 90 (12), pp. 124032.
-
-Note: [Erratum: Phys.Rev.D 94, 069902 (2016)]
-
-External Links: 1404.3197,
-Document
-
-Cited by: §II,
-§III.
-
-[144]
-G. Lovelace et al. (2016)
-
-Modeling the source of <mark>GW150914</mark> with targeted numerical-relativity simulations.
-
-Class. Quant. Grav. 33 (24), pp. 244002.
-
-External Links: 1607.05377,
-Document
-
-Cited by: §II.2.
-
-[145]
-S. Ma and H. Yang (2024)
-
-Excitation of quadratic quasinormal modes for Kerr black holes.
-
-Phys. Rev. D 10…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …dvanced LIGO design sensitivity curve: aLIGODesignSensitivityT1800044 [135] for the noise-covariance, and use GW150914-like values [11] for the total mass, M=60​M⊙M=60~{\rm M}_{\odot}, to rescale the waveform phasing from geomet…</li><li><span class="sec">cites it as [11]</span> …ensitivity curve: aLIGODesignSensitivityT1800044 [135] for the noise-covariance, and use GW150914-like values [11] for the total mass, M=60​M⊙M=60~{\rm M}_{\odot}, to rescale the waveform phasing from geometric to physical u…</li><li><span class="sec">cites it as [61]</span> …stmerger templates, as defined in Chapter 6, Ref. [38]. The template is implemented within the pyRing package [61, 62]. Via phenomenological fits, this template aims to phenomenologically effectively capture transients [35, 131,…</li><li><span class="sec">methods</span> Modeling the source of GW150914 with targeted numerical-relativity simulations.</li></ul>
     </details>
     
   </div>
@@ -300,41 +201,16 @@ Phys. Rev. D 10…</div>
 <section class="card" data-i="1" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2604.15431v1#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…naries: Choice of template spacing.
-
-Phys. Rev. D 53, pp. 6749–6761.
-
-External Links: gr-qc/9511032,
-Document
-
-Cited by: §IV.1.
-
-[164]
-E. O’Shea and P. Kumar (2023)
-
-Correlations in gravitational-wave reconstructions from eccentric binaries: A case study with <mark>GW151226</mark> and GW170608.
-
-Phys. Rev. D 108 (10), pp. 104018.
-
-External Links: 2107.07981,
-Document
-
-Cited by: §I.
-
-[165]
-Pandas-dev/pandas: pandas
-
-External Links: Document,
-Link
-
-Cited by: §VI.
-
-[166]
-L. Passenger, S. Banagiri, E. Thrane, P. D. Lasky, A. Borchers, M. F…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> Correlations in gravitational-wave reconstructions from eccentric binaries: A case study with GW151226 and GW170608.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -370,41 +246,16 @@ L. Passenger, S. Banagiri, E. Thrane, P. D. Lasky, A. Borchers, M. F…</div>
 <section class="card" data-i="2" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2604.15431v1#:~:text=GW170608" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…e of template spacing.
-
-Phys. Rev. D 53, pp. 6749–6761.
-
-External Links: gr-qc/9511032,
-Document
-
-Cited by: §IV.1.
-
-[164]
-E. O’Shea and P. Kumar (2023)
-
-Correlations in gravitational-wave reconstructions from eccentric binaries: A case study with GW151226 and <mark>GW170608</mark>.
-
-Phys. Rev. D 108 (10), pp. 104018.
-
-External Links: 2107.07981,
-Document
-
-Cited by: §I.
-
-[165]
-Pandas-dev/pandas: pandas
-
-External Links: Document,
-Link
-
-Cited by: §VI.
-
-[166]
-L. Passenger, S. Banagiri, E. Thrane, P. D. Lasky, A. Borchers, M. Fishbach, and …</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> Correlations in gravitational-wave reconstructions from eccentric binaries: A case study with GW151226 and GW170608.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -440,118 +291,15 @@ L. Passenger, S. Banagiri, E. Thrane, P. D. Lasky, A. Borchers, M. Fishbach, and
 <section class="card" data-i="3" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… that such large residual eccentricities close to merger are unlikely, to obtain an unbiased inference of astrophysical and fundamental scenarios, it is necessary to confirm this expectation using observational data.
-Importantly, several massive events (e.g., <mark>GW190521</mark> [13, 14] and GW231123 [2]) present peculiar features, such as unexpectedly misaligned or even near-extremal spin magnitudes, which are challenging to obtain in standard formation scenarios and gave rise to a variety of interpretations [137, 126, 132, 204, 81,…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… 93, 183, 166, 72, 133, 30, 175].
-This motivates the exploration of alternative formation models, including those with non-negligible eccentricity at merger.
-Indeed, several studies pointed to the need to include non-circular corrections to accurately analyze <mark>GW190521</mark> [56, 106, 103].
-More broadly, precise modeling of eccentric GW waveforms is key to disentangle formation channels [190, 216, 100, 189, 59].
-
-Even before starting to infer population-level binary properties, ignoring eccentricity could lead to a significant re…</div>
+    <p class="where">Named 5 times:
+      introduction ×2, reference list ×2, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2604.15431v1#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">references</span>…al. (2019)
-
-Search for Eccentric Binary Black Hole Mergers with Advanced LIGO and Advanced Virgo during their First and Second Observing Runs.
-
-Astrophys. J. 883 (2), pp. 149.
-
-External Links: 1907.09384,
-Document
-
-Cited by: §I.
-
-[13]
-R. Abbott et al. (2020)
-
-<mark>GW190521</mark>: A Binary Black Hole Merger with a Total Mass of 150​M⊙150M_{\odot}.
-
-Phys. Rev. Lett. 125 (10), pp. 101102.
-
-External Links: 2009.01075,
-Document
-
-Cited by: §I.
-
-[14]
-R. Abbott et al. (2020)
-
-Properties and Astrophysical Implications of the 150 M⊙{}_{\odot} …
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[13]</span> · 1 place</span><div class="cite">…, to obtain an unbiased inference of astrophysical and fundamental scenarios, it is necessary to confirm this expectation using observational data.
-Importantly, several massive events (e.g., GW190521 <mark class="ref">[13, 14]</mark> and GW231123 [2]) present peculiar features, such as unexpectedly misaligned or even near-extremal spin magnitudes, which are challenging to obtain in standard formation scenarios and gave rise to a …</div>
-    </div></div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">references</span>…ger with a Total Mass of 150​M⊙150M_{\odot}.
-
-Phys. Rev. Lett. 125 (10), pp. 101102.
-
-External Links: 2009.01075,
-Document
-
-Cited by: §I.
-
-[14]
-R. Abbott et al. (2020)
-
-Properties and Astrophysical Implications of the 150 M⊙{}_{\odot} Binary Black Hole Merger <mark>GW190521</mark>.
-
-Astrophys. J. Lett. 900 (1), pp. L13.
-
-External Links: 2009.01190,
-Document
-
-Cited by: §I.
-
-[15]
-F. Acernese et al. (2015)
-
-Advanced Virgo: a second-generation interferometric gravitational wave detector.
-
-Class. Quant. Grav. 32 (2), pp. 024001.
-
-External L…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[14]</span> · 1 place</span><div class="cite">…, to obtain an unbiased inference of astrophysical and fundamental scenarios, it is necessary to confirm this expectation using observational data.
-Importantly, several massive events (e.g., GW190521 <mark class="ref">[13, 14]</mark> and GW231123 [2]) present peculiar features, such as unexpectedly misaligned or even near-extremal spin magnitudes, which are challenging to obtain in standard formation scenarios and gave rise to a …</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>… for precessing coalescing compact binaries with post-Newtonian twist.
-
-Phys. Rev. D 106 (2), pp. 024020.
-
-External Links: 2111.03675,
-Document
-
-Cited by: §I.
-
-[103]
-R. Gamba, M. Breschi, G. Carullo, S. Albanesi, P. Rettegno, S. Bernuzzi, and A. Nagar (2023)
-
-<mark>GW190521</mark> as a dynamical capture of two nonspinning black holes.
-
-Nature Astron. 7 (1), pp. 11–17.
-
-External Links: 2106.05575,
-Document
-
-Cited by: §I.
-
-[104]
-R. Gamba, D. Chiaramello, and S. Neogi (2024)
-
-Toward efficient effective-one-body models for generic, nonplan…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Importantly, several massive events (e.g., GW190521 [13, 14] and GW231123 [2]) present peculiar features, such as unexpectedly misaligned or even near-extremal s…</li><li><span class="sec">introduction</span> Indeed, several studies pointed to the need to include non-circular corrections to accurately analyze GW190521 [56, 106, 103].</li><li><span class="sec">cites it as [13]</span> …ary to confirm this expectation using observational data. Importantly, several massive events (e.g., GW190521 [13, 14] and GW231123 [2]) present peculiar features, such as unexpectedly misaligned or even near-extremal spin magni…</li><li><span class="sec">appendix</span> GW190521 as a dynamical capture of two nonspinning black holes.</li></ul>
     </details>
     
   </div>
@@ -588,42 +336,16 @@ Toward efficient effective-one-body models for generic, nonplan…</div>
 <section class="card" data-i="4" data-event="GW200105_162426">
   <div class="ctx">
     <div class="evname mono">GW200105_162426</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2604.15431v1#:~:text=GW200105" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200105</span> or <span class="mono hit">GW200105_162426</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>… 1. Fundamental equations for gravitational electromagnetic and neutrino field perturbations.
-
-Astrophys. J. 185, pp. 635–647.
-
-External Links: Document
-
-Cited by: §I.
-
-[208]
-A. Tiwari, S. A. Bhat, M. A. Shaikh, and S. J. Kapadia (2025)
-
-Testing the Nature of <mark>GW200105</mark> by Probing the Frequency Evolution of Eccentricity.
-
-Astrophys. J. 995 (1), pp. 48.
-
-External Links: 2509.26152,
-Document
-
-Cited by: §I.
-
-[209]
-Johnveitch/cpnest: v0.11.8
-
-External Links: Document,
-Link
-
-Cited by: §IV.1,
-§IV.2,
-§VI.
-
-[210]
-P. Virtanen et al. …</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> Testing the Nature of GW200105 by Probing the Frequency Evolution of Eccentricity.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -659,440 +381,15 @@ P. Virtanen et al. …</div>
 <section class="card" data-i="5" data-event="GW231123_135430">
   <div class="ctx">
     <div class="evname mono">GW231123_135430</div>
-    <h3>20 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ual eccentricities close to merger are unlikely, to obtain an unbiased inference of astrophysical and fundamental scenarios, it is necessary to confirm this expectation using observational data.
-Importantly, several massive events (e.g., GW190521 [13, 14] and <mark>GW231123</mark> [2]) present peculiar features, such as unexpectedly misaligned or even near-extremal spin magnitudes, which are challenging to obtain in standard formation scenarios and gave rise to a variety of interpretations [137, 126, 132, 204, 81, 82, 199, 67, 91, 201,…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…hi},\,c_{3}^{\phi},\,c_{4}^{\phi}\} remain unconstrained by the boundary conditions.
-
-References
-
-[1]
-J. Aasi et al. (2015)
-
-Advanced LIGO.
-
-Class. Quant. Grav. 32, pp. 074001.
-
-External Links: 1411.4547,
-Document
-
-Cited by: §I.
-
-[2]
-A. G. Abac et al. (2025)
-
-<mark>GW231123</mark>: a Binary Black Hole Merger with Total Mass 190-265 M⊙M_{\odot}.
-
-.
-
-External Links: 2507.08219
-
-Cited by: §I.
-
-[3]
-A. G. Abac et al. (2025)
-
-GW250114: Testing Hawking’s Area Law and the Kerr Nature of Black Holes.
-
-Phys. Rev. Lett. 135 (11), pp. 111403.
-
-Ext…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[2]</span> · 3 places</span><div class="cite">…d inference of astrophysical and fundamental scenarios, it is necessary to confirm this expectation using observational data.
-Importantly, several massive events (e.g., GW190521 [13, 14] and GW231123 <mark class="ref">[2]</mark>) present peculiar features, such as unexpectedly misaligned or even near-extremal spin magnitudes, which are challenging to obtain in standard formation scenarios and gave rise to a variety of interp…</div><div class="cite">…ll cases, the phase ϕ22ref\phi_{22}^{\rm ref} is varied uniformly in 𝒰⁡[0, 2​π]\mathcal{U}[0,\,2\pi].
-
-Coefficient
-Prior
-
-Quasi-Circular
-
-c3Ac_{3}^{A}
-𝒰⁡[−5,0.1]\mathcal{U}[-5,0.1]
-
-c3ϕc_{3}^{\phi}
-𝒰⁡<mark class="ref">[2,7]</mark>\mathcal{U}[2,7]
-
-c4ϕc_{4}^{\phi}
-𝒰⁡[0,10]\mathcal{U}[0,10]
-
-Eccentric
-
-c2Ac_{2}^{A}
-𝒰⁡[−5,5]\mathcal{U}[-5,5]
-
-c3Ac_{3}^{A}
-𝒰[−5,1)\mathcal{U}[-5,1)
-
-c2ϕc_{2}^{\phi}
-𝒰⁡[0,10]\mathcal{U}[0,10]
-
-c3ϕc_{…</div><div class="cite">…ase ϕ22ref\phi_{22}^{\rm ref} is varied uniformly in 𝒰⁡[0, 2​π]\mathcal{U}[0,\,2\pi].
-
-Coefficient
-Prior
-
-Quasi-Circular
-
-c3Ac_{3}^{A}
-𝒰⁡[−5,0.1]\mathcal{U}[-5,0.1]
-
-c3ϕc_{3}^{\phi}
-𝒰⁡[2,7]\mathcal{U}<mark class="ref">[2,7]</mark>
-
-c4ϕc_{4}^{\phi}
-𝒰⁡[0,10]\mathcal{U}[0,10]
-
-Eccentric
-
-c2Ac_{2}^{A}
-𝒰⁡[−5,5]\mathcal{U}[-5,5]
-
-c3Ac_{3}^{A}
-𝒰[−5,1)\mathcal{U}[-5,1)
-
-c2ϕc_{2}^{\phi}
-𝒰⁡[0,10]\mathcal{U}[0,10]
-
-c3ϕc_{3}^{\phi}
-𝒰⁡[0,1…</div>
-    </div></div>
+    <p class="where">Named 20 times:
+      appendix ×13, reference list ×6, introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2604.15431v1#:~:text=GW231123" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231123</span> or <span class="mono hit">GW231123_135430</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">references</span>…spectroscopy: status report.
-
-Gen. Rel. Grav. 57 (5), pp. 76.
-
-External Links: Document
-
-Cited by: §I.
-
-[67]
-A. Chakraborty and S. Mukherjee (2025)
-
-The First Model-Independent Upper Bound on Micro-lensing Signature of the Highest Mass Binary Black Hole Event <mark>GW231123</mark>.
-
-.
-
-External Links: 2512.19077
-
-Cited by: §I.
-
-[68]
-J. C. L. Chan, J. M. Ezquiaga, R. K. L. Lo, J. Bowman, L. Magaña Zertuche, and L. Vujeva (2025)
-
-Discovering gravitational waveform distortions from lensing: a deep dive into GW231123.
-
-.
-
-External Links: 2…
-    <div class="cites">
-      <span class="sec">Reference [67]: couldn't find where it is cited; check the paper.</span>
-    </div></div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">references</span>…inary Black Hole Event GW231123.
-
-.
-
-External Links: 2512.19077
-
-Cited by: §I.
-
-[68]
-J. C. L. Chan, J. M. Ezquiaga, R. K. L. Lo, J. Bowman, L. Magaña Zertuche, and L. Vujeva (2025)
-
-Discovering gravitational waveform distortions from lensing: a deep dive into <mark>GW231123</mark>.
-
-.
-
-External Links: 2512.16916
-
-Cited by: §I.
-
-[69]
-S. Chandrasekhar and S. L. Detweiler (1975)
-
-Equations governing axisymmetric perturbations of the Kerr black-hole.
-
-Proc. Roy. Soc. Lond. A 345, pp. 145–167.
-
-External Links: Document
-
-Cited by: §I.
-
-[70]
-…
-    <div class="cites">
-      <span class="sec">Reference [68]: couldn't find where it is cited; check the paper.</span>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…ions governing gravitational perturbations of the Kerr black-hole.
-
-Proc. Roy. Soc. Lond. A 350, pp. 165–174.
-
-External Links: Document
-
-Cited by: §I.
-
-[72]
-C. Chatterjee, K. McGowan, S. Deshmukh, N. Tyler-Howard, and K. Jani (2025)
-
-Machine Learning Confirms <mark>GW231123</mark> is a “Lite” Intermediate Mass Black Hole Merger.
-
-Astrophys. J. Lett. 995 (1), pp. L6.
-
-External Links: 2509.09161,
-Document
-
-Cited by: §I.
-
-[73]
-D. Chattopadhyay, J. Stegmann, F. Antonini, J. Barber, and I. M. Romero-Shaw (2023)
-
-Double black hole mergers in…
-    <div class="cites">
-      <span class="sec">Reference [72]: couldn't find where it is cited; check the paper.</span>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…eni, G. Carullo, E. Berti, G. Caneva Santoro, M. H. Cheung, and P. Pani (2025)
-
-Accuracy of ringdown models calibrated to numerical relativity simulations.
-
-.
-
-External Links: 2511.02915
-
-Cited by: §IV.1.
-
-[81]
-D. Croon, D. Gerosa, and J. Sakstein (2026)
-
-Can <mark>GW231123</mark> have a stellar origin?.
-
-Mon. Not. Roy. Astron. Soc. 546 (3), pp. stag073.
-
-External Links: 2508.10088,
-Document
-
-Cited by: §I.
-
-[82]
-I. Cuceu, M. A. Bizouard, N. Christensen, and M. Sakellariadou (2026)
-
-GW231123: Binary black hole merger or cosmic string?.
-…
-    <div class="cites">
-      <span class="sec">Reference [81]: couldn't find where it is cited; check the paper.</span>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…Croon, D. Gerosa, and J. Sakstein (2026)
-
-Can GW231123 have a stellar origin?.
-
-Mon. Not. Roy. Astron. Soc. 546 (3), pp. stag073.
-
-External Links: 2508.10088,
-Document
-
-Cited by: §I.
-
-[82]
-I. Cuceu, M. A. Bizouard, N. Christensen, and M. Sakellariadou (2026)
-
-<mark>GW231123</mark>: Binary black hole merger or cosmic string?.
-
-Phys. Rev. D 113 (2), pp. L021302.
-
-External Links: 2507.20778,
-Document
-
-Cited by: §I.
-
-[83]
-M. Dall’Amico, M. Mapelli, S. Torniamenti, and M. A. Sedda (2024)
-
-Eccentric black hole mergers via three-body interact…
-    <div class="cites">
-      <span class="sec">Reference [82]: couldn't find where it is cited; check the paper.</span>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…ument
-
-Cited by: §I.
-
-[90]
-T. Damour (2001)
-
-Coalescence of two spinning black holes: an effective one-body approach.
-
-Phys. Rev. D 64, pp. 124013.
-
-External Links: gr-qc/0103018,
-Document
-
-Cited by: §I.
-
-[91]
-V. De Luca, G. Franciolini, and A. Riotto (2025)
-
-<mark>GW231123</mark>: a Possible Primordial Black Hole Origin.
-
-.
-
-External Links: 2508.09965
-
-Cited by: §I.
-
-[92]
-W. Del Pozzo and A. Nagar (2017)
-
-Analytic family of post-merger template waveforms.
-
-Phys. Rev. D 95 (12), pp. 124034.
-
-External Links: 1606.03952,
-Document
-
-Cited …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…s.
-
-Phys. Rev. D 95 (12), pp. 124034.
-
-External Links: 1606.03952,
-Document
-
-Cited by: §I.
-
-[93]
-V. Delfavero, S. Ray, H. E. Cook, K. Nathaniel, B. McKernan, K. E. S. Ford, J. Postiglione, E. McPike, and R. O’Shaughnessy (2025)
-
-Prospects for the formation of <mark>GW231123</mark> from the AGN channel.
-
-.
-
-External Links: 2508.13412
-
-Cited by: §I.
-
-[94]
-Divyajyoti, S. Kumar, S. Tibrewal, I. M. Romero-Shaw, and C. K. Mishra (2024)
-
-Blind spots and biases: The dangers of ignoring eccentricity in gravitational-wave signals from binary bla…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…12)
-
-Bayesian model selection for testing the no-hair theorem with black hole ringdowns.
-
-Phys. Rev. D 85, pp. 124056.
-
-External Links: 1111.5819,
-Document
-
-Cited by: §I.
-
-[111]
-S. Goyal, H. Villarrubia-Rojo, and M. Zumalacarregui (2025)
-
-Across the Universe: <mark>GW231123</mark> as a magnified and diffracted black hole merger.
-
-.
-
-External Links: 2512.17631
-
-Cited by: §I.
-
-[112]
-H. Gu, H. Wang, and L. Shao (2024)
-
-Constraints on charged black holes from merger-ringdown signals in GWTC-3 and prospects for the Einstein Telescope.
-
-Phys…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…scattering of two spinning black holes: Numerics versus analytics.
-
-Phys. Rev. D 107 (12), pp. 124034.
-
-External Links: 2204.10299,
-Document
-
-Cited by: §II.2.
-
-[119]
-Q. Hu, H. Narola, J. Heynen, M. Wright, J. Veitch, J. Janquart, and C. Van Den Broeck (2025)
-
-<mark>GW231123</mark>: Overlapping Gravitational Wave Signals?.
-
-.
-
-External Links: 2512.17550
-
-Cited by: §I.
-
-[120]
-E. A. Huerta and D. A. Brown (2013)
-
-Effect of eccentricity on binary neutron star searches in Advanced LIGO.
-
-Phys. Rev. D 87 (12), pp. 127501.
-
-External Links: 13…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…odel on the retention of hierarchical black-hole remnants in globular clusters.
-
-.
-
-External Links: 2603.10170
-
-Cited by: §I.
-
-[127]
-A. Jan, S. Nicolella, D. Shoemaker, and R. O’Shaughnessy (2025)
-
-Measuring Eccentricity and Addressing Waveform Systematics in <mark>GW231123</mark>.
-
-.
-
-External Links: 2512.20060
-
-Cited by: §I.
-
-[128]
-A. Kankani and S. T. McWilliams (2024)
-
-Testing the boundary-to-bound correspondence with numerical relativity.
-
-Phys. Rev. D 110 (6), pp. 064033.
-
-External Links: 2404.03607,
-Document
-
-Cited by: §III.
-
-[1…</div>
+    <details class="lines"><summary>Show the sentences (21, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Importantly, several massive events (e.g., GW190521 [13, 14] and GW231123 [2]) present peculiar features, such as unexpectedly misaligned or even near-extremal spin magnitudes, which…</li><li><span class="sec">cites it as [2]</span> …pectation using observational data. Importantly, several massive events (e.g., GW190521 [13, 14] and GW231123 [2]) present peculiar features, such as unexpectedly misaligned or even near-extremal spin magnitudes, which are…</li><li><span class="sec">cites it as [2]</span> …[0,\,2\pi]. Coefficient Prior Quasi-Circular c3Ac_{3}^{A} 𝒰⁡[−5,0.1]\mathcal{U}[-5,0.1] c3ϕc_{3}^{\phi} 𝒰⁡[2,7]\mathcal{U}[2,7] c4ϕc_{4}^{\phi} 𝒰⁡[0,10]\mathcal{U}[0,10] Eccentric c2Ac_{2}^{A} 𝒰⁡[−5,5]\mathcal{U}[-5,5]…</li><li><span class="sec">reference list</span> …he First Model-Independent Upper Bound on Micro-lensing Signature of the Highest Mass Binary Black Hole Event GW231123.</li><li><span class="sec">reference list</span> Discovering gravitational waveform distortions from lensing: a deep dive into GW231123.</li><li><span class="sec">reference list</span> Machine Learning Confirms GW231123 is a “Lite” Intermediate Mass Black Hole Merger.</li><li><span class="sec">reference list</span> Can GW231123 have a stellar origin?.</li><li><span class="sec">reference list</span> GW231123: Binary black hole merger or cosmic string?.</li></ul>
     </details>
     
   </div>
@@ -1129,54 +426,16 @@ Cited by: §III.
 <section class="card" data-i="6" data-event="GW250114_082203">
   <div class="ctx">
     <div class="evname mono">GW250114_082203</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2604.15431v1#:~:text=GW250114" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW250114</span> or <span class="mono hit">GW250114_082203</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…nt. Grav. 32, pp. 074001.
-
-External Links: 1411.4547,
-Document
-
-Cited by: §I.
-
-[2]
-A. G. Abac et al. (2025)
-
-GW231123: a Binary Black Hole Merger with Total Mass 190-265 M⊙M_{\odot}.
-
-.
-
-External Links: 2507.08219
-
-Cited by: §I.
-
-[3]
-A. G. Abac et al. (2025)
-
-<mark>GW250114</mark>: Testing Hawking’s Area Law and the Kerr Nature of Black Holes.
-
-Phys. Rev. Lett. 135 (11), pp. 111403.
-
-External Links: 2509.08054,
-Document
-
-Cited by: §I,
-§I.
-
-[4]
-A. G. Abac et al. (2025)
-
-GWTC-4.0: Constraints on the Cosmic Expansion Rate and Modified Gra…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[3]</span> · 2 places</span><div class="cite">…110, 37, 39, 27, 28, 64, 66].
-
-Current analyses carried out by the LVK collaboration mostly use waveform models that describe binary BH coalescences on quasi-circular orbits, the exception being Ref. <mark class="ref">[3]</mark>.
-This is motivated by the fact that GW radiation is very efficient in circularizing binaries during a long inspiral [168, 169].
-This is especially the case in the isolated formation channel [146, 147…</div><div class="cite">…by the LVK collaboration have been extended to include signatures of orbital eccentricity in the inspiral [12, 124, 189, 139, 105, 173], and applied to measure orbital eccentricity in detected events <mark class="ref">[122, 45, 78, 179, 114, 152, 172, 208, 3, 127]</mark>.
-
-There is a rich history in the development of waveform models for binary mergers, evolving from systems with no intrinsic angular momentum (“non-spinning”), to the inclusion of spin components alig…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [3]</span> …y use waveform models that describe binary BH coalescences on quasi-circular orbits, the exception being Ref. [3]. This is motivated by the fact that GW radiation is very efficient in circularizing binaries during a long in…</li><li><span class="sec">cites it as [3]</span> …in the inspiral [12, 124, 189, 139, 105, 173], and applied to measure orbital eccentricity in detected events [122, 45, 78, 179, 114, 152, 172, 208, 3, 127]. There is a rich history in the development of waveform models for binary mergers, evolving from systems wit…</li></ul>
+    </details>
     
   </div>
   <div class="form">

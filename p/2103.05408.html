@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,99 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Bayesian Nonparametric Inference of the Neutron Star Equation of State via a Neural Network</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2103.05408" target="_blank" rel="noopener" class="mono">arXiv:2103.05408</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We develop a new nonparametric method to reconstruct the equation of state (EoS) of a neutron star with multimessenger data. As a universal function approximator, the feed-forward neural network (FFNN) with one hidden layer and a sigmoidal activation function can approximately fit any continuous function. Thus, we are able to implement the nonparametric FFNN representation of the EoSs. This new representation is validated by its capability of fitting the theoretical EoSs and recovering the injected parameters. Then, we adopt this nonparametric method to analyze the real data, including the mass-tidal deformability measurement from the binary neutron star merger gravitational-wave event GW170817 and mass-radius measurement of PSR J0030+0451 by NICER. We take the publicly available samples to construct the likelihood and use the nested sampling to obtain the posteriors of the parameters of the FFNN according to the Bayesian theorem, which in turn can be translated to the posteriors of the EoS parameters. Combining all of these data for a canonical 1.4 M&lt;SUB&gt;☉&lt;/SUB&gt; neutron star, we get a radius ${R}_{1.4}={11.83}_{-1.08}^{+1.25}$ km and tidal deformability ${{\rm{\Lambda }}}_{1.4}={323}_{-165}^{+334}$ (90% confidence interval). Furthermore, we find that in the high-density region (≥3ρ&lt;SUB&gt;sat&lt;/SUB&gt;), the 90% lower limits of ${c}_{{\rm{s}}}^{2}/{c}^{2}$ (where c&lt;SUB&gt;s&lt;/SUB&gt; is the sound speed and c is the velocity of light in vacuum) are above 1/3, which means that the so-called conformal limit (i.e., ${c}_{{\rm{s}}}^{2}/{c}^{2}\lt 1/3$ ) is not always valid in the neutron stars.</p></details>
+<div class="small mut mono">arXiv:2103.05408</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We develop a new nonparametric method to reconstruct the equation of state (EoS) of a neutron star with multimessenger data. As a universal function approximator, the feed-forward neural network (FFNN) with one hidden layer and a sigmoidal activation function can approximately fit any continuous function. Thus, we are able to implement the nonparametric FFNN representation of the EoSs. This new representation is validated by its capability of fitting the theoretical EoSs and recovering the injected parameters. Then, we adopt this nonparametric method to analyze the real data, including the mass-tidal deformability measurement from the binary neutron star merger gravitational-wave event GW170817 and mass-radius measurement of PSR J0030+0451 by NICER. We take the publicly available samples to construct the likelihood and use the nested sampling to obtain the posteriors of the parameters of the FFNN according to the Bayesian theorem, which in turn can be translated to the posteriors of the EoS parameters. Combining all of these data for a canonical 1.4 M&lt;SUB&gt;☉&lt;/SUB&gt; neutron star, we get a radius ${R}_{1.4}={11.83}_{-1.08}^{+1.25}$ km and tidal deformability ${{\rm{\Lambda }}}_{1.4}={323}_{-165}^{+334}$ (90% confidence interval). Furthermore, we find that in the high-density region (≥3ρ&lt;SUB&gt;sat&lt;/SUB&gt;), the 90% lower limits of ${c}_{{\rm{s}}}^{2}/{c}^{2}$ (where c&lt;SUB&gt;s&lt;/SUB&gt; is the sound speed and c is the velocity of light in vacuum) are above 1/3, which means that the so-called conformal limit (i.e., ${c}_{{\rm{s}}}^{2}/{c}^{2}\lt 1/3$ ) is not always valid in the neutron stars.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2103.05408v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">2 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">2 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>11 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…es of fitting the theoretical EoSs and recovering the injected parameters. Then we adopt this nonparametric method to analyze the real data, including mass-tidal deformability measurement from the Binary Neutron Star (BNS) merger Gravitational Wave (GW) event <mark>GW170817</mark> and mass-radius measurement of PSR J0030+0451 by NICER. We take the publicly available samples to construct the likelihood and use the nested sampling to obtain the posteriors of the parameters of FFNN according to the Bayesian theorem, which in turn can be t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…7, 2017, the gravitational wave (GW) signal from the coalescence of binary neutron star (BNS) was detected by the LIGO/Virgo detectors [2, 4], which provides new avenues to constrain the EoS via the NS matter effects.
-Benefiting from this remarkable GW event (<mark>GW170817</mark>), various studies have been implemented to better understand the EoS of NSs [84, 67, 23, 3, 76, 63, 53, 66, 62, 86, 77, 47, 26, 54, 90, 17, 44, 9].
-With the improvement on the sensitivities of GW detectors, the detectable volume will be significantly enhanced…</div>
+    <p class="where">Named 11 times:
+      results ×6, conclusion ×2, abstract, introduction, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2103.05408v2#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…oS)∣d)\mathcal{L}_{\rm GW}=\mathcal{P}(m_{1},m_{2},\Lambda_{1}(m_{1},\vec{\theta}_{\rm EoS}),\Lambda_{2}(m_{2},\vec{\theta}_{\rm EoS})\mid d) is the interpolated GW likelihood that marginalized over the other nuisance parameters [43], dd is the strain data of <mark>GW170817</mark>, m1,2m_{\rm 1,2} and Λ1,2\Lambda_{\rm 1,2} are primary/secondary mass and its tidal deformability.
-ℒNuc​(θ→EoS)\mathcal{L}_{\rm Nuc}(\vec{\theta}_{\rm EoS}) takes 11 only if all the nuclear constraints are satisfied, otherwise it takes 00 (In practice, we set…</div>
-    
-    
-    <details><summary>8 more</summary>
-    <div class="mention"><span class="sec">results</span>…vations, we simulate mock data calculated by theoretical EoSs and perform the same procedure applied to the analysis of the real data except for the nuclear constraints.
-We select three NSs’ masses based on the most probable masses in the posterior samples of <mark>GW170817</mark> 22
- 2
- 
- 
- 
- https://dcc.ligo.org/LIGO-P1800061/public and PSR J0030+0451 [83, 64], then use the theoretical EoS to calculate the corresponding tidal deformabilities and radius. The mock likelihood function is multidimensional Gaussian, with the means given b…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…Λ2\Lambda_{2}, and RR. The intervals are the recovered 90 % credible intervals, and the corresponding injected values are denoted in round brackets. These injected values of Λ1\Lambda_{1} and Λ2\Lambda_{2} are selected based on the most probable masses of the <mark>GW170817</mark> and mapped through the theoretical EoSs, while the injected values of RR are mapped the same way through the most probable mass of PSR J0030+0451.
-
-EoS
-Λ1\Lambda_{1}
-Λ2\Lambda_{2}
-R⁡[km]R~[{\rm km}]
-
-WFF1
-117−61+117​(106)117^{+117}_{-61}~(106)~
-296−151+249​(2…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…yn/cm^{2}}\leqslant p(\rho_{\rm sat})\leqslant 4.70\times 10^{33}~{\rm dyn/cm^{2}} [46] and p⁡(1.85​ρsat)⩾1.21×1034​dyn/cm2p(1.85\rho_{\rm sat})\geqslant 1.21\times 10^{34}~{\rm dyn/cm^{2}} [74] (i.e., PSR+Nuclear).
-
-4) 
-
-The constraints of 3) and the data of <mark>GW170817</mark> (i.e., PSR+Nuclear+GW).
-
-5) 
-
-The constraints of 4) and the data of PSR J0030+0451 (i.e., PSR+Nuclear+GW+NICER).
-
-The mass information of the PSR J0740+6620 raises the pressure at ∼3​ρsat\sim 3\rho_{\rm sat}, while the possible region of the ρ−p\rho-p relatio…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…also the Tab.2).
-While the data of PSR J0030+0451 boost the lower bound of the RR and Λ\Lambda for ∼0.3​km\sim 0.3~\rm km and ∼100\sim 100, respectively.
-This can be explained by the relatively larger radius of PSR J0030+0451 compared with the radii of NSs in <mark>GW170817</mark> [3], albeit they have similar mass.
-
-Figure 3: The 90% symmetric credible intervals for the pressure (upper left) as a function of rest-mass density, the squared speed of sound (upper right) as a function of rest-mass density, the tidal deformability (lower l…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…e calculation of credible intervals. Black contours are the prior ranges, the green contours denote the results when we add the mass information of PSR J0740+6620, and the red contours are the results considering the nuclear constraints. The posteriors of the <mark>GW170817</mark> and combined GW170817/PSR J0030+0451 likelihood are respectively drawn in blue and orange contours. The black vertical lines in the two upper panels stand for the ρsat\rho_{\rm sat}, 2​ρsat2\rho_{\rm sat}, 4​ρsat4\rho_{\rm sat}, and 8​ρsat8\rho_{\rm sat}, cor…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ble intervals. Black contours are the prior ranges, the green contours denote the results when we add the mass information of PSR J0740+6620, and the red contours are the results considering the nuclear constraints. The posteriors of the GW170817 and combined <mark>GW170817</mark>/PSR J0030+0451 likelihood are respectively drawn in blue and orange contours. The black vertical lines in the two upper panels stand for the ρsat\rho_{\rm sat}, 2​ρsat2\rho_{\rm sat}, 4​ρsat4\rho_{\rm sat}, and 8​ρsat8\rho_{\rm sat}, correspondingly. The hori…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…in calculating the corresponding Γ⁡(p)\Gamma(p) are as low as ∼\sim 0.1% −- 10%.
-Then we make injections and recover them using the same procedure as what we applied on the real data analysis.
-We inject mock observations of three NSs considering the masses of <mark>GW170817</mark> and PSR J0030+0451, and the tidal deformabilities and radius of these NSs are calculated by four theoretical EoSs, i.e., WFF1, H4, MS1, and ALF2.
-We find that there are no egregious errors on recovering both the macroscopic properties and microscopic relation…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>… find that there are no egregious errors on recovering both the macroscopic properties and microscopic relations with simulated data.
-After validating our model, we further adopt it to analyze the real observation data, i.e., mass-deformability measurement of <mark>GW170817</mark> and mass-radius measurement of PSR J0030+0451, and use Bayesian method to constrain the EoS parameters.
-We find that the radius and deformability of a canonical 1.4​M⊙1.4~M_{\odot} neutron star are correspondingly R1.4=11.83−1.08+1.25​kmR_{1.4}=11.83^{+1.25}_…</div>
+    <details class="lines"><summary>Show the sentences (10, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …mass-tidal deformability measurement from the Binary Neutron Star (BNS) merger Gravitational Wave (GW) event GW170817 and mass-radius measurement of PSR J0030+0451 by NICER.</li><li><span class="sec">introduction</span> Benefiting from this remarkable GW event (GW170817), various studies have been implemented to better understand the EoS of NSs [84, 67, 23, 3, 76, 63, 53, 66, 6…</li><li><span class="sec">methods</span> …nterpolated GW likelihood that marginalized over the other nuisance parameters [43], dd is the strain data of GW170817, m1,2m_{\rm 1,2} and Λ1,2\Lambda_{\rm 1,2} are primary/secondary mass and its tidal deformability. ℒNuc​(θ→Eo…</li><li><span class="sec">results</span> We select three NSs’ masses based on the most probable masses in the posterior samples of GW170817 22 2</li><li><span class="sec">results</span> …hese injected values of Λ1\Lambda_{1} and Λ2\Lambda_{2} are selected based on the most probable masses of the GW170817 and mapped through the theoretical EoSs, while the injected values of RR are mapped the same way through the…</li><li><span class="sec">results</span> The constraints of 3) and the data of GW170817 (i.e., PSR+Nuclear+GW).</li><li><span class="sec">results</span> This can be explained by the relatively larger radius of PSR J0030+0451 compared with the radii of NSs in GW170817 [3], albeit they have similar mass.</li><li><span class="sec">results</span> The posteriors of the GW170817 and combined GW170817/PSR J0030+0451 likelihood are respectively drawn in blue and orange contours.</li></ul>
     </details>
     
   </div>
@@ -251,15 +201,16 @@ We find that the radius and deformability of a canonical 1.4​M⊙1.4~M_{\odot}
 <section class="card" data-i="1" data-event="GW190425">
   <div class="ctx">
     <div class="evname mono">GW190425</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2103.05408v2#:~:text=GW190425" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190425</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…17, 44, 9].
-With the improvement on the sensitivities of GW detectors, the detectable volume will be significantly enhanced, and an increasing sample of BNS mergers will be available to constrain the EoS.
-Nevertheless, in this work we do not take into account <mark>GW190425</mark> [5] because of its weak tidal effect (due to the low signal to noise ratio and massive components).
-Moreover, its possible black hole-neutron star merger nature [41] may influence the inference.
-In addition to the GW signals, the mass−-radius (M−RM-R) measure…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Nevertheless, in this work we do not take into account GW190425 [5] because of its weak tidal effect (due to the low signal to noise ratio and massive components).</li></ul>
+    </details>
     
   </div>
   <div class="form">

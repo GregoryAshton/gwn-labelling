@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,132 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Bridging the Gap: Categorizing Gravitational-wave Events at the Transition between Neutron Stars and Black Holes</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2111.03498" target="_blank" rel="noopener" class="mono">arXiv:2111.03498</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We search for features in the mass distribution of detected compact binary coalescences which signify the transition between neutron stars (NSs) and black holes (BHs). We analyze all gravitational-wave (GW) detections by the LIGO Scientific Collaboration, the Virgo Collaboration, and the KAGRA Collaboration (LVK) made through the end of the first half of the third observing run, and find clear evidence for two different populations of compact objects based solely on GW data. We confidently (99.3%) find a steepening relative to a single power law describing NSs and low-mass BHs below ${2.4}_{-0.5}^{+0.5}{M}_{\odot }$ , which is consistent with many predictions for the maximum NS mass. We find suggestions of the purported lower mass gap between the most massive NSs and the least massive BHs, but are unable to conclusively resolve it with current data. If it exists, we find the lower mass gap&#39;s edges to lie at ${2.2}_{-0.5}^{+0.7}{M}_{\odot }$ and ${6.0}_{-1.4}^{+2.4}{M}_{\odot }$ . We reexamine events that have been deemed &#34;exceptional&#34; by the LVK collaborations in the context of these features. We analyze GW190814 self-consistently in the context of the full population of compact binaries, finding support for its secondary to be either a NS or a lower mass gap object, consistent with previous claims. Our models are the first to accommodate this event, which is an outlier with respect to the binary BH population. We find that GW200105 and GW200115 probe the edges of, and may have components within, the lower mass gap. As future data improve global population models, the classification of these events will also improve.</p></details>
+<div class="small mut mono">arXiv:2111.03498</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We search for features in the mass distribution of detected compact binary coalescences which signify the transition between neutron stars (NSs) and black holes (BHs). We analyze all gravitational-wave (GW) detections by the LIGO Scientific Collaboration, the Virgo Collaboration, and the KAGRA Collaboration (LVK) made through the end of the first half of the third observing run, and find clear evidence for two different populations of compact objects based solely on GW data. We confidently (99.3%) find a steepening relative to a single power law describing NSs and low-mass BHs below ${2.4}_{-0.5}^{+0.5}{M}_{\odot }$ , which is consistent with many predictions for the maximum NS mass. We find suggestions of the purported lower mass gap between the most massive NSs and the least massive BHs, but are unable to conclusively resolve it with current data. If it exists, we find the lower mass gap&#39;s edges to lie at ${2.2}_{-0.5}^{+0.7}{M}_{\odot }$ and ${6.0}_{-1.4}^{+2.4}{M}_{\odot }$ . We reexamine events that have been deemed &#34;exceptional&#34; by the LVK collaborations in the context of these features. We analyze GW190814 self-consistently in the context of the full population of compact binaries, finding support for its secondary to be either a NS or a lower mass gap object, consistent with previous claims. Our models are the first to accommodate this event, which is an outlier with respect to the binary BH population. We find that GW200105 and GW200115 probe the edges of, and may have components within, the lower mass gap. As future data improve global population models, the classification of these events will also improve.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2111.03498v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">7 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">7 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…he probability that an event is a NSBH is P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1}).
-Using these assumptions, we find that all probabilities presented in Tab. 2 are qualitatively consistent with the classifications given to each event by the LVK.
-
-<mark>GW170817</mark> is found here to have P⁡(m1≤mbreak)=0.99P(m_{1}\leq m_{\mathrm{break}})=0.99, which is consistent with the LVK’s classification of this event as a BNS.
-GW190425 has P⁡(m1≤mbreak)=0.9P(m_{1}\leq m_{\mathrm{break}})=0.9, with &lt;10%&lt;10\% support for a NSBH classi…</div>
+    <p class="where">Named 5 times:
+      methods ×3, discussion ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2111.03498v2#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…tely with that of GW190814’s m2m_{2}.
-
-Tab. 3 uses the Broken Power Law + Dip model fit to characterize events in relation to γlow\gamma_{\mathrm{low}} and γhigh\gamma_{\mathrm{high}}.
-Events that have been previously identified by the LVK as containing a NS
-(<mark>GW170817</mark>, GW190425, GW200105, GW200115) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.
-BNS event GW170817 has P⁡(m1≤γlow)&gt;0.95P(m_{1}\leq\gamma_{\mathrm{low}})&gt;0.95 as well, but BNS event GW190425 has ∼10%\sim 10\% support of its primary being in the…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…elation to γlow\gamma_{\mathrm{low}} and γhigh\gamma_{\mathrm{high}}.
-Events that have been previously identified by the LVK as containing a NS
-(GW170817, GW190425, GW200105, GW200115) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.
-BNS event <mark>GW170817</mark> has P⁡(m1≤γlow)&gt;0.95P(m_{1}\leq\gamma_{\mathrm{low}})&gt;0.95 as well, but BNS event GW190425 has ∼10%\sim 10\% support of its primary being in the mass gap rather than a NS.
-This is likely due to the relatively large uncertainties on both the component masses o…</div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">discussion</span>…mbreak)P(m_{2}\leq m_{\mathrm{break}})
-P⁡(m1≤mbreak)P(m_{1}\leq m_{\mathrm{break}})
-P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1})
-
-Interpretation
-P⁡(contains a NS)P(\text{contains a NS})
-P⁡(is a BNS)P(\text{is a BNS})
-P⁡(is a NSBH)P(\text{is a NSBH})
-
-<mark>GW170817</mark>
-&gt;0.99&gt;0.99
-0.99
-0.01
-
-GW190425
-&gt;0.99&gt;0.99
-0.90
-0.09
-
-GW190814
-0.35
-&lt;0.001&lt;0.001
-0.35
-
-GW200105
-0.88
-&lt;0.001&lt;0.001
-0.88
-
-GW200115
-0.94
-&lt;0.001&lt;0.001
-0.94
-
-Table 2: 
-
-Events classified in the Broken Power Law formalism.
-Values are the probabilities that each even…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…})
-P⁡(γlow≤m1≤γhigh)P(\gamma_{\text{low}}\leq m_{1}\leq\gamma_{\text{high}})
-
-Interpretation
-P⁡(contains a NS)P(\text{contains a NS})
-P⁡(is a BNS)P(\text{is a BNS})
-P⁡(m2​ in mass gap)P(m_{2}\text{ in mass gap})
-P⁡(m1​ in mass gap)P(m_{1}\text{ in mass gap})
-
-<mark>GW170817</mark>
-&gt;0.99&gt;0.99
-&gt;0.99&gt;0.99
-&lt;0.001&lt;0.001
-&lt;0.001&lt;0.001
-
-GW190425
-&gt;0.99&gt;0.99
-0.87
-0.01
-0.13
-
-GW190814
-0.26
-&lt;0.001&lt;0.001
-0.74
-&lt;0.001&lt;0.001
-
-GW190924_021846
-&lt;0.001&lt;0.001
-&lt;0.001&lt;0.001
-0.49
-0.05
-
-GW200105
-0.81
-&lt;0.001&lt;0.001
-0.19
-0.02
-
-GW200115
-0.96
-&lt;0.001&lt;0.001
-0.04
-0.44
-…</div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW170817 is found here to have P⁡(m1≤mbreak)=0.99P(m_{1}\leq m_{\mathrm{break}})=0.99, which is consistent with the LV…</li><li><span class="sec">methods</span> Events that have been previously identified by the LVK as containing a NS (GW170817, GW190425, GW200105, GW200115) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.</li><li><span class="sec">methods</span> BNS event GW170817 has P⁡(m1≤γlow)&gt;0.95P(m_{1}\leq\gamma_{\mathrm{low}})&gt;0.95 as well, but BNS event GW190425 has ∼10%\sim 10\%…</li><li><span class="sec">discussion</span> GW170817 &gt;0.99&gt;0.99 0.99 0.01</li><li><span class="sec">discussion</span> GW170817 &gt;0.99&gt;0.99 &gt;0.99&gt;0.99 &lt;0.001&lt;0.001 &lt;0.001&lt;0.001</li></ul>
     </details>
     
   </div>
@@ -284,132 +201,15 @@ GW200115
 <section class="card" data-i="1" data-event="GW190425">
   <div class="ctx">
     <div class="evname mono">GW190425</div>
-    <h3>6 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…nature of this deviation from a power law in Sec. III.3 through the features provided by the parametrized models from Sec. II.2.
-
-III.1 Deviation from a Single Power Law Describing BH and NS Masses
-
-Neither FEH20 nor [11] include GW190814, nor do they include <mark>GW190425</mark>, a BNS detected in the first half of the third LVK observing run [6].
-NSBH-like events GW200105_162426 and GW200115_042309 (abbreviated GW200105 and GW200115), which contain secondaries near the upper limits of what can be considered a NS and primaries at low…</div>
+    <p class="where">Named 6 times:
+      methods ×4, discussion ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2111.03498v2#:~:text=GW190425" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190425</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…d in Tab. 2 are qualitatively consistent with the classifications given to each event by the LVK.
-
-GW170817 is found here to have P⁡(m1≤mbreak)=0.99P(m_{1}\leq m_{\mathrm{break}})=0.99, which is consistent with the LVK’s classification of this event as a BNS.
-<mark>GW190425</mark> has P⁡(m1≤mbreak)=0.9P(m_{1}\leq m_{\mathrm{break}})=0.9, with &lt;10%&lt;10\% support for a NSBH classification.
-This is consistent with this event’s classification as a BNS.
-NSBH events GW200105 and GW200115 both have larger P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…that of GW190814’s m2m_{2}.
-
-Tab. 3 uses the Broken Power Law + Dip model fit to characterize events in relation to γlow\gamma_{\mathrm{low}} and γhigh\gamma_{\mathrm{high}}.
-Events that have been previously identified by the LVK as containing a NS
-(GW170817, <mark>GW190425</mark>, GW200105, GW200115) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.
-BNS event GW170817 has P⁡(m1≤γlow)&gt;0.95P(m_{1}\leq\gamma_{\mathrm{low}})&gt;0.95 as well, but BNS event GW190425 has ∼10%\sim 10\% support of its primary being in the mass gap …</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">methods</span>… previously identified by the LVK as containing a NS
-(GW170817, GW190425, GW200105, GW200115) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.
-BNS event GW170817 has P⁡(m1≤γlow)&gt;0.95P(m_{1}\leq\gamma_{\mathrm{low}})&gt;0.95 as well, but BNS event <mark>GW190425</mark> has ∼10%\sim 10\% support of its primary being in the mass gap rather than a NS.
-This is likely due to the relatively large uncertainties on both the component masses of GW and on γlow\gamma_{\mathrm{low}}.
-Events previously identified by the LVK as being con…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…reak}})
-P⁡(m1≤mbreak)P(m_{1}\leq m_{\mathrm{break}})
-P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1})
-
-Interpretation
-P⁡(contains a NS)P(\text{contains a NS})
-P⁡(is a BNS)P(\text{is a BNS})
-P⁡(is a NSBH)P(\text{is a NSBH})
-
-GW170817
-&gt;0.99&gt;0.99
-0.99
-0.01
-
-<mark>GW190425</mark>
-&gt;0.99&gt;0.99
-0.90
-0.09
-
-GW190814
-0.35
-&lt;0.001&lt;0.001
-0.35
-
-GW200105
-0.88
-&lt;0.001&lt;0.001
-0.88
-
-GW200115
-0.94
-&lt;0.001&lt;0.001
-0.94
-
-Table 2: 
-
-Events classified in the Broken Power Law formalism.
-Values are the probabilities that each event’s component masses lie in a g…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…mma_{\text{high}})
-
-Interpretation
-P⁡(contains a NS)P(\text{contains a NS})
-P⁡(is a BNS)P(\text{is a BNS})
-P⁡(m2​ in mass gap)P(m_{2}\text{ in mass gap})
-P⁡(m1​ in mass gap)P(m_{1}\text{ in mass gap})
-
-GW170817
-&gt;0.99&gt;0.99
-&gt;0.99&gt;0.99
-&lt;0.001&lt;0.001
-&lt;0.001&lt;0.001
-
-<mark>GW190425</mark>
-&gt;0.99&gt;0.99
-0.87
-0.01
-0.13
-
-GW190814
-0.26
-&lt;0.001&lt;0.001
-0.74
-&lt;0.001&lt;0.001
-
-GW190924_021846
-&lt;0.001&lt;0.001
-&lt;0.001&lt;0.001
-0.49
-0.05
-
-GW200105
-0.81
-&lt;0.001&lt;0.001
-0.19
-0.02
-
-GW200115
-0.96
-&lt;0.001&lt;0.001
-0.04
-0.44
-
-Table 3: 
-
-Events classified in the Broken Power Law + Di…</div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> Neither FEH20 nor [11] include GW190814, nor do they include GW190425, a BNS detected in the first half of the third LVK observing run [6].</li><li><span class="sec">methods</span> GW190425 has P⁡(m1≤mbreak)=0.9P(m_{1}\leq m_{\mathrm{break}})=0.9, with &lt;10%&lt;10\% support for a NSBH classification.</li><li><span class="sec">methods</span> Events that have been previously identified by the LVK as containing a NS (GW170817, GW190425, GW200105, GW200115) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.</li><li><span class="sec">methods</span> BNS event GW170817 has P⁡(m1≤γlow)&gt;0.95P(m_{1}\leq\gamma_{\mathrm{low}})&gt;0.95 as well, but BNS event GW190425 has ∼10%\sim 10\% support of its primary being in the mass gap rather than a NS.</li><li><span class="sec">discussion</span> GW190425 &gt;0.99&gt;0.99 0.90 0.09</li><li><span class="sec">discussion</span> GW190425 &gt;0.99&gt;0.99 0.87 0.01 0.13</li></ul>
     </details>
     
   </div>
@@ -446,16 +246,16 @@ Events classified in the Broken Power Law + Di…</div>
 <section class="card" data-i="2" data-event="GW190719_215514">
   <div class="ctx">
     <div class="evname mono">GW190719_215514</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2111.03498v2#:~:text=GW190719_215514" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190719_215514</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…ibed to one of these source categories.
-For example, GW190814 [7] has a secondary mass of m2=2.59−0.09+0.08​M⊙m_{2}=2.59^{+0.08}_{-0.09}\,{\rm M}_{\odot}, making it either the most massive neutron star (NS) or the lowest mass black hole (BH) detected to date.
-<mark>GW190719_215514</mark>, presented for the first time in GWTC-2.1 [8], is in a similar position.
-These events lie at the edges of both the NSBH and BBH populations and therefore have the potential to probe the extremes of whichever subpopulation they belong.
-
-However, their classifi…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> GW190719_215514, presented for the first time in GWTC-2.1 [8], is in a similar position.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -491,143 +291,15 @@ However, their classifi…</div>
 <section class="card" data-i="3" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>40 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…II.4 Statistical Framework
-
-III Population-Level Insights
-
-III.1 Deviation from a Single Power Law Describing BH and NS Masses
-
-III.2 Steep Decline After NS Masses
-
-III.3 Searching for a Lower Mass Gap
-
-IV Event-Level Insights
-
-IV.1 Event Classification
-
-IV.2 <mark>GW190814</mark>
-
-IV.3 GW200105 and GW200115
-
-V Discussion
-
-Acknowledgements
-
-References
-
-A Most flexible model fit
-
-B Hyperposteriors Inferred With and Without NSBH Events.
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2111.03498v2 [astro-ph.HE] 13 Jul 202…</div>
+    <p class="where">Named 40 times:
+      discussion ×26, methods ×10, introduction ×2, title/headings, abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/2111.03498v2#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>…ower mass gap’s edges to lie at 2.2−0.5+0.7​M⊙2.2^{+0.7}_{-0.5}M_{\odot} and 6.0−1.4+2.4​M⊙6.0^{+2.4}_{-1.4}M_{\odot}. We re-examine events that have been deemed ”exceptional” by the LIGO-Virgo-KAGRA collaborations in the context of these features. We analyze <mark>GW190814</mark> self-consistently in the context of the full population of compact binaries, finding support for its secondary to be either a neutron star or a lower mass gap object, consistent with previous claims. Our models are the first to accommodate this event, which i…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…neutron star-black hole (NSBH) merger candidates [10], not including the events reported in the most recent deep extended catalog [8, GWTC-2.1].
-However, some of the detected sources cannot obviously be ascribed to one of these source categories.
-For example, <mark>GW190814</mark> [7] has a secondary mass of m2=2.59−0.09+0.08​M⊙m_{2}=2.59^{+0.08}_{-0.09}\,{\rm M}_{\odot}, making it either the most massive neutron star (NS) or the lowest mass black hole (BH) detected to date.
-GW190719_215514, presented for the first time in GWTC-2.1 [8]…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…used in Sec. II.
-We show that the transition between NSs and BHs cannot be described by a single power law and explore other morphologies in Sec. III.
-In Sec. IV.2, we demonstrate that the models considered in this work are the first to be able to accommodate <mark>GW190814</mark>. We describe insights on the NSBH events in Sec. IV.3.
-We then classify all low-mass events with respect to the inferred subpopulation delineations in Sec. IV.1, concluding in Sec. V
-
-II Methods
-
-We first describe our selection criteria for which events to in…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… for the component masses for all CBCs included in this population study assuming uniform priors in detector-frame masses.
-Events classified by the LVK as BBHs, BNSs and NSBHs are shown in black, green, and blue, respectively.
-The ambiguously classified event <mark>GW190814</mark> is shown in orange.
-The grey band indicates the approximate location of the purported “lower mass gap.”
-GW190814 is the only event within this region at more than 90% credibility.
-
-II.2 Population Models
-
-We consider several nested mass models.
-That is, we de…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…e masses.
-Events classified by the LVK as BBHs, BNSs and NSBHs are shown in black, green, and blue, respectively.
-The ambiguously classified event GW190814 is shown in orange.
-The grey band indicates the approximate location of the purported “lower mass gap.”
-<mark>GW190814</mark> is the only event within this region at more than 90% credibility.
-
-II.2 Population Models
-
-We consider several nested mass models.
-That is, we describe our conclusions in the context of different sets of assumptions about the mass distribution, each of which…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… cannot. We then describe the nature of this deviation from a power law in Sec. III.3 through the features provided by the parametrized models from Sec. II.2.
-
-III.1 Deviation from a Single Power Law Describing BH and NS Masses
-
-Neither FEH20 nor [11] include <mark>GW190814</mark>, nor do they include GW190425, a BNS detected in the first half of the third LVK observing run [6].
-NSBH-like events GW200105_162426 and GW200115_042309 (abbreviated GW200105 and GW200115), which contain secondaries near the upper limits of what can be consid…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… nuclear physics.
-
-We find α2−α1&gt;0\alpha_{2}-\alpha_{1}&gt;0 at 99.3% credibility, indicating that a single power law is unable to fit the mass distribution down to low masses.
-This is consistent with findings in FEH20 and [11], and therefore the low mass events <mark>GW190814</mark>, GW200105, and GW200115 do not fully bridge the BH and NS populations.
-
-As an aside, we also note that β2−β1&gt;0\beta_{2}-\beta_{1}&gt;0 at 99.6% credibility, indicating that the pairing functions between BBHs and CBCs with low secondary mass are distinct.
-However…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…scusses how we do this in general, marginalizing over both the uncertainty in individual events’ parameters as well as the population hyperparameters.
-We then discuss the implications for specific events that previous models have not been able to accommodate: <mark>GW190814</mark> (Sec. IV.2) and the two NSBH-like events GW200105 and GW200115 (Sec. IV.3).
-
-IV.1 Event Classification
-
-Fits to the full spectrum of CBCs allow us to classify events with respect to features inferred from the detected population.
-
-Tab. 2 uses the Broken Power…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…arger P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1}) than their respective P⁡(m1&lt;mbreak)P(m_{1}&lt;m_{\mathrm{break}}) or P⁡(m2&gt;mbreak)P(m_{2}&gt;m_{\mathrm{break}}), so under this framework they are more likely NSBHs than BNSs or BBHs.
-The secondary mass of <mark>GW190814</mark> is neither definitively a NS nor a BH under this classification scheme: the posterior on mbreakm_{\mathrm{break}} overlaps almost completely with that of GW190814’s m2m_{2}.
-
-Tab. 3 uses the Broken Power Law + Dip model fit to characterize events in relation …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…}}), so under this framework they are more likely NSBHs than BNSs or BBHs.
-The secondary mass of GW190814 is neither definitively a NS nor a BH under this classification scheme: the posterior on mbreakm_{\mathrm{break}} overlaps almost completely with that of <mark>GW190814</mark>’s m2m_{2}.
-
-Tab. 3 uses the Broken Power Law + Dip model fit to characterize events in relation to γlow\gamma_{\mathrm{low}} and γhigh\gamma_{\mathrm{high}}.
-Events that have been previously identified by the LVK as containing a NS
-(GW170817, GW190425, GW2001…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ication in this analysis, with large P⁡(m2≤γlow)P(m_{2}\leq\gamma_{\mathrm{low}}), and near-vanishing P⁡(m1≤γlow)P(m_{1}\leq\gamma_{\mathrm{low}}).
-
-Additionally, the component masses of three events have considerable support in the mass gap: the secondary of <mark>GW190814</mark>, the secondary of GW190924_021846, and the primary of GW200115.
-While a totally empty gap is not ruled out \mdash none of the three have more than 75% support in the gap \mdash the combined effect of these three events is to decrease the inferred depth of the…</div>
+    <details class="lines"><summary>Show the sentences (33, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> IV.2 GW190814</li><li><span class="sec">abstract</span> We analyze GW190814 self-consistently in the context of the full population of compact binaries, finding support for its secondar…</li><li><span class="sec">introduction</span> For example, GW190814 [7] has a secondary mass of m2=2.59−0.09+0.08​M⊙m_{2}=2.59^{+0.08}_{-0.09}\,{\rm M}_{\odot}, making it either…</li><li><span class="sec">introduction</span> IV.2, we demonstrate that the models considered in this work are the first to be able to accommodate GW190814.</li><li><span class="sec">methods</span> The ambiguously classified event GW190814 is shown in orange.</li><li><span class="sec">methods</span> The grey band indicates the approximate location of the purported “lower mass gap.” GW190814 is the only event within this region at more than 90% credibility.</li><li><span class="sec">methods</span> Neither FEH20 nor [11] include GW190814, nor do they include GW190425, a BNS detected in the first half of the third LVK observing run [6].</li><li><span class="sec">methods</span> This is consistent with findings in FEH20 and [11], and therefore the low mass events GW190814, GW200105, and GW200115 do not fully bridge the BH and NS populations.</li></ul>
     </details>
     
   </div>
@@ -664,62 +336,16 @@ While a totally empty gap is not ruled out \mdash none of the three have more th
 <section class="card" data-i="4" data-event="GW190924_021846">
   <div class="ctx">
     <div class="evname mono">GW190924_021846</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ith large P⁡(m2≤γlow)P(m_{2}\leq\gamma_{\mathrm{low}}), and near-vanishing P⁡(m1≤γlow)P(m_{1}\leq\gamma_{\mathrm{low}}).
-
-Additionally, the component masses of three events have considerable support in the mass gap: the secondary of GW190814, the secondary of <mark>GW190924_021846</mark>, and the primary of GW200115.
-While a totally empty gap is not ruled out \mdash none of the three have more than 75% support in the gap \mdash the combined effect of these three events is to decrease the inferred depth of the lower mass gap.
-The secondary mas…</div>
+    <p class="where">Named 2 times:
+      methods, discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2111.03498v2#:~:text=GW190924_021846" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190924_021846</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">discussion</span>…a BNS)P(\text{is a BNS})
-P⁡(m2​ in mass gap)P(m_{2}\text{ in mass gap})
-P⁡(m1​ in mass gap)P(m_{1}\text{ in mass gap})
-
-GW170817
-&gt;0.99&gt;0.99
-&gt;0.99&gt;0.99
-&lt;0.001&lt;0.001
-&lt;0.001&lt;0.001
-
-GW190425
-&gt;0.99&gt;0.99
-0.87
-0.01
-0.13
-
-GW190814
-0.26
-&lt;0.001&lt;0.001
-0.74
-&lt;0.001&lt;0.001
-
-<mark>GW190924_021846</mark>
-&lt;0.001&lt;0.001
-&lt;0.001&lt;0.001
-0.49
-0.05
-
-GW200105
-0.81
-&lt;0.001&lt;0.001
-0.19
-0.02
-
-GW200115
-0.96
-&lt;0.001&lt;0.001
-0.04
-0.44
-
-Table 3: 
-
-Events classified in the Broken Power Law + Dip formalism.
-Values are the probabilities that each event’s component masses lie in a giv…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …masses of three events have considerable support in the mass gap: the secondary of GW190814, the secondary of GW190924_021846, and the primary of GW200115.</li><li><span class="sec">discussion</span> GW190924_021846 &lt;0.001&lt;0.001 &lt;0.001&lt;0.001 0.49 0.05</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -755,211 +381,15 @@ Values are the probabilities that each event’s component masses lie in a giv�
 <section class="card" data-i="5" data-event="GW200105_162426">
   <div class="ctx">
     <div class="evname mono">GW200105_162426</div>
-    <h3>19 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…l Framework
-
-III Population-Level Insights
-
-III.1 Deviation from a Single Power Law Describing BH and NS Masses
-
-III.2 Steep Decline After NS Masses
-
-III.3 Searching for a Lower Mass Gap
-
-IV Event-Level Insights
-
-IV.1 Event Classification
-
-IV.2 GW190814
-
-IV.3 <mark>GW200105</mark> and GW200115
-
-V Discussion
-
-Acknowledgements
-
-References
-
-A Most flexible model fit
-
-B Hyperposteriors Inferred With and Without NSBH Events.
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2111.03498v2 [astro-ph.HE] 13 Jul 2022
-
-Bridging the…</div>
+    <p class="where">Named 19 times:
+      methods ×7, discussion ×7, appendix ×3, title/headings, abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/2111.03498v2#:~:text=GW200105_162426" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200105_162426</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>…, finding support for its secondary to be either a neutron star or a lower mass gap object, consistent with previous claims. Our models are the first to accommodate this event, which is an outlier with respect to the binary black hole population. We find that <mark>GW200105</mark> and GW200115 probe the edges of, and may have components within, the lower mass gap. As future data improve global population models, the classification of these events will also become more precise.
-
- 
-
-I Introduction
-
-The LIGO Scientific Collaboration, Virg…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ametrized models from Sec. II.2.
-
-III.1 Deviation from a Single Power Law Describing BH and NS Masses
-
-Neither FEH20 nor [11] include GW190814, nor do they include GW190425, a BNS detected in the first half of the third LVK observing run [6].
-NSBH-like events <mark>GW200105_162426</mark> and GW200115_042309 (abbreviated GW200105 and GW200115), which contain secondaries near the upper limits of what can be considered a NS and primaries at lower BH masses than have been previously detected in definitive BBHs, had not been published at the time …</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">methods</span>… from a Single Power Law Describing BH and NS Masses
-
-Neither FEH20 nor [11] include GW190814, nor do they include GW190425, a BNS detected in the first half of the third LVK observing run [6].
-NSBH-like events GW200105_162426 and GW200115_042309 (abbreviated <mark>GW200105</mark> and GW200115), which contain secondaries near the upper limits of what can be considered a NS and primaries at lower BH masses than have been previously detected in definitive BBHs, had not been published at the time of either study.
-These events appear to br…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…hysics.
-
-We find α2−α1&gt;0\alpha_{2}-\alpha_{1}&gt;0 at 99.3% credibility, indicating that a single power law is unable to fit the mass distribution down to low masses.
-This is consistent with findings in FEH20 and [11], and therefore the low mass events GW190814, <mark>GW200105</mark>, and GW200115 do not fully bridge the BH and NS populations.
-
-As an aside, we also note that β2−β1&gt;0\beta_{2}-\beta_{1}&gt;0 at 99.6% credibility, indicating that the pairing functions between BBHs and CBCs with low secondary mass are distinct.
-However, because …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ver both the uncertainty in individual events’ parameters as well as the population hyperparameters.
-We then discuss the implications for specific events that previous models have not been able to accommodate: GW190814 (Sec. IV.2) and the two NSBH-like events <mark>GW200105</mark> and GW200115 (Sec. IV.3).
-
-IV.1 Event Classification
-
-Fits to the full spectrum of CBCs allow us to classify events with respect to features inferred from the detected population.
-
-Tab. 2 uses the Broken Power Law model fit to characterize events in relation …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… is consistent with the LVK’s classification of this event as a BNS.
-GW190425 has P⁡(m1≤mbreak)=0.9P(m_{1}\leq m_{\mathrm{break}})=0.9, with &lt;10%&lt;10\% support for a NSBH classification.
-This is consistent with this event’s classification as a BNS.
-NSBH events <mark>GW200105</mark> and GW200115 both have larger P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1}) than their respective P⁡(m1&lt;mbreak)P(m_{1}&lt;m_{\mathrm{break}}) or P⁡(m2&gt;mbreak)P(m_{2}&gt;m_{\mathrm{break}}), so under this framework they are more likely NSBHs than BNSs or BBH…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…190814’s m2m_{2}.
-
-Tab. 3 uses the Broken Power Law + Dip model fit to characterize events in relation to γlow\gamma_{\mathrm{low}} and γhigh\gamma_{\mathrm{high}}.
-Events that have been previously identified by the LVK as containing a NS
-(GW170817, GW190425, <mark>GW200105</mark>, GW200115) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.
-BNS event GW170817 has P⁡(m1≤γlow)&gt;0.95P(m_{1}\leq\gamma_{\mathrm{low}})&gt;0.95 as well, but BNS event GW190425 has ∼10%\sim 10\% support of its primary being in the mass gap rather tha…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…rt of its primary being in the mass gap rather than a NS.
-This is likely due to the relatively large uncertainties on both the component masses of GW and on γlow\gamma_{\mathrm{low}}.
-Events previously identified by the LVK as being consistent with NSBHs [10, <mark>GW200105</mark>, GW200115] receive a similar classification in this analysis, with large P⁡(m2≤γlow)P(m_{2}\leq\gamma_{\mathrm{low}}), and near-vanishing P⁡(m1≤γlow)P(m_{1}\leq\gamma_{\mathrm{low}}).
-
-Additionally, the component masses of three events have considerable suppo…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…k&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1})
-
-Interpretation
-P⁡(contains a NS)P(\text{contains a NS})
-P⁡(is a BNS)P(\text{is a BNS})
-P⁡(is a NSBH)P(\text{is a NSBH})
-
-GW170817
-&gt;0.99&gt;0.99
-0.99
-0.01
-
-GW190425
-&gt;0.99&gt;0.99
-0.90
-0.09
-
-GW190814
-0.35
-&lt;0.001&lt;0.001
-0.35
-
-<mark>GW200105</mark>
-0.88
-&lt;0.001&lt;0.001
-0.88
-
-GW200115
-0.94
-&lt;0.001&lt;0.001
-0.94
-
-Table 2: 
-
-Events classified in the Broken Power Law formalism.
-Values are the probabilities that each event’s component masses lie in a given region of parameter space, considering uncertainty in the c…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…ext{ in mass gap})
-P⁡(m1​ in mass gap)P(m_{1}\text{ in mass gap})
-
-GW170817
-&gt;0.99&gt;0.99
-&gt;0.99&gt;0.99
-&lt;0.001&lt;0.001
-&lt;0.001&lt;0.001
-
-GW190425
-&gt;0.99&gt;0.99
-0.87
-0.01
-0.13
-
-GW190814
-0.26
-&lt;0.001&lt;0.001
-0.74
-&lt;0.001&lt;0.001
-
-GW190924_021846
-&lt;0.001&lt;0.001
-&lt;0.001&lt;0.001
-0.49
-0.05
-
-<mark>GW200105</mark>
-0.81
-&lt;0.001&lt;0.001
-0.19
-0.02
-
-GW200115
-0.96
-&lt;0.001&lt;0.001
-0.04
-0.44
-
-Table 3: 
-
-Events classified in the Broken Power Law + Dip formalism.
-Values are the probabilities that each event’s component masses lie in a given region of parameter space, considering unce…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…that this event is consistent with the inferred population using this model.
-The only parameter that exhibits a noticeable change is γlow\gamma_{\mathrm{low}}, where the bimodality of the posterior distribution disappears with the exclusion of GW190814.
-
-IV.3 <mark>GW200105</mark> and GW200115
-
-GW200105 and GW200115 are the most definitive detections of NSBH-like systems via gravitational waves to date, observed by the LVK during the second half of the third observing run [10].
-GW200105 has component masses m1=8.9−1.5+1.2​M⊙m_{1}=8.9_{…</div>
+    <details class="lines"><summary>Show the sentences (18, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> IV.3 GW200105 and GW200115</li><li><span class="sec">abstract</span> We find that GW200105 and GW200115 probe the edges of, and may have components within, the lower mass gap.</li><li><span class="sec">methods</span> NSBH-like events GW200105_162426 and GW200115_042309 (abbreviated GW200105 and GW200115), which contain secondaries near the upper limits of w…</li><li><span class="sec">methods</span> NSBH-like events GW200105_162426 and GW200115_042309 (abbreviated GW200105 and GW200115), which contain secondaries near the upper limi…</li><li><span class="sec">methods</span> This is consistent with findings in FEH20 and [11], and therefore the low mass events GW190814, GW200105, and GW200115 do not fully bridge the BH and NS populations.</li><li><span class="sec">methods</span> IV.2) and the two NSBH-like events GW200105 and GW200115 (Sec.</li><li><span class="sec">methods</span> NSBH events GW200105 and GW200115 both have larger P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1}) than their respective P⁡(…</li><li><span class="sec">methods</span> Events that have been previously identified by the LVK as containing a NS (GW170817, GW190425, GW200105, GW200115) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.</li></ul>
     </details>
     
   </div>
@@ -996,207 +426,15 @@ GW200105 has component masses m1=8.9−1.5+1.2​M⊙m_{1}=8.9_{…</div>
 <section class="card" data-i="6" data-event="GW200115_042309">
   <div class="ctx">
     <div class="evname mono">GW200115_042309</div>
-    <h3>20 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…III Population-Level Insights
-
-III.1 Deviation from a Single Power Law Describing BH and NS Masses
-
-III.2 Steep Decline After NS Masses
-
-III.3 Searching for a Lower Mass Gap
-
-IV Event-Level Insights
-
-IV.1 Event Classification
-
-IV.2 GW190814
-
-IV.3 GW200105 and <mark>GW200115</mark>
-
-V Discussion
-
-Acknowledgements
-
-References
-
-A Most flexible model fit
-
-B Hyperposteriors Inferred With and Without NSBH Events.
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2111.03498v2 [astro-ph.HE] 13 Jul 2022
-
-Bridging the Gap: Categor…</div>
+    <p class="where">Named 20 times:
+      methods ×8, discussion ×7, appendix ×3, title/headings, abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/2111.03498v2#:~:text=GW200115_042309" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200115_042309</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>…port for its secondary to be either a neutron star or a lower mass gap object, consistent with previous claims. Our models are the first to accommodate this event, which is an outlier with respect to the binary black hole population. We find that GW200105 and <mark>GW200115</mark> probe the edges of, and may have components within, the lower mass gap. As future data improve global population models, the classification of these events will also become more precise.
-
- 
-
-I Introduction
-
-The LIGO Scientific Collaboration, Virgo Collaborati…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…m Sec. II.2.
-
-III.1 Deviation from a Single Power Law Describing BH and NS Masses
-
-Neither FEH20 nor [11] include GW190814, nor do they include GW190425, a BNS detected in the first half of the third LVK observing run [6].
-NSBH-like events GW200105_162426 and <mark>GW200115_042309</mark> (abbreviated GW200105 and GW200115), which contain secondaries near the upper limits of what can be considered a NS and primaries at lower BH masses than have been previously detected in definitive BBHs, had not been published at the time of either study.
-The…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">methods</span>…e Power Law Describing BH and NS Masses
-
-Neither FEH20 nor [11] include GW190814, nor do they include GW190425, a BNS detected in the first half of the third LVK observing run [6].
-NSBH-like events GW200105_162426 and GW200115_042309 (abbreviated GW200105 and <mark>GW200115</mark>), which contain secondaries near the upper limits of what can be considered a NS and primaries at lower BH masses than have been previously detected in definitive BBHs, had not been published at the time of either study.
-These events appear to bridge the NS a…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…nd α2−α1&gt;0\alpha_{2}-\alpha_{1}&gt;0 at 99.3% credibility, indicating that a single power law is unable to fit the mass distribution down to low masses.
-This is consistent with findings in FEH20 and [11], and therefore the low mass events GW190814, GW200105, and <mark>GW200115</mark> do not fully bridge the BH and NS populations.
-
-As an aside, we also note that β2−β1&gt;0\beta_{2}-\beta_{1}&gt;0 at 99.6% credibility, indicating that the pairing functions between BBHs and CBCs with low secondary mass are distinct.
-However, because of the fixed l…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…uncertainty in individual events’ parameters as well as the population hyperparameters.
-We then discuss the implications for specific events that previous models have not been able to accommodate: GW190814 (Sec. IV.2) and the two NSBH-like events GW200105 and <mark>GW200115</mark> (Sec. IV.3).
-
-IV.1 Event Classification
-
-Fits to the full spectrum of CBCs allow us to classify events with respect to features inferred from the detected population.
-
-Tab. 2 uses the Broken Power Law model fit to characterize events in relation to mbreakm_{\…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…t with the LVK’s classification of this event as a BNS.
-GW190425 has P⁡(m1≤mbreak)=0.9P(m_{1}\leq m_{\mathrm{break}})=0.9, with &lt;10%&lt;10\% support for a NSBH classification.
-This is consistent with this event’s classification as a BNS.
-NSBH events GW200105 and <mark>GW200115</mark> both have larger P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1}) than their respective P⁡(m1&lt;mbreak)P(m_{1}&lt;m_{\mathrm{break}}) or P⁡(m2&gt;mbreak)P(m_{2}&gt;m_{\mathrm{break}}), so under this framework they are more likely NSBHs than BNSs or BBHs.
-The second…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…2m_{2}.
-
-Tab. 3 uses the Broken Power Law + Dip model fit to characterize events in relation to γlow\gamma_{\mathrm{low}} and γhigh\gamma_{\mathrm{high}}.
-Events that have been previously identified by the LVK as containing a NS
-(GW170817, GW190425, GW200105, <mark>GW200115</mark>) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.
-BNS event GW170817 has P⁡(m1≤γlow)&gt;0.95P(m_{1}\leq\gamma_{\mathrm{low}})&gt;0.95 as well, but BNS event GW190425 has ∼10%\sim 10\% support of its primary being in the mass gap rather than a NS.
-Th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…primary being in the mass gap rather than a NS.
-This is likely due to the relatively large uncertainties on both the component masses of GW and on γlow\gamma_{\mathrm{low}}.
-Events previously identified by the LVK as being consistent with NSBHs [10, GW200105, <mark>GW200115</mark>] receive a similar classification in this analysis, with large P⁡(m2≤γlow)P(m_{2}\leq\gamma_{\mathrm{low}}), and near-vanishing P⁡(m1≤γlow)P(m_{1}\leq\gamma_{\mathrm{low}}).
-
-Additionally, the component masses of three events have considerable support in the …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ma_{\mathrm{low}}), and near-vanishing P⁡(m1≤γlow)P(m_{1}\leq\gamma_{\mathrm{low}}).
-
-Additionally, the component masses of three events have considerable support in the mass gap: the secondary of GW190814, the secondary of GW190924_021846, and the primary of <mark>GW200115</mark>.
-While a totally empty gap is not ruled out \mdash none of the three have more than 75% support in the gap \mdash the combined effect of these three events is to decrease the inferred depth of the lower mass gap.
-The secondary mass of GW190814 remains ambiguo…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…}}&lt;m_{1})
-
-Interpretation
-P⁡(contains a NS)P(\text{contains a NS})
-P⁡(is a BNS)P(\text{is a BNS})
-P⁡(is a NSBH)P(\text{is a NSBH})
-
-GW170817
-&gt;0.99&gt;0.99
-0.99
-0.01
-
-GW190425
-&gt;0.99&gt;0.99
-0.90
-0.09
-
-GW190814
-0.35
-&lt;0.001&lt;0.001
-0.35
-
-GW200105
-0.88
-&lt;0.001&lt;0.001
-0.88
-
-<mark>GW200115</mark>
-0.94
-&lt;0.001&lt;0.001
-0.94
-
-Table 2: 
-
-Events classified in the Broken Power Law formalism.
-Values are the probabilities that each event’s component masses lie in a given region of parameter space, considering uncertainty in the component masses as well as in the…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…P(m_{1}\text{ in mass gap})
-
-GW170817
-&gt;0.99&gt;0.99
-&gt;0.99&gt;0.99
-&lt;0.001&lt;0.001
-&lt;0.001&lt;0.001
-
-GW190425
-&gt;0.99&gt;0.99
-0.87
-0.01
-0.13
-
-GW190814
-0.26
-&lt;0.001&lt;0.001
-0.74
-&lt;0.001&lt;0.001
-
-GW190924_021846
-&lt;0.001&lt;0.001
-&lt;0.001&lt;0.001
-0.49
-0.05
-
-GW200105
-0.81
-&lt;0.001&lt;0.001
-0.19
-0.02
-
-<mark>GW200115</mark>
-0.96
-&lt;0.001&lt;0.001
-0.04
-0.44
-
-Table 3: 
-
-Events classified in the Broken Power Law + Dip formalism.
-Values are the probabilities that each event’s component masses lie in a given region of parameter space, considering uncertainty in the component masses as wel…</div>
+    <details class="lines"><summary>Show the sentences (19, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> IV.3 GW200105 and GW200115</li><li><span class="sec">abstract</span> We find that GW200105 and GW200115 probe the edges of, and may have components within, the lower mass gap.</li><li><span class="sec">methods</span> NSBH-like events GW200105_162426 and GW200115_042309 (abbreviated GW200105 and GW200115), which contain secondaries near the upper limits of what can be considere…</li><li><span class="sec">methods</span> NSBH-like events GW200105_162426 and GW200115_042309 (abbreviated GW200105 and GW200115), which contain secondaries near the upper limits of what can be co…</li><li><span class="sec">methods</span> This is consistent with findings in FEH20 and [11], and therefore the low mass events GW190814, GW200105, and GW200115 do not fully bridge the BH and NS populations.</li><li><span class="sec">methods</span> IV.2) and the two NSBH-like events GW200105 and GW200115 (Sec.</li><li><span class="sec">methods</span> NSBH events GW200105 and GW200115 both have larger P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1}) than their respective P⁡(m1&lt;mbreak)P(m…</li><li><span class="sec">methods</span> Events that have been previously identified by the LVK as containing a NS (GW170817, GW190425, GW200105, GW200115) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.</li></ul>
     </details>
     
   </div>

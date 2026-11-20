@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,61 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Constraining Black Hole Spins with Gravitational-wave Observations</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1809.01401" target="_blank" rel="noopener" class="mono">arXiv:1809.01401</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The observation of gravitational-wave signals from merging black hole binaries enables direct measurement of the properties of the black holes. An individual observation allows measurement of the black hole masses, but only limited information about either the magnitude or orientation of the black hole spins is available, primarily due to the degeneracy between measurements of spin and binary mass-ratio. Using the first six black hole merger observations, we are able to constrain the distribution of black hole spins. We perform model selection between a set of models with different spin population models, combined with a power-law mass distribution, to make inferences about the spin distribution. We assume a fixed power-law mass distribution for the black holes, which is supported by the data and provides a realistic distribution of the binary mass-ratio. This allows us to accurately account for selection effects due to variations in the signal amplitude with spin magnitude, and provides an improved inference on the spin distribution. We conclude that the first six LIGO and Virgo observations disfavor highly spinning black holes against low spins by an odds ratio of 15:1, thus providing strong constraints on spin magnitudes from gravitational-wave observations. Furthermore, we are able to rule out a population of binaries with completely aligned spins, even when the spins of the individual black holes are low, at an odds ratio of 22000:1, significantly strengthening earlier evidence against aligned spins. These results provide important information that will aid in our understanding of the formation processes of black holes.</p></details>
+<div class="small mut mono">arXiv:1809.01401</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The observation of gravitational-wave signals from merging black hole binaries enables direct measurement of the properties of the black holes. An individual observation allows measurement of the black hole masses, but only limited information about either the magnitude or orientation of the black hole spins is available, primarily due to the degeneracy between measurements of spin and binary mass-ratio. Using the first six black hole merger observations, we are able to constrain the distribution of black hole spins. We perform model selection between a set of models with different spin population models, combined with a power-law mass distribution, to make inferences about the spin distribution. We assume a fixed power-law mass distribution for the black holes, which is supported by the data and provides a realistic distribution of the binary mass-ratio. This allows us to accurately account for selection effects due to variations in the signal amplitude with spin magnitude, and provides an improved inference on the spin distribution. We conclude that the first six LIGO and Virgo observations disfavor highly spinning black holes against low spins by an odds ratio of 15:1, thus providing strong constraints on spin magnitudes from gravitational-wave observations. Furthermore, we are able to rule out a population of binaries with completely aligned spins, even when the spins of the individual black holes are low, at an odds ratio of 22000:1, significantly strengthening earlier evidence against aligned spins. These results provide important information that will aid in our understanding of the formation processes of black holes.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1809.01401v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">6 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">6 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… several observations can be combined to obtain the underlying astrophysical distributions of black-hole masses and spins. In this paper we use publicly available information of the measurements from the first six GW signals observed from merging black holes (<mark>GW150914</mark>, LVT151012, GW151226 and GW170104, GW170608 and GW170814)[1, 4, 5, 6] to draw inferences about the underlying spin distribution of black holes 11
- 1
- 
- 
- 
- We generate parameter distribution using confidence intervals reported in observation papers – please s…</div>
+    <p class="where">Named 4 times:
+      results ×2, introduction, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1809.01401v2#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>… than 1​σ1\sigma deviation
-in all cases), and the intervals are also comparable. 
-
-Primary Mass
-Secondary Mass
-Effective Spin
-
-m1source/M⊙m_{1}^{\mathrm{source}}/\mathrm{M}_{\odot}
-m2source/M⊙m_{2}^{\mathrm{source}}/\mathrm{M}_{\odot}
-χeff\chi_{\mathrm{eff}}
-
-<mark>GW150914</mark>
-36.0−5.0+6.0/ 36.2−3.8+5.236.0_{-5.0}^{+6.0}\;/\;36.2_{-3.8}^{+5.2}
-27.0−4.0+4.0/ 29.1−4.4+3.727.0_{-4.0}^{+4.0}\;/\;29.1_{-4.4}^{+3.7}
-−0.05−0.12+0.11/−0.06−0.14+0.14-0.05_{-0.12}^{+0.11}\;/\;-0.06_{-0.14}^{+0.14}
-
-LVT151012
-24−611/ 23−6+1824_{-6}^{11}\;/\;2…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ese two effects allows tighter constraints on the fraction of binaries with large values of χeff\chi_{\mathrm{eff}}. The effect of using an astrophysically motivated mass prior can be seen in Figure 2, that shows the mass ratio and effective spin contours for <mark>GW150914</mark> and the much lighter GW151226. As expected, the low mass systems display significant correlations, which are less evident at higher masses. The figure shows the inferred mass ratio and effective spin distributions for two choices of prior: a flat-in-mass prio…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">results</span>…roducing parameter estimates in the LIGO-Virgo results papers, follows spins up to 0.60.6, while imposing the astrophysically motivated mass distribution removes support for χeff&gt;0.4\chi_{\mathrm{eff}}&gt;0.4 for GW151226. However, for high-mass systems, such as <mark>GW150914</mark>, where there is less degeneracy between masses and spins, the effect is not significant.22
- 2
- 
- 
- 
- A similar analysis of the effect of mass priors has been performed in [38].. Figure 2 also plots contours produced from publicly available parameter samples. …</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …ly available information of the measurements from the first six GW signals observed from merging black holes (GW150914, LVT151012, GW151226 and GW170104, GW170608 and GW170814)[1, 4, 5, 6] to draw inferences about the underlying…</li><li><span class="sec">methods</span> GW150914 36.0−5.0+6.0/ 36.2−3.8+5.236.0_{-5.0}^{+6.0}\;/\;36.2_{-3.8}^{+5.2} 27.0−4.0+4.0/ 29.1−4.4+3.727.0_{-4.0}^{+4…</li><li><span class="sec">results</span> …cally motivated mass prior can be seen in Figure 2, that shows the mass ratio and effective spin contours for GW150914 and the much lighter GW151226.</li><li><span class="sec">results</span> However, for high-mass systems, such as GW150914, where there is less degeneracy between masses and spins, the effect is not significant.22 2</li></ul>
     </details>
     
   </div>
@@ -213,35 +201,16 @@ LVT151012
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…bservations can be combined to obtain the underlying astrophysical distributions of black-hole masses and spins. In this paper we use publicly available information of the measurements from the first six GW signals observed from merging black holes (GW150914, <mark>LVT151012</mark>, GW151226 and GW170104, GW170608 and GW170814)[1, 4, 5, 6] to draw inferences about the underlying spin distribution of black holes 11
- 1
- 
- 
- 
- We generate parameter distribution using confidence intervals reported in observation papers – please see section …</div>
+    <p class="where">Named 2 times:
+      introduction, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1809.01401v2#:~:text=LVT151012" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">LVT151012</span> or <span class="mono hit">GW151012</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…}_{\odot}
-χeff\chi_{\mathrm{eff}}
-
-GW150914
-36.0−5.0+6.0/ 36.2−3.8+5.236.0_{-5.0}^{+6.0}\;/\;36.2_{-3.8}^{+5.2}
-27.0−4.0+4.0/ 29.1−4.4+3.727.0_{-4.0}^{+4.0}\;/\;29.1_{-4.4}^{+3.7}
-−0.05−0.12+0.11/−0.06−0.14+0.14-0.05_{-0.12}^{+0.11}\;/\;-0.06_{-0.14}^{+0.14}
-
-<mark>LVT151012</mark>
-24−611/ 23−6+1824_{-6}^{11}\;/\;23_{-6}^{+18}
-13−4+4/ 13−5+413_{-4}^{+4}\;/\;13_{-5}^{+4}
-0.1−0.2+0.2/ 0.0−0.2+0.30.1_{-0.2}^{+0.2}\;/\;0.0_{-0.2}^{+0.3}
-
-GW151226
-15.0−4.0+12.0/ 14.2−3.7+8.315.0_{-4.0}^{+12.0}\;/\;14.2_{-3.7}^{+8.3}
-7.0−2.0+3.0/ 7.5−2.3+2.37…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …le information of the measurements from the first six GW signals observed from merging black holes (GW150914, LVT151012, GW151226 and GW170104, GW170608 and GW170814)[1, 4, 5, 6] to draw inferences about the underlying spin distr…</li><li><span class="sec">methods</span> LVT151012 24−611/ 23−6+1824_{-6}^{11}\;/\;23_{-6}^{+18} 13−4+4/ 13−5+413_{-4}^{+4}\;/\;13_{-5}^{+4} 0.1−0.2+0.2/ 0.0−0.…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -277,60 +246,15 @@ GW151226
 <section class="card" data-i="2" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>6 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… can be combined to obtain the underlying astrophysical distributions of black-hole masses and spins. In this paper we use publicly available information of the measurements from the first six GW signals observed from merging black holes (GW150914, LVT151012, <mark>GW151226</mark> and GW170104, GW170608 and GW170814)[1, 4, 5, 6] to draw inferences about the underlying spin distribution of black holes 11
- 1
- 
- 
- 
- We generate parameter distribution using confidence intervals reported in observation papers – please see section on method …</div>
+    <p class="where">Named 6 times:
+      results ×4, introduction, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1809.01401v2#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…_{-4.4}^{+3.7}
-−0.05−0.12+0.11/−0.06−0.14+0.14-0.05_{-0.12}^{+0.11}\;/\;-0.06_{-0.14}^{+0.14}
-
-LVT151012
-24−611/ 23−6+1824_{-6}^{11}\;/\;23_{-6}^{+18}
-13−4+4/ 13−5+413_{-4}^{+4}\;/\;13_{-5}^{+4}
-0.1−0.2+0.2/ 0.0−0.2+0.30.1_{-0.2}^{+0.2}\;/\;0.0_{-0.2}^{+0.3}
-
-<mark>GW151226</mark>
-15.0−4.0+12.0/ 14.2−3.7+8.315.0_{-4.0}^{+12.0}\;/\;14.2_{-3.7}^{+8.3}
-7.0−2.0+3.0/ 7.5−2.3+2.37.0_{-2.0}^{+3.0}\;/\;7.5_{-2.3}^{+2.3}
-0.22−0.13+0.29/ 0.2−0.1+0.210.22_{-0.13}^{+0.29}\;/\;0.2_{-0.1}^{+0.21}
-
-GW170104
-29.0−4.0+9.0/ 31.2−6+8.429.0_{-4.0}^{+9.0}\…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… constraints on the fraction of binaries with large values of χeff\chi_{\mathrm{eff}}. The effect of using an astrophysically motivated mass prior can be seen in Figure 2, that shows the mass ratio and effective spin contours for GW150914 and the much lighter <mark>GW151226</mark>. As expected, the low mass systems display significant correlations, which are less evident at higher masses. The figure shows the inferred mass ratio and effective spin distributions for two choices of prior: a flat-in-mass prior and the astrophysically moti…</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">results</span>…ple, the flat prior on masses, which was used in producing parameter estimates in the LIGO-Virgo results papers, follows spins up to 0.60.6, while imposing the astrophysically motivated mass distribution removes support for χeff&gt;0.4\chi_{\mathrm{eff}}&gt;0.4 for <mark>GW151226</mark>. However, for high-mass systems, such as GW150914, where there is less degeneracy between masses and spins, the effect is not significant.22
- 2
- 
- 
- 
- A similar analysis of the effect of mass priors has been performed in [38].. Figure 2 also plots contours pr…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…gned spin models in favour of isotropic distribution of spins.
-
-Although LA model does not represent a viable astrophysical model for the spin distribution the systematic and selection effect are most visible for this model. Standard posterior samples of both <mark>GW151226</mark> and GW170608 show evidence of alignment and have an odds-ratio of greater than one for LA spin model compared to LI model. Observations are best described by a mixture of LA and LI spin models and a spin analysis aimed at mixture models is best suited. Anothe…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ent and mixture models and readers are referred to them [31, 32].
-
-However, as noted in this paper, systematic and selection effects will affect the inference made by a mixture model as it will likely introduce a bias towards LA models e.g. the odds-ratio for <mark>GW151226</mark> reduces for the LA model on using re-weighted posterior samples instead of the standard posterior samples and odds-ratio for GW170608 reduces to close to unity.
-
-The result is only mildly dependent upon the value of the slope, α\alpha. As we increase the valu…</div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …ion of the measurements from the first six GW signals observed from merging black holes (GW150914, LVT151012, GW151226 and GW170104, GW170608 and GW170814)[1, 4, 5, 6] to draw inferences about the underlying spin distribution of…</li><li><span class="sec">methods</span> GW151226 15.0−4.0+12.0/ 14.2−3.7+8.315.0_{-4.0}^{+12.0}\;/\;14.2_{-3.7}^{+8.3} 7.0−2.0+3.0/ 7.5−2.3+2.37.0_{-2.0}^{+3.…</li><li><span class="sec">results</span> …be seen in Figure 2, that shows the mass ratio and effective spin contours for GW150914 and the much lighter GW151226.</li><li><span class="sec">results</span> …osing the astrophysically motivated mass distribution removes support for χeff&gt;0.4\chi_{\mathrm{eff}}&gt;0.4 for GW151226.</li><li><span class="sec">results</span> Standard posterior samples of both GW151226 and GW170608 show evidence of alignment and have an odds-ratio of greater than one for LA spin model compared…</li><li><span class="sec">results</span> …nference made by a mixture model as it will likely introduce a bias towards LA models e.g. the odds-ratio for GW151226 reduces for the LA model on using re-weighted posterior samples instead of the standard posterior samples and…</li></ul>
     </details>
     
   </div>
@@ -367,33 +291,16 @@ The result is only mildly dependent upon the value of the slope, α\alpha. As we
 <section class="card" data-i="3" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ned to obtain the underlying astrophysical distributions of black-hole masses and spins. In this paper we use publicly available information of the measurements from the first six GW signals observed from merging black holes (GW150914, LVT151012, GW151226 and <mark>GW170104</mark>, GW170608 and GW170814)[1, 4, 5, 6] to draw inferences about the underlying spin distribution of black holes 11
- 1
- 
- 
- 
- We generate parameter distribution using confidence intervals reported in observation papers – please see section on method used in this …</div>
+    <p class="where">Named 2 times:
+      introduction, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1809.01401v2#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…0.30.1_{-0.2}^{+0.2}\;/\;0.0_{-0.2}^{+0.3}
-
-GW151226
-15.0−4.0+12.0/ 14.2−3.7+8.315.0_{-4.0}^{+12.0}\;/\;14.2_{-3.7}^{+8.3}
-7.0−2.0+3.0/ 7.5−2.3+2.37.0_{-2.0}^{+3.0}\;/\;7.5_{-2.3}^{+2.3}
-0.22−0.13+0.29/ 0.2−0.1+0.210.22_{-0.13}^{+0.29}\;/\;0.2_{-0.1}^{+0.21}
-
-<mark>GW170104</mark>
-29.0−4.0+9.0/ 31.2−6+8.429.0_{-4.0}^{+9.0}\;/\;31.2_{-6}^{+8.4}
-20.0−4.0+4.0/ 19.4−5.9+5.320.0_{-4.0}^{+4.0}\;/\;19.4_{-5.9}^{+5.3}
-−0.09−0.18+0.13/−0.12−0.2+0.21-0.09_{-0.18}^{+0.13}\;/\;-0.12_{-0.2}^{+0.21}
-
-GW170608
-13−3+12/ 12−2+713_{-3}^{+12}\;/\;12_{-2}…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …asurements from the first six GW signals observed from merging black holes (GW150914, LVT151012, GW151226 and GW170104, GW170608 and GW170814)[1, 4, 5, 6] to draw inferences about the underlying spin distribution of black holes…</li><li><span class="sec">methods</span> GW170104 29.0−4.0+9.0/ 31.2−6+8.429.0_{-4.0}^{+9.0}\;/\;31.2_{-6}^{+8.4} 20.0−4.0+4.0/ 19.4−5.9+5.320.0_{-4.0}^{+4.0}\…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -429,51 +336,15 @@ GW170608
 <section class="card" data-i="4" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ain the underlying astrophysical distributions of black-hole masses and spins. In this paper we use publicly available information of the measurements from the first six GW signals observed from merging black holes (GW150914, LVT151012, GW151226 and GW170104, <mark>GW170608</mark> and GW170814)[1, 4, 5, 6] to draw inferences about the underlying spin distribution of black holes 11
- 1
- 
- 
- 
- We generate parameter distribution using confidence intervals reported in observation papers – please see section on method used in this paper..
-
-I…</div>
+    <p class="where">Named 5 times:
+      results ×3, introduction, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1809.01401v2#:~:text=GW170608" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…_{-0.13}^{+0.29}\;/\;0.2_{-0.1}^{+0.21}
-
-GW170104
-29.0−4.0+9.0/ 31.2−6+8.429.0_{-4.0}^{+9.0}\;/\;31.2_{-6}^{+8.4}
-20.0−4.0+4.0/ 19.4−5.9+5.320.0_{-4.0}^{+4.0}\;/\;19.4_{-5.9}^{+5.3}
-−0.09−0.18+0.13/−0.12−0.2+0.21-0.09_{-0.18}^{+0.13}\;/\;-0.12_{-0.2}^{+0.21}
-
-<mark>GW170608</mark>
-13−3+12/ 12−2+713_{-3}^{+12}\;/\;12_{-2}^{+7}
-7−3+2/ 7−2+27_{-3}^{+2}\;/\;7_{-2}^{+2}
-0.13−0.12+0.34/ 0.07−0.09+0.230.13_{-0.12}^{+0.34}\;/\;0.07_{-0.09}^{+0.23}
-
-GW170814
-30.0−4.07.0/ 30.5−3.0+5.730.0_{-4.0}^{7.0}\;/\;30.5_{-3.0}^{+5.7}
-23.0−4.0+3.0/ 25.3−4.…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…an 22000:1 or, equivalently, 4​σ4\sigma. (The flat- and high-aligned distributions are disfavoured at &gt;&gt;5σ\sigma.) This provides strong evidence against aligned spins. The improvement arise from three different factors. The inclusion of two additional events (<mark>GW170608</mark> and GW170814) increases the odds ratio by a factor of six, while an accurate treatment of the selection effects and the use of an approximately good mass ratio distribution to handle the mass ratio–spin degeneracy increase the odds by a factor of sixty. Incor…</div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">results</span>…els in favour of isotropic distribution of spins.
-
-Although LA model does not represent a viable astrophysical model for the spin distribution the systematic and selection effect are most visible for this model. Standard posterior samples of both GW151226 and <mark>GW170608</mark> show evidence of alignment and have an odds-ratio of greater than one for LA spin model compared to LI model. Observations are best described by a mixture of LA and LI spin models and a spin analysis aimed at mixture models is best suited. Another important f…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ill affect the inference made by a mixture model as it will likely introduce a bias towards LA models e.g. the odds-ratio for GW151226 reduces for the LA model on using re-weighted posterior samples instead of the standard posterior samples and odds-ratio for <mark>GW170608</mark> reduces to close to unity.
-
-The result is only mildly dependent upon the value of the slope, α\alpha. As we increase the value of α\alpha, we favour lower mass black hole binaries in the population while lower values of α\alpha have a larger fraction of high …</div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …from the first six GW signals observed from merging black holes (GW150914, LVT151012, GW151226 and GW170104, GW170608 and GW170814)[1, 4, 5, 6] to draw inferences about the underlying spin distribution of black holes 11 1</li><li><span class="sec">methods</span> GW170608 13−3+12/ 12−2+713_{-3}^{+12}\;/\;12_{-2}^{+7} 7−3+2/ 7−2+27_{-3}^{+2}\;/\;7_{-2}^{+2} 0.13−0.12+0.34/ 0.07−0.…</li><li><span class="sec">results</span> The inclusion of two additional events (GW170608 and GW170814) increases the odds ratio by a factor of six, while an accurate treatment of the selection effec…</li><li><span class="sec">results</span> Standard posterior samples of both GW151226 and GW170608 show evidence of alignment and have an odds-ratio of greater than one for LA spin model compared to LI model.</li><li><span class="sec">results</span> …LA model on using re-weighted posterior samples instead of the standard posterior samples and odds-ratio for GW170608 reduces to close to unity.</li></ul>
     </details>
     
   </div>
@@ -510,45 +381,15 @@ The result is only mildly dependent upon the value of the slope, α\alpha. As we
 <section class="card" data-i="5" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…lying astrophysical distributions of black-hole masses and spins. In this paper we use publicly available information of the measurements from the first six GW signals observed from merging black holes (GW150914, LVT151012, GW151226 and GW170104, GW170608 and <mark>GW170814</mark>)[1, 4, 5, 6] to draw inferences about the underlying spin distribution of black holes 11
- 1
- 
- 
- 
- We generate parameter distribution using confidence intervals reported in observation papers – please see section on method used in this paper..
-
-I.1 Model Sele…</div>
+    <p class="where">Named 4 times:
+      methods ×2, introduction, results.</p>
+    <p class="where"><a href="https://arxiv.org/html/1809.01401v2#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…as determined by standard cosmology. The expected signal-to-noise ratio (SNR) of the signals produced by these binaries at the detectors are calculated and signals that cross a certain SNR threshold are labeled as recovered. Since all of the events apart from <mark>GW170814</mark> were observed by only the LIGO detectors, for simplicity we estimate the sensitive volume for the LIGO Hanford – LIGO Livingston detector network.
-We choose a fixed power spectrum for the detector noise operating close to the sensitivity of the LIGO detectors…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…9}^{+5.3}
-−0.09−0.18+0.13/−0.12−0.2+0.21-0.09_{-0.18}^{+0.13}\;/\;-0.12_{-0.2}^{+0.21}
-
-GW170608
-13−3+12/ 12−2+713_{-3}^{+12}\;/\;12_{-2}^{+7}
-7−3+2/ 7−2+27_{-3}^{+2}\;/\;7_{-2}^{+2}
-0.13−0.12+0.34/ 0.07−0.09+0.230.13_{-0.12}^{+0.34}\;/\;0.07_{-0.09}^{+0.23}
-
-<mark>GW170814</mark>
-30.0−4.07.0/ 30.5−3.0+5.730.0_{-4.0}^{7.0}\;/\;30.5_{-3.0}^{+5.7}
-23.0−4.0+3.0/ 25.3−4.2+2.823.0_{-4.0}^{+3.0}\;/\;25.3_{-4.2}^{+2.8}
-0.07−0.13+0.13/ 0.06−0.12+0.120.07_{-0.13}^{+0.13}\;/\;0.06_{-0.12}^{+0.12}
-
-III Results and Discussion
-
-We now investigate t…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">results</span>…, equivalently, 4​σ4\sigma. (The flat- and high-aligned distributions are disfavoured at &gt;&gt;5σ\sigma.) This provides strong evidence against aligned spins. The improvement arise from three different factors. The inclusion of two additional events (GW170608 and <mark>GW170814</mark>) increases the odds ratio by a factor of six, while an accurate treatment of the selection effects and the use of an approximately good mass ratio distribution to handle the mass ratio–spin degeneracy increase the odds by a factor of sixty. Incorporation of s…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …st six GW signals observed from merging black holes (GW150914, LVT151012, GW151226 and GW170104, GW170608 and GW170814)[1, 4, 5, 6] to draw inferences about the underlying spin distribution of black holes 11 1</li><li><span class="sec">methods</span> Since all of the events apart from GW170814 were observed by only the LIGO detectors, for simplicity we estimate the sensitive volume for the LIGO Hanfor…</li><li><span class="sec">methods</span> GW170814 30.0−4.07.0/ 30.5−3.0+5.730.0_{-4.0}^{7.0}\;/\;30.5_{-3.0}^{+5.7} 23.0−4.0+3.0/ 25.3−4.2+2.823.0_{-4.0}^{+3.0…</li><li><span class="sec">results</span> The inclusion of two additional events (GW170608 and GW170814) increases the odds ratio by a factor of six, while an accurate treatment of the selection effects and the us…</li></ul>
     </details>
     
   </div>

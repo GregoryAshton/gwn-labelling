@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,31 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>GWTC-5.0: Observations from the Second Part of the Fourth LIGO-Virgo-KAGRA Observing Run and Updates to the Gravitational-Wave Transient Catalog</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2605.27225" target="_blank" rel="noopener" class="mono">arXiv:2605.27225</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Version 5.0 of the Gravitational-Wave Transient Catalog (GWTC-5.0) adds new candidates detected by the LIGO Virgo KAGRA network of observatories through the second part of the fourth observing run (O4b: 2024 April 10 15:00:00 to 2025 January 28 17:00:00 UTC) and four days of the preceding engineering run (2024 April 6 to 2024 April 10). We find 161 compact binary coalescence candidates that are identified by at least one of our search algorithms with a probability of astrophysical origin $p_\mathrm{astro} \geq 0.5$ and that are not vetoed during event validation. We also provide detailed source property measurements for 104 candidates that have a false-alarm rate &amp;lt; 1yr$^{-1}$. Based on the inferred component masses, all these candidates are consistent with signals from binary black holes. Median inferred component masses in the new candidates range from 5.14$M_\odot$ (GW241109_115924) to 70$M_\odot$ (GW241116_151753). Improvements in detector sensitivity allow us to observe compact binary coalescences with increasing clarity: 5 binary-black-hole signals have network signal-to-noise ratio exceeding 30, with a maximum to date of 76.9 for GW250114_082203. Such loud signals enable more precise studies of properties of their astrophysical sources and tests of general relativity. We also present updated results up to the first part of the fourth observing run, identifying 229 candidates. This brings the total number of transients in the cumulative GWTC having $p_\mathrm{astro} \geq 0.5$ to 390, further expanding the size of the catalog and our view of the gravitational-wave universe.</p></details>
+<div class="small mut mono">arXiv:2605.27225</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Version 5.0 of the Gravitational-Wave Transient Catalog (GWTC-5.0) adds new candidates detected by the LIGO Virgo KAGRA network of observatories through the second part of the fourth observing run (O4b: 2024 April 10 15:00:00 to 2025 January 28 17:00:00 UTC) and four days of the preceding engineering run (2024 April 6 to 2024 April 10). We find 161 compact binary coalescence candidates that are identified by at least one of our search algorithms with a probability of astrophysical origin $p_\mathrm{astro} \geq 0.5$ and that are not vetoed during event validation. We also provide detailed source property measurements for 104 candidates that have a false-alarm rate &amp;lt; 1yr$^{-1}$. Based on the inferred component masses, all these candidates are consistent with signals from binary black holes. Median inferred component masses in the new candidates range from 5.14$M_\odot$ (GW241109_115924) to 70$M_\odot$ (GW241116_151753). Improvements in detector sensitivity allow us to observe compact binary coalescences with increasing clarity: 5 binary-black-hole signals have network signal-to-noise ratio exceeding 30, with a maximum to date of 76.9 for GW250114_082203. Such loud signals enable more precise studies of properties of their astrophysical sources and tests of general relativity. We also present updated results up to the first part of the fourth observing run, identifying 229 candidates. This brings the total number of transients in the cumulative GWTC having $p_\mathrm{astro} \geq 0.5$ to 390, further expanding the size of the catalog and our view of the gravitational-wave universe.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/pdf/2605.27225v3" target="_blank" rel="noopener">Open the paper (PDF, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched; it's a PDF, so use your viewer's search.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">12 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">12 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW230712_090405">
   <div class="ctx">
     <div class="evname mono">GW230712_090405</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW230712_090405</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>… 10.3 0.99 4.2×10 −4 10.5 &gt;0.99
-GW230708_053705 HL – – – 2.4 8.6 0.84 54 8.9 0.15 0.028 8.9&gt;0.99
-GW230708_230935 HL 1.2 10.0 0.80 0.0036 9.6 &gt;0.99 0.26 9.7 0.96 0.0010 9.4 &gt;0.99
-GW230709_122727 HL 0.071 10.2&gt;0.99 0.16 9.9 0.98 12 10.1 0.48 9.7×10 −4 10.0&gt;0.99
-<mark>GW230712_090405</mark> HL 0.018 9.5 &gt;0.99 98 8.2 0.14 – – – 67 8.2 0.17
-GW230723_101834 HL – – – 0.0052 9.9&gt;0.99 0.0034 10.0&gt;0.99 2.2×10 −4 10.1&gt;0.99
-GW230726_002940 L – – – &lt;1.0×10 −5 10.5 &gt;0.99 – – – 4.5 10.0 0.68
-GW230729_082317 HL – – – 0.17 9.5 0.98 – – – 4.7 9.4 0.78
-GW230731…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> …6 9.7 0.96 0.0010 9.4 &gt;0.99 GW230709_122727 HL 0.071 10.2&gt;0.99 0.16 9.9 0.98 12 10.1 0.48 9.7×10 −4 10.0&gt;0.99 GW230712_090405 HL 0.018 9.5 &gt;0.99 98 8.2 0.14 – – – 67 8.2 0.17 GW230723_101834 HL – – – 0.0052 9.9&gt;0.99 0.0034 10.0&gt;0.99 2.…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -182,16 +201,16 @@ GW230731…</div>
 <section class="card" data-i="1" data-event="GW230927_043729">
   <div class="ctx">
     <div class="evname mono">GW230927_043729</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW230927_043729</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…1.0×10 −5 12.3&gt;0.99 4.1×10 −5 12.2&gt;0.99 3.4×10 −4 11.9&gt;0.99
-GW230922_040658 HL 0.0012 12.5 &gt;0.99 &lt;1.0×10 −5 11.6 &gt;0.99 3.0×10 −4 11.6 &gt;0.99 5.3×10 −4 11.6 &gt;0.99
-GW230924_124453 HL 0.0012 13.5&gt;0.99 &lt;1.0×10 −5 13.3&gt;0.99 &lt;1.0×10 −5 13.3&gt;0.99 &lt;1.0×10 −5 13.0&gt;0.99
-<mark>GW230927_043729</mark> HL 0.0012 12.1 &gt;0.99 &lt;1.0×10 −5 11.3 &gt;0.99 8.6×10 −4 11.1 &gt;0.99 &lt;1.0×10 −5 11.1 &gt;0.99
-GW230927_153832 HL 0.0012 20.3&gt;0.99 &lt;1.0×10 −5 19.8&gt;0.99 &lt;1.0×10 −5 20.2&gt;0.99 &lt;1.0×10 −5 19.6&gt;0.99
-GW230928_215827 HL 0.0035 10.5 &gt;0.99 1.4×10 −5 9.5 &gt;0.99 1.3 9.3 0.88 6.0×…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> …11.6 &gt;0.99 GW230924_124453 HL 0.0012 13.5&gt;0.99 &lt;1.0×10 −5 13.3&gt;0.99 &lt;1.0×10 −5 13.3&gt;0.99 &lt;1.0×10 −5 13.0&gt;0.99 GW230927_043729 HL 0.0012 12.1 &gt;0.99 &lt;1.0×10 −5 11.3 &gt;0.99 8.6×10 −4 11.1 &gt;0.99 &lt;1.0×10 −5 11.1 &gt;0.99 GW230927_153832 HL 0.00…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -227,17 +246,16 @@ GW230928_215827 HL 0.0035 10.5 &gt;0.99 1.4×10 −5 9.5 &gt;0.99 1.3 9.3 0.88 6
 <section class="card" data-i="2" data-event="GW230927_153832">
   <div class="ctx">
     <div class="evname mono">GW230927_153832</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW230927_153832</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…10 −5 11.6 &gt;0.99 3.0×10 −4 11.6 &gt;0.99 5.3×10 −4 11.6 &gt;0.99
-GW230924_124453 HL 0.0012 13.5&gt;0.99 &lt;1.0×10 −5 13.3&gt;0.99 &lt;1.0×10 −5 13.3&gt;0.99 &lt;1.0×10 −5 13.0&gt;0.99
-GW230927_043729 HL 0.0012 12.1 &gt;0.99 &lt;1.0×10 −5 11.3 &gt;0.99 8.6×10 −4 11.1 &gt;0.99 &lt;1.0×10 −5 11.1 &gt;0.99
-<mark>GW230927_153832</mark> HL 0.0012 20.3&gt;0.99 &lt;1.0×10 −5 19.8&gt;0.99 &lt;1.0×10 −5 20.2&gt;0.99 &lt;1.0×10 −5 19.6&gt;0.99
-GW230928_215827 HL 0.0035 10.5 &gt;0.99 1.4×10 −5 9.5 &gt;0.99 1.3 9.3 0.88 6.0×10 −4 9.5 &gt;0.99
-GW230930_110730 HL 5.4 9.0 0.58 0.17 8.5 0.98 1.1 8.6 0.89 0.095 8.3&gt;0.99
-GW231001_140…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> ….0&gt;0.99 GW230927_043729 HL 0.0012 12.1 &gt;0.99 &lt;1.0×10 −5 11.3 &gt;0.99 8.6×10 −4 11.1 &gt;0.99 &lt;1.0×10 −5 11.1 &gt;0.99 GW230927_153832 HL 0.0012 20.3&gt;0.99 &lt;1.0×10 −5 19.8&gt;0.99 &lt;1.0×10 −5 20.2&gt;0.99 &lt;1.0×10 −5 19.6&gt;0.99 GW230928_215827 HL 0.0035…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -273,21 +291,16 @@ GW231001_140…</div>
 <section class="card" data-i="3" data-event="GW231029_111508">
   <div class="ctx">
     <div class="evname mono">GW231029_111508</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231029_111508</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>….6 0.29
-GW231020_142947 HL – – – &lt;1.0×10 −5 11.9&gt;0.99 &lt;1.0×10 −5 12.0&gt;0.99 &lt;1.0×10 −5 11.8&gt;0.99
-GW231026_130704 HL – – – 1.6 8.1 0.88 340 8.3 0.02 0.76 8.1 0.95
-GW231028_153006 HL 0.0012 22.4&gt;0.99 &lt;1.0×10 −5 21.0&gt;0.99 &lt;1.0×10 −5 21.9&gt;0.99 &lt;1.0×10 −5 21.9&gt;0.99
-<mark>GW231029_111508</mark> L – – – 5.1×10 −5 10.8 &gt;0.99 – – – – – –
-GW231102_071736 HL 0.0012 15.6&gt;0.99 &lt;1.0×10 −5 13.8&gt;0.99 &lt;1.0×10 −5 14.8&gt;0.99 &lt;1.0×10 −5 13.4&gt;0.99
-GW231104_133418 HL – – – &lt;1.0×10 −5 11.3 &gt;0.99 &lt;1.0×10 −5 11.4 &gt;0.99 &lt;1.0×10 −5 11.8 &gt;0.99
-Table 6continued
-
-33
-Table 6…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> …6 8.1 0.95 GW231028_153006 HL 0.0012 22.4&gt;0.99 &lt;1.0×10 −5 21.0&gt;0.99 &lt;1.0×10 −5 21.9&gt;0.99 &lt;1.0×10 −5 21.9&gt;0.99 GW231029_111508 L – – – 5.1×10 −5 10.8 &gt;0.99 – – – – – – GW231102_071736 HL 0.0012 15.6&gt;0.99 &lt;1.0×10 −5 13.8&gt;0.99 &lt;1.0×10 −5…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -323,46 +336,16 @@ Table 6…</div>
 <section class="card" data-i="4" data-event="GW231123_135430">
   <div class="ctx">
     <div class="evname mono">GW231123_135430</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…s: GW240507_041632, GW240925_005809, GW241011_233834, GW241109_115924,
-GW241110_124123, GW241116_151753, GW241230_233618 and GW250114_082203.
-as highlighted in Figures 3 and 4. This is still less mas-
-sive than the source of the most massive candidate in O4a,
-<mark>GW231123_135430</mark>, withM= 236 +29
-−48 M⊙ (Abac et al.
-2025e). In addition to GW241230_233618, three addi-
-tional signals, GW240519_012815, GW240618_071627 and
-GW241125_010116, have sources with remnant massM f≥
-100M⊙ with a probability of more than 50%, and may
-thus be conside…</div>
+    <p class="where">Named 3 times:
+      appendix ×3.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231123_135430</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">appendix</span>…e likewise generally small com-
-pared to the statistical uncertainties, but became more no-
-ticeable for high-mass, high-SNR, unequal-mass, or sys-
-tems with strong spin precession. For new candidates re-
-ported in GWTC-4.0, the most pronounced cases included
-<mark>GW231123_135430</mark> and GW231028_153006, both of which
-combined high total masses with significant spin effects.
-Similar trends are observed in the present GWTC-5.0 for new
-O4b candidates.
-These systematic differences are expected from the cur-
-rent state of waveform modeling. N…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…5 10.5&gt;0.99
-GW231118_071402 HL 0.078 9.2 &gt;0.99 0.0046 9.2 &gt;0.99 0.50 9.2 0.93 2.2×10 −4 9.2 &gt;0.99
-GW231118_090602 HL – – – &lt;1.0×10 −5 10.8&gt;0.99 &lt;1.0×10 −5 11.0&gt;0.99 1.0×10 −5 10.8&gt;0.99
-GW231119_075248 HL 22 7.9 0.30 0.50 8.1 0.96 1.9 8.0 0.83 0.0029 8.3 &gt;0.99
-<mark>GW231123_135430</mark> HL 1.0×10 −4 21.8&gt;0.99 &lt;1.0×10 −5 20.1&gt;0.99 0.016 19.0&gt;0.99 0.0020 19.9&gt;0.99
-GW231127_165300 HL 0.010 9.9 &gt;0.99 0.030 9.8 &gt;0.99 0.24 9.5 0.96 0.23 9.6 0.98
-GW231129_081745 HL 0.056 9.4&gt;0.99 0.22 8.5 0.98 2.3 8.4 0.80 0.35 8.5 0.97
-GW231206_233134 HL 0.0012 12…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> This is still less mas- sive than the source of the most massive candidate in O4a, GW231123_135430, withM= 236 +29 −48 M⊙ (Abac et al. 2025e).</li><li><span class="sec">appendix</span> For new candidates re- ported in GWTC-4.0, the most pronounced cases included GW231123_135430 and GW231028_153006, both of which combined high total masses with significant spin effects.</li><li><span class="sec">appendix</span> …0 −5 11.0&gt;0.99 1.0×10 −5 10.8&gt;0.99 GW231119_075248 HL 22 7.9 0.30 0.50 8.1 0.96 1.9 8.0 0.83 0.0029 8.3 &gt;0.99 GW231123_135430 HL 1.0×10 −4 21.8&gt;0.99 &lt;1.0×10 −5 20.1&gt;0.99 0.016 19.0&gt;0.99 0.0020 19.9&gt;0.99 GW231127_165300 HL 0.010 9.9 &gt;0.…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -398,17 +381,16 @@ GW231206_233134 HL 0.0012 12…</div>
 <section class="card" data-i="5" data-event="GW231223_032836">
   <div class="ctx">
     <div class="evname mono">GW231223_032836</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231223_032836</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…_233901 HL 0.0012 21.9&gt;0.99 &lt;1.0×10 −5 20.7&gt;0.99 &lt;1.0×10 −5 21.4&gt;0.99 1.6×10 −5 21.0&gt;0.99
-GW231213_111417 HL 0.0046 10.0 &gt;0.99 &lt;1.0×10 −5 10.2 &gt;0.99 0.029 10.4 &gt;0.99 4.9×10 −5 10.1 &gt;0.99
-GW231221_135041 HL 0.54 10.0 0.96 8.5 8.4 0.62 520 8.1&lt;0.01 110 8.3 0.11
-<mark>GW231223_032836</mark> HL 0.0046 10.2 &gt;0.99 3.6×10 −4 9.4 &gt;0.99 13 9.1 0.42 4.4×10 −4 9.0 &gt;0.99
-GW231223_075055 HL – – – 9.4 9.3 0.59 1.6 9.4 0.85 0.23 9.4 0.98
-GW231223_202619 H – – – 3.2 10.1 0.80 – – – 0.0020 10.0 &gt;0.99
-GW231224_024321 HL – – – &lt;1.0×10 −5 13.0&gt;0.99 &lt;1.0×10 −5 14…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> ….029 10.4 &gt;0.99 4.9×10 −5 10.1 &gt;0.99 GW231221_135041 HL 0.54 10.0 0.96 8.5 8.4 0.62 520 8.1&lt;0.01 110 8.3 0.11 GW231223_032836 HL 0.0046 10.2 &gt;0.99 3.6×10 −4 9.4 &gt;0.99 13 9.1 0.42 4.4×10 −4 9.0 &gt;0.99 GW231223_075055 HL – – – 9.4 9.3 0.5…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -444,47 +426,16 @@ GW231224_024321 HL – – – &lt;1.0×10 −5 13.0&gt;0.99 &lt;1.0×10 −5 14
 <section class="card" data-i="6" data-event="GW240420_175625">
   <div class="ctx">
     <div class="evname mono">GW240420_175625</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…406_062847HL – – – &lt;1.0×10 −5 11.2&gt;0.99 1.5×10 −5 11.1&gt;0.99 6.2×10 −5 11.3&gt;0.99
-GW240413_022019 HLV 0.028 12.9 &gt;0.99 &lt;1.0×10 −5 17.1 &gt;0.99 &lt;1.0×10 −5 18.1 &gt;0.99 4.5×10 −5 17.5 &gt;0.99
-GW240414_054515HV – – – 0.0026 10.7&gt;0.99 0.0028 11.2&gt;0.99 5.3×10 −5 10.8&gt;0.99
-<mark>GW240420_175625</mark> H – – – 350 10.0 0.02 – – – 0.078 9.9 0.98
-GW240426_031451 HL 0.0046 10.3&gt;0.99 0.0011 9.4&gt;0.99 0.20 9.9 0.96 3.8×10 −5 9.8&gt;0.99
-GW240428_225440 HV – – – &lt;1.0×10 −5 15.5 &gt;0.99 &lt;1.0×10 −5 15.6 &gt;0.99 2.6×10 −5 15.5 &gt;0.99
-GW240501_033534 HLV 0.0035 10.4&gt;0.99 &lt;1.0…</div>
+    <p class="where">Named 3 times:
+      appendix ×3.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW240420_175625</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">appendix</span>… the remaining can-
-didates are listed in Table 2.
-• The MBTA pipeline found 14 unique candidates, one
-of which, GW240526_093944, was assigned a FAR&lt;
-1 yr−1, with the others summarized in Table 2.
-• The PYCBC pipeline found 19 unique candidates, one
-of which, <mark>GW240420_175625</mark>, was assigned a FAR&lt;
-1 yr−1; additional candidates appear in Table 2.
-2.1.4.Subthreshold candidates
-We have highlighted 161 GW candidates in O4b with
-pastro≥0.5as listed in Tables 1 and 2. These candidates
-are a subset of the O4b candidates in GWTC-5.0, which…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…ctor SNRs for all candidates with a FAR&lt;1 yr−1.
-CandidateCWB-BBH GSTLAL MBTA PyCBC
-H L V H L V H L V H L V
-GW240406_062847 – – –8.4 7.4–8.5 7.1–8.4 7.5–
-GW240413_022019 7.5 10.5 – 9.0 14.0 – 9.5 14.8 4.3 9.4 14.8 –
-GW240414_054515 – – –9.1–5.6 9.5–5.9 8.9–6.2
-<mark>GW240420_175625</mark> – – – 10.0 – – – – – 9.9 – –
-GW240426_0314515.6 8.6–5.8 7.3–6.4 7.6–6.3 7.6–
-GW240428_225440 – – – 14.1 – 6.5 14.1 – 6.7 14.0 – 6.6
-GW240501_0335347.4 7.4–6.7 7.0–7.0 7.3 2.9 6.6 7.4–
-GW240505_133552 5.7 7.2 – 5.8 6.1 – 6.5 6.4 2.3 5.5 5.8 –
-GW240507_041632 –…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> …18.1 &gt;0.99 4.5×10 −5 17.5 &gt;0.99 GW240414_054515HV – – – 0.0026 10.7&gt;0.99 0.0028 11.2&gt;0.99 5.3×10 −5 10.8&gt;0.99 GW240420_175625 H – – – 350 10.0 0.02 – – – 0.078 9.9 0.98 GW240426_031451 HL 0.0046 10.3&gt;0.99 0.0011 9.4&gt;0.99 0.20 9.9 0.96…</li><li><span class="sec">appendix</span> …1 yr−1, with the others summarized in Table 2. • The PYCBC pipeline found 19 unique candidates, one of which, GW240420_175625, was assigned a FAR&lt; 1 yr−1; additional candidates appear in Table 2. 2.1.4.Subthreshold candidates We have h…</li><li><span class="sec">appendix</span> …5– GW240413_022019 7.5 10.5 – 9.0 14.0 – 9.5 14.8 4.3 9.4 14.8 – GW240414_054515 – – –9.1–5.6 9.5–5.9 8.9–6.2 GW240420_175625 – – – 10.0 – – – – – 9.9 – – GW240426_0314515.6 8.6–5.8 7.3–6.4 7.6–6.3 7.6– GW240428_225440 – – – 14.1 – 6.5…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -520,75 +471,15 @@ GW240507_041632 –…</div>
 <section class="card" data-i="7" data-event="GW240515_005301">
   <div class="ctx">
     <div class="evname mono">GW240515_005301</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…×10 −5 11.1&gt;0.99 &lt;1.0×10 −5 11.6&gt;0.99 4.9×10 −5 10.5&gt;0.99
-GW240513_183302 HLV 0.0013 13.8 &gt;0.99 &lt;1.0×10 −5 14.5 &gt;0.99 &lt;1.0×10 −5 14.0 &gt;0.99 4.9×10 −5 14.0 &gt;0.99
-GW240514_121713 HLV 0.0013 16.9&gt;0.99 &lt;1.0×10 −5 15.6&gt;0.99 &lt;1.0×10 −5 16.2&gt;0.99 4.9×10 −5 15.6&gt;0.99
-<mark>GW240515_005301</mark> HLV 8.1 12.8 0.55 &lt;1.0×10 −5 11.6 &gt;0.99 3.1 11.1 0.70 7.3×10 −4 10.4 &gt;0.99
-GW240519_012815LV – – – 0.30 10.3 0.96 – – – 0.014 10.6&gt;0.99
-GW240520_213616 HLV – – – &lt;1.0×10 −5 11.6 &gt;0.99 &lt;1.0×10 −5 11.9 &gt;0.99 6.8×10 −5 11.2 &gt;0.99
-GW240525_031210 HLV – – – 0.29 9…</div>
+    <p class="where">Named 5 times:
+      appendix ×5.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW240515_005301</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">appendix</span>…e consistent withχ eff = 0, as seen in Fig-
-ures 2 and 4. However, some candidates have sources
-withχ eff ≥0with greater than 90% probability. The
-candidate with the highest and second highestχ eff val-
-ues are GW241113_163507 withχ eff = 0.50 +0.11
-−0.11
-and <mark>GW240515_005301</mark> withχ eff = 0.47 +0.17
-−0.19, re-
-spectively. Some other candidates with support for
-χeff≥0include GW240527_183429, GW240615_160735,
-GW240622_004008, GW241011_233834 and
-GW241116_151753. We find fewer candidates for which,
-χeff &lt;0, with greater than90%probabi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…
-21
-Figure 6.Posterior probability distributions for the dimensionless component spinsχ 1 =cS 1/(Gm2
-1)andχ 2 =cS 2/(Gm2
-2)
-(withS 1 andS 2 the spin vectors of the components) relative to the orbital plane, marginalized over azimuthal angles, for can-
-didates <mark>GW240515_005301</mark>, GW240527_183429, GW240615_160735, GW240921_201835, GW240925_005809, GW241011_233834,
-GW241127_061008, GW241225_082815, and GW250114_082203. In these plots, the histogram bins are constructed linearly in spin magni-
-tude and the cosine of the tilt angles such…</div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">appendix</span>…–6.3 7.2 3.5 6.4 6.9–
-GW240511_031507 9.7 12.9 – 8.8 12.3 5.0 9.0 12.8 4.7 8.2 12.4 5.2
-GW240512_024139 – – –6.9 8.1–7.0 8.4 3.7 6.9 7.9–
-GW240513_183302 10.4 9.1 – 8.9 10.4 4.6 8.9 9.8 4.6 9.0 9.6 4.8
-GW240514_12171313.5 10.2–12.3 9.3–12.5 10.0 2.0 12.0 9.9–
-<mark>GW240515_005301</mark> 8.2 9.8 – 6.8 8.9 – 6.6 8.7 2.1 6.2 8.4 –
-GW240519_012815 – – – –9.2 4.7– – – –9.4 4.9
-GW240520_213616 – – – 7.3 8.4 – 7.0 8.9 3.7 7.1 8.7 –
-Table 8continued
-
-35
-Table 8(continued)
-CandidateCWB-BBH GSTLAL MBTA PyCBC
-H L V H L V H L V H L V
-GW240525_031210 – –…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…6b).
-Table 10. List of O4b candidates with FAR &lt;1 yr−1, for which glitch mitigation was performed.
-Candidate GPS time [s] Detector Time window [s] Frequency range [Hz]f low [Hz]
-GW240413_022019 – L – – 30
-GW240514_121713 1399724251.72 L [0.70,2.00] [20, 35] –
-<mark>GW240515_005301</mark> 1399769599.11 L[−4.01,−3.01][10, 50] –
-GW240520_213616 1400276194.97 L [−0.28,−0.04] [60, 90] –
-GW240525_031210 1400641948.64 L[−4.64,−4.24][10, 30] –
-GW240531_075248 1401177186.46 V [−0.30,−0.20] [120, 200] –
-GW240601_061200 1401257538.36 L[0.52,0.73][200, 3…</div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> …14.0 &gt;0.99 GW240514_121713 HLV 0.0013 16.9&gt;0.99 &lt;1.0×10 −5 15.6&gt;0.99 &lt;1.0×10 −5 16.2&gt;0.99 4.9×10 −5 15.6&gt;0.99 GW240515_005301 HLV 8.1 12.8 0.55 &lt;1.0×10 −5 11.6 &gt;0.99 3.1 11.1 0.70 7.3×10 −4 10.4 &gt;0.99 GW240519_012815LV – – – 0.30 10.3…</li><li><span class="sec">appendix</span> …didate with the highest and second highestχ eff val- ues are GW241113_163507 withχ eff = 0.50 +0.11 −0.11 and GW240515_005301 withχ eff = 0.47 +0.17 −0.19, re- spectively.</li><li><span class="sec">appendix</span> …ectors of the components) relative to the orbital plane, marginalized over azimuthal angles, for can- didates GW240515_005301, GW240527_183429, GW240615_160735, GW240921_201835, GW240925_005809, GW241011_233834, GW241127_061008, GW2412…</li><li><span class="sec">appendix</span> …302 10.4 9.1 – 8.9 10.4 4.6 8.9 9.8 4.6 9.0 9.6 4.8 GW240514_12171313.5 10.2–12.3 9.3–12.5 10.0 2.0 12.0 9.9– GW240515_005301 8.2 9.8 – 6.8 8.9 – 6.6 8.7 2.1 6.2 8.4 – GW240519_012815 – – – –9.2 4.7– – – –9.4 4.9 GW240520_213616 – – –…</li><li><span class="sec">appendix</span> …quency range [Hz]f low [Hz] GW240413_022019 – L – – 30 GW240514_121713 1399724251.72 L [0.70,2.00] [20, 35] – GW240515_005301 1399769599.11 L[−4.01,−3.01][10, 50] – GW240520_213616 1400276194.97 L [−0.28,−0.04] [60, 90] – GW240525_0312…</li></ul>
     </details>
     
   </div>
@@ -625,20 +516,16 @@ GW240601_061200 1401257538.36 L[0.52,0.73][200, 3…</div>
 <section class="card" data-i="8" data-event="GW240701_203807">
   <div class="ctx">
     <div class="evname mono">GW240701_203807</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW240701_203807</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…331HL – – – – – – 2.5 10.1 0.64 – – –
-GW240630_115348 HLV – – – 14 8.5 0.42 51 8.2 0.09 6.5 8.3 0.67
-GW240630_212937 HLV – – – 600 8.2 0.01 – – – 4.9 7.3 0.75
-GW240701_011640 HLV – – – – – – – – – 12 7.8 0.51
-GW240701_013826HLV – – – – – – 2.5 10.4 0.64 – – –
-<mark>GW240701_203807</mark> HLV – – – 8.6 7.8 0.55 160 7.9 0.03 220 7.6 0.08
-GW240806_043539LV – – – 6.7 8.2 0.60 16 8.9 0.24 1.9 8.4 0.89
-GW240807_214559 LV – – – 310 9.6 0.03 – – – 17 9.0 0.66
-GW240813_034548 LV – – – 310 9.7 0.03 – – – 19 8.9 0.64
-GW240814_145043 LV – – – 39 9.3 0.22…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> …7.3 0.75 GW240701_011640 HLV – – – – – – – – – 12 7.8 0.51 GW240701_013826HLV – – – – – – 2.5 10.4 0.64 – – – GW240701_203807 HLV – – – 8.6 7.8 0.55 160 7.9 0.03 220 7.6 0.08 GW240806_043539LV – – – 6.7 8.2 0.60 16 8.9 0.24 1.9 8.4 0.8…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -674,50 +561,16 @@ GW240814_145043 LV – – – 39 9.3 0.22…</div>
 <section class="card" data-i="9" data-event="GW240813_034548">
   <div class="ctx">
     <div class="evname mono">GW240813_034548</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…s pipelines.
-Out of the significant online candidates that were not re-
-tracted, 11 were identified with a FAR≥1 yr−1 in the offline
-search:
-• Candidates withp astro ≥0.5, shown in Table 2, are
-likely of astrophysical origin: GW241210_023335,
-GW240917_130237, <mark>GW240813_034548</mark>,
-GW240807_214559, GW240430_093517 and
-GW240421_052935.
-• Candidates withp astro &lt;0.5: S240426dl and
-S240422ed. S240426dl was found confidently only by
-CWB with a FAR&lt;1.6 yr −1 in low latency, while
-other pipelines reported it as a sub-threshold trigger.
-After…</div>
+    <p class="where">Named 3 times:
+      appendix ×3.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW240813_034548</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">appendix</span>…– – – – – – – 12 7.8 0.51
-GW240701_013826HLV – – – – – – 2.5 10.4 0.64 – – –
-GW240701_203807 HLV – – – 8.6 7.8 0.55 160 7.9 0.03 220 7.6 0.08
-GW240806_043539LV – – – 6.7 8.2 0.60 16 8.9 0.24 1.9 8.4 0.89
-GW240807_214559 LV – – – 310 9.6 0.03 – – – 17 9.0 0.66
-<mark>GW240813_034548</mark> LV – – – 310 9.7 0.03 – – – 19 8.9 0.64
-GW240814_145043 LV – – – 39 9.3 0.22 2.1 9.4 0.74 23 9.4 0.13
-GW240828_102340 HLV – – – 450 8.0 0.02 3.8 8.0 0.62 690 7.7 0.03
-GW240901_195332 HLV 24 9.4 0.27 7.8 8.4 0.57 730 8.5 &lt;0.01 9.6 7.7 0.62
-GW240907_092521 HLV …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…5andp BNS +p NSBH &gt;0.001.
-CandidateCWB-BBH GstLAL MBTA PyCBC
-pastro pBBH pNSBH pBNS pastro pBBH pNSBH pBNS pastro pBBH pNSBH pBNS pastro
-GW240512_051606 – – – – – 0.68 0.02&lt;0.01 0.70 – – – –
-GW240807_214559 – 0.03 &lt;0.01 &lt;0.01 0.03 – – – – 0.57 0.09 &lt;0.01 0.66
-<mark>GW240813_034548</mark> – 0.03&lt;0.01&lt;0.01 0.03 – – – – 0.57 0.07&lt;0.01 0.64
-GW240907_121650 – – – – – &lt;0.01 0.34 0.18 0.52 – – – –
-GW241129_140416 – – – – – – – – – 0.48 0.03&lt;0.01 0.51
-GW250109_083206 – – – – – – – – – 0.80 0.20 &lt;0.01 &gt;0.99
-NOTE—These candidates do not meet the criter…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> …tes withp astro ≥0.5, shown in Table 2, are likely of astrophysical origin: GW241210_023335, GW240917_130237, GW240813_034548, GW240807_214559, GW240430_093517 and GW240421_052935. • Candidates withp astro &lt;0.5: S240426dl and S240422ed…</li><li><span class="sec">appendix</span> …_043539LV – – – 6.7 8.2 0.60 16 8.9 0.24 1.9 8.4 0.89 GW240807_214559 LV – – – 310 9.6 0.03 – – – 17 9.0 0.66 GW240813_034548 LV – – – 310 9.7 0.03 – – – 19 8.9 0.64 GW240814_145043 LV – – – 39 9.3 0.22 2.1 9.4 0.74 23 9.4 0.13 GW24082…</li><li><span class="sec">appendix</span> …06 – – – – – 0.68 0.02&lt;0.01 0.70 – – – – GW240807_214559 – 0.03 &lt;0.01 &lt;0.01 0.03 – – – – 0.57 0.09 &lt;0.01 0.66 GW240813_034548 – 0.03&lt;0.01&lt;0.01 0.03 – – – – 0.57 0.07&lt;0.01 0.64 GW240907_121650 – – – – – &lt;0.01 0.34 0.18 0.52 – – – – GW24…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -753,90 +606,15 @@ NOTE—These candidates do not meet the criter…</div>
 <section class="card" data-i="10" data-event="GW241114_235258">
   <div class="ctx">
     <div class="evname mono">GW241114_235258</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…1111_111552 HL 0.0013 16.3 &gt;0.99 &lt;1.0×10 −5 15.6 &gt;0.99 &lt;1.0×10 −5 15.9 &gt;0.99 1.4×10 −5 15.3 &gt;0.99
-GW241113_163507 LV – – – &lt;1.0×10 −5 12.5&gt;0.99 – – – 0.29 12.5&gt;0.99
-GW241114_024711 HLV 0.0013 11.3 &gt;0.99 &lt;1.0×10 −5 10.7 &gt;0.99 1.4 10.4 0.78 1.1×10 −4 10.2 &gt;0.99
-<mark>GW241114_235258</mark> LV – – – &lt;1.0×10 −5 12.4&gt;0.99 – – – 0.049 11.6&gt;0.99
-GW241116_151753 HLV 0.025 9.9 &gt;0.99 0.45 9.8 0.95 0.023 10.5 &gt;0.99 0.0044 9.0 &gt;0.99
-GW241124_024914 HLV 14 8.5 0.46 5.5 8.5 0.65 7.1 8.7 0.48 0.78 8.5 0.94
-GW241125_010116 HLV 0.0013 11.0 &gt;0.99 1.1×10 −5 10.…</div>
+    <p class="where">Named 4 times:
+      appendix ×4.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW241114_235258</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">appendix</span>…0.11
-−0.11 1.36+0.67
-−0.63 0.26+0.11
-−0.11 31.7+3.7
-−2.8 0.85+0.04
-−0.04 14000 12.0+0.2
-−0.3
-GW241114_02471171.9 +9.9
-−9.5 29.2+4.7
-−4.3 47.0+9.7
-−11.0 25.0+8.2
-−7.3 0.12+0.21
-−0.24 2.6+1.6
-−1.0 0.45+0.22
-−0.16 68.9+9.4
-−9.3 0.74+0.09
-−0.14 200 11.1 +0.4
-−0.5
-<mark>GW241114_235258</mark> 19.1+2.9
-−1.3 8.04+0.50
-−0.37 11.3+5.2
-−1.9 7.7+1.5
-−2.2 0.06+0.18
-−0.08 0.79+0.30
-−0.35 0.16+0.05
-−0.07 18.2+3.0
-−1.2 0.69+0.05
-−0.04 11000 12.2+0.2
-−0.4
-GW241116_15175399 +48
-−30 34.0+18.8
-−9.6 70+57
-−28 24+26
-−13 0.28+0.34
-−0.48 5.7+5.6
-−2.9 0.87+0.64
-−0.3…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…W241109_115924 – – – 11.6 – – 11.7 – 2.2 11.7 – –
-GW241110_124123 – – –7.2 6.5–7.1 6.9 2.2 7.3 7.0–
-GW241111_111552 13.4 9.3 – 13.5 7.9 – 13.6 8.1 – 13.2 7.6 –
-GW241113_163507 – – – –12.3– – – – –12.5–
-GW241114_024711 8.7 7.2 – 7.5 6.9 – 7.4 6.9 2.5 7.5 7.0 –
-<mark>GW241114_235258</mark> – – – –12.1– – – – –11.6–
-GW241116_151753 7.4 6.6 – 7.8 5.4 – 8.5 5.5 2.5 6.9 5.8 –
-GW241124_0249145.7 6.2–5.7 5.6–5.7 6.1 2.45.5 6.4–
-GW241125_010116 8.1 7.4 – 7.0 6.6 – 7.1 7.3 2.4 7.3 6.7 –
-GW241127_06100824.7 19.2–24.1 17.1–25.1 18.0 4.6 24.8 18.1–
-GW2411…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">appendix</span>…455 1412546713.52 L[−0.22,0.58][10, 30] –
-GW241102_144729 1414594067.73 L [−2.58,−1.63] [10, 30] –
-GW241109_033317 1415158416.00 L[0.60,1.00][10, 50] –
-GW241110_124123 – L – – 30
-GW241111_111552 – L – – 30
-GW241113_163507 – L – – 30
-GW241114_024711 – L – – 30
-<mark>GW241114_235258</mark> – L – – 30
-GW241125_010116 1416531694.78 H[−0.60,−0.30][20, 40] –
-GW241127_061008 – L – – 30
-GW241130_034908 – V – – 70
-GW241201_055758 – V – – 50
-GW250108_152221 – L – – 30
-GW250109_010541 – L – – 30
-GW250109_010541 – V – – 60
-GW250119_190238 – L – – 30
-NOTE…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> …0.29 12.5&gt;0.99 GW241114_024711 HLV 0.0013 11.3 &gt;0.99 &lt;1.0×10 −5 10.7 &gt;0.99 1.4 10.4 0.78 1.1×10 −4 10.2 &gt;0.99 GW241114_235258 LV – – – &lt;1.0×10 −5 12.4&gt;0.99 – – – 0.049 11.6&gt;0.99 GW241116_151753 HLV 0.025 9.9 &gt;0.99 0.45 9.8 0.95 0.023 1…</li><li><span class="sec">appendix</span> …0 25.0+8.2 −7.3 0.12+0.21 −0.24 2.6+1.6 −1.0 0.45+0.22 −0.16 68.9+9.4 −9.3 0.74+0.09 −0.14 200 11.1 +0.4 −0.5 GW241114_235258 19.1+2.9 −1.3 8.04+0.50 −0.37 11.3+5.2 −1.9 7.7+1.5 −2.2 0.06+0.18 −0.08 0.79+0.30 −0.35 0.16+0.05 −0.07 18.2…</li><li><span class="sec">appendix</span> …3.2 7.6 – GW241113_163507 – – – –12.3– – – – –12.5– GW241114_024711 8.7 7.2 – 7.5 6.9 – 7.4 6.9 2.5 7.5 7.0 – GW241114_235258 – – – –12.1– – – – –11.6– GW241116_151753 7.4 6.6 – 7.8 5.4 – 8.5 5.5 2.5 6.9 5.8 – GW241124_0249145.7 6.2–5.…</li><li><span class="sec">appendix</span> …– GW241110_124123 – L – – 30 GW241111_111552 – L – – 30 GW241113_163507 – L – – 30 GW241114_024711 – L – – 30 GW241114_235258 – L – – 30 GW241125_010116 1416531694.78 H[−0.60,−0.30][20, 40] – GW241127_061008 – L – – 30 GW241130_034908…</li></ul>
     </details>
     
   </div>
@@ -873,32 +651,16 @@ NOTE…</div>
 <section class="card" data-i="11" data-event="GW241129_140416">
   <div class="ctx">
     <div class="evname mono">GW241129_140416</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">appendix</span>… 590 7.9 0.01 190 8.3 0.03 2.9 8.1 0.81
-GW241018_235402 H – – – – – – – – – 1.8 9.6 0.98
-GW241101_034726 HLV – – – 13 8.2 0.45 24 8.0 0.21 2.1 7.9 0.87
-GW241106_110932 HLV – – – 3.9 9.0 0.73 8.7 9.2 0.43 – – –
-GW241109_005349HL 7.4 10.5 0.56 – – – – – – – – –
-<mark>GW241129_140416</mark> HL – – – – – – – – – 16 8.2 0.51
-GW241201_142737 HLV – – – 55 7.3 0.18 – – – 7.6 7.5 0.66
-GW241210_023335 HL 710 7.8 &lt;0.01 1.9 7.8 0.84 13 7.7 0.43 2.0 7.5 0.87
-GW241219_222607 HL 500 8.7 0.01 7.9 8.4 0.56 27 8.4 0.27 340 8.5 0.05
-GW241220_062146 HL – – – – –…</div>
+    <p class="where">Named 2 times:
+      appendix ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW241129_140416</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">appendix</span>…SBH pBNS pastro
-GW240512_051606 – – – – – 0.68 0.02&lt;0.01 0.70 – – – –
-GW240807_214559 – 0.03 &lt;0.01 &lt;0.01 0.03 – – – – 0.57 0.09 &lt;0.01 0.66
-GW240813_034548 – 0.03&lt;0.01&lt;0.01 0.03 – – – – 0.57 0.07&lt;0.01 0.64
-GW240907_121650 – – – – – &lt;0.01 0.34 0.18 0.52 – – – –
-<mark>GW241129_140416</mark> – – – – – – – – – 0.48 0.03&lt;0.01 0.51
-GW250109_083206 – – – – – – – – – 0.80 0.20 &lt;0.01 &gt;0.99
-NOTE—These candidates do not meet the criterion for source property estimation. Entries initalicsindicate candidates that were recovered with a FAR≥1 yr−1
-by a given…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> …7 GW241106_110932 HLV – – – 3.9 9.0 0.73 8.7 9.2 0.43 – – – GW241109_005349HL 7.4 10.5 0.56 – – – – – – – – – GW241129_140416 HL – – – – – – – – – 16 8.2 0.51 GW241201_142737 HLV – – – 55 7.3 0.18 – – – 7.6 7.5 0.66 GW241210_023335 HL…</li><li><span class="sec">appendix</span> …4548 – 0.03&lt;0.01&lt;0.01 0.03 – – – – 0.57 0.07&lt;0.01 0.64 GW240907_121650 – – – – – &lt;0.01 0.34 0.18 0.52 – – – – GW241129_140416 – – – – – – – – – 0.48 0.03&lt;0.01 0.51 GW250109_083206 – – – – – – – – – 0.80 0.20 &lt;0.01 &gt;0.99 NOTE—These cand…</li></ul>
+    </details>
     
   </div>
   <div class="form">

@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,90 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Measurement of the Nuclear Symmetry Energy Parameters from Gravitational-wave Events</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1908.00018" target="_blank" rel="noopener" class="mono">arXiv:1908.00018</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The nuclear symmetry energy plays a role in determining both the nuclear properties of terrestrial matter as well as the astrophysical properties of neutron stars. The first measurement of the neutron star tidal deformability, from gravitational-wave event GW170817, provides a new way of probing the symmetry energy. In this work, we report on new constraints on the symmetry energy from GW170817. We focus in particular on the low-order coefficients: namely, the value of the symmetry energy at the nuclear saturation density, S &lt;SUB&gt;0&lt;/SUB&gt;, and the slope of the symmetry energy, L &lt;SUB&gt;0&lt;/SUB&gt;. We find that the gravitational-wave data are relatively insensitive to S &lt;SUB&gt;0&lt;/SUB&gt;, but that they depend strongly on L &lt;SUB&gt;0&lt;/SUB&gt; and point to lower values of L &lt;SUB&gt;0&lt;/SUB&gt; than have previously been reported, with a peak likelihood near L &lt;SUB&gt;0&lt;/SUB&gt; ∼ 23 MeV. Finally, we use the inferred posteriors on L &lt;SUB&gt;0&lt;/SUB&gt; to derive new analytic constraints on higher-order nuclear terms.</p></details>
+<div class="small mut mono">arXiv:1908.00018</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The nuclear symmetry energy plays a role in determining both the nuclear properties of terrestrial matter as well as the astrophysical properties of neutron stars. The first measurement of the neutron star tidal deformability, from gravitational-wave event GW170817, provides a new way of probing the symmetry energy. In this work, we report on new constraints on the symmetry energy from GW170817. We focus in particular on the low-order coefficients: namely, the value of the symmetry energy at the nuclear saturation density, S &lt;SUB&gt;0&lt;/SUB&gt;, and the slope of the symmetry energy, L &lt;SUB&gt;0&lt;/SUB&gt;. We find that the gravitational-wave data are relatively insensitive to S &lt;SUB&gt;0&lt;/SUB&gt;, but that they depend strongly on L &lt;SUB&gt;0&lt;/SUB&gt; and point to lower values of L &lt;SUB&gt;0&lt;/SUB&gt; than have previously been reported, with a peak likelihood near L &lt;SUB&gt;0&lt;/SUB&gt; ∼ 23 MeV. Finally, we use the inferred posteriors on L &lt;SUB&gt;0&lt;/SUB&gt; to derive new analytic constraints on higher-order nuclear terms.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1908.00018v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>27 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…
- 
-The nuclear symmetry energy plays a role in determining both the nuclear properties of terrestrial matter as well as the astrophysical properties of neutron stars. The first measurement of the neutron star tidal deformability, from gravitational wave event <mark>GW170817</mark>, provides a new way of probing the symmetry energy. In this work, we report on new constraints on the symmetry energy from GW170817. We focus in particular on the low-order coefficients: namely, the value of the symmetry energy at the nuclear saturation densi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…sical properties of neutron stars. The first measurement of the neutron star tidal deformability, from gravitational wave event GW170817, provides a new way of probing the symmetry energy. In this work, we report on new constraints on the symmetry energy from <mark>GW170817</mark>. We focus in particular on the low-order coefficients: namely, the value of the symmetry energy at the nuclear saturation density, S0S_{0}, and the slope of the symmetry energy, L0L_{0}. We find that the gravitational wave data are relatively insensitive to S…</div>
+    <p class="where">Named 27 times:
+      introduction ×17, results ×4, conclusion ×4, abstract ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1908.00018v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>… et al. 7).
-In the new gravitational wave era, measurements of the tidal deformability of neutron stars offer a promising way to observationally constrain the symmetry energy. The first detection of gravitational waves from a neutron star-neutron star merger, <mark>GW170817</mark>, constrained the effective tidal deformability of the binary system to Λ~≲900\widetilde{\Lambda}\lesssim 900 [1]. Subsequent work refined these constraints to Λ~=300​−230+420\widetilde{\Lambda}=300\begin{subarray}{c}{}^{+420}_{-230}\end{subarray} (90% highest…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…sity) for a system with chirp mass ℳc=1.186​−0.001+0.001​M⊙\mathcal{M}_{c}=1.186\begin{subarray}{c}{}^{+0.001}_{-0.001}\end{subarray}~M_{\odot}, for low-spin priors [2].11
- 1
- 
- 
- 
- Throughout this paper, we will exclusively use the low-spin prior results for <mark>GW170817</mark>, as is most relevant for binary neutron stars in our Galaxy.
-
-Already, several analyses have set initial constraints on nuclear parameters using the tidal deformability of GW170817. [18] found evidence of correlations between linear combinations of nuclear pa…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… Throughout this paper, we will exclusively use the low-spin prior results for GW170817, as is most relevant for binary neutron stars in our Galaxy.
-
-Already, several analyses have set initial constraints on nuclear parameters using the tidal deformability of <mark>GW170817</mark>. [18] found evidence of correlations between linear combinations of nuclear parameters and the neutron star radius, tidal love number, and tidal deformability, for a wide range of EOS. They used the inferred bounds on Λ1.4\Lambda_{1.4} from GW170817, i.e., th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…bility of GW170817. [18] found evidence of correlations between linear combinations of nuclear parameters and the neutron star radius, tidal love number, and tidal deformability, for a wide range of EOS. They used the inferred bounds on Λ1.4\Lambda_{1.4} from <mark>GW170817</mark>, i.e., the tidal deformability of a 1.4 M⊙M_{\odot} neutron star, to constrain the symmetric nuclear parameters as well as KsymK_{\rm sym}, for given choices of L0L_{0}. [3] expanded this work to include a broader set of EOS and used updated posteriors on Λ~\…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… directly to L0L_{0}, independently of any nuclear priors. We find that the tidal deformability is relatively insensitive to S0S_{0}, as has been assumed in the above analyses. However, we find that Λ~\widetilde{\Lambda} is quite sensitive to L0L_{0} and that <mark>GW170817</mark> implies a relatively small value of 9.0≲L0≲65.49.0\lesssim L_{0}\lesssim 65.4 MeV, with a most likely value of L0≈22.5L_{0}\approx 22.5 MeV. These constraints are approximate, but they point to values of L0L_{0} that are significantly lower than those inferre…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…se inferred from nuclear physics experiments and theory. Finally, we use the inferred posterior on L0L_{0} to analytically constrain combinations of the higher-order nuclear terms. We find that combinations of KsymK_{\rm sym} and K0K_{0} can be constrained by <mark>GW170817</mark>, and that combinations of KsymK_{\rm sym}, Q0Q_{0}, and QsymQ_{\rm sym} can also be constrained.
-
-We start in §\lx@sectionsignII with an overview of the nuclear EOS formalism that we will use in this paper. We introduce our polytropic approximation of these E…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…tart in §\lx@sectionsignII with an overview of the nuclear EOS formalism that we will use in this paper. We introduce our polytropic approximation of these EOS in §\lx@sectionsignIII. In §\lx@sectionsignIV, we map the measurement of Λ~\widetilde{\Lambda} from <mark>GW170817</mark> to posteriors over L0L_{0}. Finally, in §\lx@sectionsignV, we use the posterior on L0L_{0} to constrain linear combinations of the higher-order nuclear parameters.
-
-II. Nuclear expansion of the equation of state
-
-We start by introducing the EOS formalism that…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… we will show that modeling the full pressure of eq. (8) with a single polytrope near the nuclear saturation density reasonably captures the density dependence. We will then use this simplified model to derive constraints on nuclear parameters using data from <mark>GW170817</mark>.
-
-Our goal is to approximate the nuclear expansion pressure of eq. (8) with the polytropic pressure of eq. (9). We require that these two expressions match at nsatn_{\rm sat} and then extrapolate to higher densities using the polytropic index. This requiremen…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…rmability as a function of L0L_{0}. In all three panels, we have fixed S0S_{0} to 32 MeV and Γ=3.5\Gamma=3.5. In the right panel, Λ~\widetilde{\Lambda} is calculated assuming the q=0.87q=0.87 and ℳc=1.186​M⊙\mathcal{M}_{c}=1.186~M_{\odot}, as was observed for <mark>GW170817</mark>. Within the polytropic approximation, we find that smaller values of L0L_{0} correspond both to smaller radii and to smaller values of k2k_{2}, resulting in a smaller tidal deformability. 
-
-We fit each EOS in our sample with the simplified pressure model of e…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…of the nuclear EOS, shown in eq. (10). From left to right, the polytropic index is fixed to Γ=3,\Gamma=3, 3.5, or 4. In all panels, we fix the chirp mass and mass ratio to their central values of q=0.87q=0.87 and ℳc=1.186​M⊙\mathcal{M}_{c}=1.186~M_{\odot} for <mark>GW170817</mark>. We find that Λ~\widetilde{\Lambda} is only weakly dependent on S0S_{0}, but that it is quite sensitive to L0L_{0}. The constraints on Λ~=300(+420/−230)\widetilde{\Lambda}=300~(+420/-230) from GW170817 [2] point to relatively small values of L0L_{0}.
-
-Using t…</div>
+    <details class="lines"><summary>Show the sentences (26, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> The first measurement of the neutron star tidal deformability, from gravitational wave event GW170817, provides a new way of probing the symmetry energy.</li><li><span class="sec">abstract</span> In this work, we report on new constraints on the symmetry energy from GW170817.</li><li><span class="sec">introduction</span> The first detection of gravitational waves from a neutron star-neutron star merger, GW170817, constrained the effective tidal deformability of the binary system to Λ~≲900\widetilde{\Lambda}\lesssim 900…</li><li><span class="sec">introduction</span> Throughout this paper, we will exclusively use the low-spin prior results for GW170817, as is most relevant for binary neutron stars in our Galaxy.</li><li><span class="sec">introduction</span> Already, several analyses have set initial constraints on nuclear parameters using the tidal deformability of GW170817. [18] found evidence of correlations between linear combinations of nuclear parameters and the neutron star r…</li><li><span class="sec">introduction</span> They used the inferred bounds on Λ1.4\Lambda_{1.4} from GW170817, i.e., the tidal deformability of a 1.4 M⊙M_{\odot} neutron star, to constrain the symmetric nuclear paramete…</li><li><span class="sec">introduction</span> However, we find that Λ~\widetilde{\Lambda} is quite sensitive to L0L_{0} and that GW170817 implies a relatively small value of 9.0≲L0≲65.49.0\lesssim L_{0}\lesssim 65.4 MeV, with a most likely value o…</li><li><span class="sec">introduction</span> We find that combinations of KsymK_{\rm sym} and K0K_{0} can be constrained by GW170817, and that combinations of KsymK_{\rm sym}, Q0Q_{0}, and QsymQ_{\rm sym} can also be constrained.</li></ul>
     </details>
     
   </div>

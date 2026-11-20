@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Possible Electromagnetic Phenomena during the Coalescence of Neutron Star-Black Hole Binary Systems</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2005.14309" target="_blank" rel="noopener" class="mono">arXiv:2005.14309</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Possible models for the generation of electromagnetic (EM) radiation during the coalescence of neutron star-black hole binaries are considered. The mass of the remnant disk around the black hole during the coalescence of neutron stars and black holes is calculated by taking into account the equation of state for neutron stars and the rotation of the binary components before the coalescence. The parameters of binary systems before the coalescence (the mass ratio, the component rotation, the neutron star magnetic field) are calculated by the population synthesis method. The derived mass of the remnant disk around the black hole after the coalescence is used to estimate the kinetic energy of the relativistic jet launched by the Blandford-Znajek mechanism. A disk mass of more than ∼0.05 M&lt;SUB&gt;☉&lt;/SUB&gt; required for the formation of short gamma-ray bursts is shown to be obtained in no more than 1-10% of the coalescences (depending on the equation of state). Less efficient common envelopes (a large parameter α&lt;SUB&gt;CE&lt;/SUB&gt;) lead to a noticeably larger percentage of events with astrophysically interesting EM energy release. For binaries with a large mass ratio, in which a magnetized neutron star is not subjected to tidal disruption before the coalescence, the possibility of the formation of an electrically charged rotating black hole (Wald charge) is considered and estimates of the maximum EM power released by such a black hole after the coalescence are made. The conversion of the emitted gravitational waves into electromagnetic ones in the relativistic lepton plasma generated in coalescing pulsar-black hole binaries at the pre-coalescence stage is discussed.</p></details>
+<div class="small mut mono">arXiv:2005.14309</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Possible models for the generation of electromagnetic (EM) radiation during the coalescence of neutron star-black hole binaries are considered. The mass of the remnant disk around the black hole during the coalescence of neutron stars and black holes is calculated by taking into account the equation of state for neutron stars and the rotation of the binary components before the coalescence. The parameters of binary systems before the coalescence (the mass ratio, the component rotation, the neutron star magnetic field) are calculated by the population synthesis method. The derived mass of the remnant disk around the black hole after the coalescence is used to estimate the kinetic energy of the relativistic jet launched by the Blandford-Znajek mechanism. A disk mass of more than ∼0.05 M&lt;SUB&gt;☉&lt;/SUB&gt; required for the formation of short gamma-ray bursts is shown to be obtained in no more than 1-10% of the coalescences (depending on the equation of state). Less efficient common envelopes (a large parameter α&lt;SUB&gt;CE&lt;/SUB&gt;) lead to a noticeably larger percentage of events with astrophysically interesting EM energy release. For binaries with a large mass ratio, in which a magnetized neutron star is not subjected to tidal disruption before the coalescence, the possibility of the formation of an electrically charged rotating black hole (Wald charge) is considered and estimates of the maximum EM power released by such a black hole after the coalescence are made. The conversion of the emitted gravitational waves into electromagnetic ones in the relativistic lepton plasma generated in coalescing pulsar-black hole binaries at the pre-coalescence stage is discussed.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2005.14309v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,60 +159,22 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>6 mentions · <span class="cptag">1 by counterpart name</span></h3>
+    <p class="where">Named 6 times:
+      introduction ×6.</p>
+    <p class="where"><a href="https://arxiv.org/html/2005.14309v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">1 mention use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention"><span class="sec">introduction</span>… one of the biggest scientific discoveries at the beginning of the 21st century and gave powerful impetus to the development of
-multi-wavelength observations of cosmic transients. Multi-wavelength observations of the first binary neutron star (NS) coalescence <mark>GW170817</mark> (Abbott et al. 2016a) ushered in a new era of astronomical observations – multi-messenger astronomy. At present, there is detailed information about ten coalescing binary BHs discovered by the LIGO/Virgo Collaboration during the first and second scientific ru…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…vations complement significantly the information obtained from an analysis of the GW signal properties. For example, the latest analysis of the GW data by the LVC Collaboration (LIGO Collaboration et al. 2019) does not rule out the possibility that one of the <mark>GW170817</mark> binary components can be a low-mass BH, although an analysis of the EM radiation from the accompanying gamma-ray burst GRB 170817A argues for the formation of a supermassive neutron star as a result of the coalescence and, hence, for the model of two coalesci…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>…analysis of the GW data by the LVC Collaboration (LIGO Collaboration et al. 2019) does not rule out the possibility that one of the GW170817 binary components can be a low-mass BH, although an analysis of the EM radiation from the accompanying gamma-ray burst <mark class="cp">GRB 170817A</mark> argues for the formation of a supermassive neutron star as a result of the coalescence and, hence, for the model of two coalescing NSs in the source GW170817 (Gill et al. 2019; Piro et al. 2019).
-
-Clearly, studying the generation mechanisms and parameters of …</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…n be a low-mass BH, although an analysis of the EM radiation from the accompanying gamma-ray burst GRB 170817A argues for the formation of a supermassive neutron star as a result of the coalescence and, hence, for the model of two coalescing NSs in the source <mark>GW170817</mark> (Gill et al. 2019; Piro et al. 2019).
-
-Clearly, studying the generation mechanisms and parameters of the EM radiation during the coalescence of binary relativistic stars remains a topical problem. In this paper, we address NS + BH binary systems. Such binarie…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…tion of state
-are parameterized by the tidal deformability
-Λ=(2/3)​k2​[(c2/G)​(RN​S/MN​S)]5\Lambda=(2/3)k_{2}[(c^{2}/G)(R_{NS}/M_{NS})]^{5}
-(Damour et al. 2012)
-(k2k_{2} is the Love number). This parameter is constrained
-from the GW observations of the source
-<mark>GW170817</mark> (Abbott et al. 2019).
-
-In turn, the disk mass and the BH spin determine
-the possible kinetic energy of the relativistic jet
-launched by the BZ mechanism. The kinetic energy
-of the jet Δ​EB​Z\Delta E_{BZ} may be considered as an upper limit
-for the isotropic e…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…resting disk masses Md&gt;0.05​M⊙M_{d}&gt;0.05M_{\odot} are obtained
-only at large Λ&gt;300\Lambda&gt;300 corresponding to small compactness MN​S/RN​SM_{NS}/R_{NS} (stiff equations of state). Note
-that the constraints on the parameter Λ\Lambda from the GW
-observations of <mark>GW170817</mark> lie within a wide range,
-but significant tidal deformations with Λ≳1600\Lambda\gtrsim 1600 are
-highly unlikely (Abbott et al. 2019; LIGO Collaboration
-et al. 2019). An independent analysis with the
-involvement of other constraints gives Λ=390−210+280\Lambda=3…</div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Multi-wavelength observations of the first binary neutron star (NS) coalescence GW170817 (Abbott et al. 2016a) ushered in a new era of astronomical observations – multi-messenger astronomy.</li><li><span class="sec">introduction</span> …a by the LVC Collaboration (LIGO Collaboration et al. 2019) does not rule out the possibility that one of the GW170817 binary components can be a low-mass BH, although an analysis of the EM radiation from the accompanying gamma-…</li><li><span class="sec">introduction · counterpart name</span> …mponents can be a low-mass BH, although an analysis of the EM radiation from the accompanying gamma-ray burst GRB 170817A argues for the formation of a supermassive neutron star as a result of the coalescence and, hence, for the mo…</li><li><span class="sec">introduction</span> This parameter is constrained from the GW observations of the source GW170817 (Abbott et al. 2019).</li><li><span class="sec">introduction</span> Note that the constraints on the parameter Λ\Lambda from the GW observations of GW170817 lie within a wide range, but significant tidal deformations with Λ≳1600\Lambda\gtrsim 1600 are highly unlikel…</li></ul>
     </details>
     
   </div>

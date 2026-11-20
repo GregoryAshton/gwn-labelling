@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Trace anomaly and interior curvature of neutron stars in energy-momentum squared gravity</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2606.20203" target="_blank" rel="noopener" class="mono">arXiv:2606.20203</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">In energy-momentum squared gravity (EMSG), the spacetime inside a neutron star is sourced by effective thermodynamic variables that need not coincide with the physical fluid pressure and energy density. It is therefore an open question whether the trace anomaly of dense matter -- the QCD measure of how strongly conformal symmetry is broken -- still organizes interior profiles and curvature in the same way it does in general relativity (GR). We adopt a clear matter-geometry separation: the trace anomaly is computed from the fluid sector alone, while spacetime curvature scalars are built from the variables that actually source the modified Tolman-Oppenheimer-Volkoff equations. For five relativistic mean-field equations of state, the radial trace-anomaly profiles increase monotonically from core to surface in all accepted EMSG models, as in GR, but split systematically with the EMSG coupling strength; the splitting grows with stellar compactness. Despite this deformation, curvature invariants still fall onto organized bands when plotted against the trace anomaly, extending the GR thermodynamic-geometric correspondence. The Ricci contraction shows the tightest organization, whereas the Ricci scalar remains the most equation-of-state sensitive. EMSG effects are modest for observationally accessible stars but largest in stiff, ultracompact configurations, indicating that the trace anomaly remains a useful thermodynamic label for interior geometry even when gravity couples nonlinearly to matter.</p></details>
+<div class="small mut mono">arXiv:2606.20203</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">In energy-momentum squared gravity (EMSG), the spacetime inside a neutron star is sourced by effective thermodynamic variables that need not coincide with the physical fluid pressure and energy density. It is therefore an open question whether the trace anomaly of dense matter -- the QCD measure of how strongly conformal symmetry is broken -- still organizes interior profiles and curvature in the same way it does in general relativity (GR). We adopt a clear matter-geometry separation: the trace anomaly is computed from the fluid sector alone, while spacetime curvature scalars are built from the variables that actually source the modified Tolman-Oppenheimer-Volkoff equations. For five relativistic mean-field equations of state, the radial trace-anomaly profiles increase monotonically from core to surface in all accepted EMSG models, as in GR, but split systematically with the EMSG coupling strength; the splitting grows with stellar compactness. Despite this deformation, curvature invariants still fall onto organized bands when plotted against the trace anomaly, extending the GR thermodynamic-geometric correspondence. The Ricci contraction shows the tightest organization, whereas the Ricci scalar remains the most equation-of-state sensitive. EMSG effects are modest for observationally accessible stars but largest in stiff, ultracompact configurations, indicating that the trace anomaly remains a useful thermodynamic label for interior geometry even when gravity couples nonlinearly to matter.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2606.20203v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,146 +159,22 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">3 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">3 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>11 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…\odot}[85, 109, 86, 35, 5], placing strong lower bounds on the maximum mass supported by the EOS. X-ray pulse-profile modeling with NICER has begun to constrain mass–radius relations for individual pulsars[85, 108, 86, 109], while the gravitational-wave event <mark>GW170817</mark>[1, 2, 34, 4] provided the first direct access to tidal deformability and hence to the compactness of canonical-mass stars[40, 3, 49, 15]. Follow-up analyses combining nuclear experiments, chiral effective field theory, and astrophysical data have narrowed the…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…1/3-X—to compactness, normalized moment of inertia, and tidal deformability, using 45 observationally viable EOS models. Their fitted surfaces reproduce the interior profile band to within about 10%10\% EOS scatter and were applied to NICER targets and to the <mark>GW170817</mark> tidal constraint, yielding a central trace anomaly of 0.1770−0.0432+0.03650.1770^{+0.0365}_{-0.0432} for a 1.4​M⊙1.4\,M_{\odot} star. Third, Garibay et al.[51] examined an ensemble of viable EOSs and found that curvature invariants correlate systematically wi…</div>
+    <p class="where">Named 11 times:
+      results ×5, introduction ×4, conclusion, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2606.20203v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…ng formula[126, 125, 127]. The dimensionless tidal deformability used throughout this work is
-
-Λ≡λM5=23​k2C5,\Lambda\equiv\frac{\lambda}{M^{5}}=\frac{2}{3}\,\frac{k_{2}}{C^{5}},
-
-(33)
-
-which is the combination inferred from binary neutron-star mergers such as <mark>GW170817</mark>[40, 2, 15]. Because Λ\Lambda is primarily sensitive to the stiffness of the outer layers, it provides a complementary global constraint on Δ⁡(r)\Delta(r) to compactness and moment of inertia within the I–Love–𝒬\mathcal{Q} framework[126, 125, 127, 61, 36].
-
-Th…</div>
-    
-    
-    <details><summary>8 more</summary>
-    <div class="mention"><span class="sec">results</span>…st: whether Garibay et al.’s[51] GR correspondence between curvature and Δ\Delta survives when geometry is sourced by (ℰeff,Peff)(\mathcal{E}_{\mathrm{eff}},P_{\mathrm{eff}}). Finally, Sec. III.6 places the EMSG bands in the observational context of NICER and <mark>GW170817</mark>.
-
-III.1 Curvature scalars as functions of baryon density
-
-Figure 1 shows the curvature invariants as functions of baryon density ρB\rho_{B} for the five RMF EOSs at representative values of α\alpha. In GR, Garibay et al.[51] reported similar scalars for an en…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…truction of Ren and Lin[104]; Δ\Delta is defined from (ℰ,P)(\mathcal{E},P) only.
-
-Figure 6: Trace anomaly profiles Δ⁡(r/R)\Delta(r/R) for sequences with fixed tidal deformability Λ=160.8\Lambda=160.8, 265.2265.2, and 503.1503.1 (left to right), bracketing the <mark>GW170817</mark> range for a 1.4​M⊙1.4\,M_{\odot} star[40, 2].
-Curve coding follows Fig. 5.
-
-Figure 7: Trace anomaly profiles Δ⁡(r/R)\Delta(r/R) for sequences with fixed normalized moment of inertia I¯=10\bar{I}=10, 1313, and 14.514.5 (left to right).
-Curve coding is identica…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ecause the effective source scales with ℰ2\mathcal{E}^{2} in the dense core[12, 52].
-
-III.4.2 Fixed tidal deformability
-
-Turning next to fixed tidal deformability, Fig. 6 displays sequences with Λ=160.8\Lambda=160.8, 265.2265.2, and 503.1503.1, bracketing the <mark>GW170817</mark> inference for a 1.4​M⊙1.4\,M_{\odot} star[40, 2, 15, 3]. Because Λ\Lambda is dominated by the outer tidal layer[126, 125], Ren and Lin[104] found that fixing ln⁡Λ\ln\Lambda nevertheless organizes the full Δ⁡(r)\Delta(r) profile to within about 10%10\% EOS sca…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…f Cai et al.[23, 22] and Ren and Lin[104]. Ren and Lin applied their quasi-universal surfaces to NICER targets PSR J0030+0451 and PSR J0740+6620 and inferred Δc=0.1770−0.0432+0.0365\Delta_{c}=0.1770^{+0.0365}_{-0.0432} for a 1.4​M⊙1.4\,M_{\odot} star from the <mark>GW170817</mark> tidal constraint. Our EMSG sequences at comparable Λ\Lambda remain consistent with this range for soft-to-intermediate EOSs, while stiff models with negative Δc\Delta_{c} probe the opposite side of the conformal boundary. NICER radii and GW Λ\Lambda measureme…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…pling interval of Eq. (39) is chosen to bracket prior EMSG neutron-star analyses[52, 12, 112]. Cosmological and binary-pulsar constraints on α\alpha are typically far tighter than the profile splitting alone would require[45, 93, 19]. For sequences matched to <mark>GW170817</mark> tidal deformabilities, the maximum Δ⁡(r/R)\Delta(r/R) separation between EMSG and GR profiles at fixed Λ\Lambda remains modest for soft-to-intermediate EOSs, whereas stiff ultracompact models show the largest deviations. The present work therefore illustrates…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>….[51].
-
-Nonlinear gravity therefore shifts spacetime curvature without erasing the thermodynamic ordering already established in GR. The effect concentrates in stiff, ultracompact configurations, while observationally accessible sequences matched to NICER and <mark>GW170817</mark> show only moderate coupling-induced deformation of the trace-anomaly profiles. Multimessenger constraints on mass, radius, and tidal deformability[85, 109, 40, 15, 66], together with existing EMSG bounds on α\alpha from cosmology and binary pulsars[45, 93, 19…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>… Abbott, R. Abbott, and T. D. Abbott (2017)
-
-Multi-messenger observations of a binary neutron star merger*.
-
-The Astrophysical Journal Letters 848 (2), pp. L12.
-
-External Links: Document,
-Link
-
-Cited by: §I.
-
-[2]
-B. P. Abbott, R. Abbott, and A. et al. (2017)
-
-<mark>GW170817</mark>: observation of gravitational waves from a binary neutron star inspiral.
-
-Phys. Rev. Lett. 119, pp. 161101.
-
-External Links: Document,
-Link
-
-Cited by: §I,
-§II.6,
-Figure 6,
-§III.4.2.
-
-[3]
-B. P. Abbott (2019)
-
-Properties of the binary neutron star merger gw1708…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[2]</span> · 4 places</span><div class="cite">…um mass supported by the EOS. X-ray pulse-profile modeling with NICER has begun to constrain mass–radius relations for individual pulsars[85, 108, 86, 109], while the gravitational-wave event GW170817<mark class="ref">[1, 2, 34, 4]</mark> provided the first direct access to tidal deformability and hence to the compactness of canonical-mass stars[40, 3, 49, 15]. Follow-up analyses combining nuclear experiments, chiral effective field t…</div><div class="cite">…d throughout this work is
-
-Λ≡λM5=23​k2C5,\Lambda\equiv\frac{\lambda}{M^{5}}=\frac{2}{3}\,\frac{k_{2}}{C^{5}},
-
-(33)
-
-which is the combination inferred from binary neutron-star mergers such as GW170817<mark class="ref">[40, 2, 15]</mark>. Because Λ\Lambda is primarily sensitive to the stiffness of the outer layers, it provides a complementary global constraint on Δ⁡(r)\Delta(r) to compactness and moment of inertia within the I–Love–𝒬…</div><div class="cite">…profiles Δ⁡(r/R)\Delta(r/R) for sequences with fixed tidal deformability Λ=160.8\Lambda=160.8, 265.2265.2, and 503.1503.1 (left to right), bracketing the GW170817 range for a 1.4​M⊙1.4\,M_{\odot} star<mark class="ref">[40, 2]</mark>.
-Curve coding follows Fig. 5.
-
-Figure 7: Trace anomaly profiles Δ⁡(r/R)\Delta(r/R) for sequences with fixed normalized moment of inertia I¯=10\bar{I}=10, 1313, and 14.514.5 (left to right).
-Curve cod…</div><div class="cite">…rmability
-
-Turning next to fixed tidal deformability, Fig. 6 displays sequences with Λ=160.8\Lambda=160.8, 265.2265.2, and 503.1503.1, bracketing the GW170817 inference for a 1.4​M⊙1.4\,M_{\odot} star<mark class="ref">[40, 2, 15, 3]</mark>. Because Λ\Lambda is dominated by the outer tidal layer[126, 125], Ren and Lin[104] found that fixing ln⁡Λ\ln\Lambda nevertheless organizes the full Δ⁡(r)\Delta(r) profile to within about 10%10\% EOS…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…j0952-0607.
-
-Journal of Cosmology and Astroparticle Physics 2023 (10), pp. 073.
-
-External Links: Document,
-Link
-
-Cited by: §I.2.
-
-[114]
-P. Routaray, A. Quddus, K. Chakravarti, and B. Kumar (2023)
-
-Probing the impact of WIMP dark matter on universal relations, <mark>GW170817</mark> posterior, and radial oscillations.
-
-Monthly Notices of the Royal Astronomical Society 525 (4), pp. 5492–5499.
-
-External Links: ISSN 0035-8711,
-Document,
-Link,
-https://academic.oup.com/mnras/article-pdf/525/4/5492/51554155/stad2628.pdf
-
-Cited by: §I.2,
-§II.3.…</div>
+    <details class="lines"><summary>Show the sentences (12, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …constrain mass–radius relations for individual pulsars[85, 108, 86, 109], while the gravitational-wave event GW170817[1, 2, 34, 4] provided the first direct access to tidal deformability and hence to the compactness of canonica…</li><li><span class="sec">introduction</span> …ce the interior profile band to within about 10%10\% EOS scatter and were applied to NICER targets and to the GW170817 tidal constraint, yielding a central trace anomaly of 0.1770−0.0432+0.03650.1770^{+0.0365}_{-0.0432} for a 1.…</li><li><span class="sec">introduction</span> which is the combination inferred from binary neutron-star mergers such as GW170817[40, 2, 15].</li><li><span class="sec">results</span> III.6 places the EMSG bands in the observational context of NICER and GW170817.</li><li><span class="sec">results</span> …th fixed tidal deformability Λ=160.8\Lambda=160.8, 265.2265.2, and 503.1503.1 (left to right), bracketing the GW170817 range for a 1.4​M⊙1.4\,M_{\odot} star[40, 2].</li><li><span class="sec">results</span> …eformability, Fig. 6 displays sequences with Λ=160.8\Lambda=160.8, 265.2265.2, and 503.1503.1, bracketing the GW170817 inference for a 1.4​M⊙1.4\,M_{\odot} star[40, 2, 15, 3].</li><li><span class="sec">results</span> …nferred Δc=0.1770−0.0432+0.0365\Delta_{c}=0.1770^{+0.0365}_{-0.0432} for a 1.4​M⊙1.4\,M_{\odot} star from the GW170817 tidal constraint.</li><li><span class="sec">results</span> For sequences matched to GW170817 tidal deformabilities, the maximum Δ⁡(r/R)\Delta(r/R) separation between EMSG and GR profiles at fixed Λ\Lamb…</li></ul>
     </details>
     
   </div>
@@ -314,50 +211,16 @@ Cited by: §I.2,
 <section class="card" data-i="1" data-event="GW190425">
   <div class="ctx">
     <div class="evname mono">GW190425</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2606.20203v1#:~:text=GW190425" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190425</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…al Links: Document,
-Link
-
-Cited by: §I,
-§II.6,
-Figure 6,
-§III.4.2.
-
-[3]
-B. P. Abbott (2019)
-
-Properties of the binary neutron star merger gw170817.
-
-Phys. Rev. X 9, pp. 011001.
-
-External Links: Document,
-Link
-
-Cited by: §I,
-§III.4.2.
-
-[4]
-B. P. Abbott (2020)
-
-<mark>GW190425</mark>: observation of a compact binary coalescence with total mass 3.4 solar mass.
-
-The Astrophysical Journal Letters 892 (1), pp. L3.
-
-External Links: Document,
-Link
-
-Cited by: §I.
-
-[5]
-R. Abbott, T. D. Abbott, L. S. Collaboration, et al. (2020)
-
-GW190814: gravita…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[4]</span> · 1 place</span><div class="cite">…um mass supported by the EOS. X-ray pulse-profile modeling with NICER has begun to constrain mass–radius relations for individual pulsars[85, 108, 86, 109], while the gravitational-wave event GW170817<mark class="ref">[1, 2, 34, 4]</mark> provided the first direct access to tidal deformability and hence to the compactness of canonical-mass stars[40, 3, 49, 15]. Follow-up analyses combining nuclear experiments, chiral effective field t…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [4]</span> …in mass–radius relations for individual pulsars[85, 108, 86, 109], while the gravitational-wave event GW170817[1, 2, 34, 4] provided the first direct access to tidal deformability and hence to the compactness of canonical-mass stars[…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -393,48 +256,16 @@ GW190814: gravita…
 <section class="card" data-i="2" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2606.20203v1#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>… (2020)
-
-GW190425: observation of a compact binary coalescence with total mass 3.4 solar mass.
-
-The Astrophysical Journal Letters 892 (1), pp. L3.
-
-External Links: Document,
-Link
-
-Cited by: §I.
-
-[5]
-R. Abbott, T. D. Abbott, L. S. Collaboration, et al. (2020)
-
-<mark>GW190814</mark>: gravitational waves from the coalescence of a 23 solar mass black hole with a 2.6 solar mass compact object.
-
-The Astrophysical Journal Letters 896 (2), pp. L44.
-
-External Links: Document,
-Link
-
-Cited by: §I,
-§V.
-
-[6]
-Ö. Akarsu, J. D. Barrow, and N. M. Uzun …
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[5]</span> · 2 places</span><div class="cite">…cally over the past decade. Radio timing of millisecond pulsars, including massive objects such as PSR J0740++6620 and PSR J0952−-0607, has established that NSs can reach masses above 2​M⊙2\,M_{\odot}<mark class="ref">[85, 109, 86, 35, 5]</mark>, placing strong lower bounds on the maximum mass supported by the EOS. X-ray pulse-profile modeling with NICER has begun to constrain mass–radius relations for individual pulsars[85, 108, 86, 109], w…</div><div class="cite">…y and curvature invariants as complementary interior descriptors offers a practical framework for comparing GR and modified-gravity interpretations of future pulsar, X-ray, and gravitational-wave data<mark class="ref">[74, 5, 121, 107, 111, 47, 88]</mark>.
-
-Acknowledgements.
-
-The authors thank colleagues at NIT Rourkela for useful discussions on modified gravity and neutron star structure.
-
-References
-
-[1]
-B. P. Abbott, R. Abbott, and T. D. Abbott (20…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [5]</span> …such as PSR J0740++6620 and PSR J0952−-0607, has established that NSs can reach masses above 2​M⊙2\,M_{\odot}[85, 109, 86, 35, 5], placing strong lower bounds on the maximum mass supported by the EOS. X-ray pulse-profile modeling with NICE…</li><li><span class="sec">cites it as [5]</span> …ork for comparing GR and modified-gravity interpretations of future pulsar, X-ray, and gravitational-wave data[74, 5, 121, 107, 111, 47, 88]. Acknowledgements. The authors thank colleagues at NIT Rourkela for useful discussions on modified gravity…</li></ul>
+    </details>
     
   </div>
   <div class="form">

@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,143 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Testing gravity with gravitational waves from binary black hole mergers: Contributions from amplitude corrections</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1907.10059" target="_blank" rel="noopener" class="mono">arXiv:1907.10059</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The detection of gravitational waves has offered us the opportunity to explore the dynamical and strong-field regime of gravity. Because matched filtering is more sensitive to variations in the gravitational waveform phase than the amplitude, many tests of gravity with gravitational waves have been carried out using only the former. Such studies cannot probe the non-Einsteinian effects that may enter only in the amplitude. Besides, if not accommodated in the waveform template, a non-Einsteinian effect in the amplitude may induce systematic errors on other parameters such as the luminosity distance. In this paper, we derive constraints on a few modified theories of gravity (Einstein-dilaton-Gauss-Bonnet gravity, scalar-tensor theories, and varying-G theories), incorporating both phase and amplitude corrections. We follow the model-independent approach of the parametrized post-Einsteinian formalism. We perform Fisher analyses with Monte Carlo simulations using the LIGO/Virgo posterior samples. We find that the contributions from amplitude corrections can be comparable to the ones from the phase corrections in case of massive binaries like GW150914. Also, constraints derived by incorporating both phase and amplitude corrections differ from the ones with phase corrections only by 4% at most, which supports many of the previous studies that only considered corrections in the phase. We further derive reliable constraints on the time evolution of a scalar field in a scalar-tensor theory for the first time with gravitational waves.</p></details>
+<div class="small mut mono">arXiv:1907.10059</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The detection of gravitational waves has offered us the opportunity to explore the dynamical and strong-field regime of gravity. Because matched filtering is more sensitive to variations in the gravitational waveform phase than the amplitude, many tests of gravity with gravitational waves have been carried out using only the former. Such studies cannot probe the non-Einsteinian effects that may enter only in the amplitude. Besides, if not accommodated in the waveform template, a non-Einsteinian effect in the amplitude may induce systematic errors on other parameters such as the luminosity distance. In this paper, we derive constraints on a few modified theories of gravity (Einstein-dilaton-Gauss-Bonnet gravity, scalar-tensor theories, and varying-G theories), incorporating both phase and amplitude corrections. We follow the model-independent approach of the parametrized post-Einsteinian formalism. We perform Fisher analyses with Monte Carlo simulations using the LIGO/Virgo posterior samples. We find that the contributions from amplitude corrections can be comparable to the ones from the phase corrections in case of massive binaries like GW150914. Also, constraints derived by incorporating both phase and amplitude corrections differ from the ones with phase corrections only by 4% at most, which supports many of the previous studies that only considered corrections in the phase. We further derive reliable constraints on the time evolution of a scalar field in a scalar-tensor theory for the first time with gravitational waves.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1907.10059v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">2 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">2 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>25 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…nian formalism.
-We perform Fisher analyses with Monte-Carlo simulations using the LIGO/Virgo posterior samples.
-We find that the contributions from amplitude corrections can be comparable to the ones from the phase corrections in case of massive binaries like <mark>GW150914</mark>.
-Also, constraints derived by incorporating both phase and amplitude corrections differ from the ones with phase corrections only by 4% at most, which supports many of the previous studies that only considered corrections in the phase.
-We further derive relia…</div>
+    <p class="where">Named 25 times:
+      results ×17, conclusion ×5, introduction ×2, abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/1907.10059v3#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…(BHs) are known. Such criteria lead us to choose Einstein-dilaton-Gauss-Bonnet (EdGB) gravity, scalar-tensor theories, and varying-GG theories. We carry out Fisher analyses with Monte-Carlo simulations utilizing the parameter posterior samples of GW151226 and <mark>GW150914</mark> released by LVC [47]11
- 1
- 
- 
- 
- We choose GW151226 and GW150914 as representatives of low-mass and massive binaries respectively, following [20].. Such analyses with actual posterior samples produce more reliable results compared to the ones with sky-average…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…-Gauss-Bonnet (EdGB) gravity, scalar-tensor theories, and varying-GG theories. We carry out Fisher analyses with Monte-Carlo simulations utilizing the parameter posterior samples of GW151226 and GW150914 released by LVC [47]11
- 1
- 
- 
- 
- We choose GW151226 and <mark>GW150914</mark> as representatives of low-mass and massive binaries respectively, following [20].. Such analyses with actual posterior samples produce more reliable results compared to the ones with sky-averaged waveforms. In fact, when implementing such samples, we can dete…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">results</span>… we can determine the credibility of the small coupling approximation in scalar-tensor theories, which allows us to place reliable bounds on the time-evolution of the scalar field from GW observations for the first time.
-
-Theories
-Repr. Parameter
-Constraints
-
-<mark>GW150914</mark>
-GW151226
-
-Phase
-Amplitude
-Combined
-Phase
-Amplitude
-Combined
-
-EdGB [48]
-|α¯EdGB|\sqrt{|\bar{\alpha}_{{\mbox{\tiny EdGB}}}|} [km]
-(50.5)
-(76.3)
-(51.5)
-4.32
-10.5
-4.32
-
-ζEdGB\zeta_{{\mbox{\tiny EdGB}}}
-3.62
-32.4
-3.91
-0.0207
-0.709
-0.0207
-
-Scalar-Tensor [49, 50]
-|ϕ…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…t{\phi}|
-6.87
-16.4
-7.15
-0.688
-3.66
-0.688
-
-Varying-GG [46, 51]
-|G0˙/G0||\dot{G_{0}}/G_{0}| [106/yr10^{6}/\mathrm{yr}]
-7.30
-137
-7.18
-0.0224
-0.382
-0.0220
-
-Table 1: 90% credible constraints on representative parameters of various modified theories of gravity from <mark>GW150914</mark> and GW151226. For each of the GW events, “phase” and “amplitude” correspond to the cases where we include non-GR corrections only to the GW phase and amplitude respectively, while “combined” is the case where we include both corrections in the waveform and re…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…onal constant with the subscript 0 representing the time of coalescence. An overhead dot denotes a derivative with respect to time.
-
-We find that the constraints derived from the phase and the amplitude can be comparable in case of massive binary systems like <mark>GW150914</mark>. Whereas for less massive binaries with a larger number of GW cycles, the phase always yields stronger constraints. Moreover, inclusion of an amplitude correction to the waveform impacts the bound on the phase correction as well since the former can easily be…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…λg\lambda_{g} is the Compton wavelength of the graviton that is related to mgm_{g} as λg≡h/(mg​c)\lambda_{g}\equiv h/\left(m_{g}c\right), where hh is Planck’s constant.
-
-Figure 1: The cumulative probability distribution of the graviton Compton wavelength from <mark>GW150914</mark>. We show the ones obtained from a Fisher analysis with Monte Carlo simulations (blue solid) and from a Bayesian analysis by the LVC (red solid). Each of the vertical dashed lines corresponds to the lower bound of the distribution of the same color with 90% co…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…(red solid). Each of the vertical dashed lines corresponds to the lower bound of the distribution of the same color with 90% confidence. Observe how the two different analyses give similar bounds.
-
-We compute the probability distribution of λg\lambda_{g} from <mark>GW150914</mark> according to the procedure outlined in Sec. II and compare with the one obtained by the LVC [19] (Fig. 1). The Fisher analysis with Monte Carlo simulations yields λg&lt;1.2×1013\lambda_{g}&lt;1.2\times 10^{13} km at 90% CL, which is in a good agreement with the LVC…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…on ζEdGB\zeta_{{\mbox{\tiny EdGB}}} from a Fisher analysis with the phase correction only (blue solid), the amplitude correction only (red dashed) and combining the two corrections (green dotted-dashed). Fiducial values are taken from the posterior samples of <mark>GW150914</mark>. The samples that lie on the left side of the vertical black dashed line satisfy the small coupling approximation with 90% CL.
-
-We now derive constraints on EdGB gravity from GW150914 and GW151226. First, we estimate how well these events satisfy the small co…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…een dotted-dashed). Fiducial values are taken from the posterior samples of GW150914. The samples that lie on the left side of the vertical black dashed line satisfy the small coupling approximation with 90% CL.
-
-We now derive constraints on EdGB gravity from <mark>GW150914</mark> and GW151226. First, we estimate how well these events satisfy the small coupling approximation ζEdGB&lt;1\zeta_{{\mbox{\tiny EdGB}}}&lt;1. To do so, we extract the 90% CL upper bound Δ​ζEdGB\Delta\zeta_{{\mbox{\tiny EdGB}}} from each sample of the posterior distri…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… Δ​ζEdGB\Delta\zeta_{{\mbox{\tiny EdGB}}} from each sample of the posterior distribution of a particular event. We then create histograms with all the samples (see Fig. 2) and calculate the fraction satisfying Δ​ζEdGB&lt;1\Delta\zeta_{{\mbox{\tiny EdGB}}}&lt;1. For <mark>GW150914</mark>, 72% (42%) of the samples satisfy the small coupling approximation if Δ​ζEdGB\Delta\zeta_{{\mbox{\tiny EdGB}}} is derived from the phase (amplitude) correction only, while 71% of the posterior distribution satisfies such approximation if the phase and amplitu…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…% and 87% for the phase and amplitude corrections respectively while combining the two yields almost the same result as that of the phase-only case. Since the fraction of samples satisfying ζEdGB&lt;1\zeta_{{\mbox{\tiny EdGB}}}&lt;1 is much higher for GW151226 than <mark>GW150914</mark> due to a larger number of GW cycles and slower relative velocity of the binary constituents, the former event places more reliable constraints on EdGB gravity compared to the latter one.
-
-Figure 3: Cumulative probability distributions of α¯EdGB2\bar{\alpha}^{…</div>
+    <details class="lines"><summary>Show the sentences (25, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …plitude corrections can be comparable to the ones from the phase corrections in case of massive binaries like GW150914.</li><li><span class="sec">introduction</span> …ry out Fisher analyses with Monte-Carlo simulations utilizing the parameter posterior samples of GW151226 and GW150914 released by LVC [47]11 1</li><li><span class="sec">introduction</span> We choose GW151226 and GW150914 as representatives of low-mass and massive binaries respectively, following [20]..</li><li><span class="sec">results</span> GW150914 GW151226</li><li><span class="sec">results</span> Table 1: 90% credible constraints on representative parameters of various modified theories of gravity from GW150914 and GW151226.</li><li><span class="sec">results</span> …constraints derived from the phase and the amplitude can be comparable in case of massive binary systems like GW150914.</li><li><span class="sec">results</span> Figure 1: The cumulative probability distribution of the graviton Compton wavelength from GW150914.</li><li><span class="sec">results</span> We compute the probability distribution of λg\lambda_{g} from GW150914 according to the procedure outlined in Sec.</li></ul>
     </details>
     
   </div>
@@ -295,136 +201,15 @@ Figure 3: Cumulative probability distributions of α¯EdGB2\bar{\alpha}^{…</di
 <section class="card" data-i="1" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>14 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… black holes (BHs) are known. Such criteria lead us to choose Einstein-dilaton-Gauss-Bonnet (EdGB) gravity, scalar-tensor theories, and varying-GG theories. We carry out Fisher analyses with Monte-Carlo simulations utilizing the parameter posterior samples of <mark>GW151226</mark> and GW150914 released by LVC [47]11
- 1
- 
- 
- 
- We choose GW151226 and GW150914 as representatives of low-mass and massive binaries respectively, following [20].. Such analyses with actual posterior samples produce more reliable results compared to the ones wit…</div>
+    <p class="where">Named 14 times:
+      results ×11, introduction ×2, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/1907.10059v3#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…stein-dilaton-Gauss-Bonnet (EdGB) gravity, scalar-tensor theories, and varying-GG theories. We carry out Fisher analyses with Monte-Carlo simulations utilizing the parameter posterior samples of GW151226 and GW150914 released by LVC [47]11
- 1
- 
- 
- 
- We choose <mark>GW151226</mark> and GW150914 as representatives of low-mass and massive binaries respectively, following [20].. Such analyses with actual posterior samples produce more reliable results compared to the ones with sky-averaged waveforms. In fact, when implementing such samples…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…etermine the credibility of the small coupling approximation in scalar-tensor theories, which allows us to place reliable bounds on the time-evolution of the scalar field from GW observations for the first time.
-
-Theories
-Repr. Parameter
-Constraints
-
-GW150914
-<mark>GW151226</mark>
-
-Phase
-Amplitude
-Combined
-Phase
-Amplitude
-Combined
-
-EdGB [48]
-|α¯EdGB|\sqrt{|\bar{\alpha}_{{\mbox{\tiny EdGB}}}|} [km]
-(50.5)
-(76.3)
-(51.5)
-4.32
-10.5
-4.32
-
-ζEdGB\zeta_{{\mbox{\tiny EdGB}}}
-3.62
-32.4
-3.91
-0.0207
-0.709
-0.0207
-
-Scalar-Tensor [49, 50]
-|ϕ˙||\dot{\…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">results</span>…
-16.4
-7.15
-0.688
-3.66
-0.688
-
-Varying-GG [46, 51]
-|G0˙/G0||\dot{G_{0}}/G_{0}| [106/yr10^{6}/\mathrm{yr}]
-7.30
-137
-7.18
-0.0224
-0.382
-0.0220
-
-Table 1: 90% credible constraints on representative parameters of various modified theories of gravity from GW150914 and <mark>GW151226</mark>. For each of the GW events, “phase” and “amplitude” correspond to the cases where we include non-GR corrections only to the GW phase and amplitude respectively, while “combined” is the case where we include both corrections in the waveform and reduce the two …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…shed). Fiducial values are taken from the posterior samples of GW150914. The samples that lie on the left side of the vertical black dashed line satisfy the small coupling approximation with 90% CL.
-
-We now derive constraints on EdGB gravity from GW150914 and <mark>GW151226</mark>. First, we estimate how well these events satisfy the small coupling approximation ζEdGB&lt;1\zeta_{{\mbox{\tiny EdGB}}}&lt;1. To do so, we extract the 90% CL upper bound Δ​ζEdGB\Delta\zeta_{{\mbox{\tiny EdGB}}} from each sample of the posterior distribution of a p…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… approximation if Δ​ζEdGB\Delta\zeta_{{\mbox{\tiny EdGB}}} is derived from the phase (amplitude) correction only, while 71% of the posterior distribution satisfies such approximation if the phase and amplitude corrections are combined. A similar analysis with <mark>GW151226</mark> gives 98% and 87% for the phase and amplitude corrections respectively while combining the two yields almost the same result as that of the phase-only case. Since the fraction of samples satisfying ζEdGB&lt;1\zeta_{{\mbox{\tiny EdGB}}}&lt;1 is much higher for GW151…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…51226 gives 98% and 87% for the phase and amplitude corrections respectively while combining the two yields almost the same result as that of the phase-only case. Since the fraction of samples satisfying ζEdGB&lt;1\zeta_{{\mbox{\tiny EdGB}}}&lt;1 is much higher for <mark>GW151226</mark> than GW150914 due to a larger number of GW cycles and slower relative velocity of the binary constituents, the former event places more reliable constraints on EdGB gravity compared to the latter one.
-
-Figure 3: Cumulative probability distributions of α¯EdGB2…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…-only constraint by 2% (to be discussed more in Sec. IV).
-Though above constraints may not be reliable as the 90% CL bounds on ζEdGB\zeta_{\mbox{\tiny EdGB}} do not satisfy the small coupling approximation, which is shown in Table 1.
-
-We now look at bounds on <mark>GW151226</mark>. We found that this event yields 4.32 km and 10.5 km respectively from the phase and amplitude corrections, while combining the two only changes the result from the phase-only case by 0.01%. These bounds are consistent with those in a recent paper [84] that u…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ctions at −1-1PN order while Ref. [85] found even stronger bounds by combining multiple GW events. These GW bounds are comparable to the one obtained from low-mass X-ray binaries [86].
-
-Although GW150914 leads to weaker constraints on EdGB gravity compared to <mark>GW151226</mark>, the effect of amplitude correction is more manifest for the former event. This is because GW150914 has a smaller number of GW cycles, and thus the amplitude contribution becomes relatively higher than GW151226.
-
-III.3 Scalar-Tensor Theories
-
-Scalar-Tensor th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…o weaker constraints on EdGB gravity compared to GW151226, the effect of amplitude correction is more manifest for the former event. This is because GW150914 has a smaller number of GW cycles, and thus the amplitude contribution becomes relatively higher than <mark>GW151226</mark>.
-
-III.3 Scalar-Tensor Theories
-
-Scalar-Tensor theories of gravity emerge from the dimensional reduction of higher-dimensional theories such as the Kaluza-Klein theory [87, 88] and string theories [89, 90]. In addition to the spacetime curvature, scalar fields…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…confidence level for the phase (combined) correction, while all of the samples fail to do so for the amplitude correction. Hence GW150914 cannot place any meaningful bound on scalar-tensor theories considered here. On the other hand, 90.4% of the samples from <mark>GW151226</mark> meets the small coupling criterion for the phase-only and combined analyses, while the fraction is only 25% for the amplitude correction. Thus, we derive reliable constraints from GW151226 with the phase-only and combined analyses, with both leading to ϕ˙&lt;1.1…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…theories considered here. On the other hand, 90.4% of the samples from GW151226 meets the small coupling criterion for the phase-only and combined analyses, while the fraction is only 25% for the amplitude correction. Thus, we derive reliable constraints from <mark>GW151226</mark> with the phase-only and combined analyses, with both leading to ϕ˙&lt;1.1×104\dot{\phi}&lt;1.1\times 10^{4}/sec99
- 9
- 
- 
- 
- A previous analysis with the sky-averaged waveform in Ref. [20] could not place a reliable bound on scalar-tensor theories. Since the posteri…</div>
+    <details class="lines"><summary>Show the sentences (14, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> We carry out Fisher analyses with Monte-Carlo simulations utilizing the parameter posterior samples of GW151226 and GW150914 released by LVC [47]11 1</li><li><span class="sec">introduction</span> We choose GW151226 and GW150914 as representatives of low-mass and massive binaries respectively, following [20]..</li><li><span class="sec">results</span> GW150914 GW151226</li><li><span class="sec">results</span> …% credible constraints on representative parameters of various modified theories of gravity from GW150914 and GW151226.</li><li><span class="sec">results</span> We now derive constraints on EdGB gravity from GW150914 and GW151226.</li><li><span class="sec">results</span> A similar analysis with GW151226 gives 98% and 87% for the phase and amplitude corrections respectively while combining the two yields almost…</li><li><span class="sec">results</span> Since the fraction of samples satisfying ζEdGB&lt;1\zeta_{{\mbox{\tiny EdGB}}}&lt;1 is much higher for GW151226 than GW150914 due to a larger number of GW cycles and slower relative velocity of the binary constituents, th…</li><li><span class="sec">results</span> We now look at bounds on GW151226.</li></ul>
     </details>
     
   </div>

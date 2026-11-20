@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,273 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Convenient filtering techniques for LIGO strain of the GW150914 event</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1903.00546" target="_blank" rel="noopener" class="mono">arXiv:1903.00546</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We present a new strategy for the pre-processing filtering techniques of the LIGO strain of the GW150914 [1,2] event that intends to extract as much physical information as possible, minimizing the use of prior assumptions, and avoiding intense deformations of the astrophysical signal. The new techniques allow us to reveal more low frequency signal at earlier times, that it has been overlooked.</p></details>
+<div class="small mut mono">arXiv:1903.00546</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We present a new strategy for the pre-processing filtering techniques of the LIGO strain of the GW150914 [1,2] event that intends to extract as much physical information as possible, minimizing the use of prior assumptions, and avoiding intense deformations of the astrophysical signal. The new techniques allow us to reveal more low frequency signal at earlier times, that it has been overlooked.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1903.00546v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">6 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">6 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>26 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>Convenient filtering techniques for LIGO strain of the <mark>GW150914</mark> event
-
- 
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- 
- 
-
- 
- arXiv is now an independent nonprofit!
- Learn more
- &amp;times;
- 
-
- 
- 
- Back t…</div>
+    <p class="where">Named 26 times:
+      introduction ×16, reference list ×7, title/headings ×2, abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.00546v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…ime domain graphs after filtering
-
-3.5 Spectrograms of the filtered signals
-
-4 Final comments
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1903.00546v1 [gr-qc] 01 Mar 2019
-
-Convenient filtering techniques for LIGO strain of the <mark>GW150914</mark> event
-
-Osvaldo M. Moreschi
-
-Abstract
-
- 
-We present a new strategy for the pre-processing filtering
-techniques of the LIGO strain of the
-GW150914[1, 2] event
-that intends to extract as much physical information as possible,
-minimizing the use of prior assumpti…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…clusive license
- 
- 
-arXiv:1903.00546v1 [gr-qc] 01 Mar 2019
-
-Convenient filtering techniques for LIGO strain of the GW150914 event
-
-Osvaldo M. Moreschi
-
-Abstract
-
- 
-We present a new strategy for the pre-processing filtering
-techniques of the LIGO strain of the
-<mark>GW150914</mark>[1, 2] event
-that intends to extract as much physical information as possible,
-minimizing the use of prior assumptions,
-and avoiding transformations of the astrophysical signal.
-
- 
-The new techniques allow us to reveal more low frequency signal
-at earlier time…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…nal.
-
- 
-The new techniques allow us to reveal more low frequency signal
-at earlier times, that it has been overlooked.
-
- 
-
-1 Introduction
-
-Among all the gravitational waves events
-announced[1, 2, 3, 4, 5, 6, 7, 8, 9]
-by the
-LIGO/Virgo Collaboration, still the <mark>GW150914</mark> event remains
-the one showing the strongest signal to noise ratio.
-It is because of this that many
-studies[10, 11, 12, 13, 14, 15]
-on gravitational waves data
-devote special attention to it.
-We are here concerned with the first manipulation on the data
-previo…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…te special attention to it.
-We are here concerned with the first manipulation on the data
-previous to the full study of the nature of the physical signal
-contained in it
-
-In order to study the physical content of the Handford and Livingstone LIGO data
-for the <mark>GW150914</mark> event, the LIGO/Virgo Collaboration has applied pre-processing
-filtering techniques that include whitening filter, 35–350 Hz bandpass filter
-and band-reject filters to remove the strong instrumental spectral lines,
-in [1],
-and in [2]
-they only state to have w…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ass filter
-and band-reject filters to remove the strong instrumental spectral lines,
-in [1],
-and in [2]
-they only state to have whitened the data by the noise power spectral
-density.
-In [16]
-the LIGO/Virgo Collaboration carried out a
-matched-filter search for <mark>GW150914</mark> using relativistic models of compact-object binaries
-using a couple of techniques; but in both they
-use a low-frequency cutoff of 30 Hz for the search,
-and in one of them they also used whitening filter.
-Also in the analysis of reference [17] they
-report to h…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…n
-section 4 we include some final comments
-on the work and suggest further study.
-
-2 Preliminary view of the raw data
-
-Before embarking in the presentation of the new filtering approach,
-let us review the main characteristics of the LIGO data around the event
-<mark>GW150914</mark>.
-
-2.1 Spectrograms near the event
-
-One of the main indications that something interesting happens around
-the time of the GW150914 event that we take it to be:
-te=1126259462.422t_{e}=1126259462.422GPS, equivalent to: Mon Sep 14 09:50:45 GMT 2015,
-as suggested …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…rking in the presentation of the new filtering approach,
-let us review the main characteristics of the LIGO data around the event
-GW150914.
-
-2.1 Spectrograms near the event
-
-One of the main indications that something interesting happens around
-the time of the <mark>GW150914</mark> event that we take it to be:
-te=1126259462.422t_{e}=1126259462.422GPS, equivalent to: Mon Sep 14 09:50:45 GMT 2015,
-as suggested by LIGO at first,
-is the study of the spectrograms that we show in
-figure 1.
-One can see that a faint
-almost vertical line on both…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…we show in
-figure 1.
-One can see that a faint
-almost vertical line on both spectrograms at around the time
-assigned to the event.
-
-Figure 1: Spectrograms of raw data from Hanford on the left,
-and Livingston on the right; ±\pm4 seconds around the time of event <mark>GW150914</mark>,
-in the range from 0 to 750Hz.
-
-Since the detectors are separated by about 3000km, the fact that both detectors
-show the same appearance of an increasing in frequency signal, with a time
-separation of less than 10ms indicates that this event is probably
-cause…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…e amplitude spectral density of 256s around the event
-
-We are concerned with the details of the intrinsic noises of the detectors;
-for this reason we do almost all studies with
-a fairly wide extension of data of length 256 seconds
-around the time of the event <mark>GW150914</mark>.
-This choice allows us to work with broader windows when performing studies
-and constructing filters.
-For example in figure 2, where we show the amplitude
-spectral densities (ASD) of both detectors, we also present the details
-of ASD in the range 34-37Hz, whe…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…g for our work since it means that when one
-increases the statistics, the ASD show wider variations than
-those calculated with short windows, since they have increasing frequency
-resolution.
-
-2.3 The usual whitening procedure performed by LIGO
-
-Details of the <mark>GW150914</mark> data have been presented by LIGO Collaboration through
-the study of various filtering techniques. In figure 6 of reference
-[2] one can see graphs of the data,
-sampled at 2048Hz,
-where whitening filters were applied.
-In figure 3 we present the effects on the
-a…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ested in LIGO public python scripts.
-Hanford data on the left and Livingston’s on the right.
-
-2.4 Phase diagrams of the raw data and after filtering
-
-In figure 5 we show the phase diagrams of the raw data
-of both detectors for 256s centered at the time
-of the <mark>GW150914</mark> event, up to 500Hz.
-
-Figure 5: Phase diagrams as a function of frequency for the raw data of 256s length
-around the time of the event GW150914, showing Hanford on the left and Livingston
-on the right.
-
-It can be noticed that they
-show strong correlations and …</div>
+    <details class="lines"><summary>Show the sentences (26, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Convenient filtering techniques for LIGO strain of the GW150914 event</li><li><span class="sec">abstract</span> We present a new strategy for the pre-processing filtering techniques of the LIGO strain of the GW150914[1, 2] event that intends to extract as much physical information as possible, minimizing the use of prior ass…</li><li><span class="sec">introduction</span> …he gravitational waves events announced[1, 2, 3, 4, 5, 6, 7, 8, 9] by the LIGO/Virgo Collaboration, still the GW150914 event remains the one showing the strongest signal to noise ratio.</li><li><span class="sec">introduction</span> In order to study the physical content of the Handford and Livingstone LIGO data for the GW150914 event, the LIGO/Virgo Collaboration has applied pre-processing filtering techniques that include whitening fi…</li><li><span class="sec">introduction</span> In [16] the LIGO/Virgo Collaboration carried out a matched-filter search for GW150914 using relativistic models of compact-object binaries using a couple of techniques; but in both they use a low…</li><li><span class="sec">introduction</span> …ation of the new filtering approach, let us review the main characteristics of the LIGO data around the event GW150914.</li><li><span class="sec">introduction</span> One of the main indications that something interesting happens around the time of the GW150914 event that we take it to be: te=1126259462.422t_{e}=1126259462.422GPS, equivalent to: Mon Sep 14 09:50:45 GMT…</li><li><span class="sec">introduction</span> …ams of raw data from Hanford on the left, and Livingston on the right; ±\pm4 seconds around the time of event GW150914, in the range from 0 to 750Hz.</li></ul>
     </details>
     
   </div>
@@ -425,55 +201,16 @@ show strong correlations and …</div>
 <section class="card" data-i="1" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.00546v1#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…
- 
-[2]
-
-Virgo, LIGO Scientific Collaboration, B. P. Abbott et al.,
-“Properties of the Binary Black Hole Merger GW150914,”
-Phys. Rev.
-Lett. 116 no. 24, (2016) 241102,
-arXiv:1602.03840 [gr-qc].
-
- 
-[3]
-
-Virgo, LIGO Scientific Collaboration, B. P. Abbott et al.,
-“<mark>GW151226</mark>: Observation of Gravitational Waves from a 22-Solar-Mass Binary
-Black Hole Coalescence,”
-Phys. Rev.
-Lett. 116 no. 24, (2016) 241103,
-arXiv:1606.04855 [gr-qc].
-
- 
-[4]
-
-VIRGO, LIGO Scientific Collaboration, B. P. Abbott et al.,
-“GW170104: Observation of a 50-So…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[3]</span> · 1 place</span><div class="cite">…hysical signal.
-
- 
-The new techniques allow us to reveal more low frequency signal
-at earlier times, that it has been overlooked.
-
- 
-
-1 Introduction
-
-Among all the gravitational waves events
-announced<mark class="ref">[1, 2, 3, 4, 5, 6, 7, 8, 9]</mark>
-by the
-LIGO/Virgo Collaboration, still the GW150914 event remains
-the one showing the strongest signal to noise ratio.
-It is because of this that many
-studies[10, 11, 12, 13, 14, 15]
-on gravitational…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [3]</span> …ier times, that it has been overlooked. 1 Introduction Among all the gravitational waves events announced[1, 2, 3, 4, 5, 6, 7, 8, 9] by the LIGO/Virgo Collaboration, still the GW150914 event remains the one showing the strongest signal to noi…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -509,50 +246,16 @@ on gravitational…</div>
 <section class="card" data-i="2" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.00546v1#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…, B. P. Abbott et al.,
-“GW151226: Observation of Gravitational Waves from a 22-Solar-Mass Binary
-Black Hole Coalescence,”
-Phys. Rev.
-Lett. 116 no. 24, (2016) 241103,
-arXiv:1606.04855 [gr-qc].
-
- 
-[4]
-
-VIRGO, LIGO Scientific Collaboration, B. P. Abbott et al.,
-“<mark>GW170104</mark>: Observation of a 50-Solar-Mass Binary Black Hole Coalescence at
-Redshift 0.2,” Phys. Rev. Lett. 118 no. 22, (2017) 221101,
-arXiv:1706.01812 [gr-qc].
-
- 
-[5]
-
-Virgo, LIGO Scientific Collaboration, B. P. Abbott et al.,
-“GW170814: A Three-Detector Observation of…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[4]</span> · 1 place</span><div class="cite">…hysical signal.
-
- 
-The new techniques allow us to reveal more low frequency signal
-at earlier times, that it has been overlooked.
-
- 
-
-1 Introduction
-
-Among all the gravitational waves events
-announced<mark class="ref">[1, 2, 3, 4, 5, 6, 7, 8, 9]</mark>
-by the
-LIGO/Virgo Collaboration, still the GW150914 event remains
-the one showing the strongest signal to noise ratio.
-It is because of this that many
-studies[10, 11, 12, 13, 14, 15]
-on gravitational…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [4]</span> …ier times, that it has been overlooked. 1 Introduction Among all the gravitational waves events announced[1, 2, 3, 4, 5, 6, 7, 8, 9] by the LIGO/Virgo Collaboration, still the GW150914 event remains the one showing the strongest signal to noi…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -588,50 +291,16 @@ on gravitational…</div>
 <section class="card" data-i="3" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.00546v1#:~:text=GW170608" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…A South Africa/MeerKAT Collaboration, B. P. Abbott et al., “Multi-messenger Observations of a Binary Neutron Star Merger,”
-Astrophys. J.
-848 no. 2, (2017) L12,
-arXiv:1710.05833
-[astro-ph.HE].
-
- 
-[8]
-
-Virgo, LIGO Scientific Collaboration, B. P. Abbott et al.,
-“<mark>GW170608</mark>: Observation of a 19-solar-mass Binary Black Hole Coalescence,”
-arXiv:1711.05578
-[astro-ph.HE].
-
- 
-[9]
-
-LIGO Scientific, Virgo Collaboration, B. P. Abbott et al.,
-“GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers
-Observed by LIGO and V…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[8]</span> · 1 place</span><div class="cite">…hysical signal.
-
- 
-The new techniques allow us to reveal more low frequency signal
-at earlier times, that it has been overlooked.
-
- 
-
-1 Introduction
-
-Among all the gravitational waves events
-announced<mark class="ref">[1, 2, 3, 4, 5, 6, 7, 8, 9]</mark>
-by the
-LIGO/Virgo Collaboration, still the GW150914 event remains
-the one showing the strongest signal to noise ratio.
-It is because of this that many
-studies[10, 11, 12, 13, 14, 15]
-on gravitational…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [8]</span> …ier times, that it has been overlooked. 1 Introduction Among all the gravitational waves events announced[1, 2, 3, 4, 5, 6, 7, 8, 9] by the LIGO/Virgo Collaboration, still the GW150914 event remains the one showing the strongest signal to noi…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -667,50 +336,16 @@ on gravitational…</div>
 <section class="card" data-i="4" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.00546v1#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…aboration, B. P. Abbott et al.,
-“GW170104: Observation of a 50-Solar-Mass Binary Black Hole Coalescence at
-Redshift 0.2,” Phys. Rev. Lett. 118 no. 22, (2017) 221101,
-arXiv:1706.01812 [gr-qc].
-
- 
-[5]
-
-Virgo, LIGO Scientific Collaboration, B. P. Abbott et al.,
-“<mark>GW170814</mark>: A Three-Detector Observation of Gravitational Waves from a
-Binary Black Hole Coalescence,”
-Phys. Rev.
-Lett. 119 no. 14, (2017) 141101,
-arXiv:1709.09660 [gr-qc].
-
- 
-[6]
-
-Virgo, LIGO Scientific Collaboration, B. P. Abbott et al.,
-“GW170817: Observation of Grav…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[5]</span> · 1 place</span><div class="cite">…hysical signal.
-
- 
-The new techniques allow us to reveal more low frequency signal
-at earlier times, that it has been overlooked.
-
- 
-
-1 Introduction
-
-Among all the gravitational waves events
-announced<mark class="ref">[1, 2, 3, 4, 5, 6, 7, 8, 9]</mark>
-by the
-LIGO/Virgo Collaboration, still the GW150914 event remains
-the one showing the strongest signal to noise ratio.
-It is because of this that many
-studies[10, 11, 12, 13, 14, 15]
-on gravitational…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [5]</span> …ier times, that it has been overlooked. 1 Introduction Among all the gravitational waves events announced[1, 2, 3, 4, 5, 6, 7, 8, 9] by the LIGO/Virgo Collaboration, still the GW150914 event remains the one showing the strongest signal to noi…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -746,50 +381,16 @@ on gravitational…</div>
 <section class="card" data-i="5" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1903.00546v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…. P. Abbott et al.,
-“GW170814: A Three-Detector Observation of Gravitational Waves from a
-Binary Black Hole Coalescence,”
-Phys. Rev.
-Lett. 119 no. 14, (2017) 141101,
-arXiv:1709.09660 [gr-qc].
-
- 
-[6]
-
-Virgo, LIGO Scientific Collaboration, B. P. Abbott et al.,
-“<mark>GW170817</mark>: Observation of Gravitational Waves from a Binary Neutron Star
-Inspiral,” Phys. Rev. Lett. 119 no. 16, (2017) 161101,
-arXiv:1710.05832 [gr-qc].
-
- 
-[7]
-
-LIGO Scientific, Virgo, Fermi GBM, INTEGRAL, IceCube, AstroSat
-Cadmium Zinc Telluride Imager Team, IPN, Ins…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[6]</span> · 1 place</span><div class="cite">…hysical signal.
-
- 
-The new techniques allow us to reveal more low frequency signal
-at earlier times, that it has been overlooked.
-
- 
-
-1 Introduction
-
-Among all the gravitational waves events
-announced<mark class="ref">[1, 2, 3, 4, 5, 6, 7, 8, 9]</mark>
-by the
-LIGO/Virgo Collaboration, still the GW150914 event remains
-the one showing the strongest signal to noise ratio.
-It is because of this that many
-studies[10, 11, 12, 13, 14, 15]
-on gravitational…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [6]</span> …ier times, that it has been overlooked. 1 Introduction Among all the gravitational waves events announced[1, 2, 3, 4, 5, 6, 7, 8, 9] by the LIGO/Virgo Collaboration, still the GW150914 event remains the one showing the strongest signal to noi…</li></ul>
+    </details>
     
   </div>
   <div class="form">

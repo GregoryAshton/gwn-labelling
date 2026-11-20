@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Non-local quark models for description of dense matter in the cores of neutron stars</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2010.14728" target="_blank" rel="noopener" class="mono">arXiv:2010.14728</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">This thesis work focuses on studying the possible existence of phase transitions in the immediate compact remnants of core collapse supernova, neutron stars, and the theoretical models that describe the interior of dense matter. Specifically, we are interested in analyzing the feasibility of a transition from hadronic matter to quark matter in the cores of these objects. For the phase transition we will use two different formalisms: the Maxwell formalism or abrupt phase transition and the Gibbs formalisms or mixed phase transition. For the description of hadronic matter, we will use different parametrizations of the relativistic mean field model with density-dependent coupling constants. For the description of quark matter we will use an effective nonlocal Nambu Jona-Lasinio model of three flavors with vector interactions, in which we will include the possibility of formation of diquarks to model a superconducting phase of color in $SU(3)$. Phase diagrams and equations of state of quark matter at finite temperature are presented, and the influence of that type of matter on observables associated with neutron stars is investigated. The simplified thermal evolution of compact stars during their formation is studied, from their state of proto-neutron stars to that of cold neutron stars, and the results obtained are compared with recent astrophysical observations. The results obtained indicate that the occurrence of quark matter in the nuclei of these stars remains a promising possibility. The fact that the use of more realistic models for the description of the dense matter in these objects indicates the presence of quark matter inside neutron stars, could be an answer to the question of the behavior of that kind of matter and the determination of its corresponding equation of state.</p></details>
+<div class="small mut mono">arXiv:2010.14728</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">This thesis work focuses on studying the possible existence of phase transitions in the immediate compact remnants of core collapse supernova, neutron stars, and the theoretical models that describe the interior of dense matter. Specifically, we are interested in analyzing the feasibility of a transition from hadronic matter to quark matter in the cores of these objects. For the phase transition we will use two different formalisms: the Maxwell formalism or abrupt phase transition and the Gibbs formalisms or mixed phase transition. For the description of hadronic matter, we will use different parametrizations of the relativistic mean field model with density-dependent coupling constants. For the description of quark matter we will use an effective nonlocal Nambu Jona-Lasinio model of three flavors with vector interactions, in which we will include the possibility of formation of diquarks to model a superconducting phase of color in $SU(3)$. Phase diagrams and equations of state of quark matter at finite temperature are presented, and the influence of that type of matter on observables associated with neutron stars is investigated. The simplified thermal evolution of compact stars during their formation is studied, from their state of proto-neutron stars to that of cold neutron stars, and the results obtained are compared with recent astrophysical observations. The results obtained indicate that the occurrence of quark matter in the nuclei of these stars remains a promising possibility. The fact that the use of more realistic models for the description of the dense matter in these objects indicates the presence of quark matter inside neutron stars, could be an answer to the question of the behavior of that kind of matter and the determination of its corresponding equation of state.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2010.14728v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,37 +159,22 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">references</span>…ity. The remaining free parameters of the models were adjusted taking into account the observational restrictions, coming from precise determinations of the pulsars masses of ∼\sim 2 M⊙, and the event corresponding to the fusion of two neutron stars, known as <mark>GW170817</mark>. The fact that the use of more realistic models for the description of the dense matter in these objects indicates the presence of quark matter inside neutron stars, could be an answer to the question of the behavior of that type of matter and the determinati…
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
+    <p class="where">Named 5 times:
+      introduction ×3, reference list, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2010.14728v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…hat these objects describe. The EoS that were used up to that moment failed to describe masses of that order, so it was necessary to start considering additional degrees of freedom to describe the matter inside the NSs. Likewise, the historical event known as <mark>GW170817</mark>, the first detection of gravitational waves from the merger of two NS on August 17, 2017 [5], also established new theoretical challenges for the construction of the EoS of the matter inside these compact objects.
-
-The densities in the inner nuclei of the NSs…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…TOV equations in the mass-radius plane for different EoS. The bars in gray are the restrictions imposed by the 2 M⊙M_{\odot} pulsars. The line immediately above the bars indicates the restriction resulting from the analysis of the data obtained from the event <mark>GW170817</mark>, which imposes a limit for the maximum mass of ENs of 2.16 M⊙M_{\odot} [42]. The lower line with double arrows indicates the restriction to the radii of the NSs from the data analysis of the same event from the merger of two NSs (see [5], [1] and references t…</div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">introduction</span>… curves in figures 3 and 4 meet the requirement of reaching the two solar masses and also satisfy the bound established for the NSs radii. This last bound is established from the data analysis from the merger of two NSs, the gravitational waves event known as <mark>GW170817</mark> [5]. It can also be seen that the families of stars built with the hadronic parameterization corresponding to DD2 have a more extensive branch of hybrid stars than those constructed with the GM1L parameterization. This is so because DD2 hadronic EoS is stiffe…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…g into account the observational bound of 2 M ⊙ imposed by the pulsars J0348 + 0432 and J1614-2230. Likewise, the new restrictions imposed on the radii of these objects were taken into account. They come from the data analysis of the historical event known as <mark>GW170817</mark>: the first detection of gravitational waves from the two NSs merger. For the hybrid EoS construction that serve to determine the different families of stars, we describe the theoretical framework of two types of transitions: Maxwell type or abrupt and without…</div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">reference list</span> …of the pulsars masses of ∼\sim 2 M⊙, and the event corresponding to the fusion of two neutron stars, known as GW170817.</li><li><span class="sec">introduction</span> Likewise, the historical event known as GW170817, the first detection of gravitational waves from the merger of two NS on August 17, 2017 [5], also establishe…</li><li><span class="sec">introduction</span> …tely above the bars indicates the restriction resulting from the analysis of the data obtained from the event GW170817, which imposes a limit for the maximum mass of ENs of 2.16 M⊙M_{\odot} [42].</li><li><span class="sec">introduction</span> …ound is established from the data analysis from the merger of two NSs, the gravitational waves event known as GW170817 [5].</li><li><span class="sec">conclusion</span> They come from the data analysis of the historical event known as GW170817: the first detection of gravitational waves from the two NSs merger.</li></ul>
     </details>
     
   </div>

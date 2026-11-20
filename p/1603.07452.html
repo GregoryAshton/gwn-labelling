@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,109 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Fermionic Lorentz violation and its implications for interferometric gravitational-wave detection</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1603.07452" target="_blank" rel="noopener" class="mono">arXiv:1603.07452</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The recent direct detection of gravitational waves reported by Advanced LIGO has inspired the current article. In this context, a particular Lorentz-violating framework for classical, massive particles is the focus. The latter is characterized by a preferred direction in spacetime comprised of CPT-odd components with mass dimension 1. Curvature effects in spacetime, which are caused by a propagating gravitational wave, are assumed to deform the otherwise constant background field. In accordance with spontaneous Lorentz violation, a particular choice for the vector field is taken, which was proposed elsewhere. The geodesic equations for a particle that is subject to this type of Lorentz violation are obtained. Subsequently, their numerical solutions are computed and discussed. The particular model considered leads to changes in the particle trajectory whose impact on interferometric gravitational-wave experiments such as LIGO will be studied.</p></details>
+<div class="small mut mono">arXiv:1603.07452</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The recent direct detection of gravitational waves reported by Advanced LIGO has inspired the current article. In this context, a particular Lorentz-violating framework for classical, massive particles is the focus. The latter is characterized by a preferred direction in spacetime comprised of CPT-odd components with mass dimension 1. Curvature effects in spacetime, which are caused by a propagating gravitational wave, are assumed to deform the otherwise constant background field. In accordance with spontaneous Lorentz violation, a particular choice for the vector field is taken, which was proposed elsewhere. The geodesic equations for a particle that is subject to this type of Lorentz violation are obtained. Subsequently, their numerical solutions are computed and discussed. The particular model considered leads to changes in the particle trajectory whose impact on interferometric gravitational-wave experiments such as LIGO will be studied.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1603.07452v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">2 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">2 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>6 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ystem are accelerated such that certain derivatives of multipole moments of the system
-are nonvanishing [3]. For example, this concerns nonspherical supernova explosions, rotations of binary pulsars, and black-hole mergers.
-After all, the source of the signal <mark>GW150914</mark> detected by Advanced LIGO is considered to have been the merger of two black holes.
-
-Einstein thought that gravitational waves were a mere theoretical manifestation of local Lorentz invariance in General Relativity, but he did not have any
-confidence in their…</div>
+    <p class="where">Named 6 times:
+      introduction ×3, methods ×2, reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1603.07452v2#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…Gravitational waves are tiny ripples that propagate through spacetime and generate strain. Typical
-amplitudes far away from the source are smaller than one part in 102010^{20}. Hence, their direct detection is a significant technological challenge. The signal
-<mark>GW150914</mark> was only possible to be detected by an interferometer whose arm length is several kilometers and which, apart from that, involves various
-sophisticated setups to reduce vibrations, thermal noise, etc. Advanced LIGO is a Michelson interferometer with Fabry-Per…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…athbf{k}|. Therefore, gravitational waves shall
-propagate with the speed of light. In [7] modifications of the latter dispersion relation in the pure-gravity sector
-of the SME are considered leading to tight constraints on the nonminimal coefficients based on <mark>GW150914</mark>. In the current article, Lorentz
-violation is taken to reside in the fermion sector. The general Lagrangian containing all minimal and nonminimal operators is stated in Eq. (1) of
-[11] including the subsequent definitions.
-We consider an observer frame with n…</div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">methods</span>…0.0
-0.0
-1.0
-0.2
-
-Table 1: Numerical values for the gravitational-wave parameters, the dimensionless Lorentz-violating coefficients
-(see Eq. (3.7)), and the integration time T0T_{0} of the geodesic equations. The latter corresponds to the
-duration of the event <mark>GW150914</mark> detected by LIGO.
-
-The behavior of the classical particle can be described as follows. The gravitational wave makes the particle move along all three spatial
-directions. The particle starts traveling with the wave along the zz axis. The magnitude of its posit…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…a a\equiv\left|\frac{\breve{a}_{2}^{(1)}}{M}-\frac{\breve{a}_{2}^{(2)}}{M}\right|\,.
-
-(5.17)
-
-For the explicit values A+=10−21A_{+}=10^{-21} and Δ​a=10−17\Delta a=10^{-17}, which was found by evaluating Δ​y\Delta y for the duration of the impact
-of the signal <mark>GW150914</mark>, the displacement
-can reach |Δ​y|≈2.0×10−18​m|\Delta y|\approx 2.0\times 10^{-18}\,\mathrm{m}. Therefore, Advanced LIGO would be sensitive to such a difference of the
-controlling coefficients. This can be employed to derive a sensitivity on combinations of th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…
-
- 
-[16]
-
-K. Yagi and L.C. Stein,
-“Black hole based tests of general relativity,”
-Class. Quant. Grav. 33, 054001 (2016),
-arXiv:1602.02413 [gr-qc].
-
- 
-[17]
-
-N. Yunes, K. Yagi, and F. Pretorius,
-“Theoretical physics implications of the binary black-hole mergers <mark>GW150914</mark> and GW151226,”
-Phys. Rev. D 94, 084002 (2016),
-arXiv:1603.08955 [gr-qc].
-
- 
-[18]
-
-V.A. Kostelecký and N. Russell,
-“Classical kinematics for Lorentz violation,”
-Phys. Lett. B 693, 443 (2010)
-arXiv:1008.5062 [hep-ph].
-
- 
-[19]
-
-V.A. Kostelecký,
-“Riemann-Finsler …
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[17]</span> · 1 place</span><div class="cite">…ntz violation and the SME, consult [13].
-
-Since Advanced LIGO announced their result there has been a couple of papers on tests of alternative gravity theories using gravitational waves, amongst them
-<mark class="ref">[14, 15, 16, 17]</mark>. The motivation for this paper is along the same lines. In particular, we intend to
-consider how Lorentz violation in the matter sector could affect the detection of gravitational waves. To do so, a …</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> After all, the source of the signal GW150914 detected by Advanced LIGO is considered to have been the merger of two black holes.</li><li><span class="sec">introduction</span> The signal GW150914 was only possible to be detected by an interferometer whose arm length is several kilometers and which, apart…</li><li><span class="sec">introduction</span> …gravity sector of the SME are considered leading to tight constraints on the nonminimal coefficients based on GW150914.</li><li><span class="sec">methods</span> The latter corresponds to the duration of the event GW150914 detected by LIGO.</li><li><span class="sec">methods</span> …0−17\Delta a=10^{-17}, which was found by evaluating Δ​y\Delta y for the duration of the impact of the signal GW150914, the displacement can reach |Δ​y|≈2.0×10−18​m|\Delta y|\approx 2.0\times 10^{-18}\,\mathrm{m}.</li><li><span class="sec">cites it as [17]</span> …has been a couple of papers on tests of alternative gravity theories using gravitational waves, amongst them [14, 15, 16, 17]. The motivation for this paper is along the same lines. In particular, we intend to consider how Lorentz viol…</li></ul>
     </details>
     
   </div>
@@ -261,43 +201,16 @@ consider how Lorentz violation in the matter sector could affect the detection o
 <section class="card" data-i="1" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1603.07452v2#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…Yagi and L.C. Stein,
-“Black hole based tests of general relativity,”
-Class. Quant. Grav. 33, 054001 (2016),
-arXiv:1602.02413 [gr-qc].
-
- 
-[17]
-
-N. Yunes, K. Yagi, and F. Pretorius,
-“Theoretical physics implications of the binary black-hole mergers GW150914 and <mark>GW151226</mark>,”
-Phys. Rev. D 94, 084002 (2016),
-arXiv:1603.08955 [gr-qc].
-
- 
-[18]
-
-V.A. Kostelecký and N. Russell,
-“Classical kinematics for Lorentz violation,”
-Phys. Lett. B 693, 443 (2010)
-arXiv:1008.5062 [hep-ph].
-
- 
-[19]
-
-V.A. Kostelecký,
-“Riemann-Finsler geometry and …
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[17]</span> · 1 place</span><div class="cite">…ntz violation and the SME, consult [13].
-
-Since Advanced LIGO announced their result there has been a couple of papers on tests of alternative gravity theories using gravitational waves, amongst them
-<mark class="ref">[14, 15, 16, 17]</mark>. The motivation for this paper is along the same lines. In particular, we intend to
-consider how Lorentz violation in the matter sector could affect the detection of gravitational waves. To do so, a …</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [17]</span> …has been a couple of papers on tests of alternative gravity theories using gravitational waves, amongst them [14, 15, 16, 17]. The motivation for this paper is along the same lines. In particular, we intend to consider how Lorentz viol…</li></ul>
+    </details>
     
   </div>
   <div class="form">

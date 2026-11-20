@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Estimating Hubble Constant with Gravitational Observations: A Concise Review</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2506.15410" target="_blank" rel="noopener" class="mono">arXiv:2506.15410</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The Hubble constant is of paramount importance in astrophysics and cosmology. A large number of methods have been developed with different electromagnetic probes to estimate its value. The most recent results show a tension between values obtained from Cosmic Microwave Background observations and supernovae. The simultaneous detection of gravitational waves and electromagnetic radiation from GW170817 provided a direct estimation of the Hubble constant that did not depend on the astronomical distance ladder. This concise review will present the methods to estimate the Hubble constant with the gravitational observations of compact binary mergers, discussing both bright and dark sirens and reporting the state of the art of the results.</p></details>
+<div class="small mut mono">arXiv:2506.15410</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The Hubble constant is of paramount importance in astrophysics and cosmology. A large number of methods have been developed with different electromagnetic probes to estimate its value. The most recent results show a tension between values obtained from Cosmic Microwave Background observations and supernovae. The simultaneous detection of gravitational waves and electromagnetic radiation from GW170817 provided a direct estimation of the Hubble constant that did not depend on the astronomical distance ladder. This concise review will present the methods to estimate the Hubble constant with the gravitational observations of compact binary mergers, discussing both bright and dark sirens and reporting the state of the art of the results.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/pdf/2506.15410v1" target="_blank" rel="noopener">Open the paper (PDF, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched; it's a PDF, so use your viewer's search.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,101 +159,22 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">9 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">9 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…) Bom et al. 2024, GW dark sirens
-(33) Ballard et al. 2024, GW190412
-(34) A fradique et al . 2024, GW dark sirens
-(35) Abbott et al. 2023, GW dark sirens
-(36) Abbott et al. 2023, GW dark sirens
-(3 7) V asylyev et al . 2020, GW190814
-(38) P almese et al. 2020, <mark>GW170814</mark>+GW190814
-(39) Abbott et al. 2021, GW dark sirens
-(40) Gayathri et al. 2021, GW190 521
-(41) Chen et al . 2022, GW190521
-(42) Mukherjee et al. 2020, GW190521
-(4 3) F ishbach et al . 2019, GW170817 dark
-( 44) Mooley et al . 2022, GW170817
-(45) P almese et al 202…</div>
+    <p class="where">Named 5 times:
+      methods ×3, introduction, reference list.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…68.3 +4.6
-−4.5 [98]
-GW170817 afterglow 75.46 +5.34
-−5.39 [99]
-GW170817 jet 71.5 ±4.6 [100]
-GW170817 dark siren 77 +37
-−18 [101]
-GW190521 67.6 +4.3
-−4.2 [102]
-GW190521 68.9 +8.7
-−6.0 [103]
-GW190521 68.8 −45.7
-−25.5 [104]
-O1, O2 dark sirens 68.7 +17.0
-−7.8 [96]
-<mark>GW170814</mark>+GW190814 72.0 +12
-−8.2 [105]
-GW190814 69 +29
-−14 [106]
-O3 dark sirens 68 +8
-−6 [92]
-O3 dark sirens, no catalogs 68 +12
-−8 [92]
-Dark sirens 76.00 +17.64
-−13.45 [107]
-GW190412 77.96 +18.4
-−9.4 [108]
-Dark sirens 68.0 +4.4
-−3.8 [109]
-3. Hubble Constant Measuremen…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…pc−1, also in comparison to the original GW170817 estimation [92].
-Additional estimates of the Hubble constant have been performed with one or a
-selection of dark sirens and catalogs with completeness extending to larger distances
-than GLADE+. The dark sirens <mark>GW170814</mark> and GW190814 have been used together
-with the Dark Energy Survey (DES) catalog, producing H0 = 75+40
-−32 km s−1 Mpc−1 [172]
-and 78+57
-−13 km s−1 Mpc−1 [105], while combining GW170814, GW190814, and GW170817
-leads to H 0 = 72.0 +12
-−8.2 km s−1 Mpc−1 [105]. GW1…</div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">methods</span>…with completeness extending to larger distances
-than GLADE+. The dark sirens GW170814 and GW190814 have been used together
-with the Dark Energy Survey (DES) catalog, producing H0 = 75+40
-−32 km s−1 Mpc−1 [172]
-and 78+57
-−13 km s−1 Mpc−1 [105], while combining <mark>GW170814</mark>, GW190814, and GW170817
-leads to H 0 = 72.0 +12
-−8.2 km s−1 Mpc−1 [105]. GW190814 and the GLADE catalog have
-been used by [ 106] to derive H 0 = 69 +29
-−14 km s−1 Mpc−1 in combination with the
-GW170817 posterior. An estimation has used the merger GW190412 [ 1…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>… Doctor, Z.; Lin, H.; Fishbach, M.; Pereira, M.E.S.
-et al. [DES and LIGO Scientific and Virgo Collaborations] First Measurement of the Hubble Constant from a Dark Standard
-Siren using the Dark Energy Survey Galaxies and the LIGO/Virgo Binary–Black-hole Merger <mark>GW170814</mark>. Astrophys. J. Lett. 2019,
-876, L7. https://doi.org/10.3847/2041-8213/ab14f1.
-173. Abbott, R.; Abbott, T.D.; Abraham, S.; Acernese, F.; Ackley, K.; Adams, C.; Adhikari, R.X.; Adya, V .B.; Affeldt. C.; Agathos, M.
-et al. [LIGO Scientific and Virgo Collaboratio…
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …ens (36) Abbott et al. 2023, GW dark sirens (3 7) V asylyev et al . 2020, GW190814 (38) P almese et al. 2020, GW170814+GW190814 (39) Abbott et al. 2021, GW dark sirens (40) Gayathri et al. 2021, GW190 521 (41) Chen et al . 2022,…</li><li><span class="sec">methods</span> …2 [102] GW190521 68.9 +8.7 −6.0 [103] GW190521 68.8 −45.7 −25.5 [104] O1, O2 dark sirens 68.7 +17.0 −7.8 [96] GW170814+GW190814 72.0 +12 −8.2 [105] GW190814 69 +29 −14 [106] O3 dark sirens 68 +8 −6 [92] O3 dark sirens, no catalo…</li><li><span class="sec">methods</span> The dark sirens GW170814 and GW190814 have been used together with the Dark Energy Survey (DES) catalog, producing H0 = 75+40 −32 km s…</li><li><span class="sec">reference list</span> …from a Dark Standard Siren using the Dark Energy Survey Galaxies and the LIGO/Virgo Binary–Black-hole Merger GW170814.</li></ul>
     </details>
     
   </div>
@@ -269,161 +211,15 @@ et al. [LIGO Scientific and Virgo Collaboratio…
 <section class="card" data-i="1" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>79 mentions · first 12 shown · <span class="cptag">12 by counterpart name</span></h3>
+    <p class="where">Named 79 times:
+      methods ×39, reference list ×25, introduction ×11, data ×2, conclusion ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">12 mentions use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention"><span class="sec">data</span>…ent electromagnetic probes to
-estimate its value. The most recent results show a tension between values obtained from
-Cosmic Microwave Background observations and supernovae. The simultaneous detection
-of gravitational waves and electromagnetic radiation from <mark>GW170817</mark> provided a direct
-estimation of the Hubble constant that did not depend on the astronomical distance ladder.
-This concise review will present the methods to estimate the Hubble constant with the
-gravitational observations of compact binary mergers, discussing…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…timate the Hubble constant with the
-gravitational observations of compact binary mergers, discussing both bright and dark
-sirens and reporting the state of the art of the results.
-Keywords: distance scale; gravitational waves; neutron stars; gamma-ray bursts;
-<mark>GW170817</mark>
-1. Introduction
-The model of the Universe envisaged by Einstein was static and required the addition
-of a cosmological constant [1]. Friedmann found the solution for an expanding Universe
-[2], whose expansion rate was first estimated by Lemaitre [3]. The land…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…3 7) V asylyev et al . 2020, GW190814
-(38) P almese et al. 2020, GW170814+GW190814
-(39) Abbott et al. 2021, GW dark sirens
-(40) Gayathri et al. 2021, GW190 521
-(41) Chen et al . 2022, GW190521
-(42) Mukherjee et al. 2020, GW190521
-(4 3) F ishbach et al . 2019, <mark>GW170817</mark> dark
-( 44) Mooley et al . 2022, GW170817
-(45) P almese et al 2024, GW170817
-(4 6) Mukherjee et al . 2019, GW170817
-(47) Hotok ezaka et al. 2019, GW170817
-(48) Abbott et al. 2017, GW170817
-Figure 1. The value of Hubble measured through different methods in the…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…) P almese et al. 2020, GW170814+GW190814
-(39) Abbott et al. 2021, GW dark sirens
-(40) Gayathri et al. 2021, GW190 521
-(41) Chen et al . 2022, GW190521
-(42) Mukherjee et al. 2020, GW190521
-(4 3) F ishbach et al . 2019, GW170817 dark
-( 44) Mooley et al . 2022, <mark>GW170817</mark>
-(45) P almese et al 2024, GW170817
-(4 6) Mukherjee et al . 2019, GW170817
-(47) Hotok ezaka et al. 2019, GW170817
-(48) Abbott et al. 2017, GW170817
-Figure 1. The value of Hubble measured through different methods in the literature. Planck CMB
-determinations (1…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…190814
-(39) Abbott et al. 2021, GW dark sirens
-(40) Gayathri et al. 2021, GW190 521
-(41) Chen et al . 2022, GW190521
-(42) Mukherjee et al. 2020, GW190521
-(4 3) F ishbach et al . 2019, GW170817 dark
-( 44) Mooley et al . 2022, GW170817
-(45) P almese et al 2024, <mark>GW170817</mark>
-(4 6) Mukherjee et al . 2019, GW170817
-(47) Hotok ezaka et al. 2019, GW170817
-(48) Abbott et al. 2017, GW170817
-Figure 1. The value of Hubble measured through different methods in the literature. Planck CMB
-determinations (1), (2) (3) by [6]; Baryonic Acousti…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… sirens
-(40) Gayathri et al. 2021, GW190 521
-(41) Chen et al . 2022, GW190521
-(42) Mukherjee et al. 2020, GW190521
-(4 3) F ishbach et al . 2019, GW170817 dark
-( 44) Mooley et al . 2022, GW170817
-(45) P almese et al 2024, GW170817
-(4 6) Mukherjee et al . 2019, <mark>GW170817</mark>
-(47) Hotok ezaka et al. 2019, GW170817
-(48) Abbott et al. 2017, GW170817
-Figure 1. The value of Hubble measured through different methods in the literature. Planck CMB
-determinations (1), (2) (3) by [6]; Baryonic Acoustic Oscillations (BAO): (4) by [12]; CMB …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…0 521
-(41) Chen et al . 2022, GW190521
-(42) Mukherjee et al. 2020, GW190521
-(4 3) F ishbach et al . 2019, GW170817 dark
-( 44) Mooley et al . 2022, GW170817
-(45) P almese et al 2024, GW170817
-(4 6) Mukherjee et al . 2019, GW170817
-(47) Hotok ezaka et al. 2019, <mark>GW170817</mark>
-(48) Abbott et al. 2017, GW170817
-Figure 1. The value of Hubble measured through different methods in the literature. Planck CMB
-determinations (1), (2) (3) by [6]; Baryonic Acoustic Oscillations (BAO): (4) by [12]; CMB (5) by [13];
-CMB + BAO: (6), (7) by [ 1…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…0521
-(42) Mukherjee et al. 2020, GW190521
-(4 3) F ishbach et al . 2019, GW170817 dark
-( 44) Mooley et al . 2022, GW170817
-(45) P almese et al 2024, GW170817
-(4 6) Mukherjee et al . 2019, GW170817
-(47) Hotok ezaka et al. 2019, GW170817
-(48) Abbott et al. 2017, <mark>GW170817</mark>
-Figure 1. The value of Hubble measured through different methods in the literature. Planck CMB
-determinations (1), (2) (3) by [6]; Baryonic Acoustic Oscillations (BAO): (4) by [12]; CMB (5) by [13];
-CMB + BAO: (6), (7) by [ 14]; (8) by [ 15]; Cepheids+SN IA (…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ts in gravitational astronomy can be
-found in [66].
-Standard sirens can be bright, when an electromagnetic counterpart is observed and
-the host galaxy is identified, or dark. A first gravitational estimate of the Hubble con-
-stant [67] was performed using the <mark>GW170817</mark> binary neutron star merger associated with
-the short Gamma-Ray Burst GRB 170817A in the host galaxy NGC 4993 [68]. Other Hubble
-constant estimates have been performed with dark sirens, relying on galaxy catalogs to
-provide a list of candidate host galaxies. T…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>…ght, when an electromagnetic counterpart is observed and
-the host galaxy is identified, or dark. A first gravitational estimate of the Hubble con-
-stant [67] was performed using the GW170817 binary neutron star merger associated with
-the short Gamma-Ray Burst <mark class="cp">GRB 170817A</mark> in the host galaxy NGC 4993 [68]. Other Hubble
-constant estimates have been performed with dark sirens, relying on galaxy catalogs to
-provide a list of candidate host galaxies. The standard sirens will be discussed in Section 2;
-the Hubble constant determinat…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ble
-constant estimates have been performed with dark sirens, relying on galaxy catalogs to
-provide a list of candidate host galaxies. The standard sirens will be discussed in Section 2;
-the Hubble constant determinations with bright sirens, in particular with <mark>GW170817</mark>/GRB
-170817A, and with dark sirens will be discussed in Sections 3 and 4, respectively. Grav-
-itational distance estimates have an impact not only in the context of General Relativity
-but also in the field of alternative theories of gravity [69–75]. The compar…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>…cted. When
-the host galaxy is identified, its redshift can be determined from spectroscopic observations.
-An electromagnetic counterpart is expected for BNS and (at least some) NSBH mergers and
-has been observed in the GW 170817 BNS merger with the associated <mark class="cp">GRB 170817A</mark> [68], as
-discussed below; on the other hand, no counterpart is expected for BBH mergers, unless
-surrounding material is present in the merger region [ 83–89]. To date, GW170817 is the
-only merger with an unambiguous detection of an electromagnetic counterpart…</div>
+    <details class="lines"><summary>Show the sentences (63, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">data</span> The simultaneous detection of gravitational waves and electromagnetic radiation from GW170817 provided a direct estimation of the Hubble constant that did not depend on the astronomical distance ladder.</li><li><span class="sec">data</span> Keywords: distance scale; gravitational waves; neutron stars; gamma-ray bursts; GW170817 1.</li><li><span class="sec">introduction</span> …GW190 521 (41) Chen et al . 2022, GW190521 (42) Mukherjee et al. 2020, GW190521 (4 3) F ishbach et al . 2019, GW170817 dark ( 44) Mooley et al . 2022, GW170817 (45) P almese et al 2024, GW170817 (4 6) Mukherjee et al . 2019, GW1…</li><li><span class="sec">introduction</span> A first gravitational estimate of the Hubble con- stant [67] was performed using the GW170817 binary neutron star merger associated with the short Gamma-Ray Burst GRB 170817A in the host galaxy NGC 4993…</li><li><span class="sec">introduction · counterpart name</span> …nt [67] was performed using the GW170817 binary neutron star merger associated with the short Gamma-Ray Burst GRB 170817A in the host galaxy NGC 4993 [68].</li><li><span class="sec">introduction</span> …ens will be discussed in Section 2; the Hubble constant determinations with bright sirens, in particular with GW170817/GRB 170817A, and with dark sirens will be discussed in Sections 3 and 4, respectively.</li><li><span class="sec">introduction · counterpart name</span> …or BNS and (at least some) NSBH mergers and has been observed in the GW 170817 BNS merger with the associated GRB 170817A [68], as discussed below; on the other hand, no counterpart is expected for BBH mergers, unless surrounding m…</li><li><span class="sec">introduction</span> To date, GW170817 is the only merger with an unambiguous detection of an electromagnetic counterpart.</li></ul>
     </details>
     
   </div>
@@ -460,86 +256,15 @@ only merger with an unambiguous detection of an electromagnetic counterpart…</
 <section class="card" data-i="2" data-event="GW190412">
   <div class="ctx">
     <div class="evname mono">GW190412</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…8) Birrer et al. 2020, T ime-delay lensing
-(29) Dominguez et al. 2019, EBL gamma-ray attenuation
-(30) Dainotti et al. 2022, GRB F undamental Plane
-(31) Dainotti et al. 2022, GRB F undamental Plane
-(32) Bom et al. 2024, GW dark sirens
-(33) Ballard et al. 2024, <mark>GW190412</mark>
-(34) A fradique et al . 2024, GW dark sirens
-(35) Abbott et al. 2023, GW dark sirens
-(36) Abbott et al. 2023, GW dark sirens
-(3 7) V asylyev et al . 2020, GW190814
-(38) P almese et al. 2020, GW170814+GW190814
-(39) Abbott et al. 2021, GW dark sirens
-(40) Gayat…</div>
+    <p class="where">Named 5 times:
+      methods ×2, reference list ×2, introduction.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190412</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>….7
-−6.0 [103]
-GW190521 68.8 −45.7
-−25.5 [104]
-O1, O2 dark sirens 68.7 +17.0
-−7.8 [96]
-GW170814+GW190814 72.0 +12
-−8.2 [105]
-GW190814 69 +29
-−14 [106]
-O3 dark sirens 68 +8
-−6 [92]
-O3 dark sirens, no catalogs 68 +12
-−8 [92]
-Dark sirens 76.00 +17.64
-−13.45 [107]
-<mark>GW190412</mark> 77.96 +18.4
-−9.4 [108]
-Dark sirens 68.0 +4.4
-−3.8 [109]
-3. Hubble Constant Measurements with Bright Sirens
-3.1. GW170817/GRB 170817A: Gravitational and Multi-Messenger Observations
-On 17 August 2017, the Advanced LIGO and Advanced Virgo interferometers detect…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ing GW170814, GW190814, and GW170817
-leads to H 0 = 72.0 +12
-−8.2 km s−1 Mpc−1 [105]. GW190814 and the GLADE catalog have
-been used by [ 106] to derive H 0 = 69 +29
-−14 km s−1 Mpc−1 in combination with the
-GW170817 posterior. An estimation has used the merger <mark>GW190412</mark> [ 173], which is
-lacking an electromagnetic counterpart but is localized within about 12 deg 2 as a dark
-siren [ 174]. The estimated Hubble constant is 85.4 +29.1
-−33.9 km s−1 Mpc−1, which be-
-comes 77.96+18.4
-−9.4 km s−1 Mpc−1 when the GW170817 posterior is …</div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">references</span>…stae086.
-108. Ballard, W.; Palmese, A.; Magaña Hernandez, I.; BenZvi, S.; Moon, J.; Ross, A.J.; Rossi, G.; Ahlen, S.; Blum, R.; Brooks, D.
-et al. [DESI Collaboration] A Dark Siren Measurement of the Hubble Constant with the LIGO/Virgo Gravitational Wave Event
-<mark>GW190412</mark> and DESI Galaxies. Res. Notes AAS 2023, 7, 250. https://doi.org/10.3847/2515-5172/ad0eda.
-109. Bom, C.R.; Alfradique, V .; Palmese, A.; Teixeira, G.; Santana-Silva, L.; Santos, A.; Darc, P . A dark standard siren measurement
-of the Hubble constant following L…
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…trophys. J. Lett. 2019,
-876, L7. https://doi.org/10.3847/2041-8213/ab14f1.
-173. Abbott, R.; Abbott, T.D.; Abraham, S.; Acernese, F.; Ackley, K.; Adams, C.; Adhikari, R.X.; Adya, V .B.; Affeldt. C.; Agathos, M.
-et al. [LIGO Scientific and Virgo Collaborations] <mark>GW190412</mark>: Observation of a Binary-Black-Hole Coalescence with Asymmetric
-Masses. Phys. Rev. D 2020, 102, 043015. https://doi.org/10.1103/PhysRevD.102.043015.
-174. Palmese, A.; Bom, C.R.; Mucesh, S.; Hartley, W.G. A Standard Siren Measurement of the Hubble Constant Usi…
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …) Dainotti et al. 2022, GRB F undamental Plane (32) Bom et al. 2024, GW dark sirens (33) Ballard et al. 2024, GW190412 (34) A fradique et al . 2024, GW dark sirens (35) Abbott et al. 2023, GW dark sirens (36) Abbott et al. 2023,…</li><li><span class="sec">methods</span> …O3 dark sirens 68 +8 −6 [92] O3 dark sirens, no catalogs 68 +12 −8 [92] Dark sirens 76.00 +17.64 −13.45 [107] GW190412 77.96 +18.4 −9.4 [108] Dark sirens 68.0 +4.4 −3.8 [109] 3.</li><li><span class="sec">methods</span> An estimation has used the merger GW190412 [ 173], which is lacking an electromagnetic counterpart but is localized within about 12 deg 2 as a dark sire…</li><li><span class="sec">reference list</span> …I Collaboration] A Dark Siren Measurement of the Hubble Constant with the LIGO/Virgo Gravitational Wave Event GW190412 and DESI Galaxies.</li><li><span class="sec">reference list</span> C.; Agathos, M. et al. [LIGO Scientific and Virgo Collaborations] GW190412: Observation of a Binary-Black-Hole Coalescence with Asymmetric Masses.</li></ul>
     </details>
     
   </div>
@@ -576,79 +301,15 @@ Masses. Phys. Rev. D 2020, 102, 043015. https://doi.org/10.1103/PhysRevD.102.043
 <section class="card" data-i="3" data-event="GW190425">
   <div class="ctx">
     <div class="evname mono">GW190425</div>
-    <h3>6 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…etic observations provide constraints on the
-system inclination as in the observations described above.
-3.3. Bright Sirens Other than GW170817?
-Among the 90 mergers detected in the first three observing runs [80], there is a second
-binary neutron star merger, <mark>GW190425</mark> [155], with component masses of 2.1+0.5
-−0.4 M⊙ and
-1.3+0.3
-−0.2 M⊙ [156]. The large luminosity distance, 0.15+0.08
-−0.06 Gpc, and the extended localization
-region, 8700 deg2, of GW190425 are less favorable than those of GW170817. Despite an
-extensive follow-…</div>
+    <p class="where">Named 6 times:
+      reference list ×4, methods ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190425</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…hree observing runs [80], there is a second
-binary neutron star merger, GW190425 [155], with component masses of 2.1+0.5
-−0.4 M⊙ and
-1.3+0.3
-−0.2 M⊙ [156]. The large luminosity distance, 0.15+0.08
-−0.06 Gpc, and the extended localization
-region, 8700 deg2, of <mark>GW190425</mark> are less favorable than those of GW170817. Despite an
-extensive follow-up campaign [157–159], there is no accepted counterpart. However, the
-Anti-Coincidence Shield (ACS) of the SPI gamma-ray spectrometer of INTEGRAL detected
-GRB 190425 [160], but the observa…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…tt.122.061105.
-155. Abbott, B.P .; Abbott, R.; Abbott, T.D.; Abraham, S.; Acernese, F.; Ackley, K.; Adams, C.; Adhikari, (LIGO Lab., Caltech),
-V .B. Adya(Australian Natl. U., Canberra), C. Affeldt(Hannover, Max Planck Inst. Grav. and Hannover U.), M. Agathos(
-<mark>GW190425</mark>: Observation of a Compact Binary Coalescence with Total Mass ∼ 3.4M⊙. Astrophys. J. Lett. 2020, 892, L3.
-https://doi.org/10.3847/2041-8213/ab75f5.
-156. Abbott, R.; Abbott, T.D.; Acernese, F.; Ackley, K.; Adams, C.; Adhikari, N.; Adhikari, R.X.; Adya, V .B.; A…
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
-    
-    
-    <details><summary>3 more</summary>
-    <div class="mention"><span class="sec">references</span>…/doi.org/10.1103/PhysRevD.109.022001.
-157. Boersma, O.; van Leeuwen, J.; Adams, E.A.K.; Adebahr, B.; Kutkin, A.; Oosterloo, T.; de Blok, W.J.G.; van den Brink, R.; Coolen,
-A.H.W.M.; Connor, L. et al. A search for radio emission from double-neutron star merger <mark>GW190425</mark> using Apertif. Astron.
-Astrophys. 2021, 650, A131. https://doi.org/10.1051/0004-6361/202140578.
-158. Coughlin, M.W.; Ahumada, T.; Anand, S.; De, K.; Hankins, M.J.; Kasliwal, M.M.; Singer, L.P; Bellm, E.C.; Andreoni, I.; Cenko,
-S.B. et al. GROWTH on S190425z: …
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…38/s41550-023-01917-x.
-163. Panther, F.H.; Anderson, G.E.; Bhandari, S.; Goodwin, A.J.; Hurley-Walker, N.; James, C.W.; Kawka, A.; Ai, S.; Kovalam, M.;
-Moroianu, A. et al. The most probable host of CHIME FRB 190425A, associated with binary neutron star merger <mark>GW190425</mark>, and
-a late-time transient search. Mon. Not. R. Astron. Soc. 2022, 519, 2235–2250. https://doi.org/10.1093/mnras/stac3597.
-164. Smartt, S.J.; Nicholl, M.; Srivastav, S.; Huber, M.E.; Chambers, K.C.; Smith, K.W.; Young, D.R.; Fulton, M.D.; Tonry, J.L.; Stubbs,…
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…time transient search. Mon. Not. R. Astron. Soc. 2022, 519, 2235–2250. https://doi.org/10.1093/mnras/stac3597.
-164. Smartt, S.J.; Nicholl, M.; Srivastav, S.; Huber, M.E.; Chambers, K.C.; Smith, K.W.; Young, D.R.; Fulton, M.D.; Tonry, J.L.; Stubbs,
-C.W. et al. <mark>GW190425</mark>: Pan-STARRS and ATLAS coverage of the skymap and limits on optical emission associated with
-FRB 20190425A. Mon. Not. R. Astron. Soc. 2024, 528, 2299–2307. https://doi.org/10.1093/mnras/stae100.
-165. Abbott, R.; Abbott, T.D.; Abraham, S.; Acernese, F.; Ackley,…
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …the 90 mergers detected in the first three observing runs [80], there is a second binary neutron star merger, GW190425 [155], with component masses of 2.1+0.5 −0.4 M⊙ and 1.3+0.3 −0.2 M⊙ [156].</li><li><span class="sec">methods</span> The large luminosity distance, 0.15+0.08 −0.06 Gpc, and the extended localization region, 8700 deg2, of GW190425 are less favorable than those of GW170817.</li><li><span class="sec">reference list</span> Agathos( GW190425: Observation of a Compact Binary Coalescence with Total Mass ∼ 3.4M⊙.</li><li><span class="sec">reference list</span> A search for radio emission from double-neutron star merger GW190425 using Apertif.</li><li><span class="sec">reference list</span> The most probable host of CHIME FRB 190425A, associated with binary neutron star merger GW190425, and a late-time transient search.</li><li><span class="sec">reference list</span> GW190425: Pan-STARRS and ATLAS coverage of the skymap and limits on optical emission associated with FRB 20190425A.</li></ul>
     </details>
     
   </div>
@@ -685,226 +346,15 @@ FRB 20190425A. Mon. Not. R. Astron. Soc. 2024, 528, 2299–2307. https://doi.org
 <section class="card" data-i="4" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>14 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…Abbott et al. 2023, GW dark sirens
-(36) Abbott et al. 2023, GW dark sirens
-(3 7) V asylyev et al . 2020, GW190814
-(38) P almese et al. 2020, GW170814+GW190814
-(39) Abbott et al. 2021, GW dark sirens
-(40) Gayathri et al. 2021, GW190 521
-(41) Chen et al . 2022, <mark>GW190521</mark>
-(42) Mukherjee et al. 2020, GW190521
-(4 3) F ishbach et al . 2019, GW170817 dark
-( 44) Mooley et al . 2022, GW170817
-(45) P almese et al 2024, GW170817
-(4 6) Mukherjee et al . 2019, GW170817
-(47) Hotok ezaka et al. 2019, GW170817
-(48) Abbott et al. 2017, GW17…</div>
+    <p class="where">Named 14 times:
+      reference list ×7, methods ×5, introduction ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…6) Abbott et al. 2023, GW dark sirens
-(3 7) V asylyev et al . 2020, GW190814
-(38) P almese et al. 2020, GW170814+GW190814
-(39) Abbott et al. 2021, GW dark sirens
-(40) Gayathri et al. 2021, GW190 521
-(41) Chen et al . 2022, GW190521
-(42) Mukherjee et al. 2020, <mark>GW190521</mark>
-(4 3) F ishbach et al . 2019, GW170817 dark
-( 44) Mooley et al . 2022, GW170817
-(45) P almese et al 2024, GW170817
-(4 6) Mukherjee et al . 2019, GW170817
-(47) Hotok ezaka et al. 2019, GW170817
-(48) Abbott et al. 2017, GW170817
-Figure 1. The value of Hubble me…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…le constant.
-Method H 0 (km s−1 Mpc−1) Reference
-GW170817 bright siren 70 +12
-−8 [67]
-GW170817 jet 70.3 +5.3
-−5.0 [97]
-GW170817 jet 68.3 +4.6
-−4.5 [98]
-GW170817 afterglow 75.46 +5.34
-−5.39 [99]
-GW170817 jet 71.5 ±4.6 [100]
-GW170817 dark siren 77 +37
-−18 [101]
-<mark>GW190521</mark> 67.6 +4.3
-−4.2 [102]
-GW190521 68.9 +8.7
-−6.0 [103]
-GW190521 68.8 −45.7
-−25.5 [104]
-O1, O2 dark sirens 68.7 +17.0
-−7.8 [96]
-GW170814+GW190814 72.0 +12
-−8.2 [105]
-GW190814 69 +29
-−14 [106]
-O3 dark sirens 68 +8
-−6 [92]
-O3 dark sirens, no catalogs 68 +12
-−8 [92]
-…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">methods</span>…1 Mpc−1) Reference
-GW170817 bright siren 70 +12
-−8 [67]
-GW170817 jet 70.3 +5.3
-−5.0 [97]
-GW170817 jet 68.3 +4.6
-−4.5 [98]
-GW170817 afterglow 75.46 +5.34
-−5.39 [99]
-GW170817 jet 71.5 ±4.6 [100]
-GW170817 dark siren 77 +37
-−18 [101]
-GW190521 67.6 +4.3
-−4.2 [102]
-<mark>GW190521</mark> 68.9 +8.7
-−6.0 [103]
-GW190521 68.8 −45.7
-−25.5 [104]
-O1, O2 dark sirens 68.7 +17.0
-−7.8 [96]
-GW170814+GW190814 72.0 +12
-−8.2 [105]
-GW190814 69 +29
-−14 [106]
-O3 dark sirens 68 +8
-−6 [92]
-O3 dark sirens, no catalogs 68 +12
-−8 [92]
-Dark sirens 76.00 +17.64
-−13.4…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ight siren 70 +12
-−8 [67]
-GW170817 jet 70.3 +5.3
-−5.0 [97]
-GW170817 jet 68.3 +4.6
-−4.5 [98]
-GW170817 afterglow 75.46 +5.34
-−5.39 [99]
-GW170817 jet 71.5 ±4.6 [100]
-GW170817 dark siren 77 +37
-−18 [101]
-GW190521 67.6 +4.3
-−4.2 [102]
-GW190521 68.9 +8.7
-−6.0 [103]
-<mark>GW190521</mark> 68.8 −45.7
-−25.5 [104]
-O1, O2 dark sirens 68.7 +17.0
-−7.8 [96]
-GW170814+GW190814 72.0 +12
-−8.2 [105]
-GW190814 69 +29
-−14 [106]
-O3 dark sirens 68 +8
-−6 [92]
-O3 dark sirens, no catalogs 68 +12
-−8 [92]
-Dark sirens 76.00 +17.64
-−13.45 [107]
-GW190412 77.96 +18.4
-−…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… [163], but the possible association with the merger
-was ruled out by the lack of a kilonova counterpart [164]. No counterpart was detected for
-the two neutron-star-black-hole mergers, GW200105 and GW200115 [79].
-A special case of the possible bright siren is <mark>GW190521</mark>, a BBH merger with a total mass
-of about 150 M⊙ [165,166], that has been associated with the transient ZTF19abanrhr, a flare
-of the active galactic nucleus J124942.3+344929 [ 167] produced by the interaction of the
-remnant black hole with the accretion disk […</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…the transient ZTF19abanrhr, a flare
-of the active galactic nucleus J124942.3+344929 [ 167] produced by the interaction of the
-remnant black hole with the accretion disk [88]. There is no consensus about the association
-of the merger with the flare [ 168,169]. <mark>GW190521</mark> has been used alone or by adding
-
-Galaxies 2025, 1, 0 8 of 18
-the GW170817 posterior to estimate the Hubble constant: 67.6 +4.3
-−4.2 km s−1 Mpc−1 [102];
-68.9+8.7
-−6.0 km s−1 Mpc−1 [103]. A value of Hubble constant of 68.8−45.7
-−25.5 km s−1 Mpc−1 has
-been deri…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…https://doi.org/10.3847/2041-8213/aaf96e.
-102. Mukherjee, S.; Ghosh, A.; Graham, M.J.; Karathanasis, C.; Kasliwal, M.M.; Magaña Hernandez, I.; Nissanke, S.M.; Silvestri, A.;
-Wandelt, B.D. First measurement of the Hubble parameter from bright binary black hole <mark>GW190521</mark>. arXiv 2020, arXiv:2009.14199.
-103. Chen, H.Y.; Haster, C.J.; Vitale, S.; Farr, W.M.; Isi, M. A standard siren cosmological measurement from the potential GW190521
-electromagnetic counterpart ZTF19abanrhr. Mon. Not. R. Astron. Soc. 2022, 513, 2152–2157. https…
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…stri, A.;
-Wandelt, B.D. First measurement of the Hubble parameter from bright binary black hole GW190521. arXiv 2020, arXiv:2009.14199.
-103. Chen, H.Y.; Haster, C.J.; Vitale, S.; Farr, W.M.; Isi, M. A standard siren cosmological measurement from the potential <mark>GW190521</mark>
-electromagnetic counterpart ZTF19abanrhr. Mon. Not. R. Astron. Soc. 2022, 513, 2152–2157. https://doi.org/10.1093/mnras/
-stac989.
-
-Galaxies 2025, 1, 0 14 of 18
-104. Gayathri, V .; Healy, J.; Lange, J.; O’Brien, B.; Szczepanczyk, M.; Bartos, I.; Campanelli, M.…
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…2–2157. https://doi.org/10.1093/mnras/
-stac989.
-
-Galaxies 2025, 1, 0 14 of 18
-104. Gayathri, V .; Healy, J.; Lange, J.; O’Brien, B.; Szczepanczyk, M.; Bartos, I.; Campanelli, M.; Klimenko, S.; Lousto, C.O.;
-O’Shaughnessy, R. Measuring the Hubble Constant with <mark>GW190521</mark> as an Eccentric black hole Merger and Its Potential
-Electromagnetic Counterpart. Astrophys. J. Lett. 2021, 908, L34. https://doi.org/10.3847/2041-8213/abe388.
-105. Palmese, A.; deVicente, J.; Pereira, M.E.S.; Annis, J.; Hartley, W.; Herner, K.; Soares-Santos,…
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>… Astron. Soc. 2024, 528, 2299–2307. https://doi.org/10.1093/mnras/stae100.
-165. Abbott, R.; Abbott, T.D.; Abraham, S.; Acernese, F.; Ackley, K.; Adams, C.; Adhikari, R.X.; Adya, V .B.; Affeldt, C.; Agathos, M.
-et al. [LIGO Scientific and Virgo Collaborations] <mark>GW190521</mark>: A Binary Black Hole Merger with a Total Mass of 150M⊙. Phys. Rev.
-Lett. 2020, 125, 101102. https://doi.org/10.1103/PhysRevLett.125.101102.
-166. Abbott, R.; Abbott, T.D.; Abraham, S.; Acernese, F.; Ackley, K.; Adams, C.; Adhikari, R.X.; Adya, V .B.; Affeldt, …
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…bbott, R.; Abbott, T.D.; Abraham, S.; Acernese, F.; Ackley, K.; Adams, C.; Adhikari, R.X.; Adya, V .B.; Affeldt, C.; Agathos. M.
-et al. [LIGO Scientific and Virgo Collaborations] Properties and Astrophysical Implications of the 150 M⊙ Binary Black Hole
-Merger <mark>GW190521</mark>. Astrophys. J. Lett. 2020, 900, L13. https://doi.org/10.3847/2041-8213/aba493.
-167. Graham, M.J.; Ford, K.E.S; McKernan, B.; Ross, N.P .; Stern, D.; Burdge, K.; Coughlin, M.; Djorgovski, S.G.; Drake, A.J. et al.
-Candidate Electromagnetic Counterpart to the Bi…
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (11, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …GW190814 (39) Abbott et al. 2021, GW dark sirens (40) Gayathri et al. 2021, GW190 521 (41) Chen et al . 2022, GW190521 (42) Mukherjee et al. 2020, GW190521 (4 3) F ishbach et al . 2019, GW170817 dark ( 44) Mooley et al . 2022, G…</li><li><span class="sec">methods</span> …] GW170817 afterglow 75.46 +5.34 −5.39 [99] GW170817 jet 71.5 ±4.6 [100] GW170817 dark siren 77 +37 −18 [101] GW190521 67.6 +4.3 −4.2 [102] GW190521 68.9 +8.7 −6.0 [103] GW190521 68.8 −45.7 −25.5 [104] O1, O2 dark sirens 68.7 +1…</li><li><span class="sec">methods</span> A special case of the possible bright siren is GW190521, a BBH merger with a total mass of about 150 M⊙ [165,166], that has been associated with the transient ZTF19a…</li><li><span class="sec">methods</span> GW190521 has been used alone or by adding</li><li><span class="sec">reference list</span> First measurement of the Hubble parameter from bright binary black hole GW190521. arXiv 2020, arXiv:2009.14199. 103.</li><li><span class="sec">reference list</span> A standard siren cosmological measurement from the potential GW190521 electromagnetic counterpart ZTF19abanrhr.</li><li><span class="sec">reference list</span> Measuring the Hubble Constant with GW190521 as an Eccentric black hole Merger and Its Potential Electromagnetic Counterpart.</li><li><span class="sec">reference list</span> …, C.; Adhikari, R.X.; Adya, V .B.; Affeldt, C.; Agathos, M. et al. [LIGO Scientific and Virgo Collaborations] GW190521: A Binary Black Hole Merger with a Total Mass of 150M⊙.</li></ul>
     </details>
     
   </div>
@@ -941,170 +391,15 @@ Candidate Electromagnetic Counterpart to the Bi…
 <section class="card" data-i="5" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>9 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…al. 2022, GRB F undamental Plane
-(32) Bom et al. 2024, GW dark sirens
-(33) Ballard et al. 2024, GW190412
-(34) A fradique et al . 2024, GW dark sirens
-(35) Abbott et al. 2023, GW dark sirens
-(36) Abbott et al. 2023, GW dark sirens
-(3 7) V asylyev et al . 2020, <mark>GW190814</mark>
-(38) P almese et al. 2020, GW170814+GW190814
-(39) Abbott et al. 2021, GW dark sirens
-(40) Gayathri et al. 2021, GW190 521
-(41) Chen et al . 2022, GW190521
-(42) Mukherjee et al. 2020, GW190521
-(4 3) F ishbach et al . 2019, GW170817 dark
-( 44) Mooley et al . 20…</div>
+    <p class="where">Named 9 times:
+      methods ×5, introduction ×2, reference list ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…al. 2024, GW dark sirens
-(33) Ballard et al. 2024, GW190412
-(34) A fradique et al . 2024, GW dark sirens
-(35) Abbott et al. 2023, GW dark sirens
-(36) Abbott et al. 2023, GW dark sirens
-(3 7) V asylyev et al . 2020, GW190814
-(38) P almese et al. 2020, GW170814+<mark>GW190814</mark>
-(39) Abbott et al. 2021, GW dark sirens
-(40) Gayathri et al. 2021, GW190 521
-(41) Chen et al . 2022, GW190521
-(42) Mukherjee et al. 2020, GW190521
-(4 3) F ishbach et al . 2019, GW170817 dark
-( 44) Mooley et al . 2022, GW170817
-(45) P almese et al 2024, GW1708…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…
-−4.5 [98]
-GW170817 afterglow 75.46 +5.34
-−5.39 [99]
-GW170817 jet 71.5 ±4.6 [100]
-GW170817 dark siren 77 +37
-−18 [101]
-GW190521 67.6 +4.3
-−4.2 [102]
-GW190521 68.9 +8.7
-−6.0 [103]
-GW190521 68.8 −45.7
-−25.5 [104]
-O1, O2 dark sirens 68.7 +17.0
-−7.8 [96]
-GW170814+<mark>GW190814</mark> 72.0 +12
-−8.2 [105]
-GW190814 69 +29
-−14 [106]
-O3 dark sirens 68 +8
-−6 [92]
-O3 dark sirens, no catalogs 68 +12
-−8 [92]
-Dark sirens 76.00 +17.64
-−13.45 [107]
-GW190412 77.96 +18.4
-−9.4 [108]
-Dark sirens 68.0 +4.4
-−3.8 [109]
-3. Hubble Constant Measurements with B…</div>
-    
-    
-    <details><summary>6 more</summary>
-    <div class="mention"><span class="sec">methods</span>… 75.46 +5.34
-−5.39 [99]
-GW170817 jet 71.5 ±4.6 [100]
-GW170817 dark siren 77 +37
-−18 [101]
-GW190521 67.6 +4.3
-−4.2 [102]
-GW190521 68.9 +8.7
-−6.0 [103]
-GW190521 68.8 −45.7
-−25.5 [104]
-O1, O2 dark sirens 68.7 +17.0
-−7.8 [96]
-GW170814+GW190814 72.0 +12
-−8.2 [105]
-<mark>GW190814</mark> 69 +29
-−14 [106]
-O3 dark sirens 68 +8
-−6 [92]
-O3 dark sirens, no catalogs 68 +12
-−8 [92]
-Dark sirens 76.00 +17.64
-−13.45 [107]
-GW190412 77.96 +18.4
-−9.4 [108]
-Dark sirens 68.0 +4.4
-−3.8 [109]
-3. Hubble Constant Measurements with Bright Sirens
-3.1. GW170817/GR…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… comparison to the original GW170817 estimation [92].
-Additional estimates of the Hubble constant have been performed with one or a
-selection of dark sirens and catalogs with completeness extending to larger distances
-than GLADE+. The dark sirens GW170814 and <mark>GW190814</mark> have been used together
-with the Dark Energy Survey (DES) catalog, producing H0 = 75+40
-−32 km s−1 Mpc−1 [172]
-and 78+57
-−13 km s−1 Mpc−1 [105], while combining GW170814, GW190814, and GW170817
-leads to H 0 = 72.0 +12
-−8.2 km s−1 Mpc−1 [105]. GW190814 and the…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…eteness extending to larger distances
-than GLADE+. The dark sirens GW170814 and GW190814 have been used together
-with the Dark Energy Survey (DES) catalog, producing H0 = 75+40
-−32 km s−1 Mpc−1 [172]
-and 78+57
-−13 km s−1 Mpc−1 [105], while combining GW170814, <mark>GW190814</mark>, and GW170817
-leads to H 0 = 72.0 +12
-−8.2 km s−1 Mpc−1 [105]. GW190814 and the GLADE catalog have
-been used by [ 106] to derive H 0 = 69 +29
-−14 km s−1 Mpc−1 in combination with the
-GW170817 posterior. An estimation has used the merger GW190412 [ 173], which…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…814 and GW190814 have been used together
-with the Dark Energy Survey (DES) catalog, producing H0 = 75+40
-−32 km s−1 Mpc−1 [172]
-and 78+57
-−13 km s−1 Mpc−1 [105], while combining GW170814, GW190814, and GW170817
-leads to H 0 = 72.0 +12
-−8.2 km s−1 Mpc−1 [105]. <mark>GW190814</mark> and the GLADE catalog have
-been used by [ 106] to derive H 0 = 69 +29
-−14 km s−1 Mpc−1 in combination with the
-GW170817 posterior. An estimation has used the merger GW190412 [ 173], which is
-lacking an electromagnetic counterpart but is localized within about…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…M.E.S.; Annis, J.; Hartley, W.; Herner, K.; Soares-Santos, M.; Crocce, M.; Huterer, D.; Magaña
-Hernandez, I. et al. DES Collaboration[ A statistical standard siren measurement of the Hubble constant from the LIGO/Virgo
-gravitational wave compact object merger <mark>GW190814</mark> and Dark Energy Survey galaxies. Astrophys. J. Lett. 2020, 900, L33.
-https://doi.org/10.3847/2041-8213/abaeff.
-106. Vasylyev, S.; Filippenko, A. A Measurement of the Hubble Constant using Gravitational Waves from the Binary Merger GW190814.
-Astrophys. J. 2020…
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…mpact object merger GW190814 and Dark Energy Survey galaxies. Astrophys. J. Lett. 2020, 900, L33.
-https://doi.org/10.3847/2041-8213/abaeff.
-106. Vasylyev, S.; Filippenko, A. A Measurement of the Hubble Constant using Gravitational Waves from the Binary Merger <mark>GW190814</mark>.
-Astrophys. J. 2020, 902, 149. https://doi.org/10.3847/1538-4357/abb5f9.
-107. Alfradique, V .; Bom, C.R.; Palmese, A.; Teixeira, G.; Santana-Silva, L.; Drlica-Wagner, A,; Riley, A.H.; Martínez-Vázquez, C.E.; Sand,
-D.J.; Stringfellow, G.S. et al. A dark siren …
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …(35) Abbott et al. 2023, GW dark sirens (36) Abbott et al. 2023, GW dark sirens (3 7) V asylyev et al . 2020, GW190814 (38) P almese et al. 2020, GW170814+GW190814 (39) Abbott et al. 2021, GW dark sirens (40) Gayathri et al. 202…</li><li><span class="sec">methods</span> …W190521 68.9 +8.7 −6.0 [103] GW190521 68.8 −45.7 −25.5 [104] O1, O2 dark sirens 68.7 +17.0 −7.8 [96] GW170814+GW190814 72.0 +12 −8.2 [105] GW190814 69 +29 −14 [106] O3 dark sirens 68 +8 −6 [92] O3 dark sirens, no catalogs 68 +12…</li><li><span class="sec">methods</span> The dark sirens GW170814 and GW190814 have been used together with the Dark Energy Survey (DES) catalog, producing H0 = 75+40 −32 km s−1 Mpc−1 [172…</li><li><span class="sec">methods</span> GW190814 and the GLADE catalog have been used by [ 106] to derive H 0 = 69 +29 −14 km s−1 Mpc−1 in combination with th…</li><li><span class="sec">reference list</span> …tandard siren measurement of the Hubble constant from the LIGO/Virgo gravitational wave compact object merger GW190814 and Dark Energy Survey galaxies.</li><li><span class="sec">reference list</span> A Measurement of the Hubble Constant using Gravitational Waves from the Binary Merger GW190814.</li></ul>
     </details>
     
   </div>
@@ -1141,20 +436,16 @@ D.J.; Stringfellow, G.S. et al. A dark siren …
 <section class="card" data-i="6" data-event="GW190924_021846">
   <div class="ctx">
     <div class="evname mono">GW190924_021846</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190924_021846</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…ng an electromagnetic counterpart but is localized within about 12 deg 2 as a dark
-siren [ 174]. The estimated Hubble constant is 85.4 +29.1
-−33.9 km s−1 Mpc−1, which be-
-comes 77.96+18.4
-−9.4 km s−1 Mpc−1 when the GW170817 posterior is included [ 108]. Using
-<mark>GW190924_021846</mark> and GW200202154313 as standard sirens and the DECam Local Vol-
-ume Exploration (DELVE) catalog together with the bright siren GW170817 produces
-H0 = 68.84+15.51
-−7.74 km s−1 Mpc−1, while using 10 well-localized (within 12 to∼400 deg2) O3
-dark sirens leads to …</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> Using GW190924_021846 and GW200202154313 as standard sirens and the DECam Local Vol- ume Exploration (DELVE) catalog together with…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1190,17 +481,16 @@ dark sirens leads to …</div>
 <section class="card" data-i="7" data-event="GW200105_162426">
   <div class="ctx">
     <div class="evname mono">GW200105_162426</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200105</span> or <span class="mono hit">GW200105_162426</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>… about 2.5 h after the merger [162]
-at a position consistent with UGC 10667 [163], but the possible association with the merger
-was ruled out by the lack of a kilonova counterpart [164]. No counterpart was detected for
-the two neutron-star-black-hole mergers, <mark>GW200105</mark> and GW200115 [79].
-A special case of the possible bright siren is GW190521, a BBH merger with a total mass
-of about 150 M⊙ [165,166], that has been associated with the transient ZTF19abanrhr, a flare
-of the active galactic nucleus J124942.3+344929 [ 167] prod…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> No counterpart was detected for the two neutron-star-black-hole mergers, GW200105 and GW200115 [79].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1236,17 +526,16 @@ of the active galactic nucleus J124942.3+344929 [ 167] prod…</div>
 <section class="card" data-i="8" data-event="GW200115_042309">
   <div class="ctx">
     <div class="evname mono">GW200115_042309</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200115</span> or <span class="mono hit">GW200115_042309</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…after the merger [162]
-at a position consistent with UGC 10667 [163], but the possible association with the merger
-was ruled out by the lack of a kilonova counterpart [164]. No counterpart was detected for
-the two neutron-star-black-hole mergers, GW200105 and <mark>GW200115</mark> [79].
-A special case of the possible bright siren is GW190521, a BBH merger with a total mass
-of about 150 M⊙ [165,166], that has been associated with the transient ZTF19abanrhr, a flare
-of the active galactic nucleus J124942.3+344929 [ 167] produced by the i…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> No counterpart was detected for the two neutron-star-black-hole mergers, GW200105 and GW200115 [79].</li></ul>
+    </details>
     
   </div>
   <div class="form">

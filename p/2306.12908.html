@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,36 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Waveform systematics in identifying strongly gravitationally lensed gravitational waves: posterior overlap method</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2306.12908" target="_blank" rel="noopener" class="mono">arXiv:2306.12908</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Gravitational lensing has been extensively observed for electromagnetic signals, but not yet for gravitational waves (GWs). Detecting lensed GWs will have many astrophysical and cosmological applications, and becomes more feasible as the sensitivity of the ground-based detectors improves. One of the missing ingredients to robustly identify lensed GWs is to ensure that the statistical tests used are robust under the choice of underlying waveform models. We present the first systematic study of possible waveform systematics in identifying candidates for strongly lensed GW event pairs, focusing on the posterior overlap method. To this end, we compare Bayes factors from all posteriors using different waveforms included in GWTC data releases from the first three observing runs (O1-O3). We find that waveform choice yields a wide spread of Bayes factors in some cases. However, it is likely that no event pairs from O1 to O3 were missed due to waveform choice. We also perform parameter estimation with additional waveforms for interesting cases, to understand the observed differences. We also briefly explore if computing the overlap from different runs for the same event can be a useful metric for waveform systematics or sampler issues, independent of the lensing scenario.</p></details>
+<div class="small mut mono">arXiv:2306.12908</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Gravitational lensing has been extensively observed for electromagnetic signals, but not yet for gravitational waves (GWs). Detecting lensed GWs will have many astrophysical and cosmological applications, and becomes more feasible as the sensitivity of the ground-based detectors improves. One of the missing ingredients to robustly identify lensed GWs is to ensure that the statistical tests used are robust under the choice of underlying waveform models. We present the first systematic study of possible waveform systematics in identifying candidates for strongly lensed GW event pairs, focusing on the posterior overlap method. To this end, we compare Bayes factors from all posteriors using different waveforms included in GWTC data releases from the first three observing runs (O1-O3). We find that waveform choice yields a wide spread of Bayes factors in some cases. However, it is likely that no event pairs from O1 to O3 were missed due to waveform choice. We also perform parameter estimation with additional waveforms for interesting cases, to understand the observed differences. We also briefly explore if computing the overlap from different runs for the same event can be a useful metric for waveform systematics or sampler issues, independent of the lensing scenario.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2306.12908v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">12 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">12 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170729">
   <div class="ctx">
     <div class="evname mono">GW170729</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.12908v3#:~:text=GW170729_185629" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170729_185629</span> or <span class="mono hit">GW170729</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…agree on the pair
-being somewhat consistent with lensing but not highly ranked.
-
-6.2.3 GW190527 and related events
-
-The event GW190527_092055 shows high overlaps and large differences
-between waveforms when compared with
-several other events: GW190719_215514, <mark>GW170729_185629</mark> (although we ignore this case
-due to the large time difference), GW190701_203306,
-GW190513_205428 and others.
-
-The event GW190527 was found by two pipelines in HL data with
-SNR ≲9\lesssim 9. PyCBC-BBH did not originally find it for GWTC-2,
-only in the GWTC-2.…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> …gh overlaps and large differences between waveforms when compared with several other events: GW190719_215514, GW170729_185629 (although we ignore this case due to the large time difference), GW190701_203306, GW190513_205428 and others.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -187,25 +201,16 @@ only in the GWTC-2.…</div>
 <section class="card" data-i="1" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.12908v3#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>… from O1 and O2.
-These were found by the pipelines PyCBC [77, 78],
-GstLAL [79, 80] and cWB [81].
-The PE analyses were performed
-with the LALInference sampler [55]
-and the waveforms IMRPhenomPv2 and SEOBNRv3,
-with the exception of the binary neutron star event <mark>GW170817</mark> [82].
-We exclude this event from our analyses.
-
-3.2 GWTC-2
-
-The data release [83] associated with the second GWTC catalog [19]
-includes posterior samples for 39 events detected during O3a.
-These were found by the pipelines cWB, GstLAL, PyCBC and
-a focused ver…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …sampler [55] and the waveforms IMRPhenomPv2 and SEOBNRv3, with the exception of the binary neutron star event GW170817 [82].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -241,62 +246,16 @@ a focused ver…</div>
 <section class="card" data-i="2" data-event="GW190424_180648">
   <div class="ctx">
     <div class="evname mono">GW190424_180648</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…d posterior yielding quite low log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} even when comparing the same runs.
-GW190527 already showed up in multiple of the pairs with large discrepancies
-in our lensing analyses above (see section 6.2.3).
-The event <mark>GW190424_180648</mark> was included in GWTC-2 but no longer in GWTC-2.1,
-due to re-tuning of GstLAL’s ranking procedure making it less likely to be astrophysical in the first place.
-
-Hence we find that this method shows some promise in identifying events
-with discrepant results fro…</div>
+    <p class="where">Named 2 times:
+      appendix ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.12908v3#:~:text=GW190424_180648" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190424_180648</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">appendix</span>…run 2)
-
-GW190412
-IMRPhenomXPHM (GWTC-2.1)
-SEOBNRv4PHM (GWTC-2.1)
-\m7.657.65
-−3.89-3.89 (run 1)
-
-GW190527
-SEOBNRv4P (GWTC-2)
-SEOBNRv4PHM (GWTC-2.1)
-\m3.683.68
-−3.82-3.82 (run 2)
-
-GW190527
-NRSur7dq4 (GWTC-2)
-SEOBNRv4PHM (GWTC-2.1)
-\m3.803.80
-−3.70-3.70 (run 2)
-
-<mark>GW190424</mark>
-SEOBNRv4P (GWTC-2)
-SEOBNRv4PHM (GWTC-2)
-\m2.912.91
-−3.61-3.61 (run 1)
-
-References
-
-References
-
- 
-[1]
-
-Hannuksela O, Haris K, Ng K, Kumar S, Mehta A, Keitel D, Li T and Ajith P 2019
-ApJL 874 L2
-(Preprint 1901.02674)
-
- 
-[2]
-
-Abbott R et al. (LIGO Scientific Col…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> The event GW190424_180648 was included in GWTC-2 but no longer in GWTC-2.1, due to re-tuning of GstLAL’s ranking procedure making it le…</li><li><span class="sec">appendix</span> GW190424 SEOBNRv4P (GWTC-2) SEOBNRv4PHM (GWTC-2) \m2.912.91 −3.61-3.61 (run 1)</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -332,25 +291,16 @@ Abbott R et al. (LIGO Scientific Col…</div>
 <section class="card" data-i="3" data-event="GW190425">
   <div class="ctx">
     <div class="evname mono">GW190425</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.12908v3#:~:text=GW190425" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190425</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…o zero spins
-for purposes of population analyses [85],
-even though the waveform does
-support aligned spins.
-Three different samplers were used: LALInference, bilby and RIFT.
-The only event excluded from our analyses is the second binary neutron star detection
-<mark>GW190425</mark> [86].
-However, no single waveform has results for more than 36 events,
-because, for example GW190521 [87, 38]
-and GW190814 [88] were treated specially by the collaboration.
-
-3.3 GWTC-2.1
-
-The GWTC-2.1 paper [20] presented a reanalysis of data until O3a,
-inclu…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> The only event excluded from our analyses is the second binary neutron star detection GW190425 [86].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -386,230 +336,15 @@ inclu…</div>
 <section class="card" data-i="4" data-event="GW190513_205428">
   <div class="ctx">
     <div class="evname mono">GW190513_205428</div>
-    <h3>8 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…L}}_{\mathrm{U}}
-
-lowest ℬUL\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-
-GW190517
-GW190630
-IMRPhenomD
-2.522.52
-IMRPhenomPv2
-−0.39-0.39
-
-GW190503
-GW190719
-SEOBNRv4PHM
-0.690.69
-NRSur7dq4
-−∞-\infty
-
-GW190527
-GW190719
-IMRPhenomPv2
-1.681.68
-NRSur7dq4
-−∞-\infty
-
-GW190527
-<mark>GW190513</mark>
-IMRPhenomPv2
-1.361.36
-SEOBNRv4PHM
-−2.28-2.28
-
-GW190527
-GW190701
-IMRPhenomD
-1.241.24
-SEOBNRv4PHM
-−8.79-8.79
-
-GW190707
-GW190930
-IMRPhenomPv2
-2.962.96
-IMRPhenomD
-−44.75-44.75
-
-GW190706
-GW190719
-IMRPhenomPv2
-2.492.49
-NRSur7dq4
-−25.73-25.73
-
-GW191103
-GW191105
-IMRP…</div>
+    <p class="where">Named 8 times:
+      results ×7, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.12908v3#:~:text=GW190513" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190513</span> or <span class="mono hit">GW190513_205428</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…d related events
-
-The event GW190527_092055 shows high overlaps and large differences
-between waveforms when compared with
-several other events: GW190719_215514, GW170729_185629 (although we ignore this case
-due to the large time difference), GW190701_203306,
-<mark>GW190513_205428</mark> and others.
-
-The event GW190527 was found by two pipelines in HL data with
-SNR ≲9\lesssim 9. PyCBC-BBH did not originally find it for GWTC-2,
-only in the GWTC-2.1 analysis,
-and with pastro=0.33p_{\mathrm{astro}}=0.33,
-which is lower than the pastro=0.99p_{\ma…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… than the pastro=0.99p_{\mathrm{astro}}=0.99 given by GstLAL in GWTC-2
-or pastro=0.85p_{\mathrm{astro}}=0.85 in GWTC-2.1.
-Its total source-frame mass is 58.1−8.8+18.1​M⊙58.1^{+18.1}_{-8.8}M_{\odot} at redshifts of
-0.44−0.19+0.290.44^{+0.29}_{-0.19}.
-The event <mark>GW190513</mark> was found by all pipelines in HLV data with
-SNR ≈12\approx 12. Its total source-frame mass is 54.4−6.7+9.3​M⊙54.4^{+9.3}_{-6.7}M_{\odot} at redshifts of
-0.40−0.13+0.140.40^{+0.14}_{-0.13}. The event GW190701 was found by all pipelines in HLV data with SNR ≈12…</div>
-    
-    
-    <details><summary>5 more</summary>
-    <div class="mention"><span class="sec">results</span>…viously discussed pair.
-We again did a bilby rerun with NRSur7dq4 and found log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-consistent with the other waveforms. Hence, the discrepancy was, once again,
-likely due to RIFT sampling issues.
-
-For the pairs <mark>GW190513</mark>–GW190527 and GW190527–GW190701,
-see tables 7 and 8.
-Especially for the first pair, there are again some
-differences between aligned-spin and precessing models,
-similar to sections 6.2.1 and 6.2.2,
-but we do not focus on these here again.
-But considering the p…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…s like IMRPhenomXPHM.
-Like in the previous case, we concude that the differences were related to RIFT convergence issues.
-
-Comparing with [93], our NRSur7dq4 results for GW190527 are consistent
-but they do not include GW190719.
-They also provide NRSur7dq4 for <mark>GW190513</mark> and GW190701 which are consistent
-with the LVK results.
-Also [94] presents SEOBNRv4PHM results for GW190527 and GW190719,
-finding them consistent with IMRPhenomXPHM,
-while GW190513 and GW190701 are not included due to low sampling efficiency.
-
-Table 6: 
-Poste…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…e consistent
-but they do not include GW190719.
-They also provide NRSur7dq4 for GW190513 and GW190701 which are consistent
-with the LVK results.
-Also [94] presents SEOBNRv4PHM results for GW190527 and GW190719,
-finding them consistent with IMRPhenomXPHM,
-while <mark>GW190513</mark> and GW190701 are not included due to low sampling efficiency.
-
-Table 6: 
-Posterior-overlap factors for the GW190527–GW190719 pair using different waveform models in the single-event PE.
-
-waveform
-log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-
-IMRPhe…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…−∞-\infty
-
-NRSur7dq4†
-1.991.99
-
-SEOBNRv4P∗
-2.152.15
-
-SEOBNRv4PHM‡
-2.362.36
-
-SEOBNRv5PHM†
-1.981.98
-
-∗Both from GWTC-2
-
-∗∗Both from GWTC-2.1
-
-†New runs for this paper
-
-‡GW190527 from GWTC-2.1 and GW190719 from GWTC-2
-
-Table 7: 
-Posterior-overlap factors for the <mark>GW190513</mark>–GW190527 pair using different waveform models in the single-event PE.
-
-waveform
-log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-
-IMRPhenomD∗
-−0.52-0.52
-
-IMRPhenomPv2∗
-\m1.361.36
-
-IMRPhenomXPHM∗∗
-\m1.071.07
-
-IMRPhenomXAS†
-\m2.412.41
-
-IMRPhenomXHM†
-\m2.…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…mXHM†
-\m2.372.37
-
-IMRPhenomXP†
-\m0.980.98
-
-IMRPhenomTPHM†
-\m0.850.85
-
-NRSur7dq4∗
-\m0.740.74
-
-SEOBNRv4P∗
-\m0.420.42
-
-SEOBNRv4PHM∗∗
-−2.28-2.28
-
-SEOBNRv4PHM‡
-−1.83-1.83
-
-SEOBNRv5PHM†
-\m1.101.10
-
-∗Both from GWTC-2
-
-∗∗Both from GWTC-2.1
-
-†New runs for this paper
-
-‡<mark>GW190513</mark> from GWTC-2 and GW190527 from GWTC-2.1
-
-Table 8: 
-Posterior-overlap factors for the GW190527–GW190701 pair using different waveform models in the single-event PE.
-
-waveform
-log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-
-IMRPhenomD∗
-\m1.241.24
-
-IMRPh…</div>
+    <details class="lines"><summary>Show the sentences (8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> GW190527 GW190513 IMRPhenomPv2 1.361.36 SEOBNRv4PHM −2.28-2.28</li><li><span class="sec">results</span> …719_215514, GW170729_185629 (although we ignore this case due to the large time difference), GW190701_203306, GW190513_205428 and others.</li><li><span class="sec">results</span> The event GW190513 was found by all pipelines in HLV data with SNR ≈12\approx 12.</li><li><span class="sec">results</span> For the pairs GW190513–GW190527 and GW190527–GW190701, see tables 7 and 8.</li><li><span class="sec">results</span> They also provide NRSur7dq4 for GW190513 and GW190701 which are consistent with the LVK results.</li><li><span class="sec">results</span> …94] presents SEOBNRv4PHM results for GW190527 and GW190719, finding them consistent with IMRPhenomXPHM, while GW190513 and GW190701 are not included due to low sampling efficiency.</li><li><span class="sec">results</span> Table 7: Posterior-overlap factors for the GW190513–GW190527 pair using different waveform models in the single-event PE.</li><li><span class="sec">results</span> ‡GW190513 from GWTC-2 and GW190527 from GWTC-2.1</li></ul>
     </details>
     
   </div>
@@ -646,73 +381,16 @@ IMRPh…</div>
 <section class="card" data-i="5" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…spins.
-Three different samplers were used: LALInference, bilby and RIFT.
-The only event excluded from our analyses is the second binary neutron star detection
-GW190425 [86].
-However, no single waveform has results for more than 36 events,
-because, for example <mark>GW190521</mark> [87, 38]
-and GW190814 [88] were treated specially by the collaboration.
-
-3.3 GWTC-2.1
-
-The GWTC-2.1 paper [20] presented a reanalysis of data until O3a,
-including updated posterior samples for all events from O1–O2 (the same as in GWTC-1)
-and new search resul…</div>
+    <p class="where">Named 3 times:
+      appendix ×2, introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.12908v3#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">appendix</span>… 12.
-These are all events already known to be challenging cases:
-GW190412 was the first event with significant higher modes [113]
-and in-depth PE investigations were necessary to reach consistent
-results across waveforms and samplers [39].
-The high-mass event <mark>GW190521</mark> has also produced a variety of results
-that do not always agree very well [87, 38, 114, 40].
-The event GW200322 is one of the outliers discussed in the previous paragraph,
-which has a very broad posterior yielding quite low log10⁡ℬUL\log_{10}\mathcal{B}^{\mat…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…B}^{\mathrm{L}}_{\mathrm{U}}
-Δ​log10​ℬUL\Delta\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-
-GW190412
-SEOBNRv4PHM (GWTC-2)
-SEOBNRv4PHM (GWTC-2.1)
-\m7.337.33
-−5.88-5.88 (run 1)
-
-GW190412
-SEOBNRv4P (GWTC-2)
-SEOBNRv4PHM (GWTC-2.1)
-\m7.457.45
-−4.48-4.48 (run 1)
-
-<mark>GW190521</mark>
-NRSur7dq4 (GWTC-2)
-SEOBNRv4PHM (GWTC-2.1)
-\m3.263.26
-−4.08-4.08 (run 2)
-
-GW200322
-IMRPhenomXPHM (GWTC-3)
-SEOBNRv4PHM (GWTC-3)
-−0.06-0.06
-−3.99-3.99 (run 1)
-
-GW190527
-IMRPhenomPv2 (GWTC-2)
-SEOBNRv4PHM (GWTC-2.1)
-\m3.543.54
-−3.97-3.97 (run 2)
-
-GW190412
-IMRPheno…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> However, no single waveform has results for more than 36 events, because, for example GW190521 [87, 38] and GW190814 [88] were treated specially by the collaboration.</li><li><span class="sec">appendix</span> The high-mass event GW190521 has also produced a variety of results that do not always agree very well [87, 38, 114, 40].</li><li><span class="sec">appendix</span> GW190521 NRSur7dq4 (GWTC-2) SEOBNRv4PHM (GWTC-2.1) \m3.263.26 −4.08-4.08 (run 2)</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -748,283 +426,15 @@ IMRPheno…</div>
 <section class="card" data-i="6" data-event="GW190706_222641">
   <div class="ctx">
     <div class="evname mono">GW190706_222641</div>
-    <h3>11 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…nts
-
-5 Posterior overlap using different waveforms from GWTC data releases
-
-6 Follow-up of interesting cases
-
-6.1 Inference setup
-
-6.2 Results
-
-6.2.1 GW190517–GW190630
-
-6.2.2 GW190503–GW190719
-
-6.2.3 GW190527 and related events
-
-6.2.4 GW190707–GW190930
-
-6.2.5 <mark>GW190706</mark>–GW190719
-
-6.2.6 GW191103–GW191105
-
-7 Conclusions
-
-Acknowledgements
-
-A Posterior self-overlap as a diagnostic tool
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2306.12908v3 [gr-qc] 11 Dec 2023
-
-Waveform systematics in identifyin…</div>
+    <p class="where">Named 11 times:
+      results ×9, title/headings, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.12908v3#:~:text=GW190706" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190706</span> or <span class="mono hit">GW190706_222641</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…\infty
-
-GW190527
-GW190719
-IMRPhenomPv2
-1.681.68
-NRSur7dq4
-−∞-\infty
-
-GW190527
-GW190513
-IMRPhenomPv2
-1.361.36
-SEOBNRv4PHM
-−2.28-2.28
-
-GW190527
-GW190701
-IMRPhenomD
-1.241.24
-SEOBNRv4PHM
-−8.79-8.79
-
-GW190707
-GW190930
-IMRPhenomPv2
-2.962.96
-IMRPhenomD
-−44.75-44.75
-
-<mark>GW190706</mark>
-GW190719
-IMRPhenomPv2
-2.492.49
-NRSur7dq4
-−25.73-25.73
-
-GW191103
-GW191105
-IMRPhenomXPHM
-3.033.03
-SEOBNRv4PHM
-\0\m2.652.65
-
-6.2 Results
-
-We discuss now the results from follow-up
-studies on the event pairs listed in table 3.
-We use the abbreviated names for the…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>….
-Again, we have performed PE with bilby and SEOBNRv5PHM and found
-consistent log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} when compared with IMRPhenomXPHM.
-We can conclude once again that the differences were due to
-RIFT convergence issues.
-
-6.2.5 <mark>GW190706</mark>–GW190719
-
-For the events GW190706_222641 and GW190719_215514
-we find negative log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} for the waveforms NRSur7dq4 and SEOBNRv4PHM,
-but all other waveforms give positive values, see table 10.
-The results with SEO…</div>
-    
-    
-    <details><summary>8 more</summary>
-    <div class="mention"><span class="sec">results</span>… bilby and SEOBNRv5PHM and found
-consistent log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} when compared with IMRPhenomXPHM.
-We can conclude once again that the differences were due to
-RIFT convergence issues.
-
-6.2.5 GW190706–GW190719
-
-For the events <mark>GW190706_222641</mark> and GW190719_215514
-we find negative log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} for the waveforms NRSur7dq4 and SEOBNRv4PHM,
-but all other waveforms give positive values, see table 10.
-The results with SEOBNRv4PHM in this case also differ strongl…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…airs by ℬUL\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-in the IMRPhenomXPHM analysis of O3 pairs [3, 33]
-and, among those highly ranked pairs,
-the second most compatible with galaxy lensing
-in terms of time delay and relative magnification
-[33, 108, 27].
-
-The event <mark>GW190706</mark> was found with all pipelines in HLV data
-with SNR ≈12\approx 12, while GW190719 was found only by the PyCBC-BBH
-search in HL data with SNR ≈8\approx 8.
-This makes GW190719 one of the weakest events in the catalogs,
-with false-alarm rate of 1.6 per year and pa…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…stributions for this pair
-in figure 4.
-We see that for SEOBNRv4PHM there is indeed almost no overlap,
-while for IMRPhenomPv2
-the overlap comes from an additional high-mass tail of the distribution for
-GW190719 overlapping with the peak of the distribution for
-<mark>GW190706</mark>.
-The behavior of NRSur7dq4 from the LVK analyses is similar to SEOBNRv4PHM,
-while the other Phenom waveforms and SEOBNRv4P give similar results
-to IMRPhenomPv2.
-
-We also perform our own PE with the waveforms IMRPhenomXAS,
-IMRPhenomXHM, IMRPhenomXP, IMRPhenomX…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…s, which are also
-included in table 10.
-We find that, in this case, the waveforms with aligned spins
-yield lower ℬUL\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} than the precessing Phenom
-waveforms or SEOBNRv4P. This is mainly because the aligned-spin posteriors
-for <mark>GW190706</mark> extend to much higher values than for GW190719.
-
-As for some of the other cases looked at before,
-we find that our bilby NRSur7dq4 and SEOBNRv5PHM runs for GW190719 also recovered
-distributions more similar to the IMRPhenom results,
-with a similar additional …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ked at before,
-we find that our bilby NRSur7dq4 and SEOBNRv5PHM runs for GW190719 also recovered
-distributions more similar to the IMRPhenom results,
-with a similar additional tail of the mass distribution, which overlaps with the peak
-of the distribution for <mark>GW190706</mark> (just as shown in figure 4
-for IMRPhenomPv2).
-
-(a) IMRPhenomPv2
-
-(b) SEOBNRv4PHM
-
-Figure 4: 
-Mass posterior distributions for the pair GW190706–GW190719 for the waveforms
-IMRPhenomPv2 (first corner plot) and SEOBNRv4PHM (GWTC-2 results, second corner plot).
-
-…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…ults,
-with a similar additional tail of the mass distribution, which overlaps with the peak
-of the distribution for GW190706 (just as shown in figure 4
-for IMRPhenomPv2).
-
-(a) IMRPhenomPv2
-
-(b) SEOBNRv4PHM
-
-Figure 4: 
-Mass posterior distributions for the pair <mark>GW190706</mark>–GW190719 for the waveforms
-IMRPhenomPv2 (first corner plot) and SEOBNRv4PHM (GWTC-2 results, second corner plot).
-
-Table 10: 
-Posterior-overlap factors for the GW190706–GW190719 pair using different waveform models in the single-event PE.
-
-waveform
-log10⁡ℬUL\…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>….
-
-(a) IMRPhenomPv2
-
-(b) SEOBNRv4PHM
-
-Figure 4: 
-Mass posterior distributions for the pair GW190706–GW190719 for the waveforms
-IMRPhenomPv2 (first corner plot) and SEOBNRv4PHM (GWTC-2 results, second corner plot).
-
-Table 10: 
-Posterior-overlap factors for the <mark>GW190706</mark>–GW190719 pair using different waveform models in the single-event PE.
-
-waveform
-log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-
-IMRPhenomD∗
-\0\m1.411.41
-
-IMRPhenomPv2∗
-\0\m2.492.49
-
-IMRPhenomXPHM∗∗
-\0\m1.891.89
-
-IMRPhenomXAS†
-\0\m1.401.40
-
-IMRPhenomX…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…IMRPhenomTPHM†
-\0\m2.062.06
-
-NRSur7dq4∗
-−25.73-25.73
-
-NRSur7dq4†
-\0​\m​2.25\0\m 2.25
-
-SEOBNRv4P∗
-\0\m1.811.81
-
-SEOBNRv4PHM∗
-\0−1.05-1.05
-
-SEOBNRv4PHM‡
-\0−5.77-5.77
-
-SEOBNRv5PHM†
-\0\m1.901.90
-
-∗Both from GWTC-2
-
-∗∗Both from GWTC-2.1
-
-†New runs for this paper
-
-‡<mark>GW190706</mark> from GWTC-2.1, GW190719 from GWTC-2
-
-6.2.6 GW191103–GW191105
-
-We also include the pair of events GW191103_012549 and GW191105_143521
-that did not show up
-as an outlier in the Δ​log10​ℬUL\Delta\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-distribution.
-Instea…</div>
+    <details class="lines"><summary>Show the sentences (10, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> 6.2.5 GW190706–GW190719</li><li><span class="sec">methods</span> GW190706 GW190719 IMRPhenomPv2 2.492.49 NRSur7dq4 −25.73-25.73</li><li><span class="sec">results</span> For the events GW190706_222641 and GW190719_215514 we find negative log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} for the waveform…</li><li><span class="sec">results</span> The event GW190706 was found with all pipelines in HLV data with SNR ≈12\approx 12, while GW190719 was found only by the PyCBC-B…</li><li><span class="sec">results</span> …additional high-mass tail of the distribution for GW190719 overlapping with the peak of the distribution for GW190706.</li><li><span class="sec">results</span> This is mainly because the aligned-spin posteriors for GW190706 extend to much higher values than for GW190719.</li><li><span class="sec">results</span> …with a similar additional tail of the mass distribution, which overlaps with the peak of the distribution for GW190706 (just as shown in figure 4 for IMRPhenomPv2).</li><li><span class="sec">results</span> Figure 4: Mass posterior distributions for the pair GW190706–GW190719 for the waveforms IMRPhenomPv2 (first corner plot) and SEOBNRv4PHM (GWTC-2 results, second corner pl…</li></ul>
     </details>
     
   </div>
@@ -1061,390 +471,15 @@ Instea…</div>
 <section class="card" data-i="7" data-event="GW190719_215514">
   <div class="ctx">
     <div class="evname mono">GW190719_215514</div>
-    <h3>34 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…GWTC-1
-
-3.2 GWTC-2
-
-3.3 GWTC-2.1
-
-3.4 GWTC-3
-
-4 Lensing searches on GWTC events
-
-5 Posterior overlap using different waveforms from GWTC data releases
-
-6 Follow-up of interesting cases
-
-6.1 Inference setup
-
-6.2 Results
-
-6.2.1 GW190517–GW190630
-
-6.2.2 GW190503–<mark>GW190719</mark>
-
-6.2.3 GW190527 and related events
-
-6.2.4 GW190707–GW190930
-
-6.2.5 GW190706–GW190719
-
-6.2.6 GW191103–GW191105
-
-7 Conclusions
-
-Acknowledgements
-
-A Posterior self-overlap as a diagnostic tool
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
-…</div>
+    <p class="where">Named 34 times:
+      results ×29, methods ×3, title/headings ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.12908v3#:~:text=GW190719" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190719</span> or <span class="mono hit">GW190719_215514</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…sterior overlap using different waveforms from GWTC data releases
-
-6 Follow-up of interesting cases
-
-6.1 Inference setup
-
-6.2 Results
-
-6.2.1 GW190517–GW190630
-
-6.2.2 GW190503–GW190719
-
-6.2.3 GW190527 and related events
-
-6.2.4 GW190707–GW190930
-
-6.2.5 GW190706–<mark>GW190719</mark>
-
-6.2.6 GW191103–GW191105
-
-7 Conclusions
-
-Acknowledgements
-
-A Posterior self-overlap as a diagnostic tool
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2306.12908v3 [gr-qc] 11 Dec 2023
-
-Waveform systematics in identifying strongl…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…{L}}_{\mathrm{U}}
-Waveform with
-log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-
-highest ℬUL\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-
-lowest ℬUL\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-
-GW190517
-GW190630
-IMRPhenomD
-2.522.52
-IMRPhenomPv2
-−0.39-0.39
-
-GW190503
-<mark>GW190719</mark>
-SEOBNRv4PHM
-0.690.69
-NRSur7dq4
-−∞-\infty
-
-GW190527
-GW190719
-IMRPhenomPv2
-1.681.68
-NRSur7dq4
-−∞-\infty
-
-GW190527
-GW190513
-IMRPhenomPv2
-1.361.36
-SEOBNRv4PHM
-−2.28-2.28
-
-GW190527
-GW190701
-IMRPhenomD
-1.241.24
-SEOBNRv4PHM
-−8.79-8.79
-
-GW190707
-GW190930
-IMRPhenomPv2…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">methods</span>…}^{\mathrm{L}}_{\mathrm{U}}
-
-highest ℬUL\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-
-lowest ℬUL\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-
-GW190517
-GW190630
-IMRPhenomD
-2.522.52
-IMRPhenomPv2
-−0.39-0.39
-
-GW190503
-GW190719
-SEOBNRv4PHM
-0.690.69
-NRSur7dq4
-−∞-\infty
-
-GW190527
-<mark>GW190719</mark>
-IMRPhenomPv2
-1.681.68
-NRSur7dq4
-−∞-\infty
-
-GW190527
-GW190513
-IMRPhenomPv2
-1.361.36
-SEOBNRv4PHM
-−2.28-2.28
-
-GW190527
-GW190701
-IMRPhenomD
-1.241.24
-SEOBNRv4PHM
-−8.79-8.79
-
-GW190707
-GW190930
-IMRPhenomPv2
-2.962.96
-IMRPhenomD
-−44.75-44.75
-
-GW190706
-GW190719
-IMRPhen…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…W190527
-GW190719
-IMRPhenomPv2
-1.681.68
-NRSur7dq4
-−∞-\infty
-
-GW190527
-GW190513
-IMRPhenomPv2
-1.361.36
-SEOBNRv4PHM
-−2.28-2.28
-
-GW190527
-GW190701
-IMRPhenomD
-1.241.24
-SEOBNRv4PHM
-−8.79-8.79
-
-GW190707
-GW190930
-IMRPhenomPv2
-2.962.96
-IMRPhenomD
-−44.75-44.75
-
-GW190706
-<mark>GW190719</mark>
-IMRPhenomPv2
-2.492.49
-NRSur7dq4
-−25.73-25.73
-
-GW191103
-GW191105
-IMRPhenomXPHM
-3.033.03
-SEOBNRv4PHM
-\0\m2.652.65
-
-6.2 Results
-
-We discuss now the results from follow-up
-studies on the event pairs listed in table 3.
-We use the abbreviated names for the events t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… had spins fixed to zero.
-In the other two we show the joint m1m_{1}, m2m_{2} and
-a1a_{1}, a2a_{2} distributions from our own runs with IMRPhenomXAS.
-We see that including spins shifts the mass posteriors, so the
-overlap changes significantly.
-
-6.2.2 GW190503–<mark>GW190719</mark>
-
-We further analyze the pair of events GW190503_185404 and GW190719_215514
-because the ℬUL\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} found by using NRSur7dq4
-was zero, while it had a value greater than 1 (positive log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathr…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…, m2m_{2} and
-a1a_{1}, a2a_{2} distributions from our own runs with IMRPhenomXAS.
-We see that including spins shifts the mass posteriors, so the
-overlap changes significantly.
-
-6.2.2 GW190503–GW190719
-
-We further analyze the pair of events GW190503_185404 and <mark>GW190719_215514</mark>
-because the ℬUL\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} found by using NRSur7dq4
-was zero, while it had a value greater than 1 (positive log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}) when the posteriors
-from other waveforms were used – see table 5.
-
-T…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…} found by using NRSur7dq4
-was zero, while it had a value greater than 1 (positive log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}) when the posteriors
-from other waveforms were used – see table 5.
-
-Table 5: 
-Posterior-overlap factors for the GW190503–<mark>GW190719</mark> pair using different waveform models in the single-event PE.
-
-waveform
-log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-
-IMRPhenomD∗
-0.760.76
-
-IMRPhenomPv2∗
-0.630.63
-
-IMRPhenomXPHM∗∗
-0.860.86
-
-IMRPhenomXAS†
-2.122.12
-
-IMRPhenomXHM†
-2.112.11
-
-IMRPhenomXP…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…2.12
-
-IMRPhenomXHM†
-2.112.11
-
-IMRPhenomXP†
-0.160.16
-
-IMRPhenomTPHM†
-0.410.41
-
-NRSur7dq4∗
-−∞-\infty
-
-NRSur7dq4†
-0.590.59
-
-SEOBNRv4P∗
-0.480.48
-
-SEOBNRv4PHM‡
-0.690.69
-
-∗Both from GWTC-2
-
-∗∗Both from GWTC-2.1
-
-†New runs for this paper
-
-‡GW190503 from GWTC-2.1 and <mark>GW190719</mark> from GWTC-2
-
-GW190503 was found by all pipelines in HLV data with SNR ≈12\approx 12,
-while GW190719 was only found by PyCBC-BBH in HL data with SNR ≈8\approx 8.
-Again quoting from the combined samples in [20],
-the total source-frame masses are 69.4−8.6+10.169…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…NRSur7dq4†
-0.590.59
-
-SEOBNRv4P∗
-0.480.48
-
-SEOBNRv4PHM‡
-0.690.69
-
-∗Both from GWTC-2
-
-∗∗Both from GWTC-2.1
-
-†New runs for this paper
-
-‡GW190503 from GWTC-2.1 and GW190719 from GWTC-2
-
-GW190503 was found by all pipelines in HLV data with SNR ≈12\approx 12,
-while <mark>GW190719</mark> was only found by PyCBC-BBH in HL data with SNR ≈8\approx 8.
-Again quoting from the combined samples in [20],
-the total source-frame masses are 69.4−8.6+10.169.4^{+10.1}_{-8.6} and 57.2−11.6+38.4​M⊙57.2^{+38.4}_{-11.6}M_{\odot}
-for GW190503 and GW190719, resp…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…while GW190719 was only found by PyCBC-BBH in HL data with SNR ≈8\approx 8.
-Again quoting from the combined samples in [20],
-the total source-frame masses are 69.4−8.6+10.169.4^{+10.1}_{-8.6} and 57.2−11.6+38.4​M⊙57.2^{+38.4}_{-11.6}M_{\odot}
-for GW190503 and <mark>GW190719</mark>, respectively.
-The posteriors in both redshift and χeff\chi_{\mathrm{eff}} for GW190719 tend to higher values
-than for GW190503, though both overlap.
-
-Including our own runs
-we find that the aligned-spin waveforms IMRPhenomXAS and IMRPhenomXHM
-produced the hi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…g from the combined samples in [20],
-the total source-frame masses are 69.4−8.6+10.169.4^{+10.1}_{-8.6} and 57.2−11.6+38.4​M⊙57.2^{+38.4}_{-11.6}M_{\odot}
-for GW190503 and GW190719, respectively.
-The posteriors in both redshift and χeff\chi_{\mathrm{eff}} for <mark>GW190719</mark> tend to higher values
-than for GW190503, though both overlap.
-
-Including our own runs
-we find that the aligned-spin waveforms IMRPhenomXAS and IMRPhenomXHM
-produced the highest log10⁡ℬUL≈+2\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}\approx+2;
-while the non…</div>
+    <details class="lines"><summary>Show the sentences (32, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> 6.2.2 GW190503–GW190719</li><li><span class="sec">title/headings</span> 6.2.5 GW190706–GW190719</li><li><span class="sec">methods</span> GW190503 GW190719 SEOBNRv4PHM 0.690.69 NRSur7dq4 −∞-\infty</li><li><span class="sec">methods</span> GW190527 GW190719 IMRPhenomPv2 1.681.68 NRSur7dq4 −∞-\infty</li><li><span class="sec">methods</span> GW190706 GW190719 IMRPhenomPv2 2.492.49 NRSur7dq4 −25.73-25.73</li><li><span class="sec">results</span> We further analyze the pair of events GW190503_185404 and GW190719_215514 because the ℬUL\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} found by using NRSur7dq4 was zero, while it had a value…</li><li><span class="sec">results</span> Table 5: Posterior-overlap factors for the GW190503–GW190719 pair using different waveform models in the single-event PE.</li><li><span class="sec">results</span> ‡GW190503 from GWTC-2.1 and GW190719 from GWTC-2</li></ul>
     </details>
     
   </div>
@@ -1481,214 +516,15 @@ while the non…</div>
 <section class="card" data-i="8" data-event="GW191103_012549">
   <div class="ctx">
     <div class="evname mono">GW191103_012549</div>
-    <h3>7 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…using different waveforms from GWTC data releases
-
-6 Follow-up of interesting cases
-
-6.1 Inference setup
-
-6.2 Results
-
-6.2.1 GW190517–GW190630
-
-6.2.2 GW190503–GW190719
-
-6.2.3 GW190527 and related events
-
-6.2.4 GW190707–GW190930
-
-6.2.5 GW190706–GW190719
-
-6.2.6 <mark>GW191103</mark>–GW191105
-
-7 Conclusions
-
-Acknowledgements
-
-A Posterior self-overlap as a diagnostic tool
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2306.12908v3 [gr-qc] 11 Dec 2023
-
-Waveform systematics in identifying strongly gravitationall…</div>
+    <p class="where">Named 7 times:
+      results ×4, title/headings, introduction, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.12908v3#:~:text=GW191103" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191103</span> or <span class="mono hit">GW191103_012549</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…servational studies performed to date
-[1, 29, 30, 31, 32, 2, 3, 33].
-A few intriguing candidates for strongly lensed multiple images
-have been reported and studied in the literature,
-in particular the GW170104–GW170814 pair [1, 31, 32]
-from the O2 run
-and the <mark>GW191103</mark>–GW191105 and GW191230–LGW200104 pairs [3, 33]
-from the O3b run,
-though generally concluded to be unlikely to be lensed.
-
-One of the missing ingredients for being able to robustly identify lensed GWs
-is to ensure that the statistical tests used are robust unde…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…fty
-
-GW190527
-GW190513
-IMRPhenomPv2
-1.361.36
-SEOBNRv4PHM
-−2.28-2.28
-
-GW190527
-GW190701
-IMRPhenomD
-1.241.24
-SEOBNRv4PHM
-−8.79-8.79
-
-GW190707
-GW190930
-IMRPhenomPv2
-2.962.96
-IMRPhenomD
-−44.75-44.75
-
-GW190706
-GW190719
-IMRPhenomPv2
-2.492.49
-NRSur7dq4
-−25.73-25.73
-
-<mark>GW191103</mark>
-GW191105
-IMRPhenomXPHM
-3.033.03
-SEOBNRv4PHM
-\0\m2.652.65
-
-6.2 Results
-
-We discuss now the results from follow-up
-studies on the event pairs listed in table 3.
-We use the abbreviated names for the events throughout this section
-and only list the full names at …</div>
-    
-    
-    <details><summary>4 more</summary>
-    <div class="mention"><span class="sec">results</span>…190728–GW190930,
-though in all of these cases the IMRPhenomD runs produced much lower
-ℬUL\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} than those with more complete parameter coverage,
-making them less interesting to follow up.
-
-On the other hand, we also include the <mark>GW191103</mark>–GW191105 pair,
-which was highly ranked in the O3 analysis [3, 33],
-even though its Δ​log10​ℬUL\Delta\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} are inconspicuous.
-
-6.2.1 GW190517–GW190630
-
-Table 4: 
-Posterior-overlap factors for the GW190517–GW190630 pair …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…
-
-NRSur7dq4†
-\0​\m​2.25\0\m 2.25
-
-SEOBNRv4P∗
-\0\m1.811.81
-
-SEOBNRv4PHM∗
-\0−1.05-1.05
-
-SEOBNRv4PHM‡
-\0−5.77-5.77
-
-SEOBNRv5PHM†
-\0\m1.901.90
-
-∗Both from GWTC-2
-
-∗∗Both from GWTC-2.1
-
-†New runs for this paper
-
-‡GW190706 from GWTC-2.1, GW190719 from GWTC-2
-
-6.2.6 <mark>GW191103</mark>–GW191105
-
-We also include the pair of events GW191103_012549 and GW191105_143521
-that did not show up
-as an outlier in the Δ​log10​ℬUL\Delta\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-distribution.
-Instead, the interest in this pair comes from the combinat…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>….81
-
-SEOBNRv4PHM∗
-\0−1.05-1.05
-
-SEOBNRv4PHM‡
-\0−5.77-5.77
-
-SEOBNRv5PHM†
-\0\m1.901.90
-
-∗Both from GWTC-2
-
-∗∗Both from GWTC-2.1
-
-†New runs for this paper
-
-‡GW190706 from GWTC-2.1, GW190719 from GWTC-2
-
-6.2.6 GW191103–GW191105
-
-We also include the pair of events <mark>GW191103_012549</mark> and GW191105_143521
-that did not show up
-as an outlier in the Δ​log10​ℬUL\Delta\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-distribution.
-Instead, the interest in this pair comes from the combination of
-having one of the highest ℬUL\mathcal{B}^{\mathrm{L}}_…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…results from both the public data releases and our own runs.
-We only see some minor differences between the results obtained
-with the aligned-spin and precessing waveforms; see [33]
-for a more detailed discussion.
-
-Table 11: 
-Posterior-overlap factors for the <mark>GW191103</mark>–GW191105 pair using different waveform models in the single-event PE.
-
-waveform
-log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-
-IMRPhenomXPHM∗
-3.033.03
-
-IMRPhenomXAS∗∗
-3.373.37
-
-IMRPhenomXHM∗∗
-3.483.48
-
-IMRPhenomXP∗∗
-3.083.08
-
-IMRPhenomTPHM∗∗
-2.702.7…</div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> 6.2.6 GW191103–GW191105</li><li><span class="sec">introduction</span> …d and studied in the literature, in particular the GW170104–GW170814 pair [1, 31, 32] from the O2 run and the GW191103–GW191105 and GW191230–LGW200104 pairs [3, 33] from the O3b run, though generally concluded to be unlikely to…</li><li><span class="sec">methods</span> GW191103 GW191105 IMRPhenomXPHM 3.033.03 SEOBNRv4PHM \0\m2.652.65</li><li><span class="sec">results</span> On the other hand, we also include the GW191103–GW191105 pair, which was highly ranked in the O3 analysis [3, 33], even though its Δ​log10​ℬUL\Delta\log_{10}…</li><li><span class="sec">results</span> We also include the pair of events GW191103_012549 and GW191105_143521 that did not show up as an outlier in the Δ​log10​ℬUL\Delta\log_{10}\mathcal{B}^{\mathrm{…</li><li><span class="sec">results</span> Table 11: Posterior-overlap factors for the GW191103–GW191105 pair using different waveform models in the single-event PE.</li></ul>
     </details>
     
   </div>
@@ -1725,211 +561,15 @@ IMRPhenomTPHM∗∗
 <section class="card" data-i="9" data-event="GW191105_143521">
   <div class="ctx">
     <div class="evname mono">GW191105_143521</div>
-    <h3>7 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…ferent waveforms from GWTC data releases
-
-6 Follow-up of interesting cases
-
-6.1 Inference setup
-
-6.2 Results
-
-6.2.1 GW190517–GW190630
-
-6.2.2 GW190503–GW190719
-
-6.2.3 GW190527 and related events
-
-6.2.4 GW190707–GW190930
-
-6.2.5 GW190706–GW190719
-
-6.2.6 GW191103–<mark>GW191105</mark>
-
-7 Conclusions
-
-Acknowledgements
-
-A Posterior self-overlap as a diagnostic tool
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2306.12908v3 [gr-qc] 11 Dec 2023
-
-Waveform systematics in identifying strongly gravitationally
-lensed …</div>
+    <p class="where">Named 7 times:
+      results ×4, title/headings, introduction, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.12908v3#:~:text=GW191105" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191105</span> or <span class="mono hit">GW191105_143521</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…al studies performed to date
-[1, 29, 30, 31, 32, 2, 3, 33].
-A few intriguing candidates for strongly lensed multiple images
-have been reported and studied in the literature,
-in particular the GW170104–GW170814 pair [1, 31, 32]
-from the O2 run
-and the GW191103–<mark>GW191105</mark> and GW191230–LGW200104 pairs [3, 33]
-from the O3b run,
-though generally concluded to be unlikely to be lensed.
-
-One of the missing ingredients for being able to robustly identify lensed GWs
-is to ensure that the statistical tests used are robust under the cho…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…0527
-GW190513
-IMRPhenomPv2
-1.361.36
-SEOBNRv4PHM
-−2.28-2.28
-
-GW190527
-GW190701
-IMRPhenomD
-1.241.24
-SEOBNRv4PHM
-−8.79-8.79
-
-GW190707
-GW190930
-IMRPhenomPv2
-2.962.96
-IMRPhenomD
-−44.75-44.75
-
-GW190706
-GW190719
-IMRPhenomPv2
-2.492.49
-NRSur7dq4
-−25.73-25.73
-
-GW191103
-<mark>GW191105</mark>
-IMRPhenomXPHM
-3.033.03
-SEOBNRv4PHM
-\0\m2.652.65
-
-6.2 Results
-
-We discuss now the results from follow-up
-studies on the event pairs listed in table 3.
-We use the abbreviated names for the events throughout this section
-and only list the full names at the start…</div>
-    
-    
-    <details><summary>4 more</summary>
-    <div class="mention"><span class="sec">results</span>…190930,
-though in all of these cases the IMRPhenomD runs produced much lower
-ℬUL\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} than those with more complete parameter coverage,
-making them less interesting to follow up.
-
-On the other hand, we also include the GW191103–<mark>GW191105</mark> pair,
-which was highly ranked in the O3 analysis [3, 33],
-even though its Δ​log10​ℬUL\Delta\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} are inconspicuous.
-
-6.2.1 GW190517–GW190630
-
-Table 4: 
-Posterior-overlap factors for the GW190517–GW190630 pair using dif…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…q4†
-\0​\m​2.25\0\m 2.25
-
-SEOBNRv4P∗
-\0\m1.811.81
-
-SEOBNRv4PHM∗
-\0−1.05-1.05
-
-SEOBNRv4PHM‡
-\0−5.77-5.77
-
-SEOBNRv5PHM†
-\0\m1.901.90
-
-∗Both from GWTC-2
-
-∗∗Both from GWTC-2.1
-
-†New runs for this paper
-
-‡GW190706 from GWTC-2.1, GW190719 from GWTC-2
-
-6.2.6 GW191103–<mark>GW191105</mark>
-
-We also include the pair of events GW191103_012549 and GW191105_143521
-that did not show up
-as an outlier in the Δ​log10​ℬUL\Delta\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-distribution.
-Instead, the interest in this pair comes from the combination of
-ha…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…−1.05-1.05
-
-SEOBNRv4PHM‡
-\0−5.77-5.77
-
-SEOBNRv5PHM†
-\0\m1.901.90
-
-∗Both from GWTC-2
-
-∗∗Both from GWTC-2.1
-
-†New runs for this paper
-
-‡GW190706 from GWTC-2.1, GW190719 from GWTC-2
-
-6.2.6 GW191103–GW191105
-
-We also include the pair of events GW191103_012549 and <mark>GW191105_143521</mark>
-that did not show up
-as an outlier in the Δ​log10​ℬUL\Delta\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-distribution.
-Instead, the interest in this pair comes from the combination of
-having one of the highest ℬUL\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} from O3…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…rom both the public data releases and our own runs.
-We only see some minor differences between the results obtained
-with the aligned-spin and precessing waveforms; see [33]
-for a more detailed discussion.
-
-Table 11: 
-Posterior-overlap factors for the GW191103–<mark>GW191105</mark> pair using different waveform models in the single-event PE.
-
-waveform
-log10⁡ℬUL\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}}
-
-IMRPhenomXPHM∗
-3.033.03
-
-IMRPhenomXAS∗∗
-3.373.37
-
-IMRPhenomXHM∗∗
-3.483.48
-
-IMRPhenomXP∗∗
-3.083.08
-
-IMRPhenomTPHM∗∗
-2.702.70
-
-SEOBNR…</div>
+    <details class="lines"><summary>Show the sentences (6): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> 6.2.6 GW191103–GW191105</li><li><span class="sec">introduction</span> …died in the literature, in particular the GW170104–GW170814 pair [1, 31, 32] from the O2 run and the GW191103–GW191105 and GW191230–LGW200104 pairs [3, 33] from the O3b run, though generally concluded to be unlikely to be lensed…</li><li><span class="sec">methods</span> GW191103 GW191105 IMRPhenomXPHM 3.033.03 SEOBNRv4PHM \0\m2.652.65</li><li><span class="sec">results</span> On the other hand, we also include the GW191103–GW191105 pair, which was highly ranked in the O3 analysis [3, 33], even though its Δ​log10​ℬUL\Delta\log_{10}\mathcal{…</li><li><span class="sec">results</span> We also include the pair of events GW191103_012549 and GW191105_143521 that did not show up as an outlier in the Δ​log10​ℬUL\Delta\log_{10}\mathcal{B}^{\mathrm{L}}_{\mathrm{U}} dis…</li><li><span class="sec">results</span> Table 11: Posterior-overlap factors for the GW191103–GW191105 pair using different waveform models in the single-event PE.</li></ul>
     </details>
     
   </div>
@@ -1966,23 +606,16 @@ SEOBNR…</div>
 <section class="card" data-i="10" data-event="GW191219_163120">
   <div class="ctx">
     <div class="evname mono">GW191219_163120</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.12908v3#:~:text=GW191219_163120" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191219_163120</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>… fainter neutron star–black hole candidate GW200115_042309 [92]
-also included in the data release.
-The waveforms IMRPhenomXPHM (with the bilby sampler)
-and SEOBNRv4PHM (with the RIFT sampler) were used
-for all events, with the exception of GW200115_042309 and <mark>GW191219_163120</mark>
-(another marginal neutron star–black hole candidate) for IMRPhenomXPHM.
-
-4 Lensing searches on GWTC events
-
-We summarize now the main searches for strongly lensed multiple images
-that have been performed so far on the GWTC-1–3 events.
-
-In [1] the first system…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …) and SEOBNRv4PHM (with the RIFT sampler) were used for all events, with the exception of GW200115_042309 and GW191219_163120 (another marginal neutron star–black hole candidate) for IMRPhenomXPHM.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -2018,39 +651,16 @@ In [1] the first system…</div>
 <section class="card" data-i="11" data-event="GW191230_180458">
   <div class="ctx">
     <div class="evname mono">GW191230_180458</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…rformed to date
-[1, 29, 30, 31, 32, 2, 3, 33].
-A few intriguing candidates for strongly lensed multiple images
-have been reported and studied in the literature,
-in particular the GW170104–GW170814 pair [1, 31, 32]
-from the O2 run
-and the GW191103–GW191105 and <mark>GW191230</mark>–LGW200104 pairs [3, 33]
-from the O3b run,
-though generally concluded to be unlikely to be lensed.
-
-One of the missing ingredients for being able to robustly identify lensed GWs
-is to ensure that the statistical tests used are robust under the choice
-of underl…</div>
+    <p class="where">Named 2 times:
+      introduction ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2306.12908v3#:~:text=GW191230" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191230</span> or <span class="mono hit">GW191230_180458</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…, 31, 2, 3],
-and an alternative ranking method for such pairs was recently presented in [50].
-We do not include in this study any of the candidates found from those searches,
-although a waveform systematics check
-for the LGW200104 counterpart candidate to the <mark>GW191230</mark> event,
-following the same approach as we use below in section 6,
-is presented in [33].
-
-5 Posterior overlap using different waveforms from GWTC data releases
-
-Figure 1: 
-
-Taking just the event pairs for which at least one waveform gives log10⁡ℬUL&gt;0\log_{10}\m…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …iterature, in particular the GW170104–GW170814 pair [1, 31, 32] from the O2 run and the GW191103–GW191105 and GW191230–LGW200104 pairs [3, 33] from the O3b run, though generally concluded to be unlikely to be lensed.</li><li><span class="sec">introduction</span> …und from those searches, although a waveform systematics check for the LGW200104 counterpart candidate to the GW191230 event, following the same approach as we use below in section 6, is presented in [33].</li></ul>
+    </details>
     
   </div>
   <div class="form">

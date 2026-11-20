@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,49 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Nuclear response in a finite-temperature relativistic framework</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1812.11751" target="_blank" rel="noopener" class="mono">arXiv:1812.11751</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">A thermal extension of the relativistic nuclear field theory is formulated for the nuclear response. The Bethe-Salpeter equation (BSE) with the time-dependent kernel for the particle-hole response is treated within the Matsubara Green&#39;s function formalism. We show that, with the help of a temperature-dependent projection operator on the subspace of the imaginary time (time blocking), it is possible to reduce the BSE for the nuclear response function to a single frequency variable equation also at finite temperature. The approach is implemented self-consistently in the framework of quantum hadrodynamics based on the meson-nucleon Lagrangian. The method is applied to the monopole, dipole and quadrupole response of &lt;SUP&gt;48&lt;/SUP&gt;Ca and to the dipole response of the tin isotopes &lt;SUP&gt;100, 120, 132&lt;/SUP&gt;Sn, in particular, to a study of the evolution of nuclear collective oscillations with temperature. The article is dedicated to the memory of Pier Francesco Bortignon and devoted to the developments related to his pioneering ideas.</p></details>
+<div class="small mut mono">arXiv:1812.11751</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">A thermal extension of the relativistic nuclear field theory is formulated for the nuclear response. The Bethe-Salpeter equation (BSE) with the time-dependent kernel for the particle-hole response is treated within the Matsubara Green&#39;s function formalism. We show that, with the help of a temperature-dependent projection operator on the subspace of the imaginary time (time blocking), it is possible to reduce the BSE for the nuclear response function to a single frequency variable equation also at finite temperature. The approach is implemented self-consistently in the framework of quantum hadrodynamics based on the meson-nucleon Lagrangian. The method is applied to the monopole, dipole and quadrupole response of &lt;SUP&gt;48&lt;/SUP&gt;Ca and to the dipole response of the tin isotopes &lt;SUP&gt;100, 120, 132&lt;/SUP&gt;Sn, in particular, to a study of the evolution of nuclear collective oscillations with temperature. The article is dedicated to the memory of Pier Francesco Bortignon and devoted to the developments related to his pioneering ideas.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1812.11751v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1812.11751v3#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…oev, A.I. Vdovin, V.Yu. Ponomarev et al., Physical Review C
-81, 015804 (2010)
-
- 
-(39)
- Y.F. Niu, N. Paar, D. Vretenar et al., Physical Review C
-83, 045807 (2011)
-
- 
-(40)
- A. Aprahamian et al., in Proceedings for the FRIB Theory Alliance workshop ’FRIB and the <mark>GW170817</mark> kilonova’, 16-27 July 2018, Facility for Rare Isotope Beams, Michigan State University, East Lansing, MI USA, arXiv:1809.00703.
-
- 
-(41)
-
-P. Ring, L.M. Robledo, J.L. Egido, M. Faber, Nuclear Physics A419, 261
-(1984)
-
- 
-(42)
-
-Y.F. Niu, N. Paar, D. Vretenar, J. …
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[40]</span> · 1 place</span><div class="cite">…hich can vary in rather broad limits, however, a consistent description of merging neutron stars require the information about the CCSN which precedes the neutron star formation. As discussed in Ref. <mark class="ref">[40]</mark>, ultimately, identical simulation frameworks are to be used for both the NSM and the CCSN.
-
-As the complete description of the r-process requires information about many nuclei which are beyond curren…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [40]</span> …stars require the information about the CCSN which precedes the neutron star formation. As discussed in Ref. [40], ultimately, identical simulation frameworks are to be used for both the NSM and the CCSN. As the complete d…</li></ul>
+    </details>
     
   </div>
   <div class="form">

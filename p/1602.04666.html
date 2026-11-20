@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,164 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Gravitational Wave Detection in the Introductory Lab</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1602.04666" target="_blank" rel="noopener" class="mono">arXiv:1602.04666</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">A long time ago in a galaxy far, far away, two black holes, one of mass 36 solar masses and the other of mass 29 solar masses, were dancing their death waltz, leading to their coalescence and the emission of gravitational waves carrying away with them three solar masses of energy. More precisely, it happened 1.3 billion years ago at a distance of 410 Mpc. When the waves were emitted, the most complex life forms on Earth were eukaryotes. As the gravitational waves propagated toward Earth, it changed much. Five hundred million years after the waves were emitted, or 800 million years ago, the first multicellular life forms emerged on Earth. Earth saw the Cambrian explosion 500 million years ago. Sixty-six million years ago the Cretaceous-Paleogene extinction event caused the disappearance of the dinosaurs. The first modern humans appeared 250,000 years ago.</p></details>
+<div class="small mut mono">arXiv:1602.04666</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">A long time ago in a galaxy far, far away, two black holes, one of mass 36 solar masses and the other of mass 29 solar masses, were dancing their death waltz, leading to their coalescence and the emission of gravitational waves carrying away with them three solar masses of energy. More precisely, it happened 1.3 billion years ago at a distance of 410 Mpc. When the waves were emitted, the most complex life forms on Earth were eukaryotes. As the gravitational waves propagated toward Earth, it changed much. Five hundred million years after the waves were emitted, or 800 million years ago, the first multicellular life forms emerged on Earth. Earth saw the Cambrian explosion 500 million years ago. Sixty-six million years ago the Cretaceous-Paleogene extinction event caused the disappearance of the dinosaurs. The first modern humans appeared 250,000 years ago.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/pdf/1602.04666v5" target="_blank" rel="noopener">Open the paper (PDF, v5) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched; it's a PDF, so use your viewer's search.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>10 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…rse only in a very limited sense. (See discussion of gravitational 
-waves in The Physics Teacher in Rubbo et al, 2006; Larson et al, 2006; 
-and Spetz, 1984. See also Rubbo et al, 2007.) However, we can design 
-activities that directly involve the detection of <mark>GW150914</mark>, the 
-designation of the gravitation wave signal detected on September 14, 
-2015 (Abbott et al, 2016a), thereby engage the students in this exciting 
-discovery directly. The activities naturally do not include the 
-construction of a detector or the detection …</div>
+    <p class="where">Named 10 times:
+      introduction ×9, reference list.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…bbott et al, 2016a), thereby engage the students in this exciting 
-discovery directly. The activities naturally do not include the 
-construction of a detector or the detection of gravitational waves. 
-Instead, we design it to include analysis of the data from <mark>GW150914</mark>, 
-which includes some interesting analysis activities for students. The 
-same activities can be assigned either as a laboratory exercise in data 
-analysis or as a computational project for the same population of 
-students. The analysis tools used here are sim…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…rested instructors may include the residuals in the activity, or 
-
-even include a bonus exercise to calculate the cross correlation integral 
-of the detected signal and the numerical relativity waveform. 
-All data are available at https://losc.ligo.org/events/<mark>GW150914</mark>/. (All 
-results presented here were obtained from the data file 
-https://losc.ligo.org/s/events/GW150914/GW150914_4_NR_waveform
-.txt.) 
- 
-The amount by which a body is distorted (stretched or compressed) 
-relative to its reference length is known as strain. A…</div>
-    
-    
-    <details><summary>7 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…late the cross correlation integral 
-of the detected signal and the numerical relativity waveform. 
-All data are available at https://losc.ligo.org/events/GW150914/. (All 
-results presented here were obtained from the data file 
-https://losc.ligo.org/s/events/<mark>GW150914</mark>/GW150914_4_NR_waveform
-.txt.) 
- 
-The amount by which a body is distorted (stretched or compressed) 
-relative to its reference length is known as strain. Analogously, the 
-relative stretching or compression of space when a gravitational wave 
-passes through th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…s strain. Analogously, the 
-relative stretching or compression of space when a gravitational wave 
-passes through the detector is also called strain. Plotting the strain h as 
-a function of detector time, we obtain Figure 1. 
- 
- 
-Figure 1: The GW strain h for <mark>GW150914</mark> (multiplied by 10!&#34;) as a 
-function of the time t in seconds (from the numerical relativity 
-waveform). The time is shifted so that maximum strain is at t = 0 
-s. The inset shows a section of the data in the main figure (in 
-blue), together with the observed …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…s, and for that reason it is a useful 
-parameter to introduce. The frequency evolution of the wave, !, can be 
-used from Eq. (2). This equation can next be inverted to give the chirp 
-mass in terms of the calculated ! and !, which can be constructed from 
-the <mark>GW150914</mark> data. (That is, having found !! the student can now 
-calculate the numerical derivative to find !.) 
- 
-In Fig. 3 we plot the chirp mass, after some smoothing done as above. 
-Notice that the chirp mass is well defined using these simple 
-expressions only durin…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…uasi-normal ring-down of the 
-final single black hole. When the final black hole is first created it is 
-highly distorted, and emits gravitational waves that reduce this 
-distortion until it get to its stationary and quiescent state. Indeed, the 
-waveform for <mark>GW150914</mark> includes an exponential decay of the signal 
-with constant frequency after the merger. (In practice, the parameters 
-for the ring-down published in Abbott, B.P. et al (2016a) are found from 
-
-the numerical relativity waveform, as we do here.) In Fig. 4 we sho…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…e constant frequency are visible in the semi-logarithmic 
-representation. 
- 
-−0.01 0 0.01 0.02 0.03 0.04 0.05
-−27
-−26
-−25
-−24
-−23
-−22
-−21
-−20
-t [sec]
-log10 | h |
-
- 
-Figure 5: Best fit for the parameters of a damped sine function for the 
-ring-down part of the <mark>GW150914</mark> signal. 
- 
- 
-The frequency ! and time constant ! can next be used to find the mass 
-!! and specific angular momentum ! of the final black hole. Here, 
-!=!!!!!, where ! is the black hole’s spin angular momentum. The 
-specific angular momentum 0≤!≤1, and is a c…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…te the distance (the so-called 
-distance ladder). E.g., there was at first a fierce debate about the 
-distance to quasars before their redshift was measured, as the distance 
-could not be inferred directly from the observations. The distance to the 
-source of <mark>GW150914</mark>, 400 MPc, is much longer than the typical distance 
-between galaxies, ~1 Mpc, which itself is about 50 times the size of a 
-single galaxy. If the students are familiar with cosmological expansion 
-and know the redshift–distance relation, they can check that t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…GO is funded 
-by the U.S. National Science Foundation. 
- 
-References 
- 
-Abbott, B.P. et al (2016a), Observation of Gravitational Waves from a 
-Binary Black Hole Merger, Phys. Rev. Lett. 116, 061102 
-Abbott, B.P. et al (2016b), Tests of General Relativity with <mark>GW150914</mark>, 
-arXiv:1602.03841 
-Berti, E., Cardoso, V., and Starinets, A.O. (2009) Quasinormal modes of 
-black holes and black branes, Classical and Quantum Gravity 26, 163001 
-Chabay, R. and Sherwood, B. (2008), Computational physics in the 
-introductory calculus-based …
-    <div class="cites">
-      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (10, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> See also Rubbo et al, 2007.) However, we can design activities that directly involve the detection of GW150914, the designation of the gravitation wave signal detected on September 14, 2015 (Abbott et al, 2016a), thereby…</li><li><span class="sec">introduction</span> Instead, we design it to include analysis of the data from GW150914, which includes some interesting analysis activities for students.</li><li><span class="sec">introduction</span> All data are available at https://losc.ligo.org/events/GW150914/.</li><li><span class="sec">introduction</span> (All results presented here were obtained from the data file https://losc.ligo.org/s/events/GW150914/GW150914_4_NR_waveform .txt.)</li><li><span class="sec">introduction</span> Figure 1: The GW strain h for GW150914 (multiplied by 10!&#34;) as a function of the time t in seconds (from the numerical relativity waveform).</li><li><span class="sec">introduction</span> …next be inverted to give the chirp mass in terms of the calculated ! and !, which can be constructed from the GW150914 data.</li><li><span class="sec">introduction</span> Indeed, the waveform for GW150914 includes an exponential decay of the signal with constant frequency after the merger.</li><li><span class="sec">introduction</span> Figure 5: Best fit for the parameters of a damped sine function for the ring-down part of the GW150914 signal.</li></ul>
     </details>
     
   </div>

@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,71 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Exploring Field-evolution and Dynamical-capture Coalescing Binary Black Holes in GWTC-3</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2404.09668" target="_blank" rel="noopener" class="mono">arXiv:2404.09668</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We investigate formation channels for merging binary black holes (BBHs) in GWTC-3, with a dedicated semiparametric population model. The model first describes or excludes a high-spin (with magnitudes of ∼0.7) and high-mass (ranging in ∼20─80M &lt;SUB&gt;⊙&lt;/SUB&gt;) subpopulation, which was identified by previous works and can be interpreted as hierarchical mergers. We find that the rest of BBH population can be categorized into two subpopulations with different mass and mass-ratio distributions, as indicated by a Bayes factor of &lt;inline-formula&gt; &lt;/inline-formula&gt;. One subpopulation, characterized by nearly aligned spins and consistent with isolated field formation, likely dominates the 10-solar-mass peak in the primary-mass function. The other subpopulation, with isotropic spins and consistent with the dynamical channels, shows a stronger preference for symmetric pairing, and mainly contributes to the 35-solar-mass peak in the primary-mass function. Note that the Bayes factor is not high enough with the currently available data, so that the case of a single population is still acceptable. Additionally, we compare the mass distributions between merging BBHs and black holes (BHs) in high-mass X-ray binaries (HMXBs). We find that the primary mass of the aligned subpopulation is slightly lighter than those of the HMXB BHs, while the isotropic subpopulation is consistent with the HMXB BHs, if the power-law index of its mass function is shifted by 2, as indicated by the dynamical formation channels. However, the spin magnitudes of both subpopulations are significantly smaller than those of the HMXB BHs.</p></details>
+<div class="small mut mono">arXiv:2404.09668</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We investigate formation channels for merging binary black holes (BBHs) in GWTC-3, with a dedicated semiparametric population model. The model first describes or excludes a high-spin (with magnitudes of ∼0.7) and high-mass (ranging in ∼20─80M &lt;SUB&gt;⊙&lt;/SUB&gt;) subpopulation, which was identified by previous works and can be interpreted as hierarchical mergers. We find that the rest of BBH population can be categorized into two subpopulations with different mass and mass-ratio distributions, as indicated by a Bayes factor of &lt;inline-formula&gt; &lt;/inline-formula&gt;. One subpopulation, characterized by nearly aligned spins and consistent with isolated field formation, likely dominates the 10-solar-mass peak in the primary-mass function. The other subpopulation, with isotropic spins and consistent with the dynamical channels, shows a stronger preference for symmetric pairing, and mainly contributes to the 35-solar-mass peak in the primary-mass function. Note that the Bayes factor is not high enough with the currently available data, so that the case of a single population is still acceptable. Additionally, we compare the mass distributions between merging BBHs and black holes (BHs) in high-mass X-ray binaries (HMXBs). We find that the primary mass of the aligned subpopulation is slightly lighter than those of the HMXB BHs, while the isotropic subpopulation is consistent with the HMXB BHs, if the power-law index of its mass function is shifted by 2, as indicated by the dynamical formation channels. However, the spin magnitudes of both subpopulations are significantly smaller than those of the HMXB BHs.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2404.09668v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">12 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">12 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2404.09668v2#:~:text=GW151012_095443" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151012_095443</span> or <span class="mono hit">GW151012</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…9 [53] are more likely originates from dynamical channel.
-
-Table 5: Probabilities of the first-generation BBHs belonging to the field and dynamical subpopulations, inferred with the Extend Default model.
-
-Events
-Aligned
-Isotropic
-
-GW150914_095045
-0.028
-0.972
-
-<mark>GW151012_095443</mark>
-0.502
-0.498
-
-GW151226_033853
-0.983
-0.017
-
-GW170104_101158
-0.185
-0.815
-
-GW170608_020116
-0.942
-0.058
-
-GW170809_082821
-0.091
-0.909
-
-GW170814_103043
-0.124
-0.876
-
-GW170818_022509
-0.041
-0.959
-
-GW170823_131358
-0.041
-0.959
-
-GW190408_181802
-0.264
-0.736
-
-GW190412_05304…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> GW151012_095443 0.502 0.498</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -222,16 +201,16 @@ GW190412_05304…</div>
 <section class="card" data-i="1" data-event="GW170729">
   <div class="ctx">
     <div class="evname mono">GW170729</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2404.09668v2#:~:text=GW170729_185629" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170729_185629</span> or <span class="mono hit">GW170729</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…in subpopulation, the other models (e.g., the popular Default spin model) are disfavored compared to our main model, mostly due to their failure to fit the spin-magnitude distribution of the high-spin BHs that is found by our previous work [58].
-
-In practice, <mark>GW170729_185629</mark>, GW190517_055101, GW190519_153544, GW190521_030229, GW190602_175927, GW190620_030421, GW190701_203306, GW190706_222641, GW190929_012149, GW190805_211137, GW191109_010717, and GW191230_180458 are leaved out, for they all have probabilities of &gt;0.5&gt;0.566
- 6
- 
- …</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> In practice, GW170729_185629, GW190517_055101, GW190519_153544, GW190521_030229, GW190602_175927, GW190620_030421, GW190701_203306, GW1907…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -267,83 +246,16 @@ In practice, <mark>GW170729_185629</mark>, GW190517_055101, GW190519_153544, GW1
 <section class="card" data-i="2" data-event="GW190408_181802">
   <div class="ctx">
     <div class="evname mono">GW190408_181802</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2404.09668v2#:~:text=GW190408_181802" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190408_181802</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…W150914_095045
-0.028
-0.972
-
-GW151012_095443
-0.502
-0.498
-
-GW151226_033853
-0.983
-0.017
-
-GW170104_101158
-0.185
-0.815
-
-GW170608_020116
-0.942
-0.058
-
-GW170809_082821
-0.091
-0.909
-
-GW170814_103043
-0.124
-0.876
-
-GW170818_022509
-0.041
-0.959
-
-GW170823_131358
-0.041
-0.959
-
-<mark>GW190408_181802</mark>
-0.264
-0.736
-
-GW190412_053044
-0.976
-0.024
-
-GW190413_134308
-0.033
-0.967
-
-GW190421_213856
-0.029
-0.971
-
-GW190503_185404
-0.031
-0.969
-
-GW190512_180714
-0.673
-0.327
-
-GW190513_205428
-0.203
-0.797
-
-GW190521_074359
-0.043
-0.957
-
-GW190527_092055
-0.174
-0.826
-
-GW190630_18520…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> GW190408_181802 0.264 0.736</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -379,84 +291,16 @@ GW190630_18520…</div>
 <section class="card" data-i="3" data-event="GW190503_185404">
   <div class="ctx">
     <div class="evname mono">GW190503_185404</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2404.09668v2#:~:text=GW190503_185404" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190503_185404</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…W170608_020116
-0.942
-0.058
-
-GW170809_082821
-0.091
-0.909
-
-GW170814_103043
-0.124
-0.876
-
-GW170818_022509
-0.041
-0.959
-
-GW170823_131358
-0.041
-0.959
-
-GW190408_181802
-0.264
-0.736
-
-GW190412_053044
-0.976
-0.024
-
-GW190413_134308
-0.033
-0.967
-
-GW190421_213856
-0.029
-0.971
-
-<mark>GW190503_185404</mark>
-0.031
-0.969
-
-GW190512_180714
-0.673
-0.327
-
-GW190513_205428
-0.203
-0.797
-
-GW190521_074359
-0.043
-0.957
-
-GW190527_092055
-0.174
-0.826
-
-GW190630_185205
-0.088
-0.912
-
-GW190707_093326
-0.93
-0.07
-
-GW190708_232457
-0.802
-0.198
-
-GW190720_000836
-0.983
-0.017
-
-GW190727_060333
-…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> GW190503_185404 0.031 0.969</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -492,84 +336,16 @@ GW190727_060333
 <section class="card" data-i="4" data-event="GW190513_205428">
   <div class="ctx">
     <div class="evname mono">GW190513_205428</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2404.09668v2#:~:text=GW190513_205428" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190513_205428</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…W170814_103043
-0.124
-0.876
-
-GW170818_022509
-0.041
-0.959
-
-GW170823_131358
-0.041
-0.959
-
-GW190408_181802
-0.264
-0.736
-
-GW190412_053044
-0.976
-0.024
-
-GW190413_134308
-0.033
-0.967
-
-GW190421_213856
-0.029
-0.971
-
-GW190503_185404
-0.031
-0.969
-
-GW190512_180714
-0.673
-0.327
-
-<mark>GW190513_205428</mark>
-0.203
-0.797
-
-GW190521_074359
-0.043
-0.957
-
-GW190527_092055
-0.174
-0.826
-
-GW190630_185205
-0.088
-0.912
-
-GW190707_093326
-0.93
-0.07
-
-GW190708_232457
-0.802
-0.198
-
-GW190720_000836
-0.983
-0.017
-
-GW190727_060333
-0.041
-0.959
-
-GW190728_064510
-0.981
-0.019
-
-GW190803_022701
-…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> GW190513_205428 0.203 0.797</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -605,84 +381,16 @@ GW190803_022701
 <section class="card" data-i="5" data-event="GW190527_092055">
   <div class="ctx">
     <div class="evname mono">GW190527_092055</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2404.09668v2#:~:text=GW190527_092055" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190527_092055</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…W170823_131358
-0.041
-0.959
-
-GW190408_181802
-0.264
-0.736
-
-GW190412_053044
-0.976
-0.024
-
-GW190413_134308
-0.033
-0.967
-
-GW190421_213856
-0.029
-0.971
-
-GW190503_185404
-0.031
-0.969
-
-GW190512_180714
-0.673
-0.327
-
-GW190513_205428
-0.203
-0.797
-
-GW190521_074359
-0.043
-0.957
-
-<mark>GW190527_092055</mark>
-0.174
-0.826
-
-GW190630_185205
-0.088
-0.912
-
-GW190707_093326
-0.93
-0.07
-
-GW190708_232457
-0.802
-0.198
-
-GW190720_000836
-0.983
-0.017
-
-GW190727_060333
-0.041
-0.959
-
-GW190728_064510
-0.981
-0.019
-
-GW190803_022701
-0.045
-0.955
-
-GW190828_063405
-0.113
-0.887
-
-GW190828_065509
-…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> GW190527_092055 0.174 0.826</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -718,84 +426,16 @@ GW190828_065509
 <section class="card" data-i="6" data-event="GW190719_215514">
   <div class="ctx">
     <div class="evname mono">GW190719_215514</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2404.09668v2#:~:text=GW190719_215514" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190719_215514</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…
-GW190803_022701
-0.045
-0.955
-
-GW190828_063405
-0.113
-0.887
-
-GW190828_065509
-0.888
-0.112
-
-GW190910_112807
-0.036
-0.964
-
-GW190915_235702
-0.086
-0.914
-
-GW190924_021846
-0.808
-0.192
-
-GW190925_232845
-0.256
-0.744
-
-GW190930_133541
-0.973
-0.027
-
-GW190413_052954
-0.08
-0.92
-
-<mark>GW190719_215514</mark>
-0.225
-0.775
-
-GW190725_174728
-0.905
-0.095
-
-GW190731_140936
-0.052
-0.948
-
-GW191105_143521
-0.914
-0.086
-
-GW191127_050227
-0.087
-0.913
-
-GW191129_134029
-0.914
-0.086
-
-GW191204_171526
-0.984
-0.016
-
-GW191215_223052
-0.265
-0.735
-
-GW191216_213338
-0.979
-0.021
-
-GW191222_03353…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> GW190719_215514 0.225 0.775</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -831,84 +471,16 @@ GW191222_03353…</div>
 <section class="card" data-i="7" data-event="GW190731_140936">
   <div class="ctx">
     <div class="evname mono">GW190731_140936</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2404.09668v2#:~:text=GW190731_140936" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190731_140936</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…
-GW190828_065509
-0.888
-0.112
-
-GW190910_112807
-0.036
-0.964
-
-GW190915_235702
-0.086
-0.914
-
-GW190924_021846
-0.808
-0.192
-
-GW190925_232845
-0.256
-0.744
-
-GW190930_133541
-0.973
-0.027
-
-GW190413_052954
-0.08
-0.92
-
-GW190719_215514
-0.225
-0.775
-
-GW190725_174728
-0.905
-0.095
-
-<mark>GW190731_140936</mark>
-0.052
-0.948
-
-GW191105_143521
-0.914
-0.086
-
-GW191127_050227
-0.087
-0.913
-
-GW191129_134029
-0.914
-0.086
-
-GW191204_171526
-0.984
-0.016
-
-GW191215_223052
-0.265
-0.735
-
-GW191216_213338
-0.979
-0.021
-
-GW191222_033537
-0.035
-0.965
-
-GW200112_155838
-0.041
-0.959
-
-GW200128_02201…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> GW190731_140936 0.052 0.948</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -944,85 +516,16 @@ GW200128_02201…</div>
 <section class="card" data-i="8" data-event="GW190828_063405">
   <div class="ctx">
     <div class="evname mono">GW190828_063405</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2404.09668v2#:~:text=GW190828_063405" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190828_063405</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…
-GW190521_074359
-0.043
-0.957
-
-GW190527_092055
-0.174
-0.826
-
-GW190630_185205
-0.088
-0.912
-
-GW190707_093326
-0.93
-0.07
-
-GW190708_232457
-0.802
-0.198
-
-GW190720_000836
-0.983
-0.017
-
-GW190727_060333
-0.041
-0.959
-
-GW190728_064510
-0.981
-0.019
-
-GW190803_022701
-0.045
-0.955
-
-<mark>GW190828_063405</mark>
-0.113
-0.887
-
-GW190828_065509
-0.888
-0.112
-
-GW190910_112807
-0.036
-0.964
-
-GW190915_235702
-0.086
-0.914
-
-GW190924_021846
-0.808
-0.192
-
-GW190925_232845
-0.256
-0.744
-
-GW190930_133541
-0.973
-0.027
-
-GW190413_052954
-0.08
-0.92
-
-GW190719_215514
-0.225
-0.775
-
-GW190725_174728
-…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> GW190828_063405 0.113 0.887</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1058,85 +561,16 @@ GW190725_174728
 <section class="card" data-i="9" data-event="GW190915_235702">
   <div class="ctx">
     <div class="evname mono">GW190915_235702</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2404.09668v2#:~:text=GW190915_235702" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190915_235702</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…
-GW190707_093326
-0.93
-0.07
-
-GW190708_232457
-0.802
-0.198
-
-GW190720_000836
-0.983
-0.017
-
-GW190727_060333
-0.041
-0.959
-
-GW190728_064510
-0.981
-0.019
-
-GW190803_022701
-0.045
-0.955
-
-GW190828_063405
-0.113
-0.887
-
-GW190828_065509
-0.888
-0.112
-
-GW190910_112807
-0.036
-0.964
-
-<mark>GW190915_235702</mark>
-0.086
-0.914
-
-GW190924_021846
-0.808
-0.192
-
-GW190925_232845
-0.256
-0.744
-
-GW190930_133541
-0.973
-0.027
-
-GW190413_052954
-0.08
-0.92
-
-GW190719_215514
-0.225
-0.775
-
-GW190725_174728
-0.905
-0.095
-
-GW190731_140936
-0.052
-0.948
-
-GW191105_143521
-0.914
-0.086
-
-GW191127_050227
-…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> GW190915_235702 0.086 0.914</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1172,84 +606,16 @@ GW191127_050227
 <section class="card" data-i="10" data-event="GW191105_143521">
   <div class="ctx">
     <div class="evname mono">GW191105_143521</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2404.09668v2#:~:text=GW191105_143521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191105_143521</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…
-GW190910_112807
-0.036
-0.964
-
-GW190915_235702
-0.086
-0.914
-
-GW190924_021846
-0.808
-0.192
-
-GW190925_232845
-0.256
-0.744
-
-GW190930_133541
-0.973
-0.027
-
-GW190413_052954
-0.08
-0.92
-
-GW190719_215514
-0.225
-0.775
-
-GW190725_174728
-0.905
-0.095
-
-GW190731_140936
-0.052
-0.948
-
-<mark>GW191105_143521</mark>
-0.914
-0.086
-
-GW191127_050227
-0.087
-0.913
-
-GW191129_134029
-0.914
-0.086
-
-GW191204_171526
-0.984
-0.016
-
-GW191215_223052
-0.265
-0.735
-
-GW191216_213338
-0.979
-0.021
-
-GW191222_033537
-0.035
-0.965
-
-GW200112_155838
-0.041
-0.959
-
-GW200128_022011
-0.043
-0.957
-
-GW200129_06545…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> GW191105_143521 0.914 0.086</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1285,84 +651,16 @@ GW200129_06545…</div>
 <section class="card" data-i="11" data-event="GW200128_022011">
   <div class="ctx">
     <div class="evname mono">GW200128_022011</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2404.09668v2#:~:text=GW200128_022011" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200128_022011</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…W190731_140936
-0.052
-0.948
-
-GW191105_143521
-0.914
-0.086
-
-GW191127_050227
-0.087
-0.913
-
-GW191129_134029
-0.914
-0.086
-
-GW191204_171526
-0.984
-0.016
-
-GW191215_223052
-0.265
-0.735
-
-GW191216_213338
-0.979
-0.021
-
-GW191222_033537
-0.035
-0.965
-
-GW200112_155838
-0.041
-0.959
-
-<mark>GW200128_022011</mark>
-0.043
-0.957
-
-GW200129_065458
-0.05
-0.95
-
-GW200202_154313
-0.917
-0.083
-
-GW200208_130117
-0.035
-0.965
-
-GW200209_085452
-0.06
-0.94
-
-GW200219_094415
-0.039
-0.961
-
-GW200224_222234
-0.039
-0.961
-
-GW200225_060421
-0.185
-0.815
-
-GW200302_015811
-0.135
-0.865
-
-GW200311_115853
-0.…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> GW200128_022011 0.043 0.957</li></ul>
+    </details>
     
   </div>
   <div class="form">

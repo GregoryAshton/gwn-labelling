@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,36 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>The CosmoVerse White Paper: Addressing observational tensions in cosmology with systematics and fundamental physics</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2504.01669" target="_blank" rel="noopener" class="mono">arXiv:2504.01669</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The standard model of cosmology has provided a good phenomenological description of a wide range of observations both at astrophysical and cosmological scales for several decades. This concordance model is constructed by a universal cosmological constant and supported by a matter sector described by the standard model of particle physics and a cold dark matter contribution, as well as very early-time inflationary physics, and underpinned by gravitation through general relativity. There have always been open questions about the soundness of the foundations of the standard model. However, recent years have shown that there may also be questions from the observational sector with the emergence of differences between certain cosmological probes. In this White Paper, we identify the key objectives that need to be addressed over the coming decade together with the core science projects that aim to meet these challenges. These discordances primarily rest on the divergence in the measurement of core cosmological parameters with varying levels of statistical confidence. These possible statistical tensions may be partially accounted for by systematics in various measurements or cosmological probes but there is also a growing indication of potential new physics beyond the standard model. After reviewing the principal probes used in the measurement of cosmological parameters, as well as potential systematics, we discuss the most promising array of potential new physics that may be observable in upcoming surveys. We also discuss the growing set of novel data analysis approaches that go beyond traditional methods to test physical models. These new methods will become increasingly important in the coming years as the volume of survey data continues to increase, and as the degeneracy between predictions of different physical models grows. There are several perspectives on the divergences between the values of cosmological parameters, such as the model-independent probes in the late Universe and model-dependent measurements in the early Universe, which we cover at length. The White Paper closes with a number of recommendations for the community to focus on for the upcoming decade of observational cosmology, statistical data analysis, and fundamental physics developments.</p></details>
+<div class="small mut mono">arXiv:2504.01669</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The standard model of cosmology has provided a good phenomenological description of a wide range of observations both at astrophysical and cosmological scales for several decades. This concordance model is constructed by a universal cosmological constant and supported by a matter sector described by the standard model of particle physics and a cold dark matter contribution, as well as very early-time inflationary physics, and underpinned by gravitation through general relativity. There have always been open questions about the soundness of the foundations of the standard model. However, recent years have shown that there may also be questions from the observational sector with the emergence of differences between certain cosmological probes. In this White Paper, we identify the key objectives that need to be addressed over the coming decade together with the core science projects that aim to meet these challenges. These discordances primarily rest on the divergence in the measurement of core cosmological parameters with varying levels of statistical confidence. These possible statistical tensions may be partially accounted for by systematics in various measurements or cosmological probes but there is also a growing indication of potential new physics beyond the standard model. After reviewing the principal probes used in the measurement of cosmological parameters, as well as potential systematics, we discuss the most promising array of potential new physics that may be observable in upcoming surveys. We also discuss the growing set of novel data analysis approaches that go beyond traditional methods to test physical models. These new methods will become increasingly important in the coming years as the volume of survey data continues to increase, and as the degeneracy between predictions of different physical models grows. There are several perspectives on the divergences between the values of cosmological parameters, such as the model-independent probes in the late Universe and model-dependent measurements in the early Universe, which we cover at length. The White Paper closes with a number of recommendations for the community to focus on for the upcoming decade of observational cosmology, statistical data analysis, and fundamental physics developments.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2504.01669v3" target="_blank" rel="noopener">Open the paper (arXiv HTML, v3) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">6 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">6 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2504.01669v3#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…rXiv:2312.05302 [astro-ph.CO].
-
- 
-[633]
-
-DES, LIGO Scientific, Virgo Collaboration, M. Soares-Santos et al., “First Measurement of the Hubble Constant from a Dark Standard Siren using the Dark Energy Survey Galaxies and the LIGO/Virgo Binary–Black-hole Merger <mark>GW170814</mark>,” Astrophys. J. Lett. 876 (2019) no. 1, L7, arXiv:1901.01540 [astro-ph.CO].
-
- 
-[634]
-
-LIGO Scientific, Virgo, VIRGO Collaboration, B. P. Abbott et al., “A Gravitational-wave Measurement of the Hubble Constant Following the Second Observing Run of Advanced LIG…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[633]</span> · 1 place</span><div class="cite">…e line of sight of a gw event’s localization can be used to infer cosmological parameters, including H0H_{0}, from the distance-redshift relation. Various works have produced such measurements so far <mark class="ref">[633, 634, 635, 636, 637, 638, 639, 640, 641]</mark>, in general finding a precision on H0H_{0} down to ∼20\sim 20% following the third LVK observing run, again in agreement with both Planck and SH0ES constraints. Even when combined with the bright StS…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [633]</span> …including H0H_{0}, from the distance-redshift relation. Various works have produced such measurements so far [633, 634, 635, 636, 637, 638, 639, 640, 641], in general finding a precision on H0H_{0} down to ∼20\sim 20% following the third LVK observing run, again i…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -187,172 +201,15 @@ LIGO Scientific, Virgo, VIRGO Collaboration, B. P. Abbott et al., “A Gravitat
 <section class="card" data-i="1" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>10 mentions · <span class="cptag">1 by counterpart name</span></h3>
+    <p class="where">Named 10 times:
+      reference list ×8, data, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/2504.01669v3#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">1 mention use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention"><span class="sec">data</span>… standard sirens
-
-For bright StSs, an electromagnetic (EM) counterpart is identified, and the redshift is derived from its host galaxy, assuming that both are unique. So far, there exists only one EM counterpart that is confidently associated with a gw event, <mark>GW170817</mark> [600]. This association has been used to derive the first StS measurement [601], finding H0=70−8+12H_{0}=70^{+12}_{-8}km​s−1​Mpc−1\,{\rm km\,s}^{-1}{\rm\,Mpc}^{-1}, a ∼14%\sim 14\% precision measurement. Subsequent analyses have taken a more in-depth approach…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ensive framework for modifying the gravitational interaction by incorporating an extra degree of freedom through a scalar field [3120, 3121, 3122]. This results in significant and intriguing consequences for both inflation and de physics. The detection of the <mark>GW170817</mark> event together with the electromagnetic counterpart [587] provides one of the most stringent constraints on scalar-tensor theories that propose an unusual speed of gws. This imposes severe limits on Galileons and extends to other scalar-tensor theories, inclu…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…., “Overview of KAGRA: Calibration, detector characterization, physical environmental monitors, and the geophysics interferometer,” PTEP 2021 (2021) no. 5, 05A102, arXiv:2009.09305 [gr-qc].
-
- 
-[587]
-
-LIGO Scientific, Virgo Collaboration, B. P. Abbott et al., “<mark>GW170817</mark>: Observation of Gravitational Waves from a Binary Neutron Star Inspiral,” Phys. Rev. Lett. 119 (2017) no. 16, 161101, arXiv:1710.05832 [gr-qc].
-
- 
-[588]
-
-LIGO Scientific, KAGRA, VIRGO Collaboration, R. Abbott et al., “Observation of Gravitational Waves from T…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[587]</span> · 2 places</span><div class="cite">… gw detector network, including the ligo (ligo) [584] and later Virgo [585] and KAGRA [586], has been detecting coalescences of compact object binaries, which so far include binary neutron star (BNS) <mark class="ref">[587]</mark>, neutron star-black hole (NSBH) [588], and binary black hole (BBH) [589] mergers. It is anticipated that ligo-Virgo-KAGRA (LVK) will complete their fourth and fifth observing runs (O4 and O5) by the …</div><div class="cite">… field [3120, 3121, 3122]. This results in significant and intriguing consequences for both inflation and de physics. The detection of the GW170817 event together with the electromagnetic counterpart <mark class="ref">[587]</mark> provides one of the most stringent constraints on scalar-tensor theories that propose an unusual speed of gws. This imposes severe limits on Galileons and extends to other scalar-tensor theories, inc…</div>
-    </div></div>
-    
-    
-    <details><summary>7 more</summary>
-    <div class="mention"><span class="sec">references</span>… measurements of H0H_{0},” Mon. Not. Roy. Astron. Soc. 492 (2020) no. 3, 3803–3815, arXiv:1909.00587 [astro-ph.CO].
-
- 
-[605]
-
-C. Guidorzi et al., “Improved Constraints on H0H_{0} from a Combined Analysis of Gravitational-wave and Electromagnetic Emission from <mark>GW170817</mark>,” Astrophys. J. Lett. 851 (2017) no. 2, L36, arXiv:1710.06426 [astro-ph.CO].
-
- 
-[606]
-
-K. Hotokezaka, E. Nakar, O. Gottlieb, S. Nissanke, K. Masuda, G. Hallinan, K. P. Mooley, and A. T. Deller, “A Hubble constant measurement from superluminal motion of the je…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[605]</span> · 1 place</span><div class="cite">…o take advantage of the EM observations to constrain the viewing angle of the binary and break the distance-inclination angle degeneracy which exists when estimating these parameters from the gw data <mark class="ref">[605, 606, 607, 608]</mark>. The latest of these measurements reached a ∼7\sim 7% precision and they are all consistent with both early and late-time measurements of H0H_{0}.
-
-It is worth noting some of the major systematics th…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…trophys. J. Lett. 851 (2017) no. 2, L36, arXiv:1710.06426 [astro-ph.CO].
-
- 
-[606]
-
-K. Hotokezaka, E. Nakar, O. Gottlieb, S. Nissanke, K. Masuda, G. Hallinan, K. P. Mooley, and A. T. Deller, “A Hubble constant measurement from superluminal motion of the jet in <mark>GW170817</mark>,” Nature Astron. 3 (2019) no. 10, 940–944, arXiv:1806.10596 [astro-ph.CO].
-
- 
-[607]
-
-S. Dhawan, M. Bulla, A. Goobar, A. S. Carracedo, and C. N. Setzer, “Constraining the observer angle of the kilonova AT2017gfo associated with GW170817: Implications for the H…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[606]</span> · 1 place</span><div class="cite">…o take advantage of the EM observations to constrain the viewing angle of the binary and break the distance-inclination angle degeneracy which exists when estimating these parameters from the gw data <mark class="ref">[605, 606, 607, 608]</mark>. The latest of these measurements reached a ∼7\sim 7% precision and they are all consistent with both early and late-time measurements of H0H_{0}.
-
-It is worth noting some of the major systematics th…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">references · <span class="cptag">counterpart name, not the GW signal</span></span>…easurement from superluminal motion of the jet in GW170817,” Nature Astron. 3 (2019) no. 10, 940–944, arXiv:1806.10596 [astro-ph.CO].
-
- 
-[607]
-
-S. Dhawan, M. Bulla, A. Goobar, A. S. Carracedo, and C. N. Setzer, “Constraining the observer angle of the kilonova <mark class="cp">AT2017gfo</mark> associated with GW170817: Implications for the Hubble constant,” Astrophys. J. 888 (2020) no. 2, 67, arXiv:1909.13810 [astro-ph.HE].
-
- 
-[608]
-
-A. Palmese, R. Kaur, A. Hajela, R. Margutti, A. McDowell, and A. MacFadyen, “Standard siren measurement of the Hubbl…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[607]</span> · 1 place</span><div class="cite">…o take advantage of the EM observations to constrain the viewing angle of the binary and break the distance-inclination angle degeneracy which exists when estimating these parameters from the gw data <mark class="ref">[605, 606, 607, 608]</mark>. The latest of these measurements reached a ∼7\sim 7% precision and they are all consistent with both early and late-time measurements of H0H_{0}.
-
-It is worth noting some of the major systematics th…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…al motion of the jet in GW170817,” Nature Astron. 3 (2019) no. 10, 940–944, arXiv:1806.10596 [astro-ph.CO].
-
- 
-[607]
-
-S. Dhawan, M. Bulla, A. Goobar, A. S. Carracedo, and C. N. Setzer, “Constraining the observer angle of the kilonova AT2017gfo associated with <mark>GW170817</mark>: Implications for the Hubble constant,” Astrophys. J. 888 (2020) no. 2, 67, arXiv:1909.13810 [astro-ph.HE].
-
- 
-[608]
-
-A. Palmese, R. Kaur, A. Hajela, R. Margutti, A. McDowell, and A. MacFadyen, “Standard siren measurement of the Hubble constant using GW170817…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[607]</span> · 1 place</span><div class="cite">…o take advantage of the EM observations to constrain the viewing angle of the binary and break the distance-inclination angle degeneracy which exists when estimating these parameters from the gw data <mark class="ref">[605, 606, 607, 608]</mark>. The latest of these measurements reached a ∼7\sim 7% precision and they are all consistent with both early and late-time measurements of H0H_{0}.
-
-It is worth noting some of the major systematics th…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…GW170817: Implications for the Hubble constant,” Astrophys. J. 888 (2020) no. 2, 67, arXiv:1909.13810 [astro-ph.HE].
-
- 
-[608]
-
-A. Palmese, R. Kaur, A. Hajela, R. Margutti, A. McDowell, and A. MacFadyen, “Standard siren measurement of the Hubble constant using <mark>GW170817</mark> and the latest observations of the electromagnetic counterpart afterglow,” Phys. Rev. D 109 (2024) no. 6, 063508, arXiv:2305.19914 [astro-ph.CO].
-
- 
-[609]
-
-A. Palmese, O. Graur, J. T. Annis, S. BenZvi, E. Di Valentino, J. Garcia-Bellido, S. G. A. Gontcho, R. …
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[608]</span> · 1 place</span><div class="cite">…o take advantage of the EM observations to constrain the viewing angle of the binary and break the distance-inclination angle degeneracy which exists when estimating these parameters from the gw data <mark class="ref">[605, 606, 607, 608]</mark>. The latest of these measurements reached a ∼7\sim 7% precision and they are all consistent with both early and late-time measurements of H0H_{0}.
-
-It is worth noting some of the major systematics th…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…901.07183 [gr-qc].
-
- 
-[3120]
-
-C. Deffayet, X. Gao, D. A. Steer, and G. Zahariade, “From k-essence to generalised Galileons,” Phys. Rev. D 84 (2011) 064039, arXiv:1103.3260 [hep-th].
-
- 
-[3121]
-
-R. Kase and S. Tsujikawa, “Dark energy in Horndeski theories after <mark>GW170817</mark>: A review,” Int. J. Mod. Phys. D 28 (2019) no. 05, 1942005, arXiv:1809.08735 [gr-qc].
-
- 
-[3122]
-
-R. D’Agostino and R. C. Nunes, “Probing observational bounds on scalar-tensor theories from standard sirens,” Phys. Rev. D 100 (2019) no. 4, 044041, arXiv:1907.05…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[3121]</span> · 1 place</span><div class="cite">…[2071, 3119]. It encompasses a wide range of models and offers a comprehensive framework for modifying the gravitational interaction by incorporating an extra degree of freedom through a scalar field <mark class="ref">[3120, 3121, 3122]</mark>. This results in significant and intriguing consequences for both inflation and de physics. The detection of the GW170817 event together with the electromagnetic counterpart [587] provides one of the…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…-qc].
-
- 
-[3122]
-
-R. D’Agostino and R. C. Nunes, “Probing observational bounds on scalar-tensor theories from standard sirens,” Phys. Rev. D 100 (2019) no. 4, 044041, arXiv:1907.05516 [gr-qc].
-
- 
-[3123]
-
-J. M. Ezquiaga and M. Zumalacárregui, “Dark Energy After <mark>GW170817</mark>: Dead Ends and the Road Ahead,” Phys. Rev. Lett. 119 (2017) no. 25, 251304, arXiv:1710.05901 [astro-ph.CO].
-
- 
-[3124]
-
-A. Bonilla, R. D’Agostino, R. C. Nunes, and J. C. N. de Araujo, “Forecasts on the speed of gravitational waves at high zz,” JCAP 03 (2020) 0…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[3123]</span> · 1 place</span><div class="cite">…sor theories that propose an unusual speed of gws. This imposes severe limits on Galileons and extends to other scalar-tensor theories, including the quartic and quintic sectors of Horndeski’s theory <mark class="ref">[3123, 3124, 3125, 3126]</mark>. Nevertheless, it has been noted that since the energy scales observed at ligo lie very close to the typical cutoff of these types of theories, the translation of the bound on the speed of gws to a c…</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (7): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">data</span> So far, there exists only one EM counterpart that is confidently associated with a gw event, GW170817 [600].</li><li><span class="sec">methods</span> The detection of the GW170817 event together with the electromagnetic counterpart [587] provides one of the most stringent constraints on s…</li><li><span class="sec">cites it as [587]</span> …], has been detecting coalescences of compact object binaries, which so far include binary neutron star (BNS) [587], neutron star-black hole (NSBH) [588], and binary black hole (BBH) [589] mergers. It is anticipated that ligo…</li><li><span class="sec">cites it as [587]</span> …h inflation and de physics. The detection of the GW170817 event together with the electromagnetic counterpart [587] provides one of the most stringent constraints on scalar-tensor theories that propose an unusual speed of gws…</li><li><span class="sec">cites it as [605]</span> …reak the distance-inclination angle degeneracy which exists when estimating these parameters from the gw data [605, 606, 607, 608]. The latest of these measurements reached a ∼7\sim 7% precision and they are all consistent with both early a…</li><li><span class="sec">cites it as [3121]</span> …or modifying the gravitational interaction by incorporating an extra degree of freedom through a scalar field [3120, 3121, 3122]. This results in significant and intriguing consequences for both inflation and de physics. The detection of…</li><li><span class="sec">cites it as [3123]</span> …and extends to other scalar-tensor theories, including the quartic and quintic sectors of Horndeski’s theory [3123, 3124, 3125, 3126]. Nevertheless, it has been noted that since the energy scales observed at ligo lie very close to the typical…</li></ul>
     </details>
     
   </div>
@@ -389,24 +246,16 @@ A. Bonilla, R. D’Agostino, R. C. Nunes, and J. C. N. de Araujo, “Forec
 <section class="card" data-i="2" data-event="GW190412">
   <div class="ctx">
     <div class="evname mono">GW190412</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/2504.01669v3#:~:text=GW190412" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190412</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…irgo Observing Runs and the DESI Legacy Survey,” Astrophys. J. 943 (2023) no. 1, 56, arXiv:2111.06445 [astro-ph.CO].
-
- 
-[638]
-
-DESI Collaboration, W. Ballard et al., “A Dark Siren Measurement of the Hubble Constant with the LIGO/Virgo Gravitational Wave Event <mark>GW190412</mark> and DESI Galaxies,” Res. Notes AAS 7 (2023) no. 11, 250, arXiv:2311.13062 [astro-ph.CO].
-
- 
-[639]
-
-V. Alfradique et al., “A dark siren measurement of the Hubble constant using gravitational wave events from the first three LIGO/Virgo observing runs and DELVE,…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[638]</span> · 1 place</span><div class="cite">…e line of sight of a gw event’s localization can be used to infer cosmological parameters, including H0H_{0}, from the distance-redshift relation. Various works have produced such measurements so far <mark class="ref">[633, 634, 635, 636, 637, 638, 639, 640, 641]</mark>, in general finding a precision on H0H_{0} down to ∼20\sim 20% following the third LVK observing run, again in agreement with both Planck and SH0ES constraints. Even when combined with the bright StS…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [638]</span> …including H0H_{0}, from the distance-redshift relation. Various works have produced such measurements so far [633, 634, 635, 636, 637, 638, 639, 640, 641], in general finding a precision on H0H_{0} down to ∼20\sim 20% following the third LVK observing run, again i…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -442,111 +291,15 @@ V. Alfradique et al., “A dark siren measurement of the Hubble constant using 
 <section class="card" data-i="3" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>5 mentions</h3>
+    <p class="where">Named 5 times:
+      reference list ×5.</p>
+    <p class="where"><a href="https://arxiv.org/html/2504.01669v3#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>… candidate S230922g,” Phys. Rev. D 110 (2024) no. 12, 123029, arXiv:2407.10698 [astro-ph.HE].
-
- 
-[619]
-
-G. Ashton, K. Ackley, I. M. n. Hernandez, and B. Piotrzkowski, “Current observations are insufficient to confidently associate the binary black hole merger <mark>GW190521</mark> with AGN J124942.3 + 344929,” Class. Quant. Grav. 38 (2021) no. 23, 235004, arXiv:2009.12346 [astro-ph.HE].
-
- 
-[620]
-
-A. Palmese, M. Fishbach, C. J. Burke, J. T. Annis, and X. Liu, “Do LIGO/Virgo Black Hole Mergers Produce AGN Flares? The Case of GW190521 and…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[619]</span> · 1 place</span><div class="cite">…ole (NSBH; which would prove valuable StSs [615]) mergers, but candidate EM counterparts to BBH mergers also exist [616, 617, 618]. Although the BBH EM counterparts association is currently uncertain <mark class="ref">[619, 620]</mark>, they may in the future be used to infer the Hubble constant along with other cosmological parameters [621, 622, 623, 624, 625].
-
-2.1.17.b Dark standard sirens
-
-Most mergers detected by the LVK (curr…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…ger GW190521 with AGN J124942.3 + 344929,” Class. Quant. Grav. 38 (2021) no. 23, 235004, arXiv:2009.12346 [astro-ph.HE].
-
- 
-[620]
-
-A. Palmese, M. Fishbach, C. J. Burke, J. T. Annis, and X. Liu, “Do LIGO/Virgo Black Hole Mergers Produce AGN Flares? The Case of <mark>GW190521</mark> and Prospects for Reaching a Confident Association,” Astrophys. J. Lett. 914 (2021) no. 2, L34, arXiv:2103.16069 [astro-ph.HE].
-
- 
-[621]
-
-S. Mukherjee, A. Ghosh, M. J. Graham, C. Karathanasis, M. M. Kasliwal, I. Magaña Hernandez, S. M. Nissanke, A. Silvestri,…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[620]</span> · 1 place</span><div class="cite">…ole (NSBH; which would prove valuable StSs [615]) mergers, but candidate EM counterparts to BBH mergers also exist [616, 617, 618]. Although the BBH EM counterparts association is currently uncertain <mark class="ref">[619, 620]</mark>, they may in the future be used to infer the Hubble constant along with other cosmological parameters [621, 622, 623, 624, 625].
-
-2.1.17.b Dark standard sirens
-
-Most mergers detected by the LVK (curr…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…34, arXiv:2103.16069 [astro-ph.HE].
-
- 
-[621]
-
-S. Mukherjee, A. Ghosh, M. J. Graham, C. Karathanasis, M. M. Kasliwal, I. Magaña Hernandez, S. M. Nissanke, A. Silvestri, and B. D. Wandelt, “First measurement of the Hubble parameter from bright binary black hole <mark>GW190521</mark>,” arXiv:2009.14199 [astro-ph.CO].
-
- 
-[622]
-
-V. Gayathri, J. Healy, J. Lange, B. O’Brien, M. Szczepanczyk, I. Bartos, M. Campanelli, S. Klimenko, C. O. Lousto, and R. O’Shaughnessy, “Measuring the Hubble Constant with GW190521 as an Eccentric black hole Merger…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[621]</span> · 1 place</span><div class="cite">…t [616, 617, 618]. Although the BBH EM counterparts association is currently uncertain [619, 620], they may in the future be used to infer the Hubble constant along with other cosmological parameters <mark class="ref">[621, 622, 623, 624, 625]</mark>.
-
-2.1.17.b Dark standard sirens
-
-Most mergers detected by the LVK (currently in the order of ∼200\sim 200 when including significant detection candidates from the ongoing observing run) do not have a…</div>
-    </div></div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">references</span>…ter from bright binary black hole GW190521,” arXiv:2009.14199 [astro-ph.CO].
-
- 
-[622]
-
-V. Gayathri, J. Healy, J. Lange, B. O’Brien, M. Szczepanczyk, I. Bartos, M. Campanelli, S. Klimenko, C. O. Lousto, and R. O’Shaughnessy, “Measuring the Hubble Constant with <mark>GW190521</mark> as an Eccentric black hole Merger and Its Potential Electromagnetic Counterpart,” Astrophys. J. Lett. 908 (2021) no. 2, L34, arXiv:2009.14247 [astro-ph.HE].
-
- 
-[623]
-
-H.-Y. Chen, C.-J. Haster, S. Vitale, W. M. Farr, and M. Isi, “A standard siren cosmological …
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[622]</span> · 1 place</span><div class="cite">…t [616, 617, 618]. Although the BBH EM counterparts association is currently uncertain [619, 620], they may in the future be used to infer the Hubble constant along with other cosmological parameters <mark class="ref">[621, 622, 623, 624, 625]</mark>.
-
-2.1.17.b Dark standard sirens
-
-Most mergers detected by the LVK (currently in the order of ∼200\sim 200 when including significant detection candidates from the ongoing observing run) do not have a…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…ger and Its Potential Electromagnetic Counterpart,” Astrophys. J. Lett. 908 (2021) no. 2, L34, arXiv:2009.14247 [astro-ph.HE].
-
- 
-[623]
-
-H.-Y. Chen, C.-J. Haster, S. Vitale, W. M. Farr, and M. Isi, “A standard siren cosmological measurement from the potential <mark>GW190521</mark> electromagnetic counterpart ZTF19abanrhr,” Mon. Not. Roy. Astron. Soc. 513 (2022) no. 2, 2152–2157, arXiv:2009.14057 [astro-ph.CO].
-
- 
-[624]
-
-C. R. Bom and A. Palmese, “Standard siren cosmology with gravitational waves from binary black hole mergers in active…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[623]</span> · 1 place</span><div class="cite">…t [616, 617, 618]. Although the BBH EM counterparts association is currently uncertain [619, 620], they may in the future be used to infer the Hubble constant along with other cosmological parameters <mark class="ref">[621, 622, 623, 624, 625]</mark>.
-
-2.1.17.b Dark standard sirens
-
-Most mergers detected by the LVK (currently in the order of ∼200\sim 200 when including significant detection candidates from the ongoing observing run) do not have a…</div>
-    </div></div>
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [619]</span> …o BBH mergers also exist [616, 617, 618]. Although the BBH EM counterparts association is currently uncertain [619, 620], they may in the future be used to infer the Hubble constant along with other cosmological parameters [621, 6…</li><li><span class="sec">cites it as [621]</span> …9, 620], they may in the future be used to infer the Hubble constant along with other cosmological parameters [621, 622, 623, 624, 625]. 2.1.17.b Dark standard sirens Most mergers detected by the LVK (currently in the order of ∼200\sim 200 whe…</li></ul>
     </details>
     
   </div>
@@ -583,45 +336,16 @@ Most mergers detected by the LVK (currently in the order of ∼200\sim 200 when 
 <section class="card" data-i="4" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      reference list ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2504.01669v3#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>…., “A Gravitational-wave Measurement of the Hubble Constant Following the Second Observing Run of Advanced LIGO and Virgo,” Astrophys. J. 909 (2021) no. 2, 218, arXiv:1908.06060 [astro-ph.CO].
-
- 
-[635]
-
-LIGO Scientific, Virgo Collaboration, R. Abbott et al., “<mark>GW190814</mark>: Gravitational Waves from the Coalescence of a 23 Solar Mass Black Hole with a 2.6 Solar Mass Compact Object,” Astrophys. J. Lett. 896 (2020) no. 2, L44, arXiv:2006.12611 [astro-ph.HE].
-
- 
-[636]
-
-LIGO Scientific, Virgo, KAGRA Collaboration, R. Abbott et al., …
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[635]</span> · 1 place</span><div class="cite">…e line of sight of a gw event’s localization can be used to infer cosmological parameters, including H0H_{0}, from the distance-redshift relation. Various works have produced such measurements so far <mark class="ref">[633, 634, 635, 636, 637, 638, 639, 640, 641]</mark>, in general finding a precision on H0H_{0} down to ∼20\sim 20% following the third LVK observing run, again in agreement with both Planck and SH0ES constraints. Even when combined with the bright StS…</div>
-    </div></div>
-    
-    
-    
-    <div class="mention"><span class="sec">references</span>…wave friction from binary black holes,” JCAP 09 (2022) 012, arXiv:2202.00025 [gr-qc].
-
- 
-[650]
-
-DES Collaboration, A. Palmese et al., “A statistical standard siren measurement of the Hubble constant from the LIGO/Virgo gravitational wave compact object merger <mark>GW190814</mark> and Dark Energy Survey galaxies,” Astrophys. J. Lett. 900 (2020) no. 2, L33, arXiv:2006.14961 [astro-ph.CO].
-
- 
-[651]
-
-C. Turski, M. Bilicki, G. Dálya, R. Gray, and A. Ghosh, “Impact of modelling galaxy redshift uncertainties on the gravitational-wave dark st…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[650]</span> · 1 place</span><div class="cite">…junction may mitigate this effect [630], it is still crucial to correctly model the mass function including its potential evolution [629]. Other systematics may arise when using photometric redshifts <mark class="ref">[650, 651]</mark>, and host galaxy weighting or galaxy assumptions that do not match the true underlying distribution of merger hosts [652, 653].
-
-2.1.17.c Prospects for ground-based detectors
-
-Fig. 28 in Ref. [654] s…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [635]</span> …including H0H_{0}, from the distance-redshift relation. Various works have produced such measurements so far [633, 634, 635, 636, 637, 638, 639, 640, 641], in general finding a precision on H0H_{0} down to ∼20\sim 20% following the third LVK observing run, again i…</li><li><span class="sec">cites it as [650]</span> …unction including its potential evolution [629]. Other systematics may arise when using photometric redshifts [650, 651], and host galaxy weighting or galaxy assumptions that do not match the true underlying distribution of merger…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -657,25 +381,16 @@ Fig. 28 in Ref. [654] s…</div>
 <section class="card" data-i="5" data-event="GW200224_222234">
   <div class="ctx">
     <div class="evname mono">GW200224_222234</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…gw events. The considered cnn in Ref. [2012] is able to produce posterior distributions that in all cases are compatible with the already published results. The schematic of the respective cnn is depicted in Fig. 58, whereas the inferred results for the event <mark>GW200224_222234</mark> are illustrated in Fig. 59. In the case of event GW200224_222234, all the estimated parameters were found to be in accordance with those published in the GWTC-3 catalog. Having said that, the effective spin was the worst performing parameter. Furthermore, the…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…osterior distributions that in all cases are compatible with the already published results. The schematic of the respective cnn is depicted in Fig. 58, whereas the inferred results for the event GW200224_222234 are illustrated in Fig. 59. In the case of event <mark>GW200224_222234</mark>, all the estimated parameters were found to be in accordance with those published in the GWTC-3 catalog. Having said that, the effective spin was the worst performing parameter. Furthermore, the uncertainty yielded by the cnn on the sky position was found to …</div>
+    <p class="where">Named 3 times:
+      methods ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/2504.01669v3#:~:text=GW200224_222234" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200224_222234</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…followed by a set of fully connected dense layers. Between each of the dense layers, a dropout of 20% is applied to prevent overfitting during the training stage.
-
-Figure 59: Full posterior distribution inferred [2012] from the cnn and mcmc approaches for the <mark>GW200224_222234</mark> event.
-
-3.2.3 Bayesian neural networks
-
-A bnn (bnn) that outputs Gaussian pdfs was adopted in Ref. [2013]. The bnn has five input nodes for the five-band grizy photometry. A parameter grid search was performed in order to optimize for free parameters, includi…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> The schematic of the respective cnn is depicted in Fig. 58, whereas the inferred results for the event GW200224_222234 are illustrated in Fig. 59.</li><li><span class="sec">methods</span> In the case of event GW200224_222234, all the estimated parameters were found to be in accordance with those published in the GWTC-3 catalog.</li><li><span class="sec">methods</span> Figure 59: Full posterior distribution inferred [2012] from the cnn and mcmc approaches for the GW200224_222234 event.</li></ul>
+    </details>
     
   </div>
   <div class="form">

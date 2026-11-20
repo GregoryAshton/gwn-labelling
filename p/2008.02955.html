@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,186 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Constraining the nuclear symmetry energy and properties of the neutron star from GW170817 by Bayesian analysis</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2008.02955" target="_blank" rel="noopener" class="mono">arXiv:2008.02955</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Based on the distribution of tidal deformabilities and component masses of binary neutron star merger GW170817, the parametric equation of state (EOS) is employed to probe the nuclear symmetry energy and the properties of the neutron star. To obtain a proper distribution of the parameters of the EOS that is consistent with the observation, Bayesian analysis is used and the constraints of causality and maximum mass are considered. From this analysis, it is found that the symmetry energy and pressure at twice the saturation density of nuclear matter can be constrained within E&lt;SUB&gt;sym&lt;/SUB&gt;(2 ρ&lt;SUB&gt;0&lt;/SUB&gt;) =34 .5&lt;SUB&gt;-2.3&lt;/SUB&gt;&lt;SUP&gt;+20.5&lt;/SUP&gt; MeV and P (2 ρ&lt;SUB&gt;0&lt;/SUB&gt;) =3 .81&lt;SUB&gt;-2.32&lt;/SUB&gt;&lt;SUP&gt;+1.18&lt;/SUP&gt;×10&lt;SUP&gt;34&lt;/SUP&gt; dyn cm-&lt;SUP&gt;2&lt;/SUP&gt; at 90% credible level, respectively. Moreover, the constraints on the radii and dimensionless tidal deformabilities of canonical neutron stars are also demonstrated through this analysis, and the corresponding constraints are 10.80 km ≤R&lt;SUB&gt;1.4&lt;/SUB&gt;≤ 13.20 km and 133 ≤Λ&lt;SUB&gt;1.4&lt;/SUB&gt;≤686 at 90% credible level, with the most probable value of R&lt;SUB&gt;̄ 1.4&lt;/SUB&gt; = 12.60 km and Λ&lt;SUB&gt;̄ 1.4&lt;/SUB&gt; = 500, respectively. With respect to the prior, our result (posterior result) prefers a softer EOS, corresponding to a lower expected value of symmetry energy, a smaller stellar radius, and a smaller tidal deformability.</p></details>
+<div class="small mut mono">arXiv:2008.02955</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Based on the distribution of tidal deformabilities and component masses of binary neutron star merger GW170817, the parametric equation of state (EOS) is employed to probe the nuclear symmetry energy and the properties of the neutron star. To obtain a proper distribution of the parameters of the EOS that is consistent with the observation, Bayesian analysis is used and the constraints of causality and maximum mass are considered. From this analysis, it is found that the symmetry energy and pressure at twice the saturation density of nuclear matter can be constrained within E&lt;SUB&gt;sym&lt;/SUB&gt;(2 ρ&lt;SUB&gt;0&lt;/SUB&gt;) =34 .5&lt;SUB&gt;-2.3&lt;/SUB&gt;&lt;SUP&gt;+20.5&lt;/SUP&gt; MeV and P (2 ρ&lt;SUB&gt;0&lt;/SUB&gt;) =3 .81&lt;SUB&gt;-2.32&lt;/SUB&gt;&lt;SUP&gt;+1.18&lt;/SUP&gt;×10&lt;SUP&gt;34&lt;/SUP&gt; dyn cm-&lt;SUP&gt;2&lt;/SUP&gt; at 90% credible level, respectively. Moreover, the constraints on the radii and dimensionless tidal deformabilities of canonical neutron stars are also demonstrated through this analysis, and the corresponding constraints are 10.80 km ≤R&lt;SUB&gt;1.4&lt;/SUB&gt;≤ 13.20 km and 133 ≤Λ&lt;SUB&gt;1.4&lt;/SUB&gt;≤686 at 90% credible level, with the most probable value of R&lt;SUB&gt;̄ 1.4&lt;/SUB&gt; = 12.60 km and Λ&lt;SUB&gt;̄ 1.4&lt;/SUB&gt; = 500, respectively. With respect to the prior, our result (posterior result) prefers a softer EOS, corresponding to a lower expected value of symmetry energy, a smaller stellar radius, and a smaller tidal deformability.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2008.02955v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>22 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>Constraining the nuclear symmetry energy and properties of neutron star from <mark>GW170817</mark> by Bayesian analysis
-
- 
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- 
- 
-
- 
- arXiv is now an independent nonprofit!
- Learn more
- &amp;times;…</div>
+    <p class="where">Named 22 times:
+      introduction ×10, methods ×6, title/headings ×3, conclusion ×2, abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/2008.02955v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…
- 
- 
-
-Abstract
-
-1 Introduction
-
-2 Isospin-dependent parametric EOS and neutron star properties
-
-3 Constraint on the parameter space of EOS and the symmetry energy at twice saturation density
-
-4 The constraint on the radii and tidal deformabilities through the <mark>GW170817</mark>
-
-5 SUMMARY
-
-6 Acknowledgements
-
-A Bayesian Inference Approach
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2008.02955v1 [nucl-th] 07 Aug 2020
-
-Constraining the nuclear symmetry energy and properties of neutron star from GW17081…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…W170817
-
-5 SUMMARY
-
-6 Acknowledgements
-
-A Bayesian Inference Approach
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2008.02955v1 [nucl-th] 07 Aug 2020
-
-Constraining the nuclear symmetry energy and properties of neutron star from <mark>GW170817</mark> by Bayesian analysis
-
-Yuxi Li
-
-Affiliation: School of Physics and Optoelectronics, South China University of
-Technology, Guangzhou 510641, P.R. China
-
-  
-Houyuan Chen
-
-Affiliation: School of Physics and Optoelectronics, South China University of
-Technology, G…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…g Zhang
-
-Affiliation: School of Physics and Optoelectronics, South China University of
-Technology, Guangzhou 510641, P.R. China
-
-August 24, 2026
-
-Abstract
-
- 
-Based on the distribution of tidal deformabilities and component masses of binary neutron star merger <mark>GW170817</mark>, the parametric equation of states (EOS) are employed to probe the nuclear symmetry energy and the properties of neutron star. To obtain a proper distribution of the parameters of the EOS that is consistent with the observation, Bayesian analysis is used and …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…er expected value of symmetry energy, a smaller radius and a smaller tidal deformability.
-
- 
-
-pacs
-
-97.60.Jd; 04.40.Dg; 04.30.-w; 95.30.Sf
-
-1 Introduction
-
-On August 17, 2017, the Advanced LIGO and Advanced Virgo first observed the merger of two neutron stars <mark>GW170817</mark> [1]. Through continual research based on the data of this observation, the understanding of properties of neutron stars (such as the radius, the tidal deformability, etc.) and the state of dense nuclear matter is improved continually [2, 3, 4, 5, 6, 7].
-Consi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…star and the pressure at twice nuclear saturation density, which provides a useful clue to investigate the state of the dense nuclear matter [11]. By performing Bayesian analysis with the distance and source location derived by electromagnetic observations of <mark>GW170817</mark> event, De e​t​a​l.et~al. constrained the Λ~\tilde{\Lambda} (Λ~\tilde{\Lambda} is defined as equation 3 in [12]) at 90% credible level as follows: 84 ≤\leq Λ~\tilde{\Lambda} ≤\leq 642 for uniform component mass prior, 94 ≤\leq Λ~\tilde{\Lambda} ≤\leq 698 for t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ivated by the above interesting works, we will investigate the constraint on the nuclear symmetry energy and some of the properties of canonical neutron star through Bayesian inference based on the distribution of tidal deformabilities and component masses of <mark>GW170817</mark> in this work.
-
-The paper is organized as follows. In the next section, the isospin-dependent parametric EOS for dense neutron-rich nucleonic matter and properties of neutron star are outlined.
-In Sec. 3, through performing Bayesian analysis by correlating the…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…
-
-The paper is organized as follows. In the next section, the isospin-dependent parametric EOS for dense neutron-rich nucleonic matter and properties of neutron star are outlined.
-In Sec. 3, through performing Bayesian analysis by correlating the EOS with the <mark>GW170817</mark> data released by LIGO and VIRGO, the posterior distribution of the parameter space of the EOS and the symmetry energy of the super dense nuclear matter are presented. Then, In Sec. 4, we present the constraint on the radii and tidal deformabilities of a canon…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…_{\textrm{sym}}, JsymJ_{\textrm{sym}} and J0J_{0} has a relatively weak effect on the radius of neutron star with lower mass.
-It is worth noting that the prior distribution reflects the general features of the parametric EOS, but not including the impact from <mark>GW170817</mark>.
-According to Eqs. (5), we can obtain the prior probability density of Esym​(2​ρ0)E_{\textrm{sym}}{(2\rho_{0})}, as shown in Fig. 2. Within 90% credible level, the prior probability of Esym​(2​ρ0)E_{\textrm{sym}}(2{\rho_{0}}) is constrained in a range of Esym…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…f 1.4 M⊙M_{\odot} as canonical neutron star as most observed neutron stars have stellar masses near 1.4 M⊙M_{\odot} [43]. There have been massive researches on the properties of canonical neutron star in recent years [46, 44, 47, 48, 45], especially after the <mark>GW170817</mark> event [2, 5, 7, 11, 49, 50, 51, 52, 53, 54]. Here we will also focus on the properties of canonical neutron stars. In Fig. 3, we show the prior distribution of R1.4R_{1.4} (a) and Λ1.4\Lambda_{1.4} (b), where R1.4R_{1.4} and Λ1.4\Lambda_{1.4} denote the radiu…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… of Esym​(2​ρ0)E_{\textrm{sym}}{(2\rho_{0})}, where the solid vertical lines represent the 90% credible interval for Esym​(2​ρ0)E_{\textrm{sym}}{(2\rho_{0})}.
-
-Based on the distribution of stellar masses and tidal deformabilities of the binary neutron star in <mark>GW170817</mark> [7], we define the likelihood function of each set of parameters of EOS and perform Bayesian inference to analyze the impact on the parameter space of EOS and the symmetry energy. For the details of the Bayesian inference approach adopted in this work please …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ted. From Fig. 4, we can see that the higher probability density area is located in the left area. Moreover, it is also shown that for a given J0J_{0}, lower values of JsymJ_{\textrm{sym}} and KsymK_{\textrm{sym}} are preferred to support the observed data of <mark>GW170817</mark>. From the definitions of the parameters KsymK_{\textrm{sym}}, JsymJ_{\textrm{sym}} and J0J_{0} in Eqs. (4) and Eqs. (5) and according to Eq. (3), it is easy to understand that higher values of the set of parameters correspond with a stiffer EOS. Therefore, th…</div>
+    <details class="lines"><summary>Show the sentences (20, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Constraining the nuclear symmetry energy and properties of neutron star from GW170817 by Bayesian analysis</li><li><span class="sec">title/headings</span> 4 The constraint on the radii and tidal deformabilities through the GW170817</li><li><span class="sec">abstract</span> Based on the distribution of tidal deformabilities and component masses of binary neutron star merger GW170817, the parametric equation of states (EOS) are employed to probe the nuclear symmetry energy and the properties…</li><li><span class="sec">introduction</span> On August 17, 2017, the Advanced LIGO and Advanced Virgo first observed the merger of two neutron stars GW170817 [1].</li><li><span class="sec">introduction</span> …performing Bayesian analysis with the distance and source location derived by electromagnetic observations of GW170817 event, De e​t​a​l.et~al. constrained the Λ~\tilde{\Lambda} (Λ~\tilde{\Lambda} is defined as equation 3 in [12…</li><li><span class="sec">introduction</span> …on star through Bayesian inference based on the distribution of tidal deformabilities and component masses of GW170817 in this work.</li><li><span class="sec">introduction</span> In Sec. 3, through performing Bayesian analysis by correlating the EOS with the GW170817 data released by LIGO and VIRGO, the posterior distribution of the parameter space of the EOS and the symmetr…</li><li><span class="sec">introduction</span> …the prior distribution reflects the general features of the parametric EOS, but not including the impact from GW170817.</li></ul>
     </details>
     
   </div>

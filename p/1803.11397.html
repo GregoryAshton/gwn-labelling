@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,79 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Damping of gravitational waves in a viscous Universe and its implication for dark matter self-interactions</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1803.11397" target="_blank" rel="noopener" class="mono">arXiv:1803.11397</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">It is well known that a gravitational wave (GW) experiences the damping effect when it propagates in a fluid with nonzero shear viscosity. In this paper, we propose a new method to constrain the GW damping rate and thus the fluid shear viscosity. By defining the effective distance which incorporates damping effects, we can transform the GW strain expression in a viscous Universe into the same form as that in a perfect fluid. Therefore, the constraints of the luminosity distances from the observed GW events by LIGO and Virgo can be directly applied to the effective distances in our formalism. We exploit the lognormal likelihoods for the available GW effective distances and a Gaussian likelihood for the luminosity distance inferred from the electromagnetic radiation observation of the binary neutron star merger event GW170817. Our fittings show no obvious damping effects in the current GW data, and the upper limit on the damping rate with the combined data is $6.75 \times 10^{-4}\,{\rm Mpc}^{-1}$ at 95\% confidence level. By assuming that the dark matter self-scatterings are efficient enough for the hydrodynamic description to be valid, we find that a GW event from its source at a luminosity distance $D\gtrsim 10^4\;\rm Mpc$ can be used to put a constraint on the dark matter self-interactions.</p></details>
+<div class="small mut mono">arXiv:1803.11397</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">It is well known that a gravitational wave (GW) experiences the damping effect when it propagates in a fluid with nonzero shear viscosity. In this paper, we propose a new method to constrain the GW damping rate and thus the fluid shear viscosity. By defining the effective distance which incorporates damping effects, we can transform the GW strain expression in a viscous Universe into the same form as that in a perfect fluid. Therefore, the constraints of the luminosity distances from the observed GW events by LIGO and Virgo can be directly applied to the effective distances in our formalism. We exploit the lognormal likelihoods for the available GW effective distances and a Gaussian likelihood for the luminosity distance inferred from the electromagnetic radiation observation of the binary neutron star merger event GW170817. Our fittings show no obvious damping effects in the current GW data, and the upper limit on the damping rate with the combined data is $6.75 \times 10^{-4}\,{\rm Mpc}^{-1}$ at 95\% confidence level. By assuming that the dark matter self-scatterings are efficient enough for the hydrodynamic description to be valid, we find that a GW event from its source at a luminosity distance $D\gtrsim 10^4\;\rm Mpc$ can be used to put a constraint on the dark matter self-interactions.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1803.11397v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">7 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">7 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…gtrsim 10^{4}\;\rm Mpc can be used to put a constraint on the dark matter self-interactions.
-
- 
-
-I Introduction
-
-The existence of gravitational waves (GWs) predicted by Einstein a century ago has recently been confirmed by the detection of the first GW signal <mark>GW150914</mark> from a binary black hole (BBH) merger by the Laser Interferometer Gravitational-Wave Observatory (LIGO) [1], which opens a new era of astronomy and cosmology.
-Up to date, six BBH merger GW signals, GW150914, LVT151012 (a lower significance candidate), GW15122…</div>
+    <p class="where">Named 3 times:
+      introduction ×2, data.</p>
+    <p class="where"><a href="https://arxiv.org/html/1803.11397v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…en confirmed by the detection of the first GW signal GW150914 from a binary black hole (BBH) merger by the Laser Interferometer Gravitational-Wave Observatory (LIGO) [1], which opens a new era of astronomy and cosmology.
-Up to date, six BBH merger GW signals, <mark>GW150914</mark>, LVT151012 (a lower significance candidate), GW151226, GW170104, GW170608 and GW170814 and one binary neutron star (BNS) merger GW signal GW170817 have been announced by the LIGO and Virgo Collaborations [1, 2, 3, 4, 5, 6, 7]. Simultaneous detection of GWs an…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…t of 𝒪⁡(10−3​Mpc−1){\cal O}(10^{-3}\,{\rm Mpc}^{-1}).
-
-Table 1: Listing of parameters of gravitational wave sources luminosity distance and the fitting results.
-
-GW Eventa
-DgwD_{\rm gw}b
-σgw\sigma_{\rm gw}
-DminD_{\rm min}c
-χmin2\;\;\chi^{2}_{\rm min}
-β\betad
-
-<mark>GW150914</mark>
-410−180+160410_{-180}^{+160}
-0.246
-386
-11
-2.50
-
-LVT151012
-1000−500+5001000_{-500}^{+500}
-0.301
-913
-13
-1.29
-
-GW151226
-440−190+180440_{-190}^{+180}
-0.252
-413
-11
-2.39
-
-GW170104
-880−390+450880_{-390}^{+450}
-0.290
-809
-13
-1.40
-
-GW170608
-340−140+140340_{-140}^{+140}…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …(GWs) predicted by Einstein a century ago has recently been confirmed by the detection of the first GW signal GW150914 from a binary black hole (BBH) merger by the Laser Interferometer Gravitational-Wave Observatory (LIGO) [1],…</li><li><span class="sec">introduction</span> Up to date, six BBH merger GW signals, GW150914, LVT151012 (a lower significance candidate), GW151226, GW170104, GW170608 and GW170814 and one binary neutron…</li><li><span class="sec">data</span> GW150914 410−180+160410_{-180}^{+160} 0.246 386 11 2.50</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -230,62 +201,16 @@ GW170608
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      introduction, data.</p>
+    <p class="where"><a href="https://arxiv.org/html/1803.11397v1#:~:text=LVT151012" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">LVT151012</span> or <span class="mono hit">GW151012</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…ed by the detection of the first GW signal GW150914 from a binary black hole (BBH) merger by the Laser Interferometer Gravitational-Wave Observatory (LIGO) [1], which opens a new era of astronomy and cosmology.
-Up to date, six BBH merger GW signals, GW150914, <mark>LVT151012</mark> (a lower significance candidate), GW151226, GW170104, GW170608 and GW170814 and one binary neutron star (BNS) merger GW signal GW170817 have been announced by the LIGO and Virgo Collaborations [1, 2, 3, 4, 5, 6, 7]. Simultaneous detection of GWs and electroma…</div>
     
-    
-    
-    <div class="mention"><span class="sec">data</span>…ble 1: Listing of parameters of gravitational wave sources luminosity distance and the fitting results.
-
-GW Eventa
-DgwD_{\rm gw}b
-σgw\sigma_{\rm gw}
-DminD_{\rm min}c
-χmin2\;\;\chi^{2}_{\rm min}
-β\betad
-
-GW150914
-410−180+160410_{-180}^{+160}
-0.246
-386
-11
-2.50
-
-<mark>LVT151012</mark>
-1000−500+5001000_{-500}^{+500}
-0.301
-913
-13
-1.29
-
-GW151226
-440−190+180440_{-190}^{+180}
-0.252
-413
-11
-2.39
-
-GW170104
-880−390+450880_{-390}^{+450}
-0.290
-809
-13
-1.40
-
-GW170608
-340−140+140340_{-140}^{+140}
-0.249
-320
-11
-3.05
-
-GW170814
-540−210+130540_{-210}^{+130}
-…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Up to date, six BBH merger GW signals, GW150914, LVT151012 (a lower significance candidate), GW151226, GW170104, GW170608 and GW170814 and one binary neutron star (BNS)…</li><li><span class="sec">data</span> LVT151012 1000−500+5001000_{-500}^{+500} 0.301 913 13 1.29</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -321,71 +246,16 @@ GW170814
 <section class="card" data-i="2" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      introduction, data.</p>
+    <p class="where"><a href="https://arxiv.org/html/1803.11397v1#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…W150914 from a binary black hole (BBH) merger by the Laser Interferometer Gravitational-Wave Observatory (LIGO) [1], which opens a new era of astronomy and cosmology.
-Up to date, six BBH merger GW signals, GW150914, LVT151012 (a lower significance candidate), <mark>GW151226</mark>, GW170104, GW170608 and GW170814 and one binary neutron star (BNS) merger GW signal GW170817 have been announced by the LIGO and Virgo Collaborations [1, 2, 3, 4, 5, 6, 7]. Simultaneous detection of GWs and electromagnetic (EM) radiations from the same source…</div>
     
-    
-    
-    <div class="mention"><span class="sec">data</span>…uminosity distance and the fitting results.
-
-GW Eventa
-DgwD_{\rm gw}b
-σgw\sigma_{\rm gw}
-DminD_{\rm min}c
-χmin2\;\;\chi^{2}_{\rm min}
-β\betad
-
-GW150914
-410−180+160410_{-180}^{+160}
-0.246
-386
-11
-2.50
-
-LVT151012
-1000−500+5001000_{-500}^{+500}
-0.301
-913
-13
-1.29
-
-<mark>GW151226</mark>
-440−190+180440_{-190}^{+180}
-0.252
-413
-11
-2.39
-
-GW170104
-880−390+450880_{-390}^{+450}
-0.290
-809
-13
-1.40
-
-GW170608
-340−140+140340_{-140}^{+140}
-0.249
-320
-11
-3.05
-
-GW170814
-540−210+130540_{-210}^{+130}
-0.167
-525
-11
-1.25
-
-GW170817
-40−14+840_{-14}^{+8}
-0.141
-39
-5…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Up to date, six BBH merger GW signals, GW150914, LVT151012 (a lower significance candidate), GW151226, GW170104, GW170608 and GW170814 and one binary neutron star (BNS) merger GW signal GW170817 have been announ…</li><li><span class="sec">data</span> GW151226 440−190+180440_{-190}^{+180} 0.252 413 11 2.39</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -421,77 +291,16 @@ GW170817
 <section class="card" data-i="3" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      introduction, data.</p>
+    <p class="where"><a href="https://arxiv.org/html/1803.11397v1#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…om a binary black hole (BBH) merger by the Laser Interferometer Gravitational-Wave Observatory (LIGO) [1], which opens a new era of astronomy and cosmology.
-Up to date, six BBH merger GW signals, GW150914, LVT151012 (a lower significance candidate), GW151226, <mark>GW170104</mark>, GW170608 and GW170814 and one binary neutron star (BNS) merger GW signal GW170817 have been announced by the LIGO and Virgo Collaborations [1, 2, 3, 4, 5, 6, 7]. Simultaneous detection of GWs and electromagnetic (EM) radiations from the same source can be us…</div>
     
-    
-    
-    <div class="mention"><span class="sec">data</span>…wD_{\rm gw}b
-σgw\sigma_{\rm gw}
-DminD_{\rm min}c
-χmin2\;\;\chi^{2}_{\rm min}
-β\betad
-
-GW150914
-410−180+160410_{-180}^{+160}
-0.246
-386
-11
-2.50
-
-LVT151012
-1000−500+5001000_{-500}^{+500}
-0.301
-913
-13
-1.29
-
-GW151226
-440−190+180440_{-190}^{+180}
-0.252
-413
-11
-2.39
-
-<mark>GW170104</mark>
-880−390+450880_{-390}^{+450}
-0.290
-809
-13
-1.40
-
-GW170608
-340−140+140340_{-140}^{+140}
-0.249
-320
-11
-3.05
-
-GW170814
-540−210+130540_{-210}^{+130}
-0.167
-525
-11
-1.25
-
-GW170817
-40−14+840_{-14}^{+8}
-0.141
-39
-5
-14.08
-
-a 
-
-From Refs. [1, 2, 3, 4, 5, 6, 7].
-
-b 
-
-Median…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Up to date, six BBH merger GW signals, GW150914, LVT151012 (a lower significance candidate), GW151226, GW170104, GW170608 and GW170814 and one binary neutron star (BNS) merger GW signal GW170817 have been announced by the…</li><li><span class="sec">data</span> GW170104 880−390+450880_{-390}^{+450} 0.290 809 13 1.40</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -527,74 +336,16 @@ Median…</div>
 <section class="card" data-i="4" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      introduction, data.</p>
+    <p class="where"><a href="https://arxiv.org/html/1803.11397v1#:~:text=GW170608" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…y black hole (BBH) merger by the Laser Interferometer Gravitational-Wave Observatory (LIGO) [1], which opens a new era of astronomy and cosmology.
-Up to date, six BBH merger GW signals, GW150914, LVT151012 (a lower significance candidate), GW151226, GW170104, <mark>GW170608</mark> and GW170814 and one binary neutron star (BNS) merger GW signal GW170817 have been announced by the LIGO and Virgo Collaborations [1, 2, 3, 4, 5, 6, 7]. Simultaneous detection of GWs and electromagnetic (EM) radiations from the same source can be used to test…</div>
     
-    
-    
-    <div class="mention"><span class="sec">data</span>…;\chi^{2}_{\rm min}
-β\betad
-
-GW150914
-410−180+160410_{-180}^{+160}
-0.246
-386
-11
-2.50
-
-LVT151012
-1000−500+5001000_{-500}^{+500}
-0.301
-913
-13
-1.29
-
-GW151226
-440−190+180440_{-190}^{+180}
-0.252
-413
-11
-2.39
-
-GW170104
-880−390+450880_{-390}^{+450}
-0.290
-809
-13
-1.40
-
-<mark>GW170608</mark>
-340−140+140340_{-140}^{+140}
-0.249
-320
-11
-3.05
-
-GW170814
-540−210+130540_{-210}^{+130}
-0.167
-525
-11
-1.25
-
-GW170817
-40−14+840_{-14}^{+8}
-0.141
-39
-5
-14.08
-
-a 
-
-From Refs. [1, 2, 3, 4, 5, 6, 7].
-
-b 
-
-Median value with 90% credible intervals of source luminosity d…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …to date, six BBH merger GW signals, GW150914, LVT151012 (a lower significance candidate), GW151226, GW170104, GW170608 and GW170814 and one binary neutron star (BNS) merger GW signal GW170817 have been announced by the LIGO and…</li><li><span class="sec">data</span> GW170608 340−140+140340_{-140}^{+140} 0.249 320 11 3.05</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -630,74 +381,16 @@ Median value with 90% credible intervals of source luminosity d…</div>
 <section class="card" data-i="5" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      introduction, data.</p>
+    <p class="where"><a href="https://arxiv.org/html/1803.11397v1#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…(BBH) merger by the Laser Interferometer Gravitational-Wave Observatory (LIGO) [1], which opens a new era of astronomy and cosmology.
-Up to date, six BBH merger GW signals, GW150914, LVT151012 (a lower significance candidate), GW151226, GW170104, GW170608 and <mark>GW170814</mark> and one binary neutron star (BNS) merger GW signal GW170817 have been announced by the LIGO and Virgo Collaborations [1, 2, 3, 4, 5, 6, 7]. Simultaneous detection of GWs and electromagnetic (EM) radiations from the same source can be used to test the fundamen…</div>
     
-    
-    
-    <div class="mention"><span class="sec">data</span>…0}^{+160}
-0.246
-386
-11
-2.50
-
-LVT151012
-1000−500+5001000_{-500}^{+500}
-0.301
-913
-13
-1.29
-
-GW151226
-440−190+180440_{-190}^{+180}
-0.252
-413
-11
-2.39
-
-GW170104
-880−390+450880_{-390}^{+450}
-0.290
-809
-13
-1.40
-
-GW170608
-340−140+140340_{-140}^{+140}
-0.249
-320
-11
-3.05
-
-<mark>GW170814</mark>
-540−210+130540_{-210}^{+130}
-0.167
-525
-11
-1.25
-
-GW170817
-40−14+840_{-14}^{+8}
-0.141
-39
-5
-14.08
-
-a 
-
-From Refs. [1, 2, 3, 4, 5, 6, 7].
-
-b 
-
-Median value with 90% credible intervals of source luminosity distance, in unit of Mpc.
-
-c 
-
-Luminosity distance at whic…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …BBH merger GW signals, GW150914, LVT151012 (a lower significance candidate), GW151226, GW170104, GW170608 and GW170814 and one binary neutron star (BNS) merger GW signal GW170817 have been announced by the LIGO and Virgo Collabo…</li><li><span class="sec">data</span> GW170814 540−210+130540_{-210}^{+130} 0.167 525 11 1.25</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -733,124 +426,15 @@ Luminosity distance at whic…</div>
 <section class="card" data-i="6" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>11 mentions · <span class="cptag">3 by counterpart name</span></h3>
+    <p class="where">Named 11 times:
+      introduction ×4, data ×4, conclusion ×2, abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/1803.11397v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">3 mentions use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention"><span class="sec">abstract</span>…ive distances in our formalism. We exploit the lognormal likelihoods for the available GW effective distances and a Gaussian likelihood for the luminosity distance inferred from the electromagnetic radiation observation of the binary neutron star merger event <mark>GW170817</mark>. Our fittings show no obvious damping effects in the current GW data, and the upper limit on the damping rate with the combined data is 6.75×10−4​Mpc−16.75\times 10^{-4}\,{\rm Mpc}^{-1} at 95% confidence level. By assuming that the dark matter self-scattering…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…Observatory (LIGO) [1], which opens a new era of astronomy and cosmology.
-Up to date, six BBH merger GW signals, GW150914, LVT151012 (a lower significance candidate), GW151226, GW170104, GW170608 and GW170814 and one binary neutron star (BNS) merger GW signal <mark>GW170817</mark> have been announced by the LIGO and Virgo Collaborations [1, 2, 3, 4, 5, 6, 7]. Simultaneous detection of GWs and electromagnetic (EM) radiations from the same source can be used to test the fundamental physics, for instance, the speed of GWs by measuring the…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>…nce principle by using the Shapiro effect [11, 12, 13], and the Lorentz invariance [14, 15].
-The detection of GWs and their EM counterparts can also tell us about the nature of astrophysical sources [16, 17, 18]. For instance,
-the first joint detection of the <mark class="cp">GRB 170817A</mark> and GW170817 confirmed that a neutron star binary could be the progenitor of a short-duration gamma-ray burst (GRB) [19].
-
-In the present study, we will show that the ongoing GW observations can provide us a valuable opportunity to examine how the GWs propaga…</div>
-    
-    
-    <details><summary>8 more</summary>
-    <div class="mention"><span class="sec">introduction</span>… using the Shapiro effect [11, 12, 13], and the Lorentz invariance [14, 15].
-The detection of GWs and their EM counterparts can also tell us about the nature of astrophysical sources [16, 17, 18]. For instance,
-the first joint detection of the GRB 170817A and <mark>GW170817</mark> confirmed that a neutron star binary could be the progenitor of a short-duration gamma-ray burst (GRB) [19].
-
-In the present study, we will show that the ongoing GW observations can provide us a valuable opportunity to examine how the GWs propagate through th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…as follows. We first present in Sec. II the expression of the GW strain in a viscous Universe in which we define the effective distance. In Sec. III we construct a lognormal likelihood function of effective distances for observed GW events. For the BNS merger <mark>GW170817</mark>, we also take a Gaussian likelihood for the luminosity distance inferred from the GRB observation. By using the χ2\chi^{2} statistics, we put constraints on the GW damping rate and the shear viscosity. The constraint on the DM SIs from the GW damping is discu…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…-500}^{+500}
-0.301
-913
-13
-1.29
-
-GW151226
-440−190+180440_{-190}^{+180}
-0.252
-413
-11
-2.39
-
-GW170104
-880−390+450880_{-390}^{+450}
-0.290
-809
-13
-1.40
-
-GW170608
-340−140+140340_{-140}^{+140}
-0.249
-320
-11
-3.05
-
-GW170814
-540−210+130540_{-210}^{+130}
-0.167
-525
-11
-1.25
-
-<mark>GW170817</mark>
-40−14+840_{-14}^{+8}
-0.141
-39
-5
-14.08
-
-a 
-
-From Refs. [1, 2, 3, 4, 5, 6, 7].
-
-b 
-
-Median value with 90% credible intervals of source luminosity distance, in unit of Mpc.
-
-c 
-
-Luminosity distance at which χ2\chi^{2} has minimum value, in unit of Mpc.
-
-d 
-
-Uppe…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…over, it is interesting to note from Table 1 and Fig. 2 that the constraint on β\beta becomes more stringent with a lower deviation and a larger observed luminosity distance. As an example, due to its much shorter GW propagating distance, the BNS merger event <mark>GW170817</mark> gives the upper bound β≲14.08×10−3​Mpc−1\beta\lesssim 14.08\times 10^{-3}\,{\rm Mpc}^{-1}, which is one order of magnitude less stringent than those from BBH mergers.
-
-The simultaneous detections of the GWs and their EM radiation counterpart open the multi-me…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…im 14.08\times 10^{-3}\,{\rm Mpc}^{-1}, which is one order of magnitude less stringent than those from BBH mergers.
-
-The simultaneous detections of the GWs and their EM radiation counterpart open the multi-messenger astronomy era. The recent identification of <mark>GW170817</mark> and GRB170817A for the BNS merger event can be used to further strengthen the constraint on the GW damping. In Ref. [19], the luminosity distance to the BNS merger host galaxy, NGC 4993, was determined to be 42.9±3.242.9\pm 3.2 Mpc. Since it is generically as…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">data · <span class="cptag">counterpart name, not the GW signal</span></span>…s 10^{-3}\,{\rm Mpc}^{-1}, which is one order of magnitude less stringent than those from BBH mergers.
-
-The simultaneous detections of the GWs and their EM radiation counterpart open the multi-messenger astronomy era. The recent identification of GW170817 and <mark class="cp">GRB170817A</mark> for the BNS merger event can be used to further strengthen the constraint on the GW damping. In Ref. [19], the luminosity distance to the BNS merger host galaxy, NGC 4993, was determined to be 42.9±3.242.9\pm 3.2 Mpc. Since it is generically assumed that the …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>… simpler since we do not need to reanalyse the raw GW strain data. The method can be further extended to incorporate the constraint on the true GW luminosity distance from the EM radiation counterpart of a GW event. This is exemplified by the joint fit to the <mark>GW170817</mark> and GRB170817A, both of which were believed to come from the same BNS merger event. However, due to the relatively short distance from the Earth, the final bound on the GW damping is only mildly improved.
-
-It is expected that the DM SIs can generate the shear…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">conclusion · <span class="cptag">counterpart name, not the GW signal</span></span>…e we do not need to reanalyse the raw GW strain data. The method can be further extended to incorporate the constraint on the true GW luminosity distance from the EM radiation counterpart of a GW event. This is exemplified by the joint fit to the GW170817 and <mark class="cp">GRB170817A</mark>, both of which were believed to come from the same BNS merger event. However, due to the relatively short distance from the Earth, the final bound on the GW damping is only mildly improved.
-
-It is expected that the DM SIs can generate the shear viscosity when…</div>
+    <details class="lines"><summary>Show the sentences (9, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …sity distance inferred from the electromagnetic radiation observation of the binary neutron star merger event GW170817.</li><li><span class="sec">introduction</span> …ance candidate), GW151226, GW170104, GW170608 and GW170814 and one binary neutron star (BNS) merger GW signal GW170817 have been announced by the LIGO and Virgo Collaborations [1, 2, 3, 4, 5, 6, 7].</li><li><span class="sec">introduction · counterpart name</span> For instance, the first joint detection of the GRB 170817A and GW170817 confirmed that a neutron star binary could be the progenitor of a short-duration gamma-ray burst…</li><li><span class="sec">introduction</span> For instance, the first joint detection of the GRB 170817A and GW170817 confirmed that a neutron star binary could be the progenitor of a short-duration gamma-ray burst (GRB) [19].</li><li><span class="sec">introduction</span> For the BNS merger GW170817, we also take a Gaussian likelihood for the luminosity distance inferred from the GRB observation.</li><li><span class="sec">data</span> GW170817 40−14+840_{-14}^{+8} 0.141 39 5 14.08</li><li><span class="sec">data</span> As an example, due to its much shorter GW propagating distance, the BNS merger event GW170817 gives the upper bound β≲14.08×10−3​Mpc−1\beta\lesssim 14.08\times 10^{-3}\,{\rm Mpc}^{-1}, which is one order…</li><li><span class="sec">data</span> The recent identification of GW170817 and GRB170817A for the BNS merger event can be used to further strengthen the constraint on the GW damping.</li></ul>
     </details>
     
   </div>

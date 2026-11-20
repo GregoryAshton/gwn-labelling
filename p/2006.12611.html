@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,31 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>GW190814: Gravitational Waves from the Coalescence of a 23 M$_\odot$ Black Hole with a 2.6 M$_\odot$ Compact Object</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2006.12611" target="_blank" rel="noopener" class="mono">arXiv:2006.12611</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We report the observation of a compact binary coalescence involving a 22.2 - 24.3 $M_{\odot}$ black hole and a compact object with a mass of 2.50 - 2.67 $M_{\odot}$ (all measurements quoted at the 90$\%$ credible level). The gravitational-wave signal, GW190814, was observed during LIGO&#39;s and Virgo&#39;s third observing run on August 14, 2019 at 21:10:39 UTC and has a signal-to-noise ratio of 25 in the three-detector network. The source was localized to 18.5 deg$^2$ at a distance of $241^{+41}_{-45}$ Mpc; no electromagnetic counterpart has been confirmed to date. The source has the most unequal mass ratio yet measured with gravitational waves, $0.112^{+0.008}_{-0.009}$, and its secondary component is either the lightest black hole or the heaviest neutron star ever discovered in a double compact-object system. The dimensionless spin of the primary black hole is tightly constrained to $\leq 0.07$. Tests of general relativity reveal no measurable deviations from the theory, and its prediction of higher-multipole emission is confirmed at high confidence. We estimate a merger rate density of 1-23 Gpc$^{-3}$ yr$^{-1}$ for the new class of binary coalescence sources that GW190814 represents. Astrophysical models predict that binaries with mass ratios similar to this event can form through several channels, but are unlikely to have formed in globular clusters. However, the combination of mass ratio, component masses, and the inferred merger rate for this event challenges all current models for the formation and mass distribution of compact-object binaries.</p></details>
+<div class="small mut mono">arXiv:2006.12611</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We report the observation of a compact binary coalescence involving a 22.2 - 24.3 $M_{\odot}$ black hole and a compact object with a mass of 2.50 - 2.67 $M_{\odot}$ (all measurements quoted at the 90$\%$ credible level). The gravitational-wave signal, GW190814, was observed during LIGO&#39;s and Virgo&#39;s third observing run on August 14, 2019 at 21:10:39 UTC and has a signal-to-noise ratio of 25 in the three-detector network. The source was localized to 18.5 deg$^2$ at a distance of $241^{+41}_{-45}$ Mpc; no electromagnetic counterpart has been confirmed to date. The source has the most unequal mass ratio yet measured with gravitational waves, $0.112^{+0.008}_{-0.009}$, and its secondary component is either the lightest black hole or the heaviest neutron star ever discovered in a double compact-object system. The dimensionless spin of the primary black hole is tightly constrained to $\leq 0.07$. Tests of general relativity reveal no measurable deviations from the theory, and its prediction of higher-multipole emission is confirmed at high confidence. We estimate a merger rate density of 1-23 Gpc$^{-3}$ yr$^{-1}$ for the new class of binary coalescence sources that GW190814 represents. Astrophysical models predict that binaries with mass ratios similar to this event can form through several channels, but are unlikely to have formed in globular clusters. However, the combination of mass ratio, component masses, and the inferred merger rate for this event challenges all current models for the formation and mass distribution of compact-object binaries.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2006.12611v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">7 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">7 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2006.12611v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…act-object binaries.
-
- 
-
-I INTRODUCTION
-
-The first two observing runs (O1 and O2) with Advanced LIGO [1] and Advanced Virgo [29] opened up the field of gravitational-wave astrophysics with the detection of the first binary black hole (BBH) coalescence signal, <mark>GW150914</mark> [2].
-Another nine such events [3, 17] were discovered by the LIGO Scientific and Virgo Collaborations (LVC) during this period, and additional events were reported by independent groups [270, 284, 285, 203].
-The first binary neutron star (BNS) coalescence sig…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …f gravitational-wave astrophysics with the detection of the first binary black hole (BBH) coalescence signal, GW150914 [2].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -182,11 +201,16 @@ The first binary neutron star (BNS) coalescence sig…</div>
 <section class="card" data-i="1" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2006.12611v1#:~:text=GW170608" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…n a stable operating configuration at the time of GW190814, the detector was not in observing mode due to a routine procedure to minimize angular noise coupling to the strain measurement [144]. This same procedure took place at LIGO Hanford around the time of <mark>GW170608</mark>; we refer the reader to [14] for details of this procedure. Within a 5 min window around GW190814, this procedure was not taking place, therefore LIGO Hanford data for GW190814 are usable in the nominal range of analyzed frequencies. A time–frequency represen…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> This same procedure took place at LIGO Hanford around the time of GW170608; we refer the reader to [14] for details of this procedure.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -222,15 +246,16 @@ The first binary neutron star (BNS) coalescence sig…</div>
 <section class="card" data-i="2" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>2 mentions</h3>
+    <p class="where">Named 2 times:
+      methods ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2006.12611v1#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
-    <div class="mention"><span class="sec">methods</span>…mode and 68.3%68.3\% highest posterior density interval; the median and 90% symmetric credible interval is H0=83−53+55H_{0}=83^{+55}_{-53} km s-1 Mpc-1), which can be compared to H0=75−32+40H_{0}=75^{+40}_{-32} km s-1 Mpc-1 [248] obtained using the dark siren <mark>GW170814</mark> alone. The GW190814 result is the most precise measurement from a single dark siren observation to date, albeit comparable to the GW170814 result, which is expected given GW190814’s small localization volume (∼\sim 39000 Mpc3). The result is not very constrai…</div>
     
-    
-    
-    <div class="mention"><span class="sec">methods</span>…km s-1 Mpc-1), which can be compared to H0=75−32+40H_{0}=75^{+40}_{-32} km s-1 Mpc-1 [248] obtained using the dark siren GW170814 alone. The GW190814 result is the most precise measurement from a single dark siren observation to date, albeit comparable to the <mark>GW170814</mark> result, which is expected given GW190814’s small localization volume (∼\sim 39000 Mpc3). The result is not very constraining, with the 68.3%68.3\% highest posterior density interval comprising 60%60\% of the prior range. Combining the result for GW190814 with…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …1), which can be compared to H0=75−32+40H_{0}=75^{+40}_{-32} km s-1 Mpc-1 [248] obtained using the dark siren GW170814 alone.</li><li><span class="sec">methods</span> …result is the most precise measurement from a single dark siren observation to date, albeit comparable to the GW170814 result, which is expected given GW190814’s small localization volume (∼\sim 39000 Mpc3).</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -266,74 +291,15 @@ The first binary neutron star (BNS) coalescence sig…</div>
 <section class="card" data-i="3" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>21 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…
-Another nine such events [3, 17] were discovered by the LIGO Scientific and Virgo Collaborations (LVC) during this period, and additional events were reported by independent groups [270, 284, 285, 203].
-The first binary neutron star (BNS) coalescence signal, <mark>GW170817</mark>, was discovered during the second of these observing campaigns [9, 18].
-It proved to be a multi-messenger source with emission across the electromagnetic spectrum [10], with implications for the origin of short gamma-ray bursts [11], the formation of heavy el…</div>
+    <p class="where">Named 21 times:
+      methods ×19, introduction ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2006.12611v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>… of an electromagnetic counterpart are consistent with either a neutron star (NS) or a BH given the event’s asymmetric masses and distance of 241−45+41241_{-45}^{+41} Mpc.
-However, we show here that comparisons with the maximum NS mass predicted by studies of <mark>GW170817</mark>’s remnant, by current knowledge of the NS equation of state, and by electromagnetic observations of NSs in binary systems indicate that the secondary is likely too heavy to be a NS. Either way, this is an unprecedented source because the secondary’s well-cons…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…–2.52 M⊙M_{\odot};] and the most massive known pulsar in the Galaxy: 2.14−0.09+0.10​M⊙2.14^{+0.10}_{-0.09}\,M_{\odot} at 68.3% credible interval [79]. Furthermore, the secondary is more massive than bounds on the maximum NS mass from studies of the remnant of <mark>GW170817</mark>, and from theoretical [16] and observational estimates [99]. The inferred secondary mass is comparable to the putative BH remnant mass of GW170817 [18].
-
-The primary object is identified as a BH based on its measured mass of 23.2−1.0+1.1​M⊙23.2_{-1.0}^{+1.1}\…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">methods</span>…9]. Furthermore, the secondary is more massive than bounds on the maximum NS mass from studies of the remnant of GW170817, and from theoretical [16] and observational estimates [99]. The inferred secondary mass is comparable to the putative BH remnant mass of <mark>GW170817</mark> [18].
-
-The primary object is identified as a BH based on its measured mass of 23.2−1.0+1.1​M⊙23.2_{-1.0}^{+1.1}\,M_{\odot}. Due to accurately observing the frequency evolution over a long inspiral, the chirp mass is well constrained to  6.09−0.06+0.06​M⊙\,6.0…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…tal and vertical lines, shows the 90% credible intervals. The right panel compares m2m_{2} to predictions for the maximum NS mass, MmaxM_{\rm max} (see Section VI). The posterior distribution for MmaxM_{\rm max} from the spectral equation of state analysis of <mark>GW170817</mark> [16] is shown in orange, and the empirical MmaxM_{\rm max} distribution from the population model of Farr &amp; Chatziioannou [99] is shown in green. The grey dashed line and shading represent the measured mass of the heaviest pulsar in the Galaxy [79, median and…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…] is shown in green. The grey dashed line and shading represent the measured mass of the heaviest pulsar in the Galaxy [79, median and 68% confidence interval;]. The solid grey band at 2.3​M⊙2.3\,M_{\odot} is the upper bound on MmaxM_{\rm max} from studies of <mark>GW170817</mark>’s merger remnant.
-
-Figure 4: The marginalized posterior distribution for the secondary mass obtained using a suite of waveform models. The vertical lines indicate the 90% credible bounds for each waveform model. The labels Phenom/EOBNR PHM (generic spin direc…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ude and phase at each detector, allows us to measure the location of the GW source on the sky [24]. We localize GW190814’s source to within  18.5​deg2\,18.5~\,\mathrm{deg}^{2} at 90% probability, as shown in Figure 2. This is comparable to the localization of <mark>GW170817</mark> [9, 17].
-
-Spins are a fundamental property of BHs. Their magnitude and orientation carry information regarding the evolution history of the binary. The effective inspiral spin parameter χeff\chi_{\mathrm{eff}} [82, 224, 35, 239] contains information about the…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…ass of the 1.61–2.52 M⊙M_{\odot} primary component of GW190425, which is itself an outlier relative to the Galactic population of BNSs [23]. On the other hand, it is comparable in mass to two BH candidates: the ≃ 2.7​M⊙\simeq\,2.7\,M_{\odot} merger remnant of <mark>GW170817</mark> [18] and the 2.6–6.1 M⊙M_{\odot} compact object (95% confidence interval) discovered by Thompson et al. [258].22
- 2
- 
- 
- 
- See van den Heuvel &amp; Tauris [268] and Thompson et al. [259] for discussion about the interpretation of this observation.
-It is also comp…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…io is untenable.
-
-While some candidate EOSs from nuclear theory can support nonrotating NSs with masses of up to ∼3​M⊙\sim 3\,M_{\odot} [195, e.g.,], such large values of MmaxM_{\rm max} are disfavored by the relatively small tidal deformabilities measured in <mark>GW170817</mark> [9, 18], which correlate with smaller internal pressure gradients as a function of density and hence a lower threshold for gravitational collapse. By adopting a phenomenological model for the EOS, conditioning it on GW170817, and extrapolating the constraints…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>… tidal deformabilities measured in GW170817 [9, 18], which correlate with smaller internal pressure gradients as a function of density and hence a lower threshold for gravitational collapse. By adopting a phenomenological model for the EOS, conditioning it on <mark>GW170817</mark>, and extrapolating the constraints to the high densities relevant for the maximum mass, Lim &amp; Holt [170] and Essick et al. [95] place Mmax≲2.3​M⊙M_{\rm max}\lesssim 2.3\,M_{\odot}. Similarly, the EOS inference reported in Abbott et al. [16], based on an analy…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…xtrapolating the constraints to the high densities relevant for the maximum mass, Lim &amp; Holt [170] and Essick et al. [95] place Mmax≲2.3​M⊙M_{\rm max}\lesssim 2.3\,M_{\odot}. Similarly, the EOS inference reported in Abbott et al. [16], based on an analysis of <mark>GW170817</mark> with a spectral parameterization [171, 172, 173] for the EOS, implies a 90% credible upper bound of Mmax≤2.43​M⊙M_{\rm max}\leq 2.43\,M_{\odot}, with tenuous but non-zero posterior support beyond 2.6​M⊙2.6\,M_{\odot}. We calculate the corresponding MmaxM_{\rm…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…credible upper bound of Mmax≤2.43​M⊙M_{\rm max}\leq 2.43\,M_{\odot}, with tenuous but non-zero posterior support beyond 2.6​M⊙2.6\,M_{\odot}. We calculate the corresponding MmaxM_{\rm max} posterior distribution, shown in the right panel of Figure 3, from the <mark>GW170817</mark>-informed spectral EOS samples used in Abbott et al. [16] by reconstructing each EOS from its parameters and computing its maximum mass. Comparison with the m2m_{2} posterior suggests that the secondary component of GW190814 is probably more massive than this …</div>
+    <details class="lines"><summary>Show the sentences (20, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> The first binary neutron star (BNS) coalescence signal, GW170817, was discovered during the second of these observing campaigns [9, 18].</li><li><span class="sec">introduction</span> However, we show here that comparisons with the maximum NS mass predicted by studies of GW170817’s remnant, by current knowledge of the NS equation of state, and by electromagnetic observations of NSs in bi…</li><li><span class="sec">methods</span> Furthermore, the secondary is more massive than bounds on the maximum NS mass from studies of the remnant of GW170817, and from theoretical [16] and observational estimates [99].</li><li><span class="sec">methods</span> The inferred secondary mass is comparable to the putative BH remnant mass of GW170817 [18].</li><li><span class="sec">methods</span> The posterior distribution for MmaxM_{\rm max} from the spectral equation of state analysis of GW170817 [16] is shown in orange, and the empirical MmaxM_{\rm max} distribution from the population model of Farr &amp; C…</li><li><span class="sec">methods</span> The solid grey band at 2.3​M⊙2.3\,M_{\odot} is the upper bound on MmaxM_{\rm max} from studies of GW170817’s merger remnant.</li><li><span class="sec">methods</span> This is comparable to the localization of GW170817 [9, 17].</li><li><span class="sec">methods</span> …her hand, it is comparable in mass to two BH candidates: the ≃ 2.7​M⊙\simeq\,2.7\,M_{\odot} merger remnant of GW170817 [18] and the 2.6–6.1 M⊙M_{\odot} compact object (95% confidence interval) discovered by Thompson et al. [258]…</li></ul>
     </details>
     
   </div>
@@ -370,37 +336,15 @@ While some candidate EOSs from nuclear theory can support nonrotating NSs with m
 <section class="card" data-i="4" data-event="GW190412">
   <div class="ctx">
     <div class="evname mono">GW190412</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…VC recently reported on the discovery of GW190425, the coalescence signal of what is most likely a BNS
-with unusually large chirp mass and total mass compared to the Galactic BNSs known from radio pulsar observations [23].
-Another discovery from O3 is that of <mark>GW190412</mark>, the first BBH coalescence with an unequivocally unequal mass ratio q=m2/m1q=m_{2}/m_{1} of 0.28−0.06+0.120.28^{+0.12}_{-0.06} (all measurements are reported as symmetric 90% credible intervals around the median of the marginalized posterior distribution, unl…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…y too heavy to be a NS. Either way, this is an unprecedented source because the secondary’s well-constrained mass of  2.50– 2.67 M⊙M_{\odot} makes it either the lightest BH or the heaviest NS ever observed in a double compact-object system.
-
-As in the case of <mark>GW190412</mark>, we are able to measure the presence of higher multipoles in the gravitational radiation, and a set of tests of general relativity with the signal reveal no deviations from the theory. Treating this event as a new class of compact binary coalescences, we esti…</div>
+    <p class="where">Named 5 times:
+      methods ×3, introduction ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2006.12611v1#:~:text=GW190412" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190412</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>… measurement of the inclination of the source. This allows for the distance-inclination degeneracy to be broken [80, 7, 264, 139]. Measuring higher-order multipoles therefore gives more precise measurements of source parameters [266, 267, 152, 55, 192, 161].
-
-<mark>GW190412</mark> was the first event where there was significant evidence for higher-order multipoles [213, 161, 26]. GW190814 exhibits stronger evidence for higher-order multipoles, with log10⁡ℬ≃9.6\log_{10}\mathcal{B}\simeq 9.6 in favor of a higher-multipole vs. a pure quad…</div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">methods</span>…ours of data adjacent to the event (off-source data), where the largest background β\beta is 7.597.59. The significant difference between on- and off-source values provides much stronger evidence for the presence of higher multipoles than what is reported for <mark>GW190412</mark> [26].
-
-The second analysis uses waveform-agnostic methods to reconstruct the signal. It then compares the observed coherent signal energy in the LIGO Hanford–LIGO Livingston–Virgo network of detectors, as identified by the cWB detection pipeline [155], with t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…d O2 is ≃0.9\simeq 0.9 [231], and an inference of the underlying population predicted that 99% of detectable BBHs have mass ratios q≥0.5q\geq 0.5 [105]. However, the paucity of events from O1 and O2 means that this picture is limited. Indeed, the discovery of <mark>GW190412</mark> has already changed the picture substantially [26].
-
-GW190814’s secondary mass lies in the hypothesized lower mass gap of 2.52.5–5​M⊙5\,M_{\odot} [50, 209, 101, 210] between known NSs and BHs. It is heavier than the most massive pulsar in the Galaxy [79],
-and…</div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Another discovery from O3 is that of GW190412, the first BBH coalescence with an unequivocally unequal mass ratio q=m2/m1q=m_{2}/m_{1} of 0.28−0.06+0.120.2…</li><li><span class="sec">introduction</span> As in the case of GW190412, we are able to measure the presence of higher multipoles in the gravitational radiation, and a set of tests…</li><li><span class="sec">methods</span> GW190412 was the first event where there was significant evidence for higher-order multipoles [213, 161, 26].</li><li><span class="sec">methods</span> …source values provides much stronger evidence for the presence of higher multipoles than what is reported for GW190412 [26].</li><li><span class="sec">methods</span> Indeed, the discovery of GW190412 has already changed the picture substantially [26].</li></ul>
     </details>
     
   </div>
@@ -437,33 +381,15 @@ and…</div>
 <section class="card" data-i="5" data-event="GW190425">
   <div class="ctx">
     <div class="evname mono">GW190425</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ion of heavy elements [12, 70, 253, 230, 143, 279], cosmology [13, 19] and fundamental physics [11, 20].
-
-The first six months of the third observing run (O3) were completed between April 1 and September 30, 2019. The LVC recently reported on the discovery of <mark>GW190425</mark>, the coalescence signal of what is most likely a BNS
-with unusually large chirp mass and total mass compared to the Galactic BNSs known from radio pulsar observations [23].
-Another discovery from O3 is that of GW190412, the first BBH coalescence with an unequ…</div>
+    <p class="where">Named 4 times:
+      methods ×3, introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2006.12611v1#:~:text=GW190425" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190425</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>… in the last column of Table 1, and we refer to these values throughout the paper unless stated otherwise.
-
-We find that the secondary mass lies in the range  2.50– 2.67M⊙\,M_{\odot}. This inferred secondary mass exceeds the bounds of the primary component in <mark>GW190425</mark> [23, 1.61–2.52 M⊙M_{\odot};] and the most massive known pulsar in the Galaxy: 2.14−0.09+0.10​M⊙2.14^{+0.10}_{-0.09}\,M_{\odot} at 68.3% credible interval [79]. Furthermore, the secondary is more massive than bounds on the maximum NS mass from studies of the r…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…in the hypothesized lower mass gap of 2.52.5–5​M⊙5\,M_{\odot} [50, 209, 101, 210] between known NSs and BHs. It is heavier than the most massive pulsar in the Galaxy [79],
-and almost certainly exceeds the mass of the 1.61–2.52 M⊙M_{\odot} primary component of <mark>GW190425</mark>, which is itself an outlier relative to the Galactic population of BNSs [23]. On the other hand, it is comparable in mass to two BH candidates: the ≃ 2.7​M⊙\simeq\,2.7\,M_{\odot} merger remnant of GW170817 [18] and the 2.6–6.1 M⊙M_{\odot} compact object (95% …</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">methods</span>…irical MmaxM_{\rm max} prediction is sensitive to selection effects that could potentially bias it [36]. In particular, masses are only measurable for binary pulsars, and the mass distribution of isolated NSs could be different.
-Additionally, the discovery of <mark>GW190425</mark> [23]
-should also be taken into account in the population when predicting MmaxM_{\rm max}.
-
-Finally, the NS maximum mass is constrained by studies of the merger remnant of GW170817. Although no postmerger gravitational waves were observed [15, 22], modeling of…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> The LVC recently reported on the discovery of GW190425, the coalescence signal of what is most likely a BNS with unusually large chirp mass and total mass compared…</li><li><span class="sec">methods</span> This inferred secondary mass exceeds the bounds of the primary component in GW190425 [23, 1.61–2.52 M⊙M_{\odot};] and the most massive known pulsar in the Galaxy: 2.14−0.09+0.10​M⊙2.14^{+0.10}_{…</li><li><span class="sec">methods</span> …r in the Galaxy [79], and almost certainly exceeds the mass of the 1.61–2.52 M⊙M_{\odot} primary component of GW190425, which is itself an outlier relative to the Galactic population of BNSs [23].</li><li><span class="sec">methods</span> Additionally, the discovery of GW190425 [23] should also be taken into account in the population when predicting MmaxM_{\rm max}.</li></ul>
     </details>
     
   </div>
@@ -500,202 +426,15 @@ Finally, the NS maximum mass is constrained by studies of the merger remnant of 
 <section class="card" data-i="6" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>90 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span><mark>GW190814</mark>: Gravitational Waves from the Coalescence of a 23 M⊙ Black Hole with a 2.6 M⊙ Compact Object
-
- 
- 
-
- 
-
-Skip to main content
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without …</div>
+    <p class="where">Named 90 times:
+      methods ×66, introduction ×14, title/headings ×4, conclusion ×3, abstract ×2, data.</p>
+    <p class="where"><a href="https://arxiv.org/html/2006.12611v1#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…act
- 
- 
- Download PDF
- 
- Contents
- 
- 
- Reading mode
- 
- 
- Colour theme
- 
-
-Abstract
-
-I INTRODUCTION
-
-II Detector Network
-
-III Detection
-
-III.1 Low-latency Identification of a Candidate Event
-
-III.2 Multi-messenger Follow-up
-
-III.3 Significance
-
-IV Properties of <mark>GW190814</mark>
-
-IV.1 Properties
-
-IV.2 Evidence for Higher-order Multipoles
-
-V Tests of General Relativity
-
-VI Astrophysical Implications
-
-VI.1 Merger Rate Density
-
-VI.2 Nature of the Secondary Component
-
-VI.3 Origins of GW190814-like Systems
-
-VI.4 Cosmological Implications
-…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…llow-up
-
-III.3 Significance
-
-IV Properties of GW190814
-
-IV.1 Properties
-
-IV.2 Evidence for Higher-order Multipoles
-
-V Tests of General Relativity
-
-VI Astrophysical Implications
-
-VI.1 Merger Rate Density
-
-VI.2 Nature of the Secondary Component
-
-VI.3 Origins of <mark>GW190814</mark>-like Systems
-
-VI.4 Cosmological Implications
-
-VII Conclusions
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2006.12611v1 [astro-ph.HE] 22 Jun 2020
-
-GW190814: Gravitational Waves from the Coalescence of a 23 M⊙ Black Hole 
-with a…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">front_matter</span>…r Rate Density
-
-VI.2 Nature of the Secondary Component
-
-VI.3 Origins of GW190814-like Systems
-
-VI.4 Cosmological Implications
-
-VII Conclusions
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2006.12611v1 [astro-ph.HE] 22 Jun 2020
-
-<mark>GW190814</mark>: Gravitational Waves from the Coalescence of a 23 M⊙ Black Hole 
-with a 2.6 M⊙ Compact Object
-
-The detection of the signal and subsequent significance evaluation were performed
-with the GstLAL-based inspiral software pipeline [62, 220, 187, 237, 118], built o…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…tract
-
- 
-We report the observation of a compact binary coalescence involving a  22.2 – 24.3 M⊙M_{\odot} black hole and a compact object with a mass of  2.50 – 2.67 M⊙M_{\odot} (all measurements quoted at the 90% credible level). The gravitational-wave signal, <mark>GW190814</mark>, was observed during LIGO’s and Virgo’s third observing run on August 14, 2019 at 21:10:39 UTC and has a signal-to-noise ratio of 25 in the three-detector network. The source was localized to 18.5 deg2 at a distance of 241−45+41241_{-45}^{+41} Mpc; no electro…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…s of general relativity reveal no measurable deviations from the theory, and its prediction of higher-multipole emission is confirmed at high confidence. We estimate a merger rate density of 1–23 Gpc-3 yr-1 for the new class of binary coalescence sources that <mark>GW190814</mark> represents.
-Astrophysical models predict that binaries with mass ratios similar to this event can form through several channels, but are unlikely to have formed in globular clusters.
-However, the combination of mass ratio, component masses, and the inferred m…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…tervals around the median of the marginalized posterior distribution, unless otherwise specified). It is also the first event for which higher-multipole gravitational radiation was detected with high significance [26].
-
-Here we report on another O3 detection, <mark>GW190814</mark>, the signal of a compact binary coalescence with the most unequal mass ratio yet measured with gravitational waves: q=0.112−0.009+0.008q=0.112_{-0.009}^{+0.008}. The signal was first identified in data from two detectors, LIGO Livingston and Virgo, on  2019 A…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…fied in data from two detectors, LIGO Livingston and Virgo, on  2019 August 14, 21:11:00 UTC.
-Subsequent analysis of data from the full three-detector network revealed a merger signal with signal-to-noise ratio (SNR) of ≃25\simeq 25.
-
-The primary component of <mark>GW190814</mark> is conclusively a black hole (BH) with mass m1=23.2−1.0+1.1​M⊙m_{1}=23.2_{-1.0}^{+1.1}\,M_{\odot}. Its dimensionless spin magnitude is constrained to χ1≤ 0.07\chi_{1}\leq\,0.07. The nature of the 2.59−0.09+0.082.59_{-0.09}^{+0.08} M⊙M_{\odot} secondary compon…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ltipoles in the gravitational radiation, and a set of tests of general relativity with the signal reveal no deviations from the theory. Treating this event as a new class of compact binary coalescences, we estimate a merger rate density of 1–23 Gpc-3 yr-1 for <mark>GW190814</mark>-like events. Forming coalescing compact binaries with this unusual combination of masses at such a rate challenges our current understanding of astrophysical models.
-
-We report on the status of the detector network and the specifics of the detection in Sectio…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… are described in Section 5. In Section 6, we calculate the merger rate density and discuss implications for the nature of the secondary component, compact binary formation and cosmology. Section 7 summarizes our findings.
-
-II Detector Network
-
-At the time of <mark>GW190814</mark>, LIGO Hanford, LIGO Livingston and Virgo were operating with typical O3 sensitivities [23]. Although LIGO Hanford was in a stable operating configuration at the time of GW190814, the detector was not in observing mode due to a routine procedure to minimize an…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…osmology. Section 7 summarizes our findings.
-
-II Detector Network
-
-At the time of GW190814, LIGO Hanford, LIGO Livingston and Virgo were operating with typical O3 sensitivities [23]. Although LIGO Hanford was in a stable operating configuration at the time of <mark>GW190814</mark>, the detector was not in observing mode due to a routine procedure to minimize angular noise coupling to the strain measurement [144]. This same procedure took place at LIGO Hanford around the time of GW170608; we refer the reader to [14] for details of this …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… due to a routine procedure to minimize angular noise coupling to the strain measurement [144]. This same procedure took place at LIGO Hanford around the time of GW170608; we refer the reader to [14] for details of this procedure. Within a 5 min window around <mark>GW190814</mark>, this procedure was not taking place, therefore LIGO Hanford data for GW190814 are usable in the nominal range of analyzed frequencies. A time–frequency representation [67] of the data
-from all three detectors around the time of the signal is shown in Figure …</div>
+    <details class="lines"><summary>Show the sentences (82, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> GW190814: Gravitational Waves from the Coalescence of a 23 M⊙ Black Hole with a 2.6 M⊙ Compact Object</li><li><span class="sec">title/headings</span> IV Properties of GW190814</li><li><span class="sec">title/headings</span> VI.3 Origins of GW190814-like Systems</li><li><span class="sec">abstract</span> The gravitational-wave signal, GW190814, was observed during LIGO’s and Virgo’s third observing run on August 14, 2019 at 21:10:39 UTC and has a sign…</li><li><span class="sec">abstract</span> We estimate a merger rate density of 1–23 Gpc-3 yr-1 for the new class of binary coalescence sources that GW190814 represents.</li><li><span class="sec">introduction</span> Here we report on another O3 detection, GW190814, the signal of a compact binary coalescence with the most unequal mass ratio yet measured with gravitational…</li><li><span class="sec">introduction</span> The primary component of GW190814 is conclusively a black hole (BH) with mass m1=23.2−1.0+1.1​M⊙m_{1}=23.2_{-1.0}^{+1.1}\,M_{\odot}.</li><li><span class="sec">introduction</span> …event as a new class of compact binary coalescences, we estimate a merger rate density of 1–23 Gpc-3 yr-1 for GW190814-like events.</li></ul>
     </details>
     
   </div>

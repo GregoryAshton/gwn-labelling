@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -124,176 +140,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Properties of the Binary Black Hole Merger GW150914</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1602.03840" target="_blank" rel="noopener" class="mono">arXiv:1602.03840</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">On September 14, 2015, the Laser Interferometer Gravitational-wave Observatory (LIGO) detected a gravitational-wave transient (GW150914); we characterize the properties of the source and its parameters. The data around the time of the event were analyzed coherently across the LIGO network using a suite of accurate waveform models that describe gravitational waves from a compact binary system in general relativity. GW150914 was produced by a nearly equal mass binary black hole of $36^{+5}_{-4} M_\odot$ and $29^{+4}_{-4} M_\odot$; for each parameter we report the median value and the range of the 90% credible interval. The dimensionless spin magnitude of the more massive black hole is bound to be $&lt;0.7$ (at 90% probability). The luminosity distance to the source is $410^{+160}_{-180}$ Mpc, corresponding to a redshift $0.09^{+0.03}_{-0.04}$ assuming standard cosmology. The source location is constrained to an annulus section of $610$ deg$^2$, primarily in the southern hemisphere. The binary merges into a black hole of $62^{+4}_{-4} M_\odot$ and spin $0.67^{+0.05}_{-0.07}$. This black hole is significantly more massive than any other inferred from electromagnetic observations in the stellar-mass regime.</p></details>
+<div class="small mut mono">arXiv:1602.03840</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">On September 14, 2015, the Laser Interferometer Gravitational-wave Observatory (LIGO) detected a gravitational-wave transient (GW150914); we characterize the properties of the source and its parameters. The data around the time of the event were analyzed coherently across the LIGO network using a suite of accurate waveform models that describe gravitational waves from a compact binary system in general relativity. GW150914 was produced by a nearly equal mass binary black hole of $36^{+5}_{-4} M_\odot$ and $29^{+4}_{-4} M_\odot$; for each parameter we report the median value and the range of the 90% credible interval. The dimensionless spin magnitude of the more massive black hole is bound to be $&lt;0.7$ (at 90% probability). The luminosity distance to the source is $410^{+160}_{-180}$ Mpc, corresponding to a redshift $0.09^{+0.03}_{-0.04}$ assuming standard cosmology. The source location is constrained to an annulus section of $610$ deg$^2$, primarily in the southern hemisphere. The binary merges into a black hole of $62^{+4}_{-4} M_\odot$ and spin $0.67^{+0.05}_{-0.07}$. This black hole is significantly more massive than any other inferred from electromagnetic observations in the stellar-mass regime.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/pdf/1602.03840v2" target="_blank" rel="noopener">Open the paper (PDF, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched; it's a PDF, so use your viewer's search.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>47 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>Properties of the Binary Black Hole Merger <mark>GW150914</mark>
-B. P . Abbott et al. *
-(LIGO Scientific Collaboration and Virgo Collaboration)
-(Received 18 February 2016; revised manuscript received 18 April 2016; published 14 June 2016)
-On September 14, 2015, the Laser Interferometer Gravitational-Wave Observatory (LIGO)…</div>
+    <p class="where">Named 47 times:
+      results ×18, discussion ×10, introduction ×9, methods ×5, title/headings ×3, conclusion ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…ollaboration and Virgo Collaboration)
-(Received 18 February 2016; revised manuscript received 18 April 2016; published 14 June 2016)
-On September 14, 2015, the Laser Interferometer Gravitational-Wave Observatory (LIGO) detected a
-gravitational-wave transient (<mark>GW150914</mark>); we characterize the properties of the source and its parameters.
-The data around the time of the event were analyzed coherently across the LIGO network using a suite of
-accurate waveform models that describe gravitational waves from a compact binary system …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…properties of the source and its parameters.
-The data around the time of the event were analyzed coherently across the LIGO network using a suite of
-accurate waveform models that describe gravitational waves from a compact binary system in general
-relativity. <mark>GW150914</mark> was produced by a nearly equal mass binary black hole of masses 36þ5
-−4 M⊙ and
-29þ4
-−4 M⊙; for each parameter we report the median value and the range of the 90% credible interval. The
-dimensionless spin magnitude of the more massive black hole is bound to be…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…d on September 14, 2015 at 09:50:45
-UTC, by the twin instruments of the twin instruments of
-the Laser Interferometer Gravitational-Wave Observatory
-(LIGO) located at Hanford, Washington, and Livingston,
-Louisiana, in the USA [2,3]. The transient signal, named
-<mark>GW150914</mark>, was detected with a false-alarm-probability of
-&lt; 2 × 10−7 and has been associated with the merger of a
-binary system of black holes (BHs).
-Here we discuss the properties of this source and its
-inferred parameters. The results are based on a complete
-analysis…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ce
-of the considered models with a fine (stochastic) sampling;
-we also account for uncertainty in the calibration of the
-measured strain. The results of this analysis provide the
-parameter values quoted in Ref. [1] describing the proper-
-ties of the source of <mark>GW150914</mark>. (Following the publication
-of Ref. [1] we repeated the analysis after fixing minor errors
-in the coordinate transformation between precessing and
-nonprecessing binary systems that affects waveforms used
-in the analysis. The parameter values reported here, in…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ude the eccentricity
-parameters), and we find no evidence for residual eccen-
-tricity, see the Discussion. Under the approximation of a
-circular orbit, the binary emits GWs primarily at twice the
-orbital frequency [18].
-The gravitational waveform observed for <mark>GW150914</mark>
-comprises ∼10 cycles during the inspiral phase from 30 Hz,
-followed by the merger and ringdown. The properties of the
-binary affect the phase and amplitude evolution of the
-observed GWs, allowing us to measure the source param-
-eters. Here we briefly summariz…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…n. The properties of the
-binary affect the phase and amplitude evolution of the
-observed GWs, allowing us to measure the source param-
-eters. Here we briefly summarize these signatures, and
-provide an insight into our ability to characterize the
-properties of <mark>GW150914</mark> before we present the details of
-the Results; for methodological studies, we refer the reader
-to Refs. [4,19–24] and references therein.
-In general relativity, gravitational radiation is fully
-described by two independent, and time-dependent polar-
-izations, …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…xpressed as
-hþðtÞ¼ AGWðtÞð1 þ cos2ιÞ cos ϕGWðtÞ; ð2aÞ
-h×ðtÞ¼ −2AGWðtÞ cos ι sin ϕGWðtÞ; ð2bÞ
-where AGWðtÞ and ϕGWðtÞ are the GW amplitude and phase,
-respectively. For a binary viewed face-on (cos ι ¼/C6 1),
-TABLE I. Summary of the parameters that characterize <mark>GW150914</mark>. For model parameters we report the median value as well as the
-range of the symmetric 90% credible interval [4]; where useful, we also quote 90% credible bounds. For the logarithm of the Bayes
-factor for a signal compared to Gaussian noise we report the mean…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ng the posteriors for the two models. For the Overall results we quote both the 90% credible interval or
-bound and an estimate for the 90% range of systematic error on this determined from the variance between waveform models. The sky
-location associated with <mark>GW150914</mark> is presented in Fig. 4 and discussed in the text.
-EOBNR IMRPhenom Overall
-Detector-frame total mass M=M⊙ 70.3þ5.3
-−4.8 70.9þ4.0
-−3.9 70.6þ4.6/C6 0.5
-−4.5/C6 1.3
-Detector-frame chirp mass M=M⊙ 30.2þ2.5
-−1.9 30.6þ1.8
-−1.8 30.4þ2.1/C6 0.2
-−1.9/C6 0.5
-Detector-fr…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…r a binary observed
-edge-on (cos ι ¼ 0), GWs are linearly polarized.
-During the inspiral, the phase evolutionϕGWðt; m1;2; S1;2Þ
-can be computed using post-Newtonian (PN) theory, which
-is a perturbative expansion in powers of the orbital velocity
-v=c [27]. For <mark>GW150914</mark>, v=c is in the range ≈0.2–0.5 in
-the LIGO sensitivity band. At the leading order, the phase
-evolution is driven by a particular combination of the two
-masses, commonly called the chirp mass [28],
-M ¼ ðm1m2Þ3=5
-M1=5 ≃ c3
-G
-/C20 5
-96 π−8=3f−11=3 _f
-/C21 3=5
-; ð…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ude consistency
-allow us to untangle some of the geometry of the source. If
-the binary is precessing, the GW amplitude and phase have
-a complicated dependency on the orientation of the binary,
-which provides additional information.
-Our ability to characterize <mark>GW150914</mark> as the signature of
-a binary system of compact objects, as we have outlined
-above, is dependent on the finite signal-to-noise ratio
-(SNR) of the signal and the specific properties of the
-underlying source. These properties described in detail
-below, and the i…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…binary system of compact objects, as we have outlined
-above, is dependent on the finite signal-to-noise ratio
-(SNR) of the signal and the specific properties of the
-underlying source. These properties described in detail
-below, and the inferred parameters for <mark>GW150914</mark> are
-summarized in Table I and Figs. 1–6.
-II. METHOD
-Full information about the properties of the source is
-provided by the probability density function (PDF) pð~ϑj~dÞ
-of the unknown parameters ~ϑ, given the two data streams
-from the instruments ~d.
-The poster…</div>
+    <details class="lines"><summary>Show the sentences (45, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Properties of the Binary Black Hole Merger GW150914 B.</li><li><span class="sec">title/headings</span> …2015, the Laser Interferometer Gravitational-Wave Observatory (LIGO) detected a gravitational-wave transient (GW150914); we characterize the properties of the source and its parameters.</li><li><span class="sec">title/headings</span> GW150914 was produced by a nearly equal mass binary black hole of masses 36þ5 −4 M⊙ and 29þ4 −4 M⊙; for each parameter…</li><li><span class="sec">introduction</span> The transient signal, named GW150914, was detected with a false-alarm-probability of &lt; 2 × 10−7 and has been associated with the merger of a binar…</li><li><span class="sec">introduction</span> …of this analysis provide the parameter values quoted in Ref. [1] describing the proper- ties of the source of GW150914.</li><li><span class="sec">introduction</span> The gravitational waveform observed for GW150914 comprises ∼10 cycles during the inspiral phase from 30 Hz, followed by the merger and ringdown.</li><li><span class="sec">introduction</span> …briefly summarize these signatures, and provide an insight into our ability to characterize the properties of GW150914 before we present the details of the Results; for methodological studies, we refer the reader to Refs. [4,19–…</li><li><span class="sec">introduction</span> Summary of the parameters that characterize GW150914.</li></ul>
     </details>
     
   </div>
@@ -349,7 +222,7 @@ The poster…</div>
 </section>
 </div>
 </div>
-<script>window.SG_PAGE = {"answers": {"GW150914": ["strain_analysis"]}, "arxiv_id": "1602.03840", "events": ["GW150914"], "kind": "calibration", "uniform": false};</script>
+<script>window.SG_PAGE = {"answers": {"GW150914": ["strain_analysis"]}, "arxiv_id": "1602.03840", "events": ["GW150914"], "kind": "calibration", "notes": {"GW150914": "The collaboration\u0027s own parameter estimation of GW150914 from the detector data. Strain analysis (Q1)."}, "uniform": false};</script>
 <script src="../config.js"></script>
 <script src="../sg.js"></script>
 <script>SG.paperPage();</script>

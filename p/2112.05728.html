@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,96 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Cosmology and modified gravitational wave propagation from binary black hole population models</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2112.05728" target="_blank" rel="noopener" class="mono">arXiv:2112.05728</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">A joint hierarchical Bayesian analysis of the binary black hole (BBH) mass function, merger rate evolution, and cosmological parameters can be used to extract information on both the cosmological and population parameters. We extend this technique to include the effect of modified gravitational wave (GW) propagation. We discuss the constraints on the parameter Ξ&lt;SUB&gt;0&lt;/SUB&gt; that describe this phenomenon [with Ξ&lt;SUB&gt;0&lt;/SUB&gt;=1 in general relativity (GR)] using the data from the third gravitational wave transient catalog. We find the constraints Ξ&lt;SUB&gt;0&lt;/SUB&gt;=1. 2&lt;SUB&gt;-0.7&lt;/SUB&gt;&lt;SUP&gt;+0.7&lt;/SUP&gt; with a flat prior on Ξ&lt;SUB&gt;0&lt;/SUB&gt;, and Ξ&lt;SUB&gt;0&lt;/SUB&gt;=1. 0&lt;SUB&gt;-0.8&lt;/SUB&gt;&lt;SUP&gt;+0.4&lt;/SUP&gt; with a prior uniform in log Ξ&lt;SUB&gt;0&lt;/SUB&gt; (68% C.L., maximum posterior and highest-density interval), which only rely on the presence of a feature in the BBH mass distribution around ∼30 - 45 M&lt;SUB&gt;☉&lt;/SUB&gt; and are robust to whether or not the event GW190521 is considered an outlier of the population. We then study in more detail the effects of modified GW propagation on population and cosmological analyses for LIGO/Virgo at design sensitivity. We find that, for a given data-taking period, the relative error ∆ Ξ&lt;SUB&gt;0&lt;/SUB&gt;/Ξ&lt;SUB&gt;0&lt;/SUB&gt; has a significant dependence on the fiducial value of Ξ&lt;SUB&gt;0&lt;/SUB&gt;, since the latter has a strong influence on the detection rate. For five years of data, the accuracy ranges from ∼10 % on Ξ&lt;SUB&gt;0&lt;/SUB&gt; when Ξ&lt;SUB&gt;0&lt;/SUB&gt;=1 to ∆ Ξ&lt;SUB&gt;0&lt;/SUB&gt;/Ξ&lt;SUB&gt;0&lt;/SUB&gt;∼20 % for Ξ&lt;SUB&gt;0&lt;/SUB&gt;=1.8 , which represents a large deviation from GR, still consistent with current limits and predicted by viable cosmological models. For the Hubble parameter, we forecast an accuracy of ∆ H&lt;SUB&gt;0&lt;/SUB&gt;/H&lt;SUB&gt;0&lt;/SUB&gt;∼20 % and an accuracy on H (z ) of ∼7 % at a pivot redshift z&lt;SUB&gt;*&lt;/SUB&gt;∼0.8 ; this updates the results found in previous studies, by making use of a population model compatible with current observations, and is about a factor 2 worse, in twice the observing time. We finally show that, if nature is described by a modified gravity theory with a large deviation from the GR value Ξ&lt;SUB&gt;0&lt;/SUB&gt;=1 , such as Ξ&lt;SUB&gt;0&lt;/SUB&gt;=1.8 , analyzing the data assuming GR produces a significant bias in the inferred values of the mass scales, Hubble constant, and particularly the BBH merger rate.</p></details>
+<div class="small mut mono">arXiv:2112.05728</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">A joint hierarchical Bayesian analysis of the binary black hole (BBH) mass function, merger rate evolution, and cosmological parameters can be used to extract information on both the cosmological and population parameters. We extend this technique to include the effect of modified gravitational wave (GW) propagation. We discuss the constraints on the parameter Ξ&lt;SUB&gt;0&lt;/SUB&gt; that describe this phenomenon [with Ξ&lt;SUB&gt;0&lt;/SUB&gt;=1 in general relativity (GR)] using the data from the third gravitational wave transient catalog. We find the constraints Ξ&lt;SUB&gt;0&lt;/SUB&gt;=1. 2&lt;SUB&gt;-0.7&lt;/SUB&gt;&lt;SUP&gt;+0.7&lt;/SUP&gt; with a flat prior on Ξ&lt;SUB&gt;0&lt;/SUB&gt;, and Ξ&lt;SUB&gt;0&lt;/SUB&gt;=1. 0&lt;SUB&gt;-0.8&lt;/SUB&gt;&lt;SUP&gt;+0.4&lt;/SUP&gt; with a prior uniform in log Ξ&lt;SUB&gt;0&lt;/SUB&gt; (68% C.L., maximum posterior and highest-density interval), which only rely on the presence of a feature in the BBH mass distribution around ∼30 - 45 M&lt;SUB&gt;☉&lt;/SUB&gt; and are robust to whether or not the event GW190521 is considered an outlier of the population. We then study in more detail the effects of modified GW propagation on population and cosmological analyses for LIGO/Virgo at design sensitivity. We find that, for a given data-taking period, the relative error ∆ Ξ&lt;SUB&gt;0&lt;/SUB&gt;/Ξ&lt;SUB&gt;0&lt;/SUB&gt; has a significant dependence on the fiducial value of Ξ&lt;SUB&gt;0&lt;/SUB&gt;, since the latter has a strong influence on the detection rate. For five years of data, the accuracy ranges from ∼10 % on Ξ&lt;SUB&gt;0&lt;/SUB&gt; when Ξ&lt;SUB&gt;0&lt;/SUB&gt;=1 to ∆ Ξ&lt;SUB&gt;0&lt;/SUB&gt;/Ξ&lt;SUB&gt;0&lt;/SUB&gt;∼20 % for Ξ&lt;SUB&gt;0&lt;/SUB&gt;=1.8 , which represents a large deviation from GR, still consistent with current limits and predicted by viable cosmological models. For the Hubble parameter, we forecast an accuracy of ∆ H&lt;SUB&gt;0&lt;/SUB&gt;/H&lt;SUB&gt;0&lt;/SUB&gt;∼20 % and an accuracy on H (z ) of ∼7 % at a pivot redshift z&lt;SUB&gt;*&lt;/SUB&gt;∼0.8 ; this updates the results found in previous studies, by making use of a population model compatible with current observations, and is about a factor 2 worse, in twice the observing time. We finally show that, if nature is described by a modified gravity theory with a large deviation from the GR value Ξ&lt;SUB&gt;0&lt;/SUB&gt;=1 , such as Ξ&lt;SUB&gt;0&lt;/SUB&gt;=1.8 , analyzing the data assuming GR produces a significant bias in the inferred values of the mass scales, Hubble constant, and particularly the BBH merger rate.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2112.05728v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">4 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">4 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>9 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…g GWs, so this is a genuinely new window that we are beginning to open. In this sector, the most immediate possibility is a deviation of the speed of GWs from the speed of light, but the multi-messenger observation of the binary neutron star (BNS) coalescence
-<mark>GW170817</mark> [2, 9, 10, 11] has put an extremely strong limit on it, at the level |cgw−c|/c&lt;𝒪⁡(10−15)|c_{\rm gw}-c|/c&lt;{\cal O}(10^{-15}). However, there is much more than the speed of GWs to be investigated in the tensor sector. In particular, in the last few years it has…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…\rm gw}(z)=d_{L}^{\,\rm em}(z)\equiv d_{L}(z), the GW observation gives dL​(z)d_{L}(z) and, for a source with electromagnetic counterpart, we also have the redshift zz of the source. We can then use this to extract H0H_{0}, as already successfully done in for
-<mark>GW170817</mark> [23]. The error from this single detection is still too large to discriminate between the value of H0H_{0} obtained from early and late-Universe probes, and one can estimate that 𝒪⁡(50−100){\cal O}(50-100) standard sirens with counterpart are needed to reach …</div>
+    <p class="where">Named 9 times:
+      introduction ×6, appendix ×2, results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2112.05728v2#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…inalize also over nn, which results in limits on Ξ0\Xi_{0} larger by about a factor of 2 [35]. In this paper we will include also nn among the parameters determined by the Bayesian inference. Several results have already been obtained with current data.
-Using <mark>GW170817</mark> as a standard siren with counterpart,
-a first limit was obtained in [18], using the electromagnetic luminosity distance of the galaxy hosting the counterpart, obtained from surface brightness fluctuations (see also [53], and the discussion in App. G, for anot…</div>
-    
-    
-    <details><summary>6 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…n with counterpart,
-a first limit was obtained in [18], using the electromagnetic luminosity distance of the galaxy hosting the counterpart, obtained from surface brightness fluctuations (see also [53], and the discussion in App. G, for another analysis using <mark>GW170817</mark>). Because of the very small redshift
-of GW170817, this is really a limit on δ⁡(z=0)\delta(z=0), independently of the parametrization used, and the result from [18] is
-
-δ⁡(0)=−7.8−18.4+9.7.\delta(0)=-7.8^{+9.7}_{-18.4}\,.
-
-(6)
-
-Setting for illustration n=1.91n…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… [18], using the electromagnetic luminosity distance of the galaxy hosting the counterpart, obtained from surface brightness fluctuations (see also [53], and the discussion in App. G, for another analysis using GW170817). Because of the very small redshift
-of <mark>GW170817</mark>, this is really a limit on δ⁡(z=0)\delta(z=0), independently of the parametrization used, and the result from [18] is
-
-δ⁡(0)=−7.8−18.4+9.7.\delta(0)=-7.8^{+9.7}_{-18.4}\,.
-
-(6)
-
-Setting for illustration n=1.91n=1.91 (which is the value predicted by the RT mod…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>….1}_{-5.1}, and therefore into an upper bound
-Ξ0&lt;∼ 14\Xi_{0}\,\raise 1.72218pt\hbox{$&lt;$}\kern-8.00003pt\lower 2.6694pt\hbox{$\sim$}\,14.
-This is a very broad limit since, as z→0z\rightarrow 0, the effect of modified GW propagation disappears, see eq. (3), and <mark>GW170817</mark> has a very small redshift,
-z≃0.01z\simeq 0.01.
-
-Recently, in [39] a much more stringent limit has been obtained,33
- 3
- 
- 
- 
- This value updates the value quoted in the v1 version of [39], and is obtained improving the analysis with the use of full inspiral-me…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…he results obtained by analyzing the GWTC-3 catalog [66].
-
-III.1 Data and prior choices
-
-For the main results, we restrict ourselves to a “pure” sample of events with network matched-filter signal-to-noise ratio SNR&gt;12\text{SNR}&gt;12. We also exclude the events <mark>GW170817</mark>, GW190425, GW190426_\_152155, GW190814, GW200115_\_042309, GW191219_\_163120, GW200210_\_092254, GW190917_\_114630 because for all of them at least one of the component masses is compatible with that of a neutron star (NS). This results in a sample of 35 even…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…e of GW events that we use for our final results, shown in
-Table 3, has comparable size but a much higher threshold in SNR, and is therefore much less prone to biases induced by selection effects.
-
-For completeness,
-we also observe that an analysis of the BNS <mark>GW170817</mark> with counterpart, using the cMc_{M} parametrization, was performed in [53], and gives
-cM=−9−28+21c_{M}=-9^{+21}_{-28}, corresponding to an upper bound Ξ0&lt;∼ 32.5\Xi_{0}\,\raise 1.72218pt\hbox{$&lt;$}\kern-8.00003pt\lower 2.6694pt\hbox{$\sim$}\,32.5. This can be c…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">appendix</span>…ormed in [53], and gives
-cM=−9−28+21c_{M}=-9^{+21}_{-28}, corresponding to an upper bound Ξ0&lt;∼ 32.5\Xi_{0}\,\raise 1.72218pt\hbox{$&lt;$}\kern-8.00003pt\lower 2.6694pt\hbox{$\sim$}\,32.5. This can be compared to the result (6) obtained earlier in [18], again for <mark>GW170817</mark>
-(using surface brightness fluctuations rather than H0H_{0} to infer the electromagnetic luminosity distance), and which corresponds to Ξ0&lt;∼ 14\Xi_{0}\,\raise 1.72218pt\hbox{$&lt;$}\kern-8.00003pt\lower 2.6694pt\hbox{$\sim$}\,14.
-
-Finally, we remark that, in the …</div>
+    <details class="lines"><summary>Show the sentences (9, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …GWs from the speed of light, but the multi-messenger observation of the binary neutron star (BNS) coalescence GW170817 [2, 9, 10, 11] has put an extremely strong limit on it, at the level |cgw−c|/c&lt;𝒪⁡(10−15)|c_{\rm gw}-c|/c&lt;{\ca…</li><li><span class="sec">introduction</span> We can then use this to extract H0H_{0}, as already successfully done in for GW170817 [23].</li><li><span class="sec">introduction</span> Using GW170817 as a standard siren with counterpart, a first limit was obtained in [18], using the electromagnetic luminosit…</li><li><span class="sec">introduction</span> G, for another analysis using GW170817).</li><li><span class="sec">introduction</span> Because of the very small redshift of GW170817, this is really a limit on δ⁡(z=0)\delta(z=0), independently of the parametrization used, and the result from…</li><li><span class="sec">introduction</span> (3), and GW170817 has a very small redshift, z≃0.01z\simeq 0.01.</li><li><span class="sec">results</span> We also exclude the events GW170817, GW190425, GW190426_\_152155, GW190814, GW200115_\_042309, GW191219_\_163120, GW200210_\_092254, GW190917_\_1…</li><li><span class="sec">appendix</span> For completeness, we also observe that an analysis of the BNS GW170817 with counterpart, using the cMc_{M} parametrization, was performed in [53], and gives cM=−9−28+21c_{M}=-9^{+2…</li></ul>
     </details>
     
   </div>
@@ -248,15 +201,16 @@ Finally, we remark that, in the …</div>
 <section class="card" data-i="1" data-event="GW190425">
   <div class="ctx">
     <div class="evname mono">GW190425</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2112.05728v2#:~:text=GW190425" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190425</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>… obtained by analyzing the GWTC-3 catalog [66].
-
-III.1 Data and prior choices
-
-For the main results, we restrict ourselves to a “pure” sample of events with network matched-filter signal-to-noise ratio SNR&gt;12\text{SNR}&gt;12. We also exclude the events GW170817, <mark>GW190425</mark>, GW190426_\_152155, GW190814, GW200115_\_042309, GW191219_\_163120, GW200210_\_092254, GW190917_\_114630 because for all of them at least one of the component masses is compatible with that of a neutron star (NS). This results in a sample of 35 events. A comp…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> We also exclude the events GW170817, GW190425, GW190426_\_152155, GW190814, GW200115_\_042309, GW191219_\_163120, GW200210_\_092254, GW190917_\_114630 beca…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -292,205 +246,15 @@ For the main results, we restrict ourselves to a “pure” sample of events wit
 <section class="card" data-i="2" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>54 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…0}=1.0^{+0.4}_{-0.8} with a prior uniform in log⁡Ξ0\log\Xi_{0} (68%68\% C.L., maximum posterior and HDI), which only rely on the presence of a feature in the BBH mass distribution around ∼30−45​M⊙\sim 30-45M_{\odot}, and are robust to whether or not the event <mark>GW190521</mark> is considered an outlier of the population.
-We then study in more detail the effects of modified GW propagation on population and cosmological analyses for LIGO/Virgo at design sensitivity. We find that, for a given data-taking period, the relative error Δ​Ξ0…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…pulation would result in a weaker constraint, see e.g. the discussion on page 51 of [39].
-An even more stringent result is obtained if one accepts the tentative identification of the flare ZTF19abanrhr as the electromagnetic counterpart of the BBH coalescence <mark>GW190521</mark>. Then, the analysis in [39] gives
-
-Ξ0=1.8−0.6+0.9,\Xi_{0}=1.8^{+0.9}_{-0.6}\,,
-
-(8)
-
-(68%68\% c.l.). This is consistent with similar results obtained in [55] with the same parametrization of modified GW propagation.
-Modified GW propagation has also been recen…</div>
+    <p class="where">Named 54 times:
+      results ×31, appendix ×20, abstract, introduction, conclusion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2112.05728v2#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…92254, GW190917_\_114630 because for all of them at least one of the component masses is compatible with that of a neutron star (NS). This results in a sample of 35 events. A comparison with other choices of threshold in SNR is performed in App. D.
-
-The event <mark>GW190521</mark> [81, 82] has a special role. It is the most massive event with a confident detection in the GWTC-3 catalog, with masses
-m1=91.4−17.5+29.3​M⊙m_{1}=91.4^{+29.3}_{-17.5}\,M_{\odot} and m2=66.8−20.7+20.7​M⊙m_{2}=66.8^{+20.7}_{-20.7}\,M_{\odot} that, particularly …</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">results</span>…llar evolution, since the lower edge of the PISN mass gap is believed to be quite sharp [88, 89].
-Since the presence of outliers can be particularly relevant for this analysis, as discussed in more detail below, we will perform it both including and excluding <mark>GW190521</mark>.
-
-We make use of the publicly available posterior samples labeled 𝙾𝚟𝚎𝚛𝚊𝚕𝚕​_​𝚙𝚘𝚜𝚝𝚎𝚛𝚒𝚘𝚛\tt{Overall\_posterior} for the GWTC-1 events, of those labeled by 𝙿𝚞𝚋𝚕𝚒𝚌𝚊𝚝𝚒𝚘𝚗𝚂𝚊𝚖𝚙𝚕𝚎𝚜\tt{PublicationSamples} for GWTC-2, and of those labeled by 𝙸𝚖𝚛𝙿𝚑𝚎𝚗𝚘𝚖𝚇𝙿𝙷𝙼\tt{ImrPhenomXPH…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…lead to lower reconstructed source-frame mass, hence the presence of events with posterior support for the primary mass close to (or above) the upper limit of the prior range would strongly favor values of Ξ0&lt;1\Xi_{0}&lt;1. This can be in particular the case for <mark>GW190521</mark>, whose primary mass largely falls in the expected gap and which does have posterior support above 100​M⊙100M_{\odot}, as discussed above. So, in case a narrow prior on mmaxm_{\rm max} is used, it is particularly important to check the robustness of the result…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…nd which does have posterior support above 100​M⊙100M_{\odot}, as discussed above. So, in case a narrow prior on mmaxm_{\rm max} is used, it is particularly important to check the robustness of the result with respect to the inclusion of the potential outlier <mark>GW190521</mark>. We discuss the choice of a narrower prior in App. E. In general, we believe it is better to allow wider prior ranges in order not to rely on too strong (and potentially wrong) physical assumptions.
-Finally, we will present the results for a prior flat in Ξ0\…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…r a prior flat in log⁡Ξ0\log\Xi_{0}, both between [0.1,10][0.1,10].
-We will see below that, with a sufficiently large threshold in signal-to-noise ratio, such as SNR&gt;12{\rm SNR}&gt;12, the analysis becomes robust against the choice of priors and the inclusion of <mark>GW190521</mark>, with the constraint being driven by the mass scale mbreakm_{\rm break} whose presence and location remain solid.
-
-We sample eq. (33) using the ensemble sampler 𝚎𝚖𝚌𝚎𝚎\tt{emcee} [90] with 30 walkers. Our chains are always longer than 50 times the average autoc…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…nd cosmological inference
-
-𝚵𝟎\bf\Xi_{0}
-𝐧\bf n
-𝐑𝟎\bf R_{0}
-γ\bf\gamma
-𝐤\bf k
-𝐳𝐩\bf z_{p}
-α𝟏\bf{\alpha_{1}}
-α𝟐\bf\alpha_{2}
-β𝐪\bf\beta_{q}
-δ𝐦\bf{\delta_{m}}
-𝐦min\bf{m_{\rm min}}
-𝐦max\bf{m_{\rm max}}
-𝐦break\bf{m_{\rm break}}
-
-Flat-in-log prior
-
-68% sym
- 
-
-With
-
-<mark>GW190521</mark>
-
-1.0−0.5+0.61.0^{+0.6}_{-0.5}
-2.5−1.1+1.72.5^{+1.7}_{-1.1}
-17.1−6.6+11.117.1^{+11.1}_{-6.6}
-7.5−4.1+3.27.5^{+3.2}_{-4.1}
-3.0−2.1+2.13.0^{+2.1}_{-2.1}
-2.5−1.1+1.02.5^{+1.0}_{-1.1}
-2.8−0.6+0.62.8^{+0.6}_{-0.6}
-7.5−1.7+2.27.5^{+2.2}_{-1.7}
-0.7−1.2+1.40.7^{+1.4}_…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…2.1}
-2.5−1.1+1.02.5^{+1.0}_{-1.1}
-2.8−0.6+0.62.8^{+0.6}_{-0.6}
-7.5−1.7+2.27.5^{+2.2}_{-1.7}
-0.7−1.2+1.40.7^{+1.4}_{-1.2}
-4.7−3.1+2.94.7^{+2.9}_{-3.1}
-4.3−1.3+1.24.3^{+1.2}_{-1.3}
-115.1−33.7+51.6115.1^{+51.6}_{-33.7}
-37.7−4.9+8.437.7^{+8.4}_{-4.9}
-
- 
-
-Without
-
-<mark>GW190521</mark>
-
-1.0−0.5+0.71.0^{+0.7}_{-0.5}
-2.6−1.3+1.72.6^{+1.7}_{-1.3}
-18.0−7.0+13.218.0^{+13.2}_{-7.0}
-7.6−3.9+3.17.6^{+3.1}_{-3.9}
-3.0−2.1+2.03.0^{+2.0}_{-2.1}
-2.4−1.1+1.12.4^{+1.1}_{-1.1}
-2.7−0.6+0.62.7^{+0.6}_{-0.6}
-8.1−2.4+2.58.1^{+2.5}_{-2.4}
-0.7−1.1+1.40.7^{+1.4}_…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…}
-2.4−1.1+1.12.4^{+1.1}_{-1.1}
-2.7−0.6+0.62.7^{+0.6}_{-0.6}
-8.1−2.4+2.58.1^{+2.5}_{-2.4}
-0.7−1.1+1.40.7^{+1.4}_{-1.1}
-4.6−3.1+3.04.6^{+3.0}_{-3.1}
-4.2−1.2+1.34.2^{+1.3}_{-1.2}
-89.6−26.6+62.489.6^{+62.4}_{-26.6}
-38.2−5.0+7.338.2^{+7.3}_{-5.0}
-
-90% sym
- 
-
-With
-
-<mark>GW190521</mark>
-
-1.0−0.8+1.31.0^{+1.3}_{-0.8}
-2.5−1.4+2.32.5^{+2.3}_{-1.4}
-17.1−9.4+24.217.1^{+24.2}_{-9.4}
-7.5−5.9+4.17.5^{+4.1}_{-5.9}
-3.0−2.7+2.73.0^{+2.7}_{-2.7}
-2.5−1.7+1.32.5^{+1.3}_{-1.7}
-2.8−0.9+1.02.8^{+1.0}_{-0.9}
-7.5−2.7+3.67.5^{+3.6}_{-2.7}
-0.7−1.9+2.60.7^{+2.6}_…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…7}
-2.5−1.7+1.32.5^{+1.3}_{-1.7}
-2.8−0.9+1.02.8^{+1.0}_{-0.9}
-7.5−2.7+3.67.5^{+3.6}_{-2.7}
-0.7−1.9+2.60.7^{+2.6}_{-1.9}
-4.7−4.2+4.34.7^{+4.3}_{-4.2}
-4.3−1.9+1.74.3^{+1.7}_{-1.9}
-115.1−49.6+73.9115.1^{+73.9}_{-49.6}
-37.7−8.1+21.737.7^{+21.7}_{-8.1}
-
- 
-
-Without
-
-<mark>GW190521</mark>
-
-1.0−0.7+1.41.0^{+1.4}_{-0.7}
-2.6−1.5+2.12.6^{+2.1}_{-1.5}
-18.0−9.9+28.518.0^{+28.5}_{-9.9}
-7.6−5.8+4.07.6^{+4.0}_{-5.8}
-3.0−2.7+2.83.0^{+2.8}_{-2.7}
-2.4−1.6+1.42.4^{+1.4}_{-1.6}
-2.7−0.9+1.02.7^{+1.0}_{-0.9}
-8.1−4.2+3.48.1^{+3.4}_{-4.2}
-0.7−1.8+2.50.7^{+2.5}_…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>….4^{+1.4}_{-1.6}
-2.7−0.9+1.02.7^{+1.0}_{-0.9}
-8.1−4.2+3.48.1^{+3.4}_{-4.2}
-0.7−1.8+2.50.7^{+2.5}_{-1.8}
-4.6−4.2+4.44.6^{+4.4}_{-4.2}
-4.2−1.9+1.74.2^{+1.7}_{-1.9}
-89.6−34.6+95.089.6^{+95.0}_{-34.6}
-38.2−9.0+16.138.2^{+16.1}_{-9.0}
-
-Flat prior
-
-68% sym
- 
-
-With
-
-<mark>GW190521</mark>
-
-1.3−0.5+0.91.3^{+0.9}_{-0.5}
-2.7−1.3+1.62.7^{+1.6}_{-1.3}
-19.2−7.8+17.719.2^{+17.7}_{-7.8}
-9.1−3.6+2.19.1^{+2.1}_{-3.6}
-3.0−2.1+2.03.0^{+2.0}_{-2.1}
-2.5−1.1+1.02.5^{+1.0}_{-1.1}
-2.8−0.6+0.62.8^{+0.6}_{-0.6}
-7.2−1.5+2.27.2^{+2.2}_{-1.5}
-0.8−1.2+1.50.8^{+1.5}_…</div>
+    <details class="lines"><summary>Show the sentences (39, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> …in the BBH mass distribution around ∼30−45​M⊙\sim 30-45M_{\odot}, and are robust to whether or not the event GW190521 is considered an outlier of the population.</li><li><span class="sec">introduction</span> …tentative identification of the flare ZTF19abanrhr as the electromagnetic counterpart of the BBH coalescence GW190521.</li><li><span class="sec">results</span> The event GW190521 [81, 82] has a special role.</li><li><span class="sec">results</span> …elevant for this analysis, as discussed in more detail below, we will perform it both including and excluding GW190521.</li><li><span class="sec">results</span> This can be in particular the case for GW190521, whose primary mass largely falls in the expected gap and which does have posterior support above 100​M⊙100M_…</li><li><span class="sec">results</span> …ularly important to check the robustness of the result with respect to the inclusion of the potential outlier GW190521.</li><li><span class="sec">results</span> …io, such as SNR&gt;12{\rm SNR}&gt;12, the analysis becomes robust against the choice of priors and the inclusion of GW190521, with the constraint being driven by the mass scale mbreakm_{\rm break} whose presence and location remain so…</li><li><span class="sec">results</span> GW190521</li></ul>
     </details>
     
   </div>
@@ -527,15 +291,16 @@ With
 <section class="card" data-i="3" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2112.05728v2#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…TC-3 catalog [66].
-
-III.1 Data and prior choices
-
-For the main results, we restrict ourselves to a “pure” sample of events with network matched-filter signal-to-noise ratio SNR&gt;12\text{SNR}&gt;12. We also exclude the events GW170817, GW190425, GW190426_\_152155, <mark>GW190814</mark>, GW200115_\_042309, GW191219_\_163120, GW200210_\_092254, GW190917_\_114630 because for all of them at least one of the component masses is compatible with that of a neutron star (NS). This results in a sample of 35 events. A comparison with other choices of …</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> We also exclude the events GW170817, GW190425, GW190426_\_152155, GW190814, GW200115_\_042309, GW191219_\_163120, GW200210_\_092254, GW190917_\_114630 because for all of them at least…</li></ul>
+    </details>
     
   </div>
   <div class="form">

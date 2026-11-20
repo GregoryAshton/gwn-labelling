@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,25 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2510.26931" target="_blank" rel="noopener" class="mono">arXiv:2510.26931</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We report the observation of gravitational waves from two binary black hole coalescences during the fourth observing run of the LIGO─Virgo─KAGRA detector network, GW241011 and GW241110. The sources of these two signals are characterized by rapid and precisely measured primary spins, nonnegligible spin─orbit misalignment, and unequal mass ratios between their constituent black holes. These properties are characteristic of binaries in which the more massive object was itself formed from a previous binary black hole merger and suggest that the sources of GW241011 and GW241110 may have formed in dense stellar environments in which repeated mergers can take place. As the third-loudest gravitational-wave event published to date, with a median network signal-to-noise ratio of 36.0, GW241011 furthermore yields stringent constraints on the Kerr nature of black holes, the multipolar structure of gravitational-wave generation, and the existence of ultralight bosons within the mass range 10&lt;SUP&gt;−13&lt;/SUP&gt;─10&lt;SUP&gt;−12&lt;/SUP&gt; eV.</p></details>
+<div class="small mut mono">arXiv:2510.26931</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We report the observation of gravitational waves from two binary black hole coalescences during the fourth observing run of the LIGO─Virgo─KAGRA detector network, GW241011 and GW241110. The sources of these two signals are characterized by rapid and precisely measured primary spins, nonnegligible spin─orbit misalignment, and unequal mass ratios between their constituent black holes. These properties are characteristic of binaries in which the more massive object was itself formed from a previous binary black hole merger and suggest that the sources of GW241011 and GW241110 may have formed in dense stellar environments in which repeated mergers can take place. As the third-loudest gravitational-wave event published to date, with a median network signal-to-noise ratio of 36.0, GW241011 furthermore yields stringent constraints on the Kerr nature of black holes, the multipolar structure of gravitational-wave generation, and the existence of ultralight bosons within the mass range 10&lt;SUP&gt;−13&lt;/SUP&gt;─10&lt;SUP&gt;−12&lt;/SUP&gt; eV.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2510.26931v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">12 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">12 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2510.26931v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…es that are confidently rotating, the primary spin magnitude of GW241011 is also the most precisely measured, with a 90%90\% credible region that is half as wide as the next-most-precise measurement, made using GW190412 [22].
-The binary neutron star source of <mark>GW170817</mark> [17], the lower mass gap binary source of GW190814 [21], and the low-significance neutron star-black hole candidate GW191219_163120 each have more precisely measured spins, but these spins are consistent with zero.
-GW241011 is therefore the gravitational-wave…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> The binary neutron star source of GW170817 [17], the lower mass gap binary source of GW190814 [21], and the low-significance neutron star-black hole can…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -176,16 +201,16 @@ GW241011 is therefore the gravitational-wave…</div>
 <section class="card" data-i="1" data-event="GW190403_051519">
   <div class="ctx">
     <div class="evname mono">GW190403_051519</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2510.26931v1#:~:text=GW190403_051519" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190403_051519</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…9.
-Figure 4 compares this primary spin measurement to two signals with similar spin magnitude limits, GW190517 [25] and the recently-announced GW231123 [5], whose sources have χ1&gt;0.52\chi_{1}&gt;0.52 and χ1&gt;0.63\chi_{1}&gt;0.63 at 95%95\% credibility, respectively.
-<mark>GW190403_051519</mark> favors similarly rapid spins, but this candidate does not meet the significance threshold adopted for population analyses.
-Additionally, both the primary aligned spin χ1,z\chi_{1,z} and the effective inspiral spin of GW241011 [269, 31, 296], defined as
-
-χeff=…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> GW190403_051519 favors similarly rapid spins, but this candidate does not meet the significance threshold adopted for populat…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -221,15 +246,16 @@ Additionally, both the primary aligned spin χ1,z\chi_{1,z} and the effective in
 <section class="card" data-i="2" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2510.26931v1#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…es between ∼50\sim 50 and ∼120​M⊙\sim 120\,M_{\odot} [309, 343, 171, e.g.,].
-Hierarchical mergers may yield second-generation remnants with masses situated in this range, and are therefore a possible evolutionary origin for massive systems like the sources of <mark>GW190521</mark> [20] and GW231123_135430 [5].
-The sources of GW241011 and GW241110 are, in contrast, relatively light.
-These masses are not inconsistent with a hierarchical origin, however.
-The three columns of Figure 6 correspond to predictions for clusters of differing ste…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> …uated in this range, and are therefore a possible evolutionary origin for massive systems like the sources of GW190521 [20] and GW231123_135430 [5].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -265,35 +291,15 @@ The three columns of Figure 6 correspond to predictions for clusters of differi
 <section class="card" data-i="3" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…magnitude of GW241011 is also the most precisely measured, with a 90%90\% credible region that is half as wide as the next-most-precise measurement, made using GW190412 [22].
-The binary neutron star source of GW170817 [17], the lower mass gap binary source of <mark>GW190814</mark> [21], and the low-significance neutron star-black hole candidate GW191219_163120 each have more precisely measured spins, but these spins are consistent with zero.
-GW241011 is therefore the gravitational-wave event that, taken individually, provides the stron…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…0.0−0.3+0.5\delta A_{33}=0.0^{+0.5}_{-0.3}, consistent with GR, while the subdominant mode has δ​A33=−2.1−0.5+0.4\delta A_{33}=-2.1^{+0.4}_{-0.5}.
-For comparison, also shown are the posteriors obtained from the next-most-informative gravitational-wave events, <mark>GW190814</mark> and GW190412 [22, 21, 266, 9].
-
-Gravitational-wave radiation may be generically decomposed into an expansion over spin-weight −2-2 spherical harmonics, Yl​m−2{}_{-2}Y_{lm}.
-The gravitational waves from merging compact binaries are dominated by the (ℓ,m)=(2,±2…</div>
+    <p class="where">Named 4 times:
+      results ×3, appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2510.26931v1#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>….1^{+0.4}_{-0.5}.
-Taking both posterior modes together, we find −1.9≤δ​A33≤0.5-1.9\leq\delta A_{33}\leq 0.5 at 90%90\% credibility.
-This is the best measurement to date of δ​A33\delta A_{33}.
-Among binaries in GWTC-4, the next-best constraints are provided by <mark>GW190814</mark> and GW190412 [22, 21, 266], which give −3.6≤δ​A33≤1.6-3.6\leq\delta A_{33}\leq 1.6 and −5.3≤δ​A33≤4.0-5.3\leq\delta A_{33}\leq 4.0, respectively [9].
-GW241011 therefore confirms that gravitational waves radiated in (3,±3)(3,\pm 3) spherical harmonic modes hav…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">appendix</span>…ulation properties of binary black holes following the methodology described in [6].
-We select all binary black holes among GWTC-4.0 [3], detected with a false-alarm rate below 1​yr−11\,\mathrm{yr}^{-1} by at least one search algorithm, and exclude the events <mark>GW190814</mark> [21], GW190917_114630 [27], and GW230529 [2] that contain low-mass objects of unknown nature.
-This yields a total of 153153 binary black hole coalescences, plus GW241011 and GW241110.
-Selection biases are estimated using a suite of simulated signals added to …</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> The binary neutron star source of GW170817 [17], the lower mass gap binary source of GW190814 [21], and the low-significance neutron star-black hole candidate GW191219_163120 each have more precisely mea…</li><li><span class="sec">results</span> …comparison, also shown are the posteriors obtained from the next-most-informative gravitational-wave events, GW190814 and GW190412 [22, 21, 266, 9].</li><li><span class="sec">results</span> Among binaries in GWTC-4, the next-best constraints are provided by GW190814 and GW190412 [22, 21, 266], which give −3.6≤δ​A33≤1.6-3.6\leq\delta A_{33}\leq 1.6 and −5.3≤δ​A33≤4.0-5.3\leq…</li><li><span class="sec">appendix</span> …h a false-alarm rate below 1​yr−11\,\mathrm{yr}^{-1} by at least one search algorithm, and exclude the events GW190814 [21], GW190917_114630 [27], and GW230529 [2] that contain low-mass objects of unknown nature.</li></ul>
     </details>
     
   </div>
@@ -330,14 +336,16 @@ Selection biases are estimated using a suite of simulated signals added to …</
 <section class="card" data-i="4" data-event="GW190917_114630">
   <div class="ctx">
     <div class="evname mono">GW190917_114630</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      appendix.</p>
+    <p class="where"><a href="https://arxiv.org/html/2510.26931v1#:~:text=GW190917_114630" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190917_114630</span>.</p>
     
     
-    <div class="mention"><span class="sec">appendix</span>…ies of binary black holes following the methodology described in [6].
-We select all binary black holes among GWTC-4.0 [3], detected with a false-alarm rate below 1​yr−11\,\mathrm{yr}^{-1} by at least one search algorithm, and exclude the events GW190814 [21], <mark>GW190917_114630</mark> [27], and GW230529 [2] that contain low-mass objects of unknown nature.
-This yields a total of 153153 binary black hole coalescences, plus GW241011 and GW241110.
-Selection biases are estimated using a suite of simulated signals added to data from the first th…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">appendix</span> …rate below 1​yr−11\,\mathrm{yr}^{-1} by at least one search algorithm, and exclude the events GW190814 [21], GW190917_114630 [27], and GW230529 [2] that contain low-mass objects of unknown nature.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -373,13 +381,16 @@ Selection biases are estimated using a suite of simulated signals added to data 
 <section class="card" data-i="5" data-event="GW191219_163120">
   <div class="ctx">
     <div class="evname mono">GW191219_163120</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2510.26931v1#:~:text=GW191219_163120" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191219_163120</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…credible region that is half as wide as the next-most-precise measurement, made using GW190412 [22].
-The binary neutron star source of GW170817 [17], the lower mass gap binary source of GW190814 [21], and the low-significance neutron star-black hole candidate <mark>GW191219_163120</mark> each have more precisely measured spins, but these spins are consistent with zero.
-GW241011 is therefore the gravitational-wave event that, taken individually, provides the strongest evidence to date that at least some component black holes in merging binarie…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> …the lower mass gap binary source of GW190814 [21], and the low-significance neutron star-black hole candidate GW191219_163120 each have more precisely measured spins, but these spins are consistent with zero.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -415,14 +426,16 @@ GW241011 is therefore the gravitational-wave event that, taken individually, pro
 <section class="card" data-i="6" data-event="GW230723_101834">
   <div class="ctx">
     <div class="evname mono">GW230723_101834</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2510.26931v1#:~:text=GW230723_101834" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW230723_101834</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…bital angular momentum.
-A growing number of binary black holes have been observed with large spin–orbit misalignment angles (with, e.g., θ≳50​degrees\theta\gtrsim 50\,\mathrm{degrees} at high credibility).
-Several detections, including, e.g., GW231230_170116, <mark>GW230723_101834</mark>, and GW230609_064958, furthermore favor misalignment angles greater than 90​degrees90\,\mathrm{degrees}, but only at ∼80%\sim 80\% credibilities. [3].
-Analysis of the binary black hole GW191109_010717 [25, GW191109;] with a numerical-relativity surrogate wave…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> Several detections, including, e.g., GW231230_170116, GW230723_101834, and GW230609_064958, furthermore favor misalignment angles greater than 90​degrees90\,\mathrm{degrees}, but…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -458,47 +471,15 @@ Analysis of the binary black hole GW191109_010717 [25, GW191109;] with a numeri
 <section class="card" data-i="7" data-event="GW231123_135430">
   <div class="ctx">
     <div class="evname mono">GW231123_135430</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">results</span>…e).
-The spin of GW241011’s primary black hole has the largest lower bound than that of all other merging compact objects observed to date.
-We obtain χ1&gt;0.69\chi_{1}&gt;0.69 at 95%95\% credibility.
-For comparison, also shown are the primary spin measurements from <mark>GW231123</mark> [5, black;] and GW190517 [25, dashed grey], which provide the two next-largest lower limits of χ1&gt;0.63\chi_{1}&gt;0.63 and χ1&gt;0.52\chi_{1}&gt;0.52, respectively.
-
-Figure 5: 
-Posterior distribution on GW241011’s precession SNR ratio and its SNR in (ℓ,m)=(3,±3)(\ell,…</div>
+    <p class="where">Named 5 times:
+      results ×5.</p>
+    <p class="where"><a href="https://arxiv.org/html/2510.26931v1#:~:text=GW231123" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231123</span> or <span class="mono hit">GW231123_135430</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">results</span>…W241011 has the largest lower limit obtained thus far on the spin of any merging black hole, with χ1&gt;0.69\chi_{1}&gt;0.69.
-Figure 4 compares this primary spin measurement to two signals with similar spin magnitude limits, GW190517 [25] and the recently-announced <mark>GW231123</mark> [5], whose sources have χ1&gt;0.52\chi_{1}&gt;0.52 and χ1&gt;0.63\chi_{1}&gt;0.63 at 95%95\% credibility, respectively.
-GW190403_051519 favors similarly rapid spins, but this candidate does not meet the significance threshold adopted for population analyses.
-Additionally…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>… 50 and ∼120​M⊙\sim 120\,M_{\odot} [309, 343, 171, e.g.,].
-Hierarchical mergers may yield second-generation remnants with masses situated in this range, and are therefore a possible evolutionary origin for massive systems like the sources of GW190521 [20] and <mark>GW231123_135430</mark> [5].
-The sources of GW241011 and GW241110 are, in contrast, relatively light.
-These masses are not inconsistent with a hierarchical origin, however.
-The three columns of Figure 6 correspond to predictions for clusters of differing stellar metallicities.
-At hi…</div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">results</span>…les comprising the LIGO–Virgo–KAGRA GWTC-2 catalog strongly disfavored scalar boson masses between [2.2,2.7]×10−13​eV[2.2,2.7]\times 10^{-13}\,\mathrm{eV} when assuming 10510^{5} year old black holes [243].
-Under the same age assumption, recent analysis using <mark>GW231123</mark> and GW190517 excluded scalar and vector boson masses in the intervals [0.6,11]×10−13[0.6,11]\times 10^{-13} and [0.1,18]×10−13​eV[0.1,18]\times 10^{-13}\,\mathrm{eV}, respectively, at 90%90\% credibility [55].
-A complementary analysis of GW231123 with a relat…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…alysis using GW231123 and GW190517 excluded scalar and vector boson masses in the intervals [0.6,11]×10−13[0.6,11]\times 10^{-13} and [0.1,18]×10−13​eV[0.1,18]\times 10^{-13}\,\mathrm{eV}, respectively, at 90%90\% credibility [55].
-A complementary analysis of <mark>GW231123</mark> with a relativistic model for self-interacting scalars excludes axion masses in the interval [0.6,5]×10−13​eV[0.6,5]\times 10^{-13}\,\mathrm{eV} with decay constants ≳1014​GeV\gtrsim 10^{14}\,\mathrm{GeV} [91].
-
-VI Conclusions
-
-In this paper, we have presente…</div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> For comparison, also shown are the primary spin measurements from GW231123 [5, black;] and GW190517 [25, dashed grey], which provide the two next-largest lower limits of χ1&gt;0.63\chi_{1…</li><li><span class="sec">results</span> …spin measurement to two signals with similar spin magnitude limits, GW190517 [25] and the recently-announced GW231123 [5], whose sources have χ1&gt;0.52\chi_{1}&gt;0.52 and χ1&gt;0.63\chi_{1}&gt;0.63 at 95%95\% credibility, respectively.</li><li><span class="sec">results</span> …e, and are therefore a possible evolutionary origin for massive systems like the sources of GW190521 [20] and GW231123_135430 [5].</li><li><span class="sec">results</span> Under the same age assumption, recent analysis using GW231123 and GW190517 excluded scalar and vector boson masses in the intervals [0.6,11]×10−13[0.6,11]\times 10^{-13} a…</li><li><span class="sec">results</span> A complementary analysis of GW231123 with a relativistic model for self-interacting scalars excludes axion masses in the interval [0.6,5]×10−13​eV…</li></ul>
     </details>
     
   </div>
@@ -535,14 +516,16 @@ In this paper, we have presente…</div>
 <section class="card" data-i="8" data-event="GW231230_170116">
   <div class="ctx">
     <div class="evname mono">GW231230_170116</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      results.</p>
+    <p class="where"><a href="https://arxiv.org/html/2510.26931v1#:~:text=GW231230_170116" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231230_170116</span>.</p>
     
     
-    <div class="mention"><span class="sec">results</span>…ned with their orbital angular momentum.
-A growing number of binary black holes have been observed with large spin–orbit misalignment angles (with, e.g., θ≳50​degrees\theta\gtrsim 50\,\mathrm{degrees} at high credibility).
-Several detections, including, e.g., <mark>GW231230_170116</mark>, GW230723_101834, and GW230609_064958, furthermore favor misalignment angles greater than 90​degrees90\,\mathrm{degrees}, but only at ∼80%\sim 80\% credibilities. [3].
-Analysis of the binary black hole GW191109_010717 [25, GW191109;] with a numerical-relativi…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">results</span> Several detections, including, e.g., GW231230_170116, GW230723_101834, and GW230609_064958, furthermore favor misalignment angles greater than 90​degrees90\,\math…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -578,389 +561,15 @@ Analysis of the binary black hole GW191109_010717 [25, GW191109;] with a numeri
 <section class="card" data-i="9" data-event="GW241011_233834">
   <div class="ctx">
     <div class="evname mono">GW241011_233834</div>
-    <h3>199 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span><mark>GW241011</mark> and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-Spin Black Hole Coalescences
-
- 
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit witho…</div>
+    <p class="where">Named 199 times:
+      results ×86, appendix ×37, introduction ×30, methods ×24, conclusion ×9, title/headings ×8, abstract ×3, data ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2510.26931v1#:~:text=GW241011" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW241011</span> or <span class="mono hit">GW241011_233834</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…times;
- 
-
- 
- 
- Back to arXiv
- 
- 
-
- 
- 
- Why HTML?
- 
- 
- 
- 
- Report Issue
- 
- 
- 
- 
- 
- 
- Back to Abstract
- 
- 
- 
- 
- 
- 
- Download PDF
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-Abstract
-
-I Introduction
-
-II Detection and Significance
-
-II.1 <mark>GW241011</mark>
-
-II.2 GW241110
-
-III Source Properties
-
-III.1 Properties of GW241011
-
-III.2 Properties of GW241110
-
-III.3 Relationship with the binary black hole population
-
-IV Astrophysical Interpretation and Implications
-
-IV.1 GW241011 and GW241110 through isolated binary e…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…ue
- 
- 
- 
- 
- 
- 
- Back to Abstract
- 
- 
- 
- 
- 
- 
- Download PDF
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-Abstract
-
-I Introduction
-
-II Detection and Significance
-
-II.1 GW241011
-
-II.2 GW241110
-
-III Source Properties
-
-III.1 Properties of <mark>GW241011</mark>
-
-III.2 Properties of GW241110
-
-III.3 Relationship with the binary black hole population
-
-IV Astrophysical Interpretation and Implications
-
-IV.1 GW241011 and GW241110 through isolated binary evolution
-
-IV.2 GW241011 and GW241110 as hierarchical mergers
-
-IV.3 T…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">front_matter</span>…n
-
-II Detection and Significance
-
-II.1 GW241011
-
-II.2 GW241110
-
-III Source Properties
-
-III.1 Properties of GW241011
-
-III.2 Properties of GW241110
-
-III.3 Relationship with the binary black hole population
-
-IV Astrophysical Interpretation and Implications
-
-IV.1 <mark>GW241011</mark> and GW241110 through isolated binary evolution
-
-IV.2 GW241011 and GW241110 as hierarchical mergers
-
-IV.3 The ancestors of GW241011 and GW241110
-
-IV.4 No evidence for eccentricity
-
-V Tests of Fundamental Physics
-
-V.1 Black hole spin-induced quadrupole moment
-
-…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…
-
-III Source Properties
-
-III.1 Properties of GW241011
-
-III.2 Properties of GW241110
-
-III.3 Relationship with the binary black hole population
-
-IV Astrophysical Interpretation and Implications
-
-IV.1 GW241011 and GW241110 through isolated binary evolution
-
-IV.2 <mark>GW241011</mark> and GW241110 as hierarchical mergers
-
-IV.3 The ancestors of GW241011 and GW241110
-
-IV.4 No evidence for eccentricity
-
-V Tests of Fundamental Physics
-
-V.1 Black hole spin-induced quadrupole moment
-
-V.2 Radiation beyond the quadrupole approximation
-
-V.3 Ultrali…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…es of GW241110
-
-III.3 Relationship with the binary black hole population
-
-IV Astrophysical Interpretation and Implications
-
-IV.1 GW241011 and GW241110 through isolated binary evolution
-
-IV.2 GW241011 and GW241110 as hierarchical mergers
-
-IV.3 The ancestors of <mark>GW241011</mark> and GW241110
-
-IV.4 No evidence for eccentricity
-
-V Tests of Fundamental Physics
-
-V.1 Black hole spin-induced quadrupole moment
-
-V.2 Radiation beyond the quadrupole approximation
-
-V.3 Ultralight bosons
-
-VI Conclusions
-
-A Source Parameter Estimation: Further Re…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…uadrupole moment
-
-V.2 Radiation beyond the quadrupole approximation
-
-V.3 Ultralight bosons
-
-VI Conclusions
-
-A Source Parameter Estimation: Further Results and Details
-
-B Eccentricity Measurements: Further Details
-
-C Binary black hole population inference with <mark>GW241011</mark> and GW241110
-
-C.1 The binary black hole spin distribution
-
-C.2 Population Reweighting
-
-D Cluster models: Further Details
-
-E Further Details on Estimating Progenitor Binary Parameters
-
-E.1 The Forward Approach
-
-E.2 The Backward Approach
-
-E.3 Progenitor Propert…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…ails
-
-F.1 Spin-induced quadrupole moment
-
-F.2 Subdominant mode amplitude consistency
-
-F.3 Constraining ultralight bosons through superradiance
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2510.26931v1 [astro-ph.HE] 30 Oct 2025
-
-<mark>GW241011</mark> and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-Spin Black Hole Coalescences
-
-Calibration of the LIGO strain data was performed with a GstLAL-based calibration software pipeline [329].
-Data-quality products and event-val…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…O Scientific Collaboration, the Virgo Collaboration, and the KAGRA Collaboration
-
-[
-
-Abstract
-
- 
-We report the observation of gravitational waves from two binary black hole coalescences during the fourth observing run of the LIGO–Virgo–KAGRA detector network, <mark>GW241011</mark> and GW241110.
-The sources of these two signals are characterized by rapid and precisely measured primary spins, non-negligible spin–orbit misalignment, and unequal mass ratios between their constituent black holes.
-These properties are characteristic of binar…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…pin–orbit misalignment, and unequal mass ratios between their constituent black holes.
-These properties are characteristic of binaries in which the more massive object was itself formed from a previous binary black hole merger, and suggest that the sources of <mark>GW241011</mark> and GW241110 may have formed in dense stellar environments in which repeated mergers can take place.
-As the third loudest gravitational-wave event published to date, with a median network signal-to-noise ratio of 36.036.0, GW241011 furthermore yields stringen…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…suggest that the sources of GW241011 and GW241110 may have formed in dense stellar environments in which repeated mergers can take place.
-As the third loudest gravitational-wave event published to date, with a median network signal-to-noise ratio of 36.036.0, <mark>GW241011</mark> furthermore yields stringent constraints on the Kerr nature of black holes, the multipolar structure of gravitational-wave generation, and the existence of ultralight bosons within the mass range 10−1310^{-13}–10−1210^{-12} eV.
-
- 
-
-pacs
-
-04.80.Nn, 04.25.dg, 9…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…pectedly large, unexpectedly small, or unexpectedly unequal, challenge present understanding of compact binary formation and evolution [14, 20, 21, 2, 5].
-
-Figure 1: 
-Top: Central 90%90\% credible bounds on the dimensionless primary spins χ→1\vec{\chi}_{1} of <mark>GW241011</mark> (blue) and GW241110 (green), projected parallel to the direction L^N\hat{L}_{\mathrm{N}} of each binary’s Newtonian orbital angular momentum.
-Shown in grey for comparison are 90%90\% credible bounds on the projected primary spins of previously-published compa…</div>
+    <details class="lines"><summary>Show the sentences (191, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-Spin Black Hole Coales…</li><li><span class="sec">title/headings</span> II.1 GW241011</li><li><span class="sec">title/headings</span> III.1 Properties of GW241011</li><li><span class="sec">title/headings</span> IV.1 GW241011 and GW241110 through isolated binary evolution</li><li><span class="sec">title/headings</span> IV.2 GW241011 and GW241110 as hierarchical mergers</li><li><span class="sec">title/headings</span> IV.3 The ancestors of GW241011 and GW241110</li><li><span class="sec">title/headings</span> C Binary black hole population inference with GW241011 and GW241110</li><li><span class="sec">abstract</span> …two binary black hole coalescences during the fourth observing run of the LIGO–Virgo–KAGRA detector network, GW241011 and GW241110.</li></ul>
     </details>
     
   </div>
@@ -997,372 +606,15 @@ Shown in grey for comparison are 90%90\% credible bounds on the projected primar
 <section class="card" data-i="10" data-event="GW241110_124123">
   <div class="ctx">
     <div class="evname mono">GW241110_124123</div>
-    <h3>152 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>GW241011 and <mark>GW241110</mark>: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-Spin Black Hole Coalescences
-
- 
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Su…</div>
+    <p class="where">Named 152 times:
+      results ×52, appendix ×31, introduction ×27, methods ×24, title/headings ×8, conclusion ×7, abstract ×2, data.</p>
+    <p class="where"><a href="https://arxiv.org/html/2510.26931v1#:~:text=GW241110" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW241110</span> or <span class="mono hit">GW241110_124123</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…Back to arXiv
- 
- 
-
- 
- 
- Why HTML?
- 
- 
- 
- 
- Report Issue
- 
- 
- 
- 
- 
- 
- Back to Abstract
- 
- 
- 
- 
- 
- 
- Download PDF
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-Abstract
-
-I Introduction
-
-II Detection and Significance
-
-II.1 GW241011
-
-II.2 <mark>GW241110</mark>
-
-III Source Properties
-
-III.1 Properties of GW241011
-
-III.2 Properties of GW241110
-
-III.3 Relationship with the binary black hole population
-
-IV Astrophysical Interpretation and Implications
-
-IV.1 GW241011 and GW241110 through isolated binary evolution
-
-IV.2 …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…ct
- 
- 
- 
- 
- 
- 
- Download PDF
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-Abstract
-
-I Introduction
-
-II Detection and Significance
-
-II.1 GW241011
-
-II.2 GW241110
-
-III Source Properties
-
-III.1 Properties of GW241011
-
-III.2 Properties of <mark>GW241110</mark>
-
-III.3 Relationship with the binary black hole population
-
-IV Astrophysical Interpretation and Implications
-
-IV.1 GW241011 and GW241110 through isolated binary evolution
-
-IV.2 GW241011 and GW241110 as hierarchical mergers
-
-IV.3 The ancestors of GW241011 and G…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">front_matter</span>…on and Significance
-
-II.1 GW241011
-
-II.2 GW241110
-
-III Source Properties
-
-III.1 Properties of GW241011
-
-III.2 Properties of GW241110
-
-III.3 Relationship with the binary black hole population
-
-IV Astrophysical Interpretation and Implications
-
-IV.1 GW241011 and <mark>GW241110</mark> through isolated binary evolution
-
-IV.2 GW241011 and GW241110 as hierarchical mergers
-
-IV.3 The ancestors of GW241011 and GW241110
-
-IV.4 No evidence for eccentricity
-
-V Tests of Fundamental Physics
-
-V.1 Black hole spin-induced quadrupole moment
-
-V.2 Radiation…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…Properties
-
-III.1 Properties of GW241011
-
-III.2 Properties of GW241110
-
-III.3 Relationship with the binary black hole population
-
-IV Astrophysical Interpretation and Implications
-
-IV.1 GW241011 and GW241110 through isolated binary evolution
-
-IV.2 GW241011 and <mark>GW241110</mark> as hierarchical mergers
-
-IV.3 The ancestors of GW241011 and GW241110
-
-IV.4 No evidence for eccentricity
-
-V Tests of Fundamental Physics
-
-V.1 Black hole spin-induced quadrupole moment
-
-V.2 Radiation beyond the quadrupole approximation
-
-V.3 Ultralight bosons
-
-V…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…0
-
-III.3 Relationship with the binary black hole population
-
-IV Astrophysical Interpretation and Implications
-
-IV.1 GW241011 and GW241110 through isolated binary evolution
-
-IV.2 GW241011 and GW241110 as hierarchical mergers
-
-IV.3 The ancestors of GW241011 and <mark>GW241110</mark>
-
-IV.4 No evidence for eccentricity
-
-V Tests of Fundamental Physics
-
-V.1 Black hole spin-induced quadrupole moment
-
-V.2 Radiation beyond the quadrupole approximation
-
-V.3 Ultralight bosons
-
-VI Conclusions
-
-A Source Parameter Estimation: Further Results and Det…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…ent
-
-V.2 Radiation beyond the quadrupole approximation
-
-V.3 Ultralight bosons
-
-VI Conclusions
-
-A Source Parameter Estimation: Further Results and Details
-
-B Eccentricity Measurements: Further Details
-
-C Binary black hole population inference with GW241011 and <mark>GW241110</mark>
-
-C.1 The binary black hole spin distribution
-
-C.2 Population Reweighting
-
-D Cluster models: Further Details
-
-E Further Details on Estimating Progenitor Binary Parameters
-
-E.1 The Forward Approach
-
-E.2 The Backward Approach
-
-E.3 Progenitor Properties: Addition…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…n-induced quadrupole moment
-
-F.2 Subdominant mode amplitude consistency
-
-F.3 Constraining ultralight bosons through superradiance
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2510.26931v1 [astro-ph.HE] 30 Oct 2025
-
-GW241011 and <mark>GW241110</mark>: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-Spin Black Hole Coalescences
-
-Calibration of the LIGO strain data was performed with a GstLAL-based calibration software pipeline [329].
-Data-quality products and event-validation resul…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…Collaboration, the Virgo Collaboration, and the KAGRA Collaboration
-
-[
-
-Abstract
-
- 
-We report the observation of gravitational waves from two binary black hole coalescences during the fourth observing run of the LIGO–Virgo–KAGRA detector network, GW241011 and <mark>GW241110</mark>.
-The sources of these two signals are characterized by rapid and precisely measured primary spins, non-negligible spin–orbit misalignment, and unequal mass ratios between their constituent black holes.
-These properties are characteristic of binaries in which …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…alignment, and unequal mass ratios between their constituent black holes.
-These properties are characteristic of binaries in which the more massive object was itself formed from a previous binary black hole merger, and suggest that the sources of GW241011 and <mark>GW241110</mark> may have formed in dense stellar environments in which repeated mergers can take place.
-As the third loudest gravitational-wave event published to date, with a median network signal-to-noise ratio of 36.036.0, GW241011 furthermore yields stringent constraints…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…pectedly small, or unexpectedly unequal, challenge present understanding of compact binary formation and evolution [14, 20, 21, 2, 5].
-
-Figure 1: 
-Top: Central 90%90\% credible bounds on the dimensionless primary spins χ→1\vec{\chi}_{1} of GW241011 (blue) and <mark>GW241110</mark> (green), projected parallel to the direction L^N\hat{L}_{\mathrm{N}} of each binary’s Newtonian orbital angular momentum.
-Shown in grey for comparison are 90%90\% credible bounds on the projected primary spins of previously-published compact binary coalescenc…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…n GWTC-3.0 and GWTC-4.0 [26, 6].
-The source of GW241011 contains one of the most rapidly spinning black holes observed by LIGO–Virgo–KAGRA to date, possessing the largest lower limit on both its primary spin magnitude and projected spin χ→1,z\vec{\chi}_{1,z}.
-<mark>GW241110</mark>, conversely, yields the most confident measurement to date of a black hole spinning retrograde with respect to its orbit, with χ1,z&lt;0\chi_{1,z}&lt;0 at 97.7%97.7\% credibility.
-Bottom: 90%90\% credible posterior bounds on the primary masses and mass ratios of GW…</div>
+    <details class="lines"><summary>Show the sentences (144, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-Spin Black Hole Coalescences</li><li><span class="sec">title/headings</span> II.2 GW241110</li><li><span class="sec">title/headings</span> III.2 Properties of GW241110</li><li><span class="sec">title/headings</span> IV.1 GW241011 and GW241110 through isolated binary evolution</li><li><span class="sec">title/headings</span> IV.2 GW241011 and GW241110 as hierarchical mergers</li><li><span class="sec">title/headings</span> IV.3 The ancestors of GW241011 and GW241110</li><li><span class="sec">title/headings</span> C Binary black hole population inference with GW241011 and GW241110</li><li><span class="sec">abstract</span> …lack hole coalescences during the fourth observing run of the LIGO–Virgo–KAGRA detector network, GW241011 and GW241110.</li></ul>
     </details>
     
   </div>
@@ -1399,29 +651,16 @@ Bottom: 90%90\% credible posterior bounds on the primary masses and mass ratios 
 <section class="card" data-i="11" data-event="GW250114_082203">
   <div class="ctx">
     <div class="evname mono">GW250114_082203</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ilable, GstLAL, MBTA, and PyCBC each detected GW241011 with false alarm rates below 3×10−5​yr−13\times 10^{-5}\,\mathrm{yr}^{-1}.
-GW241011’s high network SNR makes it the third-loudest gravitational-wave event published to date, behind GW230814_230901 [3] and <mark>GW250114_082203</mark> [8].
-
-II.2 GW241110
-
-GW241110 arrived at Earth on November 10, 2024 at 12:41:23.6 UTC.
-It was identified in low latency in LIGO Hanford, LIGO Livingston, and Virgo data [201], assigned FAR=0.15​yr−1\mathrm{FAR}=0.15\,\mathrm{yr}^{-1} by the GstLAL search pipe…</div>
+    <p class="where">Named 3 times:
+      conclusion ×2, introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2510.26931v1#:~:text=GW250114_082203" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW250114_082203</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">conclusion</span>…o within 10%10\%, depending on the parametrization used, an improvement in precision by two orders of magnitude; see Section V.1).
-The nature of this test is independent from and complementary to the ringdown spectroscopy performed on the extremely loud event <mark>GW250114</mark>; analysis of GW250114’s ringdown identified overtones with frequencies constrained to within 30%30\% of their Kerr predictions [8, 10].
-GW241011’s strong radiation in multiple spherical harmonic modes furthermore enables the best constraint to date on the rel…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…nding on the parametrization used, an improvement in precision by two orders of magnitude; see Section V.1).
-The nature of this test is independent from and complementary to the ringdown spectroscopy performed on the extremely loud event GW250114; analysis of <mark>GW250114</mark>’s ringdown identified overtones with frequencies constrained to within 30%30\% of their Kerr predictions [8, 10].
-GW241011’s strong radiation in multiple spherical harmonic modes furthermore enables the best constraint to date on the relative amplitudes of (ℓ…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …ork SNR makes it the third-loudest gravitational-wave event published to date, behind GW230814_230901 [3] and GW250114_082203 [8].</li><li><span class="sec">conclusion</span> …test is independent from and complementary to the ringdown spectroscopy performed on the extremely loud event GW250114; analysis of GW250114’s ringdown identified overtones with frequencies constrained to within 30%30\% of their…</li></ul>
+    </details>
     
   </div>
   <div class="form">

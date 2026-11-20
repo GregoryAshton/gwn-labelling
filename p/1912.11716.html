@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,327 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Open data from the first and second observing runs of Advanced LIGO and Advanced Virgo</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1912.11716" target="_blank" rel="noopener" class="mono">arXiv:1912.11716</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Advanced LIGO and Advanced Virgo are monitoring the sky and collecting gravitational-wave strain data with sufficient sensitivity to detect signals routinely. In this paper we describe the data recorded by these instruments during their first and second observing runs. The main data products are gravitational-wave strain time series sampled at 16384 Hz. The datasets that include this strain measurement can be freely accessed through the Gravitational Wave Open Science Center at http://gw-openscience.org, together with data-quality information essential for the analysis of LIGO and Virgo data, documentation, tutorials, and supporting software.</p></details>
+<div class="small mut mono">arXiv:1912.11716</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Advanced LIGO and Advanced Virgo are monitoring the sky and collecting gravitational-wave strain data with sufficient sensitivity to detect signals routinely. In this paper we describe the data recorded by these instruments during their first and second observing runs. The main data products are gravitational-wave strain time series sampled at 16384 Hz. The datasets that include this strain measurement can be freely accessed through the Gravitational Wave Open Science Center at http://gw-openscience.org, together with data-quality information essential for the analysis of LIGO and Virgo data, documentation, tutorials, and supporting software.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1912.11716v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">7 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">7 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>10 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…10 binary black hole mergers [4, 8, 9, 10, 11, 12] and 1 binary neutron star merger [13]) and 14
-marginal triggers, collected and described in the Gravitational Wave Transient Catalog (GWTC-1) [14].
-
-Notable events in this catalog are the first observed event <mark>GW150914</mark> [4], the first three-detector event GW170814 [12] and the binary neutron star (BNS) coalescence GW170817 [13].
-This latter event is the first case where gravitational and electromagnetic waves have been observed from a single source [15] offering a unique des…</div>
+    <p class="where">Named 10 times:
+      data ×9, introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.11716v2#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">data</span>…. This category was not used in O1 and O2 LVC searches, but it is still in the file format for historical reasons.
-
-As an example, [170] gives the list of all sensors/auxiliary channels used to define the CAT1 and CAT2 flags for BURST and CBC around the event <mark>GW150914</mark>.
-
-Data quality categories are cascading: a time which fails a given category automatically fails all higher categories. Since CAT3 is not used in this specific case and only data passing CAT1 are provided, there is only the possibility that the data pass or n…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…ation.
-
-Prospects for observing and localizing
-gravitational-wave transients with Advanced LIGO, Advanced Virgo and KAGRA
-(2019).
-
-Preprint at https://arxiv.org/abs/1304.0670.
-
- 
-[8]
-
-Abbott, B. P. et al. (LIGO Scientific Collaboration,
-Virgo Collaboration).
-
-<mark>GW150914</mark>: First Results from the Search for Binary
-Black Hole Coalescence with Advanced LIGO.
-
-Phys. Rev. D 93,
-122003 (2016).
-
- 
-[9]
-
-Abbott, B. P. et al. (LIGO Scientific Collaboration,
-Virgo Collaboration).
-
-GW151226: Observation of Gravitational Waves from a
-22-So…</div>
-    
-    
-    <details><summary>7 more</summary>
-    <div class="mention"><span class="sec">data</span>…J. W.
-
-Extraction of black hole coalescence waveforms from
-noisy data.
-
-Phys. Lett. B
-784, 312 (2018).
-
-arXiv:1711.00347.
-
- 
-[23]
-
-Nielsen, A. B., Nitz, A. H.,
-Capano, C. D. &amp; Brown, D. A.
-
-Investigating the noise residuals around the
-gravitational wave event <mark>GW150914</mark>.
-
-JCAP 1902,
-019 (2019).
-
-arXiv:1811.04071.
-
- 
-[24]
-
-Nitz, A. H. et al.
-
-1-OGC: The first open gravitational-wave catalog of
-binary mergers from analysis of public Advanced LIGO data.
-
-ApJ 872,
-195 (2019).
-
-arXiv:1811.01921.
-
- 
-[25]
-
-Zackay, B., Venumadhav, T…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…Pinard, L. et al.
-
-Mirrors used in the LIGO interferometers for first
-detection of gravitational waves.
-
-Appl. Opt. 56,
-C11 (2017).
-
-URL https://doi.org/10.1364/AO.56.000C11.
-
- 
-[70]
-
-Abbott, B. P. et al. (LIGO Scientific Collaboration,
-Virgo Collaboration).
-
-<mark>GW150914</mark>: The Advanced LIGO detectors in the era
-of first discoveries.
-
-Phys. Rev. Lett.
-116, 131103
-(2016).
-
-URL http://link.aps.org/doi/10.1103/PhysRevLett.116.131103.
-
- 
-[71]
-
-Buonanno, A. &amp; Chen, Y.
-
-Signal recycled laser-interferometer
-gravitational-wave detector…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…v.
-31, 245010
-(2014).
-
-URL https://doi.org/10.1088%2F0264-9381%2F31%2F24%2F245010.
-
- 
-[105]
-
-Abbott, B. P. et al. (LIGO Scientific Collaboration,
-Virgo Collaboration).
-
-Characterization of transient noise in Advanced LIGO
-relevant to gravitational wave signal <mark>GW150914</mark>.
-
-Class. Quantum Grav.
-33, 134001
-(2016).
-
-arXiv:1602.03844.
-
- 
-[106]
-
-Effler, A. et al.
-
-Environmental Influences on the LIGO Gravitational
-Wave Detectors during the 6th Science Run.
-
-Class. Quantum Grav.
-32, 035017
-(2015).
-
- 
-[107]
-
-Finn, L. S. &amp; Chernoff, …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>… Advanced LIGO’s first
-and second observing runs.
-
-Phys. Rev. D 96,
-102001 (2017).
-
-arXiv:1708.03023.
-
- 
-[121]
-
-Abbott, B. P. et al. (LIGO Scientific
-Collaboration).
-
-Calibration of the Advanced LIGO detectors for the
-discovery of the binary black-hole merger <mark>GW150914</mark>.
-
-Phys. Rev. D 95,
-062003 (2017).
-
-URL https://link.aps.org/doi/10.1103/PhysRevD.95.062003.
-
- 
-[122]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-LIGO/Virgo Public Alerts User Guide
-(2018).
-
-URL https://emfollow.docs.ligo.org/userguide/.
-
- 
-[123]
-…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…D.95.062003.
-
- 
-[122]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-LIGO/Virgo Public Alerts User Guide
-(2018).
-
-URL https://emfollow.docs.ligo.org/userguide/.
-
- 
-[123]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event <mark>GW150914</mark>
-(2016).
-
-URL https://www.gw-openscience.org/events/GW150914/.
-
- 
-[124]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event LVT151012
-(2016).
-
-URL https://www.gw-openscience.org/events/LVT151012/.
-
- 
-[125]
-
-LIGO Scientific Collabora…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…go Collaboration.
-
-LIGO/Virgo Public Alerts User Guide
-(2018).
-
-URL https://emfollow.docs.ligo.org/userguide/.
-
- 
-[123]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW150914
-(2016).
-
-URL https://www.gw-openscience.org/events/<mark>GW150914</mark>/.
-
- 
-[124]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event LVT151012
-(2016).
-
-URL https://www.gw-openscience.org/events/LVT151012/.
-
- 
-[125]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW1512…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…
-List of lines for Virgo V1 during O2 - 20190209,
-version 1 (2019).
-
-URL https://www.gw-openscience.org/static/speclines/o2/O2_lines_Virgo_V1.txt.
-
- 
-[170]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data quality vetoes applied to the analysis of
-<mark>GW150914</mark>.
-
-https://dcc.ligo.org/public/0123/T1600011/003/DQdoc.pdf
-(2016).
-
- 
-[171]
-
-Kluyver, T. et al.
-
-Jupyter notebooks – a publishing format for
-reproducible computational workflows.
-
-In Positioning and Power in Academic
-Publishing: Players, Agents and Agendas, 87…</div>
+    <details class="lines"><summary>Show the sentences (10, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Notable events in this catalog are the first observed event GW150914 [4], the first three-detector event GW170814 [12] and the binary neutron star (BNS) coalescence GW170817 [13]…</li><li><span class="sec">data</span> …t of all sensors/auxiliary channels used to define the CAT1 and CAT2 flags for BURST and CBC around the event GW150914.</li><li><span class="sec">data</span> GW150914: First Results from the Search for Binary Black Hole Coalescence with Advanced LIGO.</li><li><span class="sec">data</span> Investigating the noise residuals around the gravitational wave event GW150914.</li><li><span class="sec">data</span> GW150914: The Advanced LIGO detectors in the era of first discoveries.</li><li><span class="sec">data</span> Characterization of transient noise in Advanced LIGO relevant to gravitational wave signal GW150914.</li><li><span class="sec">data</span> Calibration of the Advanced LIGO detectors for the discovery of the binary black-hole merger GW150914.</li><li><span class="sec">data</span> Data release for event GW150914 (2016).</li></ul>
     </details>
     
   </div>
@@ -479,82 +201,16 @@ Publishing: Players, Agents and Agendas, 87…</div>
 <section class="card" data-i="1" data-event="GW151012">
   <div class="ctx">
     <div class="evname mono">GW151012</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">data</span>…serguide/.
-
- 
-[123]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW150914
-(2016).
-
-URL https://www.gw-openscience.org/events/GW150914/.
-
- 
-[124]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event <mark>LVT151012</mark>
-(2016).
-
-URL https://www.gw-openscience.org/events/LVT151012/.
-
- 
-[125]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW151226
-(2016).
-
-URL https://www.gw-openscience.org/events/GW151226/.
-
- 
-[126]
-
-LIGO Scientific Collaborat…</div>
+    <p class="where">Named 2 times:
+      data ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.11716v2#:~:text=LVT151012" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">LVT151012</span> or <span class="mono hit">GW151012</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">data</span>…Collaboration.
-
-Data release for event GW150914
-(2016).
-
-URL https://www.gw-openscience.org/events/GW150914/.
-
- 
-[124]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event LVT151012
-(2016).
-
-URL https://www.gw-openscience.org/events/<mark>LVT151012</mark>/.
-
- 
-[125]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW151226
-(2016).
-
-URL https://www.gw-openscience.org/events/GW151226/.
-
- 
-[126]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170104…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">data</span> Data release for event LVT151012 (2016).</li><li><span class="sec">data</span> URL https://www.gw-openscience.org/events/LVT151012/.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -590,114 +246,16 @@ Data release for event GW170104…</div>
 <section class="card" data-i="2" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">data</span>…Scientific Collaboration,
-Virgo Collaboration).
-
-GW150914: First Results from the Search for Binary
-Black Hole Coalescence with Advanced LIGO.
-
-Phys. Rev. D 93,
-122003 (2016).
-
- 
-[9]
-
-Abbott, B. P. et al. (LIGO Scientific Collaboration,
-Virgo Collaboration).
-
-<mark>GW151226</mark>: Observation of Gravitational Waves from a
-22-Solar-Mass Binary Black Hole Coalescence.
-
-Phys. Rev. Lett.
-116, 241103
-(2016).
-
- 
-[10]
-
-Abbott, B. P. et al. (LIGO Scientific Collaboration,
-Virgo Collaboration).
-
-Binary Black Hole Mergers in the First Advanced …</div>
+    <p class="where">Named 3 times:
+      data ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.11716v2#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">data</span>…150914/.
-
- 
-[124]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event LVT151012
-(2016).
-
-URL https://www.gw-openscience.org/events/LVT151012/.
-
- 
-[125]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event <mark>GW151226</mark>
-(2016).
-
-URL https://www.gw-openscience.org/events/GW151226/.
-
- 
-[126]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170104
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170104/.
-
- 
-[127]
-
-LIGO Scientific Collaborati…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…ollaboration.
-
-Data release for event LVT151012
-(2016).
-
-URL https://www.gw-openscience.org/events/LVT151012/.
-
- 
-[125]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW151226
-(2016).
-
-URL https://www.gw-openscience.org/events/<mark>GW151226</mark>/.
-
- 
-[126]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170104
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170104/.
-
- 
-[127]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170608…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">data</span> GW151226: Observation of Gravitational Waves from a 22-Solar-Mass Binary Black Hole Coalescence.</li><li><span class="sec">data</span> Data release for event GW151226 (2016).</li><li><span class="sec">data</span> URL https://www.gw-openscience.org/events/GW151226/.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -733,115 +291,16 @@ Data release for event GW170608…</div>
 <section class="card" data-i="3" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">data</span>…bbott, B. P. et al. (LIGO Scientific Collaboration,
-Virgo Collaboration).
-
-Binary Black Hole Mergers in the First Advanced LIGO
-Observing Run.
-
-Phys. Rev. X 6,
-041015 (2016).
-
- 
-[11]
-
-Abbott, B. P. et al. (LIGO Scientific Collaboration,
-Virgo Collaboration).
-
-<mark>GW170104</mark>: Observation of a 50-Solar-Mass Binary
-Black Hole Coalescence at Redshift 0.2.
-
-Phys. Rev. Lett.
-118, 221101
-(2017).
-
- 
-[12]
-
-Abbott, B. P. et al. (LIGO Scientific Collaboration,
-Virgo Collaboration).
-
-GW170814: A Three-Detector Observation of
-Gravitational W…</div>
+    <p class="where">Named 3 times:
+      data ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.11716v2#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">data</span>…VT151012/.
-
- 
-[125]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW151226
-(2016).
-
-URL https://www.gw-openscience.org/events/GW151226/.
-
- 
-[126]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event <mark>GW170104</mark>
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170104/.
-
- 
-[127]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170608
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170608/.
-
- 
-[128]
-
-LIGO Scientific Collaborati…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>… Collaboration.
-
-Data release for event GW151226
-(2016).
-
-URL https://www.gw-openscience.org/events/GW151226/.
-
- 
-[126]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170104
-(2017).
-
-URL https://www.gw-openscience.org/events/<mark>GW170104</mark>/.
-
- 
-[127]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170608
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170608/.
-
- 
-[128]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170814…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">data</span> GW170104: Observation of a 50-Solar-Mass Binary Black Hole Coalescence at Redshift 0.2.</li><li><span class="sec">data</span> Data release for event GW170104 (2017).</li><li><span class="sec">data</span> URL https://www.gw-openscience.org/events/GW170104/.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -877,82 +336,16 @@ Data release for event GW170814…</div>
 <section class="card" data-i="4" data-event="GW170608">
   <div class="ctx">
     <div class="evname mono">GW170608</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">data</span>…GW151226/.
-
- 
-[126]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170104
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170104/.
-
- 
-[127]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event <mark>GW170608</mark>
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170608/.
-
- 
-[128]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170814
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170814/.
-
- 
-[129]
-
-LIGO Scientific Collaborati…</div>
+    <p class="where">Named 2 times:
+      data ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.11716v2#:~:text=GW170608" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170608</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">data</span>… Collaboration.
-
-Data release for event GW170104
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170104/.
-
- 
-[127]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170608
-(2017).
-
-URL https://www.gw-openscience.org/events/<mark>GW170608</mark>/.
-
- 
-[128]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170814
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170814/.
-
- 
-[129]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170817…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">data</span> Data release for event GW170608 (2017).</li><li><span class="sec">data</span> URL https://www.gw-openscience.org/events/GW170608/.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -988,134 +381,15 @@ Data release for event GW170817…</div>
 <section class="card" data-i="5" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>5 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…, 12] and 1 binary neutron star merger [13]) and 14
-marginal triggers, collected and described in the Gravitational Wave Transient Catalog (GWTC-1) [14].
-
-Notable events in this catalog are the first observed event GW150914 [4], the first three-detector event <mark>GW170814</mark> [12] and the binary neutron star (BNS) coalescence GW170817 [13].
-This latter event is the first case where gravitational and electromagnetic waves have been observed from a single source [15] offering a unique description of the physical processes at play du…</div>
+    <p class="where">Named 5 times:
+      data ×3, introduction, methods.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.11716v2#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…ve detector operating at any time.
-Despite the lower BNS range and cumulative time–volume for Virgo, its contribution has been important for astrophysical parameter estimation, especially in determining source localization and
-orientation [109].
-For instance, <mark>GW170814</mark> and GW170817 were localized by the three-detector network within a few tens of square degrees while the other events were localized by the two-detector network in sky areas ranging from a few hundreds to several thousands of square degrees.
-
-Note that the sen…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…Scientific Collaboration,
-Virgo Collaboration).
-
-GW170104: Observation of a 50-Solar-Mass Binary
-Black Hole Coalescence at Redshift 0.2.
-
-Phys. Rev. Lett.
-118, 221101
-(2017).
-
- 
-[12]
-
-Abbott, B. P. et al. (LIGO Scientific Collaboration,
-Virgo Collaboration).
-
-<mark>GW170814</mark>: A Three-Detector Observation of
-Gravitational Waves from a Binary Black Hole Coalescence.
-
-Phys. Rev. Lett.
-119, 141101
-(2017).
-
- 
-[13]
-
-Abbott, B. P. et al. (LIGO Scientific Collaboration,
-Virgo Collaboration).
-
-GW170817: Observation of Gravitational Waves …</div>
-    
-    
-    <details><summary>2 more</summary>
-    <div class="mention"><span class="sec">data</span>…GW170104/.
-
- 
-[127]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170608
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170608/.
-
- 
-[128]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event <mark>GW170814</mark>
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170814/.
-
- 
-[129]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170817
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170817/.
-
- 
-[130]
-
-Martynov, D. V. et al.
-
-Sen…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>… Collaboration.
-
-Data release for event GW170608
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170608/.
-
- 
-[128]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170814
-(2017).
-
-URL https://www.gw-openscience.org/events/<mark>GW170814</mark>/.
-
- 
-[129]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170817
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170817/.
-
- 
-[130]
-
-Martynov, D. V. et al.
-
-Sensitivity of the Advanced LIGO detectors at the
-beginning of …</div>
+    <details class="lines"><summary>Show the sentences (5): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> Notable events in this catalog are the first observed event GW150914 [4], the first three-detector event GW170814 [12] and the binary neutron star (BNS) coalescence GW170817 [13].</li><li><span class="sec">methods</span> For instance, GW170814 and GW170817 were localized by the three-detector network within a few tens of square degrees while the other…</li><li><span class="sec">data</span> GW170814: A Three-Detector Observation of Gravitational Waves from a Binary Black Hole Coalescence.</li><li><span class="sec">data</span> Data release for event GW170814 (2017).</li><li><span class="sec">data</span> URL https://www.gw-openscience.org/events/GW170814/.</li></ul>
     </details>
     
   </div>
@@ -1152,377 +426,15 @@ beginning of …</div>
 <section class="card" data-i="6" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>12 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… triggers, collected and described in the Gravitational Wave Transient Catalog (GWTC-1) [14].
-
-Notable events in this catalog are the first observed event GW150914 [4], the first three-detector event GW170814 [12] and the binary neutron star (BNS) coalescence <mark>GW170817</mark> [13].
-This latter event is the first case where gravitational and electromagnetic waves have been observed from a single source [15] offering a unique description of the physical processes at play during and after
-the merger of two neutron stars.
-
-The main da…</div>
+    <p class="where">Named 12 times:
+      data ×7, methods ×2, results ×2, introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/1912.11716v2#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">methods</span>…perating at any time.
-Despite the lower BNS range and cumulative time–volume for Virgo, its contribution has been important for astrophysical parameter estimation, especially in determining source localization and
-orientation [109].
-For instance, GW170814 and <mark>GW170817</mark> were localized by the three-detector network within a few tens of square degrees while the other events were localized by the two-detector network in sky areas ranging from a few hundreds to several thousands of square degrees.
-
-Note that the sensitive distan…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">methods</span>…% of the detector sensitive volume to GWs for a broad range of compact binary systems and was most significant for the LIGO-Hanford detector [138]. In some cases
-data are available both before and after noise subtraction is applied (for example in the case of <mark>GW170817</mark> [129]).
-
-2.3 Signal injections
-
-In addition to data quality, some metadata provide information about hardware injections [139] inserted into the detector data for testing and calibration. The detectors’ test masses (interferometer mirrors)
-are physically disp…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">data</span>…ollaboration,
-Virgo Collaboration).
-
-GW170814: A Three-Detector Observation of
-Gravitational Waves from a Binary Black Hole Coalescence.
-
-Phys. Rev. Lett.
-119, 141101
-(2017).
-
- 
-[13]
-
-Abbott, B. P. et al. (LIGO Scientific Collaboration,
-Virgo Collaboration).
-
-<mark>GW170817</mark>: Observation of Gravitational Waves from a
-Binary Neutron Star Inspiral.
-
-Phys. Rev. Lett.
-119, 161101
-(2017).
-
- 
-[14]
-
-Abbott, B. P. et al. (LIGO Scientific Collaboration,
-Virgo Collaboration).
-
-GWTC-1: A Gravitational-Wave Transient Catalog of
-Compact Binar…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…ection of gravitational waves from nonprecessing coalescing compact
-binaries with aligned-spins.
-
-Phys. Rev. D 99,
-124035 (2019).
-
-URL https://link.aps.org/doi/10.1103/PhysRevD.99.124035.
-
- 
-[35]
-
-Dai, L., Venumadhav, T. &amp;
-Zackay, B.
-
-Parameter Estimation for <mark>GW170817</mark> using Relative
-Binning (2018).
-
-Preprint at https://arxiv.org/abs/1806.08793.
-
- 
-[36]
-
-De, S., Capano, C. D.,
-Biwer, C. M., Nitz, A. H. &amp;
-Brown, D. A.
-
-Posterior samples of the parameters of binary black
-holes from Advanced LIGO, Virgo’s second observing run.…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…tching problem in bayesian analysis for
-gravitational wave astronomy.
-
-Phys. Rev. D
-100, 084041
-(2019).
-
-URL https://link.aps.org/doi/10.1103/PhysRevD.100.084041.
-
- 
-[43]
-
-De, S. et al.
-
-Tidal Deformabilities and Radii of Neutron Stars
-from the Observation of <mark>GW170817</mark>.
-
-Phys. Rev. Lett.
-121, 091102
-(2018).
-
-arXiv:1804.08583.
-
- 
-[44]
-
-Carson, Z., Chatziioannou, K.,
-Haster, C.-J., Yagi, K. &amp;
-Yunes, N.
-
-Equation-of-state insensitive relations after
-gw170817.
-
-Phys. Rev. D 99,
-083016 (2019).
-
-URL https://link.aps.org/doi/10.11…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">results</span>…of-state insensitive relations after
-gw170817.
-
-Phys. Rev. D 99,
-083016 (2019).
-
-URL https://link.aps.org/doi/10.1103/PhysRevD.99.083016.
-
- 
-[45]
-
-Reyes, S. &amp; Brown, D. A.
-
-Constraints on nonlinear tides due to pp-gg mode
-coupling from the neutron-star merger <mark>GW170817</mark>.
-
-Astrophys. J.
-894, 41 (2020).
-
-1808.07013.
-
- 
-[46]
-
-Pratten, G., Schmidt, P. &amp;
-Hinderer, T.
-
-Gravitational-wave asteroseismology with fundamental
-modes from compact binary inspirals.
-
-Nature Communications
-11, 2553 (2020).
-
- 
-[47]
-
-Hagihara, Y., Era, N.,
-Ii…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…
-
- 
-[54]
-
-Broadhurst, T., M. Diego, J. &amp;
-F. Smoot, G.
-
-Twin ligo/virgo detections of a viable
-gravitationally-lensed black hole merger (2019).
-
-Preprint at https://arxiv.org/abs/1901.03190.
-
- 
-[55]
-
-Radice, D. &amp; Dai, L.
-
-Multimessenger Parameter Estimation of <mark>GW170817</mark>.
-
-Eur. Phys. J. A
-55, 50 (2019).
-
-arXiv:1810.12917.
-
- 
-[56]
-
-Lousto, C. O. &amp; Healy, J.
-
-Kicking gravitational wave detectors with recoiling
-black holes.
-
-Phys. Rev. D
-100, 104039
-(2019).
-
-URL https://link.aps.org/doi/10.1103/PhysRevD.100.104039.
-
- 
-[57]
-
-Fins…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…Kicking gravitational wave detectors with recoiling
-black holes.
-
-Phys. Rev. D
-100, 104039
-(2019).
-
-URL https://link.aps.org/doi/10.1103/PhysRevD.100.104039.
-
- 
-[57]
-
-Finstad, D., De, S.,
-Brown, D. A., Berger, E. &amp;
-Biwer, C. M.
-
-Measuring the viewing angle of <mark>GW170817</mark> with
-electromagnetic and gravitational waves.
-
-The Astrophysical Journal
-860, L2 (2018).
-
- 
-[58]
-
-Nicolaou, C., Lahav, O.,
-Lemos, P., Hartley, W. &amp;
-Braden, J.
-
-The impact of peculiar velocities on the estimation
-of the Hubble constant from gravitational wave …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…GW170608/.
-
- 
-[128]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170814
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170814/.
-
- 
-[129]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event <mark>GW170817</mark>
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170817/.
-
- 
-[130]
-
-Martynov, D. V. et al.
-
-Sensitivity of the Advanced LIGO detectors at the
-beginning of gravitational wave astronomy.
-
-Phys. Rev. D 93,
-112004 (2016).
-
-URL https://link.aps.org/doi/10.1103…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>… Collaboration.
-
-Data release for event GW170814
-(2017).
-
-URL https://www.gw-openscience.org/events/GW170814/.
-
- 
-[129]
-
-LIGO Scientific Collaboration and Virgo Collaboration.
-
-Data release for event GW170817
-(2017).
-
-URL https://www.gw-openscience.org/events/<mark>GW170817</mark>/.
-
- 
-[130]
-
-Martynov, D. V. et al.
-
-Sensitivity of the Advanced LIGO detectors at the
-beginning of gravitational wave astronomy.
-
-Phys. Rev. D 93,
-112004 (2016).
-
-URL https://link.aps.org/doi/10.1103/PhysRevD.93.112004.
-
- 
-[131]
-
-Adhikari, R.
-
-Sensitivity and…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…avis, D. et al.
-
-Improving the Sensitivity of Advanced LIGO using
-noise subtraction.
-
-Class. Quantum Grav.
-36, 055011
-(2019).
-
-arXiv:1809.05348.
-
- 
-[138]
-
-Pankow, C. et al.
-
-Mitigation of the instrumental noise transient in
-gravitational-wave data surrounding <mark>GW170817</mark>.
-
-Phys. Rev. D 98,
-084016 (2018).
-
-URL https://link.aps.org/doi/10.1103/PhysRevD.98.084016.
-
- 
-[139]
-
-Biwer, C. et al.
-
-Validating gravitational-wave detections: The
-Advanced LIGO hardware injection system.
-
-Phys. Rev. D 95,
-062002 (2017).
-
-arXiv:1612.07864.
-…</div>
+    <details class="lines"><summary>Show the sentences (12, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …vent GW150914 [4], the first three-detector event GW170814 [12] and the binary neutron star (BNS) coalescence GW170817 [13].</li><li><span class="sec">methods</span> For instance, GW170814 and GW170817 were localized by the three-detector network within a few tens of square degrees while the other events were…</li><li><span class="sec">methods</span> …some cases data are available both before and after noise subtraction is applied (for example in the case of GW170817 [129]).</li><li><span class="sec">data</span> GW170817: Observation of Gravitational Waves from a Binary Neutron Star Inspiral.</li><li><span class="sec">data</span> Parameter Estimation for GW170817 using Relative Binning (2018).</li><li><span class="sec">results</span> Tidal Deformabilities and Radii of Neutron Stars from the Observation of GW170817.</li><li><span class="sec">results</span> Constraints on nonlinear tides due to pp-gg mode coupling from the neutron-star merger GW170817.</li><li><span class="sec">data</span> Multimessenger Parameter Estimation of GW170817.</li></ul>
     </details>
     
   </div>

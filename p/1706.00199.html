@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Fermi Observations of the LIGO Event GW170104</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1706.00199" target="_blank" rel="noopener" class="mono">arXiv:1706.00199</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We present the Fermi Gamma-ray Burst Monitor (GBM) and Large Area Telescope (LAT) observations of the LIGO binary black hole merger (BBH) event GW170104. No candidate electromagnetic counterpart was detected by either GBM or LAT. A detailed analysis of the GBM and LAT data over timescales from seconds to days covering the Laser Interferometer Gravitational-wave Observatory (LIGO) localization region is presented. The resulting flux upper bound from the GBM is (5.2-9.4) × 10&lt;SUP&gt;-7&lt;/SUP&gt; erg cm&lt;SUP&gt;-2&lt;/SUP&gt; s&lt;SUP&gt;-1&lt;/SUP&gt; in the 10-1000 keV range and from the LAT is (0.2-90) × 10&lt;SUP&gt;-9&lt;/SUP&gt; erg cm&lt;SUP&gt;-2&lt;/SUP&gt; s&lt;SUP&gt;-1&lt;/SUP&gt; in the 0.1-1 GeV range. We also describe the improvements to our automated pipelines and analysis techniques for searching for and characterizing the potential electromagnetic counterparts for future gravitational-wave events from Advanced LIGO/Virgo.</p></details>
+<div class="small mut mono">arXiv:1706.00199</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We present the Fermi Gamma-ray Burst Monitor (GBM) and Large Area Telescope (LAT) observations of the LIGO binary black hole merger (BBH) event GW170104. No candidate electromagnetic counterpart was detected by either GBM or LAT. A detailed analysis of the GBM and LAT data over timescales from seconds to days covering the Laser Interferometer Gravitational-wave Observatory (LIGO) localization region is presented. The resulting flux upper bound from the GBM is (5.2-9.4) × 10&lt;SUP&gt;-7&lt;/SUP&gt; erg cm&lt;SUP&gt;-2&lt;/SUP&gt; s&lt;SUP&gt;-1&lt;/SUP&gt; in the 10-1000 keV range and from the LAT is (0.2-90) × 10&lt;SUP&gt;-9&lt;/SUP&gt; erg cm&lt;SUP&gt;-2&lt;/SUP&gt; s&lt;SUP&gt;-1&lt;/SUP&gt; in the 0.1-1 GeV range. We also describe the improvements to our automated pipelines and analysis techniques for searching for and characterizing the potential electromagnetic counterparts for future gravitational-wave events from Advanced LIGO/Virgo.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1706.00199v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,70 +159,22 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">3 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">3 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>10 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…tional waves, gamma rays: general, methods: observation
-
-I Introduction
-
-The detection of gravitational waves (GWs) has opened a new window to the cosmos and paved the way to a new era of multi-messenger astronomy. The first detected signals by Advanced LIGO, <mark>GW150914</mark> and GW151226  [1, 2] are compatible with the coalescence of high-mass binary black holes (BBHs). The detection of a third BBH merger, GW170104 [3] (tGW = 2017-01-04 10:11:59 UTC), with component masses of ∼31​M☉\sim 31\ \rm M_{\sun} and ∼19​M☉\sim 19\ \rm M_{…</div>
+    <p class="where">Named 10 times:
+      conclusion ×8, introduction ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1706.00199v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…C), with component masses of ∼31​M☉\sim 31\ \rm M_{\sun} and ∼19​M☉\sim 19\ \rm M_{\sun}, adds to the growing sample BBH merger events. The component masses and the post-merger mass (∼49​M☉\sim 49\ \rm M_{\sun}) of GW170104 falls between those of GW151226 and <mark>GW150914</mark>, while the estimated distance of ∼880\sim 880 Mpc (z≈0.18z\approx 0.18) is roughly twice as far compared to the previous detections. GW binary coalescence events are also predicted to result from the mergers of other compact object binary systems such as neut…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>… flaring sources were detected within the LIGO localization contour.
-
-III Summary
-
-It is unclear how BBH mergers can be followed by BH-accretion disk systems that are conventionally invoked [10, e.g.] to channel the gravitational energy into EM radiation. For <mark>GW150914</mark> Connaughton et al. [15] reported a possible counterpart, which increased interest in scenarios by which BBH mergers may yield significant gamma-ray emission. However, all current models suffer from non-negligible inconsistencies [24, e.g.] and for this reason…</div>
-    
-    
-    <details><summary>7 more</summary>
-    <div class="mention"><span class="sec">conclusion</span>…own to seconds before the coalescence as required. An efficient way to power EM emission is the Blandford-Znajek [13] process of electromagnetic extraction of mechanical energy [22, 33]. Lyutikov [24] however pointed out that the EM luminosity associated with <mark>GW150914</mark> would require magnetic fields of ∼\sim1012 G, astrophysically implausible for an environment around a BH.
-
-Based on the general arguments listed in Racusin et al. [31], non-detection of an EM counterpart for GW170104 does not rule out the association between …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>… would require magnetic fields of ∼\sim1012 G, astrophysically implausible for an environment around a BH.
-
-Based on the general arguments listed in Racusin et al. [31], non-detection of an EM counterpart for GW170104 does not rule out the association between <mark>GW150914</mark> and GW150914-GBM. These arguments are: a.) The source may have been occulted by the Earth from Fermi at the time of trigger [14, ∼\sim18% of the LIGO map was occulted;]. b.) The GBM background rates are higher for GW170104 (average 113 counts s-1 per detector…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…e magnetic fields of ∼\sim1012 G, astrophysically implausible for an environment around a BH.
-
-Based on the general arguments listed in Racusin et al. [31], non-detection of an EM counterpart for GW170104 does not rule out the association between GW150914 and <mark>GW150914</mark>-GBM. These arguments are: a.) The source may have been occulted by the Earth from Fermi at the time of trigger [14, ∼\sim18% of the LIGO map was occulted;]. b.) The GBM background rates are higher for GW170104 (average 113 counts s-1 per detector, or 11%, hig…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…ments are: a.) The source may have been occulted by the Earth from Fermi at the time of trigger [14, ∼\sim18% of the LIGO map was occulted;]. b.) The GBM background rates are higher for GW170104 (average 113 counts s-1 per detector, or 11%, higher compared to <mark>GW150914</mark>-GBM). Note that the estimated flux for the ∼1\sim 1 s long signal GW150914-GBM [15, ∼2×10−7\sim 2\times 10^{-7} erg s-1 cm-2;] is below the GBM flux upper limit we estimate here, indicating that it is unlikely that GW150914-GBM could be detected with this inc…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>… the time of trigger [14, ∼\sim18% of the LIGO map was occulted;]. b.) The GBM background rates are higher for GW170104 (average 113 counts s-1 per detector, or 11%, higher compared to GW150914-GBM). Note that the estimated flux for the ∼1\sim 1 s long signal <mark>GW150914</mark>-GBM [15, ∼2×10−7\sim 2\times 10^{-7} erg s-1 cm-2;] is below the GBM flux upper limit we estimate here, indicating that it is unlikely that GW150914-GBM could be detected with this increased background rate. c.) A jet, if present, was pointing away from us. d…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…etector, or 11%, higher compared to GW150914-GBM). Note that the estimated flux for the ∼1\sim 1 s long signal GW150914-GBM [15, ∼2×10−7\sim 2\times 10^{-7} erg s-1 cm-2;] is below the GBM flux upper limit we estimate here, indicating that it is unlikely that <mark>GW150914</mark>-GBM could be detected with this increased background rate. c.) A jet, if present, was pointing away from us. d.) The EM emission associated with GW170104 was dimmer than for GW150914 (e.g., related to the lower BH masses and the larger source distance).
-
-GW17…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">conclusion</span>…e GBM flux upper limit we estimate here, indicating that it is unlikely that GW150914-GBM could be detected with this increased background rate. c.) A jet, if present, was pointing away from us. d.) The EM emission associated with GW170104 was dimmer than for <mark>GW150914</mark> (e.g., related to the lower BH masses and the larger source distance).
-
-GW170104 is the third BBH merger detected by Advanced LIGO. While no conventional model predicts EM counterparts for these sources, our observations are important in two respects: a.) We …</div>
+    <details class="lines"><summary>Show the sentences (7): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> The first detected signals by Advanced LIGO, GW150914 and GW151226 [1, 2] are compatible with the coalescence of high-mass binary black holes (BBHs).</li><li><span class="sec">introduction</span> …masses and the post-merger mass (∼49​M☉\sim 49\ \rm M_{\sun}) of GW170104 falls between those of GW151226 and GW150914, while the estimated distance of ∼880\sim 880 Mpc (z≈0.18z\approx 0.18) is roughly twice as far compared to t…</li><li><span class="sec">conclusion</span> For GW150914 Connaughton et al. [15] reported a possible counterpart, which increased interest in scenarios by which BBH m…</li><li><span class="sec">conclusion</span> Lyutikov [24] however pointed out that the EM luminosity associated with GW150914 would require magnetic fields of ∼\sim1012 G, astrophysically implausible for an environment around a BH.</li><li><span class="sec">conclusion</span> …acusin et al. [31], non-detection of an EM counterpart for GW170104 does not rule out the association between GW150914 and GW150914-GBM.</li><li><span class="sec">conclusion</span> …GBM background rates are higher for GW170104 (average 113 counts s-1 per detector, or 11%, higher compared to GW150914-GBM).</li><li><span class="sec">conclusion</span> Note that the estimated flux for the ∼1\sim 1 s long signal GW150914-GBM [15, ∼2×10−7\sim 2\times 10^{-7} erg s-1 cm-2;] is below the GBM flux upper limit we estimate here, indic…</li></ul>
     </details>
     
   </div>
@@ -238,19 +211,16 @@ GW170104 is the third BBH merger detected by Advanced LIGO. While no conventiona
 <section class="card" data-i="1" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… gamma rays: general, methods: observation
-
-I Introduction
-
-The detection of gravitational waves (GWs) has opened a new window to the cosmos and paved the way to a new era of multi-messenger astronomy. The first detected signals by Advanced LIGO, GW150914 and <mark>GW151226</mark>  [1, 2] are compatible with the coalescence of high-mass binary black holes (BBHs). The detection of a third BBH merger, GW170104 [3] (tGW = 2017-01-04 10:11:59 UTC), with component masses of ∼31​M☉\sim 31\ \rm M_{\sun} and ∼19​M☉\sim 19\ \rm M_{\sun}, adds t…</div>
+    <p class="where">Named 2 times:
+      introduction ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1706.00199v1#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…4 10:11:59 UTC), with component masses of ∼31​M☉\sim 31\ \rm M_{\sun} and ∼19​M☉\sim 19\ \rm M_{\sun}, adds to the growing sample BBH merger events. The component masses and the post-merger mass (∼49​M☉\sim 49\ \rm M_{\sun}) of GW170104 falls between those of <mark>GW151226</mark> and GW150914, while the estimated distance of ∼880\sim 880 Mpc (z≈0.18z\approx 0.18) is roughly twice as far compared to the previous detections. GW binary coalescence events are also predicted to result from the mergers of other compact object binary systems…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> The first detected signals by Advanced LIGO, GW150914 and GW151226 [1, 2] are compatible with the coalescence of high-mass binary black holes (BBHs).</li><li><span class="sec">introduction</span> …he component masses and the post-merger mass (∼49​M☉\sim 49\ \rm M_{\sun}) of GW170104 falls between those of GW151226 and GW150914, while the estimated distance of ∼880\sim 880 Mpc (z≈0.18z\approx 0.18) is roughly twice as far…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -286,220 +256,15 @@ The detection of gravitational waves (GWs) has opened a new window to the cosmos
 <section class="card" data-i="2" data-event="GW170104">
   <div class="ctx">
     <div class="evname mono">GW170104</div>
-    <h3>21 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>Fermi observations of the LIGO event <mark>GW170104</mark>
-
- 
-
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- 
- 
-
- 
- arXiv is now an independent nonprofit!
- Learn more
- &amp;times;
- 
-
- 
- 
- Back to arX…</div>
+    <p class="where">Named 21 times:
+      data ×11, conclusion ×4, title/headings ×3, introduction ×2, abstract.</p>
+    <p class="where"><a href="https://arxiv.org/html/1706.00199v1#:~:text=GW170104" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170104</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-Abstract
-
-I Introduction
-
-II Observations and data analysis
-
-II.1 GBM
-
-II.1.1 GBM Signal Searches
-
-II.1.2 GBM Results
-
-II.2 LAT
-
-II.2.1 The LAT signal searches
-
-II.2.2 LAT observations of <mark>GW170104</mark>
-
-III Summary
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1706.00199v1 [astro-ph.HE] 01 Jun 2017
-
-Fermi observations of the LIGO event GW170104
-
-On behalf of the Fermi-GBM Collaboration
-
-  
-the Fermi-LAT Collaboration
-
-Abstract…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…2 GBM Results
-
-II.2 LAT
-
-II.2.1 The LAT signal searches
-
-II.2.2 LAT observations of GW170104
-
-III Summary
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1706.00199v1 [astro-ph.HE] 01 Jun 2017
-
-Fermi observations of the LIGO event <mark>GW170104</mark>
-
-On behalf of the Fermi-GBM Collaboration
-
-  
-the Fermi-LAT Collaboration
-
-Abstract
-
- 
-We present the Fermi Gamma-ray Burst Monitor (GBM) and Large Area Telescope (LAT) observations of the LIGO binary black hole merger (BBH) event GW170104. No candidate elect…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…s of the LIGO event GW170104
-
-On behalf of the Fermi-GBM Collaboration
-
-  
-the Fermi-LAT Collaboration
-
-Abstract
-
- 
-We present the Fermi Gamma-ray Burst Monitor (GBM) and Large Area Telescope (LAT) observations of the LIGO binary black hole merger (BBH) event <mark>GW170104</mark>. No candidate electromagnetic counterparts was detected by either GBM or LAT. A detailed analysis of the GBM and LAT data over timescales from seconds to days covering the LIGO localization region is presented. The resulting flux upper bound from the GBM is (…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…the cosmos and paved the way to a new era of multi-messenger astronomy. The first detected signals by Advanced LIGO, GW150914 and GW151226  [1, 2] are compatible with the coalescence of high-mass binary black holes (BBHs). The detection of a third BBH merger, <mark>GW170104</mark> [3] (tGW = 2017-01-04 10:11:59 UTC), with component masses of ∼31​M☉\sim 31\ \rm M_{\sun} and ∼19​M☉\sim 19\ \rm M_{\sun}, adds to the growing sample BBH merger events. The component masses and the post-merger mass (∼49​M☉\sim 49\ \rm M_{\sun}) of GW170104 fa…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…r, GW170104 [3] (tGW = 2017-01-04 10:11:59 UTC), with component masses of ∼31​M☉\sim 31\ \rm M_{\sun} and ∼19​M☉\sim 19\ \rm M_{\sun}, adds to the growing sample BBH merger events. The component masses and the post-merger mass (∼49​M☉\sim 49\ \rm M_{\sun}) of <mark>GW170104</mark> falls between those of GW151226 and GW150914, while the estimated distance of ∼880\sim 880 Mpc (z≈0.18z\approx 0.18) is roughly twice as far compared to the previous detections. GW binary coalescence events are also predicted to result from the mergers of oth…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…epresentative cut-off power-law spectrum, increasing the data temporal resolution, improving the background
-estimation, and utilizing localization information in the ranking statistic.
-
-II.1.2 GBM Results
-
-No on-board GBM trigger was recorded close in time to <mark>GW170104</mark>. The nearest triggers were more than thirteen hours preceding and more than 10 hours following GW170104, and both of these triggers were due to steep non-astrophysical rate increases near the boundary of the SAA just before the detectors were turned off for p…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…und
-estimation, and utilizing localization information in the ranking statistic.
-
-II.1.2 GBM Results
-
-No on-board GBM trigger was recorded close in time to GW170104. The nearest triggers were more than thirteen hours preceding and more than 10 hours following <mark>GW170104</mark>, and both of these triggers were due to steep non-astrophysical rate increases near the boundary of the SAA just before the detectors were turned off for passage. The un-targeted search did not find any un-triggered sGRB candidate during January 4. The neares…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…iggers were due to steep non-astrophysical rate increases near the boundary of the SAA just before the detectors were turned off for passage. The un-targeted search did not find any un-triggered sGRB candidate during January 4. The nearest candidate preceding <mark>GW170104</mark> was more than 15 hours previous on January 3, and the nearest candidate following GW170104 was about 8 days later on January 12.
-
-The targeted search was run over a 1 minute window centered at the LIGO trigger time of GW170104, searching for any signal on tim…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>… before the detectors were turned off for passage. The un-targeted search did not find any un-triggered sGRB candidate during January 4. The nearest candidate preceding GW170104 was more than 15 hours previous on January 3, and the nearest candidate following <mark>GW170104</mark> was about 8 days later on January 12.
-
-The targeted search was run over a 1 minute window centered at the LIGO trigger time of GW170104, searching for any signal on timescales from 0.256 s, increasing by factors of two up to 8.192 s (6 timescales). As reporte…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>… The nearest candidate preceding GW170104 was more than 15 hours previous on January 3, and the nearest candidate following GW170104 was about 8 days later on January 12.
-
-The targeted search was run over a 1 minute window centered at the LIGO trigger time of <mark>GW170104</mark>, searching for any signal on timescales from 0.256 s, increasing by factors of two up to 8.192 s (6 timescales). As reported in Burns et al. [14], no credible significant candidate was found. The most significant result from the search was on the longest time…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…rom (5.2−9.4)×10−7(5.2-9.4)\times 10^{-7} erg s−1\rm s^{-1} cm−2\rm cm^{-2} in the 10–1000 keV range. These upper bounds are below 90–99% of GBM-triggered sGRBs with a similar spectrum to the model used for the upper bound estimation. Based on the distance of <mark>GW170104</mark>, DL≈880D_{L}\approx 880 Mpc, z≈0.18z\approx 0.18, the flux upper bound translates to a K-corrected luminosity upper bound range of (5.5−9.9)×1049(5.5-9.9)\times 10^{49} erg s-1 in the approximately bolometric 1–104 keV energy range typically reported for GRBs…</div>
+    <details class="lines"><summary>Show the sentences (18, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Fermi observations of the LIGO event GW170104</li><li><span class="sec">title/headings</span> II.2.2 LAT observations of GW170104</li><li><span class="sec">abstract</span> …st Monitor (GBM) and Large Area Telescope (LAT) observations of the LIGO binary black hole merger (BBH) event GW170104.</li><li><span class="sec">introduction</span> The detection of a third BBH merger, GW170104 [3] (tGW = 2017-01-04 10:11:59 UTC), with component masses of ∼31​M☉\sim 31\ \rm M_{\sun} and ∼19​M☉\sim 19\…</li><li><span class="sec">introduction</span> The component masses and the post-merger mass (∼49​M☉\sim 49\ \rm M_{\sun}) of GW170104 falls between those of GW151226 and GW150914, while the estimated distance of ∼880\sim 880 Mpc (z≈0.18z\appro…</li><li><span class="sec">data</span> No on-board GBM trigger was recorded close in time to GW170104.</li><li><span class="sec">data</span> The nearest triggers were more than thirteen hours preceding and more than 10 hours following GW170104, and both of these triggers were due to steep non-astrophysical rate increases near the boundary of the SAA j…</li><li><span class="sec">data</span> The nearest candidate preceding GW170104 was more than 15 hours previous on January 3, and the nearest candidate following GW170104 was about 8 days l…</li></ul>
     </details>
     
   </div>

@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,25 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Matter effects on LIGO/Virgo searches for gravitational waves from merging neutron stars</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1708.04359" target="_blank" rel="noopener" class="mono">arXiv:1708.04359</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Gravitational waves from merging neutron stars are expected to be observed in the next five years. We explore the potential impact of matter effects on gravitational waves from merging double neutron-star binaries. If neutron star binaries exist with chirp masses less than roughly one solar mass and typical neutron-star radii are larger than roughly 14 km, or if neutron-star radii are larger than 15-16 km for the chirp masses of galactic neutron-star binaries, then matter will have a significant impact on the effectiveness of a point-particle-based search at Advanced LIGO design sensitivity (roughly 5% additional loss of signals). In a configuration typical of LIGO’s first observing run, extreme matter effects lead to up to 10% potential loss in the most extreme cases.</p></details>
+<div class="small mut mono">arXiv:1708.04359</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Gravitational waves from merging neutron stars are expected to be observed in the next five years. We explore the potential impact of matter effects on gravitational waves from merging double neutron-star binaries. If neutron star binaries exist with chirp masses less than roughly one solar mass and typical neutron-star radii are larger than roughly 14 km, or if neutron-star radii are larger than 15-16 km for the chirp masses of galactic neutron-star binaries, then matter will have a significant impact on the effectiveness of a point-particle-based search at Advanced LIGO design sensitivity (roughly 5% additional loss of signals). In a configuration typical of LIGO’s first observing run, extreme matter effects lead to up to 10% potential loss in the most extreme cases.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1708.04359v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/1708.04359v1#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…re matched-filtering: comparing the detector output to a predicted signal [10] generated for particular source parameters. The first instance of a detected signal found through matched filtering was recorded in December of 2015 as a 22-solar-mass coalescence (<mark>GW151226</mark>) [2]. LIGO’s compact binary coalescence matched-filter searches cover binary component masses ranging from [1.0,100]​M⊙[1.0,100]M_{\odot} for core searches [7, 10], and have also been used to search for higher-mass mergers [11].
-
-Early investigations of gravi…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> …ected signal found through matched filtering was recorded in December of 2015 as a 22-solar-mass coalescence (GW151226) [2].</li></ul>
+    </details>
     
   </div>
   <div class="form">

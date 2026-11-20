@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,203 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Gravitational-wave Extraction using Independent Component Analysis</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2503.14179" target="_blank" rel="noopener" class="mono">arXiv:2503.14179</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Independent component analysis (ICA) is a method to extract a set of time-series data using ``statistical independency&#34; of each component. We applied ICA to extract gravitational wave (GW) signals directly from the detector data. Our idea is to extract a coherent signal that is included in multiple detectors and find it by shifting the data set around its arrival time. In this article, we report several tests using injected signals, and show that this method works for inspiral-wave events with a signal-to-noise ratio of $&amp;gt;$ 15. We then applied the method to actual LIGO-Virgo-KAGRA O1-O3 events, and showed that the identification of the arrival time can be estimated more precisely than previously reported. This approach does not require templates of waveform, therefore it is attractive for testing theories of gravity, and for finding unknown GW.</p></details>
+<div class="small mut mono">arXiv:2503.14179</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">Independent component analysis (ICA) is a method to extract a set of time-series data using ``statistical independency&#34; of each component. We applied ICA to extract gravitational wave (GW) signals directly from the detector data. Our idea is to extract a coherent signal that is included in multiple detectors and find it by shifting the data set around its arrival time. In this article, we report several tests using injected signals, and show that this method works for inspiral-wave events with a signal-to-noise ratio of $&amp;gt;$ 15. We then applied the method to actual LIGO-Virgo-KAGRA O1-O3 events, and showed that the identification of the arrival time can be estimated more precisely than previously reported. This approach does not require templates of waveform, therefore it is attractive for testing theories of gravity, and for finding unknown GW.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2503.14179v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">12 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">12 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>14 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…
-
-2.2 Measure for identification of GW
-
-2.3 Finding the arrival time
-
-3 Demonstrations with injected GW signals
-
-3.1 Injections of inspiral signal to Gaussian Noise
-
-3.2 Injections of GW signal to real detector data
-
-4 Applications to real GW extractions
-
-4.1 <mark>GW150914</mark>
-
-4.2 Other events
-
-5 Summary
-
-A FastICA using Kurtosis
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:2503.14179v2 [gr-qc] 05 May 2025
-
-Gravitational-wave Extraction using Independent Component Analysis
-
-Rika Shimomura
-
-  
-Yuuich…</div>
+    <p class="where">Named 14 times:
+      introduction ×13, title/headings.</p>
+    <p class="where"><a href="https://arxiv.org/html/2503.14179v2#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>… templates of waveform, therefore it is attractive for testing theories of gravity, and for finding unknown GW.
-
- 
-
-May 4, 2025
-
-1 Introduction
-
-Almost a decade has passed since the LIGO-Virgo collaboration directly detected the first gravitational wave (GW), <mark>GW150914</mark> [1]. Until now, the LIGO-Virgo-KAGRA (LVK) collaboration has reported 90 events as the GWTC-3 catalog, which is the result of the O3 observing run that ended in March 2020[3]. The catalog consists of 90 events from compact binary coalescence (CBC), of which 8…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…itude of the injected signal is at the same level as the noise [Figure 1(b)(c)].
-
-3.2 Injections of GW signal to real detector data
-
-Next, we demonstrate the signal extraction of the injected waves from the real detector data. We used the detector data around <mark>GW150914</mark> (GPS time of tc=1126259462.4t_{c}=1126259462.4)
-of LIGO-Hanford, nH​(t)n_{\rm H}(t), and LIGO-Livingston, nL​(t)n_{\rm L}(t), which we downloaded from GWOSC.
-
-We made two tests. One is the injection of a sinusoidal wave,
-
-Model 2 : {x1​(t)=nH​(t)+sin⁡(2​π​f​t…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…ier spectrum of (c1)
-
-(c3) Output of ICA for (c1).
-
-(c4) Fourier spectrum of (c3).
-
-Figure 3: 
-Test of GW extraction using ICA: the case of Model 3 [eq. (16)], injections of a inspiral wave signal to the Hanford and Livingston data one second before the event <mark>GW150914</mark>.
-The SNR of the injected signal is 20.9 (a1-a4), 16.8 (b1-b4), and 10.5 (c1-c4). We see the inspiral feature in Fourier spectrum of the output data for SNR &gt;&gt; 15. Note that we filtered for f&gt;300f&gt;300 Hz and also that the input data has strong line noise at 60…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…the extracted data over the average of 150-2050 Hz. 
-
-SNR to hHh_{H}
-SNR to hLh_{L}
-excess power
-ref.
-
-  20.8
-  20.0
-  7.78
-Fig.2(a4)
-
-  10.4
-  10.0
-  3.76
-Fig.2(b4)
-
-  5.2
-  5.0
-  1.93
-Fig.2(c4)
-
-For Model 2, we used two second data around the merger time of <mark>GW150914</mark>, and we set f=213f=213 Hz which is independent of the known line noises. Figure 2 and Table 2 show the results of Model 2.
-By changing the amplitude, we show the cases with signal-to-noise ratio (SNR) of 20 (Fig.(a)), (b)10 and (c) 5.
-Figures (a1), (b1), and …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…rfect separation is, we think, due to the original strong line noises at 60 Hz and 120 Hz.
-We think we are safe to say the extraction was effective for the cases SNR ≥10\geq 10.
-
-For Model 3, we used one second data before one second of merger time tct_{c} of <mark>GW150914</mark>. The injected inspiral wave is h⁡(t,tc−1​s,26​M⊙)h(t;t_{c}-1~\mbox{s},26M_{\odot}).
-The results are shown in Figure 3, with the same notation as in the previous figures.
-Note that we filtered over f&gt;300f&gt;300 Hz and that the input data had strong line noise at…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… injected signal is 20.9 (a1-a4), 16.8 (b1-b4), and 10.5 (c1-c4). The inspiral feature in the Fourier spectrum of the output data for an SNR &gt;&gt; 15.
-
-4 Applications to real GW extractions
-
-In this section, we demonstrate GW extractions of the real events.
-
-4.1 <mark>GW150914</mark>
-
-Here, we present the case of GW150914[1] in detail. This is the first detection of GW and has been well tested as the standard. The event was observed by the Hanford (H) and Livingston (L) observatories, and the announced network-SNR in GWOSC was 26.0.
-
-We u…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…(b1-b4), and 10.5 (c1-c4). The inspiral feature in the Fourier spectrum of the output data for an SNR &gt;&gt; 15.
-
-4 Applications to real GW extractions
-
-In this section, we demonstrate GW extractions of the real events.
-
-4.1 GW150914
-
-Here, we present the case of <mark>GW150914</mark>[1] in detail. This is the first detection of GW and has been well tested as the standard. The event was observed by the Hanford (H) and Livingston (L) observatories, and the announced network-SNR in GWOSC was 26.0.
-
-We used one-second data around tct_{c} with…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ar.
-
-(a) Input signals with Δ​tHL=−7.32\Delta t_{\mbox{\footnotesize HL}}=-7.32 ms. The data x1 and x2 are of Hanford and Livingston data, respectively.
-
-(b) Fourier spectrum of (a).
-
-(c) Output of ICA.
-
-(d) Fourier spectrum of (c).
-
-Figure 4: 
-Application to <mark>GW150914</mark>. (a/b) The set of input data and its spectrum with Δ​tHL=−7.32\Delta t_{\mbox{\footnotesize HL}}=-7.32 ms which shows the largest 𝒜{\cal A} in the output of ICA. The x1 and x2 indicates the data of Hanford and Livingston, respectively. (c/d) The output of ICA…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…clearly see the signal (s1) is separted from the other (s2). Note that the input data have a line noise at 120 Hz.
-
-Figure 5: 
-The strength of the extracted signal, 𝒜{\cal A} [eq. (2.2)] as a function of Δ​tHL\Delta t_{\mbox{\footnotesize HL}} for the case of <mark>GW150914</mark>. Five trials of different initial weight matrix are plotted at each Δ​tHL\Delta t_{\mbox{\footnotesize HL}}. We see the maximum is at Δ​tHL=−7.32−0.15+0.15\Delta t_{\mbox{\footnotesize HL}}=-7.32^{+0.15}_{-0.15} ms. Note that LIGO-Virgo paper [1] shows Δ​tHL=…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…notesize HL}}. We see the maximum is at Δ​tHL=−7.32−0.15+0.15\Delta t_{\mbox{\footnotesize HL}}=-7.32^{+0.15}_{-0.15} ms. Note that LIGO-Virgo paper [1] shows Δ​tHL=−6.9−0.4+0.5\Delta t_{\mbox{\footnotesize HL}}=-6.9^{+0.5}_{-0.4} ms.
-
-Figure 6: Extraction of <mark>GW150914</mark>.
-(Upper) The output data (Fig. 4 (c) s1) is overlapped with hinsp​(t,tc,Mc=30.8​M⊙)h_{\rm\footnotesize{insp}}(t;t_{c},M_{c}=30.8M_{\odot}). (Lower) The residuals.
-
-We plot the input data (x1, x2) and output data (s1, s2) for the largest 𝒜{\cal A} case in Figu…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…M_{c}^{\rm source}(1+z)
-
-(17)
-
-where zz is the redshift parameter of the source. From error-bars in McsourceM_{c}^{\rm source} in GWOSC data, we calculate zz (hereafter we denote zICAz_{\rm ICA}) as zICA=0.077±0.06z_{\rm ICA}=0.077\pm 0.06. The redshift zz of <mark>GW150914</mark> in GWOSC webpage is z=0.09±0.03z=0.09\pm 0.03. Therefore our result is again consistent with them.
-
-4.2 Other events
-
-We continue a similar analysis for other GW events from binary BHs with higher SNR events in O1-O3.
-Figure 7 shows the input data (x1, x2, x3…</div>
+    <details class="lines"><summary>Show the sentences (13, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> 4.1 GW150914</li><li><span class="sec">introduction</span> …t a decade has passed since the LIGO-Virgo collaboration directly detected the first gravitational wave (GW), GW150914 [1].</li><li><span class="sec">introduction</span> We used the detector data around GW150914 (GPS time of tc=1126259462.4t_{c}=1126259462.4) of LIGO-Hanford, nH​(t)n_{\rm H}(t), and LIGO-Livingston, nL​…</li><li><span class="sec">introduction</span> (16)], injections of a inspiral wave signal to the Hanford and Livingston data one second before the event GW150914.</li><li><span class="sec">introduction</span> For Model 2, we used two second data around the merger time of GW150914, and we set f=213f=213 Hz which is independent of the known line noises.</li><li><span class="sec">introduction</span> For Model 3, we used one second data before one second of merger time tct_{c} of GW150914.</li><li><span class="sec">introduction</span> Here, we present the case of GW150914[1] in detail.</li><li><span class="sec">introduction</span> Figure 4: Application to GW150914.</li></ul>
     </details>
     
   </div>
@@ -355,128 +201,15 @@ Figure 7 shows the input data (x1, x2, x3…</div>
 <section class="card" data-i="1" data-event="GW170814">
   <div class="ctx">
     <div class="evname mono">GW170814</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…(b)
-
-GW191204_171526
-HL
-8.55
-−2.44±0.490.73-2.44\pm^{0.49}_{0.73}
-–
-–
-2.07
- 3.27
-Fig.7(c)
-
-GW191216_213338
-HV
-8.33
-–
-−11.0±1.50.73-11.0\pm^{1.5}_{0.73}
-–
-3.08
- 2.09
-Fig.7(d)
-
-GW200112_155838
-LV
-27.4
-–
-–
-−23.2±0.490.24-23.2\pm^{0.49}_{0.24}
-2.43
-10.5
-Fig.7(e)
-
-<mark>GW170814</mark>
-HLV
-24.1
-−8.06±0.490.98-8.06\pm^{0.49}_{0.98}
-0.98±2.40.240.98\pm^{2.4}_{0.24}
-–
-3.54
- 5.07
-Fig.7(f)
-
-GW190412
-HLV
-13.3
-−3.91±0.240.24-3.91\pm^{0.24}_{0.24}
-−13.92±0.980.49-13.92\pm^{0.98}_{0.49}
-–
-2.21
- 4.40
-Fig.7(g)
-
-GW190521
-HLV
-63.3
-2.93±0.491.22.93\pm^{0…</div>
+    <p class="where">Named 4 times:
+      introduction ×4.</p>
+    <p class="where"><a href="https://arxiv.org/html/2503.14179v2#:~:text=GW170814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…8.33−0.19+0.228.33^{+0.22}_{-0.19}
-0.07−0.03+0.020.07^{+0.02}_{-0.03}
-9.00
-0.08−0.03+0.030.08^{+0.03}_{-0.03}
-Fig.7(d)
-
-GW200112_155838
-LV
-19.8
-27.4−2.1+2.627.4^{+2.6}_{-2.1}
-0.24−0.08+0.070.24^{+0.07}_{-0.08}
-32.7
-0.19−0.10+0.100.19^{+0.10}_{-0.10}
-Fig.7(e)
-
-<mark>GW170814</mark>
-HLV
-17.7
-24.1−1.1+1.424.1^{+1.4}_{-1.1}
-0.12−0.04+0.030.12^{+0.03}_{-0.04}
-26.0
-0.08−0.06+0.050.08^{+0.05}_{-0.06}
-Fig.7(f)
-
-GW190412
-HLV
-19.8
-13.3−0.5+0.513.3^{+0.5}_{-0.5}
-0.15−0.04+0.040.15^{+0.04}_{-0.04}
-14.8
-0.11−0.04+0.040.11^{+0.04}_{-0.04}
-Fig.7(g)
-
-…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…Output data of ICA analysis.
-
-(e1) Input signals of GW200112_155838 with Δ​tLV=−23.2\Delta t_{\mbox{\footnotesize LV}}=-23.2 ms. The data x1 and x2 are of Livingston and Virgo data, respectively.
-
-(e2) Output of ICA for GW200112_155838.
-
-(f1) Input signals of <mark>GW170814</mark> with Δ​tHL=−8.06\Delta t_{\mbox{\footnotesize HL}}=-8.06 ms and Δ​tHV=+0.98\Delta t_{\mbox{\footnotesize HV}}=+0.98 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(f2) Output of ICA for GW170814.
-
-(g1) Input signals of GW190…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…55838.
-
-(f1) Input signals of GW170814 with Δ​tHL=−8.06\Delta t_{\mbox{\footnotesize HL}}=-8.06 ms and Δ​tHV=+0.98\Delta t_{\mbox{\footnotesize HV}}=+0.98 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(f2) Output of ICA for <mark>GW170814</mark>.
-
-(g1) Input signals of GW190412 with Δ​tHL=−3.91\Delta t_{\mbox{\footnotesize HL}}=-3.91 ms and Δ​tHV=−13.92\Delta t_{\mbox{\footnotesize HV}}=-13.92 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(g2) Output of ICA for GW1…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> GW170814 HLV 24.1 −8.06±0.490.98-8.06\pm^{0.49}_{0.98} 0.98±2.40.240.98\pm^{2.4}_{0.24} – 3.54 5.07 Fig.7(f)</li><li><span class="sec">introduction</span> GW170814 HLV 17.7 24.1−1.1+1.424.1^{+1.4}_{-1.1} 0.12−0.04+0.030.12^{+0.03}_{-0.04} 26.0 0.08−0.06+0.050.08^{+0.05}_{-…</li><li><span class="sec">introduction</span> (f1) Input signals of GW170814 with Δ​tHL=−8.06\Delta t_{\mbox{\footnotesize HL}}=-8.06 ms and Δ​tHV=+0.98\Delta t_{\mbox{\footnotesize HV}}…</li><li><span class="sec">introduction</span> (f2) Output of ICA for GW170814.</li></ul>
     </details>
     
   </div>
@@ -513,123 +246,15 @@ Fig.7(g)
 <section class="card" data-i="2" data-event="GW190412">
   <div class="ctx">
     <div class="evname mono">GW190412</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>….33
-–
-−11.0±1.50.73-11.0\pm^{1.5}_{0.73}
-–
-3.08
- 2.09
-Fig.7(d)
-
-GW200112_155838
-LV
-27.4
-–
-–
-−23.2±0.490.24-23.2\pm^{0.49}_{0.24}
-2.43
-10.5
-Fig.7(e)
-
-GW170814
-HLV
-24.1
-−8.06±0.490.98-8.06\pm^{0.49}_{0.98}
-0.98±2.40.240.98\pm^{2.4}_{0.24}
-–
-3.54
- 5.07
-Fig.7(f)
-
-<mark>GW190412</mark>
-HLV
-13.3
-−3.91±0.240.24-3.91\pm^{0.24}_{0.24}
-−13.92±0.980.49-13.92\pm^{0.98}_{0.49}
-–
-2.21
- 4.40
-Fig.7(g)
-
-GW190521
-HLV
-63.3
-2.93±0.491.22.93\pm^{0.49}_{1.2}
-−25.15±0.491.7-25.15\pm^{0.49}_{1.7}
-–
-2.85
-31.8
-Fig.7(h)
-
-GW190814
-HLV
-6.11
-2.20±0.490.242.20\pm^{0…</div>
+    <p class="where">Named 4 times:
+      introduction ×4.</p>
+    <p class="where"><a href="https://arxiv.org/html/2503.14179v2#:~:text=GW190412" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190412</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…8
-LV
-19.8
-27.4−2.1+2.627.4^{+2.6}_{-2.1}
-0.24−0.08+0.070.24^{+0.07}_{-0.08}
-32.7
-0.19−0.10+0.100.19^{+0.10}_{-0.10}
-Fig.7(e)
-
-GW170814
-HLV
-17.7
-24.1−1.1+1.424.1^{+1.4}_{-1.1}
-0.12−0.04+0.030.12^{+0.03}_{-0.04}
-26.0
-0.08−0.06+0.050.08^{+0.05}_{-0.06}
-Fig.7(f)
-
-<mark>GW190412</mark>
-HLV
-19.8
-13.3−0.5+0.513.3^{+0.5}_{-0.5}
-0.15−0.04+0.040.15^{+0.04}_{-0.04}
-14.8
-0.11−0.04+0.040.11^{+0.04}_{-0.04}
-Fig.7(g)
-
-GW190521
-HLV
-14.3
-63.3−14.6+19.663.3^{+19.6}_{-14.6}
-0.56−0.27+0.360.56^{+0.36}_{-0.27}
-81.7
-0.29−0.30+0.390.29^{+0.39}_{-0.30}
-Fig.7(…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…70814 with Δ​tHL=−8.06\Delta t_{\mbox{\footnotesize HL}}=-8.06 ms and Δ​tHV=+0.98\Delta t_{\mbox{\footnotesize HV}}=+0.98 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(f2) Output of ICA for GW170814.
-
-(g1) Input signals of <mark>GW190412</mark> with Δ​tHL=−3.91\Delta t_{\mbox{\footnotesize HL}}=-3.91 ms and Δ​tHV=−13.92\Delta t_{\mbox{\footnotesize HV}}=-13.92 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(g2) Output of ICA for GW190412.
-
-(h1) Input signals of GW1…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…814.
-
-(g1) Input signals of GW190412 with Δ​tHL=−3.91\Delta t_{\mbox{\footnotesize HL}}=-3.91 ms and Δ​tHV=−13.92\Delta t_{\mbox{\footnotesize HV}}=-13.92 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(g2) Output of ICA for <mark>GW190412</mark>.
-
-(h1) Input signals of GW190521 with Δ​tHL=+2.93\Delta t_{\mbox{\footnotesize HL}}=+2.93 ms and Δ​tHV=−25.15\Delta t_{\mbox{\footnotesize HV}}=-25.15 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(h2) Output of ICA for GW1…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> GW190412 HLV 13.3 −3.91±0.240.24-3.91\pm^{0.24}_{0.24} −13.92±0.980.49-13.92\pm^{0.98}_{0.49} – 2.21 4.40 Fig.7(g)</li><li><span class="sec">introduction</span> GW190412 HLV 19.8 13.3−0.5+0.513.3^{+0.5}_{-0.5} 0.15−0.04+0.040.15^{+0.04}_{-0.04} 14.8 0.11−0.04+0.040.11^{+0.04}_{-…</li><li><span class="sec">introduction</span> (g1) Input signals of GW190412 with Δ​tHL=−3.91\Delta t_{\mbox{\footnotesize HL}}=-3.91 ms and Δ​tHV=−13.92\Delta t_{\mbox{\footnotesize HV}…</li><li><span class="sec">introduction</span> (g2) Output of ICA for GW190412.</li></ul>
     </details>
     
   </div>
@@ -666,122 +291,15 @@ Fig.7(…</div>
 <section class="card" data-i="3" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>….49}_{0.24}
-2.43
-10.5
-Fig.7(e)
-
-GW170814
-HLV
-24.1
-−8.06±0.490.98-8.06\pm^{0.49}_{0.98}
-0.98±2.40.240.98\pm^{2.4}_{0.24}
-–
-3.54
- 5.07
-Fig.7(f)
-
-GW190412
-HLV
-13.3
-−3.91±0.240.24-3.91\pm^{0.24}_{0.24}
-−13.92±0.980.49-13.92\pm^{0.98}_{0.49}
-–
-2.21
- 4.40
-Fig.7(g)
-
-<mark>GW190521</mark>
-HLV
-63.3
-2.93±0.491.22.93\pm^{0.49}_{1.2}
-−25.15±0.491.7-25.15\pm^{0.49}_{1.7}
-–
-2.85
-31.8
-Fig.7(h)
-
-GW190814
-HLV
-6.11
-2.20±0.490.242.20\pm^{0.49}_{0.24}
-21.24±0.730.2421.24\pm^{0.73}_{0.24}
-–
-2.00
- 1.65
-Fig.7(i)
-
-GW200129_065458
-HLV
-27.2
-3.42±0.980.243.42\pm…</div>
+    <p class="where">Named 4 times:
+      introduction ×4.</p>
+    <p class="where"><a href="https://arxiv.org/html/2503.14179v2#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…
-HLV
-17.7
-24.1−1.1+1.424.1^{+1.4}_{-1.1}
-0.12−0.04+0.030.12^{+0.03}_{-0.04}
-26.0
-0.08−0.06+0.050.08^{+0.05}_{-0.06}
-Fig.7(f)
-
-GW190412
-HLV
-19.8
-13.3−0.5+0.513.3^{+0.5}_{-0.5}
-0.15−0.04+0.040.15^{+0.04}_{-0.04}
-14.8
-0.11−0.04+0.040.11^{+0.04}_{-0.04}
-Fig.7(g)
-
-<mark>GW190521</mark>
-HLV
-14.3
-63.3−14.6+19.663.3^{+19.6}_{-14.6}
-0.56−0.27+0.360.56^{+0.36}_{-0.27}
-81.7
-0.29−0.30+0.390.29^{+0.39}_{-0.30}
-Fig.7(h)
-
-GW190814
-HLV
-25.3
-6.11−0.05+0.066.11^{+0.06}_{-0.05}
-0.05−0.01+0.010.05^{+0.01}_{-0.01}
-6.35
-0.04−0.01+0.010.04^{+0.01}_{-0.01}
-Fi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…412 with Δ​tHL=−3.91\Delta t_{\mbox{\footnotesize HL}}=-3.91 ms and Δ​tHV=−13.92\Delta t_{\mbox{\footnotesize HV}}=-13.92 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(g2) Output of ICA for GW190412.
-
-(h1) Input signals of <mark>GW190521</mark> with Δ​tHL=+2.93\Delta t_{\mbox{\footnotesize HL}}=+2.93 ms and Δ​tHV=−25.15\Delta t_{\mbox{\footnotesize HV}}=-25.15 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(h2) Output of ICA for GW190521.
-
-Figure 7: 
-Input and Outp…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…412.
-
-(h1) Input signals of GW190521 with Δ​tHL=+2.93\Delta t_{\mbox{\footnotesize HL}}=+2.93 ms and Δ​tHV=−25.15\Delta t_{\mbox{\footnotesize HV}}=-25.15 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(h2) Output of ICA for <mark>GW190521</mark>.
-
-Figure 7: 
-Input and Output data of ICA analysis (cont.)
-
-(i1) Input signals of GW190814 with Δ​tHL=+2.20\Delta t_{\mbox{\footnotesize HL}}=+2.20 ms and Δ​tHV=+21.24\Delta t_{\mbox{\footnotesize HV}}=+21.24 ms. The data x1, x2, and x3 are of Hanford, Living…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> GW190521 HLV 63.3 2.93±0.491.22.93\pm^{0.49}_{1.2} −25.15±0.491.7-25.15\pm^{0.49}_{1.7} – 2.85 31.8 Fig.7(h)</li><li><span class="sec">introduction</span> GW190521 HLV 14.3 63.3−14.6+19.663.3^{+19.6}_{-14.6} 0.56−0.27+0.360.56^{+0.36}_{-0.27} 81.7 0.29−0.30+0.390.29^{+0.39…</li><li><span class="sec">introduction</span> (h1) Input signals of GW190521 with Δ​tHL=+2.93\Delta t_{\mbox{\footnotesize HL}}=+2.93 ms and Δ​tHV=−25.15\Delta t_{\mbox{\footnotesize HV}…</li><li><span class="sec">introduction</span> (h2) Output of ICA for GW190521.</li></ul>
     </details>
     
   </div>
@@ -818,122 +336,15 @@ Input and Output data of ICA analysis (cont.)
 <section class="card" data-i="4" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…4}_{0.24}
-–
-3.54
- 5.07
-Fig.7(f)
-
-GW190412
-HLV
-13.3
-−3.91±0.240.24-3.91\pm^{0.24}_{0.24}
-−13.92±0.980.49-13.92\pm^{0.98}_{0.49}
-–
-2.21
- 4.40
-Fig.7(g)
-
-GW190521
-HLV
-63.3
-2.93±0.491.22.93\pm^{0.49}_{1.2}
-−25.15±0.491.7-25.15\pm^{0.49}_{1.7}
-–
-2.85
-31.8
-Fig.7(h)
-
-<mark>GW190814</mark>
-HLV
-6.11
-2.20±0.490.242.20\pm^{0.49}_{0.24}
-21.24±0.730.2421.24\pm^{0.73}_{0.24}
-–
-2.00
- 1.65
-Fig.7(i)
-
-GW200129_065458
-HLV
-27.2
-3.42±0.980.243.42\pm^{0.98}_{0.24}
-−18.31±0.240.24-18.31\pm^{0.24}_{0.24}
-–
-3.96
-11.3
-Fig.7(j)
-
-GW200224_222234
-HLV
-31.1
-−3.66±2.7…</div>
+    <p class="where">Named 4 times:
+      introduction ×4.</p>
+    <p class="where"><a href="https://arxiv.org/html/2503.14179v2#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…
-19.8
-13.3−0.5+0.513.3^{+0.5}_{-0.5}
-0.15−0.04+0.040.15^{+0.04}_{-0.04}
-14.8
-0.11−0.04+0.040.11^{+0.04}_{-0.04}
-Fig.7(g)
-
-GW190521
-HLV
-14.3
-63.3−14.6+19.663.3^{+19.6}_{-14.6}
-0.56−0.27+0.360.56^{+0.36}_{-0.27}
-81.7
-0.29−0.30+0.390.29^{+0.39}_{-0.30}
-Fig.7(h)
-
-<mark>GW190814</mark>
-HLV
-25.3
-6.11−0.05+0.066.11^{+0.06}_{-0.05}
-0.05−0.01+0.010.05^{+0.01}_{-0.01}
-6.35
-0.04−0.01+0.010.04^{+0.01}_{-0.01}
-Fig.7(i)
-
-GW200129_065458
-HLV
-26.8
-27.2−2.3+2.127.2^{+2.1}_{-2.3}
-0.18−0.07+0.050.18^{+0.05}_{-0.07}
-30.6
-0.13−0.08+0.100.13^{+0.10}_{-0.08}…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…93 ms and Δ​tHV=−25.15\Delta t_{\mbox{\footnotesize HV}}=-25.15 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(h2) Output of ICA for GW190521.
-
-Figure 7: 
-Input and Output data of ICA analysis (cont.)
-
-(i1) Input signals of <mark>GW190814</mark> with Δ​tHL=+2.20\Delta t_{\mbox{\footnotesize HL}}=+2.20 ms and Δ​tHV=+21.24\Delta t_{\mbox{\footnotesize HV}}=+21.24 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(i2) Output of ICA for GW190814.
-
-(j1) Input signals of GW2…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…nt.)
-
-(i1) Input signals of GW190814 with Δ​tHL=+2.20\Delta t_{\mbox{\footnotesize HL}}=+2.20 ms and Δ​tHV=+21.24\Delta t_{\mbox{\footnotesize HV}}=+21.24 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(i2) Output of ICA for <mark>GW190814</mark>.
-
-(j1) Input signals of GW200129_065458 with Δ​tHL=+3.42\Delta t_{\mbox{\footnotesize HL}}=+3.42 ms and Δ​tHV=−18.31\Delta t_{\mbox{\footnotesize HV}}=-18.31 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(j2) Output of ICA …</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> GW190814 HLV 6.11 2.20±0.490.242.20\pm^{0.49}_{0.24} 21.24±0.730.2421.24\pm^{0.73}_{0.24} – 2.00 1.65 Fig.7(i)</li><li><span class="sec">introduction</span> GW190814 HLV 25.3 6.11−0.05+0.066.11^{+0.06}_{-0.05} 0.05−0.01+0.010.05^{+0.01}_{-0.01} 6.35 0.04−0.01+0.010.04^{+0.01…</li><li><span class="sec">introduction</span> (i1) Input signals of GW190814 with Δ​tHL=+2.20\Delta t_{\mbox{\footnotesize HL}}=+2.20 ms and Δ​tHV=+21.24\Delta t_{\mbox{\footnotesize HV}…</li><li><span class="sec">introduction</span> (i2) Output of ICA for GW190814.</li></ul>
     </details>
     
   </div>
@@ -970,135 +381,15 @@ Input and Output data of ICA analysis (cont.)
 <section class="card" data-i="5" data-event="GW191109_010717">
   <div class="ctx">
     <div class="evname mono">GW191109_010717</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… (ms)
-Δ​tHV\Delta t_{\rm HV} (ms)
-Δ​tLV\Delta t_{\rm LV} (ms)
-𝒜{\cal A}
-ℛ/10−12{\cal R}/10^{-12}
-ref.
-
-GW150914
-HL
-26.0
-−7.32±1.51.5-7.32\pm^{1.5}_{1.5}
-–
-–
-4.19
- 5.88
-Fig.4
-
-GW190521_074359
-HL
-32.8
-−6.35±0.980.49-6.35\pm^{0.98}_{0.49}
-–
-–
-1.83
-10.3
-Fig.7(a)
-
-<mark>GW191109_010717</mark>
-HL
-47.5
-3.17±0.980.733.17\pm^{0.98}_{0.73}
-–
-–
-3.40
-18.4
-Fig.7(b)
-
-GW191204_171526
-HL
-8.55
-−2.44±0.490.73-2.44\pm^{0.49}_{0.73}
-–
-–
-2.07
- 3.27
-Fig.7(c)
-
-GW191216_213338
-HV
-8.33
-–
-−11.0±1.50.73-11.0\pm^{1.5}_{0.73}
-–
-3.08
- 2.09
-Fig.7(d)
-
-GW200112_155838
-LV
-27.…</div>
+    <p class="where">Named 4 times:
+      introduction ×4.</p>
+    <p class="where"><a href="https://arxiv.org/html/2503.14179v2#:~:text=GW191109_010717" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191109_010717</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…26.0
-28.6−1.5+1.728.6^{+1.7}_{-1.5}
-0.09−0.03+0.030.09^{+0.03}_{-0.03}
-30.8
-0.077−0.06+0.060.077^{+0.06}_{-0.06}
-Fig.4
-
-GW190521_074359
-HL
-25.9
-32.8−2.8+3.232.8^{+3.2}_{-2.8}
-0.21−0.10+0.100.21^{+0.10}_{-0.10}
-36.4
-0.11−0.10+0.100.11^{+0.10}_{-0.10}
-Fig.7(a)
-
-<mark>GW191109_010717</mark>
-HL
-17.3
-47.5−7.5+9.647.5^{+9.6}_{-7.5}
-0.25−0.12+0.180.25^{+0.18}_{-0.12}
-53.7
-0.13−0.19+0.220.13^{+0.22}_{-0.19}
-Fig.7(b)
-
-GW191204_171526
-HL
-17.5
-8.56−0.28+0.418.56^{+0.41}_{-0.28}
-0.34−0.18+0.250.34^{+0.25}_{-0.18}
-11.1
-0.29−0.06+0.040.29^{+0.04}_{-0.06}
-F…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…parameters are consistent.
-
-(a1) Input signals of GW190521_074359 with Δ​tHL=−6.35\Delta t_{\mbox{\footnotesize HL}}=-6.35 ms. The data x1 and x2 are of Hanford and Livingston data, respectively.
-
-(a2) Output of ICA for GW190521_074359.
-
-(b1) Input signals of <mark>GW191109_010717</mark> with Δ​tHL=+3.17\Delta t_{\mbox{\footnotesize HL}}=+3.17 ms. The data x1 and x2 are of Hanford and Livingston data, respectively.
-
-(b2) Output of ICA for GW191109_010717.
-
-(c1) Input signals of GW191204_171526 with Δ​tHL=−2.44\Delta t_{\mbox{\footnotesize HL}…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…gston data, respectively.
-
-(a2) Output of ICA for GW190521_074359.
-
-(b1) Input signals of GW191109_010717 with Δ​tHL=+3.17\Delta t_{\mbox{\footnotesize HL}}=+3.17 ms. The data x1 and x2 are of Hanford and Livingston data, respectively.
-
-(b2) Output of ICA for <mark>GW191109_010717</mark>.
-
-(c1) Input signals of GW191204_171526 with Δ​tHL=−2.44\Delta t_{\mbox{\footnotesize HL}}=-2.44 ms. The data x1 and x2 are of Hanford and Livingston data, respectively.
-
-(c2) Output of ICA for GW191204_171526.
-
-(d1) Input signals of GW191216_213338 with Δ​tH…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> GW191109_010717 HL 47.5 3.17±0.980.733.17\pm^{0.98}_{0.73} – – 3.40 18.4 Fig.7(b)</li><li><span class="sec">introduction</span> GW191109_010717 HL 17.3 47.5−7.5+9.647.5^{+9.6}_{-7.5} 0.25−0.12+0.180.25^{+0.18}_{-0.12} 53.7 0.13−0.19+0.220.13^{+0.22}_{-0…</li><li><span class="sec">introduction</span> (b1) Input signals of GW191109_010717 with Δ​tHL=+3.17\Delta t_{\mbox{\footnotesize HL}}=+3.17 ms.</li><li><span class="sec">introduction</span> (b2) Output of ICA for GW191109_010717.</li></ul>
     </details>
     
   </div>
@@ -1135,144 +426,15 @@ F…</div>
 <section class="card" data-i="6" data-event="GW191204_171526">
   <div class="ctx">
     <div class="evname mono">GW191204_171526</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…l R}/10^{-12}
-ref.
-
-GW150914
-HL
-26.0
-−7.32±1.51.5-7.32\pm^{1.5}_{1.5}
-–
-–
-4.19
- 5.88
-Fig.4
-
-GW190521_074359
-HL
-32.8
-−6.35±0.980.49-6.35\pm^{0.98}_{0.49}
-–
-–
-1.83
-10.3
-Fig.7(a)
-
-GW191109_010717
-HL
-47.5
-3.17±0.980.733.17\pm^{0.98}_{0.73}
-–
-–
-3.40
-18.4
-Fig.7(b)
-
-<mark>GW191204_171526</mark>
-HL
-8.55
-−2.44±0.490.73-2.44\pm^{0.49}_{0.73}
-–
-–
-2.07
- 3.27
-Fig.7(c)
-
-GW191216_213338
-HV
-8.33
-–
-−11.0±1.50.73-11.0\pm^{1.5}_{0.73}
-–
-3.08
- 2.09
-Fig.7(d)
-
-GW200112_155838
-LV
-27.4
-–
-–
-−23.2±0.490.24-23.2\pm^{0.49}_{0.24}
-2.43
-10.5
-Fig.7(e)
-
-GW170814
-HLV
-24.1
-−8…</div>
+    <p class="where">Named 4 times:
+      introduction ×4.</p>
+    <p class="where"><a href="https://arxiv.org/html/2503.14179v2#:~:text=GW191204_171526" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191204_171526</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…5.9
-32.8−2.8+3.232.8^{+3.2}_{-2.8}
-0.21−0.10+0.100.21^{+0.10}_{-0.10}
-36.4
-0.11−0.10+0.100.11^{+0.10}_{-0.10}
-Fig.7(a)
-
-GW191109_010717
-HL
-17.3
-47.5−7.5+9.647.5^{+9.6}_{-7.5}
-0.25−0.12+0.180.25^{+0.18}_{-0.12}
-53.7
-0.13−0.19+0.220.13^{+0.22}_{-0.19}
-Fig.7(b)
-
-<mark>GW191204_171526</mark>
-HL
-17.5
-8.56−0.28+0.418.56^{+0.41}_{-0.28}
-0.34−0.18+0.250.34^{+0.25}_{-0.18}
-11.1
-0.29−0.06+0.040.29^{+0.04}_{-0.06}
-Fig.7(c)
-
-GW191216_213338
-HV
-18.6
-8.33−0.19+0.228.33^{+0.22}_{-0.19}
-0.07−0.03+0.020.07^{+0.02}_{-0.03}
-9.00
-0.08−0.03+0.030.08^{+0.03}_{-0.0…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…f ICA for GW190521_074359.
-
-(b1) Input signals of GW191109_010717 with Δ​tHL=+3.17\Delta t_{\mbox{\footnotesize HL}}=+3.17 ms. The data x1 and x2 are of Hanford and Livingston data, respectively.
-
-(b2) Output of ICA for GW191109_010717.
-
-(c1) Input signals of <mark>GW191204_171526</mark> with Δ​tHL=−2.44\Delta t_{\mbox{\footnotesize HL}}=-2.44 ms. The data x1 and x2 are of Hanford and Livingston data, respectively.
-
-(c2) Output of ICA for GW191204_171526.
-
-(d1) Input signals of GW191216_213338 with Δ​tHV=−11.0\Delta t_{\mbox{\footnotesize HV}…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…gston data, respectively.
-
-(b2) Output of ICA for GW191109_010717.
-
-(c1) Input signals of GW191204_171526 with Δ​tHL=−2.44\Delta t_{\mbox{\footnotesize HL}}=-2.44 ms. The data x1 and x2 are of Hanford and Livingston data, respectively.
-
-(c2) Output of ICA for <mark>GW191204_171526</mark>.
-
-(d1) Input signals of GW191216_213338 with Δ​tHV=−11.0\Delta t_{\mbox{\footnotesize HV}}=-11.0 ms. The data x1 and x2 are of Hanford and Virgo data, respectively.
-
-(d2) Output of ICA for GW191216_213338.
-
-Figure 7: 
-Input and Output data of ICA analysis.
-
-(…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> GW191204_171526 HL 8.55 −2.44±0.490.73-2.44\pm^{0.49}_{0.73} – – 2.07 3.27 Fig.7(c)</li><li><span class="sec">introduction</span> GW191204_171526 HL 17.5 8.56−0.28+0.418.56^{+0.41}_{-0.28} 0.34−0.18+0.250.34^{+0.25}_{-0.18} 11.1 0.29−0.06+0.040.29^{+0.04}…</li><li><span class="sec">introduction</span> (c1) Input signals of GW191204_171526 with Δ​tHL=−2.44\Delta t_{\mbox{\footnotesize HL}}=-2.44 ms.</li><li><span class="sec">introduction</span> (c2) Output of ICA for GW191204_171526.</li></ul>
     </details>
     
   </div>
@@ -1309,139 +471,15 @@ Input and Output data of ICA analysis.
 <section class="card" data-i="7" data-event="GW191216_213338">
   <div class="ctx">
     <div class="evname mono">GW191216_213338</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ig.4
-
-GW190521_074359
-HL
-32.8
-−6.35±0.980.49-6.35\pm^{0.98}_{0.49}
-–
-–
-1.83
-10.3
-Fig.7(a)
-
-GW191109_010717
-HL
-47.5
-3.17±0.980.733.17\pm^{0.98}_{0.73}
-–
-–
-3.40
-18.4
-Fig.7(b)
-
-GW191204_171526
-HL
-8.55
-−2.44±0.490.73-2.44\pm^{0.49}_{0.73}
-–
-–
-2.07
- 3.27
-Fig.7(c)
-
-<mark>GW191216_213338</mark>
-HV
-8.33
-–
-−11.0±1.50.73-11.0\pm^{1.5}_{0.73}
-–
-3.08
- 2.09
-Fig.7(d)
-
-GW200112_155838
-LV
-27.4
-–
-–
-−23.2±0.490.24-23.2\pm^{0.49}_{0.24}
-2.43
-10.5
-Fig.7(e)
-
-GW170814
-HLV
-24.1
-−8.06±0.490.98-8.06\pm^{0.49}_{0.98}
-0.98±2.40.240.98\pm^{2.4}_{0.24}
-–
-3.54
- 5.07
-Fig.7…</div>
+    <p class="where">Named 4 times:
+      introduction ×4.</p>
+    <p class="where"><a href="https://arxiv.org/html/2503.14179v2#:~:text=GW191216_213338" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191216_213338</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…47.5−7.5+9.647.5^{+9.6}_{-7.5}
-0.25−0.12+0.180.25^{+0.18}_{-0.12}
-53.7
-0.13−0.19+0.220.13^{+0.22}_{-0.19}
-Fig.7(b)
-
-GW191204_171526
-HL
-17.5
-8.56−0.28+0.418.56^{+0.41}_{-0.28}
-0.34−0.18+0.250.34^{+0.25}_{-0.18}
-11.1
-0.29−0.06+0.040.29^{+0.04}_{-0.06}
-Fig.7(c)
-
-<mark>GW191216_213338</mark>
-HV
-18.6
-8.33−0.19+0.228.33^{+0.22}_{-0.19}
-0.07−0.03+0.020.07^{+0.02}_{-0.03}
-9.00
-0.08−0.03+0.030.08^{+0.03}_{-0.03}
-Fig.7(d)
-
-GW200112_155838
-LV
-19.8
-27.4−2.1+2.627.4^{+2.6}_{-2.1}
-0.24−0.08+0.070.24^{+0.07}_{-0.08}
-32.7
-0.19−0.10+0.100.19^{+0.10}_{-0.10}
-F…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…f ICA for GW191109_010717.
-
-(c1) Input signals of GW191204_171526 with Δ​tHL=−2.44\Delta t_{\mbox{\footnotesize HL}}=-2.44 ms. The data x1 and x2 are of Hanford and Livingston data, respectively.
-
-(c2) Output of ICA for GW191204_171526.
-
-(d1) Input signals of <mark>GW191216_213338</mark> with Δ​tHV=−11.0\Delta t_{\mbox{\footnotesize HV}}=-11.0 ms. The data x1 and x2 are of Hanford and Virgo data, respectively.
-
-(d2) Output of ICA for GW191216_213338.
-
-Figure 7: 
-Input and Output data of ICA analysis.
-
-(e1) Input signals of GW200112_155838 wit…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…Livingston data, respectively.
-
-(c2) Output of ICA for GW191204_171526.
-
-(d1) Input signals of GW191216_213338 with Δ​tHV=−11.0\Delta t_{\mbox{\footnotesize HV}}=-11.0 ms. The data x1 and x2 are of Hanford and Virgo data, respectively.
-
-(d2) Output of ICA for <mark>GW191216_213338</mark>.
-
-Figure 7: 
-Input and Output data of ICA analysis.
-
-(e1) Input signals of GW200112_155838 with Δ​tLV=−23.2\Delta t_{\mbox{\footnotesize LV}}=-23.2 ms. The data x1 and x2 are of Livingston and Virgo data, respectively.
-
-(e2) Output of ICA for GW200112_155838.…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> GW191216_213338 HV 8.33 – −11.0±1.50.73-11.0\pm^{1.5}_{0.73} – 3.08 2.09 Fig.7(d)</li><li><span class="sec">introduction</span> GW191216_213338 HV 18.6 8.33−0.19+0.228.33^{+0.22}_{-0.19} 0.07−0.03+0.020.07^{+0.02}_{-0.03} 9.00 0.08−0.03+0.030.08^{+0.03}…</li><li><span class="sec">introduction</span> (d1) Input signals of GW191216_213338 with Δ​tHV=−11.0\Delta t_{\mbox{\footnotesize HV}}=-11.0 ms.</li><li><span class="sec">introduction</span> (d2) Output of ICA for GW191216_213338.</li></ul>
     </details>
     
   </div>
@@ -1478,133 +516,15 @@ Input and Output data of ICA analysis.
 <section class="card" data-i="8" data-event="GW200112_155838">
   <div class="ctx">
     <div class="evname mono">GW200112_155838</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>….7(a)
-
-GW191109_010717
-HL
-47.5
-3.17±0.980.733.17\pm^{0.98}_{0.73}
-–
-–
-3.40
-18.4
-Fig.7(b)
-
-GW191204_171526
-HL
-8.55
-−2.44±0.490.73-2.44\pm^{0.49}_{0.73}
-–
-–
-2.07
- 3.27
-Fig.7(c)
-
-GW191216_213338
-HV
-8.33
-–
-−11.0±1.50.73-11.0\pm^{1.5}_{0.73}
-–
-3.08
- 2.09
-Fig.7(d)
-
-<mark>GW200112_155838</mark>
-LV
-27.4
-–
-–
-−23.2±0.490.24-23.2\pm^{0.49}_{0.24}
-2.43
-10.5
-Fig.7(e)
-
-GW170814
-HLV
-24.1
-−8.06±0.490.98-8.06\pm^{0.49}_{0.98}
-0.98±2.40.240.98\pm^{2.4}_{0.24}
-–
-3.54
- 5.07
-Fig.7(f)
-
-GW190412
-HLV
-13.3
-−3.91±0.240.24-3.91\pm^{0.24}_{0.24}
-−13.92±0.980.49-13.92\pm…</div>
+    <p class="where">Named 4 times:
+      introduction ×4.</p>
+    <p class="where"><a href="https://arxiv.org/html/2503.14179v2#:~:text=GW200112_155838" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200112_155838</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…−0.28+0.418.56^{+0.41}_{-0.28}
-0.34−0.18+0.250.34^{+0.25}_{-0.18}
-11.1
-0.29−0.06+0.040.29^{+0.04}_{-0.06}
-Fig.7(c)
-
-GW191216_213338
-HV
-18.6
-8.33−0.19+0.228.33^{+0.22}_{-0.19}
-0.07−0.03+0.020.07^{+0.02}_{-0.03}
-9.00
-0.08−0.03+0.030.08^{+0.03}_{-0.03}
-Fig.7(d)
-
-<mark>GW200112_155838</mark>
-LV
-19.8
-27.4−2.1+2.627.4^{+2.6}_{-2.1}
-0.24−0.08+0.070.24^{+0.07}_{-0.08}
-32.7
-0.19−0.10+0.100.19^{+0.10}_{-0.10}
-Fig.7(e)
-
-GW170814
-HLV
-17.7
-24.1−1.1+1.424.1^{+1.4}_{-1.1}
-0.12−0.04+0.030.12^{+0.03}_{-0.04}
-26.0
-0.08−0.06+0.050.08^{+0.05}_{-0.06}
-Fig.7(f)
-
-G…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… of GW191216_213338 with Δ​tHV=−11.0\Delta t_{\mbox{\footnotesize HV}}=-11.0 ms. The data x1 and x2 are of Hanford and Virgo data, respectively.
-
-(d2) Output of ICA for GW191216_213338.
-
-Figure 7: 
-Input and Output data of ICA analysis.
-
-(e1) Input signals of <mark>GW200112_155838</mark> with Δ​tLV=−23.2\Delta t_{\mbox{\footnotesize LV}}=-23.2 ms. The data x1 and x2 are of Livingston and Virgo data, respectively.
-
-(e2) Output of ICA for GW200112_155838.
-
-(f1) Input signals of GW170814 with Δ​tHL=−8.06\Delta t_{\mbox{\footnotesize HL}}=-8.06 m…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">introduction</span>… GW191216_213338.
-
-Figure 7: 
-Input and Output data of ICA analysis.
-
-(e1) Input signals of GW200112_155838 with Δ​tLV=−23.2\Delta t_{\mbox{\footnotesize LV}}=-23.2 ms. The data x1 and x2 are of Livingston and Virgo data, respectively.
-
-(e2) Output of ICA for <mark>GW200112_155838</mark>.
-
-(f1) Input signals of GW170814 with Δ​tHL=−8.06\Delta t_{\mbox{\footnotesize HL}}=-8.06 ms and Δ​tHV=+0.98\Delta t_{\mbox{\footnotesize HV}}=+0.98 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(f2) Output of ICA for GW170…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> GW200112_155838 LV 27.4 – – −23.2±0.490.24-23.2\pm^{0.49}_{0.24} 2.43 10.5 Fig.7(e)</li><li><span class="sec">introduction</span> GW200112_155838 LV 19.8 27.4−2.1+2.627.4^{+2.6}_{-2.1} 0.24−0.08+0.070.24^{+0.07}_{-0.08} 32.7 0.19−0.10+0.100.19^{+0.10}_{-0…</li><li><span class="sec">introduction</span> (e1) Input signals of GW200112_155838 with Δ​tLV=−23.2\Delta t_{\mbox{\footnotesize LV}}=-23.2 ms.</li><li><span class="sec">introduction</span> (e2) Output of ICA for GW200112_155838.</li></ul>
     </details>
     
   </div>
@@ -1641,117 +561,15 @@ Input and Output data of ICA analysis.
 <section class="card" data-i="9" data-event="GW200129_065458">
   <div class="ctx">
     <div class="evname mono">GW200129_065458</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…{0.98}_{0.49}
-–
-2.21
- 4.40
-Fig.7(g)
-
-GW190521
-HLV
-63.3
-2.93±0.491.22.93\pm^{0.49}_{1.2}
-−25.15±0.491.7-25.15\pm^{0.49}_{1.7}
-–
-2.85
-31.8
-Fig.7(h)
-
-GW190814
-HLV
-6.11
-2.20±0.490.242.20\pm^{0.49}_{0.24}
-21.24±0.730.2421.24\pm^{0.73}_{0.24}
-–
-2.00
- 1.65
-Fig.7(i)
-
-<mark>GW200129_065458</mark>
-HLV
-27.2
-3.42±0.980.243.42\pm^{0.98}_{0.24}
-−18.31±0.240.24-18.31\pm^{0.24}_{0.24}
-–
-3.96
-11.3
-Fig.7(j)
-
-GW200224_222234
-HLV
-31.1
-−3.66±2.70.24-3.66\pm^{2.7}_{0.24}
-−9.28±0.240.98-9.28\pm^{0.24}_{0.98}
-–
-3.28
-13.4
-Fig.7(k)
-
-GW200311_115853
-HLV
-26.6
-−3.66±0.73…</div>
+    <p class="where">Named 4 times:
+      introduction ×4.</p>
+    <p class="where"><a href="https://arxiv.org/html/2503.14179v2#:~:text=GW200129_065458" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200129_065458</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>…3
-63.3−14.6+19.663.3^{+19.6}_{-14.6}
-0.56−0.27+0.360.56^{+0.36}_{-0.27}
-81.7
-0.29−0.30+0.390.29^{+0.39}_{-0.30}
-Fig.7(h)
-
-GW190814
-HLV
-25.3
-6.11−0.05+0.066.11^{+0.06}_{-0.05}
-0.05−0.01+0.010.05^{+0.01}_{-0.01}
-6.35
-0.04−0.01+0.010.04^{+0.01}_{-0.01}
-Fig.7(i)
-
-<mark>GW200129_065458</mark>
-HLV
-26.8
-27.2−2.3+2.127.2^{+2.1}_{-2.3}
-0.18−0.07+0.050.18^{+0.05}_{-0.07}
-30.6
-0.13−0.08+0.100.13^{+0.10}_{-0.08}
-Fig.7(j)
-
-GW200224_222234
-HLV
-20.0
-31.1−2.7+3.331.1^{+3.3}_{-2.7}
-0.32−0.11+0.080.32^{+0.08}_{-0.11}
-37.6
-0.21−0.12+0.110.21^{+0.11}_{-0.12}
-Fig…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…814 with Δ​tHL=+2.20\Delta t_{\mbox{\footnotesize HL}}=+2.20 ms and Δ​tHV=+21.24\Delta t_{\mbox{\footnotesize HV}}=+21.24 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(i2) Output of ICA for GW190814.
-
-(j1) Input signals of <mark>GW200129_065458</mark> with Δ​tHL=+3.42\Delta t_{\mbox{\footnotesize HL}}=+3.42 ms and Δ​tHV=−18.31\Delta t_{\mbox{\footnotesize HV}}=-18.31 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(j2) Output of ICA for GW200129_065458.
-
-(k1) Input signals…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…j1) Input signals of GW200129_065458 with Δ​tHL=+3.42\Delta t_{\mbox{\footnotesize HL}}=+3.42 ms and Δ​tHV=−18.31\Delta t_{\mbox{\footnotesize HV}}=-18.31 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(j2) Output of ICA for <mark>GW200129_065458</mark>.
-
-(k1) Input signals of GW200224_222234 with Δ​tHL=−3.66\Delta t_{\mbox{\footnotesize HL}}=-3.66 ms and Δ​tHV=−9.28\Delta t_{\mbox{\footnotesize HV}}=-9.28 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(k2) Output of ICA fo…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> GW200129_065458 HLV 27.2 3.42±0.980.243.42\pm^{0.98}_{0.24} −18.31±0.240.24-18.31\pm^{0.24}_{0.24} – 3.96 11.3 Fig.7(j)</li><li><span class="sec">introduction</span> GW200129_065458 HLV 26.8 27.2−2.3+2.127.2^{+2.1}_{-2.3} 0.18−0.07+0.050.18^{+0.05}_{-0.07} 30.6 0.13−0.08+0.100.13^{+0.10}_{-…</li><li><span class="sec">introduction</span> (j1) Input signals of GW200129_065458 with Δ​tHL=+3.42\Delta t_{\mbox{\footnotesize HL}}=+3.42 ms and Δ​tHV=−18.31\Delta t_{\mbox{\footnotesize HV}…</li><li><span class="sec">introduction</span> (j2) Output of ICA for GW200129_065458.</li></ul>
     </details>
     
   </div>
@@ -1788,115 +606,15 @@ Fig…</div>
 <section class="card" data-i="10" data-event="GW200224_222234">
   <div class="ctx">
     <div class="evname mono">GW200224_222234</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>….7}
-–
-2.85
-31.8
-Fig.7(h)
-
-GW190814
-HLV
-6.11
-2.20±0.490.242.20\pm^{0.49}_{0.24}
-21.24±0.730.2421.24\pm^{0.73}_{0.24}
-–
-2.00
- 1.65
-Fig.7(i)
-
-GW200129_065458
-HLV
-27.2
-3.42±0.980.243.42\pm^{0.98}_{0.24}
-−18.31±0.240.24-18.31\pm^{0.24}_{0.24}
-–
-3.96
-11.3
-Fig.7(j)
-
-<mark>GW200224_222234</mark>
-HLV
-31.1
-−3.66±2.70.24-3.66\pm^{2.7}_{0.24}
-−9.28±0.240.98-9.28\pm^{0.24}_{0.98}
-–
-3.28
-13.4
-Fig.7(k)
-
-GW200311_115853
-HLV
-26.6
-−3.66±0.731.2-3.66\pm^{0.73}_{1.2}
-−27.10±2.22.2-27.10\pm^{2.2}_{2.2}
-–
-3.17
- 4.34
-Fig.7(l)
-
-Table 4: 
-Comparisons of chirp mass, M…</div>
+    <p class="where">Named 4 times:
+      introduction ×4.</p>
+    <p class="where"><a href="https://arxiv.org/html/2503.14179v2#:~:text=GW200224_222234" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200224_222234</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>….11−0.05+0.066.11^{+0.06}_{-0.05}
-0.05−0.01+0.010.05^{+0.01}_{-0.01}
-6.35
-0.04−0.01+0.010.04^{+0.01}_{-0.01}
-Fig.7(i)
-
-GW200129_065458
-HLV
-26.8
-27.2−2.3+2.127.2^{+2.1}_{-2.3}
-0.18−0.07+0.050.18^{+0.05}_{-0.07}
-30.6
-0.13−0.08+0.100.13^{+0.10}_{-0.08}
-Fig.7(j)
-
-<mark>GW200224_222234</mark>
-HLV
-20.0
-31.1−2.7+3.331.1^{+3.3}_{-2.7}
-0.32−0.11+0.080.32^{+0.08}_{-0.11}
-37.6
-0.21−0.12+0.110.21^{+0.11}_{-0.12}
-Fig.7(k)
-
-GW200311_115853
-HLV
-17.8
-26.6−2.0+2.426.6^{+2.4}_{-2.0}
-0.23−0.07+0.050.23^{+0.05}_{-0.07}
-31.0
-0.17−0.10+0.090.17^{+0.09}_{-0.10}
-Fig…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…h Δ​tHL=+3.42\Delta t_{\mbox{\footnotesize HL}}=+3.42 ms and Δ​tHV=−18.31\Delta t_{\mbox{\footnotesize HV}}=-18.31 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(j2) Output of ICA for GW200129_065458.
-
-(k1) Input signals of <mark>GW200224_222234</mark> with Δ​tHL=−3.66\Delta t_{\mbox{\footnotesize HL}}=-3.66 ms and Δ​tHV=−9.28\Delta t_{\mbox{\footnotesize HV}}=-9.28 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(k2) Output of ICA for GW200224_222234.
-
-(l1) Input signals o…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…
-(k1) Input signals of GW200224_222234 with Δ​tHL=−3.66\Delta t_{\mbox{\footnotesize HL}}=-3.66 ms and Δ​tHV=−9.28\Delta t_{\mbox{\footnotesize HV}}=-9.28 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(k2) Output of ICA for <mark>GW200224_222234</mark>.
-
-(l1) Input signals of GW200311_115853 with Δ​tHL=−3.66\Delta t_{\mbox{\footnotesize HL}}=-3.66 ms and Δ​tHV=−27.10\Delta t_{\mbox{\footnotesize HV}}=-27.10 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(l2) Output of ICA …</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> GW200224_222234 HLV 31.1 −3.66±2.70.24-3.66\pm^{2.7}_{0.24} −9.28±0.240.98-9.28\pm^{0.24}_{0.98} – 3.28 13.4 Fig.7(k)</li><li><span class="sec">introduction</span> GW200224_222234 HLV 20.0 31.1−2.7+3.331.1^{+3.3}_{-2.7} 0.32−0.11+0.080.32^{+0.08}_{-0.11} 37.6 0.21−0.12+0.110.21^{+0.11}_{-…</li><li><span class="sec">introduction</span> (k1) Input signals of GW200224_222234 with Δ​tHL=−3.66\Delta t_{\mbox{\footnotesize HL}}=-3.66 ms and Δ​tHV=−9.28\Delta t_{\mbox{\footnotesize HV}}…</li><li><span class="sec">introduction</span> (k2) Output of ICA for GW200224_222234.</li></ul>
     </details>
     
   </div>
@@ -1933,101 +651,15 @@ Fig…</div>
 <section class="card" data-i="11" data-event="GW200311_115853">
   <div class="ctx">
     <div class="evname mono">GW200311_115853</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">introduction</span>….00
- 1.65
-Fig.7(i)
-
-GW200129_065458
-HLV
-27.2
-3.42±0.980.243.42\pm^{0.98}_{0.24}
-−18.31±0.240.24-18.31\pm^{0.24}_{0.24}
-–
-3.96
-11.3
-Fig.7(j)
-
-GW200224_222234
-HLV
-31.1
-−3.66±2.70.24-3.66\pm^{2.7}_{0.24}
-−9.28±0.240.98-9.28\pm^{0.24}_{0.98}
-–
-3.28
-13.4
-Fig.7(k)
-
-<mark>GW200311_115853</mark>
-HLV
-26.6
-−3.66±0.731.2-3.66\pm^{0.73}_{1.2}
-−27.10±2.22.2-27.10\pm^{2.2}_{2.2}
-–
-3.17
- 4.34
-Fig.7(l)
-
-Table 4: 
-Comparisons of chirp mass, McsourceM^{\rm source}_{c}, shown in GWOSC and the one obtained by ICA,McobsM^{\rm obs}_{c} from the best fit inspiral-w…</div>
+    <p class="where">Named 4 times:
+      introduction ×4.</p>
+    <p class="where"><a href="https://arxiv.org/html/2503.14179v2#:~:text=GW200311_115853" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200311_115853</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">introduction</span>….8
-27.2−2.3+2.127.2^{+2.1}_{-2.3}
-0.18−0.07+0.050.18^{+0.05}_{-0.07}
-30.6
-0.13−0.08+0.100.13^{+0.10}_{-0.08}
-Fig.7(j)
-
-GW200224_222234
-HLV
-20.0
-31.1−2.7+3.331.1^{+3.3}_{-2.7}
-0.32−0.11+0.080.32^{+0.08}_{-0.11}
-37.6
-0.21−0.12+0.110.21^{+0.11}_{-0.12}
-Fig.7(k)
-
-<mark>GW200311_115853</mark>
-HLV
-17.8
-26.6−2.0+2.426.6^{+2.4}_{-2.0}
-0.23−0.07+0.050.23^{+0.05}_{-0.07}
-31.0
-0.17−0.10+0.090.17^{+0.09}_{-0.10}
-Fig.7(l)
-
-Table 3 can be used for understanding how ICA works.
-Roughly summarizing, the parameter 𝒜{\cal A}, which is a measure of the quality o…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…ith Δ​tHL=−3.66\Delta t_{\mbox{\footnotesize HL}}=-3.66 ms and Δ​tHV=−9.28\Delta t_{\mbox{\footnotesize HV}}=-9.28 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(k2) Output of ICA for GW200224_222234.
-
-(l1) Input signals of <mark>GW200311_115853</mark> with Δ​tHL=−3.66\Delta t_{\mbox{\footnotesize HL}}=-3.66 ms and Δ​tHV=−27.10\Delta t_{\mbox{\footnotesize HV}}=-27.10 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(l2) Output of ICA for GW200311_115853.
-
-Figure 7: 
-Input a…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">introduction</span>…l1) Input signals of GW200311_115853 with Δ​tHL=−3.66\Delta t_{\mbox{\footnotesize HL}}=-3.66 ms and Δ​tHV=−27.10\Delta t_{\mbox{\footnotesize HV}}=-27.10 ms. The data x1, x2, and x3 are of Hanford, Livingston, and Virgo, respectively.
-
-(l2) Output of ICA for <mark>GW200311_115853</mark>.
-
-Figure 7: 
-Input and Output data of ICA analysis (cont.)
-
-5 Summary
-
-Independent component analysis (ICA) was applied to extract gravitational-wave signals. From the injection tests, we see that the extractions are available even from real interferometer da…</div>
+    <details class="lines"><summary>Show the sentences (4): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> GW200311_115853 HLV 26.6 −3.66±0.731.2-3.66\pm^{0.73}_{1.2} −27.10±2.22.2-27.10\pm^{2.2}_{2.2} – 3.17 4.34 Fig.7(l)</li><li><span class="sec">introduction</span> GW200311_115853 HLV 17.8 26.6−2.0+2.426.6^{+2.4}_{-2.0} 0.23−0.07+0.050.23^{+0.05}_{-0.07} 31.0 0.17−0.10+0.090.17^{+0.09}_{-…</li><li><span class="sec">introduction</span> (l1) Input signals of GW200311_115853 with Δ​tHL=−3.66\Delta t_{\mbox{\footnotesize HL}}=-3.66 ms and Δ​tHV=−27.10\Delta t_{\mbox{\footnotesize HV}…</li><li><span class="sec">introduction</span> (l2) Output of ICA for GW200311_115853.</li></ul>
     </details>
     
   </div>

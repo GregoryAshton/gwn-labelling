@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,113 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Are black hole spins truly near-zero?</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2602.12859" target="_blank" rel="noopener" class="mono">arXiv:2602.12859</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The fourth gravitational-wave transient catalog, GWTC-4.0, reports 153 binary black hole mergers with false-alarm rates $&amp;lt;1,\mathrm{yr}^{-1}$. Chirp masses are typically measured well, with the smallest fractional uncertainty being $2%$ at the $90%$ credible level. Spins, on the other hand, are poorly constrained: the median of the best-measured spin component of the population, the effective spin, is $χ_{\rm eff}=0.04$, with a typical $90%$ credible uncertainty of $∆χ_{\rm eff}=0.44$. The large majority -- $90%$ of the observed black holes -- are consistent with spin magnitudes $χ&amp;lt;0.57$ and are weakly aligned with the orbits. At $90%$ credibility, the peaks of the inferred posteriors for spin magnitude are found to lie in the range $0.01$--$0.23$. We show that this ``near-zero spins&#39;&#39; conclusion may be prior-driven, and that uniform-in-magnitude spin priors lead to under-exploration of the moderate-to-high spin region of parameter space. Adopting a physically agnostic prior that is uniform in spin-vector configuration space (i.e., spin states uniform within a unit sphere) yields similar constraints on $χ_{\rm eff}$, but substantially different spin-magnitude inferences than GWTC-4.0. The resulting shift in spins directly impacts tests of general relativity, constraints on near-extremal Kerr remnants, and astrophysical conclusions, including diagnostics of formation channels and hierarchical growth. In short, the data do not require vanishing spins -- the prior does, and accounting for this is essential for robust GR tests and population inferences.</p></details>
+<div class="small mut mono">arXiv:2602.12859</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The fourth gravitational-wave transient catalog, GWTC-4.0, reports 153 binary black hole mergers with false-alarm rates $&amp;lt;1,\mathrm{yr}^{-1}$. Chirp masses are typically measured well, with the smallest fractional uncertainty being $2%$ at the $90%$ credible level. Spins, on the other hand, are poorly constrained: the median of the best-measured spin component of the population, the effective spin, is $χ_{\rm eff}=0.04$, with a typical $90%$ credible uncertainty of $∆χ_{\rm eff}=0.44$. The large majority -- $90%$ of the observed black holes -- are consistent with spin magnitudes $χ&amp;lt;0.57$ and are weakly aligned with the orbits. At $90%$ credibility, the peaks of the inferred posteriors for spin magnitude are found to lie in the range $0.01$--$0.23$. We show that this ``near-zero spins&#39;&#39; conclusion may be prior-driven, and that uniform-in-magnitude spin priors lead to under-exploration of the moderate-to-high spin region of parameter space. Adopting a physically agnostic prior that is uniform in spin-vector configuration space (i.e., spin states uniform within a unit sphere) yields similar constraints on $χ_{\rm eff}$, but substantially different spin-magnitude inferences than GWTC-4.0. The resulting shift in spins directly impacts tests of general relativity, constraints on near-extremal Kerr remnants, and astrophysical conclusions, including diagnostics of formation channels and hierarchical growth. In short, the data do not require vanishing spins -- the prior does, and accounting for this is essential for robust GR tests and population inferences.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2602.12859v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">2 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">2 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>9 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…wave inference, one would have to conduct detailed injection studies, which are underway and will be reported in future work. However, we show below the results for three of the exceptional events.
-
-Figure 4: Marginal distributions for the spins magnitudes of <mark>GW150914</mark> (left), GW230814 (centre) and GW250114 (right). In the case of GW150914, there is insufficient information in the likelihood, and in both cases, the prior is recovered for the posterior. One can see that the posterior distribution has better support around th…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…ich are underway and will be reported in future work. However, we show below the results for three of the exceptional events.
-
-Figure 4: Marginal distributions for the spins magnitudes of GW150914 (left), GW230814 (centre) and GW250114 (right). In the case of <mark>GW150914</mark>, there is insufficient information in the likelihood, and in both cases, the prior is recovered for the posterior. One can see that the posterior distribution has better support around the region of maxL when there is sufficient information in the likelihood …</div>
+    <p class="where">Named 9 times:
+      abstract ×6, data ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/2602.12859v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>…s on χp\chi_{p} change significantly. The last column denotes the ratio of the maximum likelihood value attained by the run using uniform-in-volume prior, to that of the uniform-in-magnitude run.
-
-Event
-𝝌𝐞𝐟𝐟\bm{\chi_{\mathrm{eff}}}
-𝝌𝒑\bm{\chi_{p}}
-maxL ratio
-
-<mark>GW150914</mark> (m)
-−0.02−0.12+0.12-0.02^{+0.12}_{-0.12}
-0.53−0.41+0.370.53^{+0.37}_{-0.41}
-11
-
-GW150914 (v)
-−0.00−0.13+0.13-0.00^{+0.13}_{-0.13}
-0.725−0.31+0.210.725^{+0.21}_{-0.31}
-1.081.08
-
-GW230814 (m)
-−0.01−0.06+0.05-0.01^{+0.05}_{-0.06}
-0.19−0.15+0.290.19^{+0.29}_{-0.1…</div>
-    
-    
-    <details><summary>6 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…kelihood value attained by the run using uniform-in-volume prior, to that of the uniform-in-magnitude run.
-
-Event
-𝝌𝐞𝐟𝐟\bm{\chi_{\mathrm{eff}}}
-𝝌𝒑\bm{\chi_{p}}
-maxL ratio
-
-GW150914 (m)
-−0.02−0.12+0.12-0.02^{+0.12}_{-0.12}
-0.53−0.41+0.370.53^{+0.37}_{-0.41}
-11
-
-<mark>GW150914</mark> (v)
-−0.00−0.13+0.13-0.00^{+0.13}_{-0.13}
-0.725−0.31+0.210.725^{+0.21}_{-0.31}
-1.081.08
-
-GW230814 (m)
-−0.01−0.06+0.05-0.01^{+0.05}_{-0.06}
-0.19−0.15+0.290.19^{+0.29}_{-0.15}
-11
-
-GW230814 (v)
-0.01−0.08+0.070.01^{+0.07}_{-0.08}
-0.47−0.24+0.280.47^{+0.28}_{-0.24}…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…4 percent, whereas the corresponding loglikelihood values improve by 0.03,0.080.03,0.08 and 0.140.14 percent, and so do the maximum likelihood (maxL) values. The Bayes factors between the two Bayesian models, keeping the likelihood fixed, are ∼2.5\sim 2.5 for <mark>GW150914</mark> and GW230814, and ∼9.5\sim 9.5 for GW250114 in favour of the uniform-in-magnitude model. It is to be noted, however, that Bayes factors are event-specific and cannot be used to decide the correctness of priors. A narrow, unrealistic prior closer to the maximu…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…, that Bayes factors are event-specific and cannot be used to decide the correctness of priors. A narrow, unrealistic prior closer to the maximum likelihood region can lead to high Bayes factors.
-
-The posteriors on the spin-magnitudes are shown in Fig. 4. For <mark>GW150914</mark>, the posteriors are almost identical to the spin priors, indicating no additional information in the likelihood functions and thus no preference for spins. The maxL value for GW230814 is very close to the one original values, but the posterior has better supp…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…ibutions of network matched filter SNRs ρm​f\rho_{mf}, the effective spin parameter χe​f​f\chi_{eff}, the spin-precession parameter χp\chi_{p}, the source frame chirp mass ℳc,s​o​u​r​c​e\mathcal{M}_{c,source}, and the luminosity distance dℒd_{\mathcal{L}} for <mark>GW150914</mark> (left), GW230814 (centre) and GW250114 (right). The uniform-in-volume prior consistently yields marginally higher values of ρm​f\rho_{mf}.
-
-Analyzing the exceptional events with the uniform-in-volume priors not only affects the estimates of the in-plane compo…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…values. The marginal distributions for the spin-precession parameter are plotted in row 3. Significant differences exist between the posteriors, and the uVol prior predicts a higher value for χp\chi_{p}, with the maximum likelihood value also being higher for <mark>GW150914</mark> and GW250114, but a lower value for GW230814. For GW150914, as there is not sufficient information in the likelihood, the posteriors for χp\chi_{p} recover the priors in the right panel of Fig. 8.
-
-Error in h​a​t​pRhat{p}_{R}
-
-In this section, we compute the …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…parameter are plotted in row 3. Significant differences exist between the posteriors, and the uVol prior predicts a higher value for χp\chi_{p}, with the maximum likelihood value also being higher for GW150914 and GW250114, but a lower value for GW230814. For <mark>GW150914</mark>, as there is not sufficient information in the likelihood, the posteriors for χp\chi_{p} recover the priors in the right panel of Fig. 8.
-
-Error in h​a​t​pRhat{p}_{R}
-
-In this section, we compute the error in the estimator for the mean of the posterior mass i…</div>
+    <details class="lines"><summary>Show the sentences (9, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> Figure 4: Marginal distributions for the spins magnitudes of GW150914 (left), GW230814 (centre) and GW250114 (right).</li><li><span class="sec">abstract</span> In the case of GW150914, there is insufficient information in the likelihood, and in both cases, the prior is recovered for the poste…</li><li><span class="sec">abstract</span> GW150914 (m) −0.02−0.12+0.12-0.02^{+0.12}_{-0.12} 0.53−0.41+0.370.53^{+0.37}_{-0.41} 11</li><li><span class="sec">abstract</span> GW150914 (v) −0.00−0.13+0.13-0.00^{+0.13}_{-0.13} 0.725−0.31+0.210.725^{+0.21}_{-0.31} 1.081.08</li><li><span class="sec">abstract</span> The Bayes factors between the two Bayesian models, keeping the likelihood fixed, are ∼2.5\sim 2.5 for GW150914 and GW230814, and ∼9.5\sim 9.5 for GW250114 in favour of the uniform-in-magnitude model.</li><li><span class="sec">abstract</span> For GW150914, the posteriors are almost identical to the spin priors, indicating no additional information in the likeliho…</li><li><span class="sec">data</span> …urce frame chirp mass ℳc,s​o​u​r​c​e\mathcal{M}_{c,source}, and the luminosity distance dℒd_{\mathcal{L}} for GW150914 (left), GW230814 (centre) and GW250114 (right).</li><li><span class="sec">data</span> …he uVol prior predicts a higher value for χp\chi_{p}, with the maximum likelihood value also being higher for GW150914 and GW250114, but a lower value for GW230814.</li></ul>
     </details>
     
   </div>
@@ -265,135 +201,15 @@ In this section, we compute the error in the estimator for the mean of the poste
 <section class="card" data-i="1" data-event="GW250114_082203">
   <div class="ctx">
     <div class="evname mono">GW250114_082203</div>
-    <h3>12 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…ct detailed injection studies, which are underway and will be reported in future work. However, we show below the results for three of the exceptional events.
-
-Figure 4: Marginal distributions for the spins magnitudes of GW150914 (left), GW230814 (centre) and <mark>GW250114</mark> (right). In the case of GW150914, there is insufficient information in the likelihood, and in both cases, the prior is recovered for the posterior. One can see that the posterior distribution has better support around the region of maxL when there is sufficie…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…ufficient information in the likelihood, and in both cases, the prior is recovered for the posterior. One can see that the posterior distribution has better support around the region of maxL when there is sufficient information in the likelihood (GW230814 and <mark>GW250114</mark>). In the case of GW250114, the new priors also end up accumulating posteriors in an entirely different, high-spin region of the spin configuration space, where they find a marginally higher log-likelihood value.
-
-Table 1: Summary of spin parameters for select…</div>
+    <p class="where">Named 12 times:
+      abstract ×9, data ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/2602.12859v1#:~:text=GW250114" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW250114</span> or <span class="mono hit">GW250114_082203</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">abstract</span>…he likelihood, and in both cases, the prior is recovered for the posterior. One can see that the posterior distribution has better support around the region of maxL when there is sufficient information in the likelihood (GW230814 and GW250114). In the case of <mark>GW250114</mark>, the new priors also end up accumulating posteriors in an entirely different, high-spin region of the spin configuration space, where they find a marginally higher log-likelihood value.
-
-Table 1: Summary of spin parameters for selected gravitational-wave even…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…0.13+0.13-0.00^{+0.13}_{-0.13}
-0.725−0.31+0.210.725^{+0.21}_{-0.31}
-1.081.08
-
-GW230814 (m)
-−0.01−0.06+0.05-0.01^{+0.05}_{-0.06}
-0.19−0.15+0.290.19^{+0.29}_{-0.15}
-11
-
-GW230814 (v)
-0.01−0.08+0.070.01^{+0.07}_{-0.08}
-0.47−0.24+0.280.47^{+0.28}_{-0.24}
-1.721.72
-
-<mark>GW250114</mark> (m)
-−0.04−0.04+0.03-0.04^{+0.03}_{-0.04}
-0.12−0.09+0.210.12^{+0.21}_{-0.09}
-11
-
-GW250114 (v)
-−0.07−0.04+0.04-0.07^{+0.04}_{-0.04}
-0.71−0.34+0.210.71^{+0.21}_{-0.34}
-2.492.49
-
-Spins of gw
-
-150914
-, gw
-
-230814
-, and gw
-
-250114
-—We examine the spin distributions…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…)
-−0.01−0.06+0.05-0.01^{+0.05}_{-0.06}
-0.19−0.15+0.290.19^{+0.29}_{-0.15}
-11
-
-GW230814 (v)
-0.01−0.08+0.070.01^{+0.07}_{-0.08}
-0.47−0.24+0.280.47^{+0.28}_{-0.24}
-1.721.72
-
-GW250114 (m)
-−0.04−0.04+0.03-0.04^{+0.03}_{-0.04}
-0.12−0.09+0.210.12^{+0.21}_{-0.09}
-11
-
-<mark>GW250114</mark> (v)
-−0.07−0.04+0.04-0.07^{+0.04}_{-0.04}
-0.71−0.34+0.210.71^{+0.21}_{-0.34}
-2.492.49
-
-Spins of gw
-
-150914
-, gw
-
-230814
-, and gw
-
-250114
-—We examine the spin distributions of three exceptional events with the new prior introduced in this Letter and compare the…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…lihood values improve by 0.03,0.080.03,0.08 and 0.140.14 percent, and so do the maximum likelihood (maxL) values. The Bayes factors between the two Bayesian models, keeping the likelihood fixed, are ∼2.5\sim 2.5 for GW150914 and GW230814, and ∼9.5\sim 9.5 for <mark>GW250114</mark> in favour of the uniform-in-magnitude model. It is to be noted, however, that Bayes factors are event-specific and cannot be used to decide the correctness of priors. A narrow, unrealistic prior closer to the maximum likelihood region can lead to high Bayes f…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…ndicating no additional information in the likelihood functions and thus no preference for spins. The maxL value for GW230814 is very close to the one original values, but the posterior has better support around this region with the new priors. In the case of <mark>GW250114</mark>, although the recovered maxL value is only slightly larger than the original, the spin configuration corresponding to this point is very different from the original. The posteriors also have the maximum support from around this region of the parameter space.
-…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…he underlying spin geometry rather than the spin magnitude.
-
-Figure 5: Performance of reweighting of posterior samples with uniform-in-magnitude priors to obtain the marginal posterior distribution for the spin magnitudes with uniform-in-volume priors, in the <mark>GW250114</mark> analysis. The reweighted samples are in blue, while the samples run with uniform-in-volume priors are in orange. 
-
-Figure 6: Region diagnostics for the uniform-in-magnitude (blue) and uniform-in-volume (orange) priors, across the PE runs for GW250114, which a…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…, in the GW250114 analysis. The reweighted samples are in blue, while the samples run with uniform-in-volume priors are in orange. 
-
-Figure 6: Region diagnostics for the uniform-in-magnitude (blue) and uniform-in-volume (orange) priors, across the PE runs for <mark>GW250114</mark>, which are labelled on the x-axis by the run id. Also shown are the data points for the combined set of samples from across the runs. The regions chosen are Ru​m​a​g∈{θi|χ1​i,χ2​i&gt;0.6}R_{umag}\in\{\theta_{i}|\chi_{1i},\chi_{2i}&gt;0.6\} and Ru​v​o​lin{θi|χ1​i,χ2…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>… ρm​f\rho_{mf}, the effective spin parameter χe​f​f\chi_{eff}, the spin-precession parameter χp\chi_{p}, the source frame chirp mass ℳc,s​o​u​r​c​e\mathcal{M}_{c,source}, and the luminosity distance dℒd_{\mathcal{L}} for GW150914 (left), GW230814 (centre) and <mark>GW250114</mark> (right). The uniform-in-volume prior consistently yields marginally higher values of ρm​f\rho_{mf}.
-
-Analyzing the exceptional events with the uniform-in-volume priors not only affects the estimates of the in-plane components of spins but also marginally affe…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…m likelihood sample as a dashed vertical line. One can see that the network matched filter SNR is marginally higher for the latter for all three events. The effective spin distributions are not entirely different between the two priors, but are noticeable for <mark>GW250114</mark>, shifting to more anti-aligned values. The marginal distributions for the spin-precession parameter are plotted in row 3. Significant differences exist between the posteriors, and the uVol prior predicts a higher value for χp\chi_{p}, with the maximum likelih…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…arginal distributions for the spin-precession parameter are plotted in row 3. Significant differences exist between the posteriors, and the uVol prior predicts a higher value for χp\chi_{p}, with the maximum likelihood value also being higher for GW150914 and <mark>GW250114</mark>, but a lower value for GW230814. For GW150914, as there is not sufficient information in the likelihood, the posteriors for χp\chi_{p} recover the priors in the right panel of Fig. 8.
-
-Error in h​a​t​pRhat{p}_{R}
-
-In this section, we compute the error in the …</div>
+    <details class="lines"><summary>Show the sentences (12, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> Figure 4: Marginal distributions for the spins magnitudes of GW150914 (left), GW230814 (centre) and GW250114 (right).</li><li><span class="sec">abstract</span> …better support around the region of maxL when there is sufficient information in the likelihood (GW230814 and GW250114).</li><li><span class="sec">abstract</span> In the case of GW250114, the new priors also end up accumulating posteriors in an entirely different, high-spin region of the spin co…</li><li><span class="sec">abstract</span> GW250114 (m) −0.04−0.04+0.03-0.04^{+0.03}_{-0.04} 0.12−0.09+0.210.12^{+0.21}_{-0.09} 11</li><li><span class="sec">abstract</span> GW250114 (v) −0.07−0.04+0.04-0.07^{+0.04}_{-0.04} 0.71−0.34+0.210.71^{+0.21}_{-0.34} 2.492.49</li><li><span class="sec">abstract</span> …yesian models, keeping the likelihood fixed, are ∼2.5\sim 2.5 for GW150914 and GW230814, and ∼9.5\sim 9.5 for GW250114 in favour of the uniform-in-magnitude model.</li><li><span class="sec">abstract</span> In the case of GW250114, although the recovered maxL value is only slightly larger than the original, the spin configuration correspo…</li><li><span class="sec">abstract</span> …s to obtain the marginal posterior distribution for the spin magnitudes with uniform-in-volume priors, in the GW250114 analysis.</li></ul>
     </details>
     
   </div>

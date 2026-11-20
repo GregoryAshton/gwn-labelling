@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,13 +138,18 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Designing an Optimal Kilonova Search Using DECam for Gravitational-wave Events</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2302.04878" target="_blank" rel="noopener" class="mono">arXiv:2302.04878</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We address the problem of optimally identifying all kilonovae detected via gravitational-wave emission in the upcoming LIGO/Virgo/KAGRA observing run, O4, which is expected to be sensitive to a factor of ~7 more binary neutron star (BNS) alerts than previously. Electromagnetic follow-up of all but the brightest of these new events will require &amp;gt;1 m telescopes, for which limited time is available. We present an optimized observing strategy for the DECam during O4. We base our study on simulations of gravitational-wave events expected for O4 and wide-prior kilonova simulations. We derive the detectabilities of events for realistic observing conditions. We optimize our strategy for confirming a kilonova while minimizing telescope time. For a wide range of kilonova parameters, corresponding to a fainter kilonova compared to GW170817/AT 2017gfo, we find that, with this optimal strategy, the discovery probability for electromagnetic counterparts with the DECam is ~80% at the nominal BNS gravitational-wave detection limit for O4 (190 Mpc), which corresponds to an ~30% improvement compared to the strategy adopted during the previous observing run. For more distant events (~330 Mpc), we reach an ~60% probability of detection, a factor of ~2 increase. For a brighter kilonova model dominated by the blue component that reproduces the observations of GW170817/AT 2017gfo, we find that we can reach ~90% probability of detection out to 330 Mpc, representing an increase of ~20%, while also reducing the total telescope time required to follow up events by ~20%.</p></details>
+<div class="small mut mono">arXiv:2302.04878</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">We address the problem of optimally identifying all kilonovae detected via gravitational-wave emission in the upcoming LIGO/Virgo/KAGRA observing run, O4, which is expected to be sensitive to a factor of ~7 more binary neutron star (BNS) alerts than previously. Electromagnetic follow-up of all but the brightest of these new events will require &amp;gt;1 m telescopes, for which limited time is available. We present an optimized observing strategy for the DECam during O4. We base our study on simulations of gravitational-wave events expected for O4 and wide-prior kilonova simulations. We derive the detectabilities of events for realistic observing conditions. We optimize our strategy for confirming a kilonova while minimizing telescope time. For a wide range of kilonova parameters, corresponding to a fainter kilonova compared to GW170817/AT 2017gfo, we find that, with this optimal strategy, the discovery probability for electromagnetic counterparts with the DECam is ~80% at the nominal BNS gravitational-wave detection limit for O4 (190 Mpc), which corresponds to an ~30% improvement compared to the strategy adopted during the previous observing run. For more distant events (~330 Mpc), we reach an ~60% probability of detection, a factor of ~2 increase. For a brighter kilonova model dominated by the blue component that reproduces the observations of GW170817/AT 2017gfo, we find that we can reach ~90% probability of detection out to 330 Mpc, representing an increase of ~20%, while also reducing the total telescope time required to follow up events by ~20%.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/2302.04878v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 <section id="recall" class="panel" style="margin-top:16px">
   <h2>First: which events does this paper name?</h2>
-  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <p class="small">Before looking at the events we found, open the paper (button above) and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
   <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
   <div class="actions">
     <button class="primary" type="button" id="recall-done">Done: show the events</button>
@@ -138,118 +159,22 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <div id="pairs" hidden>
-<p class="small mut" style="margin:18px 0 0">10 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">10 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>23 mentions · first 12 shown · <span class="cptag">4 by counterpart name</span></h3>
+    <p class="where">Named 23 times:
+      data ×7, discussion ×7, introduction ×5, abstract ×4.</p>
+    <p class="where"><a href="https://arxiv.org/html/2302.04878v2#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">4 mentions use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention"><span class="sec">abstract</span>…mulations. We derive the detectabilities of events for realistic observing conditions. We optimize our strategy for confirming a kilonova while minimizing telescope time. For a wide range of kilonova parameters, corresponding to a fainter kilonova compared to <mark>GW170817</mark>/AT2017gfo we find that, with this optimal strategy, the discovery probability for electromagnetic counterparts with the DECam is ∼80%\sim 80\% at the nominal BNS gravitational wave detection limit for O4 (190 Mpc), which corresponds to a ∼30%\sim 30\% improve…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">abstract · <span class="cptag">counterpart name, not the GW signal</span></span>…. We derive the detectabilities of events for realistic observing conditions. We optimize our strategy for confirming a kilonova while minimizing telescope time. For a wide range of kilonova parameters, corresponding to a fainter kilonova compared to GW170817/<mark class="cp">AT2017gfo</mark> we find that, with this optimal strategy, the discovery probability for electromagnetic counterparts with the DECam is ∼80%\sim 80\% at the nominal BNS gravitational wave detection limit for O4 (190 Mpc), which corresponds to a ∼30%\sim 30\% improvement compa…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>… during the previous observing run. For more distant events (∼330\sim 330 Mpc), we reach a ∼60%\sim 60\% probability of detection, a factor of ∼2\sim 2 increase. For a brighter kilonova model dominated by the blue component that reproduces the observations of <mark>GW170817</mark>/AT2017gfo, we find that we can reach ∼90%\sim 90\% probability of detection out to 330 Mpc, representing an increase of ∼20%\sim 20\%, while also reducing the total telescope time required to follow-up events by ∼20%\sim 20\%.
-
- 
-
-Keywords: 
-
-gravitational wa…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention cp"><span class="sec">abstract · <span class="cptag">counterpart name, not the GW signal</span></span>…he previous observing run. For more distant events (∼330\sim 330 Mpc), we reach a ∼60%\sim 60\% probability of detection, a factor of ∼2\sim 2 increase. For a brighter kilonova model dominated by the blue component that reproduces the observations of GW170817/<mark class="cp">AT2017gfo</mark>, we find that we can reach ∼90%\sim 90\% probability of detection out to 330 Mpc, representing an increase of ∼20%\sim 20\%, while also reducing the total telescope time required to follow-up events by ∼20%\sim 20\%.
-
- 
-
-Keywords: 
-
-gravitational waves — surv…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…e required to follow-up events by ∼20%\sim 20\%.
-
- 
-
-Keywords: 
-
-gravitational waves — surveys
-
-\reportnum
-DES-2022-0714
-\reportnumFERMILAB-PUB-23-048-PPD
-
-I Introduction
-
-The discovery of an electromagnetic (EM) counterpart to a gravitational wave (GW) event <mark>GW170817</mark> ushered in a new era of astrophysics and multi-messenger astronomy (2, 87; 30; 66; 29, 37; 94). The discovery of the optical counterpart occurred ∼\sim12hr [3, 14, 28, 88, 63] after merger, allowing for extensive imaging and spectroscopic observations [35, 11…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>…59, e.g.]. This enabled the community to not only confirm the existence of long-hypothesized kilonovae (KNe) and to characterize their lightcurves, but also to derive the first cosmological standard siren [79] constraint [3].
-
-The EM counterpart to GW1701817, <mark class="cp">AT2017gfo</mark>, was observed in γ\gamma-rays 2 seconds after the merger signal [1, 44, 77, e.g.,], then a few hours later in optical bands as a fast-decaying blue object, with longer-lived emission in the infrared, X-ray, and radio bands. The astrophysics community is still…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">introduction · <span class="cptag">counterpart name, not the GW signal</span></span>…then a few hours later in optical bands as a fast-decaying blue object, with longer-lived emission in the infrared, X-ray, and radio bands. The astrophysics community is still learning from the vast data set compiled for this event. Early analyses showed that <mark class="cp">AT2017gfo</mark> had small ejecta masses with relativistic outflow velocities (from 0.1 to 0.3 of the speed of light cc) and was likely powered by a combination of shocked material and r-process radioactive decay, which was modulated by the presence of high opacity lanthanide…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…KNe produced by binary neutron star (BNS) and neutron-star black-hole (NSBH) mergers.
-
-The gravitational waveform observed from binary compact object mergers allow first-principles distance measurements. The GW distance measurement and the optical redshift of <mark>GW170817</mark> provided constraints on the Hubble constant from a single event (79; 34; 3), and further constraints came from measurements of H0H_{0} from multiple GW events using a low precision statistical method (i.e dark sirens; Soares-Santos &amp; Palmese et al. 89; LIGO S…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…recision statistical method (i.e dark sirens; Soares-Santos &amp; Palmese et al. 89; LIGO Scientific Collaboration &amp; Virgo Collaboration 62, Palmese et al. 72, Palmese et al. 70, Finke et al. 39, Gray et al. 48).
-
-From a cosmological perspective, the detection of <mark>GW170817</mark> provided the grounds for the application of a new approach to understand the well-known Hubble tension. Measurements of the Hubble constant H0H_{0} from early-time universe observations [74, e.g., Planck observations of the CMB in ] are in tension with measur…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…
--5.0
-1.0
--5.0
-10.0
--2.0
-5.0
-
-vejv_{\mathrm{ej}} (cc)
-0.25
-0.01
-0.25
-0.10
-0.15
-0.30
-
-Peak ⟨Mi⟩\left&lt;M_{i}\right&gt;
-−16.3-16.3
-−15.7-15.7
-−14.6-14.6
-
-Not every Kasen model atmosphere is equally likely to be a good model for a real KN light curve. Most models for <mark>GW170817</mark> are 2+ component models, as in [57, 96, 26, 43]. If the Kasen models define a linear space of KN models, then the Kilpatrick models are in that space; if the Kasen models are eigenmodels of KN, then the models in Kilpatrick et al are defined by the eigenvalue…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…e log⁡Xlan=−5\log{X_{\mathrm{lan}}}=-5 with an uncertainty of 1.0.
-This model is, in average, blue and reaches a peak luminosity a half day after trigger in gg-band. It is also, in average, the brightest of the three models and 0.80.8 magnitudes brighter than <mark>GW170817</mark>’s peak Mg,r,i,z≈−15.5M_{g,r,i,z}\approx-15.5.
-
-The reddish &amp; slow model is defined as in bright &amp; blue, except that we take the σ\sigma to be ten times the uncertainties there, to reflect our ignorance of the KNe population. This results in a prior allowing t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">data</span>…inties there, to reflect our ignorance of the KNe population. This results in a prior allowing the entire log⁡Xlan\log{X_{\mathrm{lan}}} range of the Kasen models to contribute. Such wide priors make our model, in average, to be redder and slower to peak than <mark>GW170817</mark>, though with the same ⟨Mi⟩\left&lt;M_{i}\right&gt;. Most of our results use this model.
-
-The red &amp; faint model is defined as the means and ten times the uncertainties of the red component model in Kilpatrick et al. [57] interpreted as Gaussian priors. The predomina…</div>
+    <details class="lines"><summary>Show the sentences (22, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> For a wide range of kilonova parameters, corresponding to a fainter kilonova compared to GW170817/AT2017gfo we find that, with this optimal strategy, the discovery probability for electromagnetic counterpart…</li><li><span class="sec">abstract · counterpart name</span> For a wide range of kilonova parameters, corresponding to a fainter kilonova compared to GW170817/AT2017gfo we find that, with this optimal strategy, the discovery probability for electromagnetic counterparts with the…</li><li><span class="sec">abstract</span> For a brighter kilonova model dominated by the blue component that reproduces the observations of GW170817/AT2017gfo, we find that we can reach ∼90%\sim 90\% probability of detection out to 330 Mpc, representing an i…</li><li><span class="sec">abstract · counterpart name</span> For a brighter kilonova model dominated by the blue component that reproduces the observations of GW170817/AT2017gfo, we find that we can reach ∼90%\sim 90\% probability of detection out to 330 Mpc, representing an increase of…</li><li><span class="sec">introduction</span> The discovery of an electromagnetic (EM) counterpart to a gravitational wave (GW) event GW170817 ushered in a new era of astrophysics and multi-messenger astronomy (2, 87; 30; 66; 29, 37; 94).</li><li><span class="sec">introduction · counterpart name</span> The EM counterpart to GW1701817, AT2017gfo, was observed in γ\gamma-rays 2 seconds after the merger signal [1, 44, 77, e.g.,], then a few hours later in…</li><li><span class="sec">introduction · counterpart name</span> Early analyses showed that AT2017gfo had small ejecta masses with relativistic outflow velocities (from 0.1 to 0.3 of the speed of light cc) and w…</li><li><span class="sec">introduction</span> The GW distance measurement and the optical redshift of GW170817 provided constraints on the Hubble constant from a single event (79; 34; 3), and further constraints came fro…</li></ul>
     </details>
     
   </div>
@@ -286,84 +211,16 @@ The red &amp; faint model is defined as the means and ten times the uncertaintie
 <section class="card" data-i="1" data-event="GW190425">
   <div class="ctx">
     <div class="evname mono">GW190425</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2302.04878v2#:~:text=GW190425" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190425</span>.</p>
     
     
-    <div class="mention"><span class="sec">discussion</span>…dels detected given our priors on the space of models”.
-
-Table 8: LVC GWTC events (O1-O3) containing neutron stars and with M2&lt;5M⊙M_{2}&lt;5M\odot and SNR&gt;8&gt;8.
-
-id
-M1M_{1}
-M2M_{2}
-distance
-SNR
-class
-
-(M⊙M_{\odot})
-(M⊙M_{\odot})
-(Mpc)
-
-GW170817
-1.5
-1.3
-40
-33
-BNS
-
-<mark>GW190425</mark>
-2.0
-1.4
-160
-13
-BNS
-
-–
-
-GW190814
-23.2
-2.6
-240
-22
-BH-NS
-
-GW200105_162426∗
-9.0
-1.9
-270
-14
-BH-NS
-
-GW200115_042309
-5.9
-1.4
-290
-11
-BH-NS
-
-GW190426_152155
-5.7
-1.5
-370
-10
-BH-NS
-
-GW191219_163120
-31.1
-1.2
-550
-9
-BH-NS
-
-GW190917_114630
-9.3
-2.1
-720
-10
-BH-NS
-
-GW200210_0922…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> GW190425 2.0 1.4 160 13 BNS</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -399,91 +256,16 @@ GW200210_0922…</div>
 <section class="card" data-i="2" data-event="GW190426_152155">
   <div class="ctx">
     <div class="evname mono">GW190426_152155</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2302.04878v2#:~:text=GW190426_152155" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190426_152155</span>.</p>
     
     
-    <div class="mention"><span class="sec">discussion</span>…ot and SNR&gt;8&gt;8.
-
-id
-M1M_{1}
-M2M_{2}
-distance
-SNR
-class
-
-(M⊙M_{\odot})
-(M⊙M_{\odot})
-(Mpc)
-
-GW170817
-1.5
-1.3
-40
-33
-BNS
-
-GW190425
-2.0
-1.4
-160
-13
-BNS
-
-–
-
-GW190814
-23.2
-2.6
-240
-22
-BH-NS
-
-GW200105_162426∗
-9.0
-1.9
-270
-14
-BH-NS
-
-GW200115_042309
-5.9
-1.4
-290
-11
-BH-NS
-
-<mark>GW190426_152155</mark>
-5.7
-1.5
-370
-10
-BH-NS
-
-GW191219_163120
-31.1
-1.2
-550
-9
-BH-NS
-
-GW190917_114630
-9.3
-2.1
-720
-10
-BH-NS
-
-GW200210_092254
-24.1
-2.8
-940
-8
-BH-NS
-
-Note. — Δ​mlim​(10​σ−5​σ)=0.75\Delta m_{\mathrm{lim}}(10\sigma-5\sigma)=0.75 mags.
-
-Note. — Table of means, μ\mu, and stand…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> GW190426_152155 5.7 1.5 370 10 BH-NS</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -519,14 +301,16 @@ Note. — Table of means, μ\mu, and stand…</div>
 <section class="card" data-i="3" data-event="GW190521">
   <div class="ctx">
     <div class="evname mono">GW190521</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      introduction.</p>
+    <p class="where"><a href="https://arxiv.org/html/2302.04878v2#:~:text=GW190521" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190521</span>.</p>
     
     
-    <div class="mention"><span class="sec">introduction</span>…originated from NSBH coalescences [6], but
-no electromagnetic counterparts were confirmed from any event despite extensive follow-up campaigns [64, 42, 93, 58, 68, 12, 13, 45, e.g., ]. One study [47] proposed an AGN counterpart to the binary black hole merger <mark>GW190521</mark>, but the association to the GW event cannot be made with confidence [71, 15].
-
-LVK’s O4 campaign is scheduled to start in early 2023, surveying on a factor of 22 times more in the median Luminosity Distance and a factor of ∼7\sim 7 detections of BNS events th…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">introduction</span> One study [47] proposed an AGN counterpart to the binary black hole merger GW190521, but the association to the GW event cannot be made with confidence [71, 15].</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -562,100 +346,16 @@ LVK’s O4 campaign is scheduled to start in early 2023, surveying on a factor o
 <section class="card" data-i="4" data-event="GW190814">
   <div class="ctx">
     <div class="evname mono">GW190814</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">methods</span>…simulations), but instead provide atmosphere models to be used in building a geometric model.
-
-II.3 Kilonova lightcurve simulations
-
-The lightcurve simulation pipeline is similar to that used Morgan et al. [64], which constrains the physical KNe properties of <mark>GW190814</mark>.
-The SuperNova ANAlysis software (SNANA: Kessler et al. 55, Kessler et al. 56) enables the simulation of light curves of KNe as they would be measured by DECam. SNANA produces light curves by simulating fluxes and uncertainties in observations by incorporatin…</div>
+    <p class="where">Named 2 times:
+      methods, discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2302.04878v2#:~:text=GW190814" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190814</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">discussion</span>…n the space of models”.
-
-Table 8: LVC GWTC events (O1-O3) containing neutron stars and with M2&lt;5M⊙M_{2}&lt;5M\odot and SNR&gt;8&gt;8.
-
-id
-M1M_{1}
-M2M_{2}
-distance
-SNR
-class
-
-(M⊙M_{\odot})
-(M⊙M_{\odot})
-(Mpc)
-
-GW170817
-1.5
-1.3
-40
-33
-BNS
-
-GW190425
-2.0
-1.4
-160
-13
-BNS
-
-–
-
-<mark>GW190814</mark>
-23.2
-2.6
-240
-22
-BH-NS
-
-GW200105_162426∗
-9.0
-1.9
-270
-14
-BH-NS
-
-GW200115_042309
-5.9
-1.4
-290
-11
-BH-NS
-
-GW190426_152155
-5.7
-1.5
-370
-10
-BH-NS
-
-GW191219_163120
-31.1
-1.2
-550
-9
-BH-NS
-
-GW190917_114630
-9.3
-2.1
-720
-10
-BH-NS
-
-GW200210_092254
-24.1
-2.8
-940
-8
-BH-NS
-
-Note. —…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">methods</span> …mulation pipeline is similar to that used Morgan et al. [64], which constrains the physical KNe properties of GW190814.</li><li><span class="sec">discussion</span> GW190814 23.2 2.6 240 22 BH-NS</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -691,81 +391,16 @@ Note. —…</div>
 <section class="card" data-i="5" data-event="GW190917_114630">
   <div class="ctx">
     <div class="evname mono">GW190917_114630</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2302.04878v2#:~:text=GW190917_114630" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190917_114630</span>.</p>
     
     
-    <div class="mention"><span class="sec">discussion</span>…\odot})
-(Mpc)
-
-GW170817
-1.5
-1.3
-40
-33
-BNS
-
-GW190425
-2.0
-1.4
-160
-13
-BNS
-
-–
-
-GW190814
-23.2
-2.6
-240
-22
-BH-NS
-
-GW200105_162426∗
-9.0
-1.9
-270
-14
-BH-NS
-
-GW200115_042309
-5.9
-1.4
-290
-11
-BH-NS
-
-GW190426_152155
-5.7
-1.5
-370
-10
-BH-NS
-
-GW191219_163120
-31.1
-1.2
-550
-9
-BH-NS
-
-<mark>GW190917_114630</mark>
-9.3
-2.1
-720
-10
-BH-NS
-
-GW200210_092254
-24.1
-2.8
-940
-8
-BH-NS
-
-Note. — Δ​mlim​(10​σ−5​σ)=0.75\Delta m_{\mathrm{lim}}(10\sigma-5\sigma)=0.75 mags.
-
-Note. — Table of means, μ\mu, and standard deviations, σ\sigma, of the Gaussian priors on the Kasen models paramete…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> GW190917_114630 9.3 2.1 720 10 BH-NS</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -801,86 +436,16 @@ Note. — Table of means, μ\mu, and standard deviations, σ\sigma, of the Gauss
 <section class="card" data-i="6" data-event="GW191219_163120">
   <div class="ctx">
     <div class="evname mono">GW191219_163120</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2302.04878v2#:~:text=GW191219_163120" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW191219_163120</span>.</p>
     
     
-    <div class="mention"><span class="sec">discussion</span>…stance
-SNR
-class
-
-(M⊙M_{\odot})
-(M⊙M_{\odot})
-(Mpc)
-
-GW170817
-1.5
-1.3
-40
-33
-BNS
-
-GW190425
-2.0
-1.4
-160
-13
-BNS
-
-–
-
-GW190814
-23.2
-2.6
-240
-22
-BH-NS
-
-GW200105_162426∗
-9.0
-1.9
-270
-14
-BH-NS
-
-GW200115_042309
-5.9
-1.4
-290
-11
-BH-NS
-
-GW190426_152155
-5.7
-1.5
-370
-10
-BH-NS
-
-<mark>GW191219_163120</mark>
-31.1
-1.2
-550
-9
-BH-NS
-
-GW190917_114630
-9.3
-2.1
-720
-10
-BH-NS
-
-GW200210_092254
-24.1
-2.8
-940
-8
-BH-NS
-
-Note. — Δ​mlim​(10​σ−5​σ)=0.75\Delta m_{\mathrm{lim}}(10\sigma-5\sigma)=0.75 mags.
-
-Note. — Table of means, μ\mu, and standard deviations, σ\sigma, of the Gaussi…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> GW191219_163120 31.1 1.2 550 9 BH-NS</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -916,96 +481,16 @@ Note. — Table of means, μ\mu, and standard deviations, σ\sigma, of the Gauss
 <section class="card" data-i="7" data-event="GW200105_162426">
   <div class="ctx">
     <div class="evname mono">GW200105_162426</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">discussion</span>…: LVC GWTC events (O1-O3) containing neutron stars and with M2&lt;5M⊙M_{2}&lt;5M\odot and SNR&gt;8&gt;8.
-
-id
-M1M_{1}
-M2M_{2}
-distance
-SNR
-class
-
-(M⊙M_{\odot})
-(M⊙M_{\odot})
-(Mpc)
-
-GW170817
-1.5
-1.3
-40
-33
-BNS
-
-GW190425
-2.0
-1.4
-160
-13
-BNS
-
-–
-
-GW190814
-23.2
-2.6
-240
-22
-BH-NS
-
-<mark>GW200105_162426</mark>∗
-9.0
-1.9
-270
-14
-BH-NS
-
-GW200115_042309
-5.9
-1.4
-290
-11
-BH-NS
-
-GW190426_152155
-5.7
-1.5
-370
-10
-BH-NS
-
-GW191219_163120
-31.1
-1.2
-550
-9
-BH-NS
-
-GW190917_114630
-9.3
-2.1
-720
-10
-BH-NS
-
-GW200210_092254
-24.1
-2.8
-940
-8
-BH-NS
-
-Note. — Δ​mlim​(10​σ−5​σ)=0.75\Delta m_{\mathr…</div>
+    <p class="where">Named 2 times:
+      discussion ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/2302.04878v2#:~:text=GW200105_162426" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200105_162426</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">discussion</span>…or bright &amp; blue, reddish &amp; slow, and red &amp; faintmodels, these strategies are only defined for 602, 496, and 131 simulations respectively in the half night scenario. While Late discovery is defined for 532, 511, and 251
-
-Note. — SNR is the matched filter SNR.
-<mark>GW200105_162426</mark>∗ has pastro=0.3p_{\mathrm{astro}}=0.3 is thus considered a marginal candidate. Only 2 events have a 90% confidence sky area of &lt;30&lt;30 sq-deg, 2 at &lt;300&lt;300 sq-deg, and 3 at &lt;400&lt;400 sq-deg. The median sky area is 1700 sq-deg. Data from https://www.gw-openscie…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> GW200105_162426∗ 9.0 1.9 270 14 BH-NS</li><li><span class="sec">discussion</span> GW200105_162426∗ has pastro=0.3p_{\mathrm{astro}}=0.3 is thus considered a marginal candidate.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1041,91 +526,16 @@ Note. — SNR is the matched filter SNR.
 <section class="card" data-i="8" data-event="GW200115_042309">
   <div class="ctx">
     <div class="evname mono">GW200115_042309</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2302.04878v2#:~:text=GW200115_042309" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200115_042309</span>.</p>
     
     
-    <div class="mention"><span class="sec">discussion</span>…utron stars and with M2&lt;5M⊙M_{2}&lt;5M\odot and SNR&gt;8&gt;8.
-
-id
-M1M_{1}
-M2M_{2}
-distance
-SNR
-class
-
-(M⊙M_{\odot})
-(M⊙M_{\odot})
-(Mpc)
-
-GW170817
-1.5
-1.3
-40
-33
-BNS
-
-GW190425
-2.0
-1.4
-160
-13
-BNS
-
-–
-
-GW190814
-23.2
-2.6
-240
-22
-BH-NS
-
-GW200105_162426∗
-9.0
-1.9
-270
-14
-BH-NS
-
-<mark>GW200115_042309</mark>
-5.9
-1.4
-290
-11
-BH-NS
-
-GW190426_152155
-5.7
-1.5
-370
-10
-BH-NS
-
-GW191219_163120
-31.1
-1.2
-550
-9
-BH-NS
-
-GW190917_114630
-9.3
-2.1
-720
-10
-BH-NS
-
-GW200210_092254
-24.1
-2.8
-940
-8
-BH-NS
-
-Note. — Δ​mlim​(10​σ−5​σ)=0.75\Delta m_{\mathrm{lim}}(10\sigma-5\sigma)=0.75 mags.
-
-N…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> GW200115_042309 5.9 1.4 290 11 BH-NS</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1161,73 +571,16 @@ N…</div>
 <section class="card" data-i="9" data-event="GW200210_092254">
   <div class="ctx">
     <div class="evname mono">GW200210_092254</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      discussion.</p>
+    <p class="where"><a href="https://arxiv.org/html/2302.04878v2#:~:text=GW200210_092254" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200210_092254</span>.</p>
     
     
-    <div class="mention"><span class="sec">discussion</span>…BNS
-
-GW190425
-2.0
-1.4
-160
-13
-BNS
-
-–
-
-GW190814
-23.2
-2.6
-240
-22
-BH-NS
-
-GW200105_162426∗
-9.0
-1.9
-270
-14
-BH-NS
-
-GW200115_042309
-5.9
-1.4
-290
-11
-BH-NS
-
-GW190426_152155
-5.7
-1.5
-370
-10
-BH-NS
-
-GW191219_163120
-31.1
-1.2
-550
-9
-BH-NS
-
-GW190917_114630
-9.3
-2.1
-720
-10
-BH-NS
-
-<mark>GW200210_092254</mark>
-24.1
-2.8
-940
-8
-BH-NS
-
-Note. — Δ​mlim​(10​σ−5​σ)=0.75\Delta m_{\mathrm{lim}}(10\sigma-5\sigma)=0.75 mags.
-
-Note. — Table of means, μ\mu, and standard deviations, σ\sigma, of the Gaussian priors on the Kasen models parameter ranges. The Kasen models have parame…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">discussion</span> GW200210_092254 24.1 2.8 940 8 BH-NS</li></ul>
+    </details>
     
   </div>
   <div class="form">

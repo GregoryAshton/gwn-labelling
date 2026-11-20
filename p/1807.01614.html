@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,48 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>A telescope control and scheduling system for the Gravitational-wave Optical Transient Observer (GOTO)</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1807.01614" target="_blank" rel="noopener" class="mono">arXiv:1807.01614</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The Gravitational-wave Optical Transient Observer (GOTO) is a wide-field telescope project aimed at detecting optical counterparts to gravitational wave sources. The prototype instrument was inaugurated in July 2017 on La Palma in the Canary Islands. We describe the GOTO Telescope Control System (G-TeCS), a custom robotic control system written in Python which autonomously manages the telescope hardware and nightly operations. The system comprises of multiple independent control daemons, which are supervised by a master control program known as the &#34;pilot&#34;. Observations are decided by a &#34;just-in-time&#34; scheduler, which instructs the pilot what to observe in real time and provides quick follow-up of transient events.</p></details>
+<div class="small mut mono">arXiv:1807.01614</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The Gravitational-wave Optical Transient Observer (GOTO) is a wide-field telescope project aimed at detecting optical counterparts to gravitational wave sources. The prototype instrument was inaugurated in July 2017 on La Palma in the Canary Islands. We describe the GOTO Telescope Control System (G-TeCS), a custom robotic control system written in Python which autonomously manages the telescope hardware and nightly operations. The system comprises of multiple independent control daemons, which are supervised by a master control program known as the &#34;pilot&#34;. Observations are decided by a &#34;just-in-time&#34; scheduler, which instructs the pilot what to observe in real time and provides quick follow-up of transient events.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1807.01614v1" target="_blank" rel="noopener">Open the paper (arXiv HTML, v1) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">3 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">3 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW150914">
   <div class="ctx">
     <div class="evname mono">GW150914</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      reference list.</p>
+    <p class="where"><a href="https://arxiv.org/html/1807.01614v1#:~:text=GW150914" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW150914</span>.</p>
+    <p class="flag">Only in the reference list (a cited paper's title). Judge from where the paper cites that reference, not from the title.</p>
     
     
-    <div class="mention"><span class="sec">references</span>… T. D., et al., “Observation of
-gravitational waves from a binary black hole merger,” Phys. Rev.
-Lett. 116, 061102 (Feb. 2016).
-
- 
-[2]
-
-Abbott, B. P., Abbott, R., Abbott, T. D., et al., “Localization and
-Broadband Follow-up of the Gravitational-wave Transient <mark>GW150914</mark>,” ApJ 826, L13 (July 2016).
-
- 
-[3]
-
-Abbott, B. P., Abbott, R., Abbott, T. D., et al., “Gw170817: Observation of
-gravitational waves from a binary neutron star inspiral,” Phys. Rev.
-Lett. 119, 161101 (Oct. 2017).
-
- 
-[4]
-
-Abbott, B. P., Abbott, R., Abbott, T. D…
-    <div class="cites">
-      <span class="sec">Reference list entry. Cited in the text as <span class="mono">[2]</span> · 1 place</span><div class="cite">…ope
-
-In 2016 the first direct detection of gravitational waves was announced by the LIGO collaboration [1], and despite a global follow-up search no counterpart electromagnetic transient was detected <mark class="ref">[2]</mark>. This was not unexpected due to the signal’s predicted origin as a binary black hole system. It was not until nearly two years and four more confirmed detections later that the first gravitational wa…</div>
-    </div></div>
-    
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">cites it as [2]</span> …ollaboration [1], and despite a global follow-up search no counterpart electromagnetic transient was detected [2]. This was not unexpected due to the signal’s predicted origin as a binary black hole system. It was not until…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -199,18 +201,16 @@ In 2016 the first direct detection of gravitational waves was announced by the L
 <section class="card" data-i="1" data-event="GW151226">
   <div class="ctx">
     <div class="evname mono">GW151226</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      data.</p>
+    <p class="where"><a href="https://arxiv.org/html/1807.01614v1#:~:text=GW151226" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW151226</span>.</p>
     
     
-    <div class="mention"><span class="sec">data</span>…etting the time values allows a lot of control over when pointings can be valid, for example scheduling follow-up observations a set number of hours or days after an initial pointing is observed.
-
-Figure 6: 
-The probability skymap for gravitational wave event <mark>GW151226</mark> [11], covered in tiles matching the field of view of GOTO in the four unit telescope configuration.
-
-2.2.4 Sentinel
-
-In order for targets to be observed by GOTO in robotic mode they must have entries defined in the pointings (or mpointings) table in the obser…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">data</span> Figure 6: The probability skymap for gravitational wave event GW151226 [11], covered in tiles matching the field of view of GOTO in the four unit telescope configuration.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -246,19 +246,16 @@ In order for targets to be observed by GOTO in robotic mode they must have entri
 <section class="card" data-i="2" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>3 mentions · <span class="cptag">1 by counterpart name</span></h3>
+    <p class="where">Named 3 times:
+      abstract ×3.</p>
+    <p class="where"><a href="https://arxiv.org/html/1807.01614v1#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">1 mention use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention"><span class="sec">abstract</span>…his was not unexpected due to the signal’s predicted origin as a binary black hole system. It was not until nearly two years and four more confirmed detections later that the first gravitational waves were detected from a merging binary neutron star [3]. This <mark>GW170817</mark> LIGO/Virgo detection marked a milestone in the era of multi-messenger astronomy, as it was also seen in gamma-rays as GRB 170817A by the Fermi satellite and 11 hours later as optical transient AT 2017gfo [4]. GW170817 was localised to a 90% confidence interva…</div>
-    
-    
-    
-    <div class="mention cp"><span class="sec">abstract · <span class="cptag">counterpart name, not the GW signal</span></span>…d four more confirmed detections later that the first gravitational waves were detected from a merging binary neutron star [3]. This GW170817 LIGO/Virgo detection marked a milestone in the era of multi-messenger astronomy, as it was also seen in gamma-rays as <mark class="cp">GRB 170817A</mark> by the Fermi satellite and 11 hours later as optical transient AT 2017gfo [4]. GW170817 was localised to a 90% confidence interval covering 31 square degrees [4], lower than the typical expected areas of hundreds of square degrees [5], which made prompt disco…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…m a merging binary neutron star [3]. This GW170817 LIGO/Virgo detection marked a milestone in the era of multi-messenger astronomy, as it was also seen in gamma-rays as GRB 170817A by the Fermi satellite and 11 hours later as optical transient AT 2017gfo [4]. <mark>GW170817</mark> was localised to a 90% confidence interval covering 31 square degrees [4], lower than the typical expected areas of hundreds of square degrees [5], which made prompt discovery of the associated transient possible for telescopes with a small field of view. Fut…</div>
-    
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">abstract</span> This GW170817 LIGO/Virgo detection marked a milestone in the era of multi-messenger astronomy, as it was also seen in gamma…</li><li><span class="sec">abstract · counterpart name</span> …go detection marked a milestone in the era of multi-messenger astronomy, as it was also seen in gamma-rays as GRB 170817A by the Fermi satellite and 11 hours later as optical transient AT 2017gfo [4].</li><li><span class="sec">abstract</span> GW170817 was localised to a 90% confidence interval covering 31 square degrees [4], lower than the typical expected ar…</li></ul>
+    </details>
     
   </div>
   <div class="form">

@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,49 +138,34 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>GWTC-4.0: Tests of General Relativity. II. Parameterized Tests</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/2603.19020" target="_blank" rel="noopener" class="mono">arXiv:2603.19020</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">In this second of three papers on tests of general relativity (GR) applied to the compact binary coalescence signals in the 4th Gravitational-Wave Transient Catalog (GWTC-4.0), we present the results of the parameterized tests of GR and constraints on line-of-sight acceleration (LOSA). We include events up to and including the 1st part of the 4th observing run (O4a) of the LIGO-Virgo-KAGRA detectors. As in the other two papers in this series, we restrict our analysis to the 42 confident signals, measured by at least two detectors, that have FAR &amp;lt; 10^{-3}/yr from O4a, in addition to the 49 such events from previous observing runs. This paper focuses on the 8 tests that constrain parameterized deviations from the expected GR (or unaccelerated) values. These include modifications of post-Newtonian (PN) parameters, spin-induced quadrupole moments different from those of a binary black hole (BH), and possible dispersive or birefringent propagation effects. Overall, we find no evidence for physics beyond GR, for spin-induced quadrupole moments different from those of a Kerr BH in GR, or for LOSA, with more than 90% of the events including the null result (no deviation) within their 90% credible intervals. We discuss possible systematics affecting the other events and tests, even though they are statistically not surprising, given noise. The increased number of events analyzed allow us to improve the constraints on deviations from GR. For instance, for the PN coefficients, we improve the constraints by factors of 1.2-5.5, though some of this improvement is due to allowing the PN coefficient deviations to affect more of the waveform. We also provide illustrative translations to some modified theories. We update the bound on the graviton mass, at 90% credibility, to $m_g\leq1.92\times10^{-23}\mathrm{eV}/c^2$. Many of the bounds on possible deviations derived from our events are the best to date.</p></details>
+<div class="small mut mono">arXiv:2603.19020</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">In this second of three papers on tests of general relativity (GR) applied to the compact binary coalescence signals in the 4th Gravitational-Wave Transient Catalog (GWTC-4.0), we present the results of the parameterized tests of GR and constraints on line-of-sight acceleration (LOSA). We include events up to and including the 1st part of the 4th observing run (O4a) of the LIGO-Virgo-KAGRA detectors. As in the other two papers in this series, we restrict our analysis to the 42 confident signals, measured by at least two detectors, that have FAR &amp;lt; 10^{-3}/yr from O4a, in addition to the 49 such events from previous observing runs. This paper focuses on the 8 tests that constrain parameterized deviations from the expected GR (or unaccelerated) values. These include modifications of post-Newtonian (PN) parameters, spin-induced quadrupole moments different from those of a binary black hole (BH), and possible dispersive or birefringent propagation effects. Overall, we find no evidence for physics beyond GR, for spin-induced quadrupole moments different from those of a Kerr BH in GR, or for LOSA, with more than 90% of the events including the null result (no deviation) within their 90% credible intervals. We discuss possible systematics affecting the other events and tests, even though they are statistically not surprising, given noise. The increased number of events analyzed allow us to improve the constraints on deviations from GR. For instance, for the PN coefficients, we improve the constraints by factors of 1.2-5.5, though some of this improvement is due to allowing the PN coefficient deviations to affect more of the waveform. We also provide illustrative translations to some modified theories. We update the bound on the graviton mass, at 90% credibility, to $m_g\leq1.92\times10^{-23}\mathrm{eV}/c^2$. Many of the bounds on possible deviations derived from our events are the best to date.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/pdf/2603.19020v2" target="_blank" rel="noopener">Open the paper (PDF, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched; it's a PDF, so use your viewer's search.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">12 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">12 events named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW190512_180714">
   <div class="ctx">
     <div class="evname mono">GW190512_180714</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      title/headings.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190512 180714</span> or <span class="mono hit">GW190512_180714</span>.</p>
     
     
-    <div class="mention"><span class="sec">front_matter</span>…1
-−0.27 0.78+0.20
-−0.32 ✓PI ··· ··· ··· ··· ···✓+
-GW190425 12.4+0.3
-−0.4 1.4873+0.0008
-−0.0006 0.06+0.11
-−0.05 0.67+0.29
-−0.25 ··· ··· ··· ··· ··· ✓ ··· ···
-GW190503 18540412.1 +0.2
-−0.4 37.8+6.1
-−6.7 −0.05+0.23
-−0.30 0.69+0.27
-−0.29 ✓PI ··· ··· ··· ··· ···✓+
-<mark>GW190512 180714</mark> 12.7+0.3
-−0.4 18.58+0.69
-−0.66 0.02+0.13
-−0.14 0.54+0.36
-−0.18 ✓ ++ ··· ··· ··· ··· ✓ +
-GW190513 20542812.5 +0.3
-−0.4 30.7+6.1
-−3.4 0.18+0.29
-−0.22 0.52+0.41
-−0.20 ✓PI ··· ··· ··· ··· ···✓+
-GW190517 055101 10.8+0.5
-−0.6 36.2+4.2
-−4.9 0.52+0.20
-−0.26 0.64+0.30…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> …·· ··· GW190503 18540412.1 +0.2 −0.4 37.8+6.1 −6.7 −0.05+0.23 −0.30 0.69+0.27 −0.29 ✓PI ··· ··· ··· ··· ···✓+ GW190512 180714 12.7+0.3 −0.4 18.58+0.69 −0.66 0.02+0.13 −0.14 0.54+0.36 −0.18 ✓ ++ ··· ··· ··· ··· ✓ + GW190513 20542812.5 +…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -200,38 +201,16 @@ GW190517 055101 10.8+0.5
 <section class="card" data-i="1" data-event="GW190517_055101">
   <div class="ctx">
     <div class="evname mono">GW190517_055101</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      title/headings.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190517 055101</span> or <span class="mono hit">GW190517_055101</span>.</p>
     
     
-    <div class="mention"><span class="sec">front_matter</span>…+0.23
-−0.30 0.69+0.27
-−0.29 ✓PI ··· ··· ··· ··· ···✓+
-GW190512 180714 12.7+0.3
-−0.4 18.58+0.69
-−0.66 0.02+0.13
-−0.14 0.54+0.36
-−0.18 ✓ ++ ··· ··· ··· ··· ✓ +
-GW190513 20542812.5 +0.3
-−0.4 30.7+6.1
-−3.4 0.18+0.29
-−0.22 0.52+0.41
-−0.20 ✓PI ··· ··· ··· ··· ···✓+
-<mark>GW190517 055101</mark> 10.8+0.5
-−0.6 36.2+4.2
-−4.9 0.52+0.20
-−0.26 0.64+0.30
-−0.30 ✓PI ··· ··· ··· ··· ··· ✓ +
-GW190519 15354415.9 +0.2
-−0.3 65.1+8.7
-−10.9 0.33+0.20
-−0.24 0.63+0.26
-−0.22 ✓PI ··· ··· ··· ··· ···✓+
-GW190521 14.3+0.4
-−0.3 101+29
-−34 −0.14+0.50
-−0.45 0.59+0.33
-−0.38 ✓…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> …··· ✓ + GW190513 20542812.5 +0.3 −0.4 30.7+6.1 −3.4 0.18+0.29 −0.22 0.52+0.41 −0.20 ✓PI ··· ··· ··· ··· ···✓+ GW190517 055101 10.8+0.5 −0.6 36.2+4.2 −4.9 0.52+0.20 −0.26 0.64+0.30 −0.30 ✓PI ··· ··· ··· ··· ··· ✓ + GW190519 15354415.9 +…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -267,38 +246,16 @@ GW190521 14.3+0.4
 <section class="card" data-i="2" data-event="GW190828_065509">
   <div class="ctx">
     <div class="evname mono">GW190828_065509</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      title/headings.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW190828 065509</span> or <span class="mono hit">GW190828_065509</span>.</p>
     
     
-    <div class="mention"><span class="sec">front_matter</span>…4 10.14+0.11
-−0.08 0.13+0.20
-−0.07 0.64+0.30
-−0.36 ✓I ++···✓··· ···✓+
-GW190814 25.3+0.1
-−0.2 6.42+0.02
-−0.02 0.00+0.07
-−0.07 0.111+0.012
-−0.011 ✓ ++ ✓ ··· ··· ··· ✓ +
-GW190828 06340516.5 +0.2
-−0.3 34.6+3.5
-−2.9 0.19+0.16
-−0.17 0.82+0.15
-−0.26 ✓++···✓··· ···✓+
-<mark>GW190828 065509</mark> 10.2+0.4
-−0.5 17.33+0.61
-−0.71 0.05+0.16
-−0.17 0.44+0.38
-−0.16 ✓I ++ ··· ··· ··· ··· ✓ +
-GW190910 11280714.5 +0.2
-−0.3 43.6+4.4
-−4.0 0.00+0.17
-−0.19 0.80+0.18
-−0.23 ✓PI ··· ··· ··· ··· ···✓+
-GW190915 235702 13.1+0.2
-−0.3 32.5+3.1
-−3.1 −0.02+0.19
-−0.23 0.76+0.…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> …··· ··· ··· ✓ + GW190828 06340516.5 +0.2 −0.3 34.6+3.5 −2.9 0.19+0.16 −0.17 0.82+0.15 −0.26 ✓++···✓··· ···✓+ GW190828 065509 10.2+0.4 −0.5 17.33+0.61 −0.71 0.05+0.16 −0.17 0.44+0.38 −0.16 ✓I ++ ··· ··· ··· ··· ✓ + GW190910 11280714.5…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -334,50 +291,16 @@ GW190915 235702 13.1+0.2
 <section class="card" data-i="3" data-event="GW200129_065458">
   <div class="ctx">
     <div class="evname mono">GW200129_065458</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>….13
-−0.06 0.63+0.31
-−0.29 ✓ ++ ✓ ✓ ··· ··· ✓ +
-GW191222 03353712.5 +0.2
-−0.3 51.0+7.2
-−6.5 −0.04+0.20
-−0.25 0.79+0.18
-−0.32 ✓PI ··· ··· ··· ··· ···✓+
-GW200115 042309 11.3+0.3
-−0.5 2.58+0.01
-−0.01 −0.15+0.24
-−0.41 0.243+0.432
-−0.097 ✓I ++ ··· ··· ··· ✓ ··· ···
-<mark>GW200129</mark> 06545826.8 +0.2
-−0.2 32.1+1.8
-−2.6 0.11+0.11
-−0.16 0.85+0.12
-−0.41 ✓++···++··· ···✓+
-GW200202 154313 10.8+0.2
-−0.4 8.15+0.05
-−0.05 0.04+0.13
-−0.06 0.72+0.24
-−0.31 ✓I ++ ··· ··· ··· ··· ✓ +
-GW200208 13011710.8 +0.3
-−0.5 38.8+5.2
-−4.8 −0.07+0.22
-−0.27 0.73+0.23…</div>
+    <p class="where">Named 2 times:
+      title/headings ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200129</span> or <span class="mono hit">GW200129_065458</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>… we include events reported in Abbott
-et al. (2021b) that satisfy both selection criteria. This results
-in a total of seven events from O4a and eight events from
-GWTC-3.0. The event selection criterion on χeff is stricter
-than the one imposed for GWTC-3.0, so <mark>GW200129 065458</mark>
-is no longer selected for this test.
-Besides the spin-induced quadrupole-moment test previ-
-ously used in Abbott et al. (2021b), we also employ a new test
-based on the FTI framework used for parameterized inspiral
-tests (see Section 2.1). For this version of …</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> …GW200115 042309 11.3+0.3 −0.5 2.58+0.01 −0.01 −0.15+0.24 −0.41 0.243+0.432 −0.097 ✓I ++ ··· ··· ··· ✓ ··· ··· GW200129 06545826.8 +0.2 −0.2 32.1+1.8 −2.6 0.11+0.11 −0.16 0.85+0.12 −0.41 ✓++···++··· ···✓+ GW200202 154313 10.8+0.2…</li><li><span class="sec">title/headings</span> The event selection criterion on χeff is stricter than the one imposed for GWTC-3.0, so GW200129 065458 is no longer selected for this test.</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -413,37 +336,16 @@ tests (see Section 2.1). For this version of …</div>
 <section class="card" data-i="4" data-event="GW200202_154313">
   <div class="ctx">
     <div class="evname mono">GW200202_154313</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      title/headings.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200202 154313</span> or <span class="mono hit">GW200202_154313</span>.</p>
     
     
-    <div class="mention"><span class="sec">front_matter</span>…04+0.20
-−0.25 0.79+0.18
-−0.32 ✓PI ··· ··· ··· ··· ···✓+
-GW200115 042309 11.3+0.3
-−0.5 2.58+0.01
-−0.01 −0.15+0.24
-−0.41 0.243+0.432
-−0.097 ✓I ++ ··· ··· ··· ✓ ··· ···
-GW200129 06545826.8 +0.2
-−0.2 32.1+1.8
-−2.6 0.11+0.11
-−0.16 0.85+0.12
-−0.41 ✓++···++··· ···✓+
-<mark>GW200202 154313</mark> 10.8+0.2
-−0.4 8.15+0.05
-−0.05 0.04+0.13
-−0.06 0.72+0.24
-−0.31 ✓I ++ ··· ··· ··· ··· ✓ +
-GW200208 13011710.8 +0.3
-−0.5 38.8+5.2
-−4.8 −0.07+0.22
-−0.27 0.73+0.23
-−0.29 ✓PI ··· ··· ··· ··· ···✓+
-GW200219 094415 10.7+0.3
-−0.5 43.7+6.3
-−6.2 −0.08+0.23
-−0.29 0.77+0.…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> …· ··· ✓ ··· ··· GW200129 06545826.8 +0.2 −0.2 32.1+1.8 −2.6 0.11+0.11 −0.16 0.85+0.12 −0.41 ✓++···++··· ···✓+ GW200202 154313 10.8+0.2 −0.4 8.15+0.05 −0.05 0.04+0.13 −0.06 0.72+0.24 −0.31 ✓I ++ ··· ··· ··· ··· ✓ + GW200208 13011710.8 +…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -479,37 +381,16 @@ GW200219 094415 10.7+0.3
 <section class="card" data-i="5" data-event="GW200219_094415">
   <div class="ctx">
     <div class="evname mono">GW200219_094415</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      title/headings.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW200219 094415</span> or <span class="mono hit">GW200219_094415</span>.</p>
     
     
-    <div class="mention"><span class="sec">front_matter</span>….6 0.11+0.11
-−0.16 0.85+0.12
-−0.41 ✓++···++··· ···✓+
-GW200202 154313 10.8+0.2
-−0.4 8.15+0.05
-−0.05 0.04+0.13
-−0.06 0.72+0.24
-−0.31 ✓I ++ ··· ··· ··· ··· ✓ +
-GW200208 13011710.8 +0.3
-−0.5 38.8+5.2
-−4.8 −0.07+0.22
-−0.27 0.73+0.23
-−0.29 ✓PI ··· ··· ··· ··· ···✓+
-<mark>GW200219 094415</mark> 10.7+0.3
-−0.5 43.7+6.3
-−6.2 −0.08+0.23
-−0.29 0.77+0.21
-−0.32 ✓PI ··· ··· ··· ··· ··· ✓ +
-GW200224 22223420.0 +0.2
-−0.2 41.1+3.6
-−3.8 0.11+0.15
-−0.15 0.82+0.16
-−0.26 ✓PI ··· ··· ··· ··· ···✓+
-GW200225 060421 12.5+0.3
-−0.4 17.65+0.98
-−1.97 −0.12+0.17
-−0.28 0.73…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> …·· ✓ + GW200208 13011710.8 +0.3 −0.5 38.8+5.2 −4.8 −0.07+0.22 −0.27 0.73+0.23 −0.29 ✓PI ··· ··· ··· ··· ···✓+ GW200219 094415 10.7+0.3 −0.5 43.7+6.3 −6.2 −0.08+0.23 −0.29 0.77+0.21 −0.32 ✓PI ··· ··· ··· ··· ··· ✓ + GW200224 22223420.0…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -545,190 +426,15 @@ GW200225 060421 12.5+0.3
 <section class="card" data-i="6" data-event="GW230518_125908">
   <div class="ctx">
     <div class="evname mono">GW230518_125908</div>
-    <h3>13 mentions · first 12 shown</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…+0.17
-−0.28 0.73+0.23
-−0.28 ✓ ++ ··· ··· ··· ··· ✓ +
-GW200311 11585317.8 +0.2
-−0.2 32.7+2.7
-−2.8 −0.02+0.16
-−0.20 0.82+0.16
-−0.27 ✓++··· ··· ··· ···✓+
-GW200316 215756 10.3+0.4
-−0.7 10.68+0.12
-−0.12 0.13+0.27
-−0.10 0.59+0.34
-−0.38 ✓I ++ ··· ✓ ··· ··· ✓ ···
-O4a <mark>GW230518</mark> 12590814.2 +0.2
-−0.4 2.943+0.004
-−0.004 −0.01+0.09
-−0.11 0.18+0.04
-−0.03 ✓I ✓··· ··· ··· ··· ··· ···
-GW230601 224134 12.3+0.2
-−0.3 73.0+8.3
-−11.8 −0.03+0.27
-−0.32 0.69+0.26
-−0.30 ✓PI ··· ··· ··· ··· ··· ✓ ✓
-GW230605 06534310.5 +0.3
-−0.4 14.44+0.28
-−0.24 0.06+…</div>
+    <p class="where">Named 13 times:
+      title/headings ×13.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW230518</span> or <span class="mono hit">GW230518_125908</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>… the Flexible Theory-
-Independent (FTI) method (Mehta et al. 2023) and can
-use any frequency-domain, aligned-spin GR waveform as
-a baseline model. In this work, we use the SEOB-
-NRV5HM ROM (Pompili et al. 2023) waveform approxi-
-mant for BBHs. For NSBHs (only <mark>GW230518 125908</mark> in
-O4a), we use SEOBNRV4 ROM NRTIDALV2 NSBH (Di-
-etrich et al. 2019; Matas et al. 2020). Previous papers
-used SEOBNRV4 ROM (Boh ´e et al. 2017) for both BBHs
-and NSBHs, as well as SEOBNRV4HM ROM (Cotesta
-et al. 2020) for a few BBHs, and additionally used SEOB…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>… TIGER analyses, we adopt
-the following prior ranges: δˆφ−2∈[−0.1,0.1] ,δˆφ0,1,2,3∈
-[−5,5] , δˆφ4,5ℓ,6 ∈[−20,20] , δˆφ6ℓ,7 ∈[−30,30] , and for
-the post-inspiral parameters, [−20,20] . We use the follow-
-ing prior ranges for FTI: δˆφ−2∈[−1,1] ([−0.01,0.01] for
-<mark>GW230518 125908</mark>) andδˆφi∈[−20,20] for all other param-
-eters. These broad priors are chosen to avoid prior-railing
-issues (i.e., significant posterior probability density right up to
-at least one prior boundary), which often arise from degenera-
-cies between the deviation pa…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">front_matter</span>…PN
-10 1
-100
-101
-2
-10 10
-0
- 1
- 2
- 3
- 4
- 5l
- 6
- 6l
- 7
-10 4
-GWTC-4.0 (IMRPhenomXPHM)
-GWTC-3.0 (IMRPhenomXPHM)
-O4a (SEOBNRv5HM_ROM)
-GWTC-3.0 (SEOBNRv4_ROM)
-PSR J0737 3039
-GW170817 (SEOBNRv4_ROM_NRTidalv2)
-GW230529 (SEOBNRv4HM_ROM)
-GW230627_015337 (SEOBNRv5HM_ROM)
-<mark>GW230518_125908</mark> (SEOBNRv4_ROM_NRTidalv2_NSBH)
-Figure 1.Results for the magnitudes of the inspiral deviation coefficients (from −1PN to 3.5PN) in terms of 90% upper limits, compared with
-previous combined results from GWTC-3.0 (Abbott et al. 2025), including the updates to us…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…used in the analysis. Marginalizing over all results
-from GWTC-4.0 (GWTC-3.0) for the TIGER analysis using the IMRPHENOMXPHM waveform model results in the filled (unfilled) blue
-squares. The dark and light orange stripes highlight BBH GW230627 015337 and NSBH <mark>GW230518 125908</mark>, respectively, when they give the
-best individual event constraints on the inspiral parameters. The green circles show the bounds obtained with BNS GW170817 (Abbott et al.
-2019b) and NSBH GW230529 (S¨anger et al. 2026) when competitive; those two events are n…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…fac-
-tors prefer GR for both events for all the deviation parameters.
-In general, we expect to find GR outside the 90% credible
-interval for a few events due to noise fluctuations, given the
-number of events under consideration.
-For four of the events, namely <mark>GW230518 125908</mark>,
-GW231020 142947, GW231104 133418, and
-GW231113 200417, we were unable to obtain constraints on
-the 0PN deviation parameter for FTI. These are all low-mass
-events with low SNR where strong correlations betweenδˆφ0
-and the chirp mass lead to problems in the an…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…ms in the analysis (S¨anger
-et al. 2026). The higher tapering frequency in FTI, compared
-to the lower end-of-inspiral frequency in TIGER, implies
-that this degeneracy is stronger for FTI. The TIGER re-
-sults do not show this issue for these events, except for
-<mark>GW230518 125908</mark> and one O3b event, GW200115 042309.
-This is likely because the lower cutoff frequency leaves a few
-unmodified GW cycles in band that break the degeneracy. The
-exceptional behavior in these two events is specifically due to
-a strong degeneracy betweenδˆφ0 and …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…oef-
-ficients. Thus, the addition of O4a events does not lead to a
-large improvement, even though 31 out of the 66 events in
-the combined analysis are from O4a. For the TIGER inspi-
-ral coefficients, the improvement is instead largely driven by
-the O4a events <mark>GW230518 125908</mark> and GW230627 015337,
-which enable significantly tighter constraints on several PN
-coefficients. If these two events are removed from the com-
-bined inspiral analysis, the improvement becomes comparable
-to what is found for the post-inspiral analysis.
-A useful…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…ting. The results therefore reflect how agnostic constraints project onto theory parameters
-under simplifying assumptions, rather than a joint or theory-specific inference. Specifically the binary parameters used for the translations
-involvingφ−2 are those of <mark>GW230518 125908</mark>, which provide the best results, while for pseudo-complex GR, GW230627 015337 provides
-the best results for all but TIGERφ6, where GW230919 215712 provides the best result, so those events’ parameters are used. Additionally,
-for pseudo-complex GR, we give the…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>… et al. 2025).
-bounds on the ratio of the leading dipole to quadrupole energy
-fluxes are 0.062 and 0.053 for TIGER and FTI at the low-
-frequency cutoff of 20 Hz and decrease at higher frequencies.
-The GW event that gives rise to the tightest value for| ˙ϕ| is
-<mark>GW230518 125908</mark>, whose source is likely an NSBH. We
-assume that the NS secondary has a vanishing scalar charge,
-maximizing the amount of dipolar radiation emitted by the
-system.
-Similarly, the PN expressions used for dCS and
-EdGB gravity are derived under the perturbative as…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…MRPHENOMXP MSA (Prat-
-ten et al. 2021) and IMRPHENOMXP NRTIDALV2 (Colleoni
-et al. 2025a) as the base waveforms for BBHs and BNSs,
-respectively, while we use IMRPHENOMNSBH (Thompson
-et al. 2020), which is non-precessing, for NSBHs.
-Among the O4 events, we find <mark>GW230518 125908</mark> to have
-a total redshifted mass very close to the cutoff, so the first
-selection criteria is only satisfied for the results using some
-waveform models. We thus restrict consideration to the IMR-
-PHENOMNSBH analysis, where we found that the median to-
-tal mass…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…have
-a total redshifted mass very close to the cutoff, so the first
-selection criteria is only satisfied for the results using some
-waveform models. We thus restrict consideration to the IMR-
-PHENOMNSBH analysis, where we found that the median to-
-tal mass of <mark>GW230518 125908</mark> is slightly above the threshold.
-However, three pre-O4 events fulfilled the first three selection
-criteria regardless of the waveform model used in the analysis,
-namely GW170817, GW190425, and GW200115 042309.
-We find GW170817 and GW190425 to also fulfill the…</div>
+    <details class="lines"><summary>Show the sentences (13, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> …GW200316 215756 10.3+0.4 −0.7 10.68+0.12 −0.12 0.13+0.27 −0.10 0.59+0.34 −0.38 ✓I ++ ··· ✓ ··· ··· ✓ ··· O4a GW230518 12590814.2 +0.2 −0.4 2.943+0.004 −0.004 −0.01+0.09 −0.11 0.18+0.04 −0.03 ✓I ✓··· ··· ··· ··· ··· ··· GW230601…</li><li><span class="sec">title/headings</span> For NSBHs (only GW230518 125908 in O4a), we use SEOBNRV4 ROM NRTIDALV2 NSBH (Di- etrich et al. 2019; Matas et al. 2020).</li><li><span class="sec">title/headings</span> We use the follow- ing prior ranges for FTI: δˆφ−2∈[−1,1] ([−0.01,0.01] for GW230518 125908) andδˆφi∈[−20,20] for all other param- eters.</li><li><span class="sec">title/headings</span> …) PSR J0737 3039 GW170817 (SEOBNRv4_ROM_NRTidalv2) GW230529 (SEOBNRv4HM_ROM) GW230627_015337 (SEOBNRv5HM_ROM) GW230518_125908 (SEOBNRv4_ROM_NRTidalv2_NSBH) Figure 1.Results for the magnitudes of the inspiral deviation coefficients (fro…</li><li><span class="sec">title/headings</span> The dark and light orange stripes highlight BBH GW230627 015337 and NSBH GW230518 125908, respectively, when they give the best individual event constraints on the inspiral parameters.</li><li><span class="sec">title/headings</span> For four of the events, namely GW230518 125908, GW231020 142947, GW231104 133418, and GW231113 200417, we were unable to obtain constraints on the 0PN devia…</li><li><span class="sec">title/headings</span> The TIGER re- sults do not show this issue for these events, except for GW230518 125908 and one O3b event, GW200115 042309.</li><li><span class="sec">title/headings</span> For the TIGER inspi- ral coefficients, the improvement is instead largely driven by the O4a events GW230518 125908 and GW230627 015337, which enable significantly tighter constraints on several PN coefficients.</li></ul>
     </details>
     
   </div>
@@ -765,140 +471,15 @@ We find GW170817 and GW190425 to also fulfill the…</div>
 <section class="card" data-i="7" data-event="GW231020_142947">
   <div class="ctx">
     <div class="evname mono">GW231020_142947</div>
-    <h3>4 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>….41
-−0.41 0.03+0.08
-−0.08 0.75+0.21
-−0.19 ✓ ✓ ✓··· ··· ···✓ ✓
-GW230928 215827 8.9+0.4
-−0.6 61+10
-−14 0.40+0.20
-−0.28 0.56+0.35
-−0.27 ✓PI ··· ··· ··· ··· ··· ✓ ✓
-GW231001 1402209.6 +0.3
-−0.5 81+17
-−20 −0.04+0.33
-−0.35 0.54+0.36
-−0.26 ✓PI ··· ··· ··· ··· ···✓ ✓
-<mark>GW231020 142947</mark> 10.5+0.3
-−0.4 9.99+0.10
-−0.10 0.15+0.25
-−0.12 0.61+0.35
-−0.40 ✓I ✓ ··· ✓ ✓ ··· ✓ ✓
-GW231028 15300621.0 +0.2
-−0.2 107+10
-−27 0.44+0.16
-−0.20 0.63+0.33
-−0.35 ✓PI ··· ··· ··· ··· ···✓ ✓
-GW231102 071736 13.3+0.2
-−0.3 71.7+7.8
-−10.5 0.06+0.23
-−0.22 0.72+0.25
-−0.27…</div>
+    <p class="where">Named 4 times:
+      title/headings ×4.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231020 142947</span> or <span class="mono hit">GW231020_142947</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…GR for both events for all the deviation parameters.
-In general, we expect to find GR outside the 90% credible
-interval for a few events due to noise fluctuations, given the
-number of events under consideration.
-For four of the events, namely GW230518 125908,
-<mark>GW231020 142947</mark>, GW231104 133418, and
-GW231113 200417, we were unable to obtain constraints on
-the 0PN deviation parameter for FTI. These are all low-mass
-events with low SNR where strong correlations betweenδˆφ0
-and the chirp mass lead to problems in the analysis (S¨anger
-e…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…le moments of the
-two components. However, for the loudO4b event GW241011
-(Abac et al. 2025c), whose source was an unequal-mass binary,
-
-17
-500
- 400
- 300
- 200
- 100
- 0 100
-s
-0.000
-0.002
-0.004
-0.006
-0.008
-0.010
-0.012
-0.014p( s)
-IMRPhenomXPHM_MSA
-GW230919_215712
-<mark>GW231020_142947</mark>
-GW231104_133418
-GW231110_040320
-GW231113_200417
-GW231118_005626
-GW231118_090602
-500
- 400
- 300
- 200
- 100
- 0 100
-s
-0.000
-0.002
-0.004
-0.006
-0.008p( s)
-SEOBNRv5HM_ROM
-GW230919_215712
-GW231020_142947
-GW231104_133418
-GW231110_040320
-GW231113_200417
-GW231118_090602
-…</div>
-    
-    
-    <details><summary>1 more</summary>
-    <div class="mention"><span class="sec">front_matter</span>…6
-0.008
-0.010
-0.012
-0.014p( s)
-IMRPhenomXPHM_MSA
-GW230919_215712
-GW231020_142947
-GW231104_133418
-GW231110_040320
-GW231113_200417
-GW231118_005626
-GW231118_090602
-500
- 400
- 300
- 200
- 100
- 0 100
-s
-0.000
-0.002
-0.004
-0.006
-0.008p( s)
-SEOBNRv5HM_ROM
-GW230919_215712
-<mark>GW231020_142947</mark>
-GW231104_133418
-GW231110_040320
-GW231113_200417
-GW231118_090602
-Figure 8.The posterior probability distribution on the spin-induced quadrupole moment parameter δκs using the IMRPHENOMXPHM MSA
-(left panel) and SEOBNRV5HM ROM (right panel) waveform models. The …</div>
+    <details class="lines"><summary>Show the sentences (3): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> …·· ··· ✓ ✓ GW231001 1402209.6 +0.3 −0.5 81+17 −20 −0.04+0.33 −0.35 0.54+0.36 −0.26 ✓PI ··· ··· ··· ··· ···✓ ✓ GW231020 142947 10.5+0.3 −0.4 9.99+0.10 −0.10 0.15+0.25 −0.12 0.61+0.35 −0.40 ✓I ✓ ··· ✓ ✓ ··· ✓ ✓ GW231028 15300621.0 +0.2 −…</li><li><span class="sec">title/headings</span> For four of the events, namely GW230518 125908, GW231020 142947, GW231104 133418, and GW231113 200417, we were unable to obtain constraints on the 0PN deviation parameter fo…</li><li><span class="sec">title/headings</span> …00 300 200 100 0 100 s 0.000 0.002 0.004 0.006 0.008 0.010 0.012 0.014p( s) IMRPhenomXPHM_MSA GW230919_215712 GW231020_142947 GW231104_133418 GW231110_040320 GW231113_200417 GW231118_005626 GW231118_090602 500 400 300 200 100 0 100 s 0…</li></ul>
     </details>
     
   </div>
@@ -935,106 +516,16 @@ Figure 8.The posterior probability distribution on the spin-induced quadrupole m
 <section class="card" data-i="8" data-event="GW231104_133418">
   <div class="ctx">
     <div class="evname mono">GW231104_133418</div>
-    <h3>3 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…s for all the deviation parameters.
-In general, we expect to find GR outside the 90% credible
-interval for a few events due to noise fluctuations, given the
-number of events under consideration.
-For four of the events, namely GW230518 125908,
-GW231020 142947, <mark>GW231104 133418</mark>, and
-GW231113 200417, we were unable to obtain constraints on
-the 0PN deviation parameter for FTI. These are all low-mass
-events with low SNR where strong correlations betweenδˆφ0
-and the chirp mass lead to problems in the analysis (S¨anger
-et al. 2026). The …</div>
+    <p class="where">Named 3 times:
+      title/headings ×3.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231104 133418</span> or <span class="mono hit">GW231104_133418</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>…e
-two components. However, for the loudO4b event GW241011
-(Abac et al. 2025c), whose source was an unequal-mass binary,
-
-17
-500
- 400
- 300
- 200
- 100
- 0 100
-s
-0.000
-0.002
-0.004
-0.006
-0.008
-0.010
-0.012
-0.014p( s)
-IMRPhenomXPHM_MSA
-GW230919_215712
-GW231020_142947
-<mark>GW231104_133418</mark>
-GW231110_040320
-GW231113_200417
-GW231118_005626
-GW231118_090602
-500
- 400
- 300
- 200
- 100
- 0 100
-s
-0.000
-0.002
-0.004
-0.006
-0.008p( s)
-SEOBNRv5HM_ROM
-GW230919_215712
-GW231020_142947
-GW231104_133418
-GW231110_040320
-GW231113_200417
-GW231118_090602
-Figure 8.The pos…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…012
-0.014p( s)
-IMRPhenomXPHM_MSA
-GW230919_215712
-GW231020_142947
-GW231104_133418
-GW231110_040320
-GW231113_200417
-GW231118_005626
-GW231118_090602
-500
- 400
- 300
- 200
- 100
- 0 100
-s
-0.000
-0.002
-0.004
-0.006
-0.008p( s)
-SEOBNRv5HM_ROM
-GW230919_215712
-GW231020_142947
-<mark>GW231104_133418</mark>
-GW231110_040320
-GW231113_200417
-GW231118_090602
-Figure 8.The posterior probability distribution on the spin-induced quadrupole moment parameter δκs using the IMRPHENOMXPHM MSA
-(left panel) and SEOBNRV5HM ROM (right panel) waveform models. The black dashed ver…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> For four of the events, namely GW230518 125908, GW231020 142947, GW231104 133418, and GW231113 200417, we were unable to obtain constraints on the 0PN deviation parameter for FTI.</li><li><span class="sec">title/headings</span> …100 s 0.000 0.002 0.004 0.006 0.008 0.010 0.012 0.014p( s) IMRPhenomXPHM_MSA GW230919_215712 GW231020_142947 GW231104_133418 GW231110_040320 GW231113_200417 GW231118_005626 GW231118_090602 500 400 300 200 100 0 100 s 0.000 0.002 0.004…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1070,38 +561,16 @@ Figure 8.The posterior probability distribution on the spin-induced quadrupole m
 <section class="card" data-i="9" data-event="GW231114_043211">
   <div class="ctx">
     <div class="evname mono">GW231114_043211</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      title/headings.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231114</span> or <span class="mono hit">GW231114_043211</span>.</p>
     
     
-    <div class="mention"><span class="sec">front_matter</span>…96
-−0.97 −0.08+0.13
-−0.15 0.75+0.22
-−0.23 ✓ ✓ ··· ··· ··· ··· ✓ ✓
-GW231110 04032011.0 +0.3
-−0.4 18.02+0.69
-−0.48 0.17+0.13
-−0.12 0.65+0.30
-−0.25 ✓ ✓···✓ ✓···✓ ✓
-GW231113 200417 10.1+0.3
-−0.5 9.82+0.08
-−0.08 0.13+0.14
-−0.08 0.65+0.31
-−0.31 ✓I ✓ ··· ✓ ✓ ··· ✓ ✓
-<mark>GW231114</mark> 0432119.8 +0.3
-−0.5 14.61+0.37
-−0.31 0.08+0.22
-−0.16 0.36+0.27
-−0.17 ✓I ··· ··· ··· ··· ···✓ ✓
-GW231118 005626 10.5+0.3
-−0.5 17.62+0.40
-−0.54 0.37+0.10
-−0.11 0.55+0.37
-−0.22 ✓ ··· ··· ✓ ··· ··· ✓ ✓
-GW231118 09060210.9 +0.4
-−0.4 10.53+0.12
-−0.09 0.08+0.36
-−0.0…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> …·✓ ✓···✓ ✓ GW231113 200417 10.1+0.3 −0.5 9.82+0.08 −0.08 0.13+0.14 −0.08 0.65+0.31 −0.31 ✓I ✓ ··· ✓ ✓ ··· ✓ ✓ GW231114 0432119.8 +0.3 −0.5 14.61+0.37 −0.31 0.08+0.22 −0.16 0.36+0.27 −0.17 ✓I ··· ··· ··· ··· ···✓ ✓ GW231118 00562…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1137,89 +606,16 @@ GW231118 09060210.9 +0.4
 <section class="card" data-i="10" data-event="GW231118_005626">
   <div class="ctx">
     <div class="evname mono">GW231118_005626</div>
-    <h3>2 mentions</h3>
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…69
-−0.48 0.17+0.13
-−0.12 0.65+0.30
-−0.25 ✓ ✓···✓ ✓···✓ ✓
-GW231113 200417 10.1+0.3
-−0.5 9.82+0.08
-−0.08 0.13+0.14
-−0.08 0.65+0.31
-−0.31 ✓I ✓ ··· ✓ ✓ ··· ✓ ✓
-GW231114 0432119.8 +0.3
-−0.5 14.61+0.37
-−0.31 0.08+0.22
-−0.16 0.36+0.27
-−0.17 ✓I ··· ··· ··· ··· ···✓ ✓
-<mark>GW231118 005626</mark> 10.5+0.3
-−0.5 17.62+0.40
-−0.54 0.37+0.10
-−0.11 0.55+0.37
-−0.22 ✓ ··· ··· ✓ ··· ··· ✓ ✓
-GW231118 09060210.9 +0.4
-−0.4 10.53+0.12
-−0.09 0.08+0.36
-−0.09 0.56+0.38
-−0.41 ✓I ✓···✓ ✓···✓ ✓
-GW231123 135430 20.7+0.2
-−0.3 137+21
-−27 0.31+0.25
-−0.41 0.74+0.22
-−0.38 ···…</div>
+    <p class="where">Named 2 times:
+      title/headings ×2.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231118 005626</span> or <span class="mono hit">GW231118_005626</span>.</p>
     
     
     
-    <div class="mention"><span class="sec">front_matter</span>… GW241011
-(Abac et al. 2025c), whose source was an unequal-mass binary,
-
-17
-500
- 400
- 300
- 200
- 100
- 0 100
-s
-0.000
-0.002
-0.004
-0.006
-0.008
-0.010
-0.012
-0.014p( s)
-IMRPhenomXPHM_MSA
-GW230919_215712
-GW231020_142947
-GW231104_133418
-GW231110_040320
-GW231113_200417
-<mark>GW231118_005626</mark>
-GW231118_090602
-500
- 400
- 300
- 200
- 100
- 0 100
-s
-0.000
-0.002
-0.004
-0.006
-0.008p( s)
-SEOBNRv5HM_ROM
-GW230919_215712
-GW231020_142947
-GW231104_133418
-GW231110_040320
-GW231113_200417
-GW231118_090602
-Figure 8.The posterior probability distribution on the spin-indu…</div>
-    
+    <details class="lines"><summary>Show the sentences (2): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> …· ✓ ✓ GW231114 0432119.8 +0.3 −0.5 14.61+0.37 −0.31 0.08+0.22 −0.16 0.36+0.27 −0.17 ✓I ··· ··· ··· ··· ···✓ ✓ GW231118 005626 10.5+0.3 −0.5 17.62+0.40 −0.54 0.37+0.10 −0.11 0.55+0.37 −0.22 ✓ ··· ··· ✓ ··· ··· ✓ ✓ GW231118 09060210.9 +0…</li><li><span class="sec">title/headings</span> …0.014p( s) IMRPhenomXPHM_MSA GW230919_215712 GW231020_142947 GW231104_133418 GW231110_040320 GW231113_200417 GW231118_005626 GW231118_090602 500 400 300 200 100 0 100 s 0.000 0.002 0.004 0.006 0.008p( s) SEOBNRv5HM_ROM GW230919_215712…</li></ul>
+    </details>
     
   </div>
   <div class="form">
@@ -1255,37 +651,16 @@ Figure 8.The posterior probability distribution on the spin-indu…</div>
 <section class="card" data-i="11" data-event="GW231213_111417">
   <div class="ctx">
     <div class="evname mono">GW231213_111417</div>
-    <h3>1 mention</h3>
+    <p class="where">Named 1 time:
+      title/headings.</p>
+    <p class="where">In the paper,
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW231213</span> or <span class="mono hit">GW231213_111417</span>.</p>
     
     
-    <div class="mention"><span class="sec">front_matter</span>…0.25
-−0.41 0.74+0.22
-−0.38 ··· ··· ··· ··· ··· ··· ✓ ✓
-GW231206 23313411.0 +0.3
-−0.4 41.9+4.7
-−4.9 −0.09+0.22
-−0.24 0.81+0.17
-−0.28 ✓PI ··· ··· ··· ··· ···✓ ✓
-GW231206 233901 21.0+0.1
-−0.2 36.1+2.3
-−2.3 −0.05+0.14
-−0.15 0.76+0.21
-−0.25 ✓ ✓ ··· ··· ··· ··· ✓ ✓
-<mark>GW231213</mark> 1114179.7 +0.2
-−0.4 44.4+7.2
-−6.5 0.06+0.24
-−0.23 0.79+0.19
-−0.30 ✓PI ··· ··· ··· ··· ···✓ ✓
-GW231223 032836 8.8+0.3
-−0.5 55.0+9.3
-−15.0 −0.15+0.33
-−0.37 0.71+0.26
-−0.41 ✓PI ··· ··· ··· ··· ··· ✓ ✓
-GW231224 02432112.9 +0.2
-−0.3 8.48+0.06
-−0.06 −0.01+0.08
-−0.0…</div>
     
+    <details class="lines"><summary>Show the sentences (1): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> …· ···✓ ✓ GW231206 233901 21.0+0.1 −0.2 36.1+2.3 −2.3 −0.05+0.14 −0.15 0.76+0.21 −0.25 ✓ ✓ ··· ··· ··· ··· ✓ ✓ GW231213 1114179.7 +0.2 −0.4 44.4+7.2 −6.5 0.06+0.24 −0.23 0.79+0.19 −0.30 ✓PI ··· ··· ··· ··· ···✓ ✓ GW231223 032836…</li></ul>
+    </details>
     
   </div>
   <div class="form">

@@ -55,6 +55,18 @@ h2{font-size:1.02rem;margin:0 0 6px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
   margin:0 0 14px;font-size:.9rem}
+.openpaper{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:16px 0 4px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:10px}
+.openpaper .small{flex:1 1 280px;color:var(--ink-2)}
+a.btn{display:inline-block;font-size:.95rem;padding:8px 16px;border-radius:7px;font-weight:600}
+a.btn.primary{background:var(--accent);color:var(--surface)}
+a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.where{margin:4px 0;font-size:.9rem;color:var(--ink-2)}
+.hit{background:var(--hit);color:var(--ink);padding:0 3px;border-radius:3px}
+.flag{margin:8px 0;font-size:.86rem;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:6px 9px}
+.lines ul{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:var(--ink-2)}
+.lines li{margin:0 0 6px}
+.lines .sec{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
   background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
 .card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -82,8 +94,12 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng input{grid-row:span 2;margin-top:4px}
 .eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
 .eng span{font-size:.78rem;color:var(--muted)}
-/* The long explanations only on the card being answered. */
-.card:not(.active) .eng span{display:none}
+/* Short questions by default; the full wording on request, on the card
+   being answered. */
+.eng span{display:none}
+body.details .card.active .eng span{display:block}
+.eng label{grid-template-columns:auto 1fr;align-items:center}
+.eng input{grid-row:auto;margin-top:0}
 kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
   border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
 .fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
@@ -122,169 +138,33 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
 
 <h1>Estimating the Contribution of Dynamical Ejecta in the Kilonova Associated with GW170817</h1>
-<div class="small mut"><a href="https://arxiv.org/abs/1710.05836" target="_blank" rel="noopener" class="mono">arXiv:1710.05836</a> · open the paper whenever the snippets are not enough</div>
-<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The source of the gravitational-wave (GW) signal GW170817, very likely a binary neutron star merger, was also observed electromagnetically, providing the first multi-messenger observations of this type. The two-week-long electromagnetic (EM) counterpart had a signature indicative of an r-process-induced optical transient known as a kilonova. This Letter examines how the mass of the dynamical ejecta can be estimated without a direct electromagnetic observation of the kilonova, using GW measurements and a phenomenological model calibrated to numerical simulations of mergers with dynamical ejecta. Specifically, we apply the model to the binary masses inferred from the GW measurements, and use the resulting mass of the dynamical ejecta to estimate its contribution (without the effects of wind ejecta) to the corresponding kilonova light curves from various models. The distributions of dynamical ejecta mass range between {M}&lt;SUB&gt;{ej&lt;/SUB&gt;}={10}&lt;SUP&gt;-3&lt;/SUP&gt;-{10}&lt;SUP&gt;-2&lt;/SUP&gt; {M}&lt;SUB&gt;☉ &lt;/SUB&gt; for various equations of state, assuming that the neutron stars are rotating slowly. In addition, we use our estimates of the dynamical ejecta mass and the neutron star merger rates inferred from GW170817 to constrain the contribution of events like this to the r-process element abundance in the Galaxy when ejecta mass from post-merger winds is neglected. We find that if ≳10% of the matter dynamically ejected from binary neutron star (BNS) mergers is converted to r-process elements, GW170817-like BNS mergers could fully account for the amount of r-process material observed in the Milky Way.</p></details>
+<div class="small mut mono">arXiv:1710.05836</div>
+<details style="margin-top:6px"><summary>Abstract</summary><p class="abstract">The source of the gravitational-wave (GW) signal GW170817, very likely a binary neutron star merger, was also observed electromagnetically, providing the first multi-messenger observations of this type. The two-week-long electromagnetic (EM) counterpart had a signature indicative of an r-process-induced optical transient known as a kilonova. This Letter examines how the mass of the dynamical ejecta can be estimated without a direct electromagnetic observation of the kilonova, using GW measurements and a phenomenological model calibrated to numerical simulations of mergers with dynamical ejecta. Specifically, we apply the model to the binary masses inferred from the GW measurements, and use the resulting mass of the dynamical ejecta to estimate its contribution (without the effects of wind ejecta) to the corresponding kilonova light curves from various models. The distributions of dynamical ejecta mass range between {M}&lt;SUB&gt;{ej&lt;/SUB&gt;}={10}&lt;SUP&gt;-3&lt;/SUP&gt;-{10}&lt;SUP&gt;-2&lt;/SUP&gt; {M}&lt;SUB&gt;☉ &lt;/SUB&gt; for various equations of state, assuming that the neutron stars are rotating slowly. In addition, we use our estimates of the dynamical ejecta mass and the neutron star merger rates inferred from GW170817 to constrain the contribution of events like this to the r-process element abundance in the Galaxy when ejecta mass from post-merger winds is neglected. We find that if ≳10% of the matter dynamically ejected from binary neutron star (BNS) mergers is converted to r-process elements, GW170817-like BNS mergers could fully account for the amount of r-process material observed in the Milky Way.</p></details>
+
+<div class="openpaper">
+  <a class="btn primary" href="https://arxiv.org/html/1710.05836v2" target="_blank" rel="noopener">Open the paper (arXiv HTML, v2) ↗</a>
+  <span class="small">Read it in the other tab (skimming is fine) and look at what it does wherever each event below is named. This is the version we searched.</span>
+</div>
 
 
 
 <div id="pairs" >
-<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+<p class="small mut" style="margin:18px 0 0">1 event named in this paper. For each, answer how <b>this paper</b> uses <b>that event</b> (<a href="../guide.html" target="_blank" rel="noopener">guide</a>). Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.
+  <label class="small" style="white-space:nowrap;margin-left:6px"><input type="checkbox" id="show-details"> show the full question wording</label></p>
 
 
 <section class="card" data-i="0" data-event="GW170817">
   <div class="ctx">
     <div class="evname mono">GW170817</div>
-    <h3>22 mentions · first 12 shown · <span class="cptag">1 by counterpart name</span></h3>
+    <p class="where">Named 22 times:
+      introduction ×13, conclusion ×4, abstract ×3, title/headings ×2.</p>
+    <p class="where"><a href="https://arxiv.org/html/1710.05836v2#:~:text=GW170817" target="_blank" rel="noopener">Jump to it in the paper ↗</a>, then
+      search (Ctrl-F / ⌘F) for <span class="mono hit">GW170817</span>.</p>
     
+    <p class="flag">1 mention use a counterpart name (GRB / AT / kilonova), not the GW signal. The questions are about the GW results.</p>
     
-    <div class="mention"><span class="sec">front_matter</span>Estimating the Contribution of Dynamical Ejecta in the Kilonova Associated with <mark>GW170817</mark>
-
- 
- 
-
- 
- 
-
- 
- 
- Report GitHub Issue
-
- ×
- 
-
- 
- Title:
- 
-
- Content selection saved. Describe the issue below:
-
- Description:
- 
- 
-
- 
- Submit without GitHub
- Submit in GitHub
- 
- 
-
- 
- arXiv is now an independent nonprofit!
- Learn more
- &amp;times;
- 
-
- 
- 
- Back to arXi…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">front_matter</span>…ndance of r-Process Material
-
-VI Conclusions
-
-Acknowledgements
-
-References
-
- 
- License: arXiv.org perpetual non-exclusive license
- 
- 
-arXiv:1710.05836v2 [astro-ph.HE] 08 Jan 2018
-
-Estimating the Contribution of Dynamical Ejecta in the Kilonova Associated with <mark>GW170817</mark>
-
-B. P. Abbott
-
-Affiliation: LIGO, California Institute of Technology, Pasadena, CA 91125, USA
-
-  
-R. Abbott
-
-Affiliation: LIGO, California Institute of Technology, Pasadena, CA 91125, USA
-
-  
-T. D. Abbott
-
-Affiliation: Louisiana State University, Baton Rouge,…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…Pasadena, CA 91125, USA
-
-Affiliation: LIGO, Massachusetts Institute of Technology, Cambridge, MA 02139, USA
-
-  
-J. Zweizig
-
-Affiliation: LIGO, California Institute of Technology, Pasadena, CA 91125, USA
-
-Abstract
-
- 
-The source of the gravitational-wave signal <mark>GW170817</mark>, very likely a binary neutron star merger, was also observed electromagnetically, providing the first multi-messenger observations of this type. The two week long electromagnetic counterpart had a signature indicative of an r-process-induced optical transient…</div>
-    
-    
-    <details><summary>9 more</summary>
-    <div class="mention"><span class="sec">abstract</span>…ween Mej=10−3−10−2​M⊙M_{\text{ej}}=10^{-3}-10^{-2}\mathrm{M}_{\odot} for various equations of state, assuming the neutron stars are rotating slowly. In addition, we use our estimates of the dynamical ejecta mass and the neutron star merger rates inferred from <mark>GW170817</mark> to constrain the contribution of events like this to the r-process element abundance in the Galaxy when ejecta mass from post-merger winds is neglected. We find that if ≳10%\gtrsim 10\% of the matter dynamically ejected from BNS mergers is converted to r-proc…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">abstract</span>…the contribution of events like this to the r-process element abundance in the Galaxy when ejecta mass from post-merger winds is neglected. We find that if ≳10%\gtrsim 10\% of the matter dynamically ejected from BNS mergers is converted to r-process elements, <mark>GW170817</mark>-like BNS mergers could fully account for the amount of r-process material observed in the Milky Way.
-
- 
-
-\AuthorCollaborationLimit
-=3000
-
-I Introduction
-
-On August 17, 2017, 12:41:04 UTC, the LIGO – Virgo gravitational-wave (GW) observatory network, composed …</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…C, the LIGO – Virgo gravitational-wave (GW) observatory network, composed of LIGO Hanford Observatory, LIGO Livingston Observatory, and Virgo, recorded GWs consistent with a binary neutron star (BNS) inspiral and merger [5]. This signal was subsequently named <mark>GW170817</mark>.
-
-In addition to the GW signature, the merger of a BNS system is expected to have multiple electromagnetic signatures over different time scales [78, 73].
-The LIGO-Virgo sky localization of GW170817 [5] spurred an intensive multi-messenger campaign covering t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>… inspiral and merger [5]. This signal was subsequently named GW170817.
-
-In addition to the GW signature, the merger of a BNS system is expected to have multiple electromagnetic signatures over different time scales [78, 73].
-The LIGO-Virgo sky localization of <mark>GW170817</mark> [5] spurred an intensive multi-messenger campaign covering the whole electromagnetic spectrum to search for counterparts (see Abbott et al. 6 for an extended list). Within hours, broadband observations — backed by archival data investigation — revealed an opt…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…onova transient. Going forward, this procedure would also assist in the interpretation of future followup observations where a dim counterpart was detected, or none at all.
-
-This Letter shows how dynamical ejecta masses obtained from GW parameter estimates of <mark>GW170817</mark> via phenomenological fits to numerical models for the mass and velocity of dynamically ejected matter in BNS systems [35] (hereafter DU17) can predict kilonova light curves.
-Similar numerical work has produced fitting formulae in the case of neutron-star blac…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…mass and velocity of dynamically ejected matter in BNS systems [35] (hereafter DU17) can predict kilonova light curves.
-Similar numerical work has produced fitting formulae in the case of neutron-star black-hole (NSBH) binaries [60]. While the GW detection of <mark>GW170817</mark> cannot rule out the presence of a black hole companion, the BNS interpretation is favored [5]. Consequently, we do not include the NSBH scenario in this work, and only employ the fitting formulas for ejecta mass and velocity from BNS simulations (DU17). The G…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…7 cannot rule out the presence of a black hole companion, the BNS interpretation is favored [5]. Consequently, we do not include the NSBH scenario in this work, and only employ the fitting formulas for ejecta mass and velocity from BNS simulations (DU17). The <mark>GW170817</mark> analysis extracted the BNS source parameters using Bayesian inference [5], and those results are used here to estimate the mass of the dynamical ejecta. This approach accounts for the dependence of the amount of ejected matter on the size and stiffness [60] o…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…2001540^{+3200}_{-1220} Gpc-3yr-1) [5], we estimate a present-day r-process density of 101.7−103.210^{1.7}{}-10^{3.2}{} M⊙Mpc-3 contributed by BNS mergers.
-Under the assumption that all BNS mergers produce the same amount of dynamical ejecta that we infer for <mark>GW170817</mark>, this estimate is consistent with the Galactic values and suggests the associated nucleosynthesis is one of the primary contributors to r-process abundances.
-
-II Predicted Dynamical Ejecta Mass
-
-The amount of ejecta from binary mergers in general depends on t…</div>
-    
-    
-    
-    <div class="mention"><span class="sec">introduction</span>…he predicted light curve of the kilonova. The EOS of cold, dense, degenerate matter is poorly constrained (see Oertel et al. 80 for a recent review), so we evaluate a representative selection of the EOS considered in [83]. The tidal deformabilities allowed by <mark>GW170817</mark> [5] do disfavor stiffer EOS; however, many remain compatible with our measurements. Due to observational constraints, we restrict ourselves to EOS that have a maximum mass above 1.97 M⊙\text{M}_{\odot} [30, 10]. Specifically, we consider EOS calculations from…</div>
+    <details class="lines"><summary>Show the sentences (21, first 8): a reminder, not the whole story</summary>
+      <ul><li><span class="sec">title/headings</span> Estimating the Contribution of Dynamical Ejecta in the Kilonova Associated with GW170817</li><li><span class="sec">abstract</span> The source of the gravitational-wave signal GW170817, very likely a binary neutron star merger, was also observed electromagnetically, providing the first multi-m…</li><li><span class="sec">abstract</span> …n addition, we use our estimates of the dynamical ejecta mass and the neutron star merger rates inferred from GW170817 to constrain the contribution of events like this to the r-process element abundance in the Galaxy when eject…</li><li><span class="sec">abstract</span> …at if ≳10%\gtrsim 10\% of the matter dynamically ejected from BNS mergers is converted to r-process elements, GW170817-like BNS mergers could fully account for the amount of r-process material observed in the Milky Way.</li><li><span class="sec">introduction</span> This signal was subsequently named GW170817.</li><li><span class="sec">introduction</span> The LIGO-Virgo sky localization of GW170817 [5] spurred an intensive multi-messenger campaign covering the whole electromagnetic spectrum to search for c…</li><li><span class="sec">introduction</span> This Letter shows how dynamical ejecta masses obtained from GW parameter estimates of GW170817 via phenomenological fits to numerical models for the mass and velocity of dynamically ejected matter in BNS…</li><li><span class="sec">introduction</span> While the GW detection of GW170817 cannot rule out the presence of a black hole companion, the BNS interpretation is favored [5].</li></ul>
     </details>
     
   </div>
