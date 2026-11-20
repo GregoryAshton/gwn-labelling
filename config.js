@@ -1,0 +1,1 @@
+window.SG_CONFIG = {"endpoint": "https://script.google.com/macros/s/AKfycbzYSqikqjhgcfSpsuKkvrRUq8_vHGMlHgQVvC2dKYSRS-Ngmykrj9lZYkh2V-5LE-br/exec", "site": "1469211", "guide": "3.1", "gold_version": 3};

@@ -1,0 +1,1985 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Label · 1811.12907</title>
+<style>
+:root{
+  --ground:#f4f7f8; --surface:#fff; --surface-2:#eef3f5;
+  --ink:#111a1f; --ink-2:#3d4f58; --muted:#63757e;
+  --line:#d8e3e7; --line-2:#c2d2d8;
+  --accent:#0b6e82; --accent-soft:#0b6e8215; --accent-ink:#064c5a;
+  --amber:#8a5200; --amber-soft:#8a520014; --hit:#ffe08a;
+  --ok:#2f7d3a;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#0b1215; --surface:#121c20; --surface-2:#17242a;
+  --ink:#e4edf0; --ink-2:#b4c6cd; --muted:#8497a0;
+  --line:#22333a; --line-2:#2e434c;
+  --accent:#3fc4dc; --accent-soft:#3fc4dc1a; --accent-ink:#7fdcee;
+  --amber:#f0b429; --amber-soft:#f0b4291a; --hit:#6b5410;
+  --ok:#6fcf7f;
+}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--ground);color:var(--ink);margin:0;
+  font:15px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Helvetica,sans-serif}
+.wrap{max-width:1280px;margin:0 auto;padding:0 18px 64px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.tnum{font-variant-numeric:tabular-nums}
+.mut{color:var(--muted)}.small{font-size:.85rem}
+header{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
+  border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:18px;font-size:.92rem}
+header .bar{flex:1 1 160px;height:6px;background:var(--line);border-radius:3px;overflow:hidden;min-width:120px}
+header .bar i{display:block;height:100%;background:var(--accent)}
+h1{font-size:1.3rem;margin:0 0 4px;letter-spacing:-.01em;text-wrap:balance}
+h3{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  margin:18px 0 8px;font-weight:600}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.73rem;
+  padding:2px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);
+  margin:0 4px 4px 0}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.chip.done{border-color:var(--ok);color:var(--ok)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:.36rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.wrapx{overflow-x:auto}
+</style>
+<style>
+.wrap{max-width:1180px}
+h2{font-size:1.02rem;margin:0 0 6px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
+  margin:0 0 14px;font-size:.9rem}
+.card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
+.card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card.missing{border-color:#c0392b}
+@media (max-width:860px){.card{grid-template-columns:1fr}}
+.evname{font-size:1.05rem;font-weight:600}
+.mention{border-left:3px solid var(--line-2);padding:4px 0 4px 12px;margin:0 0 12px;
+  font-size:.88rem;color:var(--ink-2);white-space:pre-wrap;overflow-wrap:anywhere}
+.mention .sec{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:2px;white-space:normal}
+.cites{margin-top:8px;padding:8px 10px;background:var(--surface-2);border-radius:7px;white-space:normal}
+.cite{white-space:pre-wrap;margin:6px 0 0;padding-top:6px;border-top:1px solid var(--line)}
+mark{background:var(--hit);color:var(--ink);padding:0 2px;border-radius:2px;font-weight:600}
+mark.cp{background:var(--amber-soft);color:var(--amber);outline:1px dashed var(--amber)}
+mark.ref{background:var(--accent-soft);color:var(--accent-ink);outline:1px solid var(--accent)}
+.mention.cp{border-left-color:var(--amber)}
+.cptag{color:var(--amber);text-transform:none;letter-spacing:0;font-weight:600}
+details summary{cursor:pointer;color:var(--muted);font-size:.85rem;margin-bottom:8px}
+.abstract{font-size:.9rem;color:var(--ink-2)}
+fieldset{border:0;margin:0 0 12px;padding:0}
+legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin:0 0 8px}
+.eng label{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;padding:7px 10px;
+  border:1px solid var(--line);border-radius:8px;margin-bottom:6px;cursor:pointer}
+.eng label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.eng input{grid-row:span 2;margin-top:4px}
+.eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
+.eng span{font-size:.78rem;color:var(--muted)}
+/* The long explanations only on the card being answered. */
+.card:not(.active) .eng span{display:none}
+kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
+  border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
+.fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg label{flex:1;text-align:center;padding:6px 8px;border:1px solid var(--line-2);border-radius:7px;
+  cursor:pointer;font-size:.85rem}
+.seg label:has(input:checked){border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:focus-visible){outline:2px solid var(--accent)}
+input[type=text],textarea,select{width:100%;font:inherit;font-size:.88rem;padding:6px 8px;
+  border:1px solid var(--line-2);border-radius:7px;background:var(--surface);color:var(--ink);margin-top:8px}
+select{width:auto;margin:0}
+.check{display:flex;gap:8px;align-items:center;font-size:.9rem}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.spacer{flex:1}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface-2);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.err{color:#c0392b;font-weight:600;font-size:.88rem;margin-top:10px}
+.feedback{border-radius:8px;padding:8px 10px;font-size:.88rem}
+.feedback.ok{background:#2f7d3a1a;border:1px solid var(--ok)}
+.feedback.diff{background:var(--amber-soft);border:1px solid var(--amber)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a href="../index.html" class="keep-r">Start page</a>
+  <span id="prog" class="tnum"></span>
+  <span class="bar" aria-hidden="true"><i id="progbar" style="width:0"></i></span>
+  <a href="../guide.html" target="_blank" rel="noopener">Guide (v3.1)</a>
+  <span id="mode" class="small" hidden></span>
+</header>
+
+<div id="again" class="note" hidden>You have already submitted this paper. Submitting again replaces your earlier answer.</div>
+
+
+<h1>GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed by LIGO and Virgo during the First and Second Observing Runs</h1>
+<div class="small mut"><a href="https://arxiv.org/abs/1811.12907" target="_blank" rel="noopener" class="mono">arXiv:1811.12907</a> · open the paper whenever the snippets are not enough</div>
+<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We present the results from three gravitational-wave searches for coalescing compact binaries with component masses above &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mrow&gt;&lt;mml:mn&gt;1&lt;/mml:mn&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:msub&gt;&lt;mml:mrow&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo stretchy=&#34;false&#34;&gt;⊙&lt;/mml:mo&gt;&lt;/mml:mrow&gt;&lt;/mml:msub&gt;&lt;/mml:mrow&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; during the first and second observing runs of the advanced gravitational-wave detector network. During the first observing run (&lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mi&gt;O&lt;/mml:mi&gt;&lt;mml:mn&gt;1&lt;/mml:mn&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;), from September 12, 2015 to January 19, 2016, gravitational waves from three binary black hole mergers were detected. The second observing run (&lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mi&gt;O&lt;/mml:mi&gt;&lt;mml:mn&gt;2&lt;/mml:mn&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;), which ran from November 30, 2016 to August 25, 2017, saw the first detection of gravitational waves from a binary neutron star inspiral, in addition to the observation of gravitational waves from a total of seven binary black hole mergers, four of which we report here for the first time: GW170729, GW170809, GW170818, and GW170823. For all significant gravitational-wave events, we provide estimates of the source properties. The detected binary black holes have total masses between &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mrow&gt;&lt;mml:msubsup&gt;&lt;mml:mrow&gt;&lt;mml:mn&gt;18.6&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;-&lt;/mml:mo&gt;&lt;mml:mn&gt;0.7&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;+&lt;/mml:mo&gt;&lt;mml:mn&gt;3.2&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:msubsup&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:msub&gt;&lt;mml:mrow&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo stretchy=&#34;false&#34;&gt;⊙&lt;/mml:mo&gt;&lt;/mml:mrow&gt;&lt;/mml:msub&gt;&lt;/mml:mrow&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; and &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:msubsup&gt;&lt;mml:mn&gt;84.4&lt;/mml:mn&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;-&lt;/mml:mo&gt;&lt;mml:mn&gt;11.1&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;+&lt;/mml:mo&gt;&lt;mml:mn&gt;15.8&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:msubsup&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:msub&gt;&lt;mml:mrow&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo stretchy=&#34;false&#34;&gt;⊙&lt;/mml:mo&gt;&lt;/mml:mrow&gt;&lt;/mml:msub&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; and range in distance between &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:msubsup&gt;&lt;mml:mn&gt;320&lt;/mml:mn&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;-&lt;/mml:mo&gt;&lt;mml:mn&gt;110&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;+&lt;/mml:mo&gt;&lt;mml:mn&gt;120&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:msubsup&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; and &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mrow&gt;&lt;mml:msubsup&gt;&lt;mml:mrow&gt;&lt;mml:mn&gt;2840&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;-&lt;/mml:mo&gt;&lt;mml:mn&gt;1360&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;+&lt;/mml:mo&gt;&lt;mml:mn&gt;1400&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:msubsup&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:mi&gt;Mpc&lt;/mml:mi&gt;&lt;/mml:mrow&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;. No neutron star─black hole mergers were detected. In addition to highly significant gravitational-wave events, we also provide a list of marginal event candidates with an estimated false-alarm rate less than 1 per 30 days. From these results over the first two observing runs, which include approximately one gravitational-wave detection per 15 days of data searched, we infer merger rates at the 90% confidence intervals of &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mrow&gt;&lt;mml:mn&gt;110&lt;/mml:mn&gt;&lt;mml:mo&gt;−&lt;/mml:mo&gt;&lt;mml:mn&gt;3840&lt;/mml:mn&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:msup&gt;&lt;mml:mrow&gt;&lt;mml:mi&gt;Gpc&lt;/mml:mi&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;-&lt;/mml:mo&gt;&lt;mml:mn&gt;3&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:msup&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:msup&gt;&lt;mml:mrow&gt;&lt;mml:mi mathvariant=&#34;normal&#34;&gt;y&lt;/mml:mi&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;-&lt;/mml:mo&gt;&lt;mml:mn&gt;1&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:msup&gt;&lt;/mml:mrow&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; for binary neutron stars and &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mrow&gt;&lt;mml:mn&gt;9.7&lt;/mml:mn&gt;&lt;mml:mo&gt;−&lt;/mml:mo&gt;&lt;mml:mn&gt;101&lt;/mml:mn&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:msup&gt;&lt;mml:mrow&gt;&lt;mml:mi&gt;Gpc&lt;/mml:mi&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;-&lt;/mml:mo&gt;&lt;mml:mn&gt;3&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:msup&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:msup&gt;&lt;mml:mrow&gt;&lt;mml:mi mathvariant=&#34;normal&#34;&gt;y&lt;/mml:mi&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;-&lt;/mml:mo&gt;&lt;mml:mn&gt;1&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:msup&gt;&lt;/mml:mrow&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt; for binary black holes assuming fixed population distributions and determine a neutron star─black hole merger rate 90% upper limit of &lt;inline-formula&gt;&lt;mml:math display=&#34;inline&#34;&gt;&lt;mml:mrow&gt;&lt;mml:mn&gt;610&lt;/mml:mn&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:msup&gt;&lt;mml:mrow&gt;&lt;mml:mi&gt;Gpc&lt;/mml:mi&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;-&lt;/mml:mo&gt;&lt;mml:mn&gt;3&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:msup&gt;&lt;mml:mtext&gt; &lt;/mml:mtext&gt;&lt;mml:msup&gt;&lt;mml:mrow&gt;&lt;mml:mi mathvariant=&#34;normal&#34;&gt;y&lt;/mml:mi&gt;&lt;/mml:mrow&gt;&lt;mml:mrow&gt;&lt;mml:mo&gt;-&lt;/mml:mo&gt;&lt;mml:mn&gt;1&lt;/mml:mn&gt;&lt;/mml:mrow&gt;&lt;/mml:msup&gt;&lt;/mml:mrow&gt;&lt;/mml:math&gt;&lt;/inline-formula&gt;.</p></details>
+
+
+
+<div id="pairs" >
+<p class="small mut" style="margin:18px 0 0">12 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+
+
+<section class="card" data-i="0" data-event="151012.2">
+  <div class="ctx">
+    <div class="evname mono">151012.2</div>
+    <h3>4 mentions</h3>
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…mn indicates whether there are any detector
+characterization concerns with the trigger; for an explanation and more details, see the text.
+Date UTC Search FAR ½y−1/C138 Network SNR Mdet ½M⊙/C138 Data quality
+151008 14∶09∶17.5 PyCBC 10.17 8.8 5.12 No artifacts
+<mark>151012.2</mark> 06∶30∶45.2 GstLAL 8.56 9.6 2.01 Artifacts present
+151116 22∶41∶48.7 PyCBC 4.77 9.0 1.24 No artifacts
+161202 03∶53∶44.9 GstLAL 6.00 10.5 1.54 Artifacts possibly caused
+161217 07∶16∶24.4 GstLAL 10.12 10.7 7.86 Artifacts possibly caused
+170208 10∶39∶25.8 GstLAL …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…f the
+triggers. As the PyCBC search does not consider times near
+the edges of observing periods, this time period is also not
+analyzed by that search. Artifacts related to scattered light
+are also observed at Hanford at this time.
+3. Light scattering present: <mark>151012.2</mark>,
+170208, and 170616
+In the case of trigger 151012.2, light scattering does not
+introduce significant power above 30 Hz prior to the
+reported trigger time. Investigations into the relationship
+between the trigger and the scattered light find no power
+overlap, …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…r times near
+the edges of observing periods, this time period is also not
+analyzed by that search. Artifacts related to scattered light
+are also observed at Hanford at this time.
+3. Light scattering present: 151012.2,
+170208, and 170616
+In the case of trigger <mark>151012.2</mark>, light scattering does not
+introduce significant power above 30 Hz prior to the
+reported trigger time. Investigations into the relationship
+between the trigger and the scattered light find no power
+overlap, suggesting that the artifacts could not account for
+…</div>
+    
+    
+    <details><summary>1 more</summary>
+    <div class="mention"><span class="sec">methods</span>…restrial BNS NSBH BBH Astrophysical Terrestrial BNS NSBH BBH Astrophysical Terrestrial BBH
+GW150914 0 0 0.0064 0.99 1 0 /C1/C1/C1 /C1/C1/C1 11 0 1
+151008a /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 0.73 /C1/C1/C1 /C1/C1/C1 0.27 0.27 /C1/C1/C1 /C1/C1/C1
+<mark>151012.2</mark> 0.98 0.022 0.0012 0 0.023 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+GW151012 0.001 0 0.031 0.97 1 0.04 /C1/C1/C1 /C1/C1/C1 0.96 0.96 /C1/C1/C1 /C1/C1/C1
+151116b /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 ∼1 ≪ 05 /C1/C1/C1 /C…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of 151012.2</legend>
+      
+      <label><input type="checkbox" name="uses-0" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-0" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-0" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-0" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-0" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-0" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-0" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-0" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-0" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="1" data-event="151116">
+  <div class="ctx">
+    <div class="evname mono">151116</div>
+    <h3>2 mentions</h3>
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…n concerns with the trigger; for an explanation and more details, see the text.
+Date UTC Search FAR ½y−1/C138 Network SNR Mdet ½M⊙/C138 Data quality
+151008 14∶09∶17.5 PyCBC 10.17 8.8 5.12 No artifacts
+151012.2 06∶30∶45.2 GstLAL 8.56 9.6 2.01 Artifacts present
+<mark>151116</mark> 22∶41∶48.7 PyCBC 4.77 9.0 1.24 No artifacts
+161202 03∶53∶44.9 GstLAL 6.00 10.5 1.54 Artifacts possibly caused
+161217 07∶16∶24.4 GstLAL 10.12 10.7 7.86 Artifacts possibly caused
+170208 10∶39∶25.8 GstLAL 11.18 10.0 7.39 Artifacts present
+170219 14∶04∶09.0 GstLA…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…the estimated background of our searches and
+the expected rate of signals. See Sec. VII,F i g . 11,a n d
+Table IV below for a more detailed discussion of the
+probabilities of astrophysical or noise origin of such events.
+1. No noise artifacts present: 151008, <mark>151116</mark>,
+170219, 170423, and 170705
+Investigations into this set of marginal triggers have
+identified no instrumental artifacts in time coincidence with
+the triggers.
+2. Light scattering possibly caused:
+161217 and 170720
+All marginal triggers in this class and the n…</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of 151116</legend>
+      
+      <label><input type="checkbox" name="uses-1" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-1" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-1" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-1" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-1" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-1" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-1" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-1" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-1" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="2" data-event="161217">
+  <div class="ctx">
+    <div class="evname mono">161217</div>
+    <h3>5 mentions</h3>
+    
+    
+    <div class="mention"><span class="sec">introduction</span>… SNR Mdet ½M⊙/C138 Data quality
+151008 14∶09∶17.5 PyCBC 10.17 8.8 5.12 No artifacts
+151012.2 06∶30∶45.2 GstLAL 8.56 9.6 2.01 Artifacts present
+151116 22∶41∶48.7 PyCBC 4.77 9.0 1.24 No artifacts
+161202 03∶53∶44.9 GstLAL 6.00 10.5 1.54 Artifacts possibly caused
+<mark>161217</mark> 07∶16∶24.4 GstLAL 10.12 10.7 7.86 Artifacts possibly caused
+170208 10∶39∶25.8 GstLAL 11.18 10.0 7.39 Artifacts present
+170219 14∶04∶09.0 GstLAL 6.26 9.6 1.53 No artifacts
+170405 11∶04∶52.7 GstLAL 4.55 9.3 1.44 Artifacts present
+170412 15∶56∶39.0 GstLAL 8.22 9…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…n of such events.
+1. No noise artifacts present: 151008, 151116,
+170219, 170423, and 170705
+Investigations into this set of marginal triggers have
+identified no instrumental artifacts in time coincidence with
+the triggers.
+2. Light scattering possibly caused:
+<mark>161217</mark> and 170720
+All marginal triggers in this class and the next are in time
+coincidence with artifacts from scattered light in one of the
+B. P . ABBOTT et al. PHYS. REV . X 9, 031040 (2019)
+031040-10
+
+detectors. Scattered light leads to excess power at low
+freque…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…ms as
+archlike shapes. In some cases, the frequencies affected are
+above the minimum frequency used in the analysis. When
+this happens, scattered light transients can create significant
+triggers in matched-filter searches [68,92,93].
+The two marginal triggers <mark>161217</mark> and 170720 occur
+during periods of scattered light affecting frequencies up to
+80 Hz with high-amplitude arches. In both cases, a signifi-
+cant overlap with the trigger template and the excess power
+from scattering is observed. Investigations into the status …</div>
+    
+    
+    <details><summary>2 more</summary>
+    <div class="mention"><span class="sec">appendix</span>…cant overlap with the trigger template and the excess power
+from scattering is observed. Investigations into the status of
+the observatories at the times in question identified high-
+amplitude ground motion correlated with the scattering.
+The marginal trigger <mark>161217</mark> occurs during a period of
+high-amplitude ground motion at Livingston caused by
+storm activity. During this storm activity, the Livingston
+detector is not able to maintain a stable interferometer for
+periods longer than 10 min. The presence of intense
+scatteri…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 ∼1 ≪ 05 /C1/C1/C1 /C1/C1/C1 ≪ 0.5 /C1/C1/C1 /C1/C1/C1
+GW151226 0 0 0.12 0.88 1 0 /C1/C1/C1 /C1/C1/C1 1 1 0.05 0.95
+161202 0.97 0.034 0 0 0.034 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+<mark>161217</mark> 0.98 0 0.011 0.0078 0.018 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+GW170104 0 0 0.0028 1 1 0 /C1/C1/C1 /C1/C1/C1 11 0 1
+170208 0.98 0 0.011 0.0088 0.02 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+170219 0…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of 161217</legend>
+      
+      <label><input type="checkbox" name="uses-2" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-2" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-2" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-2" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-2" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-2" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-2" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-2" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-2" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="3" data-event="170208">
+  <div class="ctx">
+    <div class="evname mono">170208</div>
+    <h3>4 mentions</h3>
+    
+    
+    <div class="mention"><span class="sec">introduction</span>….12 No artifacts
+151012.2 06∶30∶45.2 GstLAL 8.56 9.6 2.01 Artifacts present
+151116 22∶41∶48.7 PyCBC 4.77 9.0 1.24 No artifacts
+161202 03∶53∶44.9 GstLAL 6.00 10.5 1.54 Artifacts possibly caused
+161217 07∶16∶24.4 GstLAL 10.12 10.7 7.86 Artifacts possibly caused
+<mark>170208</mark> 10∶39∶25.8 GstLAL 11.18 10.0 7.39 Artifacts present
+170219 14∶04∶09.0 GstLAL 6.26 9.6 1.53 No artifacts
+170405 11∶04∶52.7 GstLAL 4.55 9.3 1.44 Artifacts present
+170412 15∶56∶39.0 GstLAL 8.22 9.7 4.36 Artifacts possibly caused
+170423 12∶10∶45.0 GstLAL 6.47 8.9…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…gers. As the PyCBC search does not consider times near
+the edges of observing periods, this time period is also not
+analyzed by that search. Artifacts related to scattered light
+are also observed at Hanford at this time.
+3. Light scattering present: 151012.2,
+<mark>170208</mark>, and 170616
+In the case of trigger 151012.2, light scattering does not
+introduce significant power above 30 Hz prior to the
+reported trigger time. Investigations into the relationship
+between the trigger and the scattered light find no power
+overlap, suggesti…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…e 30 Hz prior to the
+reported trigger time. Investigations into the relationship
+between the trigger and the scattered light find no power
+overlap, suggesting that the artifacts could not account for
+the observed marginal trigger.
+Investigations into triggers <mark>170208</mark> and 170616 find
+similar results. In the case of these triggers, a slight overlap
+with excess power from scattering is observed. Multiple
+efforts, including B A YESWAV E [53] glitch subtraction and
+gating [8], are used to mitigate the scattered light artifacts…</div>
+    
+    
+    <details><summary>1 more</summary>
+    <div class="mention"><span class="sec">methods</span>… 0.95
+161202 0.97 0.034 0 0 0.034 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+161217 0.98 0 0.011 0.0078 0.018 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+GW170104 0 0 0.0028 1 1 0 /C1/C1/C1 /C1/C1/C1 11 0 1
+<mark>170208</mark> 0.98 0 0.011 0.0088 0.02 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+170219 0.98 0.019 0 0 0.02 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+170405 1 0.004 0 0 0.004 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of 170208</legend>
+      
+      <label><input type="checkbox" name="uses-3" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-3" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-3" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-3" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-3" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-3" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-3" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-3" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-3" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="4" data-event="170219">
+  <div class="ctx">
+    <div class="evname mono">170219</div>
+    <h3>3 mentions</h3>
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…rtifacts present
+151116 22∶41∶48.7 PyCBC 4.77 9.0 1.24 No artifacts
+161202 03∶53∶44.9 GstLAL 6.00 10.5 1.54 Artifacts possibly caused
+161217 07∶16∶24.4 GstLAL 10.12 10.7 7.86 Artifacts possibly caused
+170208 10∶39∶25.8 GstLAL 11.18 10.0 7.39 Artifacts present
+<mark>170219</mark> 14∶04∶09.0 GstLAL 6.26 9.6 1.53 No artifacts
+170405 11∶04∶52.7 GstLAL 4.55 9.3 1.44 Artifacts present
+170412 15∶56∶39.0 GstLAL 8.22 9.7 4.36 Artifacts possibly caused
+170423 12∶10∶45.0 GstLAL 6.47 8.9 1.17 No artifacts
+170616 19∶47∶20.8 PyCBC 1.94 9.1 2.75 Ar…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…mated background of our searches and
+the expected rate of signals. See Sec. VII,F i g . 11,a n d
+Table IV below for a more detailed discussion of the
+probabilities of astrophysical or noise origin of such events.
+1. No noise artifacts present: 151008, 151116,
+<mark>170219</mark>, 170423, and 170705
+Investigations into this set of marginal triggers have
+identified no instrumental artifacts in time coincidence with
+the triggers.
+2. Light scattering possibly caused:
+161217 and 170720
+All marginal triggers in this class and the next are …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…1
+161217 0.98 0 0.011 0.0078 0.018 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+GW170104 0 0 0.0028 1 1 0 /C1/C1/C1 /C1/C1/C1 11 0 1
+170208 0.98 0 0.011 0.0088 0.02 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+<mark>170219</mark> 0.98 0.019 0 0 0.02 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+170405 1 0.004 0 0 0.004 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+170412 0.94 0 0.029 0.032 0.06 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1…</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of 170219</legend>
+      
+      <label><input type="checkbox" name="uses-4" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-4" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-4" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-4" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-4" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-4" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-4" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-4" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-4" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="5" data-event="170405">
+  <div class="ctx">
+    <div class="evname mono">170405</div>
+    <h3>5 mentions</h3>
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…24 No artifacts
+161202 03∶53∶44.9 GstLAL 6.00 10.5 1.54 Artifacts possibly caused
+161217 07∶16∶24.4 GstLAL 10.12 10.7 7.86 Artifacts possibly caused
+170208 10∶39∶25.8 GstLAL 11.18 10.0 7.39 Artifacts present
+170219 14∶04∶09.0 GstLAL 6.26 9.6 1.53 No artifacts
+<mark>170405</mark> 11∶04∶52.7 GstLAL 4.55 9.3 1.44 Artifacts present
+170412 15∶56∶39.0 GstLAL 8.22 9.7 4.36 Artifacts possibly caused
+170423 12∶10∶45.0 GstLAL 6.47 8.9 1.17 No artifacts
+170616 19∶47∶20.8 PyCBC 1.94 9.1 2.75 Artifacts present
+170630 16∶17∶07.8 GstLAL 10.46 9.7 0…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…onstrate a significant overlap with
+excess power from the nonstationarity noise. B A YESWAV E
+[53] glitch subtraction is unable to completely mitigate the
+60–200 Hz nonstationarity due to its long duration.
+5. Short-duration, high-amplitude artifacts present:
+<mark>170405</mark> and 170630
+The marginal triggers in this class occur in time
+coincidence with short-duration, high-amplitude noise
+transients that are removed in the data-conditioning step
+of the search pipelines [8]. The times surrounding these
+transients do not demonstrate…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…e with short-duration, high-amplitude noise
+transients that are removed in the data-conditioning step
+of the search pipelines [8]. The times surrounding these
+transients do not demonstrate an elevated trigger rate after
+the transient has been removed. Trigger <mark>170405</mark> is in
+coincidence with this class of transient at Hanford, and
+trigger 170630 is in coincidence with this class of transient
+at Livingston. As triggers 170405 and 170630 are identified
+as significant after the removal of the short-duration
+transients, the pre…</div>
+    
+    
+    <details><summary>2 more</summary>
+    <div class="mention"><span class="sec">appendix</span>…transients do not demonstrate an elevated trigger rate after
+the transient has been removed. Trigger 170405 is in
+coincidence with this class of transient at Hanford, and
+trigger 170630 is in coincidence with this class of transient
+at Livingston. As triggers <mark>170405</mark> and 170630 are identified
+as significant after the removal of the short-duration
+transients, the presence of noise artifacts cannot account
+for the SNR of these marginal triggers.
+V. SOURCE PROPERTIES
+Here, we present inferred source properties of gravita-
+ti…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…1/C1/C1
+GW170104 0 0 0.0028 1 1 0 /C1/C1/C1 /C1/C1/C1 11 0 1
+170208 0.98 0 0.011 0.0088 0.02 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+170219 0.98 0.019 0 0 0.02 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+<mark>170405</mark> 1 0.004 0 0 0.004 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+170412 0.94 0 0.029 0.032 0.06 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1
+170423 0.91 0.086 0 0 0.086 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C1/C1/C1 /C…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of 170405</legend>
+      
+      <label><input type="checkbox" name="uses-5" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-5" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-5" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-5" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-5" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-5" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-5" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-5" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-5" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="6" data-event="GW150914">
+  <div class="ctx">
+    <div class="evname mono">GW150914</div>
+    <h3>33 mentions · first 12 shown</h3>
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…cally valuable to reanalyze the O1 data
+in order to reevaluate the significance of previously
+identified GW events and to potentially discover new ones.
+The searches identified a total of ten BBH mergers and
+one binary neutron star (BNS) signal. The GW events
+<mark>GW150914</mark>, GW151012 [14], GW151226, GW170104,
+GW170608, GW170814, and GW170817 have been
+reported previously [4,15–18]. In this catalog, we announce
+four previously unpublished BBH mergers observed
+during O2: GW170729, GW170809, GW170818, and
+GW170823. We estimate the …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…tational Wave
+Open Science Center [57].
+II. INSTRUMENTAL OVERVIEW AND DATA
+A. LIGO instruments
+The Advanced LIGO detectors [58,59] began scientific
+operations in September, 2015 and almost immediately
+detected the first gravitational waves from the BBH merger
+<mark>GW150914</mark>.
+Between O1 and O2, improvements were made to both
+LIGO instruments. At LIGO-Livingston (LLO), a mal-
+functioning temperature sensor [60] was replaced immedi-
+ately after O1, contributing to an increase in the BNS
+range from approximately 60 Mpc to approximat…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…rature sum of the detectors coincident in the
+highest-ranked trigger; in some cases, only two detectors contribute, even if all three are operating nominally at the time of that event.
+FAR ½y−1/C138 Network SNR
+Event UTC time PyCBC GstLAL cWB PyCBC GstLAL cWB
+<mark>GW150914</mark> 09∶50∶45.4 &lt;1.53 × 10−5 &lt;1.00 × 10−7 &lt;1.63 × 10−4 23.6 24.4 25.2
+GW151012 09∶54∶43.4 0.17 7.92 × 10−3 /C1/C1/C1 9.5 10.0 /C1/C1/C1
+GW151226 03∶38∶53.6 &lt;1.69 × 10−5 &lt;1.00 × 10−7 0.02 13.1 13.1 11.9
+GW170104 10∶11∶58.6 &lt;1.37 × 10−5 &lt;1.00 × 10−7 2.91 × 10−4 13.0…</div>
+    
+    
+    <details><summary>9 more</summary>
+    <div class="mention"><span class="sec">results</span>… cWB, the time-shift method of
+background estimation may result in only an upper bound
+on the false-alarm rate, if an event has a larger value of the
+ranking statistic than any trigger in the time-shifted back-
+ground; this result is indicated in Table I. For <mark>GW150914</mark>
+and GW151226, the bound that PyCBC places on the FAR
+in these updated results is in fact higher than that previously
+published [1,2,4], because, as noted in Sec. III A, this
+search elects to use shorter periods of time shifting to better
+capture the variation…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…e three searches with offline
+results presented here; in some cases, additional low-latency
+pipelines also found events. A more thorough discussion of all
+of the low-latency analyses and the electromagnetic follow-up
+of O2 events may be found in Ref. [22].
+1. <mark>GW150914</mark>, GW151012, and GW151226
+During O1, two confident detections of binary black
+holes were made: GW150914 [1] and GW151226 [2].
+Additionally, a third trigger was noted in the O1 catalog of
+binary black holes [3,4] and labeled L VT151012. That label
+is a consequen…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…also found events. A more thorough discussion of all
+of the low-latency analyses and the electromagnetic follow-up
+of O2 events may be found in Ref. [22].
+1. GW150914, GW151012, and GW151226
+During O1, two confident detections of binary black
+holes were made: <mark>GW150914</mark> [1] and GW151226 [2].
+Additionally, a third trigger was noted in the O1 catalog of
+binary black holes [3,4] and labeled L VT151012. That label
+is a consequence of the higher FAR of that trigger, though
+detector characterization studies show no instrumental or…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…y−1 in the
+GstLAL search (previously, 0.17 y−1). These improved
+FAR measurements for GW151012 are the most salient
+result of the reanalysis of O1 with the O2 pipelines; no new
+gravitational-wave events were discovered. The first binary
+black hole observation, <mark>GW150914</mark>, remains the highest
+SNR event in O1 and the second highest in the combined
+O1 and O2 datasets, behind only the binary neutron star
+inspiral GW170817.
+Recently, Ref. [88] appeared. That catalog also presents
+search results from the PyCBC pipeline for O1 and a…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…the highest
+SNR event in O1 and the second highest in the combined
+O1 and O2 datasets, behind only the binary neutron star
+inspiral GW170817.
+Recently, Ref. [88] appeared. That catalog also presents
+search results from the PyCBC pipeline for O1 and also
+finds <mark>GW150914</mark>, GW151012, and GW151226 as the
+only confident gravitational-wave events in O1, with iden-
+tical bounds on FAR to the PyCBC results in Table I for
+GW150914 and GW151226. The measured FAR for
+GW151012 is not identical but is consistent with the
+results we prese…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…. [88] appeared. That catalog also presents
+search results from the PyCBC pipeline for O1 and also
+finds GW150914, GW151012, and GW151226 as the
+only confident gravitational-wave events in O1, with iden-
+tical bounds on FAR to the PyCBC results in Table I for
+<mark>GW150914</mark> and GW151226. The measured FAR for
+GW151012 is not identical but is consistent with the
+results we present in Table I.
+2. GW170104, GW170608, and GW170814
+Three binary black hole events from O2 have already
+been published: GW170104 [15], GW170608 [17],a n d
+F…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…d by the LIGO and Virgo
+detectors under the assumption that they originate from
+compact binary coalescences described by general rela-
+tivity. We analyze all GW events described in Sec. IV.
+Full parameter estimation (PE) results for O1 events are
+provided for <mark>GW150914</mark> in Refs. [4,95,96], for GW151226
+in Refs. [2,4], and for GW151012 in Refs. [3,4].P Er e s u l t s
+for four O2 events are provided for GW170104 in Ref.[15],
+for GW170608 in Ref.[17], for GW170814 in Ref.[16],a n d
+for GW170817 in Refs.[18,97]. Data from the th…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…ocalization
+ΔΩ. The sky localization is the area of the 90% credible region. For GW170817, we give conservative bounds on parameters of the final
+remnant discussed in Sec. VE .
+Event m1=M⊙ m2=M⊙ M=M⊙ χeff Mf =M⊙ af Erad=ðM⊙c2Þ lpeak=ðerg s−1Þ dL=Mpc z ΔΩ=deg2
+<mark>GW150914</mark> 35.6þ4.7
+−3.1 30.6þ3.0
+−4.4 28.6þ1.7
+−1.5 −0.01þ0.12
+−0.13 63.1þ3.4
+−3.0 0.69þ0.05
+−0.04 3.1þ0.4
+−0.4 3.6þ0.4
+−0.4 × 1056 440þ150
+−170 0.09þ0.03
+−0.03 182
+GW151012 23.2þ14.9
+−5.5 13.6þ4.1
+−4.8 15.2þ2.1
+−1.2 0.05þ0.31
+−0.20 35.6þ10.8
+−3.8 0.67þ0.13
+−0.11 1.6þ0…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…he ratio of the component
+masses Eq. (6) in the top left in Fig. 5. This parameter
+is much harder to constrain than the chirp mass. The
+width of the posteriors depends mostly on the SNR, and
+so the mass ratio is best measured for the loudest
+events, GW170817, <mark>GW150914</mark>, and GW170814. Even
+though GW170817 has the highest SNR of all events,
+its mass ratio is less well constrained, because the
+signal power comes predominantly from the inspiral,
+while the merger contributes little compared to the
+BBH [147]. GW151226 and GW15101…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW150914</legend>
+      
+      <label><input type="checkbox" name="uses-6" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-6" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-6" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-6" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-6" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-6" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-6" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-6" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-6" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="7" data-event="GW170104">
+  <div class="ctx">
+    <div class="evname mono">GW170104</div>
+    <h3>19 mentions · first 12 shown</h3>
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…data
+in order to reevaluate the significance of previously
+identified GW events and to potentially discover new ones.
+The searches identified a total of ten BBH mergers and
+one binary neutron star (BNS) signal. The GW events
+GW150914, GW151012 [14], GW151226, <mark>GW170104</mark>,
+GW170608, GW170814, and GW170817 have been
+reported previously [4,15–18]. In this catalog, we announce
+four previously unpublished BBH mergers observed
+during O2: GW170729, GW170809, GW170818, and
+GW170823. We estimate the total mass of GW170729
+to be 84.4þ1…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>… SNR
+Event UTC time PyCBC GstLAL cWB PyCBC GstLAL cWB
+GW150914 09∶50∶45.4 &lt;1.53 × 10−5 &lt;1.00 × 10−7 &lt;1.63 × 10−4 23.6 24.4 25.2
+GW151012 09∶54∶43.4 0.17 7.92 × 10−3 /C1/C1/C1 9.5 10.0 /C1/C1/C1
+GW151226 03∶38∶53.6 &lt;1.69 × 10−5 &lt;1.00 × 10−7 0.02 13.1 13.1 11.9
+<mark>GW170104</mark> 10∶11∶58.6 &lt;1.37 × 10−5 &lt;1.00 × 10−7 2.91 × 10−4 13.0 13.0 13.0
+GW170608 02∶01∶16.5 &lt;3.09 × 10−4 &lt;1.00 × 10−7 1.44 × 10−4 15.4 14.9 14.1
+GW170729 18∶56∶29.3 1.36 0.18 0.02 9.8 10.8 10.2
+GW170809 08∶28∶21.81 .45 × 10−4 &lt;1.00 × 10−7 /C1/C1/C1 12.2 12.4 /C1/C1/C…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…events, as selected by the criteria in Sec. IVA,
+in Table I. Of these 11 events, seven have been previously
+reported: the three gravitational-wave events from O1 [1–4]
+and, from O2, the binary neutron star merger GW170817
+[18] and the binary black hole events <mark>GW170104</mark> [15],
+GW170608 [17], and GW170814 [16]. The updated results
+we report here supersede those previously published. Four
+new gravitational-wave events are reported here for the
+first time: GW170729, GW170809, GW170818, and
+GW170823. All four are binary black hol…</div>
+    
+    
+    <details><summary>9 more</summary>
+    <div class="mention"><span class="sec">results</span>…151226 as the
+only confident gravitational-wave events in O1, with iden-
+tical bounds on FAR to the PyCBC results in Table I for
+GW150914 and GW151226. The measured FAR for
+GW151012 is not identical but is consistent with the
+results we present in Table I.
+2. <mark>GW170104</mark>, GW170608, and GW170814
+Three binary black hole events from O2 have already
+been published: GW170104 [15], GW170608 [17],a n d
+FIG. 3. Cumulative histograms of search results for the cWB
+search, plotted versus the inverse false-alarm rate. The dashed
+lines sh…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…yCBC results in Table I for
+GW150914 and GW151226. The measured FAR for
+GW151012 is not identical but is consistent with the
+results we present in Table I.
+2. GW170104, GW170608, and GW170814
+Three binary black hole events from O2 have already
+been published: <mark>GW170104</mark> [15], GW170608 [17],a n d
+FIG. 3. Cumulative histograms of search results for the cWB
+search, plotted versus the inverse false-alarm rate. The dashed
+lines show the expected background, given the analysis time.
+Shaded regions denote sigma uncertainty bounds f…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…We analyze all GW events described in Sec. IV.
+Full parameter estimation (PE) results for O1 events are
+provided for GW150914 in Refs. [4,95,96], for GW151226
+in Refs. [2,4], and for GW151012 in Refs. [3,4].P Er e s u l t s
+for four O2 events are provided for <mark>GW170104</mark> in Ref.[15],
+for GW170608 in Ref.[17], for GW170814 in Ref.[16],a n d
+for GW170817 in Refs.[18,97]. Data from the three-detector
+LIGO-Virgo network are used to obtain parameter estimates
+for GW170729, GW170809, GW170814, GW170817, and
+GW170818. Virgo data for…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…5.6þ10.8
+−3.8 0.67þ0.13
+−0.11 1.6þ0.6
+−0.5 3.2þ0.8
+−1.7 × 1056 1080þ550
+−490 0.21þ0.09
+−0.09 1523
+GW151226 13.7þ8.8
+−3.2 7.7þ2.2
+−2.5 8.9þ0.3
+−0.3 0.18þ0.20
+−0.12 20.5þ6.4
+−1.5 0.74þ0.07
+−0.05 1.0þ0.1
+−0.2 3.4þ0.7
+−1.7 × 1056 450þ180
+−190 0.09þ0.04
+−0.04 1033
+<mark>GW170104</mark> 30.8þ7.3
+−5.6 20.0þ4.9
+−4.6 21.4þ2.2
+−1.8 −0.04þ0.17
+−0.21 48.9þ5.1
+−4.0 0.66þ0.08
+−0.11 2.2þ0.5
+−0.5 3.3þ0.6
+−1.0 × 1056 990þ440
+−430 0.20þ0.08
+−0.08 921
+GW170608 11.0þ5.5
+−1.7 7.6þ1.4
+−2.2 7.9þ0.2
+−0.2 0.03þ0.19
+−0.07 17.8þ3.4
+−0.7 0.69þ0.04
+−0.04 0.9þ0.0
+−…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…e source is shown in equatorial coordinates (right ascension is measured in hours, and
+declination is measured in degrees). 50% and 90% credible regions of posterior probability sky areas for the GW events. Top: Confidently
+detectedO2 GW events[22] (GW170817, <mark>GW170104</mark>, GW170823, GW170608, GW170809, and GW170814) for which alerts were sent to
+EM observers. Bottom: O1 events (GW150914, GW151226, and GW151012), along with O2 events (GW170729 and GW170818) not
+previously released to EM observers. Where applicable, the initial …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…f GW170729
+has a median final spin of af ¼ 0.81þ0.07
+−0.13 and is consistent
+with 0.7 at 90% confidence.
+D. Distance, inclination, and sky location
+The luminosity distance dL of a GW source is inversely
+proportional to the signal ’s amplitude. Six BBH events
+(<mark>GW170104</mark>, GW170809, GW170818, GW151012,
+GW170823, and GW170729) have median distances of
+about a Gpc or beyond, the most distant of which is
+GW170729 at dL ¼ 2840þ1400
+−1360 Mpc, corresponding to a
+redshift of 0.49þ0.19
+−0.21 . The closest BBH is GW170608, at
+dL ¼ 320…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…mputed from the radiated energy
+and using the phenomenological universal relation found in
+Ref. [204].
+F. Comparison against previously published results
+We compare PE results between the original published
+O1 and O2 analyses for GW150914, GW151012,
+GW151226, <mark>GW170104</mark>, GW170608, and GW170814
+and the reanalysis performed here. The values presented
+here supersede previously published results. For some
+events, we see differences in the overall posteriors that
+are due to a different choice of waveform models that have
+been com…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…e median of about 1 M⊙ in this reanalysis when compar-
+ing between the same precessing waveform models because
+of the improved method for computing the power spectral
+density of the detector noise and the use of frequency-
+dependent calibration envelopes. For <mark>GW170104</mark>, we find
+the median of the total mass to be 0.3 M⊙ higher because of
+the recalibration of the data and the noise subtraction.
+Similarly, we find an increase of about 0.2 M⊙ in the total
+mass for GW151012 and a decrease in the total mass of
+about 0.3 M⊙ for GW…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…an increase of about 0.2 M⊙ in the total
+mass for GW151012 and a decrease in the total mass of
+about 0.3 M⊙ for GW151226 and 0.2 M⊙ for GW170608
+in the reanalysis. The mass ratio and effective spin
+parameters are broadly consistent with the original
+analysis. <mark>GW170104</mark> especially benefits from the noise
+subtraction. This subtraction increases the matched-filter
+SNR recovered by the parameter-estimation analysis from
+13.3þ0.2
+−0.3 to 14.0þ0.2
+−0.3 . The increase in SNR results in reduced
+parameter uncertainties [128]. For th…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW170104</legend>
+      
+      <label><input type="checkbox" name="uses-7" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-7" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-7" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-7" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-7" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-7" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-7" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-7" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-7" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="8" data-event="GW170608">
+  <div class="ctx">
+    <div class="evname mono">GW170608</div>
+    <h3>25 mentions · first 12 shown</h3>
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…der to reevaluate the significance of previously
+identified GW events and to potentially discover new ones.
+The searches identified a total of ten BBH mergers and
+one binary neutron star (BNS) signal. The GW events
+GW150914, GW151012 [14], GW151226, GW170104,
+<mark>GW170608</mark>, GW170814, and GW170817 have been
+reported previously [4,15–18]. In this catalog, we announce
+four previously unpublished BBH mergers observed
+during O2: GW170729, GW170809, GW170818, and
+GW170823. We estimate the total mass of GW170729
+to be 84.4þ15.8
+−11.1 …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>… &lt;1.53 × 10−5 &lt;1.00 × 10−7 &lt;1.63 × 10−4 23.6 24.4 25.2
+GW151012 09∶54∶43.4 0.17 7.92 × 10−3 /C1/C1/C1 9.5 10.0 /C1/C1/C1
+GW151226 03∶38∶53.6 &lt;1.69 × 10−5 &lt;1.00 × 10−7 0.02 13.1 13.1 11.9
+GW170104 10∶11∶58.6 &lt;1.37 × 10−5 &lt;1.00 × 10−7 2.91 × 10−4 13.0 13.0 13.0
+<mark>GW170608</mark> 02∶01∶16.5 &lt;3.09 × 10−4 &lt;1.00 × 10−7 1.44 × 10−4 15.4 14.9 14.1
+GW170729 18∶56∶29.3 1.36 0.18 0.02 9.8 10.8 10.2
+GW170809 08∶28∶21.81 .45 × 10−4 &lt;1.00 × 10−7 /C1/C1/C1 12.2 12.4 /C1/C1/C1
+GW170814 10∶30∶43.5 &lt;1.25 × 10−5 &lt;1.00 × 10−7 &lt;2.08 × 10−4 16.3 15.9 17…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">data</span>…FARs are assigned
+using the distribution of likelihood ratios in noise computed
+from marginalizing Pðlog L/C3 ≥ log Ljnoise; periodÞ over
+all analysis periods; thus, all of O1 and O2 are used to
+inform the noise model for FAR assignment. The only
+exception is <mark>GW170608</mark>. The analysis period used to
+estimate the significance of GW170608 is unique from
+the other ones [17], and thus its FAR is assigned using only
+its local background statistics.
+For this search, GstLAL uses a bank of templates with a
+total mass between 2 and 40…</div>
+    
+    
+    <details><summary>9 more</summary>
+    <div class="mention"><span class="sec">data</span>…ise computed
+from marginalizing Pðlog L/C3 ≥ log Ljnoise; periodÞ over
+all analysis periods; thus, all of O1 and O2 are used to
+inform the noise model for FAR assignment. The only
+exception is GW170608. The analysis period used to
+estimate the significance of <mark>GW170608</mark> is unique from
+the other ones [17], and thus its FAR is assigned using only
+its local background statistics.
+For this search, GstLAL uses a bank of templates with a
+total mass between 2 and 400 M⊙ and a mass ratio between
+1=98 and 1. Components with a mass le…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…cted by the criteria in Sec. IVA,
+in Table I. Of these 11 events, seven have been previously
+reported: the three gravitational-wave events from O1 [1–4]
+and, from O2, the binary neutron star merger GW170817
+[18] and the binary black hole events GW170104 [15],
+<mark>GW170608</mark> [17], and GW170814 [16]. The updated results
+we report here supersede those previously published. Four
+new gravitational-wave events are reported here for the
+first time: GW170729, GW170809, GW170818, and
+GW170823. All four are binary black hole events.
+As no…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…the
+only confident gravitational-wave events in O1, with iden-
+tical bounds on FAR to the PyCBC results in Table I for
+GW150914 and GW151226. The measured FAR for
+GW151012 is not identical but is consistent with the
+results we present in Table I.
+2. GW170104, <mark>GW170608</mark>, and GW170814
+Three binary black hole events from O2 have already
+been published: GW170104 [15], GW170608 [17],a n d
+FIG. 3. Cumulative histograms of search results for the cWB
+search, plotted versus the inverse false-alarm rate. The dashed
+lines show the exp…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>… Table I for
+GW150914 and GW151226. The measured FAR for
+GW151012 is not identical but is consistent with the
+results we present in Table I.
+2. GW170104, GW170608, and GW170814
+Three binary black hole events from O2 have already
+been published: GW170104 [15], <mark>GW170608</mark> [17],a n d
+FIG. 3. Cumulative histograms of search results for the cWB
+search, plotted versus the inverse false-alarm rate. The dashed
+lines show the expected background, given the analysis time.
+Shaded regions denote sigma uncertainty bounds for Poisson
+unce…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>… rate greater than
+3000 y are shown with an arrow pointing right.
+B. P . ABBOTT et al. PHYS. REV . X 9, 031040 (2019)
+031040-8
+
+GW170814 [16]. Updated search results for these events
+are presented in Table I.A sn o t e di nt h eo r i g i n a l
+publication for <mark>GW170608</mark> [17], the Hanford detector
+was undergoing a procedure to stabilize angular noise at
+the time of the event; the Livingston detector was
+operating in a nominal configuration. For this reason, a
+specialized analysis time when both LIGO detectors were
+operating i…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…gston detector was
+operating in a nominal configuration. For this reason, a
+specialized analysis time when both LIGO detectors were
+operating in that same configuration is identified,
+between June 7, 2017 and June 9, 2017. This period
+that was used to analyze <mark>GW170608</mark> in the initial
+publication is again used for the results in Table I, though
+with the noise subtraction applied.
+In the reanalysis of O2 data, GW170814 is identified
+as a double-coincident event between LLO and LHO by
+GstLAL. This results from the noise subtra…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…escribed in Sec. IV.
+Full parameter estimation (PE) results for O1 events are
+provided for GW150914 in Refs. [4,95,96], for GW151226
+in Refs. [2,4], and for GW151012 in Refs. [3,4].P Er e s u l t s
+for four O2 events are provided for GW170104 in Ref.[15],
+for <mark>GW170608</mark> in Ref.[17], for GW170814 in Ref.[16],a n d
+for GW170817 in Refs.[18,97]. Data from the three-detector
+LIGO-Virgo network are used to obtain parameter estimates
+for GW170729, GW170809, GW170814, GW170817, and
+GW170818. Virgo data for GW170729, from the commis…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…0.5þ6.4
+−1.5 0.74þ0.07
+−0.05 1.0þ0.1
+−0.2 3.4þ0.7
+−1.7 × 1056 450þ180
+−190 0.09þ0.04
+−0.04 1033
+GW170104 30.8þ7.3
+−5.6 20.0þ4.9
+−4.6 21.4þ2.2
+−1.8 −0.04þ0.17
+−0.21 48.9þ5.1
+−4.0 0.66þ0.08
+−0.11 2.2þ0.5
+−0.5 3.3þ0.6
+−1.0 × 1056 990þ440
+−430 0.20þ0.08
+−0.08 921
+<mark>GW170608</mark> 11.0þ5.5
+−1.7 7.6þ1.4
+−2.2 7.9þ0.2
+−0.2 0.03þ0.19
+−0.07 17.8þ3.4
+−0.7 0.69þ0.04
+−0.04 0.9þ0.0
+−0.1 3.5þ0.4
+−1.3 × 1056 320þ120
+−110 0.07þ0.02
+−0.02 392
+GW170729 50.2þ16.2
+−10.2 34.0þ9.1
+−10.1 35.4þ6.5
+−4.8 0.37þ0.21
+−0.25 79.5þ14.7
+−10.2 0.81þ0.07
+−0.13 4.8þ1…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…me chirp mass.
+The same color code and ordering (where appropriate) apply to Figs. 5–8.
+GWTC-1: A GRA VITA TIONAL-W A VE TRANSIENT CA TALOG… PHYS. REV . X 9, 031040 (2019)
+031040-13
+
+approximately 60–120 M⊙ [135–138]. The lowest-mass
+BBH systems, GW151226 and <mark>GW170608</mark>, have 90%
+credible lower bounds on m2 of 5.6 M⊙ and 5.9 M⊙,
+respectively, and therefore lie above the proposed BH mass
+gap region [139–142] of 2–5 M⊙. The component masses
+of the BBHs show a strong degeneracy with each other.
+Lower-mass systems are dominated …</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW170608</legend>
+      
+      <label><input type="checkbox" name="uses-8" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-8" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-8" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-8" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-8" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-8" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-8" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-8" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-8" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="9" data-event="GW170809">
+  <div class="ctx">
+    <div class="evname mono">GW170809</div>
+    <h3>22 mentions · first 12 shown</h3>
+    
+    
+    <div class="mention"><span class="sec">front_matter</span>…ust 25, 2017, saw the first detection of gravitational waves from
+a binary neutron star inspiral, in addition to the observation of gravitational waves from a total of seven
+binary black hole mergers, four of which we report here for the first time: GW170729, <mark>GW170809</mark>,
+GW170818, and GW170823. For all significant gravitational-wave events, we provide estimates of the
+source properties. The detected binary black holes have total masses between 18.6þ3.2
+−0.7 M⊙ and
+84.4þ15.8
+−11.1 M⊙ and range in distance between 320þ120
+−110…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>… neutron star (BNS) signal. The GW events
+GW150914, GW151012 [14], GW151226, GW170104,
+GW170608, GW170814, and GW170817 have been
+reported previously [4,15–18]. In this catalog, we announce
+four previously unpublished BBH mergers observed
+during O2: GW170729, <mark>GW170809</mark>, GW170818, and
+GW170823. We estimate the total mass of GW170729
+to be 84.4þ15.8
+−11.1 M⊙, making it the highest-mass BBH
+observed to date. GW170818 is the second BBH observed
+in triple coincidence between the two LIGO observatories
+and Virgo after GW170814 [1…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…W151226 03∶38∶53.6 &lt;1.69 × 10−5 &lt;1.00 × 10−7 0.02 13.1 13.1 11.9
+GW170104 10∶11∶58.6 &lt;1.37 × 10−5 &lt;1.00 × 10−7 2.91 × 10−4 13.0 13.0 13.0
+GW170608 02∶01∶16.5 &lt;3.09 × 10−4 &lt;1.00 × 10−7 1.44 × 10−4 15.4 14.9 14.1
+GW170729 18∶56∶29.3 1.36 0.18 0.02 9.8 10.8 10.2
+<mark>GW170809</mark> 08∶28∶21.81 .45 × 10−4 &lt;1.00 × 10−7 /C1/C1/C1 12.2 12.4 /C1/C1/C1
+GW170814 10∶30∶43.5 &lt;1.25 × 10−5 &lt;1.00 × 10−7 &lt;2.08 × 10−4 16.3 15.9 17.2
+GW170817 12∶41∶04.4 &lt;1.25 × 10−5 &lt;1.00 × 10−7 /C1/C1/C1 30.9 33.0 /C1/C1/C1
+GW170818 02∶25∶09.1 /C1/C1/C1 4.20 × 10−5 /…</div>
+    
+    
+    <details><summary>9 more</summary>
+    <div class="mention"><span class="sec">results</span>… merger GW170817
+[18] and the binary black hole events GW170104 [15],
+GW170608 [17], and GW170814 [16]. The updated results
+we report here supersede those previously published. Four
+new gravitational-wave events are reported here for the
+first time: GW170729, <mark>GW170809</mark>, GW170818, and
+GW170823. All four are binary black hole events.
+As noted in Sec. III, data from O1 are reanalyzed
+because of improvements in the search pipelines and the
+FIG. 2. Cumulative histograms of search results for the matched-filter searches, plotted …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…led CBC parameter estimation studies in Sec. V also
+indicate no significant evidence for observationally impor-
+tant precession or higher-order modes. This event was
+identified only in the offline analyses, so no alert was sent
+to electromagnetic partners.
+5. <mark>GW170809</mark>
+GW170809 was observed on August 9, 2017 at
+08∶28∶21.8 UTC with a FAR of 1.45 × 10−4 y−1 by
+PyCBC and &lt;1.00 × 10−7 y−1 by GstLAL. This event
+was identified in low latency by both the GstLAL and cWB
+pipelines, and an alert was sent to electromagnetic observ-
+in…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…arameter estimation studies in Sec. V also
+indicate no significant evidence for observationally impor-
+tant precession or higher-order modes. This event was
+identified only in the offline analyses, so no alert was sent
+to electromagnetic partners.
+5. GW170809
+<mark>GW170809</mark> was observed on August 9, 2017 at
+08∶28∶21.8 UTC with a FAR of 1.45 × 10−4 y−1 by
+PyCBC and &lt;1.00 × 10−7 y−1 by GstLAL. This event
+was identified in low latency by both the GstLAL and cWB
+pipelines, and an alert was sent to electromagnetic observ-
+ing partner…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…r e s u l t s
+for four O2 events are provided for GW170104 in Ref.[15],
+for GW170608 in Ref.[17], for GW170814 in Ref.[16],a n d
+for GW170817 in Refs.[18,97]. Data from the three-detector
+LIGO-Virgo network are used to obtain parameter estimates
+for GW170729, <mark>GW170809</mark>, GW170814, GW170817, and
+GW170818. Virgo data for GW170729, from the commis-
+sioning phase before it officially joined, are included for PE
+analyses, because the calibration of the data and the
+sensitivity of the instrument are comparable to that in
+August. F…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…
+−0.7 0.69þ0.04
+−0.04 0.9þ0.0
+−0.1 3.5þ0.4
+−1.3 × 1056 320þ120
+−110 0.07þ0.02
+−0.02 392
+GW170729 50.2þ16.2
+−10.2 34.0þ9.1
+−10.1 35.4þ6.5
+−4.8 0.37þ0.21
+−0.25 79.5þ14.7
+−10.2 0.81þ0.07
+−0.13 4.8þ1.7
+−1.7 4.2þ0.9
+−1.5 × 1056 2840þ1400
+−1360 0.49þ0.19
+−0.21 1041
+<mark>GW170809</mark> 35.0þ8.3
+−5.9 23.8þ5.1
+−5.2 24.9þ2.1
+−1.7 0.08þ0.17
+−0.17 56.3þ5.2
+−3.8 0.70þ0.08
+−0.09 2.7þ0.6
+−0.6 3.5þ0.6
+−0.9 × 1056 1030þ320
+−390 0.20þ0.05
+−0.07 308
+GW170814 30.6þ5.6
+−3.0 25.2þ2.8
+−4.0 24.1þ1.4
+−1.1 0.07þ0.12
+−0.12 53.2þ3.2
+−2.4 0.72þ0.07
+−0.05 2.7þ0.4…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…l coordinates (right ascension is measured in hours, and
+declination is measured in degrees). 50% and 90% credible regions of posterior probability sky areas for the GW events. Top: Confidently
+detectedO2 GW events[22] (GW170817, GW170104, GW170823, GW170608, <mark>GW170809</mark>, and GW170814) for which alerts were sent to
+EM observers. Bottom: O1 events (GW150914, GW151226, and GW151012), along with O2 events (GW170729 and GW170818) not
+previously released to EM observers. Where applicable, the initial sky maps shared with EM partne…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…
+has a median final spin of af ¼ 0.81þ0.07
+−0.13 and is consistent
+with 0.7 at 90% confidence.
+D. Distance, inclination, and sky location
+The luminosity distance dL of a GW source is inversely
+proportional to the signal ’s amplitude. Six BBH events
+(GW170104, <mark>GW170809</mark>, GW170818, GW151012,
+GW170823, and GW170729) have median distances of
+about a Gpc or beyond, the most distant of which is
+GW170729 at dL ¼ 2840þ1400
+−1360 Mpc, corresponding to a
+redshift of 0.49þ0.19
+−0.21 . The closest BBH is GW170608, at
+dL ¼ 320þ120
+−110 …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…r momentum
+pointed parallel or antiparallel, respectively, to the line of
+sight). These orientations produce the greatest gravita-
+tional-wave amplitude and so are consistent with the largest
+distance. For GW170817, the θJN distribution has a single
+mode. For <mark>GW170809</mark>, GW170818, and GW150914, the
+90% interval contains only a single mode so that the fifth
+percentile lies above θJN ¼ 90°. Orientations of the total
+orbital angular momentum that are strongly misaligned
+with the line of sight are, in general, disfavored due to
+…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…ations forO1 events, along with O2 events not
+previously released to EM observers. The sky area is
+expected to scale inversely with the square of the SNR
+[20,197]. This trend is followed for events detected by the
+two LIGO detectors. Several events (GW170729,
+<mark>GW170809</mark>, GW170814, GW170817, and GW170818)
+are observed with the two LIGO detectors and Virgo, which
+improves the sky localization[201]. The SNR contributed by
+Virgo can significantly shrink the area. We find the smallest
+90% sky localization areas for GW170817: 16 d…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW170809</legend>
+      
+      <label><input type="checkbox" name="uses-9" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-9" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-9" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-9" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-9" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-9" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-9" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-9" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-9" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="10" data-event="GW170817">
+  <div class="ctx">
+    <div class="evname mono">GW170817</div>
+    <h3>53 mentions · first 12 shown · <span class="cptag">1 by counterpart name</span></h3>
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…gnificance of previously
+identified GW events and to potentially discover new ones.
+The searches identified a total of ten BBH mergers and
+one binary neutron star (BNS) signal. The GW events
+GW150914, GW151012 [14], GW151226, GW170104,
+GW170608, GW170814, and <mark>GW170817</mark> have been
+reported previously [4,15–18]. In this catalog, we announce
+four previously unpublished BBH mergers observed
+during O2: GW170729, GW170809, GW170818, and
+GW170823. We estimate the total mass of GW170729
+to be 84.4þ15.8
+−11.1 M⊙, making it the highes…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…∶01∶16.5 &lt;3.09 × 10−4 &lt;1.00 × 10−7 1.44 × 10−4 15.4 14.9 14.1
+GW170729 18∶56∶29.3 1.36 0.18 0.02 9.8 10.8 10.2
+GW170809 08∶28∶21.81 .45 × 10−4 &lt;1.00 × 10−7 /C1/C1/C1 12.2 12.4 /C1/C1/C1
+GW170814 10∶30∶43.5 &lt;1.25 × 10−5 &lt;1.00 × 10−7 &lt;2.08 × 10−4 16.3 15.9 17.2
+<mark>GW170817</mark> 12∶41∶04.4 &lt;1.25 × 10−5 &lt;1.00 × 10−7 /C1/C1/C1 30.9 33.0 /C1/C1/C1
+GW170818 02∶25∶09.1 /C1/C1/C1 4.20 × 10−5 /C1/C1/C1 /C1/C1/C1 11.3 /C1/C1/C1
+GW170823 13∶13∶58.5 &lt;3.29 × 10−5 &lt;1.00 × 10−7 2.14 × 10−3 11.1 11.5 10.8
+TABLE II. Marginal triggers from the two m…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…titative details below on the 11
+gravitational events, as selected by the criteria in Sec. IVA,
+in Table I. Of these 11 events, seven have been previously
+reported: the three gravitational-wave events from O1 [1–4]
+and, from O2, the binary neutron star merger <mark>GW170817</mark>
+[18] and the binary black hole events GW170104 [15],
+GW170608 [17], and GW170814 [16]. The updated results
+we report here supersede those previously published. Four
+new gravitational-wave events are reported here for the
+first time: GW170729, GW170809, GW1708…</div>
+    
+    
+    <details><summary>9 more</summary>
+    <div class="mention"><span class="sec">results</span>… the O2 pipelines; no new
+gravitational-wave events were discovered. The first binary
+black hole observation, GW150914, remains the highest
+SNR event in O1 and the second highest in the combined
+O1 and O2 datasets, behind only the binary neutron star
+inspiral <mark>GW170817</mark>.
+Recently, Ref. [88] appeared. That catalog also presents
+search results from the PyCBC pipeline for O1 and also
+finds GW150914, GW151012, and GW151226 as the
+only confident gravitational-wave events in O1, with iden-
+tical bounds on FAR to the PyCBC results …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…mes of arrival than the search pipelines — finds that a
+triple-coincident detection is strongly favored over a
+double-coincident detection, by a factor of approximately
+60. Thus, the updated results are consistent with those
+that were previously published.
+3. <mark>GW170817</mark>
+Across the entirety of O1 and O2, the binary neutron
+star inspiral GW170817 remains the event with the highest
+network SNR and is accordingly assigned the most
+stringent possible bound on its FAR by PyCBC and the
+highest value of L (the logarithm of the likel…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…tection is strongly favored over a
+double-coincident detection, by a factor of approximately
+60. Thus, the updated results are consistent with those
+that were previously published.
+3. GW170817
+Across the entirety of O1 and O2, the binary neutron
+star inspiral <mark>GW170817</mark> remains the event with the highest
+network SNR and is accordingly assigned the most
+stringent possible bound on its FAR by PyCBC and the
+highest value of L (the logarithm of the likelihood ratio) of
+any event in the combined O1 and O2 dataset by GstLAL.
+As ex…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…ts for O1 events are
+provided for GW150914 in Refs. [4,95,96], for GW151226
+in Refs. [2,4], and for GW151012 in Refs. [3,4].P Er e s u l t s
+for four O2 events are provided for GW170104 in Ref.[15],
+for GW170608 in Ref.[17], for GW170814 in Ref.[16],a n d
+for <mark>GW170817</mark> in Refs.[18,97]. Data from the three-detector
+LIGO-Virgo network are used to obtain parameter estimates
+for GW170729, GW170809, GW170814, GW170817, and
+GW170818. Virgo data for GW170729, from the commis-
+sioning phase before it officially joined, are included…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…ur O2 events are provided for GW170104 in Ref.[15],
+for GW170608 in Ref.[17], for GW170814 in Ref.[16],a n d
+for GW170817 in Refs.[18,97]. Data from the three-detector
+LIGO-Virgo network are used to obtain parameter estimates
+for GW170729, GW170809, GW170814, <mark>GW170817</mark>, and
+GW170818. Virgo data for GW170729, from the commis-
+sioning phase before it officially joined, are included for PE
+analyses, because the calibration of the data and the
+sensitivity of the instrument are comparable to that in
+August. For the remaining eve…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…ible intervals for inferred quantities. For BBH coales-
+cences, parameter uncertainties include statistical and sys-
+tematic errors from averaging posterior probability
+distributions over the two waveform models, as well as
+calibration uncertainty. Apart from <mark>GW170817</mark>, all posterior
+distributions of GW events are consistent with originating
+from BBHs. Posterior distributions for all GW events are
+shown in Figs. 4–8. Mass and tidal deformability poste-
+riors for GW170817 are shown in Fig. 9. For BBH
+coalescences, we present…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…odels, as well as
+calibration uncertainty. Apart from GW170817, all posterior
+distributions of GW events are consistent with originating
+from BBHs. Posterior distributions for all GW events are
+shown in Figs. 4–8. Mass and tidal deformability poste-
+riors for <mark>GW170817</mark> are shown in Fig. 9. For BBH
+coalescences, we present combined posterior distributions
+from an effective precessing spin waveform model
+(IMRPhenomPv2) [25,26,49] and a fully precessing
+model (SEOBNRv3) [27,28,30]. For the analysis of
+GW170817, we present resu…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…poste-
+riors for GW170817 are shown in Fig. 9. For BBH
+coalescences, we present combined posterior distributions
+from an effective precessing spin waveform model
+(IMRPhenomPv2) [25,26,49] and a fully precessing
+model (SEOBNRv3) [27,28,30]. For the analysis of
+<mark>GW170817</mark>, we present results for three frequency-
+domain models IMRPhenomPv2NRT [25,26,32,49,99] ,
+SEOBNRv4NRT [29,32,77,99] , and TaylorF2 [35,36,
+38,100–112] and two time-domain models SEOBNRv4T
+[31] and TEOBResumS [33,113]. Details on Bayesian
+parameter estimation …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…J ¼ ⃗L þ ⃗S1 þ ⃗S2.
+TABLE III. Selected source parameters of the 11 confident detections. We report median values with 90% credible intervals that
+include statistical errors and systematic errors from averaging the results of two waveform models for BBHs. For <mark>GW170817</mark>, credible
+intervals and statistical errors are shown for IMRPhenomPv2NRT with a low spin prior, while the sky area is computed from TaylorF2
+samples. The redshift for NGC 4993 from Ref. [94] and its associated uncertainties are used to calculate source-frame …</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW170817</legend>
+      
+      <label><input type="checkbox" name="uses-10" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-10" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-10" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-10" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-10" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-10" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-10" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-10" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-10" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="11" data-event="GW170818">
+  <div class="ctx">
+    <div class="evname mono">GW170818</div>
+    <h3>22 mentions · first 12 shown</h3>
+    
+    
+    <div class="mention"><span class="sec">front_matter</span>…17, saw the first detection of gravitational waves from
+a binary neutron star inspiral, in addition to the observation of gravitational waves from a total of seven
+binary black hole mergers, four of which we report here for the first time: GW170729, GW170809,
+<mark>GW170818</mark>, and GW170823. For all significant gravitational-wave events, we provide estimates of the
+source properties. The detected binary black holes have total masses between 18.6þ3.2
+−0.7 M⊙ and
+84.4þ15.8
+−11.1 M⊙ and range in distance between 320þ120
+−110 and 2840þ…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…tar (BNS) signal. The GW events
+GW150914, GW151012 [14], GW151226, GW170104,
+GW170608, GW170814, and GW170817 have been
+reported previously [4,15–18]. In this catalog, we announce
+four previously unpublished BBH mergers observed
+during O2: GW170729, GW170809, <mark>GW170818</mark>, and
+GW170823. We estimate the total mass of GW170729
+to be 84.4þ15.8
+−11.1 M⊙, making it the highest-mass BBH
+observed to date. GW170818 is the second BBH observed
+in triple coincidence between the two LIGO observatories
+and Virgo after GW170814 [16]. As the…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…y [4,15–18]. In this catalog, we announce
+four previously unpublished BBH mergers observed
+during O2: GW170729, GW170809, GW170818, and
+GW170823. We estimate the total mass of GW170729
+to be 84.4þ15.8
+−11.1 M⊙, making it the highest-mass BBH
+observed to date. <mark>GW170818</mark> is the second BBH observed
+in triple coincidence between the two LIGO observatories
+and Virgo after GW170814 [16]. As the sky location is
+primarily determined by the differences in the times of
+arrival of the GW signal at the different detector sites,
+LIGO-Vi…</div>
+    
+    
+    <details><summary>9 more</summary>
+    <div class="mention"><span class="sec">introduction</span>…∶29.3 1.36 0.18 0.02 9.8 10.8 10.2
+GW170809 08∶28∶21.81 .45 × 10−4 &lt;1.00 × 10−7 /C1/C1/C1 12.2 12.4 /C1/C1/C1
+GW170814 10∶30∶43.5 &lt;1.25 × 10−5 &lt;1.00 × 10−7 &lt;2.08 × 10−4 16.3 15.9 17.2
+GW170817 12∶41∶04.4 &lt;1.25 × 10−5 &lt;1.00 × 10−7 /C1/C1/C1 30.9 33.0 /C1/C1/C1
+<mark>GW170818</mark> 02∶25∶09.1 /C1/C1/C1 4.20 × 10−5 /C1/C1/C1 /C1/C1/C1 11.3 /C1/C1/C1
+GW170823 13∶13∶58.5 &lt;3.29 × 10−5 &lt;1.00 × 10−7 2.14 × 10−3 11.1 11.5 10.8
+TABLE II. Marginal triggers from the two matched-filter CBC searches. To distinguish events occurring on the same UTC …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…170817
+[18] and the binary black hole events GW170104 [15],
+GW170608 [17], and GW170814 [16]. The updated results
+we report here supersede those previously published. Four
+new gravitational-wave events are reported here for the
+first time: GW170729, GW170809, <mark>GW170818</mark>, and
+GW170823. All four are binary black hole events.
+As noted in Sec. III, data from O1 are reanalyzed
+because of improvements in the search pipelines and the
+FIG. 2. Cumulative histograms of search results for the matched-filter searches, plotted versus inv…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…as sent to electromagnetic observ-
+ing partners. In the final offline cWB analysis with updated
+calibration and noise subtracted from LIGO data, this
+event did not pass one of the signal-independent vetoes
+(Sec. III C) and was therefore not assigned a FAR.
+6. <mark>GW170818</mark>
+GW170818 was observed at02∶25∶09.1 UTC on August
+18, 2017, by GstLAL with a FAR of4.20 × 10−5 y−1;i tw a s
+not observed by either the PyCBC or cWB pipelines. It is
+observed as a triple-coincident event by GstLAL, with an
+SNR in Virgo of 4.2, a Hanford SNR of …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">results</span>…o electromagnetic observ-
+ing partners. In the final offline cWB analysis with updated
+calibration and noise subtracted from LIGO data, this
+event did not pass one of the signal-independent vetoes
+(Sec. III C) and was therefore not assigned a FAR.
+6. GW170818
+<mark>GW170818</mark> was observed at02∶25∶09.1 UTC on August
+18, 2017, by GstLAL with a FAR of4.20 × 10−5 y−1;i tw a s
+not observed by either the PyCBC or cWB pipelines. It is
+observed as a triple-coincident event by GstLAL, with an
+SNR in Virgo of 4.2, a Hanford SNR of 4.1, and …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…re provided for GW170104 in Ref.[15],
+for GW170608 in Ref.[17], for GW170814 in Ref.[16],a n d
+for GW170817 in Refs.[18,97]. Data from the three-detector
+LIGO-Virgo network are used to obtain parameter estimates
+for GW170729, GW170809, GW170814, GW170817, and
+<mark>GW170818</mark>. Virgo data for GW170729, from the commis-
+sioning phase before it officially joined, are included for PE
+analyses, because the calibration of the data and the
+sensitivity of the instrument are comparable to that in
+August. For the remaining events, the analy…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>….1þ1.4
+−1.1 0.07þ0.12
+−0.12 53.2þ3.2
+−2.4 0.72þ0.07
+−0.05 2.7þ0.4
+−0.3 3.7þ0.4
+−0.5 × 1056 600þ150
+−220 0.12þ0.03
+−0.04 87
+GW170817 1.46þ0.12
+−0.10 1.27þ0.09
+−0.09 1.186þ0.001
+−0.001 0.00þ0.02
+−0.01 ≤ 2.8 ≤ 0.89 ≥ 0.04 ≥ 0.1 × 1056 40þ7
+−15 0.01þ0.00
+−0.00 16
+<mark>GW170818</mark> 35.4þ7.5
+−4.7 26.7þ4.3
+−5.2 26.5þ2.1
+−1.7 −0.09þ0.18
+−0.21 59.4þ4.9
+−3.8 0.67þ0.07
+−0.08 2.7þ0.5
+−0.5 3.4þ0.5
+−0.7 × 1056 1060þ420
+−380 0.21þ0.07
+−0.07 39
+GW170823 39.5þ11.2
+−6.7 29.0þ6.7
+−7.8 29.2þ4.6
+−3.6 0.09þ0.22
+−0.26 65.4þ10.1
+−7.4 0.72þ0.09
+−0.12 3.3þ1…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>… for the GW events. Top: Confidently
+detectedO2 GW events[22] (GW170817, GW170104, GW170823, GW170608, GW170809, and GW170814) for which alerts were sent to
+EM observers. Bottom: O1 events (GW150914, GW151226, and GW151012), along with O2 events (GW170729 and <mark>GW170818</mark>) not
+previously released to EM observers. Where applicable, the initial sky maps shared with EM partners in low latency are available from Ref.[185].
+B. P . ABBOTT et al. PHYS. REV . X 9, 031040 (2019)
+031040-16
+
+depends on the mass ratio and spins, the poste…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…ian final spin of af ¼ 0.81þ0.07
+−0.13 and is consistent
+with 0.7 at 90% confidence.
+D. Distance, inclination, and sky location
+The luminosity distance dL of a GW source is inversely
+proportional to the signal ’s amplitude. Six BBH events
+(GW170104, GW170809, <mark>GW170818</mark>, GW151012,
+GW170823, and GW170729) have median distances of
+about a Gpc or beyond, the most distant of which is
+GW170729 at dL ¼ 2840þ1400
+−1360 Mpc, corresponding to a
+redshift of 0.49þ0.19
+−0.21 . The closest BBH is GW170608, at
+dL ¼ 320þ120
+−110 Mpc, while…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…
+pointed parallel or antiparallel, respectively, to the line of
+sight). These orientations produce the greatest gravita-
+tional-wave amplitude and so are consistent with the largest
+distance. For GW170817, the θJN distribution has a single
+mode. For GW170809, <mark>GW170818</mark>, and GW150914, the
+90% interval contains only a single mode so that the fifth
+percentile lies above θJN ¼ 90°. Orientations of the total
+orbital angular momentum that are strongly misaligned
+with the line of sight are, in general, disfavored due to
+the weaker…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW170818</legend>
+      
+      <label><input type="checkbox" name="uses-11" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-11" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-11" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-11" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-11" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-11" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-11" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-11" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-11" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+
+<section class="panel" style="margin-top:18px">
+  <label class="check"><input type="checkbox" id="author"> I am an author of this paper</label>
+  <textarea id="comment" rows="2" placeholder="Anything else about this paper (optional)"></textarea>
+  <div id="err" class="err" hidden></div>
+  <div class="actions">
+    <button class="primary" type="button" id="submit">Submit &amp; next paper</button>
+    <span class="spacer"></span>
+    <select id="skip-reason" aria-label="Reason for skipping">
+      <option value="">Skip this paper because…</option>
+      <option value="cannot_judge">I can't judge this paper's field</option>
+      <option value="conflict">conflict of interest</option>
+      <option value="no_access">the paper won't open</option>
+      <option value="other">other (say in the comment)</option>
+    </select>
+    <button type="button" id="skip">Skip</button>
+  </div>
+  <div id="status" class="small" style="margin-top:8px"></div>
+  <button type="button" class="primary" id="continue" hidden>Continue to the next paper</button>
+</section>
+</div>
+</div>
+<script>window.SG_PAGE = {"arxiv_id": "1811.12907", "events": ["151012.2", "151116", "161217", "170208", "170219", "170405", "GW150914", "GW170104", "GW170608", "GW170809", "GW170817", "GW170818"], "kind": "sample", "uniform": false};</script>
+<script src="../config.js"></script>
+<script src="../sg.js"></script>
+<script>SG.paperPage();</script>
+</body>
+</html>

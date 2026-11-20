@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Label · 2009.01190</title>
+<style>
+:root{
+  --ground:#f4f7f8; --surface:#fff; --surface-2:#eef3f5;
+  --ink:#111a1f; --ink-2:#3d4f58; --muted:#63757e;
+  --line:#d8e3e7; --line-2:#c2d2d8;
+  --accent:#0b6e82; --accent-soft:#0b6e8215; --accent-ink:#064c5a;
+  --amber:#8a5200; --amber-soft:#8a520014; --hit:#ffe08a;
+  --ok:#2f7d3a;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#0b1215; --surface:#121c20; --surface-2:#17242a;
+  --ink:#e4edf0; --ink-2:#b4c6cd; --muted:#8497a0;
+  --line:#22333a; --line-2:#2e434c;
+  --accent:#3fc4dc; --accent-soft:#3fc4dc1a; --accent-ink:#7fdcee;
+  --amber:#f0b429; --amber-soft:#f0b4291a; --hit:#6b5410;
+  --ok:#6fcf7f;
+}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--ground);color:var(--ink);margin:0;
+  font:15px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Helvetica,sans-serif}
+.wrap{max-width:1280px;margin:0 auto;padding:0 18px 64px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.tnum{font-variant-numeric:tabular-nums}
+.mut{color:var(--muted)}.small{font-size:.85rem}
+header{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
+  border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:18px;font-size:.92rem}
+header .bar{flex:1 1 160px;height:6px;background:var(--line);border-radius:3px;overflow:hidden;min-width:120px}
+header .bar i{display:block;height:100%;background:var(--accent)}
+h1{font-size:1.3rem;margin:0 0 4px;letter-spacing:-.01em;text-wrap:balance}
+h3{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  margin:18px 0 8px;font-weight:600}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.73rem;
+  padding:2px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);
+  margin:0 4px 4px 0}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.chip.done{border-color:var(--ok);color:var(--ok)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:.36rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.wrapx{overflow-x:auto}
+</style>
+<style>
+.wrap{max-width:1180px}
+h2{font-size:1.02rem;margin:0 0 6px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
+  margin:0 0 14px;font-size:.9rem}
+.card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
+.card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card.missing{border-color:#c0392b}
+@media (max-width:860px){.card{grid-template-columns:1fr}}
+.evname{font-size:1.05rem;font-weight:600}
+.mention{border-left:3px solid var(--line-2);padding:4px 0 4px 12px;margin:0 0 12px;
+  font-size:.88rem;color:var(--ink-2);white-space:pre-wrap;overflow-wrap:anywhere}
+.mention .sec{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:2px;white-space:normal}
+.cites{margin-top:8px;padding:8px 10px;background:var(--surface-2);border-radius:7px;white-space:normal}
+.cite{white-space:pre-wrap;margin:6px 0 0;padding-top:6px;border-top:1px solid var(--line)}
+mark{background:var(--hit);color:var(--ink);padding:0 2px;border-radius:2px;font-weight:600}
+mark.cp{background:var(--amber-soft);color:var(--amber);outline:1px dashed var(--amber)}
+mark.ref{background:var(--accent-soft);color:var(--accent-ink);outline:1px solid var(--accent)}
+.mention.cp{border-left-color:var(--amber)}
+.cptag{color:var(--amber);text-transform:none;letter-spacing:0;font-weight:600}
+details summary{cursor:pointer;color:var(--muted);font-size:.85rem;margin-bottom:8px}
+.abstract{font-size:.9rem;color:var(--ink-2)}
+fieldset{border:0;margin:0 0 12px;padding:0}
+legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin:0 0 8px}
+.eng label{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;padding:7px 10px;
+  border:1px solid var(--line);border-radius:8px;margin-bottom:6px;cursor:pointer}
+.eng label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.eng input{grid-row:span 2;margin-top:4px}
+.eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
+.eng span{font-size:.78rem;color:var(--muted)}
+/* The long explanations only on the card being answered. */
+.card:not(.active) .eng span{display:none}
+kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
+  border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
+.fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg label{flex:1;text-align:center;padding:6px 8px;border:1px solid var(--line-2);border-radius:7px;
+  cursor:pointer;font-size:.85rem}
+.seg label:has(input:checked){border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:focus-visible){outline:2px solid var(--accent)}
+input[type=text],textarea,select{width:100%;font:inherit;font-size:.88rem;padding:6px 8px;
+  border:1px solid var(--line-2);border-radius:7px;background:var(--surface);color:var(--ink);margin-top:8px}
+select{width:auto;margin:0}
+.check{display:flex;gap:8px;align-items:center;font-size:.9rem}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.spacer{flex:1}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface-2);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.err{color:#c0392b;font-weight:600;font-size:.88rem;margin-top:10px}
+.feedback{border-radius:8px;padding:8px 10px;font-size:.88rem}
+.feedback.ok{background:#2f7d3a1a;border:1px solid var(--ok)}
+.feedback.diff{background:var(--amber-soft);border:1px solid var(--amber)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a href="../index.html" class="keep-r">Start page</a>
+  <span id="prog" class="tnum"></span>
+  <span class="bar" aria-hidden="true"><i id="progbar" style="width:0"></i></span>
+  <a href="../guide.html" target="_blank" rel="noopener">Guide (v3.1)</a>
+  <span id="mode" class="small" hidden></span>
+</header>
+
+<div id="again" class="note" hidden>You have already submitted this paper. Submitting again replaces your earlier answer.</div>
+
+
+<h1>Properties and Astrophysical Implications of the 150 M&lt;SUB&gt;☉&lt;/SUB&gt; Binary Black Hole Merger GW190521</h1>
+<div class="small mut"><a href="https://arxiv.org/abs/2009.01190" target="_blank" rel="noopener" class="mono">arXiv:2009.01190</a> · open the paper whenever the snippets are not enough</div>
+<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">The gravitational-wave signal GW190521 is consistent with a binary black hole (BBH) merger source at redshift 0.8 with unusually high component masses, ${85}_{-14}^{+21}$ M&lt;SUB&gt;☉&lt;/SUB&gt; and ${66}_{-18}^{+17}$ M&lt;SUB&gt;☉&lt;/SUB&gt;, compared to previously reported events, and shows mild evidence for spin-induced orbital precession. The primary falls in the mass gap predicted by (pulsational) pair-instability supernova theory, in the approximate range 65-120 M&lt;SUB&gt;☉&lt;/SUB&gt;. The probability that at least one of the black holes in GW190521 is in that range is 99.0%. The final mass of the merger ( ${142}_{-16}^{+28}$ M&lt;SUB&gt;☉&lt;/SUB&gt;) classifies it as an intermediate-mass black hole. Under the assumption of a quasi-circular BBH coalescence, we detail the physical properties of GW190521&#39;s source binary and its post-merger remnant, including component masses and spin vectors. Three different waveform models, as well as direct comparison to numerical solutions of general relativity, yield consistent estimates of these properties. Tests of strong-field general relativity targeting the merger-ringdown stages of the coalescence indicate consistency of the observed signal with theoretical predictions. We estimate the merger rate of similar systems to be ${0.13}_{-0.11}^{+0.30}\,{{\rm{Gpc}}}^{-3}\,{{\rm{yr}}}^{-1}$ . We discuss the astrophysical implications of GW190521 for stellar collapse and for the possible formation of black holes in the pair-instability mass gap through various channels: via (multiple) stellar coalescences, or via hierarchical mergers of lower-mass black holes in star clusters or in active galactic nuclei. We find it to be unlikely that GW190521 is a strongly lensed signal of a lower-mass black hole binary merger. We also discuss more exotic possible sources for GW190521, including a highly eccentric black hole binary, or a primordial black hole binary.</p></details>
+
+
+
+<div id="pairs" >
+<p class="small mut" style="margin:18px 0 0">9 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+
+
+<section class="card" data-i="0" data-event="GW150914">
+  <div class="ctx">
+    <div class="evname mono">GW150914</div>
+    <h3>1 mention</h3>
+    
+    
+    <div class="mention"><span class="sec">methods</span>…150−17+29​M⊙M={150^{+29}_{-17}}\,\mathrm{M}_{\odot} making it the highest-mass binary observed via GWs to date. The binary chirp mass is ℳ=64−8+13​M⊙\mathcal{M}={64^{+13}_{-8}}\,\mathrm{M}_{\odot}, a factor ∼2{\sim}2 times higher than the first BBH detection, <mark>GW150914</mark> [5, 20]. GW190521 is consistent with a nearly equal mass binary with mass ratio q=m2/m1=0.79−0.29+0.19q=m_{2}/m_{1}={0.79^{+0.19}_{-0.29}} (90% credible interval).
+
+In the detector frame, the measured masses are m1d​e​t=152−19+32​M⊙m_{1}^{det}={152^{+32}_{-19…</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW150914</legend>
+      
+      <label><input type="checkbox" name="uses-0" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-0" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-0" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-0" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-0" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-0" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-0" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-0" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-0" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="1" data-event="GW151205">
+  <div class="ctx">
+    <div class="evname mono">GW151205</div>
+    <h3>1 mention</h3>
+    
+    
+    <div class="mention"><span class="sec">methods</span>…al Formation Channels and Implications for Stellar Collapse
+
+Both the primary component mass and remnant mass of this system are higher than the previously most massive BBH detected by LSC and Virgo, GW170729 [20]. Other candidate events, dubbed GW170817A and <mark>GW151205</mark>, have been identified in O1 and O2 data by other groups [349, 257], with component masses higher than GW170729 if of astrophysical origin. Here we do not attempt to assess possible astrophysical implications of such additional events.
+
+Our analysis of the BBH…</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW151205</legend>
+      
+      <label><input type="checkbox" name="uses-1" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-1" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-1" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-1" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-1" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-1" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-1" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-1" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-1" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="2" data-event="GW170729">
+  <div class="ctx">
+    <div class="evname mono">GW170729</div>
+    <h3>4 mentions</h3>
+    
+    
+    <div class="mention"><span class="sec">methods</span>…ss component BH known to date in GW astronomy.
+The mass of the secondary BH is inferred to be m2=66−18+17​M⊙m_{2}={66^{+17}_{-18}}\,\mathrm{M}_{\odot}.
+The primary BH of GW190521 is more massive (median value) than any remnant BH reported in GWTC-1 except for <mark>GW170729</mark> [20]; the secondary BH of GW190521 is also more massive than any primary BH in GWTC-1.
+
+These source frame masses have been redshift-corrected, as discussed above, using a value of the Hubble parameter H0=67.9H_{0}=67.9 from Planck 2015. However, recent measu…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…mation channels, as in the following section.
+
+V Astrophysical Formation Channels and Implications for Stellar Collapse
+
+Both the primary component mass and remnant mass of this system are higher than the previously most massive BBH detected by LSC and Virgo, <mark>GW170729</mark> [20]. Other candidate events, dubbed GW170817A and GW151205, have been identified in O1 and O2 data by other groups [349, 257], with component masses higher than GW170729 if of astrophysical origin. Here we do not attempt to assess possible astrophysical impl…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…f this system are higher than the previously most massive BBH detected by LSC and Virgo, GW170729 [20]. Other candidate events, dubbed GW170817A and GW151205, have been identified in O1 and O2 data by other groups [349, 257], with component masses higher than <mark>GW170729</mark> if of astrophysical origin. Here we do not attempt to assess possible astrophysical implications of such additional events.
+
+Our analysis of the BBH population detected in the O1 and O2 runs using parameterized models of the mass distribution indicates that 9…</div>
+    
+    
+    <details><summary>1 more</summary>
+    <div class="mention"><span class="sec">methods</span>…e then present a Bayesian estimate of the relative probabilities (odds) that GW190521 is the product of a hierarchical BH merger, as opposed to a merger of first-generation (hereafter 1g) BHs.
+The masses of 2g BHs can fall in the PI gap: the merger remnant of <mark>GW170729</mark> [20] is a previously reported example.
+A 2g BH is alone at birth, unless it was a member of a triple system that remains bound after the formation of the BH. However, a single 2g BH might acquire a companion through dynamical exchanges, if it forms in a dense…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW170729</legend>
+      
+      <label><input type="checkbox" name="uses-2" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-2" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-2" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-2" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-2" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-2" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-2" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-2" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-2" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="3" data-event="GW170817">
+  <div class="ctx">
+    <div class="evname mono">GW170817</div>
+    <h3>1 mention</h3>
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…, R., &amp; Rizzo, M. 2018.
+
+https://arxiv.org/abs/1805.10457
+
+ 
+[205]
+
+Lanzoni, B., Mucciarelli, A., Origlia, L., et al. 2013, ApJ, 769, 107,
+doi: 10.1088/0004-637X/769/2/107
+
+ 
+[206]
+
+Lenon, A. K., Nitz, A. H., &amp; Brown, D. A. 2020, Measuring the eccentricity of
+<mark>GW170817</mark> and GW190425, doi: 10.1093/mnras/staa2120
+
+ 
+[207]
+
+Leung, S.-C., Nomoto, K., &amp; Blinnikov, S. 2019, ApJ, 887, 72,
+doi: 10.3847/1538-4357/ab4fe5
+
+ 
+[208]
+
+Li, A. K. Y., Lo, R. K. L., Sachdev, S., Li, T. G. F., &amp; Weinstein,
+A. J. 2019, arXiv e-prints, arXiv:190…</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW170817</legend>
+      
+      <label><input type="checkbox" name="uses-3" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-3" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-3" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-3" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-3" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-3" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-3" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-3" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-3" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="4" data-event="GW170817A">
+  <div class="ctx">
+    <div class="evname mono">GW170817A</div>
+    <h3>1 mention</h3>
+    
+    
+    <div class="mention"><span class="sec">methods</span>…
+V Astrophysical Formation Channels and Implications for Stellar Collapse
+
+Both the primary component mass and remnant mass of this system are higher than the previously most massive BBH detected by LSC and Virgo, GW170729 [20]. Other candidate events, dubbed <mark>GW170817A</mark> and GW151205, have been identified in O1 and O2 data by other groups [349, 257], with component masses higher than GW170729 if of astrophysical origin. Here we do not attempt to assess possible astrophysical implications of such additional events.
+
+Our analys…</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW170817A</legend>
+      
+      <label><input type="checkbox" name="uses-4" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-4" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-4" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-4" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-4" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-4" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-4" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-4" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-4" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="5" data-event="GW190412">
+  <div class="ctx">
+    <div class="evname mono">GW190412</div>
+    <h3>1 mention</h3>
+    
+    
+    <div class="mention"><span class="sec">methods</span>…rtant for high mass BBH mergers in advanced detector observations [331, 330, 156, 92, 93, 103, 270, 239, 203]; their presence was also crucial in reducing uncertainties in the mass ratio and component spins of the recently reported unequal-mass binary mergers <mark>GW190412</mark> [29] and GW190814 [30].
+To quantify the impact and evidence of higher-order multipoles on GW190521, we computed the posterior distribution of our preferred model, NRSur PHM [332], using the RIFT pipeline [204] for three different combinations of modes: ℓ=2\el…</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW190412</legend>
+      
+      <label><input type="checkbox" name="uses-5" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-5" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-5" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-5" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-5" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-5" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-5" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-5" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-5" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="6" data-event="GW190425">
+  <div class="ctx">
+    <div class="evname mono">GW190425</div>
+    <h3>1 mention</h3>
+    
+    
+    <div class="mention"><span class="sec">appendix</span>…, M. 2018.
+
+https://arxiv.org/abs/1805.10457
+
+ 
+[205]
+
+Lanzoni, B., Mucciarelli, A., Origlia, L., et al. 2013, ApJ, 769, 107,
+doi: 10.1088/0004-637X/769/2/107
+
+ 
+[206]
+
+Lenon, A. K., Nitz, A. H., &amp; Brown, D. A. 2020, Measuring the eccentricity of
+GW170817 and <mark>GW190425</mark>, doi: 10.1093/mnras/staa2120
+
+ 
+[207]
+
+Leung, S.-C., Nomoto, K., &amp; Blinnikov, S. 2019, ApJ, 887, 72,
+doi: 10.3847/1538-4357/ab4fe5
+
+ 
+[208]
+
+Li, A. K. Y., Lo, R. K. L., Sachdev, S., Li, T. G. F., &amp; Weinstein,
+A. J. 2019, arXiv e-prints, arXiv:1904.06020.
+
+htt…</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW190425</legend>
+      
+      <label><input type="checkbox" name="uses-6" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-6" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-6" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-6" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-6" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-6" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-6" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-6" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-6" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="7" data-event="GW190521">
+  <div class="ctx">
+    <div class="evname mono">GW190521</div>
+    <h3>119 mentions · first 12 shown</h3>
+    
+    
+    <div class="mention"><span class="sec">front_matter</span>Properties and astrophysical implications of the 150 M_⊙ binary black hole merger <mark>GW190521</mark>
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+ 
+ Report GitHub Issue
+
+ ×
+ 
+
+ 
+ Title:
+ 
+
+ Content selection saved. Describe the issue below:
+
+ Description:
+ 
+ 
+
+ 
+ Submit without GitHub
+ Submit in GitHub
+ 
+ 
+
+ 
+ arXiv is now an independent nonprofit!
+ Learn more
+ &amp;times;
+ 
+
+ 
+ 
+ Back to arX…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">front_matter</span>…ry and Conclusions
+
+VIII Acknowledgments
+
+References
+
+ 
+ License: arXiv.org perpetual non-exclusive license
+ 
+ 
+arXiv:2009.01190v1 [astro-ph.HE] 02 Sep 2020
+
+Properties and astrophysical implications of the 150150 M⊙\mathrm{M}_{\odot} binary black hole merger <mark>GW190521</mark> 
+
+R. Abbott
+
+Affiliation: LIGO, California Institute of Technology, Pasadena, CA 91125, USA
+
+LIGO Scientific Collaboration and Virgo Collaboration
+
+  
+T. D. Abbott
+
+Affiliation: Louisiana State University, Baton Rouge, LA 70803, USA
+
+LIGO Scientific Collabora…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>… 91125, USA
+
+LIGO Scientific Collaboration and Virgo Collaboration
+
+  
+J. Zweizig
+
+Affiliation: LIGO, California Institute of Technology, Pasadena, CA 91125, USA
+
+LIGO Scientific Collaboration and Virgo Collaboration
+
+Abstract
+
+ 
+The gravitational-wave signal <mark>GW190521</mark> is consistent with a binary black hole merger source at redshift 0.80.8 with unusually high component masses,
+85−14+21{85^{+21}_{-14}} M⊙\mathrm{M}_{\odot} and 66−18+17{66^{+17}_{-18}} M⊙\mathrm{M}_{\odot},
+compared to previously reported events,
+and shows mi…</div>
+    
+    
+    <details><summary>9 more</summary>
+    <div class="mention"><span class="sec">abstract</span>…evidence for spin-induced orbital precession.
+The primary falls in
+the mass gap predicted by (pulsational) pair-instability supernova theory, in the approximate range 65−120​M⊙65-120\,\mathrm{M}_{\odot}.
+The probability that at least one of the black holes in <mark>GW190521</mark> is in that range is 99.099.0%.
+The final mass of the merger (142−16+28​M⊙{142^{+28}_{-16}}\,\mathrm{M}_{\odot}) classifies it as an
+intermediate-mass black hole.
+Under the assumption of a quasi-circular binary black hole coalescence, we detail the
+physical pr…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…range is 99.099.0%.
+The final mass of the merger (142−16+28​M⊙{142^{+28}_{-16}}\,\mathrm{M}_{\odot}) classifies it as an
+intermediate-mass black hole.
+Under the assumption of a quasi-circular binary black hole coalescence, we detail the
+physical properties of <mark>GW190521</mark>’s source binary and its post-merger remnant,
+including component masses and spin vectors. Three different waveform models, as well as
+direct comparison to numerical solutions of general relativity, yield consistent
+estimates of these properties.
+Tests of stro…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…cate consistency of the observed signal with theoretical predictions.
+We estimate the merger rate of similar systems to be
+0.13−0.11+0.30​Gpc−3​yr−1{0.13}^{+{0.30}}_{-{0.11}}\,\mathrm{Gpc}^{-3}\,{}\mathrm{yr}^{-1}.
+We discuss the astrophysical implications of <mark>GW190521</mark> for stellar collapse, and for the
+possible formation of black holes in the pair-instability mass gap through various channels:
+via (multiple) stellar coalescences, or via hierarchical mergers of lower-mass black holes in
+star clusters or in active galactic nu…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…ssible formation of black holes in the pair-instability mass gap through various channels:
+via (multiple) stellar coalescences, or via hierarchical mergers of lower-mass black holes in
+star clusters or in active galactic nuclei.
+We find it to be unlikely that <mark>GW190521</mark> is a strongly lensed signal of a lower-mass
+black hole binary merger.
+We also discuss more exotic possible sources for GW190521, including a highly
+eccentric black hole binary, or a primordial black hole binary.
+
+ 
+
+Keywords: 
+
+Gravitational waves – Black hol…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…or via hierarchical mergers of lower-mass black holes in
+star clusters or in active galactic nuclei.
+We find it to be unlikely that GW190521 is a strongly lensed signal of a lower-mass
+black hole binary merger.
+We also discuss more exotic possible sources for <mark>GW190521</mark>, including a highly
+eccentric black hole binary, or a primordial black hole binary.
+
+ 
+
+Keywords: 
+
+Gravitational waves – Black holes – Intermediate-mass black holes – Massive stars – Supernovae
+
+\turnoffeditone
+
+\AuthorCollaborationLimit
+=3000
+
+I Introductio…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…ole binary, or a primordial black hole binary.
+
+ 
+
+Keywords: 
+
+Gravitational waves – Black holes – Intermediate-mass black holes – Massive stars – Supernovae
+
+\turnoffeditone
+
+\AuthorCollaborationLimit
+=3000
+
+I Introduction
+
+The gravitational-wave (GW) signal <mark>GW190521</mark> [28, 16] was observed by the Advanced LIGO [3] and Advanced Virgo [32] detectors during their third observing run (O3).
+The event was found with four different search pipelines, both at low-latency and offline with improved background estimation; an offline s…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…[3] and Advanced Virgo [32] detectors during their third observing run (O3).
+The event was found with four different search pipelines, both at low-latency and offline with improved background estimation; an offline search sensitive to generic transients found <mark>GW190521</mark> with a three-detector network signal-to-noise ratio of 14.714.7, and an estimated false-alarm rate of 1 in 49004900 yr [28].
+Another candidate GW signal was reported later on the same day [17]. The source of GW190521 is consistent with being
+a high mass binar…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…arch sensitive to generic transients found GW190521 with a three-detector network signal-to-noise ratio of 14.714.7, and an estimated false-alarm rate of 1 in 49004900 yr [28].
+Another candidate GW signal was reported later on the same day [17]. The source of <mark>GW190521</mark> is consistent with being
+a high mass binary black hole (BBH) system.
+The final merger product of GW190521, with an estimated mass of 142−16+28​M⊙{142^{+28}_{-16}}\,\mathrm{M}_{\odot} (all values quoted as medians with symmetric 90% credible interval), is the …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>… 14.714.7, and an estimated false-alarm rate of 1 in 49004900 yr [28].
+Another candidate GW signal was reported later on the same day [17]. The source of GW190521 is consistent with being
+a high mass binary black hole (BBH) system.
+The final merger product of <mark>GW190521</mark>, with an estimated mass of 142−16+28​M⊙{142^{+28}_{-16}}\,\mathrm{M}_{\odot} (all values quoted as medians with symmetric 90% credible interval), is the first strong observational evidence for an intermediate-mass black hole (IMBH) in the mass range 102−103​M…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW190521</legend>
+      
+      <label><input type="checkbox" name="uses-7" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-7" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-7" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-7" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-7" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-7" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-7" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-7" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-7" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="8" data-event="GW190814">
+  <div class="ctx">
+    <div class="evname mono">GW190814</div>
+    <h3>1 mention</h3>
+    
+    
+    <div class="mention"><span class="sec">methods</span>…s BBH mergers in advanced detector observations [331, 330, 156, 92, 93, 103, 270, 239, 203]; their presence was also crucial in reducing uncertainties in the mass ratio and component spins of the recently reported unequal-mass binary mergers GW190412 [29] and <mark>GW190814</mark> [30].
+To quantify the impact and evidence of higher-order multipoles on GW190521, we computed the posterior distribution of our preferred model, NRSur PHM [332], using the RIFT pipeline [204] for three different combinations of modes: ℓ=2\ell=2, ℓ≤3\ell\leq 3…</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW190814</legend>
+      
+      <label><input type="checkbox" name="uses-8" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-8" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-8" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-8" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-8" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-8" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-8" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-8" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-8" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+
+<section class="panel" style="margin-top:18px">
+  <label class="check"><input type="checkbox" id="author"> I am an author of this paper</label>
+  <textarea id="comment" rows="2" placeholder="Anything else about this paper (optional)"></textarea>
+  <div id="err" class="err" hidden></div>
+  <div class="actions">
+    <button class="primary" type="button" id="submit">Submit &amp; next paper</button>
+    <span class="spacer"></span>
+    <select id="skip-reason" aria-label="Reason for skipping">
+      <option value="">Skip this paper because…</option>
+      <option value="cannot_judge">I can't judge this paper's field</option>
+      <option value="conflict">conflict of interest</option>
+      <option value="no_access">the paper won't open</option>
+      <option value="other">other (say in the comment)</option>
+    </select>
+    <button type="button" id="skip">Skip</button>
+  </div>
+  <div id="status" class="small" style="margin-top:8px"></div>
+  <button type="button" class="primary" id="continue" hidden>Continue to the next paper</button>
+</section>
+</div>
+</div>
+<script>window.SG_PAGE = {"arxiv_id": "2009.01190", "events": ["GW150914", "GW151205", "GW170729", "GW170817", "GW170817A", "GW190412", "GW190425", "GW190521", "GW190814"], "kind": "sample", "uniform": false};</script>
+<script src="../config.js"></script>
+<script src="../sg.js"></script>
+<script>SG.paperPage();</script>
+</body>
+</html>

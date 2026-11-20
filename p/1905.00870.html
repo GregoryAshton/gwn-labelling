@@ -1,0 +1,945 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Label · 1905.00870</title>
+<style>
+:root{
+  --ground:#f4f7f8; --surface:#fff; --surface-2:#eef3f5;
+  --ink:#111a1f; --ink-2:#3d4f58; --muted:#63757e;
+  --line:#d8e3e7; --line-2:#c2d2d8;
+  --accent:#0b6e82; --accent-soft:#0b6e8215; --accent-ink:#064c5a;
+  --amber:#8a5200; --amber-soft:#8a520014; --hit:#ffe08a;
+  --ok:#2f7d3a;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#0b1215; --surface:#121c20; --surface-2:#17242a;
+  --ink:#e4edf0; --ink-2:#b4c6cd; --muted:#8497a0;
+  --line:#22333a; --line-2:#2e434c;
+  --accent:#3fc4dc; --accent-soft:#3fc4dc1a; --accent-ink:#7fdcee;
+  --amber:#f0b429; --amber-soft:#f0b4291a; --hit:#6b5410;
+  --ok:#6fcf7f;
+}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--ground);color:var(--ink);margin:0;
+  font:15px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Helvetica,sans-serif}
+.wrap{max-width:1280px;margin:0 auto;padding:0 18px 64px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.tnum{font-variant-numeric:tabular-nums}
+.mut{color:var(--muted)}.small{font-size:.85rem}
+header{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
+  border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:18px;font-size:.92rem}
+header .bar{flex:1 1 160px;height:6px;background:var(--line);border-radius:3px;overflow:hidden;min-width:120px}
+header .bar i{display:block;height:100%;background:var(--accent)}
+h1{font-size:1.3rem;margin:0 0 4px;letter-spacing:-.01em;text-wrap:balance}
+h3{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  margin:18px 0 8px;font-weight:600}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.73rem;
+  padding:2px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);
+  margin:0 4px 4px 0}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.chip.done{border-color:var(--ok);color:var(--ok)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:.36rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.wrapx{overflow-x:auto}
+</style>
+<style>
+.wrap{max-width:1180px}
+h2{font-size:1.02rem;margin:0 0 6px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
+  margin:0 0 14px;font-size:.9rem}
+.card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
+.card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card.missing{border-color:#c0392b}
+@media (max-width:860px){.card{grid-template-columns:1fr}}
+.evname{font-size:1.05rem;font-weight:600}
+.mention{border-left:3px solid var(--line-2);padding:4px 0 4px 12px;margin:0 0 12px;
+  font-size:.88rem;color:var(--ink-2);white-space:pre-wrap;overflow-wrap:anywhere}
+.mention .sec{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:2px;white-space:normal}
+.cites{margin-top:8px;padding:8px 10px;background:var(--surface-2);border-radius:7px;white-space:normal}
+.cite{white-space:pre-wrap;margin:6px 0 0;padding-top:6px;border-top:1px solid var(--line)}
+mark{background:var(--hit);color:var(--ink);padding:0 2px;border-radius:2px;font-weight:600}
+mark.cp{background:var(--amber-soft);color:var(--amber);outline:1px dashed var(--amber)}
+mark.ref{background:var(--accent-soft);color:var(--accent-ink);outline:1px solid var(--accent)}
+.mention.cp{border-left-color:var(--amber)}
+.cptag{color:var(--amber);text-transform:none;letter-spacing:0;font-weight:600}
+details summary{cursor:pointer;color:var(--muted);font-size:.85rem;margin-bottom:8px}
+.abstract{font-size:.9rem;color:var(--ink-2)}
+fieldset{border:0;margin:0 0 12px;padding:0}
+legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin:0 0 8px}
+.eng label{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;padding:7px 10px;
+  border:1px solid var(--line);border-radius:8px;margin-bottom:6px;cursor:pointer}
+.eng label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.eng input{grid-row:span 2;margin-top:4px}
+.eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
+.eng span{font-size:.78rem;color:var(--muted)}
+/* The long explanations only on the card being answered. */
+.card:not(.active) .eng span{display:none}
+kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
+  border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
+.fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg label{flex:1;text-align:center;padding:6px 8px;border:1px solid var(--line-2);border-radius:7px;
+  cursor:pointer;font-size:.85rem}
+.seg label:has(input:checked){border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:focus-visible){outline:2px solid var(--accent)}
+input[type=text],textarea,select{width:100%;font:inherit;font-size:.88rem;padding:6px 8px;
+  border:1px solid var(--line-2);border-radius:7px;background:var(--surface);color:var(--ink);margin-top:8px}
+select{width:auto;margin:0}
+.check{display:flex;gap:8px;align-items:center;font-size:.9rem}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.spacer{flex:1}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface-2);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.err{color:#c0392b;font-weight:600;font-size:.88rem;margin-top:10px}
+.feedback{border-radius:8px;padding:8px 10px;font-size:.88rem}
+.feedback.ok{background:#2f7d3a1a;border:1px solid var(--ok)}
+.feedback.diff{background:var(--amber-soft);border:1px solid var(--amber)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a href="../index.html" class="keep-r">Start page</a>
+  <span id="prog" class="tnum"></span>
+  <span class="bar" aria-hidden="true"><i id="progbar" style="width:0"></i></span>
+  <a href="../guide.html" target="_blank" rel="noopener">Guide (v3.1)</a>
+  <span id="mode" class="small" hidden></span>
+</header>
+
+<div id="again" class="note" hidden>You have already submitted this paper. Submitting again replaces your earlier answer.</div>
+
+
+<h1>Fundamental Physics Implications for Higher-Curvature Theories from Binary Black Hole Signals in the LIGO-Virgo Catalog GWTC-1</h1>
+<div class="small mut"><a href="https://arxiv.org/abs/1905.00870" target="_blank" rel="noopener" class="mono">arXiv:1905.00870</a> · open the paper whenever the snippets are not enough</div>
+<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">Gravitational-wave astronomy offers not only new vistas into the realm of astrophysics, but it also opens an avenue for probing, for the first time, general relativity in its strong-field, nonlinear, and dynamical regime, where the theory&#39;s predictions manifest themselves in their full glory. We present a study of whether the gravitational-wave events detected so far by the LIGO-Virgo scientific collaborations can be used to probe higher-curvature corrections to general relativity. In particular, we focus on two examples: Einstein-dilaton-Gauss-Bonnet and dynamical Chern-Simons gravity. We find that the two events with a low-mass m ≈7 M&lt;SUB&gt;☉&lt;/SUB&gt; BH (GW151226 and GW170608) place stringent constraints on Einstein-dilaton-Gauss-Bonnet gravity, α&lt;SUB&gt;EDGB&lt;/SUB&gt;&lt;SUP&gt;1 /2&lt;/SUP&gt;≲5.6 km , whereas dynamical Chern-Simons gravity remains unconstrained by the gravitational-wave observations analyzed.</p></details>
+
+
+
+<div id="pairs" >
+<p class="small mut" style="margin:18px 0 0">6 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+
+
+<section class="card" data-i="0" data-event="GW150914">
+  <div class="ctx">
+    <div class="evname mono">GW150914</div>
+    <h3>3 mentions</h3>
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…go collaboration (LVC) [30]
+to analyze whether these two theories can be constrained with the binary BH
+events detected during the first two observation runs of the LVC.
+More specifically, we will consider the binary BH events in the LIGO-Virgo Catalog GWTC-1
+<mark>GW150914</mark> [31, 32],
+GW151226 [33],
+GW170104 [34],
+GW170608 [35] and
+GW170814 [36]
+for which the posteriors on theory-independent GR modifications,
+obtained through a Markov-chain Monte-Carlo (MCMC) exploration of
+the parameter space, have been made public [3, 37].
+
+Qua…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…calculation of the Fisher matrix, by modeling the binaries
+with the phenomenolgical waveform template
+IMRPhenomD [49, 50]
+We make similar assumptions for the fiducial parameters as we made to obtain
+the order of magnitude constraints and consider 5 GW events, <mark>GW150914</mark>,
+GW151226, GW170104, GW170608, and GW170814 (cf. Table III
+in [30]).
+The bounds obtained for the two most constraining events, GW151226 and GW170608
+are shown in Table 1 and they are in good agreement with our
+order-of-magnitude calculation for both theories.…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…the GW151226 and GW170608 events.
+This implies that a 90% bound of αEdGB1/2≲5.6{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}\lesssim 5.6 km is
+statistically meaningful and can be placed on EdGB gravity using these two
+events.
+This is not the case for the other events (<mark>GW150914</mark>, GW170104 and GW170814),
+for which constraints would violate the small coupling approximation.
+
+We emphasize that the location of the peaks in the posteriors of Fig. 1
+do not indicate a deviation from GR.
+Rather, the lack of support at zero is an artifact of …</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW150914</legend>
+      
+      <label><input type="checkbox" name="uses-0" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-0" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-0" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-0" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-0" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-0" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-0" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-0" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-0" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="1" data-event="GW151226">
+  <div class="ctx">
+    <div class="evname mono">GW151226</div>
+    <h3>13 mentions · first 12 shown</h3>
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…tions can be used to probe higher-curvature
+corrections to general relativity.
+In particular, we focus on two examples: Einstein-dilaton-Gauss-Bonnet
+and dynamical Chern-Simons gravity.
+We find that the two events with a low-mass m≈7​M⊙m\approx 7M_{\odot} BH
+(<mark>GW151226</mark> and GW170608) place stringent constraints
+on Einstein-dilaton-Gauss-Bonnet gravity, αEdGB1/2≲5.6{\alpha}^{1/2}_{{\mbox{\tiny EdGB}}}\lesssim 5.6 km,
+whereas dynamical Chern-Simons gravity remains unconstrained by
+the gravitational-wave observations analyzed.
+…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…VC) [30]
+to analyze whether these two theories can be constrained with the binary BH
+events detected during the first two observation runs of the LVC.
+More specifically, we will consider the binary BH events in the LIGO-Virgo Catalog GWTC-1
+GW150914 [31, 32],
+<mark>GW151226</mark> [33],
+GW170104 [34],
+GW170608 [35] and
+GW170814 [36]
+for which the posteriors on theory-independent GR modifications,
+obtained through a Markov-chain Monte-Carlo (MCMC) exploration of
+the parameter space, have been made public [3, 37].
+
+Quadratic gravity. dCS…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…n of the Fisher matrix, by modeling the binaries
+with the phenomenolgical waveform template
+IMRPhenomD [49, 50]
+We make similar assumptions for the fiducial parameters as we made to obtain
+the order of magnitude constraints and consider 5 GW events, GW150914,
+<mark>GW151226</mark>, GW170104, GW170608, and GW170814 (cf. Table III
+in [30]).
+The bounds obtained for the two most constraining events, GW151226 and GW170608
+are shown in Table 1 and they are in good agreement with our
+order-of-magnitude calculation for both theories.
+The Fishe…</div>
+    
+    
+    <details><summary>9 more</summary>
+    <div class="mention"><span class="sec">abstract</span>…r assumptions for the fiducial parameters as we made to obtain
+the order of magnitude constraints and consider 5 GW events, GW150914,
+GW151226, GW170104, GW170608, and GW170814 (cf. Table III
+in [30]).
+The bounds obtained for the two most constraining events, <mark>GW151226</mark> and GW170608
+are shown in Table 1 and they are in good agreement with our
+order-of-magnitude calculation for both theories.
+The Fisher-estimated constraints for dCS gravity are not shown because they violate the small coupling approximation, as we will discus…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…avity are not shown because they violate the small coupling approximation, as we will discuss in more detail below.
+
+System
+Method
+αEdGB1/2\alpha_{{\mbox{\tiny EdGB}}}^{1/2} [km]
+αdCS1/2\alpha_{{\mbox{\tiny dCS}}}^{1/2} [km]
+
+Current
+Frequentist
+22
+10810^{8}
+
+<mark>GW151226</mark>
+estimate
+0.9
+12.6
+
+Fisher
+6.0
+−-
+
+Bayesian
+5.7
+−-
+
+GW170608
+estimate
+1.0
+28.1
+
+Fisher
+3.9
+−-
+
+Bayesian
+5.6
+−-
+
+Table 1: Current constraints on EdGB and dCS gravity
+from low-mass x-ray binary and Solar System observations respectively,
+with the Fisher-estimate…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…
+
+Fisher
+3.9
+−-
+
+Bayesian
+5.6
+−-
+
+Table 1: Current constraints on EdGB and dCS gravity
+from low-mass x-ray binary and Solar System observations respectively,
+with the Fisher-estimated constraints, and
+Bayesian constraints using LVC (testing GR) posteriors for <mark>GW151226</mark> and GW170608  [3, 37]
+
+.
+
+Figure 1: 
+Posterior distributions of αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} (left panel)
+and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2} (right panel) obtained using
+GW151226 and GW170608.
+For the GW events shown in both panels…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…an constraints using LVC (testing GR) posteriors for GW151226 and GW170608  [3, 37]
+
+.
+
+Figure 1: 
+Posterior distributions of αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} (left panel)
+and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2} (right panel) obtained using
+<mark>GW151226</mark> and GW170608.
+For the GW events shown in both panels, m2/M⊙=7.7−2.6+2.2m_{2}/M_{\odot}=7.7^{+2.2}_{-2.6}
+(GW151226) and m2/M⊙=7.6−2.1+1.3m_{2}/M_{\odot}=7.6^{+1.3}_{-2.1} (GW170104)
+at 90%90\% credibility.
+This implies that the small-coupling approximation
+is…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…butions of αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} (left panel)
+and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2} (right panel) obtained using
+GW151226 and GW170608.
+For the GW events shown in both panels, m2/M⊙=7.7−2.6+2.2m_{2}/M_{\odot}=7.7^{+2.2}_{-2.6}
+(<mark>GW151226</mark>) and m2/M⊙=7.6−2.1+1.3m_{2}/M_{\odot}=7.6^{+1.3}_{-2.1} (GW170104)
+at 90%90\% credibility.
+This implies that the small-coupling approximation
+is valid only when αdCS,EdGB1/2≲5.6{\alpha}_{{\mbox{\tiny dCS}},{\mbox{\tiny EdGB}}}^{1/2}\lesssim 5.6, shown as vert…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…ny dCS}}}^{1/2} and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}
+using Eqs. (3)-(4).
+
+The 90% constraints on αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}
+are shown in Table 1 for the two most constraining events
+(<mark>GW151226</mark> and GW170608) and the corresponding posterior distributions are shown
+in Fig. 1. The Fisher estimates, although quite close to the
+constraints using posteriors derived from GW data, are overoptimistic since
+they assume a Gaussian posterior around the peak, wh…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…box{\tiny EdGB}}}^{1/2}\lesssim 5.6 km,
+which is shown with vertical lines in Fig. 1.
+For dCS gravity (left panel of Fig. 1), more than
+99%99\% of the posterior distribution of αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} lies
+beyond this region of validity for <mark>GW151226</mark> and GW170608 and for all the other events we considered.
+
+Consequently, we cannot place constraints on dCS gravity with
+the events for which the posteriors samples obtained by LIGO-Virgo have
+been released.
+
+For EdGB, the situation is strikingly different. As…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…ined by LIGO-Virgo have
+been released.
+
+For EdGB, the situation is strikingly different. As one can observe in the
+right panel of Fig. 1, more than 90%90\% of the posterior
+distribution falls within the requirements of the small-coupling approximation
+for the <mark>GW151226</mark> and GW170608 events.
+This implies that a 90% bound of αEdGB1/2≲5.6{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}\lesssim 5.6 km is
+statistically meaningful and can be placed on EdGB gravity using these two
+events.
+This is not the case for the other events (GW150914, GW…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>… EdGB}}} instead of in the generic parameter δ​ϕi\delta\phi_{i}.
+We expect that this would shift our 90% bound to the left, thereby
+improving our bounds, and hence our constraints
+are conservative and robust to changes in the sampling variable.
+
+The fact that <mark>GW151226</mark> and GW170608 have more constraining power
+than their cousins is not surprising. These two events were produced by
+binaries in which the secondary BH had the lowest mass (m2≈7​M⊙m_{2}\approx 7M_{\odot})
+of all events in the catalog.
+Quadratic gravity theories …</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW151226</legend>
+      
+      <label><input type="checkbox" name="uses-1" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-1" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-1" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-1" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-1" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-1" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-1" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-1" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-1" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="2" data-event="GW170104">
+  <div class="ctx">
+    <div class="evname mono">GW170104</div>
+    <h3>4 mentions</h3>
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…lyze whether these two theories can be constrained with the binary BH
+events detected during the first two observation runs of the LVC.
+More specifically, we will consider the binary BH events in the LIGO-Virgo Catalog GWTC-1
+GW150914 [31, 32],
+GW151226 [33],
+<mark>GW170104</mark> [34],
+GW170608 [35] and
+GW170814 [36]
+for which the posteriors on theory-independent GR modifications,
+obtained through a Markov-chain Monte-Carlo (MCMC) exploration of
+the parameter space, have been made public [3, 37].
+
+Quadratic gravity. dCS and (decoupled…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…isher matrix, by modeling the binaries
+with the phenomenolgical waveform template
+IMRPhenomD [49, 50]
+We make similar assumptions for the fiducial parameters as we made to obtain
+the order of magnitude constraints and consider 5 GW events, GW150914,
+GW151226, <mark>GW170104</mark>, GW170608, and GW170814 (cf. Table III
+in [30]).
+The bounds obtained for the two most constraining events, GW151226 and GW170608
+are shown in Table 1 and they are in good agreement with our
+order-of-magnitude calculation for both theories.
+The Fisher-estimate…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…
+and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2} (right panel) obtained using
+GW151226 and GW170608.
+For the GW events shown in both panels, m2/M⊙=7.7−2.6+2.2m_{2}/M_{\odot}=7.7^{+2.2}_{-2.6}
+(GW151226) and m2/M⊙=7.6−2.1+1.3m_{2}/M_{\odot}=7.6^{+1.3}_{-2.1} (<mark>GW170104</mark>)
+at 90%90\% credibility.
+This implies that the small-coupling approximation
+is valid only when αdCS,EdGB1/2≲5.6{\alpha}_{{\mbox{\tiny dCS}},{\mbox{\tiny EdGB}}}^{1/2}\lesssim 5.6, shown as vertical lines in the plots.
+For dCS gravity (left-panel) we see that …</div>
+    
+    
+    <details><summary>1 more</summary>
+    <div class="mention"><span class="sec">methods</span>…26 and GW170608 events.
+This implies that a 90% bound of αEdGB1/2≲5.6{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}\lesssim 5.6 km is
+statistically meaningful and can be placed on EdGB gravity using these two
+events.
+This is not the case for the other events (GW150914, <mark>GW170104</mark> and GW170814),
+for which constraints would violate the small coupling approximation.
+
+We emphasize that the location of the peaks in the posteriors of Fig. 1
+do not indicate a deviation from GR.
+Rather, the lack of support at zero is an artifact of the choice…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW170104</legend>
+      
+      <label><input type="checkbox" name="uses-2" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-2" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-2" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-2" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-2" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-2" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-2" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-2" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-2" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="3" data-event="GW170608">
+  <div class="ctx">
+    <div class="evname mono">GW170608</div>
+    <h3>13 mentions · first 12 shown</h3>
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…used to probe higher-curvature
+corrections to general relativity.
+In particular, we focus on two examples: Einstein-dilaton-Gauss-Bonnet
+and dynamical Chern-Simons gravity.
+We find that the two events with a low-mass m≈7​M⊙m\approx 7M_{\odot} BH
+(GW151226 and <mark>GW170608</mark>) place stringent constraints
+on Einstein-dilaton-Gauss-Bonnet gravity, αEdGB1/2≲5.6{\alpha}^{1/2}_{{\mbox{\tiny EdGB}}}\lesssim 5.6 km,
+whereas dynamical Chern-Simons gravity remains unconstrained by
+the gravitational-wave observations analyzed.
+
+ 
+
+Introduct…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…ese two theories can be constrained with the binary BH
+events detected during the first two observation runs of the LVC.
+More specifically, we will consider the binary BH events in the LIGO-Virgo Catalog GWTC-1
+GW150914 [31, 32],
+GW151226 [33],
+GW170104 [34],
+<mark>GW170608</mark> [35] and
+GW170814 [36]
+for which the posteriors on theory-independent GR modifications,
+obtained through a Markov-chain Monte-Carlo (MCMC) exploration of
+the parameter space, have been made public [3, 37].
+
+Quadratic gravity. dCS and (decoupled) EdGB
+theories…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>… uncontrolled remainders of 𝒪⁡(χ4){\cal{O}}(\chi^{4}), βEdGB\beta_{{\mbox{\tiny EdGB}}}
+is valid to all orders in the spin.
+We can obtain an order-of-magnitude bound on ζdCS,EdGB\zeta_{{\mbox{\tiny dCS}},{\mbox{\tiny EdGB}}} using the best-fit
+parameters from <mark>GW170608</mark> and doing a crude Fisher matrix analysis (we use this
+particular event as an example because it will allows us to compare our
+analytical estimate with more robust calculations later).
+Given that the event is consistent with GR, we can ask
+how large ζdCS,EdGB\…</div>
+    
+    
+    <details><summary>9 more</summary>
+    <div class="mention"><span class="sec">abstract</span>…ix, by modeling the binaries
+with the phenomenolgical waveform template
+IMRPhenomD [49, 50]
+We make similar assumptions for the fiducial parameters as we made to obtain
+the order of magnitude constraints and consider 5 GW events, GW150914,
+GW151226, GW170104, <mark>GW170608</mark>, and GW170814 (cf. Table III
+in [30]).
+The bounds obtained for the two most constraining events, GW151226 and GW170608
+are shown in Table 1 and they are in good agreement with our
+order-of-magnitude calculation for both theories.
+The Fisher-estimated constrai…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>… for the fiducial parameters as we made to obtain
+the order of magnitude constraints and consider 5 GW events, GW150914,
+GW151226, GW170104, GW170608, and GW170814 (cf. Table III
+in [30]).
+The bounds obtained for the two most constraining events, GW151226 and <mark>GW170608</mark>
+are shown in Table 1 and they are in good agreement with our
+order-of-magnitude calculation for both theories.
+The Fisher-estimated constraints for dCS gravity are not shown because they violate the small coupling approximation, as we will discuss in more det…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…approximation, as we will discuss in more detail below.
+
+System
+Method
+αEdGB1/2\alpha_{{\mbox{\tiny EdGB}}}^{1/2} [km]
+αdCS1/2\alpha_{{\mbox{\tiny dCS}}}^{1/2} [km]
+
+Current
+Frequentist
+22
+10810^{8}
+
+GW151226
+estimate
+0.9
+12.6
+
+Fisher
+6.0
+−-
+
+Bayesian
+5.7
+−-
+
+<mark>GW170608</mark>
+estimate
+1.0
+28.1
+
+Fisher
+3.9
+−-
+
+Bayesian
+5.6
+−-
+
+Table 1: Current constraints on EdGB and dCS gravity
+from low-mass x-ray binary and Solar System observations respectively,
+with the Fisher-estimated constraints, and
+Bayesian constraints using LVC (testing G…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…−-
+
+Bayesian
+5.6
+−-
+
+Table 1: Current constraints on EdGB and dCS gravity
+from low-mass x-ray binary and Solar System observations respectively,
+with the Fisher-estimated constraints, and
+Bayesian constraints using LVC (testing GR) posteriors for GW151226 and <mark>GW170608</mark>  [3, 37]
+
+.
+
+Figure 1: 
+Posterior distributions of αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} (left panel)
+and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2} (right panel) obtained using
+GW151226 and GW170608.
+For the GW events shown in both panels, m2/M⊙=7.7−2…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…s using LVC (testing GR) posteriors for GW151226 and GW170608  [3, 37]
+
+.
+
+Figure 1: 
+Posterior distributions of αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} (left panel)
+and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2} (right panel) obtained using
+GW151226 and <mark>GW170608</mark>.
+For the GW events shown in both panels, m2/M⊙=7.7−2.6+2.2m_{2}/M_{\odot}=7.7^{+2.2}_{-2.6}
+(GW151226) and m2/M⊙=7.6−2.1+1.3m_{2}/M_{\odot}=7.6^{+1.3}_{-2.1} (GW170104)
+at 90%90\% credibility.
+This implies that the small-coupling approximation
+is valid only w…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…2} and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}
+using Eqs. (3)-(4).
+
+The 90% constraints on αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} and αEdGB1/2{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}
+are shown in Table 1 for the two most constraining events
+(GW151226 and <mark>GW170608</mark>) and the corresponding posterior distributions are shown
+in Fig. 1. The Fisher estimates, although quite close to the
+constraints using posteriors derived from GW data, are overoptimistic since
+they assume a Gaussian posterior around the peak, which we see in…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…B}}}^{1/2}\lesssim 5.6 km,
+which is shown with vertical lines in Fig. 1.
+For dCS gravity (left panel of Fig. 1), more than
+99%99\% of the posterior distribution of αdCS1/2{\alpha}_{{\mbox{\tiny dCS}}}^{1/2} lies
+beyond this region of validity for GW151226 and <mark>GW170608</mark> and for all the other events we considered.
+
+Consequently, we cannot place constraints on dCS gravity with
+the events for which the posteriors samples obtained by LIGO-Virgo have
+been released.
+
+For EdGB, the situation is strikingly different. As one can obse…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…Virgo have
+been released.
+
+For EdGB, the situation is strikingly different. As one can observe in the
+right panel of Fig. 1, more than 90%90\% of the posterior
+distribution falls within the requirements of the small-coupling approximation
+for the GW151226 and <mark>GW170608</mark> events.
+This implies that a 90% bound of αEdGB1/2≲5.6{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}\lesssim 5.6 km is
+statistically meaningful and can be placed on EdGB gravity using these two
+events.
+This is not the case for the other events (GW150914, GW170104 and GW…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…ead of in the generic parameter δ​ϕi\delta\phi_{i}.
+We expect that this would shift our 90% bound to the left, thereby
+improving our bounds, and hence our constraints
+are conservative and robust to changes in the sampling variable.
+
+The fact that GW151226 and <mark>GW170608</mark> have more constraining power
+than their cousins is not surprising. These two events were produced by
+binaries in which the secondary BH had the lowest mass (m2≈7​M⊙m_{2}\approx 7M_{\odot})
+of all events in the catalog.
+Quadratic gravity theories introduce new…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW170608</legend>
+      
+      <label><input type="checkbox" name="uses-3" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-3" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-3" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-3" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-3" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-3" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-3" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-3" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-3" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="4" data-event="GW170814">
+  <div class="ctx">
+    <div class="evname mono">GW170814</div>
+    <h3>3 mentions</h3>
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…an be constrained with the binary BH
+events detected during the first two observation runs of the LVC.
+More specifically, we will consider the binary BH events in the LIGO-Virgo Catalog GWTC-1
+GW150914 [31, 32],
+GW151226 [33],
+GW170104 [34],
+GW170608 [35] and
+<mark>GW170814</mark> [36]
+for which the posteriors on theory-independent GR modifications,
+obtained through a Markov-chain Monte-Carlo (MCMC) exploration of
+the parameter space, have been made public [3, 37].
+
+Quadratic gravity. dCS and (decoupled) EdGB
+theories are defined in va…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…g the binaries
+with the phenomenolgical waveform template
+IMRPhenomD [49, 50]
+We make similar assumptions for the fiducial parameters as we made to obtain
+the order of magnitude constraints and consider 5 GW events, GW150914,
+GW151226, GW170104, GW170608, and <mark>GW170814</mark> (cf. Table III
+in [30]).
+The bounds obtained for the two most constraining events, GW151226 and GW170608
+are shown in Table 1 and they are in good agreement with our
+order-of-magnitude calculation for both theories.
+The Fisher-estimated constraints for dCS gr…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…08 events.
+This implies that a 90% bound of αEdGB1/2≲5.6{\alpha}_{{\mbox{\tiny EdGB}}}^{1/2}\lesssim 5.6 km is
+statistically meaningful and can be placed on EdGB gravity using these two
+events.
+This is not the case for the other events (GW150914, GW170104 and <mark>GW170814</mark>),
+for which constraints would violate the small coupling approximation.
+
+We emphasize that the location of the peaks in the posteriors of Fig. 1
+do not indicate a deviation from GR.
+Rather, the lack of support at zero is an artifact of the choice of the sampl…</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW170814</legend>
+      
+      <label><input type="checkbox" name="uses-4" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-4" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-4" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-4" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-4" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-4" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-4" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-4" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-4" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="5" data-event="GW170817">
+  <div class="ctx">
+    <div class="evname mono">GW170817</div>
+    <h3>2 mentions · <span class="cptag">1 by counterpart name</span></h3>
+    
+    
+    <div class="mention"><span class="sec">methods</span>…ty-violating theories, which in four dimensions requires the
+presence of a massless scalar field, was presented [60].
+In [61, 62, 63], these theories were tested against the exquisite constraint obtained on the speed of GW propagation from the binary NS event <mark>GW170817</mark>/GRB 170817A, which estimated that cGWc_{\rm GW} is the same as the speed of light in vacuum to one part in 101510^{15}.
+dCS gravity is the only ghost-free, parity-violating theory in four dimensions that is consistent with
+this constraint [64, 61].
+Therefore,…</div>
+    
+    
+    
+    <div class="mention cp"><span class="sec">methods · <span class="cptag">counterpart name, not the GW signal</span></span>…ing theories, which in four dimensions requires the
+presence of a massless scalar field, was presented [60].
+In [61, 62, 63], these theories were tested against the exquisite constraint obtained on the speed of GW propagation from the binary NS event GW170817/<mark class="cp">GRB 170817A</mark>, which estimated that cGWc_{\rm GW} is the same as the speed of light in vacuum to one part in 101510^{15}.
+dCS gravity is the only ghost-free, parity-violating theory in four dimensions that is consistent with
+this constraint [64, 61].
+Therefore, our results…</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW170817</legend>
+      
+      <label><input type="checkbox" name="uses-5" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-5" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-5" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-5" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-5" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-5" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-5" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-5" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-5" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+
+<section class="panel" style="margin-top:18px">
+  <label class="check"><input type="checkbox" id="author"> I am an author of this paper</label>
+  <textarea id="comment" rows="2" placeholder="Anything else about this paper (optional)"></textarea>
+  <div id="err" class="err" hidden></div>
+  <div class="actions">
+    <button class="primary" type="button" id="submit">Submit &amp; next paper</button>
+    <span class="spacer"></span>
+    <select id="skip-reason" aria-label="Reason for skipping">
+      <option value="">Skip this paper because…</option>
+      <option value="cannot_judge">I can't judge this paper's field</option>
+      <option value="conflict">conflict of interest</option>
+      <option value="no_access">the paper won't open</option>
+      <option value="other">other (say in the comment)</option>
+    </select>
+    <button type="button" id="skip">Skip</button>
+  </div>
+  <div id="status" class="small" style="margin-top:8px"></div>
+  <button type="button" class="primary" id="continue" hidden>Continue to the next paper</button>
+</section>
+</div>
+</div>
+<script>window.SG_PAGE = {"arxiv_id": "1905.00870", "events": ["GW150914", "GW151226", "GW170104", "GW170608", "GW170814", "GW170817"], "kind": "sample", "uniform": false};</script>
+<script src="../config.js"></script>
+<script src="../sg.js"></script>
+<script>SG.paperPage();</script>
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Label · 1801.02624</title>
+<style>
+:root{
+  --ground:#f4f7f8; --surface:#fff; --surface-2:#eef3f5;
+  --ink:#111a1f; --ink-2:#3d4f58; --muted:#63757e;
+  --line:#d8e3e7; --line-2:#c2d2d8;
+  --accent:#0b6e82; --accent-soft:#0b6e8215; --accent-ink:#064c5a;
+  --amber:#8a5200; --amber-soft:#8a520014; --hit:#ffe08a;
+  --ok:#2f7d3a;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#0b1215; --surface:#121c20; --surface-2:#17242a;
+  --ink:#e4edf0; --ink-2:#b4c6cd; --muted:#8497a0;
+  --line:#22333a; --line-2:#2e434c;
+  --accent:#3fc4dc; --accent-soft:#3fc4dc1a; --accent-ink:#7fdcee;
+  --amber:#f0b429; --amber-soft:#f0b4291a; --hit:#6b5410;
+  --ok:#6fcf7f;
+}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--ground);color:var(--ink);margin:0;
+  font:15px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Helvetica,sans-serif}
+.wrap{max-width:1280px;margin:0 auto;padding:0 18px 64px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.tnum{font-variant-numeric:tabular-nums}
+.mut{color:var(--muted)}.small{font-size:.85rem}
+header{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
+  border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:18px;font-size:.92rem}
+header .bar{flex:1 1 160px;height:6px;background:var(--line);border-radius:3px;overflow:hidden;min-width:120px}
+header .bar i{display:block;height:100%;background:var(--accent)}
+h1{font-size:1.3rem;margin:0 0 4px;letter-spacing:-.01em;text-wrap:balance}
+h3{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  margin:18px 0 8px;font-weight:600}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.73rem;
+  padding:2px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);
+  margin:0 4px 4px 0}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.chip.done{border-color:var(--ok);color:var(--ok)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:.36rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.wrapx{overflow-x:auto}
+</style>
+<style>
+.wrap{max-width:1180px}
+h2{font-size:1.02rem;margin:0 0 6px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
+  margin:0 0 14px;font-size:.9rem}
+.card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
+.card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card.missing{border-color:#c0392b}
+@media (max-width:860px){.card{grid-template-columns:1fr}}
+.evname{font-size:1.05rem;font-weight:600}
+.mention{border-left:3px solid var(--line-2);padding:4px 0 4px 12px;margin:0 0 12px;
+  font-size:.88rem;color:var(--ink-2);white-space:pre-wrap;overflow-wrap:anywhere}
+.mention .sec{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:2px;white-space:normal}
+.cites{margin-top:8px;padding:8px 10px;background:var(--surface-2);border-radius:7px;white-space:normal}
+.cite{white-space:pre-wrap;margin:6px 0 0;padding-top:6px;border-top:1px solid var(--line)}
+mark{background:var(--hit);color:var(--ink);padding:0 2px;border-radius:2px;font-weight:600}
+mark.cp{background:var(--amber-soft);color:var(--amber);outline:1px dashed var(--amber)}
+mark.ref{background:var(--accent-soft);color:var(--accent-ink);outline:1px solid var(--accent)}
+.mention.cp{border-left-color:var(--amber)}
+.cptag{color:var(--amber);text-transform:none;letter-spacing:0;font-weight:600}
+details summary{cursor:pointer;color:var(--muted);font-size:.85rem;margin-bottom:8px}
+.abstract{font-size:.9rem;color:var(--ink-2)}
+fieldset{border:0;margin:0 0 12px;padding:0}
+legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin:0 0 8px}
+.eng label{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;padding:7px 10px;
+  border:1px solid var(--line);border-radius:8px;margin-bottom:6px;cursor:pointer}
+.eng label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.eng input{grid-row:span 2;margin-top:4px}
+.eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
+.eng span{font-size:.78rem;color:var(--muted)}
+/* The long explanations only on the card being answered. */
+.card:not(.active) .eng span{display:none}
+kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
+  border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
+.fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg label{flex:1;text-align:center;padding:6px 8px;border:1px solid var(--line-2);border-radius:7px;
+  cursor:pointer;font-size:.85rem}
+.seg label:has(input:checked){border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:focus-visible){outline:2px solid var(--accent)}
+input[type=text],textarea,select{width:100%;font:inherit;font-size:.88rem;padding:6px 8px;
+  border:1px solid var(--line-2);border-radius:7px;background:var(--surface);color:var(--ink);margin-top:8px}
+select{width:auto;margin:0}
+.check{display:flex;gap:8px;align-items:center;font-size:.9rem}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.spacer{flex:1}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface-2);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.err{color:#c0392b;font-weight:600;font-size:.88rem;margin-top:10px}
+.feedback{border-radius:8px;padding:8px 10px;font-size:.88rem}
+.feedback.ok{background:#2f7d3a1a;border:1px solid var(--ok)}
+.feedback.diff{background:var(--amber-soft);border:1px solid var(--amber)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a href="../index.html" class="keep-r">Start page</a>
+  <span id="prog" class="tnum"></span>
+  <span class="bar" aria-hidden="true"><i id="progbar" style="width:0"></i></span>
+  <a href="../guide.html" target="_blank" rel="noopener">Guide (v3.1)</a>
+  <span id="mode" class="small" hidden></span>
+</header>
+
+<div id="again" class="note" hidden>You have already submitted this paper. Submitting again replaces your earlier answer.</div>
+
+
+<h1>Disks around merging binary black holes: From GW150914 to supermassive black holes</h1>
+<div class="small mut"><a href="https://arxiv.org/abs/1801.02624" target="_blank" rel="noopener" class="mono">arXiv:1801.02624</a> · open the paper whenever the snippets are not enough</div>
+<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We perform magnetohydrodynamic simulations in full general relativity of disk accretion onto nonspinning black hole binaries with mass ratio q =29 /36 . We survey different disk models which differ in their scale height, total size and magnetic field to quantify the robustness of previous simulations on the initial disk model. Scaling our simulations to LIGO GW150914 we find that such systems could explain possible gravitational wave and electromagnetic counterparts such as the Fermi GBM hard x-ray signal reported 0.4 s after GW150915 ended. Scaling our simulations to supermassive binary black holes, we find that observable flow properties such as accretion rate periodicities, the emergence of jets throughout inspiral, merger and postmerger, disk temperatures, thermal frequencies, and the time delay between merger and the boost in jet outflows that we reported in earlier studies display only modest dependence on the initial disk model we consider here.</p></details>
+
+
+
+<div id="pairs" >
+<p class="small mut" style="margin:18px 0 0">2 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+
+
+<section class="card" data-i="0" data-event="GW150914">
+  <div class="ctx">
+    <div class="evname mono">GW150914</div>
+    <h3>34 mentions · first 12 shown</h3>
+    
+    
+    <div class="mention"><span class="sec">front_matter</span>Disks Around Merging Binary Black Holes: From <mark>GW150914</mark> to Supermassive Black Holes
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+ Report GitHub Issue
+
+ ×
+ 
+
+ 
+ Title:
+ 
+
+ Content selection saved. Describe the issue below:
+
+ Description:
+ 
+ 
+
+ 
+ Submit without GitHub
+ Submit in GitHub
+ 
+ 
+
+ 
+ arXiv is now an independent nonprofit!
+ Learn more
+ …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">front_matter</span>…II.1 Metric Initial Data
+
+III.2 Matter and Magnetic-field Initial Data
+
+III.3 Dynamical evolution methods
+
+IV Results
+
+IV.0.1 Evolution of the matter and magnetic fields
+
+IV.0.2 Accretion rates
+
+IV.0.3 Outflows and jets
+
+V Astrophysical implications
+
+V.1 LIGO <mark>GW150914</mark>
+
+V.2 Supermassive binary black holes
+
+VI Conclusions
+
+A Scaling with Rest-Mass Density
+
+B Comparison with simple estimates
+
+Acknowledgements
+
+References
+
+ 
+ License: arXiv.org perpetual non-exclusive license
+ 
+ 
+arXiv:1801.02624v2 [astro-ph.HE] 24 Feb 2018
+
+D…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">front_matter</span>…clusions
+
+A Scaling with Rest-Mass Density
+
+B Comparison with simple estimates
+
+Acknowledgements
+
+References
+
+ 
+ License: arXiv.org perpetual non-exclusive license
+ 
+ 
+arXiv:1801.02624v2 [astro-ph.HE] 24 Feb 2018
+
+Disks Around Merging Binary Black Holes: From <mark>GW150914</mark> to Supermassive Black Holes
+
+Abid Khan
+
+Affiliation: Department of Physics, University of Illinois at
+Urbana-Champaign, Urbana, IL 61801
+
+  
+Vasileios Paschalidis
+
+Affiliation: Theoretical Astrophysics Program, Departments of Astronomy and Physics, University…</div>
+    
+    
+    <details><summary>9 more</summary>
+    <div class="mention"><span class="sec">abstract</span>…black hole binaries
+with mass ratio q=29/36q=29/36. We survey different disk models which differ
+in their scale height, total size and magnetic field to quantify the
+robustness of previous simulations on the initial disk
+model. Scaling our simulations to LIGO <mark>GW150914</mark> we find that such
+systems could explain possible gravitational wave and
+electromagnetic counterparts such as the Fermi GBM hard X-ray signal
+reported 0.4s after GW150915 ended. Scaling our simulations to
+supermassive binary black holes, we find that observabl…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…mbinary disk. This scenario has attracted a lot of
+attention recently because of the direct detection of gravitational
+waves (GWs).
+
+In particular, on September 14, 2015, the LIGO and Virgo
+collaborations made the first direct detection of a GW signal – event
+<mark>GW150914</mark> [17]. GW150914 was entirely consistent with an
+inspiraling and merging binary black hole (BHBH) in vacuum as
+predicted by the theory of general relativity (GR). This detection
+provided the best evidence yet for the existence of black
+holes. Meanwhile, the det…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…his scenario has attracted a lot of
+attention recently because of the direct detection of gravitational
+waves (GWs).
+
+In particular, on September 14, 2015, the LIGO and Virgo
+collaborations made the first direct detection of a GW signal – event
+GW150914 [17]. <mark>GW150914</mark> was entirely consistent with an
+inspiraling and merging binary black hole (BHBH) in vacuum as
+predicted by the theory of general relativity (GR). This detection
+provided the best evidence yet for the existence of black
+holes. Meanwhile, the detection of a tra…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>… with an
+inspiraling and merging binary black hole (BHBH) in vacuum as
+predicted by the theory of general relativity (GR). This detection
+provided the best evidence yet for the existence of black
+holes. Meanwhile, the detection of a transient EM signal (event
+<mark>GW150914</mark>-GBM) at photon energies &gt;50&gt;50 keV that lasted 1 s and
+appeared 0.4 s after the GW signal was reported in [18],
+who used data from the Gamma-ray Burst Monitor (GBM) aboard the Fermi
+satellite. The Fermi GBM satellite was covering 75% of the
+probability map as…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…mma-ray Burst Monitor (GBM) aboard the Fermi
+satellite. The Fermi GBM satellite was covering 75% of the
+probability map associated with the LIGO localization event in the
+sky, thus this signal could be a chance coincidence.
+We note that while the detection of <mark>GW150914</mark>-GBM has been
+controversial (see e.g. [19, 20]), a
+recent reanalysis of the data reported in [18] finds no
+reasons to question it [21]. On the
+other hand, an MeV-scale EM signal lasting for 32 ms and occurring
+0.46 s before the third GW detection made by the L…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…ate EM signals, but they may do so in the
+presence of ambient gas, such as binaries residing in
+AGNs [24, 25] or those with gas remaining from their
+stellar progenitors [26, 27, 28, 29]. There are multiple
+papers that suggest possible connections between LIGO <mark>GW150914</mark> and
+GW150914-GBM, see, e.g., [27, 30, 31]. Sources that
+could generate both the GWs and the hard X-rays reported include
+binary black hole-neutron stars, binary black hole-massive stars, and
+rapidly rotating massive stars. In [32, 33, 34]
+constraints on the r…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…s, but they may do so in the
+presence of ambient gas, such as binaries residing in
+AGNs [24, 25] or those with gas remaining from their
+stellar progenitors [26, 27, 28, 29]. There are multiple
+papers that suggest possible connections between LIGO GW150914 and
+<mark>GW150914</mark>-GBM, see, e.g., [27, 30, 31]. Sources that
+could generate both the GWs and the hard X-rays reported include
+binary black hole-neutron stars, binary black hole-massive stars, and
+rapidly rotating massive stars. In [32, 33, 34]
+constraints on the resulting BHBH…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…disk thickness because the binary tidal torques
+depend on the disk thickness, as well (see e.g. [37, 38, 39, 40, 41, 42, 43]).
+
+In this paper we consider a black hole binary with mass ratio
+q=29/36q=29/36 –
+motivated by the inferred value of the mass ratio of <mark>GW150914</mark> – and
+consider different initial disk models to explore their impact on the
+emergence of jets, the outgoing Poynting luminosity, the presence of
+periodicities in the accretion rate, and the time delay between merger
+and the boost in the jet luminosity that we…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…tailed
+microphysics, which then allows us to scale the binary black hole mass
+and disk densities to arbitrary values. Thus, our results can be
+applied to both supermassive black hole binaries and LIGO/Virgo black
+hole binaries.
+
+Scaling our simulations to the <mark>GW150914</mark> mass scale, we find that
+magnetized accretion onto binary black holes could explain both the
+GWs detected from this system and the EM counterpart GW150915-GBM
+reported by the Fermi GBM team 0.4s after LIGO’s GW150915
+detection. We also find that flow properti…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW150914</legend>
+      
+      <label><input type="checkbox" name="uses-0" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-0" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-0" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-0" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-0" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-0" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-0" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-0" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-0" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="1" data-event="GW170104">
+  <div class="ctx">
+    <div class="evname mono">GW170104</div>
+    <h3>1 mention</h3>
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…ersial (see e.g. [19, 20]), a
+recent reanalysis of the data reported in [18] finds no
+reasons to question it [21]. On the
+other hand, an MeV-scale EM signal lasting for 32 ms and occurring
+0.46 s before the third GW detection made by the LIGO detectors (event
+<mark>GW170104</mark>) – also consistent with a BHBH [22] –
+was reported in [23], who used data
+from the AGILE mission. While these candidate counterpart EM signals
+were not confirmed by other satellites operating at the same time,
+they still excited the interest of the community …</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW170104</legend>
+      
+      <label><input type="checkbox" name="uses-1" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-1" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-1" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-1" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-1" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-1" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-1" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-1" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-1" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+
+<section class="panel" style="margin-top:18px">
+  <label class="check"><input type="checkbox" id="author"> I am an author of this paper</label>
+  <textarea id="comment" rows="2" placeholder="Anything else about this paper (optional)"></textarea>
+  <div id="err" class="err" hidden></div>
+  <div class="actions">
+    <button class="primary" type="button" id="submit">Submit &amp; next paper</button>
+    <span class="spacer"></span>
+    <select id="skip-reason" aria-label="Reason for skipping">
+      <option value="">Skip this paper because…</option>
+      <option value="cannot_judge">I can't judge this paper's field</option>
+      <option value="conflict">conflict of interest</option>
+      <option value="no_access">the paper won't open</option>
+      <option value="other">other (say in the comment)</option>
+    </select>
+    <button type="button" id="skip">Skip</button>
+  </div>
+  <div id="status" class="small" style="margin-top:8px"></div>
+  <button type="button" class="primary" id="continue" hidden>Continue to the next paper</button>
+</section>
+</div>
+</div>
+<script>window.SG_PAGE = {"arxiv_id": "1801.02624", "events": ["GW150914", "GW170104"], "kind": "sample", "uniform": false};</script>
+<script src="../config.js"></script>
+<script src="../sg.js"></script>
+<script>SG.paperPage();</script>
+</body>
+</html>

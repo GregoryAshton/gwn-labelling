@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Label · 1602.04666</title>
+<style>
+:root{
+  --ground:#f4f7f8; --surface:#fff; --surface-2:#eef3f5;
+  --ink:#111a1f; --ink-2:#3d4f58; --muted:#63757e;
+  --line:#d8e3e7; --line-2:#c2d2d8;
+  --accent:#0b6e82; --accent-soft:#0b6e8215; --accent-ink:#064c5a;
+  --amber:#8a5200; --amber-soft:#8a520014; --hit:#ffe08a;
+  --ok:#2f7d3a;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#0b1215; --surface:#121c20; --surface-2:#17242a;
+  --ink:#e4edf0; --ink-2:#b4c6cd; --muted:#8497a0;
+  --line:#22333a; --line-2:#2e434c;
+  --accent:#3fc4dc; --accent-soft:#3fc4dc1a; --accent-ink:#7fdcee;
+  --amber:#f0b429; --amber-soft:#f0b4291a; --hit:#6b5410;
+  --ok:#6fcf7f;
+}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--ground);color:var(--ink);margin:0;
+  font:15px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Helvetica,sans-serif}
+.wrap{max-width:1280px;margin:0 auto;padding:0 18px 64px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.tnum{font-variant-numeric:tabular-nums}
+.mut{color:var(--muted)}.small{font-size:.85rem}
+header{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
+  border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:18px;font-size:.92rem}
+header .bar{flex:1 1 160px;height:6px;background:var(--line);border-radius:3px;overflow:hidden;min-width:120px}
+header .bar i{display:block;height:100%;background:var(--accent)}
+h1{font-size:1.3rem;margin:0 0 4px;letter-spacing:-.01em;text-wrap:balance}
+h3{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  margin:18px 0 8px;font-weight:600}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.73rem;
+  padding:2px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);
+  margin:0 4px 4px 0}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.chip.done{border-color:var(--ok);color:var(--ok)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:.36rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.wrapx{overflow-x:auto}
+</style>
+<style>
+.wrap{max-width:1180px}
+h2{font-size:1.02rem;margin:0 0 6px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
+  margin:0 0 14px;font-size:.9rem}
+.card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
+.card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card.missing{border-color:#c0392b}
+@media (max-width:860px){.card{grid-template-columns:1fr}}
+.evname{font-size:1.05rem;font-weight:600}
+.mention{border-left:3px solid var(--line-2);padding:4px 0 4px 12px;margin:0 0 12px;
+  font-size:.88rem;color:var(--ink-2);white-space:pre-wrap;overflow-wrap:anywhere}
+.mention .sec{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:2px;white-space:normal}
+.cites{margin-top:8px;padding:8px 10px;background:var(--surface-2);border-radius:7px;white-space:normal}
+.cite{white-space:pre-wrap;margin:6px 0 0;padding-top:6px;border-top:1px solid var(--line)}
+mark{background:var(--hit);color:var(--ink);padding:0 2px;border-radius:2px;font-weight:600}
+mark.cp{background:var(--amber-soft);color:var(--amber);outline:1px dashed var(--amber)}
+mark.ref{background:var(--accent-soft);color:var(--accent-ink);outline:1px solid var(--accent)}
+.mention.cp{border-left-color:var(--amber)}
+.cptag{color:var(--amber);text-transform:none;letter-spacing:0;font-weight:600}
+details summary{cursor:pointer;color:var(--muted);font-size:.85rem;margin-bottom:8px}
+.abstract{font-size:.9rem;color:var(--ink-2)}
+fieldset{border:0;margin:0 0 12px;padding:0}
+legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin:0 0 8px}
+.eng label{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;padding:7px 10px;
+  border:1px solid var(--line);border-radius:8px;margin-bottom:6px;cursor:pointer}
+.eng label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.eng input{grid-row:span 2;margin-top:4px}
+.eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
+.eng span{font-size:.78rem;color:var(--muted)}
+/* The long explanations only on the card being answered. */
+.card:not(.active) .eng span{display:none}
+kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
+  border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
+.fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg label{flex:1;text-align:center;padding:6px 8px;border:1px solid var(--line-2);border-radius:7px;
+  cursor:pointer;font-size:.85rem}
+.seg label:has(input:checked){border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:focus-visible){outline:2px solid var(--accent)}
+input[type=text],textarea,select{width:100%;font:inherit;font-size:.88rem;padding:6px 8px;
+  border:1px solid var(--line-2);border-radius:7px;background:var(--surface);color:var(--ink);margin-top:8px}
+select{width:auto;margin:0}
+.check{display:flex;gap:8px;align-items:center;font-size:.9rem}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.spacer{flex:1}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface-2);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.err{color:#c0392b;font-weight:600;font-size:.88rem;margin-top:10px}
+.feedback{border-radius:8px;padding:8px 10px;font-size:.88rem}
+.feedback.ok{background:#2f7d3a1a;border:1px solid var(--ok)}
+.feedback.diff{background:var(--amber-soft);border:1px solid var(--amber)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a href="../index.html" class="keep-r">Start page</a>
+  <span id="prog" class="tnum"></span>
+  <span class="bar" aria-hidden="true"><i id="progbar" style="width:0"></i></span>
+  <a href="../guide.html" target="_blank" rel="noopener">Guide (v3.1)</a>
+  <span id="mode" class="small" hidden></span>
+</header>
+
+<div id="again" class="note" hidden>You have already submitted this paper. Submitting again replaces your earlier answer.</div>
+
+
+<h1>Gravitational Wave Detection in the Introductory Lab</h1>
+<div class="small mut"><a href="https://arxiv.org/abs/1602.04666" target="_blank" rel="noopener" class="mono">arXiv:1602.04666</a> · open the paper whenever the snippets are not enough</div>
+<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">A long time ago in a galaxy far, far away, two black holes, one of mass 36 solar masses and the other of mass 29 solar masses, were dancing their death waltz, leading to their coalescence and the emission of gravitational waves carrying away with them three solar masses of energy. More precisely, it happened 1.3 billion years ago at a distance of 410 Mpc. When the waves were emitted, the most complex life forms on Earth were eukaryotes. As the gravitational waves propagated toward Earth, it changed much. Five hundred million years after the waves were emitted, or 800 million years ago, the first multicellular life forms emerged on Earth. Earth saw the Cambrian explosion 500 million years ago. Sixty-six million years ago the Cretaceous-Paleogene extinction event caused the disappearance of the dinosaurs. The first modern humans appeared 250,000 years ago.</p></details>
+
+
+
+<div id="pairs" >
+<p class="small mut" style="margin:18px 0 0">1 event found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+
+
+<section class="card" data-i="0" data-event="GW150914">
+  <div class="ctx">
+    <div class="evname mono">GW150914</div>
+    <h3>10 mentions</h3>
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…rse only in a very limited sense. (See discussion of gravitational 
+waves in The Physics Teacher in Rubbo et al, 2006; Larson et al, 2006; 
+and Spetz, 1984. See also Rubbo et al, 2007.) However, we can design 
+activities that directly involve the detection of <mark>GW150914</mark>, the 
+designation of the gravitation wave signal detected on September 14, 
+2015 (Abbott et al, 2016a), thereby engage the students in this exciting 
+discovery directly. The activities naturally do not include the 
+construction of a detector or the detection …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…bbott et al, 2016a), thereby engage the students in this exciting 
+discovery directly. The activities naturally do not include the 
+construction of a detector or the detection of gravitational waves. 
+Instead, we design it to include analysis of the data from <mark>GW150914</mark>, 
+which includes some interesting analysis activities for students. The 
+same activities can be assigned either as a laboratory exercise in data 
+analysis or as a computational project for the same population of 
+students. The analysis tools used here are sim…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…rested instructors may include the residuals in the activity, or 
+
+even include a bonus exercise to calculate the cross correlation integral 
+of the detected signal and the numerical relativity waveform. 
+All data are available at https://losc.ligo.org/events/<mark>GW150914</mark>/. (All 
+results presented here were obtained from the data file 
+https://losc.ligo.org/s/events/GW150914/GW150914_4_NR_waveform
+.txt.) 
+ 
+The amount by which a body is distorted (stretched or compressed) 
+relative to its reference length is known as strain. A…</div>
+    
+    
+    <details><summary>7 more</summary>
+    <div class="mention"><span class="sec">introduction</span>…late the cross correlation integral 
+of the detected signal and the numerical relativity waveform. 
+All data are available at https://losc.ligo.org/events/GW150914/. (All 
+results presented here were obtained from the data file 
+https://losc.ligo.org/s/events/<mark>GW150914</mark>/GW150914_4_NR_waveform
+.txt.) 
+ 
+The amount by which a body is distorted (stretched or compressed) 
+relative to its reference length is known as strain. Analogously, the 
+relative stretching or compression of space when a gravitational wave 
+passes through th…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…s strain. Analogously, the 
+relative stretching or compression of space when a gravitational wave 
+passes through the detector is also called strain. Plotting the strain h as 
+a function of detector time, we obtain Figure 1. 
+ 
+ 
+Figure 1: The GW strain h for <mark>GW150914</mark> (multiplied by 10!&#34;) as a 
+function of the time t in seconds (from the numerical relativity 
+waveform). The time is shifted so that maximum strain is at t = 0 
+s. The inset shows a section of the data in the main figure (in 
+blue), together with the observed …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…s, and for that reason it is a useful 
+parameter to introduce. The frequency evolution of the wave, !, can be 
+used from Eq. (2). This equation can next be inverted to give the chirp 
+mass in terms of the calculated ! and !, which can be constructed from 
+the <mark>GW150914</mark> data. (That is, having found !! the student can now 
+calculate the numerical derivative to find !.) 
+ 
+In Fig. 3 we plot the chirp mass, after some smoothing done as above. 
+Notice that the chirp mass is well defined using these simple 
+expressions only durin…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…uasi-normal ring-down of the 
+final single black hole. When the final black hole is first created it is 
+highly distorted, and emits gravitational waves that reduce this 
+distortion until it get to its stationary and quiescent state. Indeed, the 
+waveform for <mark>GW150914</mark> includes an exponential decay of the signal 
+with constant frequency after the merger. (In practice, the parameters 
+for the ring-down published in Abbott, B.P. et al (2016a) are found from 
+
+the numerical relativity waveform, as we do here.) In Fig. 4 we sho…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…e constant frequency are visible in the semi-logarithmic 
+representation. 
+ 
+−0.01 0 0.01 0.02 0.03 0.04 0.05
+−27
+−26
+−25
+−24
+−23
+−22
+−21
+−20
+t [sec]
+log10 | h |
+
+ 
+Figure 5: Best fit for the parameters of a damped sine function for the 
+ring-down part of the <mark>GW150914</mark> signal. 
+ 
+ 
+The frequency ! and time constant ! can next be used to find the mass 
+!! and specific angular momentum ! of the final black hole. Here, 
+!=!!!!!, where ! is the black hole’s spin angular momentum. The 
+specific angular momentum 0≤!≤1, and is a c…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…te the distance (the so-called 
+distance ladder). E.g., there was at first a fierce debate about the 
+distance to quasars before their redshift was measured, as the distance 
+could not be inferred directly from the observations. The distance to the 
+source of <mark>GW150914</mark>, 400 MPc, is much longer than the typical distance 
+between galaxies, ~1 Mpc, which itself is about 50 times the size of a 
+single galaxy. If the students are familiar with cosmological expansion 
+and know the redshift–distance relation, they can check that t…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">references</span>…GO is funded 
+by the U.S. National Science Foundation. 
+ 
+References 
+ 
+Abbott, B.P. et al (2016a), Observation of Gravitational Waves from a 
+Binary Black Hole Merger, Phys. Rev. Lett. 116, 061102 
+Abbott, B.P. et al (2016b), Tests of General Relativity with <mark>GW150914</mark>, 
+arXiv:1602.03841 
+Berti, E., Cardoso, V., and Starinets, A.O. (2009) Quasinormal modes of 
+black holes and black branes, Classical and Quantum Gravity 26, 163001 
+Chabay, R. and Sherwood, B. (2008), Computational physics in the 
+introductory calculus-based …
+    <div class="cites">
+      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
+    </div></div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW150914</legend>
+      
+      <label><input type="checkbox" name="uses-0" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-0" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-0" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-0" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-0" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-0" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-0" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-0" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-0" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+
+<section class="panel" style="margin-top:18px">
+  <label class="check"><input type="checkbox" id="author"> I am an author of this paper</label>
+  <textarea id="comment" rows="2" placeholder="Anything else about this paper (optional)"></textarea>
+  <div id="err" class="err" hidden></div>
+  <div class="actions">
+    <button class="primary" type="button" id="submit">Submit &amp; next paper</button>
+    <span class="spacer"></span>
+    <select id="skip-reason" aria-label="Reason for skipping">
+      <option value="">Skip this paper because…</option>
+      <option value="cannot_judge">I can't judge this paper's field</option>
+      <option value="conflict">conflict of interest</option>
+      <option value="no_access">the paper won't open</option>
+      <option value="other">other (say in the comment)</option>
+    </select>
+    <button type="button" id="skip">Skip</button>
+  </div>
+  <div id="status" class="small" style="margin-top:8px"></div>
+  <button type="button" class="primary" id="continue" hidden>Continue to the next paper</button>
+</section>
+</div>
+</div>
+<script>window.SG_PAGE = {"arxiv_id": "1602.04666", "events": ["GW150914"], "kind": "sample", "uniform": false};</script>
+<script src="../config.js"></script>
+<script src="../sg.js"></script>
+<script>SG.paperPage();</script>
+</body>
+</html>

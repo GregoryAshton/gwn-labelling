@@ -1,0 +1,1260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Label · 2111.03498</title>
+<style>
+:root{
+  --ground:#f4f7f8; --surface:#fff; --surface-2:#eef3f5;
+  --ink:#111a1f; --ink-2:#3d4f58; --muted:#63757e;
+  --line:#d8e3e7; --line-2:#c2d2d8;
+  --accent:#0b6e82; --accent-soft:#0b6e8215; --accent-ink:#064c5a;
+  --amber:#8a5200; --amber-soft:#8a520014; --hit:#ffe08a;
+  --ok:#2f7d3a;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#0b1215; --surface:#121c20; --surface-2:#17242a;
+  --ink:#e4edf0; --ink-2:#b4c6cd; --muted:#8497a0;
+  --line:#22333a; --line-2:#2e434c;
+  --accent:#3fc4dc; --accent-soft:#3fc4dc1a; --accent-ink:#7fdcee;
+  --amber:#f0b429; --amber-soft:#f0b4291a; --hit:#6b5410;
+  --ok:#6fcf7f;
+}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--ground);color:var(--ink);margin:0;
+  font:15px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Helvetica,sans-serif}
+.wrap{max-width:1280px;margin:0 auto;padding:0 18px 64px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.tnum{font-variant-numeric:tabular-nums}
+.mut{color:var(--muted)}.small{font-size:.85rem}
+header{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
+  border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:18px;font-size:.92rem}
+header .bar{flex:1 1 160px;height:6px;background:var(--line);border-radius:3px;overflow:hidden;min-width:120px}
+header .bar i{display:block;height:100%;background:var(--accent)}
+h1{font-size:1.3rem;margin:0 0 4px;letter-spacing:-.01em;text-wrap:balance}
+h3{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  margin:18px 0 8px;font-weight:600}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.73rem;
+  padding:2px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);
+  margin:0 4px 4px 0}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.chip.done{border-color:var(--ok);color:var(--ok)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:.36rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.wrapx{overflow-x:auto}
+</style>
+<style>
+.wrap{max-width:1180px}
+h2{font-size:1.02rem;margin:0 0 6px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
+  margin:0 0 14px;font-size:.9rem}
+.card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
+.card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card.missing{border-color:#c0392b}
+@media (max-width:860px){.card{grid-template-columns:1fr}}
+.evname{font-size:1.05rem;font-weight:600}
+.mention{border-left:3px solid var(--line-2);padding:4px 0 4px 12px;margin:0 0 12px;
+  font-size:.88rem;color:var(--ink-2);white-space:pre-wrap;overflow-wrap:anywhere}
+.mention .sec{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:2px;white-space:normal}
+.cites{margin-top:8px;padding:8px 10px;background:var(--surface-2);border-radius:7px;white-space:normal}
+.cite{white-space:pre-wrap;margin:6px 0 0;padding-top:6px;border-top:1px solid var(--line)}
+mark{background:var(--hit);color:var(--ink);padding:0 2px;border-radius:2px;font-weight:600}
+mark.cp{background:var(--amber-soft);color:var(--amber);outline:1px dashed var(--amber)}
+mark.ref{background:var(--accent-soft);color:var(--accent-ink);outline:1px solid var(--accent)}
+.mention.cp{border-left-color:var(--amber)}
+.cptag{color:var(--amber);text-transform:none;letter-spacing:0;font-weight:600}
+details summary{cursor:pointer;color:var(--muted);font-size:.85rem;margin-bottom:8px}
+.abstract{font-size:.9rem;color:var(--ink-2)}
+fieldset{border:0;margin:0 0 12px;padding:0}
+legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin:0 0 8px}
+.eng label{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;padding:7px 10px;
+  border:1px solid var(--line);border-radius:8px;margin-bottom:6px;cursor:pointer}
+.eng label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.eng input{grid-row:span 2;margin-top:4px}
+.eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
+.eng span{font-size:.78rem;color:var(--muted)}
+/* The long explanations only on the card being answered. */
+.card:not(.active) .eng span{display:none}
+kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
+  border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
+.fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg label{flex:1;text-align:center;padding:6px 8px;border:1px solid var(--line-2);border-radius:7px;
+  cursor:pointer;font-size:.85rem}
+.seg label:has(input:checked){border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:focus-visible){outline:2px solid var(--accent)}
+input[type=text],textarea,select{width:100%;font:inherit;font-size:.88rem;padding:6px 8px;
+  border:1px solid var(--line-2);border-radius:7px;background:var(--surface);color:var(--ink);margin-top:8px}
+select{width:auto;margin:0}
+.check{display:flex;gap:8px;align-items:center;font-size:.9rem}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.spacer{flex:1}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface-2);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.err{color:#c0392b;font-weight:600;font-size:.88rem;margin-top:10px}
+.feedback{border-radius:8px;padding:8px 10px;font-size:.88rem}
+.feedback.ok{background:#2f7d3a1a;border:1px solid var(--ok)}
+.feedback.diff{background:var(--amber-soft);border:1px solid var(--amber)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a href="../index.html" class="keep-r">Start page</a>
+  <span id="prog" class="tnum"></span>
+  <span class="bar" aria-hidden="true"><i id="progbar" style="width:0"></i></span>
+  <a href="../guide.html" target="_blank" rel="noopener">Guide (v3.1)</a>
+  <span id="mode" class="small" hidden></span>
+</header>
+
+<div id="again" class="note" hidden>You have already submitted this paper. Submitting again replaces your earlier answer.</div>
+
+
+<h1>Bridging the Gap: Categorizing Gravitational-wave Events at the Transition between Neutron Stars and Black Holes</h1>
+<div class="small mut"><a href="https://arxiv.org/abs/2111.03498" target="_blank" rel="noopener" class="mono">arXiv:2111.03498</a> · open the paper whenever the snippets are not enough</div>
+<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">We search for features in the mass distribution of detected compact binary coalescences which signify the transition between neutron stars (NSs) and black holes (BHs). We analyze all gravitational-wave (GW) detections by the LIGO Scientific Collaboration, the Virgo Collaboration, and the KAGRA Collaboration (LVK) made through the end of the first half of the third observing run, and find clear evidence for two different populations of compact objects based solely on GW data. We confidently (99.3%) find a steepening relative to a single power law describing NSs and low-mass BHs below ${2.4}_{-0.5}^{+0.5}{M}_{\odot }$ , which is consistent with many predictions for the maximum NS mass. We find suggestions of the purported lower mass gap between the most massive NSs and the least massive BHs, but are unable to conclusively resolve it with current data. If it exists, we find the lower mass gap&#39;s edges to lie at ${2.2}_{-0.5}^{+0.7}{M}_{\odot }$ and ${6.0}_{-1.4}^{+2.4}{M}_{\odot }$ . We reexamine events that have been deemed &#34;exceptional&#34; by the LVK collaborations in the context of these features. We analyze GW190814 self-consistently in the context of the full population of compact binaries, finding support for its secondary to be either a NS or a lower mass gap object, consistent with previous claims. Our models are the first to accommodate this event, which is an outlier with respect to the binary BH population. We find that GW200105 and GW200115 probe the edges of, and may have components within, the lower mass gap. As future data improve global population models, the classification of these events will also improve.</p></details>
+
+
+
+<div id="pairs" >
+<p class="small mut" style="margin:18px 0 0">7 events found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+
+
+<section class="card" data-i="0" data-event="GW170817">
+  <div class="ctx">
+    <div class="evname mono">GW170817</div>
+    <h3>5 mentions</h3>
+    
+    
+    <div class="mention"><span class="sec">methods</span>…he probability that an event is a NSBH is P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1}).
+Using these assumptions, we find that all probabilities presented in Tab. 2 are qualitatively consistent with the classifications given to each event by the LVK.
+
+<mark>GW170817</mark> is found here to have P⁡(m1≤mbreak)=0.99P(m_{1}\leq m_{\mathrm{break}})=0.99, which is consistent with the LVK’s classification of this event as a BNS.
+GW190425 has P⁡(m1≤mbreak)=0.9P(m_{1}\leq m_{\mathrm{break}})=0.9, with &lt;10%&lt;10\% support for a NSBH classi…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…tely with that of GW190814’s m2m_{2}.
+
+Tab. 3 uses the Broken Power Law + Dip model fit to characterize events in relation to γlow\gamma_{\mathrm{low}} and γhigh\gamma_{\mathrm{high}}.
+Events that have been previously identified by the LVK as containing a NS
+(<mark>GW170817</mark>, GW190425, GW200105, GW200115) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.
+BNS event GW170817 has P⁡(m1≤γlow)&gt;0.95P(m_{1}\leq\gamma_{\mathrm{low}})&gt;0.95 as well, but BNS event GW190425 has ∼10%\sim 10\% support of its primary being in the…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…elation to γlow\gamma_{\mathrm{low}} and γhigh\gamma_{\mathrm{high}}.
+Events that have been previously identified by the LVK as containing a NS
+(GW170817, GW190425, GW200105, GW200115) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.
+BNS event <mark>GW170817</mark> has P⁡(m1≤γlow)&gt;0.95P(m_{1}\leq\gamma_{\mathrm{low}})&gt;0.95 as well, but BNS event GW190425 has ∼10%\sim 10\% support of its primary being in the mass gap rather than a NS.
+This is likely due to the relatively large uncertainties on both the component masses o…</div>
+    
+    
+    <details><summary>2 more</summary>
+    <div class="mention"><span class="sec">discussion</span>…mbreak)P(m_{2}\leq m_{\mathrm{break}})
+P⁡(m1≤mbreak)P(m_{1}\leq m_{\mathrm{break}})
+P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1})
+
+Interpretation
+P⁡(contains a NS)P(\text{contains a NS})
+P⁡(is a BNS)P(\text{is a BNS})
+P⁡(is a NSBH)P(\text{is a NSBH})
+
+<mark>GW170817</mark>
+&gt;0.99&gt;0.99
+0.99
+0.01
+
+GW190425
+&gt;0.99&gt;0.99
+0.90
+0.09
+
+GW190814
+0.35
+&lt;0.001&lt;0.001
+0.35
+
+GW200105
+0.88
+&lt;0.001&lt;0.001
+0.88
+
+GW200115
+0.94
+&lt;0.001&lt;0.001
+0.94
+
+Table 2: 
+
+Events classified in the Broken Power Law formalism.
+Values are the probabilities that each even…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">discussion</span>…})
+P⁡(γlow≤m1≤γhigh)P(\gamma_{\text{low}}\leq m_{1}\leq\gamma_{\text{high}})
+
+Interpretation
+P⁡(contains a NS)P(\text{contains a NS})
+P⁡(is a BNS)P(\text{is a BNS})
+P⁡(m2​ in mass gap)P(m_{2}\text{ in mass gap})
+P⁡(m1​ in mass gap)P(m_{1}\text{ in mass gap})
+
+<mark>GW170817</mark>
+&gt;0.99&gt;0.99
+&gt;0.99&gt;0.99
+&lt;0.001&lt;0.001
+&lt;0.001&lt;0.001
+
+GW190425
+&gt;0.99&gt;0.99
+0.87
+0.01
+0.13
+
+GW190814
+0.26
+&lt;0.001&lt;0.001
+0.74
+&lt;0.001&lt;0.001
+
+GW190924_021846
+&lt;0.001&lt;0.001
+&lt;0.001&lt;0.001
+0.49
+0.05
+
+GW200105
+0.81
+&lt;0.001&lt;0.001
+0.19
+0.02
+
+GW200115
+0.96
+&lt;0.001&lt;0.001
+0.04
+0.44
+…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW170817</legend>
+      
+      <label><input type="checkbox" name="uses-0" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-0" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-0" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-0" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-0" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-0" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-0" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-0" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-0" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="1" data-event="GW190425">
+  <div class="ctx">
+    <div class="evname mono">GW190425</div>
+    <h3>6 mentions</h3>
+    
+    
+    <div class="mention"><span class="sec">methods</span>…nature of this deviation from a power law in Sec. III.3 through the features provided by the parametrized models from Sec. II.2.
+
+III.1 Deviation from a Single Power Law Describing BH and NS Masses
+
+Neither FEH20 nor [11] include GW190814, nor do they include <mark>GW190425</mark>, a BNS detected in the first half of the third LVK observing run [6].
+NSBH-like events GW200105_162426 and GW200115_042309 (abbreviated GW200105 and GW200115), which contain secondaries near the upper limits of what can be considered a NS and primaries at low…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…d in Tab. 2 are qualitatively consistent with the classifications given to each event by the LVK.
+
+GW170817 is found here to have P⁡(m1≤mbreak)=0.99P(m_{1}\leq m_{\mathrm{break}})=0.99, which is consistent with the LVK’s classification of this event as a BNS.
+<mark>GW190425</mark> has P⁡(m1≤mbreak)=0.9P(m_{1}\leq m_{\mathrm{break}})=0.9, with &lt;10%&lt;10\% support for a NSBH classification.
+This is consistent with this event’s classification as a BNS.
+NSBH events GW200105 and GW200115 both have larger P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…that of GW190814’s m2m_{2}.
+
+Tab. 3 uses the Broken Power Law + Dip model fit to characterize events in relation to γlow\gamma_{\mathrm{low}} and γhigh\gamma_{\mathrm{high}}.
+Events that have been previously identified by the LVK as containing a NS
+(GW170817, <mark>GW190425</mark>, GW200105, GW200115) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.
+BNS event GW170817 has P⁡(m1≤γlow)&gt;0.95P(m_{1}\leq\gamma_{\mathrm{low}})&gt;0.95 as well, but BNS event GW190425 has ∼10%\sim 10\% support of its primary being in the mass gap …</div>
+    
+    
+    <details><summary>3 more</summary>
+    <div class="mention"><span class="sec">methods</span>… previously identified by the LVK as containing a NS
+(GW170817, GW190425, GW200105, GW200115) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.
+BNS event GW170817 has P⁡(m1≤γlow)&gt;0.95P(m_{1}\leq\gamma_{\mathrm{low}})&gt;0.95 as well, but BNS event <mark>GW190425</mark> has ∼10%\sim 10\% support of its primary being in the mass gap rather than a NS.
+This is likely due to the relatively large uncertainties on both the component masses of GW and on γlow\gamma_{\mathrm{low}}.
+Events previously identified by the LVK as being con…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">discussion</span>…reak}})
+P⁡(m1≤mbreak)P(m_{1}\leq m_{\mathrm{break}})
+P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1})
+
+Interpretation
+P⁡(contains a NS)P(\text{contains a NS})
+P⁡(is a BNS)P(\text{is a BNS})
+P⁡(is a NSBH)P(\text{is a NSBH})
+
+GW170817
+&gt;0.99&gt;0.99
+0.99
+0.01
+
+<mark>GW190425</mark>
+&gt;0.99&gt;0.99
+0.90
+0.09
+
+GW190814
+0.35
+&lt;0.001&lt;0.001
+0.35
+
+GW200105
+0.88
+&lt;0.001&lt;0.001
+0.88
+
+GW200115
+0.94
+&lt;0.001&lt;0.001
+0.94
+
+Table 2: 
+
+Events classified in the Broken Power Law formalism.
+Values are the probabilities that each event’s component masses lie in a g…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">discussion</span>…mma_{\text{high}})
+
+Interpretation
+P⁡(contains a NS)P(\text{contains a NS})
+P⁡(is a BNS)P(\text{is a BNS})
+P⁡(m2​ in mass gap)P(m_{2}\text{ in mass gap})
+P⁡(m1​ in mass gap)P(m_{1}\text{ in mass gap})
+
+GW170817
+&gt;0.99&gt;0.99
+&gt;0.99&gt;0.99
+&lt;0.001&lt;0.001
+&lt;0.001&lt;0.001
+
+<mark>GW190425</mark>
+&gt;0.99&gt;0.99
+0.87
+0.01
+0.13
+
+GW190814
+0.26
+&lt;0.001&lt;0.001
+0.74
+&lt;0.001&lt;0.001
+
+GW190924_021846
+&lt;0.001&lt;0.001
+&lt;0.001&lt;0.001
+0.49
+0.05
+
+GW200105
+0.81
+&lt;0.001&lt;0.001
+0.19
+0.02
+
+GW200115
+0.96
+&lt;0.001&lt;0.001
+0.04
+0.44
+
+Table 3: 
+
+Events classified in the Broken Power Law + Di…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW190425</legend>
+      
+      <label><input type="checkbox" name="uses-1" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-1" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-1" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-1" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-1" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-1" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-1" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-1" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-1" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="2" data-event="GW190719_215514">
+  <div class="ctx">
+    <div class="evname mono">GW190719_215514</div>
+    <h3>1 mention</h3>
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…ibed to one of these source categories.
+For example, GW190814 [7] has a secondary mass of m2=2.59−0.09+0.08​M⊙m_{2}=2.59^{+0.08}_{-0.09}\,{\rm M}_{\odot}, making it either the most massive neutron star (NS) or the lowest mass black hole (BH) detected to date.
+<mark>GW190719_215514</mark>, presented for the first time in GWTC-2.1 [8], is in a similar position.
+These events lie at the edges of both the NSBH and BBH populations and therefore have the potential to probe the extremes of whichever subpopulation they belong.
+
+However, their classifi…</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW190719_215514</legend>
+      
+      <label><input type="checkbox" name="uses-2" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-2" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-2" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-2" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-2" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-2" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-2" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-2" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-2" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="3" data-event="GW190814">
+  <div class="ctx">
+    <div class="evname mono">GW190814</div>
+    <h3>40 mentions · first 12 shown</h3>
+    
+    
+    <div class="mention"><span class="sec">front_matter</span>…II.4 Statistical Framework
+
+III Population-Level Insights
+
+III.1 Deviation from a Single Power Law Describing BH and NS Masses
+
+III.2 Steep Decline After NS Masses
+
+III.3 Searching for a Lower Mass Gap
+
+IV Event-Level Insights
+
+IV.1 Event Classification
+
+IV.2 <mark>GW190814</mark>
+
+IV.3 GW200105 and GW200115
+
+V Discussion
+
+Acknowledgements
+
+References
+
+A Most flexible model fit
+
+B Hyperposteriors Inferred With and Without NSBH Events.
+
+ 
+ License: arXiv.org perpetual non-exclusive license
+ 
+ 
+arXiv:2111.03498v2 [astro-ph.HE] 13 Jul 202…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…ower mass gap’s edges to lie at 2.2−0.5+0.7​M⊙2.2^{+0.7}_{-0.5}M_{\odot} and 6.0−1.4+2.4​M⊙6.0^{+2.4}_{-1.4}M_{\odot}. We re-examine events that have been deemed ”exceptional” by the LIGO-Virgo-KAGRA collaborations in the context of these features. We analyze <mark>GW190814</mark> self-consistently in the context of the full population of compact binaries, finding support for its secondary to be either a neutron star or a lower mass gap object, consistent with previous claims. Our models are the first to accommodate this event, which i…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">introduction</span>…neutron star-black hole (NSBH) merger candidates [10], not including the events reported in the most recent deep extended catalog [8, GWTC-2.1].
+However, some of the detected sources cannot obviously be ascribed to one of these source categories.
+For example, <mark>GW190814</mark> [7] has a secondary mass of m2=2.59−0.09+0.08​M⊙m_{2}=2.59^{+0.08}_{-0.09}\,{\rm M}_{\odot}, making it either the most massive neutron star (NS) or the lowest mass black hole (BH) detected to date.
+GW190719_215514, presented for the first time in GWTC-2.1 [8]…</div>
+    
+    
+    <details><summary>9 more</summary>
+    <div class="mention"><span class="sec">introduction</span>…used in Sec. II.
+We show that the transition between NSs and BHs cannot be described by a single power law and explore other morphologies in Sec. III.
+In Sec. IV.2, we demonstrate that the models considered in this work are the first to be able to accommodate <mark>GW190814</mark>. We describe insights on the NSBH events in Sec. IV.3.
+We then classify all low-mass events with respect to the inferred subpopulation delineations in Sec. IV.1, concluding in Sec. V
+
+II Methods
+
+We first describe our selection criteria for which events to in…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>… for the component masses for all CBCs included in this population study assuming uniform priors in detector-frame masses.
+Events classified by the LVK as BBHs, BNSs and NSBHs are shown in black, green, and blue, respectively.
+The ambiguously classified event <mark>GW190814</mark> is shown in orange.
+The grey band indicates the approximate location of the purported “lower mass gap.”
+GW190814 is the only event within this region at more than 90% credibility.
+
+II.2 Population Models
+
+We consider several nested mass models.
+That is, we de…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…e masses.
+Events classified by the LVK as BBHs, BNSs and NSBHs are shown in black, green, and blue, respectively.
+The ambiguously classified event GW190814 is shown in orange.
+The grey band indicates the approximate location of the purported “lower mass gap.”
+<mark>GW190814</mark> is the only event within this region at more than 90% credibility.
+
+II.2 Population Models
+
+We consider several nested mass models.
+That is, we describe our conclusions in the context of different sets of assumptions about the mass distribution, each of which…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>… cannot. We then describe the nature of this deviation from a power law in Sec. III.3 through the features provided by the parametrized models from Sec. II.2.
+
+III.1 Deviation from a Single Power Law Describing BH and NS Masses
+
+Neither FEH20 nor [11] include <mark>GW190814</mark>, nor do they include GW190425, a BNS detected in the first half of the third LVK observing run [6].
+NSBH-like events GW200105_162426 and GW200115_042309 (abbreviated GW200105 and GW200115), which contain secondaries near the upper limits of what can be consid…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>… nuclear physics.
+
+We find α2−α1&gt;0\alpha_{2}-\alpha_{1}&gt;0 at 99.3% credibility, indicating that a single power law is unable to fit the mass distribution down to low masses.
+This is consistent with findings in FEH20 and [11], and therefore the low mass events <mark>GW190814</mark>, GW200105, and GW200115 do not fully bridge the BH and NS populations.
+
+As an aside, we also note that β2−β1&gt;0\beta_{2}-\beta_{1}&gt;0 at 99.6% credibility, indicating that the pairing functions between BBHs and CBCs with low secondary mass are distinct.
+However…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…scusses how we do this in general, marginalizing over both the uncertainty in individual events’ parameters as well as the population hyperparameters.
+We then discuss the implications for specific events that previous models have not been able to accommodate: <mark>GW190814</mark> (Sec. IV.2) and the two NSBH-like events GW200105 and GW200115 (Sec. IV.3).
+
+IV.1 Event Classification
+
+Fits to the full spectrum of CBCs allow us to classify events with respect to features inferred from the detected population.
+
+Tab. 2 uses the Broken Power…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…arger P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1}) than their respective P⁡(m1&lt;mbreak)P(m_{1}&lt;m_{\mathrm{break}}) or P⁡(m2&gt;mbreak)P(m_{2}&gt;m_{\mathrm{break}}), so under this framework they are more likely NSBHs than BNSs or BBHs.
+The secondary mass of <mark>GW190814</mark> is neither definitively a NS nor a BH under this classification scheme: the posterior on mbreakm_{\mathrm{break}} overlaps almost completely with that of GW190814’s m2m_{2}.
+
+Tab. 3 uses the Broken Power Law + Dip model fit to characterize events in relation …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…}}), so under this framework they are more likely NSBHs than BNSs or BBHs.
+The secondary mass of GW190814 is neither definitively a NS nor a BH under this classification scheme: the posterior on mbreakm_{\mathrm{break}} overlaps almost completely with that of <mark>GW190814</mark>’s m2m_{2}.
+
+Tab. 3 uses the Broken Power Law + Dip model fit to characterize events in relation to γlow\gamma_{\mathrm{low}} and γhigh\gamma_{\mathrm{high}}.
+Events that have been previously identified by the LVK as containing a NS
+(GW170817, GW190425, GW2001…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…ication in this analysis, with large P⁡(m2≤γlow)P(m_{2}\leq\gamma_{\mathrm{low}}), and near-vanishing P⁡(m1≤γlow)P(m_{1}\leq\gamma_{\mathrm{low}}).
+
+Additionally, the component masses of three events have considerable support in the mass gap: the secondary of <mark>GW190814</mark>, the secondary of GW190924_021846, and the primary of GW200115.
+While a totally empty gap is not ruled out \mdash none of the three have more than 75% support in the gap \mdash the combined effect of these three events is to decrease the inferred depth of the…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW190814</legend>
+      
+      <label><input type="checkbox" name="uses-3" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-3" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-3" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-3" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-3" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-3" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-3" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-3" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-3" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="4" data-event="GW190924_021846">
+  <div class="ctx">
+    <div class="evname mono">GW190924_021846</div>
+    <h3>2 mentions</h3>
+    
+    
+    <div class="mention"><span class="sec">methods</span>…ith large P⁡(m2≤γlow)P(m_{2}\leq\gamma_{\mathrm{low}}), and near-vanishing P⁡(m1≤γlow)P(m_{1}\leq\gamma_{\mathrm{low}}).
+
+Additionally, the component masses of three events have considerable support in the mass gap: the secondary of GW190814, the secondary of <mark>GW190924_021846</mark>, and the primary of GW200115.
+While a totally empty gap is not ruled out \mdash none of the three have more than 75% support in the gap \mdash the combined effect of these three events is to decrease the inferred depth of the lower mass gap.
+The secondary mas…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">discussion</span>…a BNS)P(\text{is a BNS})
+P⁡(m2​ in mass gap)P(m_{2}\text{ in mass gap})
+P⁡(m1​ in mass gap)P(m_{1}\text{ in mass gap})
+
+GW170817
+&gt;0.99&gt;0.99
+&gt;0.99&gt;0.99
+&lt;0.001&lt;0.001
+&lt;0.001&lt;0.001
+
+GW190425
+&gt;0.99&gt;0.99
+0.87
+0.01
+0.13
+
+GW190814
+0.26
+&lt;0.001&lt;0.001
+0.74
+&lt;0.001&lt;0.001
+
+<mark>GW190924_021846</mark>
+&lt;0.001&lt;0.001
+&lt;0.001&lt;0.001
+0.49
+0.05
+
+GW200105
+0.81
+&lt;0.001&lt;0.001
+0.19
+0.02
+
+GW200115
+0.96
+&lt;0.001&lt;0.001
+0.04
+0.44
+
+Table 3: 
+
+Events classified in the Broken Power Law + Dip formalism.
+Values are the probabilities that each event’s component masses lie in a giv…</div>
+    
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW190924_021846</legend>
+      
+      <label><input type="checkbox" name="uses-4" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-4" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-4" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-4" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-4" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-4" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-4" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-4" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-4" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="5" data-event="GW200105_162426">
+  <div class="ctx">
+    <div class="evname mono">GW200105_162426</div>
+    <h3>19 mentions · first 12 shown</h3>
+    
+    
+    <div class="mention"><span class="sec">front_matter</span>…l Framework
+
+III Population-Level Insights
+
+III.1 Deviation from a Single Power Law Describing BH and NS Masses
+
+III.2 Steep Decline After NS Masses
+
+III.3 Searching for a Lower Mass Gap
+
+IV Event-Level Insights
+
+IV.1 Event Classification
+
+IV.2 GW190814
+
+IV.3 <mark>GW200105</mark> and GW200115
+
+V Discussion
+
+Acknowledgements
+
+References
+
+A Most flexible model fit
+
+B Hyperposteriors Inferred With and Without NSBH Events.
+
+ 
+ License: arXiv.org perpetual non-exclusive license
+ 
+ 
+arXiv:2111.03498v2 [astro-ph.HE] 13 Jul 2022
+
+Bridging the…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…, finding support for its secondary to be either a neutron star or a lower mass gap object, consistent with previous claims. Our models are the first to accommodate this event, which is an outlier with respect to the binary black hole population. We find that <mark>GW200105</mark> and GW200115 probe the edges of, and may have components within, the lower mass gap. As future data improve global population models, the classification of these events will also become more precise.
+
+ 
+
+I Introduction
+
+The LIGO Scientific Collaboration, Virg…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…ametrized models from Sec. II.2.
+
+III.1 Deviation from a Single Power Law Describing BH and NS Masses
+
+Neither FEH20 nor [11] include GW190814, nor do they include GW190425, a BNS detected in the first half of the third LVK observing run [6].
+NSBH-like events <mark>GW200105_162426</mark> and GW200115_042309 (abbreviated GW200105 and GW200115), which contain secondaries near the upper limits of what can be considered a NS and primaries at lower BH masses than have been previously detected in definitive BBHs, had not been published at the time …</div>
+    
+    
+    <details><summary>9 more</summary>
+    <div class="mention"><span class="sec">methods</span>… from a Single Power Law Describing BH and NS Masses
+
+Neither FEH20 nor [11] include GW190814, nor do they include GW190425, a BNS detected in the first half of the third LVK observing run [6].
+NSBH-like events GW200105_162426 and GW200115_042309 (abbreviated <mark>GW200105</mark> and GW200115), which contain secondaries near the upper limits of what can be considered a NS and primaries at lower BH masses than have been previously detected in definitive BBHs, had not been published at the time of either study.
+These events appear to br…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…hysics.
+
+We find α2−α1&gt;0\alpha_{2}-\alpha_{1}&gt;0 at 99.3% credibility, indicating that a single power law is unable to fit the mass distribution down to low masses.
+This is consistent with findings in FEH20 and [11], and therefore the low mass events GW190814, <mark>GW200105</mark>, and GW200115 do not fully bridge the BH and NS populations.
+
+As an aside, we also note that β2−β1&gt;0\beta_{2}-\beta_{1}&gt;0 at 99.6% credibility, indicating that the pairing functions between BBHs and CBCs with low secondary mass are distinct.
+However, because …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…ver both the uncertainty in individual events’ parameters as well as the population hyperparameters.
+We then discuss the implications for specific events that previous models have not been able to accommodate: GW190814 (Sec. IV.2) and the two NSBH-like events <mark>GW200105</mark> and GW200115 (Sec. IV.3).
+
+IV.1 Event Classification
+
+Fits to the full spectrum of CBCs allow us to classify events with respect to features inferred from the detected population.
+
+Tab. 2 uses the Broken Power Law model fit to characterize events in relation …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>… is consistent with the LVK’s classification of this event as a BNS.
+GW190425 has P⁡(m1≤mbreak)=0.9P(m_{1}\leq m_{\mathrm{break}})=0.9, with &lt;10%&lt;10\% support for a NSBH classification.
+This is consistent with this event’s classification as a BNS.
+NSBH events <mark>GW200105</mark> and GW200115 both have larger P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1}) than their respective P⁡(m1&lt;mbreak)P(m_{1}&lt;m_{\mathrm{break}}) or P⁡(m2&gt;mbreak)P(m_{2}&gt;m_{\mathrm{break}}), so under this framework they are more likely NSBHs than BNSs or BBH…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…190814’s m2m_{2}.
+
+Tab. 3 uses the Broken Power Law + Dip model fit to characterize events in relation to γlow\gamma_{\mathrm{low}} and γhigh\gamma_{\mathrm{high}}.
+Events that have been previously identified by the LVK as containing a NS
+(GW170817, GW190425, <mark>GW200105</mark>, GW200115) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.
+BNS event GW170817 has P⁡(m1≤γlow)&gt;0.95P(m_{1}\leq\gamma_{\mathrm{low}})&gt;0.95 as well, but BNS event GW190425 has ∼10%\sim 10\% support of its primary being in the mass gap rather tha…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…rt of its primary being in the mass gap rather than a NS.
+This is likely due to the relatively large uncertainties on both the component masses of GW and on γlow\gamma_{\mathrm{low}}.
+Events previously identified by the LVK as being consistent with NSBHs [10, <mark>GW200105</mark>, GW200115] receive a similar classification in this analysis, with large P⁡(m2≤γlow)P(m_{2}\leq\gamma_{\mathrm{low}}), and near-vanishing P⁡(m1≤γlow)P(m_{1}\leq\gamma_{\mathrm{low}}).
+
+Additionally, the component masses of three events have considerable suppo…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">discussion</span>…k&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1})
+
+Interpretation
+P⁡(contains a NS)P(\text{contains a NS})
+P⁡(is a BNS)P(\text{is a BNS})
+P⁡(is a NSBH)P(\text{is a NSBH})
+
+GW170817
+&gt;0.99&gt;0.99
+0.99
+0.01
+
+GW190425
+&gt;0.99&gt;0.99
+0.90
+0.09
+
+GW190814
+0.35
+&lt;0.001&lt;0.001
+0.35
+
+<mark>GW200105</mark>
+0.88
+&lt;0.001&lt;0.001
+0.88
+
+GW200115
+0.94
+&lt;0.001&lt;0.001
+0.94
+
+Table 2: 
+
+Events classified in the Broken Power Law formalism.
+Values are the probabilities that each event’s component masses lie in a given region of parameter space, considering uncertainty in the c…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">discussion</span>…ext{ in mass gap})
+P⁡(m1​ in mass gap)P(m_{1}\text{ in mass gap})
+
+GW170817
+&gt;0.99&gt;0.99
+&gt;0.99&gt;0.99
+&lt;0.001&lt;0.001
+&lt;0.001&lt;0.001
+
+GW190425
+&gt;0.99&gt;0.99
+0.87
+0.01
+0.13
+
+GW190814
+0.26
+&lt;0.001&lt;0.001
+0.74
+&lt;0.001&lt;0.001
+
+GW190924_021846
+&lt;0.001&lt;0.001
+&lt;0.001&lt;0.001
+0.49
+0.05
+
+<mark>GW200105</mark>
+0.81
+&lt;0.001&lt;0.001
+0.19
+0.02
+
+GW200115
+0.96
+&lt;0.001&lt;0.001
+0.04
+0.44
+
+Table 3: 
+
+Events classified in the Broken Power Law + Dip formalism.
+Values are the probabilities that each event’s component masses lie in a given region of parameter space, considering unce…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">discussion</span>…that this event is consistent with the inferred population using this model.
+The only parameter that exhibits a noticeable change is γlow\gamma_{\mathrm{low}}, where the bimodality of the posterior distribution disappears with the exclusion of GW190814.
+
+IV.3 <mark>GW200105</mark> and GW200115
+
+GW200105 and GW200115 are the most definitive detections of NSBH-like systems via gravitational waves to date, observed by the LVK during the second half of the third observing run [10].
+GW200105 has component masses m1=8.9−1.5+1.2​M⊙m_{1}=8.9_{…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW200105_162426</legend>
+      
+      <label><input type="checkbox" name="uses-5" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-5" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-5" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-5" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-5" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-5" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-5" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-5" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-5" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+<section class="card" data-i="6" data-event="GW200115_042309">
+  <div class="ctx">
+    <div class="evname mono">GW200115_042309</div>
+    <h3>20 mentions · first 12 shown</h3>
+    
+    
+    <div class="mention"><span class="sec">front_matter</span>…III Population-Level Insights
+
+III.1 Deviation from a Single Power Law Describing BH and NS Masses
+
+III.2 Steep Decline After NS Masses
+
+III.3 Searching for a Lower Mass Gap
+
+IV Event-Level Insights
+
+IV.1 Event Classification
+
+IV.2 GW190814
+
+IV.3 GW200105 and <mark>GW200115</mark>
+
+V Discussion
+
+Acknowledgements
+
+References
+
+A Most flexible model fit
+
+B Hyperposteriors Inferred With and Without NSBH Events.
+
+ 
+ License: arXiv.org perpetual non-exclusive license
+ 
+ 
+arXiv:2111.03498v2 [astro-ph.HE] 13 Jul 2022
+
+Bridging the Gap: Categor…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">abstract</span>…port for its secondary to be either a neutron star or a lower mass gap object, consistent with previous claims. Our models are the first to accommodate this event, which is an outlier with respect to the binary black hole population. We find that GW200105 and <mark>GW200115</mark> probe the edges of, and may have components within, the lower mass gap. As future data improve global population models, the classification of these events will also become more precise.
+
+ 
+
+I Introduction
+
+The LIGO Scientific Collaboration, Virgo Collaborati…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…m Sec. II.2.
+
+III.1 Deviation from a Single Power Law Describing BH and NS Masses
+
+Neither FEH20 nor [11] include GW190814, nor do they include GW190425, a BNS detected in the first half of the third LVK observing run [6].
+NSBH-like events GW200105_162426 and <mark>GW200115_042309</mark> (abbreviated GW200105 and GW200115), which contain secondaries near the upper limits of what can be considered a NS and primaries at lower BH masses than have been previously detected in definitive BBHs, had not been published at the time of either study.
+The…</div>
+    
+    
+    <details><summary>9 more</summary>
+    <div class="mention"><span class="sec">methods</span>…e Power Law Describing BH and NS Masses
+
+Neither FEH20 nor [11] include GW190814, nor do they include GW190425, a BNS detected in the first half of the third LVK observing run [6].
+NSBH-like events GW200105_162426 and GW200115_042309 (abbreviated GW200105 and <mark>GW200115</mark>), which contain secondaries near the upper limits of what can be considered a NS and primaries at lower BH masses than have been previously detected in definitive BBHs, had not been published at the time of either study.
+These events appear to bridge the NS a…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…nd α2−α1&gt;0\alpha_{2}-\alpha_{1}&gt;0 at 99.3% credibility, indicating that a single power law is unable to fit the mass distribution down to low masses.
+This is consistent with findings in FEH20 and [11], and therefore the low mass events GW190814, GW200105, and <mark>GW200115</mark> do not fully bridge the BH and NS populations.
+
+As an aside, we also note that β2−β1&gt;0\beta_{2}-\beta_{1}&gt;0 at 99.6% credibility, indicating that the pairing functions between BBHs and CBCs with low secondary mass are distinct.
+However, because of the fixed l…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…uncertainty in individual events’ parameters as well as the population hyperparameters.
+We then discuss the implications for specific events that previous models have not been able to accommodate: GW190814 (Sec. IV.2) and the two NSBH-like events GW200105 and <mark>GW200115</mark> (Sec. IV.3).
+
+IV.1 Event Classification
+
+Fits to the full spectrum of CBCs allow us to classify events with respect to features inferred from the detected population.
+
+Tab. 2 uses the Broken Power Law model fit to characterize events in relation to mbreakm_{\…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…t with the LVK’s classification of this event as a BNS.
+GW190425 has P⁡(m1≤mbreak)=0.9P(m_{1}\leq m_{\mathrm{break}})=0.9, with &lt;10%&lt;10\% support for a NSBH classification.
+This is consistent with this event’s classification as a BNS.
+NSBH events GW200105 and <mark>GW200115</mark> both have larger P⁡(m2≤mbreak&lt;m1)P(m_{2}\leq m_{\mathrm{break}}&lt;m_{1}) than their respective P⁡(m1&lt;mbreak)P(m_{1}&lt;m_{\mathrm{break}}) or P⁡(m2&gt;mbreak)P(m_{2}&gt;m_{\mathrm{break}}), so under this framework they are more likely NSBHs than BNSs or BBHs.
+The second…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…2m_{2}.
+
+Tab. 3 uses the Broken Power Law + Dip model fit to characterize events in relation to γlow\gamma_{\mathrm{low}} and γhigh\gamma_{\mathrm{high}}.
+Events that have been previously identified by the LVK as containing a NS
+(GW170817, GW190425, GW200105, <mark>GW200115</mark>) all have P⁡(m2≤γlow)&gt;0.95P(m_{2}\leq\gamma_{\mathrm{low}})&gt;0.95.
+BNS event GW170817 has P⁡(m1≤γlow)&gt;0.95P(m_{1}\leq\gamma_{\mathrm{low}})&gt;0.95 as well, but BNS event GW190425 has ∼10%\sim 10\% support of its primary being in the mass gap rather than a NS.
+Th…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…primary being in the mass gap rather than a NS.
+This is likely due to the relatively large uncertainties on both the component masses of GW and on γlow\gamma_{\mathrm{low}}.
+Events previously identified by the LVK as being consistent with NSBHs [10, GW200105, <mark>GW200115</mark>] receive a similar classification in this analysis, with large P⁡(m2≤γlow)P(m_{2}\leq\gamma_{\mathrm{low}}), and near-vanishing P⁡(m1≤γlow)P(m_{1}\leq\gamma_{\mathrm{low}}).
+
+Additionally, the component masses of three events have considerable support in the …</div>
+    
+    
+    
+    <div class="mention"><span class="sec">methods</span>…ma_{\mathrm{low}}), and near-vanishing P⁡(m1≤γlow)P(m_{1}\leq\gamma_{\mathrm{low}}).
+
+Additionally, the component masses of three events have considerable support in the mass gap: the secondary of GW190814, the secondary of GW190924_021846, and the primary of <mark>GW200115</mark>.
+While a totally empty gap is not ruled out \mdash none of the three have more than 75% support in the gap \mdash the combined effect of these three events is to decrease the inferred depth of the lower mass gap.
+The secondary mass of GW190814 remains ambiguo…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">discussion</span>…}}&lt;m_{1})
+
+Interpretation
+P⁡(contains a NS)P(\text{contains a NS})
+P⁡(is a BNS)P(\text{is a BNS})
+P⁡(is a NSBH)P(\text{is a NSBH})
+
+GW170817
+&gt;0.99&gt;0.99
+0.99
+0.01
+
+GW190425
+&gt;0.99&gt;0.99
+0.90
+0.09
+
+GW190814
+0.35
+&lt;0.001&lt;0.001
+0.35
+
+GW200105
+0.88
+&lt;0.001&lt;0.001
+0.88
+
+<mark>GW200115</mark>
+0.94
+&lt;0.001&lt;0.001
+0.94
+
+Table 2: 
+
+Events classified in the Broken Power Law formalism.
+Values are the probabilities that each event’s component masses lie in a given region of parameter space, considering uncertainty in the component masses as well as in the…</div>
+    
+    
+    
+    <div class="mention"><span class="sec">discussion</span>…P(m_{1}\text{ in mass gap})
+
+GW170817
+&gt;0.99&gt;0.99
+&gt;0.99&gt;0.99
+&lt;0.001&lt;0.001
+&lt;0.001&lt;0.001
+
+GW190425
+&gt;0.99&gt;0.99
+0.87
+0.01
+0.13
+
+GW190814
+0.26
+&lt;0.001&lt;0.001
+0.74
+&lt;0.001&lt;0.001
+
+GW190924_021846
+&lt;0.001&lt;0.001
+&lt;0.001&lt;0.001
+0.49
+0.05
+
+GW200105
+0.81
+&lt;0.001&lt;0.001
+0.19
+0.02
+
+<mark>GW200115</mark>
+0.96
+&lt;0.001&lt;0.001
+0.04
+0.44
+
+Table 3: 
+
+Events classified in the Broken Power Law + Dip formalism.
+Values are the probabilities that each event’s component masses lie in a given region of parameter space, considering uncertainty in the component masses as wel…</div>
+    </details>
+    
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of GW200115_042309</legend>
+      
+      <label><input type="checkbox" name="uses-6" value="strain_analysis"><b><kbd>1</kbd>Does the paper analyse the strain data for this event?</b><span>Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.</span></label>
+      
+      <label><input type="checkbox" name="uses-6" value="posterior_samples"><b><kbd>2</kbd>Does it use released samples for this event?</b><span>Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper&#39;s own posteriors from analysing the strain are Q1, not Q2.</span></label>
+      
+      <label><input type="checkbox" name="uses-6" value="published_results"><b><kbd>3</kbd>Does it use the event&#39;s published measurements with their uncertainties?</b><span>Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. &#34;exceeds the 1.61-2.52 solar mass primary of GW190425&#34;). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.</span></label>
+      
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> If none of those: does it use anything the event showed?</div>
+        <label><input type="radio" name="fb-6" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper&#39;s own work; a central or rounded value (&#34;~1.4 solar masses&#34;, &#34;black holes of ~30 solar masses exist in binaries&#34;) counts. Read this broadly. If not -- the event is only named or cited as background, as in &#34;gravitational waves have been observed [1]&#34; -- it is cited_only.</span></label>
+        <label><input type="radio" name="fb-6" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-6" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-6" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-6" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-6" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+
+
+<section class="panel" style="margin-top:18px">
+  <label class="check"><input type="checkbox" id="author"> I am an author of this paper</label>
+  <textarea id="comment" rows="2" placeholder="Anything else about this paper (optional)"></textarea>
+  <div id="err" class="err" hidden></div>
+  <div class="actions">
+    <button class="primary" type="button" id="submit">Submit &amp; next paper</button>
+    <span class="spacer"></span>
+    <select id="skip-reason" aria-label="Reason for skipping">
+      <option value="">Skip this paper because…</option>
+      <option value="cannot_judge">I can't judge this paper's field</option>
+      <option value="conflict">conflict of interest</option>
+      <option value="no_access">the paper won't open</option>
+      <option value="other">other (say in the comment)</option>
+    </select>
+    <button type="button" id="skip">Skip</button>
+  </div>
+  <div id="status" class="small" style="margin-top:8px"></div>
+  <button type="button" class="primary" id="continue" hidden>Continue to the next paper</button>
+</section>
+</div>
+</div>
+<script>window.SG_PAGE = {"arxiv_id": "2111.03498", "events": ["GW170817", "GW190425", "GW190719_215514", "GW190814", "GW190924_021846", "GW200105_162426", "GW200115_042309"], "kind": "sample", "uniform": false};</script>
+<script src="../config.js"></script>
+<script src="../sg.js"></script>
+<script>SG.paperPage();</script>
+</body>
+</html>
